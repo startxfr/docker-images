@@ -1,6 +1,5 @@
 
-
-FROM       tutum/mariadb:latest
+FROM       postgres:latest
 MAINTAINER startx dev@startx.fr
 
 

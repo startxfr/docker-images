@@ -1,6 +1,6 @@
 
 
-FROM       tutum/mariadb:latest
+FROM       mongo:latest
 MAINTAINER startx dev@startx.fr
 
 

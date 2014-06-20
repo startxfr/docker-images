@@ -1,5 +1,5 @@
 
 
-FROM       softinnov/mysql:latest
+FROM       mysql:latest
 MAINTAINER startx dev@startx.fr
 
