@@ -1,8 +1,8 @@
-# STARTX OS docker-images OS : Fedora
+# STARTX OS docker-images : Fedora
 
 ## Running from docker registry
 
-	# docker run -d -p 22 startx/fedora
+	# docker run -d -p 22022:22 --name="test-fedora" startx/fedora
 
 ## Running from local Dockerfile
 
@@ -19,8 +19,15 @@ and build the container
 
 ### Running local image
 
-	# docker run -d -p 22 <username>/ssh
+	# docker run -d -p 22022:22 --name="test-fedora" <username>/ssh
 
 ## Accessing server
 
 	# ssh root@localhost 
+
+## Related Resources
+
+* [Sources files](https://github.com/startxfr/docker-images/tree/master/OS/Fedora)
+* [Github STARTX profile](https://github.com/startxfr/docker-images)
+* [Docker registry for this container](https://registry.hub.docker.com/u/startx/fedora/)
+* [Docker registry for Fedora](https://registry.hub.docker.com/u/fedora/ssh/)

@@ -1,10 +1,34 @@
-STARTX docker-images - PHP
-==========================
+# STARTX Services docker-images : Apache-PHP
 
-**Description**  
-Based on the [tutum php](https://registry.hub.docker.com/u/tutum/apache-php) Dockerfile
+## Running from docker registry
 
-**Usage**  
-	
-          docker run -d -p 80:80 startx/sv-php // minimum to run properly the server
-          docker run -d -p 80:80 --name="test-www" -e VIRTUAL_HOST=php.project.dev.startx.fr startx/sv-php
+	# docker run -d -p 8080:80 --name="test-www" startx/sv-php
+
+## Running from local Dockerfile
+
+### Building docker image
+Copy the sources to your docker host 
+
+	# mkdir startx-docker-images;
+	# git clone https://github.com/startxfr/docker-images.git startx-docker-images/
+	# cd startx-docker-images/Services/php/
+
+and build the container
+
+	# docker build --rm -t <username>/www .
+
+### Running local image
+
+	# docker run -d -p 8080:80 --name="test-www" <username>/www
+
+## Accessing server
+
+	# firefox http://localhost:8080
+
+## Related Resources
+
+* [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/php)
+* [Github STARTX profile](https://github.com/startxfr/docker-images)
+* [Docker registry for this container](https://registry.hub.docker.com/u/startx/sv-php/)
+* [tutum php](https://registry.hub.docker.com/u/tutum/apache-php)
+
