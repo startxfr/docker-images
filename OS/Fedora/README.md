@@ -2,7 +2,7 @@
 
 ## Running from docker registry
 
-	# docker run -d -p 22022:22 --name="test-fedora" startx/fedora
+	# docker run -d -p 22022:22 --name="test-fedora" -e VIRTUAL_HOST=fedora.project.startx.fr startx/fedora
 
 ## Running from local Dockerfile
 
@@ -19,7 +19,7 @@ and build the container
 
 ### Running local image
 
-	# docker run -d -p 22022:22 --name="test-fedora" <username>/ssh
+	# docker run -d -p 22022:22 --name="test-fedora" -e VIRTUAL_HOST=fedora.project.startx.fr <username>/ssh
 
 ## Accessing server
 

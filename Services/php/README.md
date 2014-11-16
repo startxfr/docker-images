@@ -2,7 +2,7 @@
 
 ## Running from docker registry
 
-	# docker run -d -p 8080:80 --name="test-www" startx/sv-php
+	# docker run -d -p 8080:80 --name="test-www" -e VIRTUAL_HOST=www.project.startx.fr startx/sv-php
 
 ## Running from local Dockerfile
 
@@ -19,7 +19,7 @@ and build the container
 
 ### Running local image
 
-	# docker run -d -p 8080:80 --name="test-www" <username>/www
+	# docker run -d -p 8080:80 --name="test-www" -e VIRTUAL_HOST=www.project.startx.fr <username>/www
 
 ## Accessing server
 

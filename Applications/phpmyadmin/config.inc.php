@@ -1,5 +1,5 @@
 <?php
-// fichier qui provient de l'image startx/pma
+// fichier qui provient du container startx/app-pma
 $cfg['blowfish_secret'] = 'SECRET';
 $cfg['PmaNoRelation_DisableWarning'] = true;
 $i = 0;
