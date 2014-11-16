@@ -1,10 +1,26 @@
-docker-images OS : Fedora 21
-============================
+# STARTX OS docker-images OS : Fedora
 
-**Description**
-Based on the [tutum fedora](https://registry.hub.docker.com/u/tutum/fedora) Dockerfile
+## Running from docker registry
 
-**Usage**  
-	```
-          docker run --name="test-fedora" -d startx/os-fedora
-	```
+	# docker run -d -p 22 startx/fedora
+
+## Running from local Dockerfile
+
+### Building docker image
+Copy the sources to your docker host 
+
+	# mkdir startx-docker-images;
+	# git clone https://github.com/startxfr/docker-images.git startx-docker-images/
+	# cd startx-docker-images/OS/Fedora/
+
+and build the container
+
+	# docker build --rm -t <username>/fedora .
+
+### Running local image
+
+	# docker run -d -p 22 <username>/ssh
+
+## Accessing server
+
+	# ssh root@localhost 
