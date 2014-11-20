@@ -7,15 +7,15 @@ This container run phpMyAdmin on PHP server running under a fedora server.
 ## Build and run from local Dockerfile
 ### Building docker image
 * Copy sources in your docker host 
-
-	mkdir startx-docker-images; 
-	cd startx-docker-images;
-	git clone https://github.com/startxfr/docker-images.git .
-
+```
+mkdir startx-docker-images; 
+cd startx-docker-images;
+git clone https://github.com/startxfr/docker-images.git .
+```
 * Build the container
-
-	docker build -t startx/app-pma Applications/phpmyadmin/
-
+```
+docker build -t startx/app-pma Applications/phpmyadmin/
+```
 ### Running local image
 
 	docker run -d -p 80:80 --name="pma" startx/app-pma

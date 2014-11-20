@@ -3,8 +3,7 @@ Fedora image builded with minimal and updated binaries
 
 ## Running from docker registry
 
-        docker run -it --name="fedora" startx/fedora
-
+	docker run -it --name="fedora" startx/fedora
 
 ## Build and run from local Dockerfile
 ### Building docker image
@@ -20,11 +19,11 @@ docker build -t fedora OS/Fedora/
 ```
 ### Running local image
 
-        docker run -it --name="fedora" fedora bash
+	docker run -it --name="fedora" fedora bash
 
 ## Accessing server
 
-        docker run -it startx/fedora bash
+	docker run -it startx/fedora bash
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/fedora)
