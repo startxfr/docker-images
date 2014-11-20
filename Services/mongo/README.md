@@ -3,10 +3,10 @@ This container run mongod on fedora server.
 
 ## Running from docker registry
 
-	# docker run -d -p 27017:27017 --name="mongo" startx/sv-mongo
-	# when linked to another container
-	# docker run -d --name="mongo" startx/sv-mongo
-	# docker run -d --name="php" --link mongo:mongo startx/sv-php
+	docker run -d -p 27017:27017 --name="mongo" startx/sv-mongo
+	when linked to another container
+	docker run -d --name="mongo" startx/sv-mongo
+	docker run -d --name="php" --link mongo:mongo startx/sv-php
 
 ## Build and run from local Dockerfile
 ### Building docker image
@@ -22,11 +22,11 @@ and build the container
 
 ### Running local image
 
-	# docker run -d -p 27017:27017 --name="mongo" sv-mongo
+	docker run -d -p 27017:27017 --name="mongo" sv-mongo
 
 ## Accessing server
 
-	# mongo -h localhost -p 27017
+	mongo -h localhost -p 27017
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/mongo)

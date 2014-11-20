@@ -3,7 +3,7 @@ This container run nodejs on fedora server.
 
 ## Running from docker registry
 
-	# docker run -d -p 8000:8000 --name="nodejs" startx/sv-nodejs
+	docker run -d -p 8000:8000 --name="nodejs" startx/sv-nodejs
 
 ## Build and run from local Dockerfile
 ### Building docker image
@@ -19,11 +19,11 @@ and build the container
 
 ### Running local image
 
-	# docker run -d -p 8000:8000 --name="nodejs" sv-nodejs
+	docker run -d -p 8000:8000 --name="nodejs" sv-nodejs
 
 ## Accessing server
 
-	# firefox http://localhost:8000
+	firefox http://localhost:8000
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/nodejs)

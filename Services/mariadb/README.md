@@ -3,10 +3,10 @@ This container run mariadb on fedora server.
 
 ## Running from docker registry
 
-	# docker run -d -p 3306:3306 --name="mariadb" startx/sv-mariadb
-	# when linked to another container
-	# docker run -d --name="mariadb" startx/sv-mariadb
-	# docker run -d --name="php" --link mariadb:mariadb startx/sv-php
+	docker run -d -p 3306:3306 --name="mariadb" startx/sv-mariadb
+	when linked to another container
+	docker run -d --name="mariadb" startx/sv-mariadb
+	docker run -d --name="php" --link mariadb:mariadb startx/sv-php
 
 ## Build and run from local Dockerfile
 ### Building docker image
@@ -22,11 +22,11 @@ and build the container
 
 ### Running local image
 
-	# docker run -d -p 3306:3306 --name="mariadb" sv-mariadb
+	docker run -d -p 3306:3306 --name="mariadb" sv-mariadb
 
 ## Accessing server
 
-	# mysql -h localhost -p 3306
+	mysql -h localhost -p 3306
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/mariadb)

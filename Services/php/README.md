@@ -3,7 +3,7 @@ This container run php via apache on fedora server.
 
 ## Running from docker registry
 
-	# docker run -d -p 80:80 --name="php" startx/sv-php
+	docker run -d -p 80:80 --name="php" startx/sv-php
 
 ## Build and run from local Dockerfile
 ### Building docker image
@@ -19,11 +19,11 @@ and build the container
 
 ### Running local image
 
-	# docker run -d -p 80:80 --name="php" sv-php
+	docker run -d -p 80:80 --name="php" sv-php
 
 ## Accessing server
 
-	# firefox http://localhost
+	firefox http://localhost
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/php)

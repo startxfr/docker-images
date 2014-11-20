@@ -3,10 +3,10 @@ This container run postgres on fedora server.
 
 ## Running from docker registry
 
-	# docker run -d -p 5432:5432 --name="postgres" startx/sv-postgres
-	# when linked to another container
-	# docker run -d --name="postgres" startx/sv-postgres
-	# docker run -d --name="php" --link postgres:postgres startx/sv-php
+	docker run -d -p 5432:5432 --name="postgres" startx/sv-postgres
+	when linked to another container
+	docker run -d --name="postgres" startx/sv-postgres
+	docker run -d --name="php" --link postgres:postgres startx/sv-php
 
 ## Build and run from local Dockerfile
 ### Building docker image
@@ -22,11 +22,11 @@ and build the container
 
 ### Running local image
 
-	# docker run -d -p 5432:5432 --name="postgres" sv-postgres
+	docker run -d -p 5432:5432 --name="postgres" sv-postgres
 
 ## Accessing server
 
-	# psql -U postgres -h localhost -p 5432
+	psql -U postgres -h localhost -p 5432
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/postgres)

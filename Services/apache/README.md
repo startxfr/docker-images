@@ -3,7 +3,7 @@ This container run apache on fedora server.
 
 ## Running from docker registry
 
-	# docker run -d -p 80:80 --name="apache" startx/sv-apache
+	docker run -d -p 80:80 --name="apache" startx/sv-apache
 
 ## Build and run from local Dockerfile
 ### Building docker image
@@ -19,11 +19,11 @@ and build the container
 
 ### Running local image
 
-	# docker run -d -p 80:80 --name="apache" sv-apache
+	docker run -d -p 80:80 --name="apache" sv-apache
 
 ## Accessing server
 
-	# firefox http://localhost
+	firefox http://localhost
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/apache)

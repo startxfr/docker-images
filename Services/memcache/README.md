@@ -3,10 +3,10 @@ This container run memcached on fedora server.
 
 ## Running from docker registry
 
-	# docker run -d -p 3306:3306 --name="memcache" startx/sv-memcache
-	# when linked to another container
-	# docker run -d --name="memcache" startx/sv-memcache
-	# docker run -d --name="php" --link memcache:memcache startx/sv-php
+	docker run -d -p 3306:3306 --name="memcache" startx/sv-memcache
+	when linked to another container
+	docker run -d --name="memcache" startx/sv-memcache
+	docker run -d --name="php" --link memcache:memcache startx/sv-php
 
 ## Build and run from local Dockerfile
 ### Building docker image
@@ -22,7 +22,7 @@ and build the container
 
 ### Running local image
 
-	# docker run -d -p 3306:3306 --name="memcache" sv-memcache
+	docker run -d -p 3306:3306 --name="memcache" sv-memcache
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/memcache)

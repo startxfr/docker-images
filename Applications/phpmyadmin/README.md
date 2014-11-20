@@ -2,7 +2,7 @@
 This container run phpMyAdmin on PHP server running under a fedora server. 
 
 ## Running from docker registry
-	# docker run -it --name="pma" startx/app-pma
+	docker run -it --name="pma" startx/app-pma
 
 ## Build and run from local Dockerfile
 ### Building docker image
@@ -18,11 +18,11 @@ and build the container
 
 ### Running local image
 
-	# docker run -d -p 80:80 --name="pma" startx/app-pma
+	docker run -d -p 80:80 --name="pma" startx/app-pma
 
 ## Accessing server
 
-	# firefox http://localhost/pma
+	firefox http://localhost/pma
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Applications/phpmyadmin)
