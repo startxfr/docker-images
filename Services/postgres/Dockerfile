@@ -1,5 +1,5 @@
 FROM startx/fedora
-MAINTAINER Chistophe LARUE <dev@startx.fr>
+MAINTAINER Christophe LARUE <dev@startx.fr>
 
 COPY postgres_run.sh postgres_modify_pass.sh /bin/
 RUN yum -y install \

@@ -1,34 +1,32 @@
-# STARTX Services docker-images : Apache-PHP
+# STARTX Services docker-images : NodeJS Server
+This container run nodejs on fedora server.
 
 ## Running from docker registry
 
-	# docker run -d -p 8080:80 --name="test-www" -e VIRTUAL_HOST=www.project.startx.fr startx/sv-php
+	# docker run -d -p 8000:8000 --name="nodejs" startx/sv-nodejs
 
-## Running from local Dockerfile
-
+## Build and run from local Dockerfile
 ### Building docker image
 Copy the sources to your docker host 
 
-	# mkdir startx-docker-images;
-	# git clone https://github.com/startxfr/docker-images.git startx-docker-images/
-	# cd startx-docker-images/Services/php/
+        mkdir startx-docker-images; 
+        cd startx-docker-images;
+        git clone https://github.com/startxfr/docker-images.git .
 
 and build the container
 
-	# docker build --rm -t <username>/www .
+        docker build -t sv-nodejs Services/nodejs/
 
 ### Running local image
 
-	# docker run -d -p 8080:80 --name="test-www" -e VIRTUAL_HOST=www.project.startx.fr <username>/www
+	# docker run -d -p 8000:8000 --name="nodejs" sv-nodejs
 
 ## Accessing server
 
-	# firefox http://localhost:8080
+	# firefox http://localhost:8000
 
 ## Related Resources
-
-* [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/php)
+* [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/nodejs)
 * [Github STARTX profile](https://github.com/startxfr/docker-images)
-* [Docker registry for this container](https://registry.hub.docker.com/u/startx/sv-php/)
-* [tutum php](https://registry.hub.docker.com/u/tutum/apache-php)
-
+* [Docker registry for this container](https://registry.hub.docker.com/u/startx/sv-nodejs/)
+* [Docker registry for Fedora](https://registry.hub.docker.com/u/fedora/)

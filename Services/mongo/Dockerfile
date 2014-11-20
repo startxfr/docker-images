@@ -1,5 +1,5 @@
 FROM startx/fedora
-MAINTAINER Chistophe LARUE <dev@startx.fr>
+MAINTAINER Christophe LARUE <dev@startx.fr>
 
 COPY mongo_run.sh /bin/
 RUN yum -y install \

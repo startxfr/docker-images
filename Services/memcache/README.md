@@ -1,16 +1,31 @@
-docker-images MariaDB
-=====================
+# STARTX Services docker-images : PostgreSQL Server
+This container run memcached on fedora server. 
 
-**Description**
-Based on the [tutum php](https://registry.hub.docker.com/u/tutum/mariadb) Dockerfile
+## Running from docker registry
 
-**Usage**  
-	
-          docker run --name="test-maria" -d startx/sv-maria
+	# docker run -d -p 3306:3306 --name="memcache" startx/sv-memcache
+	# when linked to another container
+	# docker run -d --name="memcache" startx/sv-memcache
+	# docker run -d --name="php" --link memcache:memcache startx/sv-php
 
-          docker run --name="test-maria" -d startx/sv-maria
-          docker run -d -p 3306:3306 startx/sv-maria
-          docker run -d -p 3306:3306 --name="test-maria" startx/sv-maria
+## Build and run from local Dockerfile
+### Building docker image
+Copy the sources to your docker host 
 
-          docker run -d --name="test-maria" startx/sv-maria // linked to another container
-          docker run -d --name="test-www" --link test-maria:maria startx/sv-php
+        mkdir startx-docker-images; 
+        cd startx-docker-images;
+        git clone https://github.com/startxfr/docker-images.git .
+
+and build the container
+
+        docker build -t sv-memcache Services/memcache/
+
+### Running local image
+
+	# docker run -d -p 3306:3306 --name="memcache" sv-memcache
+
+## Related Resources
+* [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/memcache)
+* [Github STARTX profile](https://github.com/startxfr/docker-images)
+* [Docker registry for this container](https://registry.hub.docker.com/u/startx/sv-memcache/)
+* [Docker registry for Fedora](https://registry.hub.docker.com/u/fedora/)

@@ -128,12 +128,12 @@ def find_offices():
                     libpath = realpath(basepath, basis, 'program')
                     officelibrary = realpath(libpath, lib)
                     info(3, "Found %s in %s" % (lib, libpath))
-                    # Break the inner loop...
+                    Break the inner loop...
                     break
-            # Continue if the inner loop wasn't broken.
+            Continue if the inner loop wasn't broken.
             else:
                 continue
-            # Inner loop was broken, break the outer.
+            Inner loop was broken, break the outer.
             break
         else:
             continue
@@ -146,12 +146,12 @@ def find_offices():
                     unopath = realpath(basepath, basis, 'program')
                     officebinary = realpath(unopath, bin)
                     info(3, "Found %s in %s" % (bin, unopath))
-                    # Break the inner loop...
+                    Break the inner loop...
                     break
-            # Continue if the inner loop wasn't broken.
+            Continue if the inner loop wasn't broken.
             else:
                 continue
-            # Inner loop was broken, break the outer.
+            Inner loop was broken, break the outer.
             break
         else:
             continue
@@ -163,12 +163,12 @@ def find_offices():
                 if os.path.isfile(realpath(basepath, basis, ure, 'lib', 'unorc')):
                     urepath = realpath(basepath, basis, ure)
                     info(3, "Found %s in %s" % ('unorc', realpath(urepath, 'lib')))
-                    # Break the inner loop...
+                    Break the inner loop...
                     break
-            # Continue if the inner loop wasn't broken.
+            Continue if the inner loop wasn't broken.
             else:
                 continue
-            # Inner loop was broken, break the outer.
+            Inner loop was broken, break the outer.
             break
 
         pythonhome = None
@@ -862,7 +862,7 @@ class Convertor:
             try:
                 document.updateLinks()
             except AttributeError:
-                # the document doesn't implement the XLinkUpdate interface
+                the document doesn't implement the XLinkUpdate interface
                 pass
 
             ### Update document indexes
@@ -871,8 +871,8 @@ class Convertor:
                 document.refresh()
                 indexes = document.getDocumentIndexes()
             except AttributeError:
-                # the document doesn't implement the XRefreshable and/or
-                # XDocumentIndexesSupplier interfaces
+                the document doesn't implement the XRefreshable and/or
+                XDocumentIndexesSupplier interfaces
                 pass
             else:
                 for i in range(0, indexes.getCount()):
