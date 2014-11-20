@@ -10,16 +10,16 @@ This container run memcached on fedora server.
 
 ## Build and run from local Dockerfile
 ### Building docker image
-* Copy sources in your docker host 
-```
-mkdir startx-docker-images; 
-cd startx-docker-images;
-git clone https://github.com/startxfr/docker-images.git .
-```
-* Build the container
-```
-docker build -t sv-memcache Services/memcache/
-```
+Copy sources in your docker host 
+
+	mkdir startx-docker-images; 
+	cd startx-docker-images;
+	git clone https://github.com/startxfr/docker-images.git .
+
+Build the container
+
+	docker build -t sv-memcache Services/memcache/
+
 ### Running local image
 
 	docker run -d -p 3306:3306 --name="memcache" sv-memcache

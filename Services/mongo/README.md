@@ -10,16 +10,16 @@ This container run mongod on fedora server.
 
 ## Build and run from local Dockerfile
 ### Building docker image
-* Copy sources in your docker host 
-```
-mkdir startx-docker-images; 
-cd startx-docker-images;
-git clone https://github.com/startxfr/docker-images.git .
-```
-* Build the container
-```
-docker build -t sv-mongo Services/mongo/
-```
+Copy sources in your docker host 
+
+	mkdir startx-docker-images; 
+	cd startx-docker-images;
+	git clone https://github.com/startxfr/docker-images.git .
+
+Build the container
+
+	docker build -t sv-mongo Services/mongo/
+
 ### Running local image
 
 	docker run -d -p 27017:27017 --name="mongo" sv-mongo

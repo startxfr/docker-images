@@ -7,16 +7,16 @@ This container run nodejs on fedora server.
 
 ## Build and run from local Dockerfile
 ### Building docker image
-* Copy sources in your docker host 
-```
-mkdir startx-docker-images; 
-cd startx-docker-images;
-git clone https://github.com/startxfr/docker-images.git .
-```
-* Build the container
-```
-docker build -t sv-nodejs Services/nodejs/
-```
+Copy sources in your docker host 
+
+	mkdir startx-docker-images; 
+	cd startx-docker-images;
+	git clone https://github.com/startxfr/docker-images.git .
+
+Build the container
+
+	docker build -t sv-nodejs Services/nodejs/
+
 ### Running local image
 
 	docker run -d -p 8000:8000 --name="nodejs" sv-nodejs
