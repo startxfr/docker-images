@@ -1,5 +1,5 @@
 FROM startx/sv-apache
-MAINTAINER Chistophe LARUE <dev@startx.fr>
+MAINTAINER Christophe LARUE <dev@startx.fr>
 
 WORKDIR /src
 RUN yum -y install php php-pecl-mongo php-cli php-pear \

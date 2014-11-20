@@ -1,5 +1,5 @@
 FROM startx/fedora
-MAINTAINER Chistophe LARUE <dev@startx.fr>
+MAINTAINER Christophe LARUE <dev@startx.fr>
 
 # Install packages and set up sshd
 RUN yum -y update \

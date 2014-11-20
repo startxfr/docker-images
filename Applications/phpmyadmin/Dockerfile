@@ -1,5 +1,5 @@
 FROM startx/sv-php
-MAINTAINER Chistophe LARUE <dev@startx.fr>
+MAINTAINER Christophe LARUE <dev@startx.fr>
 
 RUN yum -y install phpMyAdmin \
     && yum clean all

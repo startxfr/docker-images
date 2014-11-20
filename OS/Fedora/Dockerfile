@@ -1,5 +1,5 @@
 FROM fedora:latest
-MAINTAINER Chistophe LARUE <dev@startx.fr>
+MAINTAINER Christophe LARUE <dev@startx.fr>
 
 # Install minimal packages
 RUN yum -y install deltarpm pwgen \
