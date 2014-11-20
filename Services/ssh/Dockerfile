@@ -1,4 +1,4 @@
-FROM startx/fedora
+FROM startx/fedora:20
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 # Install packages and set up sshd

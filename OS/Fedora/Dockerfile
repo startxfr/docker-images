@@ -1,4 +1,4 @@
-FROM fedora:latest
+FROM fedora:20
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 # Install minimal packages
