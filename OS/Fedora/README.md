@@ -5,17 +5,23 @@ Fedora image builded with minimal and updated binaries
 	docker run -it --name="fedora" startx/fedora
 
 ## Build and run from local Dockerfile
-* ### Building docker image
-  * Copy sources in your docker host 
+### Building docker image
+* Copy sources in your docker host 
+
 	mkdir startx-docker-images; 
 	cd startx-docker-images;
 	git clone https://github.com/startxfr/docker-images.git .
-  * Build the container
+
+* Build the container
+
 	docker build -t fedora OS/Fedora/
-* ### Running local image
+
+### Running local image
+
 	docker run -it --name="fedora" startx/fedora bash
 
 ## Accessing server
+
 	docker run -it startx/fedora bash
 
 ## Related Resources
