@@ -1,4 +1,4 @@
-FROM startx/sv-php
+FROM startx/sv-php:fc21
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 RUN yum -y install phpMyAdmin \

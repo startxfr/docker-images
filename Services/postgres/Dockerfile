@@ -1,4 +1,4 @@
-FROM startx/fedora
+FROM startx/fedora:21
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 COPY postgres_run.sh postgres_modify_pass.sh /bin/
