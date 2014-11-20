@@ -10,6 +10,6 @@ RUN yum -y install php php-pecl-mongo php-cli php-pear \
     && yum clean all \
     && rm -rf /var/www/html \
     && ln -s /src /var/www/html
-ADD index.php /src/index.php
+COPY index.php /src/index.php
 
 CMD ["/bin/apache_run.sh"]

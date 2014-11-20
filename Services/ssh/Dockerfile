@@ -8,7 +8,7 @@ RUN yum -y update \
 RUN mkdir /var/run/sshd \
     && ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N ''
 
-# Add ssh keys
+# Copy ssh keys
 COPY .ssh/authorized_keys /root/.ssh/authorized_keys
 
 EXPOSE 22
