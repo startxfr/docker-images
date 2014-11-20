@@ -9,13 +9,13 @@ This container run sshd on fedora server. You can overwrite /root/.ssh/autorized
 ### Building docker image
 Copy the sources to your docker host 
 
-        mkdir startx-docker-images; 
-        cd startx-docker-images;
-        git clone https://github.com/startxfr/docker-images.git .
+	mkdir startx-docker-images; 
+	cd startx-docker-images;
+	git clone https://github.com/startxfr/docker-images.git .
 
 and build the container
 
-        docker build -t sv-ssh Services/ssh/
+	docker build -t sv-ssh Services/ssh/
 
 ### Running local image
 

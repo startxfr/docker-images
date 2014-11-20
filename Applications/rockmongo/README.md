@@ -8,13 +8,13 @@ This container run Rockmongo on PHP server running under a fedora server.
 ### Building docker image
 Copy the sources to your docker host 
 
-        mkdir startx-docker-images; 
-        cd startx-docker-images;
-        git clone https://github.com/startxfr/docker-images.git .
+	mkdir startx-docker-images; 
+	cd startx-docker-images;
+	git clone https://github.com/startxfr/docker-images.git .
 
 and build the container
 
-        docker build -t startx/app-rockmongo Applications/rockmongo/
+	docker build -t startx/app-rockmongo Applications/rockmongo/
 
 ### Running local image
 
