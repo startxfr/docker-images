@@ -22,8 +22,11 @@ Build the container
 	docker run -d -p 8000:8000 --name="nodejs" sv-nodejs
 
 ## Accessing server
-
+access to the running webserver
 	firefox http://localhost:8000
+
+access to the container itself
+	docker exec -it nodejs bash
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/nodejs)

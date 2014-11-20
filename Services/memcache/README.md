@@ -24,6 +24,11 @@ Build the container
 
 	docker run -d -p 11211:11211 --name="memcache" sv-memcache
 
+## Accessing server
+
+access to the container itself
+	docker exec -it memcache bash
+
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/memcache)
 * [Github STARTX profile](https://github.com/startxfr/docker-images)

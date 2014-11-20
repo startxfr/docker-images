@@ -21,8 +21,11 @@ Build the container
 	docker run -d -p 80:80 --name="pma" startx/app-pma
 
 ## Accessing server
+access to the running webserver
+	firefox http://localhost:80/pma
 
-	firefox http://localhost/pma
+access to the container itself
+	docker exec -it pma bash
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Applications/phpmyadmin)

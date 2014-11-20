@@ -25,8 +25,11 @@ Build the container
 	docker run -d -p 5432:5432 --name="postgres" sv-postgres
 
 ## Accessing server
-
+access to the running database
 	psql -U postgres -h localhost -p 5432
+
+access to the container itself
+	docker exec -it mongo bash
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/postgres)

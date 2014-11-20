@@ -22,8 +22,11 @@ Build the container
 	docker run -d -p 22022:22 --name="ssh" sv-ssh
 
 ## Accessing server
+access to the running server
+	ssh -p 22022 root@localhost
 
-	ssh -p 22022 root@<containerId>
+access to the container itself
+	docker exec -it ssh bash
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/ssh)

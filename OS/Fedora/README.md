@@ -23,7 +23,11 @@ Build the container
 
 ## Accessing server
 
+	# Start interactive shell
 	docker run -it startx/fedora bash
+	# Start as a daemon 
+	docker run -d startx/fedora bash
+	docker exec -it fedora /bin/bash
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/fedora)

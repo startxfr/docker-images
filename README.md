@@ -33,10 +33,12 @@ Build the container
 ### Running local image
 Running an interactive image and get access to shell
 
-	docker run -it <image_name> bash
+	docker run -it <image_name> <cmd>
 
 Running an image as a daemon
+
 	docker run -d <image_name>
+	docker exec -it <image_name> <cmd>
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/)

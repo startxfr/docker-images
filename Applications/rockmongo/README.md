@@ -21,8 +21,11 @@ Build the container
 	docker run -d -p 80:80 --name="rockmongo" startx/app-rockmongo
 
 ## Accessing server
+access to the running webserver
+	firefox http://localhost:80/rockmongo
 
-	firefox http://localhost/rockmongo
+access to the container itself
+	docker exec -it rockmongo bash
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Applications/rockmongo)

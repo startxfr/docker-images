@@ -25,8 +25,11 @@ Build the container
 	docker run -d -p 27017:27017 --name="mongo" sv-mongo
 
 ## Accessing server
-
+access to the running database
 	mongo -h localhost -p 27017
+
+access to the container itself
+	docker exec -it mongo bash
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/mongo)

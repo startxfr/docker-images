@@ -22,8 +22,11 @@ Build the container
 	docker run -d -p 80:80 --name="php" sv-php
 
 ## Accessing server
+access to the running webserver
+	firefox http://localhost:80
 
-	firefox http://localhost
+access to the container itself
+	docker exec -it php bash
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/php)

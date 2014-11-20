@@ -25,8 +25,11 @@ Build the container
 	docker run -d -p 3306:3306 --name="mariadb" sv-mariadb
 
 ## Accessing server
-
+access to the running database
 	mysql -h localhost -p 3306
+
+access to the container itself
+	docker exec -it mariadb bash
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/mariadb)
