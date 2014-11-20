@@ -2,7 +2,7 @@
 This container run Rockmongo on PHP server running under a fedora server. 
 
 ## Running from docker registry
-	docker run -it --name="rockmongo" startx/app-rockmongo
+	docker run -d -p 80:80 --name="rockmongo" startx/app-rockmongo
 
 ## Build and run from local Dockerfile
 ### Building docker image
