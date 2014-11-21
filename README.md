@@ -25,8 +25,13 @@ Docker container images all based on red hat like distributions. Actually you ca
 
 This repository offer various flavour of Red Hat like distribution. Tag `:latest` is actually pointing to fedora core 20
 
+
+| Service | Docker Hub repository | :latest | :fc20 | :fc21 | :centos6 | :centos7 |
+| Apache | `startx/sv-apache` | :latest | :fc20 | :fc21 | :centos6 | :centos7 |
+
+
 * Operating Systems
-  * **Fedora** : startx/fedora**:latest** startx/fedora**:20** startx/fedora**:21**
+  * **Fedora** : `:latest` `:20` `:21`
   * **CentOS** : `:6` `:7`
 * Services
   * **Apache** :  `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
