@@ -26,9 +26,11 @@ Build the container
 
 ## Accessing server
 access to the running database
+
 	psql -U postgres -h localhost -p 5432
 
 access to the container itself
+
 	docker exec -it mongo bash
 
 ## Related Resources
