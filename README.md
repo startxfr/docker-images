@@ -4,42 +4,42 @@ Docker container images all based on red hat like distributions. Actually you ca
 
 ## Running container from docker registry images
 * Operating Systems
-  * Fedora ```docker run -it --name="fedora" startx/fedora bash```
-  * CentOS ```docker run -it --name="centos" startx/centos bash```
+  * **Fedora** `docker run -it --name="fedora" startx/fedora bash`
+  * **CentOS** `docker run -it --name="centos" startx/centos bash`
 * Services
-  * Apache ```docker run -d -p 80:80 --name="apache" startx/sv-apache```
-  * MariaDB ```docker run -d -p 3306:3306 --name="mariadb" startx/sv-mariadb```
-  * Memcache ```docker run -d -p 11211:11211 --name="memcache" startx/sv-memcache```
-  * MongoDB ```docker run -d -p 27017:27017 --name="mongo" startx/sv-mongo```
-  * nodejs ```docker run -d -p 8000:8000 --name="nodejs" startx/sv-nodejs```
-  * ooconv ```docker run -d -p XXX:XXX --name="ooconv" startx/sv-ooconv```
-  * php ```docker run -d -p 80:80 --name="php" startx/sv-php```
-  * postgreSQL ```docker run -d -p 5432:5432 --name="postgres" startx/sv-postgres```
-  * SSH ```docker run -d -p 22:22 --name="ssh" startx/sv-ssh```
+  * **Apache** `docker run -d -p 80:80 --name="apache" startx/sv-apache`
+  * **MariaDB** `docker run -d -p 3306:3306 --name="mariadb" startx/sv-mariadb`
+  * **Memcache** `docker run -d -p 11211:11211 --name="memcache" startx/sv-memcache`
+  * **MongoDB** `docker run -d -p 27017:27017 --name="mongo" startx/sv-mongo`
+  * **nodejs** `docker run -d -p 8000:8000 --name="nodejs" startx/sv-nodejs`
+  * **ooconv** `docker run -d -p XXX:XXX --name="ooconv" startx/sv-ooconv`
+  * **php** `docker run -d -p 80:80 --name="php" startx/sv-php`
+  * **postgreSQL** `docker run -d -p 5432:5432 --name="postgres" startx/sv-postgres`
+  * **SSH** `docker run -d -p 22:22 --name="ssh" startx/sv-ssh`
 * Applications
-  * PhpMyAdmin ```docker run -d -p 80:80 --name="pma" startx/app-pma```
-  * RockMongo ```docker run -d -p 80:80 --name="rockmongo" startx/app-rockmongo```
+  * **PhpMyAdmin** `docker run -d -p 80:80 --name="pma" startx/app-pma`
+  * **RockMongo** `docker run -d -p 80:80 --name="rockmongo" startx/app-rockmongo`
 
 ## Flavors (tags) for Red Hat like container's
 
-This repository offer various flavour of Red Hat like distribution. Tag ```:latest``` is actually pointing to fedora core 20
+This repository offer various flavour of Red Hat like distribution. Tag `:latest` is actually pointing to fedora core 20
 
 # Operating Systems
-  * Fedora : ```:latest``` ```:20``` ```:21```
-  * CentOS : ```:6``` ```:7```
+  * **Fedora** : `:latest` `:20` `:21`
+  * **CentOS** : `:6` `:7`
 * Services
-  * Apache : `startx/fedora` ```:latest``` ```:fc20``` ```:fc21``` ```:centos6``` ```:centos7```
-  * MariaDB : ```:latest``` ```:fc20``` ```:fc21``` ```:centos6``` ```:centos7```
-  * Memcache : ```:latest``` ```:fc20``` ```:fc21``` ```:centos6``` ```:centos7```
-  * MongoDB : ```:latest``` ```:fc20``` ```:fc21``` ```:centos6``` ```:centos7```
-  * nodejs : ```:latest``` ```:fc20``` ```:fc21``` ```:centos6``` ```:centos7```
-  * ooconv : ```:latest``` ```:fc20``` ```:fc21``` ```:centos6``` ```:centos7```
-  * php : ```:latest``` ```:fc20``` ```:fc21``` ```:centos6``` ```:centos7```
-  * postgreSQL : ```:latest``` ```:fc20``` ```:fc21``` ```:centos6``` ```:centos7```
-  * SSH : ```:latest``` ```:fc20``` ```:fc21``` ```:centos6``` ```:centos7```
+  * **Apache** : startx/fedora `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
+  * **MariaDB** : `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
+  * **Memcache** : `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
+  * **MongoDB** : `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
+  * **nodejs** : `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
+  * **ooconv** : `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
+  * **php** : `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
+  * **postgreSQL** : `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
+  * **SSH** : `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
 * Applications
-  * PhpMyAdmin : ```:latest``` ```:fc20``` ```:fc21``` ```:centos6``` ```:centos7```
-  * RockMongo : ```:latest``` ```:fc20``` ```:fc21``` ```:centos6``` ```:centos7```
+  * **PhpMyAdmin** : `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
+  * **RockMongo** : `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
 
 ## Build and run from local Dockerfile
 ### Building docker image
