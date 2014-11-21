@@ -1,9 +1,11 @@
 # STARTX docker-images repository
-Docker container images 
+
+Docker container images all based on red hat like distributions. Actually you can find fedora and centos.
 
 ## Running container from docker registry images
 * Operating Systems
   * Fedora ```docker run -it --name="fedora" startx/fedora bash```
+  * CentOS ```docker run -it --name="centos" startx/centos bash```
 * Services
   * Apache ```docker run -d -p 80:80 --name="apache" startx/sv-apache```
   * MariaDB ```docker run -d -p 3306:3306 --name="mariadb" startx/sv-mariadb```
@@ -17,6 +19,27 @@ Docker container images
 * Applications
   * PhpMyAdmin ```docker run -d -p 80:80 --name="pma" startx/app-pma```
   * RockMongo ```docker run -d -p 80:80 --name="rockmongo" startx/app-rockmongo```
+
+## Flavors (tags) for Red Hat like container's
+
+This repository offer various flavour of Red Hat like distribution. Tag ```:latest``` is actually pointing to fedora core 20
+
+# Operating Systems
+  * Fedora : ```:latest``` ```:20``` ```:21```
+  * CentOS : ```:6``` ```:7```
+* Services
+  * Apache : `startx/fedora` ```:latest``` ```:fc20``` ```:fc21``` ```:centos6``` ```:centos7```
+  * MariaDB : ```:latest``` ```:fc20``` ```:fc21``` ```:centos6``` ```:centos7```
+  * Memcache : ```:latest``` ```:fc20``` ```:fc21``` ```:centos6``` ```:centos7```
+  * MongoDB : ```:latest``` ```:fc20``` ```:fc21``` ```:centos6``` ```:centos7```
+  * nodejs : ```:latest``` ```:fc20``` ```:fc21``` ```:centos6``` ```:centos7```
+  * ooconv : ```:latest``` ```:fc20``` ```:fc21``` ```:centos6``` ```:centos7```
+  * php : ```:latest``` ```:fc20``` ```:fc21``` ```:centos6``` ```:centos7```
+  * postgreSQL : ```:latest``` ```:fc20``` ```:fc21``` ```:centos6``` ```:centos7```
+  * SSH : ```:latest``` ```:fc20``` ```:fc21``` ```:centos6``` ```:centos7```
+* Applications
+  * PhpMyAdmin : ```:latest``` ```:fc20``` ```:fc21``` ```:centos6``` ```:centos7```
+  * RockMongo : ```:latest``` ```:fc20``` ```:fc21``` ```:centos6``` ```:centos7```
 
 ## Build and run from local Dockerfile
 ### Building docker image
