@@ -27,6 +27,7 @@ This repository offer various flavour of Red Hat like distribution. Tag `:latest
 
 
 | Service | Docker Hub repository | :latest | :fc20 | :fc21 | :centos6 | :centos7 |
+|---------|-----------------------|---------|-------|-------|----------|----------|
 | Apache | `startx/sv-apache` | :latest | :fc20 | :fc21 | :centos6 | :centos7 |
 
 
