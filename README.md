@@ -26,13 +26,13 @@ Docker container images all based on red hat like distributions. Actually you ca
 This repository offer various flavour of Red Hat like distribution. Tag `:latest` is actually pointing to fedora core 20
 
 ### Operating Systems
-| OS      | Docker Hub repository | flavour 1 | flavour 2 | Flavour 3 |
+| OS      | Docker Hub repository | Flavour 1 | Flavour 2 | Flavour 3 |
 |---------|-----------------------|---------|-------|-------|
-| Fedora | `startx/fedora` | `:latest` | `:fc20` | `:fc21` | 
-| CentOS | `startx/centos` | `:centos6` | `:centos7` |  |
+| Fedora Core | `startx/fedora` | `:latest` | `:20` | `:21` | 
+| CentOS | `startx/centos` | `:6` | `:7` |  |
 
 ### Services
-| Service | Docker Hub repository | :latest | :fc20 | :fc21 | :centos6 | :centos7 |
+| Service | Docker Hub repository | latest | Fedora 20 | Fedora 21 | CentOS 6 | CentOS 7 |
 |---------|-----------------------|---------|-------|-------|----------|----------|
 | Apache | `startx/sv-apache` | `:latest` | `:fc20` | `:fc21` | `:centos6` | `:centos7` |
 | MariaDB | `startx/sv-mariadb` | `:latest` | `:fc20` | `:fc21` | `:centos6` | `:centos7` |
@@ -45,7 +45,7 @@ This repository offer various flavour of Red Hat like distribution. Tag `:latest
 | SSH | `startx/sv-ssh` | `:latest` | `:fc20` | `:fc21` | `:centos6` | `:centos7` |
 
 ### Applications
-| Applications | Docker Hub repository | :latest | :fc20 | :fc21 | :centos6 | :centos7 |
+| Applications | Docker Hub repository | latest | Fedora 20 | Fedora 21 | CentOS 6 | CentOS 7 |
 |---------|-----------------------|---------|-------|-------|----------|----------|
 | PhpMyAdmin | `startx/sv-pma` | `:latest` | `:fc20` | `:fc21` | `:centos6` | `:centos7` |
 | RockMongo | `startx/sv-rockmongo` | `:latest` | `:fc20` | `:fc21` | `:centos6` | `:centos7` |
