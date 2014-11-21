@@ -26,9 +26,11 @@ Build the container
 
 ## Accessing server
 access to the running database
+
 	mysql -h localhost -p 3306
 
 access to the container itself
+
 	docker exec -it mariadb bash
 
 ## Related Resources

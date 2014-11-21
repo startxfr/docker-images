@@ -25,8 +25,8 @@ Build the container
 	docker run -d -p 11211:11211 --name="memcache" sv-memcache
 
 ## Accessing server
-
 access to the container itself
+
 	docker exec -it memcache bash
 
 ## Related Resources
