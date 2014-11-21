@@ -1,4 +1,4 @@
-FROM startx/centos:centos6
+FROM startx/centos:centos7
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 COPY mariadb_run.sh /bin/

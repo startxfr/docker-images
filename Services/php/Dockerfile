@@ -1,4 +1,4 @@
-FROM startx/sv-apache:centos6
+FROM startx/sv-apache:centos7
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 WORKDIR /src

@@ -1,6 +1,6 @@
 
 
-FROM       startx/centos:centos6
+FROM       startx/centos:centos7
 MAINTAINER startx dev@startx.fr
 
 CMD rpm -ivh http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm

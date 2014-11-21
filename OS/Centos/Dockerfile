@@ -1,4 +1,4 @@
-FROM centos:centos6
+FROM centos:centos7
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 # Install minimal packages
