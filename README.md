@@ -3,6 +3,7 @@
 Docker container images all based on red hat like distributions. Actually you can find fedora and centos.
 
 ## Running container from docker registry images
+
 * Operating Systems
   * **Fedora** `docker run -it --name="fedora" startx/fedora bash`
   * **CentOS** `docker run -it --name="centos" startx/centos bash`
@@ -24,11 +25,11 @@ Docker container images all based on red hat like distributions. Actually you ca
 
 This repository offer various flavour of Red Hat like distribution. Tag `:latest` is actually pointing to fedora core 20
 
-# Operating Systems
-  * **Fedora** : `:latest` `:20` `:21`
+* Operating Systems
+  * **Fedora** : `startx/fedora:latest` `startx/fedora:20` `startx/fedora:21`
   * **CentOS** : `:6` `:7`
 * Services
-  * **Apache** : startx/fedora `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
+  * **Apache** :  `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
   * **MariaDB** : `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
   * **Memcache** : `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
   * **MongoDB** : `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
