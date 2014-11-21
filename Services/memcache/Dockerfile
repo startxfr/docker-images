@@ -1,4 +1,4 @@
-FROM startx/centos:centos7
+FROM startx/centos:7
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 COPY memcache_run.sh /bin/

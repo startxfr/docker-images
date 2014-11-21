@@ -1,4 +1,4 @@
-FROM startx/centos:centos7
+FROM startx/centos:7
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 COPY postgres_run.sh postgres_modify_pass.sh /bin/
