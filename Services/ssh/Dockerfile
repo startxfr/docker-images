@@ -1,4 +1,4 @@
-FROM startx/fedora
+FROM startx/centos:centos6
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 # Install packages and set up sshd

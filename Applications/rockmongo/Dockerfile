@@ -1,6 +1,6 @@
 
 
-FROM       openshift/centos-rockmongo:latest
+FROM       openshift/centos-rockmongo:6
 MAINTAINER startx dev@startx.fr
 
 
