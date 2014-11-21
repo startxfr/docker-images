@@ -40,7 +40,7 @@ This repository offer various flavour of Red Hat like distribution. Tag `:latest
 | CentOS | `startx/centos` | `:6` | `:7` |  |
 
 ### Services
-| Service | Docker Hub repository | latest | Fedora 20 | Fedora 21 | CentOS 6 | CentOS 7 |
+| Service | Docker Hub repository | latest | Fedora | Fedora | CentOS | CentOS |
 |---------|-----------------------|---------|-------|-------|----------|----------|
 | Apache | `startx/sv-apache` | `:latest` | `:fc20` | `:fc21` | `:centos6` | `:centos7` |
 | MariaDB | `startx/sv-mariadb` | `:latest` | `:fc20` | `:fc21` | `:centos6` | `:centos7` |
@@ -53,7 +53,7 @@ This repository offer various flavour of Red Hat like distribution. Tag `:latest
 | SSH | `startx/sv-ssh` | `:latest` | `:fc20` | `:fc21` | `:centos6` | `:centos7` |
 
 ### Applications
-| Applications | Docker Hub repository | latest | Fedora 20 | Fedora 21 | CentOS 6 | CentOS 7 |
+| Service | Docker Hub repository | latest | Fedora | Fedora | CentOS | CentOS |
 |---------|-----------------------|---------|-------|-------|----------|----------|
 | PhpMyAdmin | `startx/sv-pma` | `:latest` | `:fc20` | `:fc21` | `:centos6` | `:centos7` |
 | RockMongo | `startx/sv-rockmongo` | `:latest` | `:fc20` | `:fc21` | `:centos6` | `:centos7` |
