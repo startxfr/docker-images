@@ -25,28 +25,31 @@ Docker container images all based on red hat like distributions. Actually you ca
 
 This repository offer various flavour of Red Hat like distribution. Tag `:latest` is actually pointing to fedora core 20
 
+### Operating Systems
+| OS      | Docker Hub repository | flavour 1 | flavour 2 | Flavour 3 |
+|---------|-----------------------|---------|-------|-------|
+| Fedora | `startx/fedora` | `:latest` | `:fc20` | `:fc21` | 
+| CentOS | `startx/centos` | `:centos6` | `:centos7` |  |
 
+### Services
 | Service | Docker Hub repository | :latest | :fc20 | :fc21 | :centos6 | :centos7 |
 |---------|-----------------------|---------|-------|-------|----------|----------|
-| Apache | `startx/sv-apache` | :latest | :fc20 | :fc21 | :centos6 | :centos7 |
+| Apache | `startx/sv-apache` | `:latest` | `:fc20` | `:fc21` | `:centos6` | `:centos7` |
+| MariaDB | `startx/sv-mariadb` | `:latest` | `:fc20` | `:fc21` | `:centos6` | `:centos7` |
+| Memcache | `startx/sv-memcache` | `:latest` | `:fc20` | `:fc21` | `:centos6` | `:centos7` |
+| MongoDB | `startx/sv-mongo` | `:latest` | `:fc20` | `:fc21` | `:centos6` | `:centos7` |
+| nodejs | `startx/sv-nodejs` | `:latest` | `:fc20` | `:fc21` | `:centos6` | `:centos7` |
+| ooconv | `startx/sv-ooconv` | `:latest` | `:fc20` | `:fc21` | `:centos6` | `:centos7` |
+| php | `startx/sv-php` | `:latest` | `:fc20` | `:fc21` | `:centos6` | `:centos7` |
+| postgreSQL | `startx/sv-postgres` | `:latest` | `:fc20` | `:fc21` | `:centos6` | `:centos7` |
+| SSH | `startx/sv-ssh` | `:latest` | `:fc20` | `:fc21` | `:centos6` | `:centos7` |
 
+### Applications
+| Applications | Docker Hub repository | :latest | :fc20 | :fc21 | :centos6 | :centos7 |
+|---------|-----------------------|---------|-------|-------|----------|----------|
+| PhpMyAdmin | `startx/sv-pma` | `:latest` | `:fc20` | `:fc21` | `:centos6` | `:centos7` |
+| RockMongo | `startx/sv-rockmongo` | `:latest` | `:fc20` | `:fc21` | `:centos6` | `:centos7` |
 
-* Operating Systems
-  * **Fedora** : `:latest` `:20` `:21`
-  * **CentOS** : `:6` `:7`
-* Services
-  * **Apache** :  `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
-  * **MariaDB** : `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
-  * **Memcache** : `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
-  * **MongoDB** : `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
-  * **nodejs** : `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
-  * **ooconv** : `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
-  * **php** : `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
-  * **postgreSQL** : `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
-  * **SSH** : `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
-* Applications
-  * **PhpMyAdmin** : `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
-  * **RockMongo** : `:latest` `:fc20` `:fc21` `:centos6` `:centos7`
 
 ## Build and run from local Dockerfile
 ### Building docker image
