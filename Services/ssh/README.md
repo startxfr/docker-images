@@ -23,9 +23,11 @@ Build the container
 
 ## Accessing server
 access to the running server
+
 	ssh -p 22022 root@localhost
 
 access to the container itself
+
 	docker exec -it ssh bash
 
 ## Related Resources

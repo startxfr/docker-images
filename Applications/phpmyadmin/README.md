@@ -22,9 +22,11 @@ Build the container
 
 ## Accessing server
 access to the running webserver
+
 	firefox http://localhost:80/pma
 
 access to the container itself
+
 	docker exec -it pma bash
 
 ## Related Resources
