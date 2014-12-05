@@ -11,6 +11,7 @@ function begin_config {
 
 # End configuration process just before starting daemon
 function end_config {
+    stop_server
     echo "=> End httpd configuration ..."
 }
 
@@ -34,7 +35,7 @@ function stop_server {
 # the running shell
 function start_daemon {
     echo "=> Starting httpd daemon ..."
-    exec /usr/sbin/apachectl
+    exec /usr/sbin/apachectl -D FOREGROUND
 }
 
 
