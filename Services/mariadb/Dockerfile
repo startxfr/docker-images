@@ -7,7 +7,6 @@ RUN yum -y install \
     mariadb \
     && yum clean all \
     && mkdir -p /var/log/mysql \
-    && mkdir -p /sx \
     && touch /var/log/mysql/.keep /var/lib/mysql/.keep \
     && chown -R mysql:mysql /var/log/mysql /var/lib/mysql \
     && mkdir -p /tmp/sql 
