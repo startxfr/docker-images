@@ -2,7 +2,6 @@
 source /sx/mariadb.sh
 
 begin_config
-
 ## if you wan't to add a new user with database
 #create_userdb 'dbuser1' 'password'
 ## if you wan't to add a new user with database (generated password)
@@ -15,8 +14,8 @@ begin_config
 #mysql -u root -p$MARIADB_ROOTPWD -e 'select user, host FROM mysql.user;'
 ## Execute SQL scripts located into a directory
 #import_sqlfiles /tmp/sql/*.sql
-## Execute a single SQL script
-#import_sqlfile /tmp/sql/example.sql
-
+## Execute a single SQL script and delete it
+#import_sqlfile /tmp/sql/example.sql delete
 end_config
+
 start_daemon

@@ -88,11 +88,11 @@ function update_rootuser {
 
 # Find all sqlfiles in /tmp/ and import then using admin user
 function import_sqlfiles {
-    local filedir=$1; local p=$MARIADB_ROOTPWD;
+    local filedir=$1; local p=$MARIADB_ROOTPWD; local del=$2;
     if [ "$(ls -1 $filedir | wc -l)" -ge "1"  ]; then
         echo "=> Found SQL files to import ..."
         for filename in "$filedir"; do
-                import_sqlfile $filename
+                import_sqlfile $filename $del
         done;
     fi;
     return 0
@@ -100,10 +100,14 @@ function import_sqlfiles {
 
 # Find all sqlfiles in /tmp/ and import then using admin user
 function import_sqlfile {
-    local filename=$1; local p=$MARIADB_ROOTPWD;
+    local filename=$1; local p=$MARIADB_ROOTPWD; local del=$2;
     if [ -f "$filename" ]; then
         echo "===> Importing sql file : $filename"
         mysql -u root -p$p < $filename
+        if [ "$del" = "delete"]; then
+            rm -f $filename
+            echo "====> Deleting $filename after import"
+        fi;
     else 
         echo "====> Could not find sql file $filename. Skip import..."
     fi;
