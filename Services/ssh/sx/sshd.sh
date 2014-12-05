@@ -1,7 +1,6 @@
 #!/bin/bash
 
 export TERM=dumb
-export logfile="/var/log/sshd.log"
 
 # Begin configuration before starting daemonized process
 # and start generating host keys

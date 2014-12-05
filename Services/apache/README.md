@@ -29,7 +29,7 @@ access to the running webserver
 
 access to the container itself
 
-	docker exec -it apache bash
+	docker exec -it apache /bin/bash
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/apache)
