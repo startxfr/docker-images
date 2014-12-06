@@ -1,4 +1,4 @@
-FROM fedora:20
+FROM centos:latest
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root

@@ -13,10 +13,11 @@ Copy sources in your docker host
 	cd startx-docker-images;
 	git clone https://github.com/startxfr/docker-images.git .
 
+Change configuration and personalize your base image. you can change file httpd.conf if you want to add some config into http server
+
 Build the container
 
 	docker build -t sv-apache Services/apache/
-
 
 ### Running local image
 
@@ -29,7 +30,7 @@ access to the running webserver
 
 access to the container itself
 
-	docker exec -it apache bash
+	docker exec -it apache /bin/bash
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/apache)
