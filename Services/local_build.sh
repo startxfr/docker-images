@@ -1,9 +1,9 @@
 #!/bin/bash
-docker build -t sv-apache Services/apache/
-docker build -t sv-mariadb Services/mariadb/
-docker build -t sv-memcache Services/memcache/
-docker build -t sv-mongo Services/mongo/
-docker build -t sv-nodejs Services/nodejs/
-docker build -t sv-php Services/php/
-docker build -t sv-postgres Services/postgres/
-docker build -t sv-ssh Services/ssh/
+docker build -t sv-apache:fc20 Services/apache/
+docker build -t sv-mariadb:fc20 Services/mariadb/
+docker build -t sv-memcache:fc20 Services/memcache/
+docker build -t sv-mongo:fc20 Services/mongo/
+docker build -t sv-nodejs:fc20 Services/nodejs/
+docker build -t sv-php:fc20 Services/php/
+docker build -t sv-postgres:fc20 Services/postgres/
+docker build -t sv-ssh:fc20 Services/ssh/

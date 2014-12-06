@@ -1,3 +1,3 @@
 #!/bin/bash
-docker build -t app-pma Applications/phpmyadmin/
-docker build -t app-rockmongo Applications/rockmongo/
+docker build -t app-pma:fc20 Applications/phpmyadmin/
+docker build -t app-rockmongo:fc20 Applications/rockmongo/

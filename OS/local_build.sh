@@ -1,3 +1,2 @@
 #!/bin/bash
-docker build -t fedora OS/Fedora/
-docker build -t centos OS/Centos/
+docker build -t fedora:fc20 OS/Fedora/
