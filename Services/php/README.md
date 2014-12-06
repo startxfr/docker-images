@@ -13,6 +13,8 @@ Copy sources in your docker host
 	cd startx-docker-images;
 	git clone https://github.com/startxfr/docker-images.git .
 
+Change configuration and personalize your base image. you can change file httpd.conf if you want to add some config into http server. File php.ini will be added into php init scripts and executed when server start.
+
 Build the container
 
 	docker build -t sv-php Services/php/
@@ -28,7 +30,7 @@ access to the running webserver
 
 access to the container itself
 
-	docker exec -it php bash
+	docker exec -it php /bin/bash
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/php)
