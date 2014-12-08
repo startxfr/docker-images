@@ -3,13 +3,13 @@ This container run nodejs on fedora server.
 
 ## Running from docker registry
 
-	docker run -d -p 8000:8000 --name="nodejs" startx/sv-nodejs
+	docker run -d -p 8000:8000 --name="nodejs" startx/sv-nodejs:centos6
         # when used with a volume container (run data container, then run service)
-	docker run -d -v /var/nodejs/app --name nodejs-data startx/sv-nodejs  echo "Data container for nodejs"
-	docker run -d -p 8000:8000 --volumes-from nodejs-data --name="nodejs" startx/sv-nodejs
+	docker run -d -v /var/nodejs/app --name nodejs-data startx/sv-nodejs:centos6  echo "Data container for nodejs"
+	docker run -d -p 8000:8000 --volumes-from nodejs-data --name="nodejs" startx/sv-nodejs:centos6
 	when linked to another container
-	docker run -d --name="mongo" startx/sv-mongo
-	docker run -d -p 8000:8000 --name="nodejs" --link mongo:mongo startx/sv-nodejs
+	docker run -d --name="mongo" startx/sv-mongo:centos6
+	docker run -d -p 8000:8000 --name="nodejs" --link mongo:mongo startx/sv-nodejs:centos6
 
 ## Build and run from local Dockerfile
 ### Building docker image
@@ -21,11 +21,11 @@ Copy sources in your docker host
 
 Build the container
 
-	docker build -t sv-nodejs Services/nodejs/
+	docker build -t sv-nodejs:centos6 Services/nodejs/
 
 ### Running local image
 
-	docker run -d -p 8000:8000 --name="nodejs" sv-nodejs
+	docker run -d -p 8000:8000 --name="nodejs" sv-nodejs:centos6
 
 ## Accessing server
 access to the running webserver

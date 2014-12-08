@@ -3,10 +3,10 @@ This container run memcached on fedora server.
 
 ## Running from docker registry
 
-	docker run -d -p 11211:11211 --name="memcache" startx/sv-memcache
+	docker run -d -p 11211:11211 --name="memcache" startx/sv-memcache:centos6
 	when linked to another container
-	docker run -d --name="memcache" startx/sv-memcache
-	docker run -d --name="php" --link memcache:memcache startx/sv-php
+	docker run -d --name="memcache" startx/sv-memcache:centos6
+	docker run -d --name="php" --link memcache:memcache startx/sv-php:centos6
 
 ## Build and run from local Dockerfile
 ### Building docker image
@@ -20,11 +20,11 @@ Change configuration and personalize your base image. See sx/memcache_run.sh to 
 
 Build the container
 
-	docker build -t sv-memcache Services/memcache/
+	docker build -t sv-memcache:centos6 Services/memcache/
 
 ### Running local image
 
-	docker run -d -p 11211:11211 --name="memcache" sv-memcache
+	docker run -d -p 11211:11211 --name="memcache" sv-memcache:centos6
 
 ## Accessing server
 access to the container itself

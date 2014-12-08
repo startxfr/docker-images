@@ -3,7 +3,7 @@ This container run sshd on fedora server. You can overwrite /root/.ssh/autorized
 
 ## Running from docker registry
 
-	docker run -d -p 22022:22 --name="ssh" startx/sv-ssh
+	docker run -d -p 22022:22 --name="ssh" startx/sv-ssh:centos6
 
 ## Build and run from local Dockerfile
 ### Building docker image
@@ -15,11 +15,11 @@ Copy sources in your docker host
 
 Build the container
 
-	docker build -t sv-ssh Services/ssh/
+	docker build -t sv-ssh:centos6 Services/ssh/
 
 ### Running local image
 
-	docker run -d -p 22022:22 --name="ssh" sv-ssh
+	docker run -d -p 22022:22 --name="ssh" sv-ssh:centos6
 
 ## Accessing server
 access to the running server

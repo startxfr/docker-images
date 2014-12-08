@@ -3,13 +3,13 @@ This container run php via apache on fedora server.
 
 ## Running from docker registry
 
-	docker run -d -p 80:80 --name="php" startx/sv-php
+	docker run -d -p 80:80 --name="php" startx/sv-php:centos6
         # when used with a volume container (run data container, then run service)
-	docker run -d -v /var/www/html -v /var/log/httpd --name php-data startx/sv-php  echo "Data container for php webserver"
-	docker run -d -p 80:80 --volumes-from php-data --name="php" startx/sv-php
+	docker run -d -v /var/www/html -v /var/log/httpd --name php-data startx/sv-php:centos6  echo "Data container for php webserver"
+	docker run -d -p 80:80 --volumes-from php-data --name="php" startx/sv-php:centos6
 	when linked to another container
-	docker run -d --name="mongo" startx/sv-mongo
-	docker run -d -p 80:80 --name="php" --link mongo:mongo startx/sv-php
+	docker run -d --name="mongo" startx/sv-mongo:centos6
+	docker run -d -p 80:80 --name="php" --link mongo:mongo startx/sv-php:centos6
 
 ## Build and run from local Dockerfile
 ### Building docker image
@@ -23,11 +23,11 @@ Change configuration and personalize your base image. you can change file httpd.
 
 Build the container
 
-	docker build -t sv-php Services/php/
+	docker build -t sv-php:centos6 Services/php/
 
 ### Running local image
 
-	docker run -d -p 80:80 --name="php" sv-php
+	docker run -d -p 80:80 --name="php" sv-php:centos6
 
 ## Accessing server
 access to the running webserver
