@@ -4,9 +4,12 @@ This container run mongod on fedora server.
 ## Running from docker registry
 
 	docker run -d -p 27017:27017 --name="mongo" startx/sv-mongo
+        # when used with a volume container (run data container, then run service)
+	docker run -d -v /var/lib/mongodb -v /var/log/mongodb --name mongo-data startx/sv-mongo  echo "Data container for mongodb"
+	docker run -d -p 27017:27017 --volumes-from mongo-data --name="mongo" startx/sv-mongo
 	when linked to another container
 	docker run -d --name="mongo" startx/sv-mongo
-	docker run -d --name="php" --link mongo:mongo startx/sv-php
+	docker run -d -p 80:80 --name="php" --link mongo:mongo startx/sv-php
 
 ## Build and run from local Dockerfile
 ### Building docker image
