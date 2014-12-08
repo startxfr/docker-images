@@ -1,10 +1,10 @@
 #!/bin/bash
-docker build -t sv-apache:fc21 Services/apache/
-docker build -t sv-mariadb:fc21 Services/mariadb/
-docker build -t sv-memcache:fc21 Services/memcache/
-docker build -t sv-mongo:fc21 Services/mongo/
-docker build -t sv-nodejs:fc21 Services/nodejs/
-docker build -t sv-php:fc21 Services/php/
-docker build -t sv-postgres:fc21 Services/postgres/
-docker build -t sv-ooconv:fc21 Services/ooconv/
-docker build -t sv-ssh:fc21 Services/ssh/
+docker run -d -p 130:80 --name="fc21-lbapache" startx/sv-apache:fc21
+docker run -d -p 3356:3306 --name="fc21-lbmariadb" startx/sv-mariadb:fc21
+docker run -d -p 11261:11211 --name="fc21-lbmemcache" startx/sv-memcache:fc21
+docker run -d -p 27067:27017 --name="fc21-lbmongo" startx/sv-mongo:fc21
+docker run -d -p 8050:8000 --name="fc21-lbnodejs" startx/sv-nodejs:fc21
+docker run -d -p 117:80 --name="fc21-lbphp" startx/sv-php:fc21
+docker run -d -p 5482:5432 --name="fc21-lbpostgres" startx/sv-postgres:fc21
+docker run -d -p 2072:2002 --name="fc21-lbooconv" startx/sv-ooconv:fc21
+docker run -d -p 22042:22 --name="fc21-lbssh" startx/sv-ssh:fc21
