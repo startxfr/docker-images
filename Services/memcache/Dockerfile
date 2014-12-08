@@ -1,13 +1,10 @@
 FROM startx/fedora:20
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
-COPY memcache_run.sh /bin/
-RUN yum -y install memcached \
-    && yum clean all \
-    && chmod ug+rx /bin/memcache_*
+RUN yum -y install memcached memcached-selinux && yum clean all 
+COPY sx/* /sx/
+RUN chmod ug+rx /sx/memcache* 
 
 EXPOSE 11211
 
-#CMD ["memcached" , "-u" ," "daemon"]
-CMD ["/bin/memcache_run.sh"]
-ONBUILD CMD ["/bin/memcache_run.sh"]
+CMD ["/sx/memcache_run.sh"]

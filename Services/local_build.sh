@@ -6,4 +6,5 @@ docker build -t sv-mongo:fc20 Services/mongo/
 docker build -t sv-nodejs:fc20 Services/nodejs/
 docker build -t sv-php:fc20 Services/php/
 docker build -t sv-postgres:fc20 Services/postgres/
+docker build -t sv-ooconv:fc20 Services/ooconv/
 docker build -t sv-ssh:fc20 Services/ssh/
