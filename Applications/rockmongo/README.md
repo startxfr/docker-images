@@ -3,10 +3,10 @@ This container run Rockmongo on PHP server running under a fedora server.
 
 ## Running from docker registry
 
-	docker run -d -p 80:80 --name="rockmongo" startx/app-rockmongo
+	docker run -d -p 80:80 --name="rockmongo" startx/app-rockmongo:fc21
 	when linked to another container
-	docker run -d --name="mongo" startx/sv-mongo
-	docker run -d -p 80:80 --name="rockmongo" --link mongo:mongo startx/app-rockmongo
+	docker run -d --name="mongo" startx/sv-mongo:fc21
+	docker run -d -p 80:80 --name="rockmongo" --link mongo:mongo startx/app-rockmongo:fc21
 
 ## Build and run from local Dockerfile
 ### Building docker image
@@ -18,11 +18,11 @@ Copy sources in your docker host
 
 Build the container
 
-	docker build -t startx/app-rockmongo Applications/rockmongo/
+	docker build -t startx/app-rockmongo:fc21 Applications/rockmongo/
 
 ### Running local image
 
-	docker run -d -p 80:80 --name="rockmongo" startx/app-rockmongo
+	docker run -d -p 80:80 --name="rockmongo" startx/app-rockmongo:fc21
 
 ## Accessing server
 access to the running webserver
