@@ -4,6 +4,12 @@ This container run php via apache on fedora server.
 ## Running from docker registry
 
 	docker run -d -p 80:80 --name="php" startx/sv-php
+        # when used with a volume container (run data container, then run service)
+	docker run -d -v /var/www/html -v /var/log/httpd --name php-data startx/sv-php  echo "Data container for php webserver"
+	docker run -d -p 80:80 --volumes-from php-data --name="php" startx/sv-php
+	when linked to another container
+	docker run -d --name="mongo" startx/sv-mongo
+	docker run -d -p 80:80 --name="php" --link mongo:mongo startx/sv-php
 
 ## Build and run from local Dockerfile
 ### Building docker image

@@ -4,6 +4,12 @@ This container run nodejs on fedora server.
 ## Running from docker registry
 
 	docker run -d -p 8000:8000 --name="nodejs" startx/sv-nodejs
+        # when used with a volume container (run data container, then run service)
+	docker run -d -v /var/nodejs/app --name nodejs-data startx/sv-nodejs  echo "Data container for nodejs"
+	docker run -d -p 8000:8000 --volumes-from nodejs-data --name="nodejs" startx/sv-nodejs
+	when linked to another container
+	docker run -d --name="mongo" startx/sv-mongo
+	docker run -d -p 8000:8000 --name="nodejs" --link mongo:mongo startx/sv-nodejs
 
 ## Build and run from local Dockerfile
 ### Building docker image

@@ -4,6 +4,9 @@ This container run postgres on fedora server.
 ## Running from docker registry
 
 	docker run -d -p 5432:5432 --name="postgres" startx/sv-postgres
+        # when used with a volume container (run data container, then run service)
+	docker run -d -v /var/log/pgsql -v /var/lib/pgsql --name postgres-data startx/sv-postgres  echo "Data container for postgresql"
+	docker run -d -p 5432:5432 --volumes-from postgres-data --name="postgres" startx/sv-postgres
 	when linked to another container
 	docker run -d --name="postgres" startx/sv-postgres
 	docker run -d --name="php" --link postgres:postgres startx/sv-php
