@@ -6,4 +6,5 @@ docker build -t sv-mongo:fc21 Services/mongo/
 docker build -t sv-nodejs:fc21 Services/nodejs/
 docker build -t sv-php:fc21 Services/php/
 docker build -t sv-postgres:fc21 Services/postgres/
+docker build -t sv-ooconv:fc21 Services/ooconv/
 docker build -t sv-ssh:fc21 Services/ssh/
