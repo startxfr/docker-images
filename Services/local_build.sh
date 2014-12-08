@@ -1,10 +1,10 @@
 #!/bin/bash
-docker build -t sv-apache Services/apache/
-docker build -t sv-mariadb Services/mariadb/
-docker build -t sv-memcache Services/memcache/
-docker build -t sv-mongo Services/mongo/
-docker build -t sv-nodejs Services/nodejs/
-docker build -t sv-php Services/php/
-docker build -t sv-postgres Services/postgres/
-docker build -t sv-ooconv Services/ooconv/
-docker build -t sv-ssh Services/ssh/
+docker build -t sv-apache:centos7 Services/apache/
+docker build -t sv-mariadb:centos7 Services/mariadb/
+docker build -t sv-memcache:centos7 Services/memcache/
+docker build -t sv-mongo:centos7 Services/mongo/
+docker build -t sv-:centos7 Services/nodejs/
+docker build -t sv-php:centos7 Services/php/
+docker build -t sv-postgres:centos7 Services/postgres/
+docker build -t sv-ooconv:centos7 Services/ooconv/
+docker build -t sv-ssh:centos7 Services/ssh/
