@@ -28,7 +28,7 @@ access to the running server
 
 access to the container itself
 
-	docker exec -it ssh bash
+	docker exec -it ssh /bin/bash
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/ssh)

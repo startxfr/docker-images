@@ -16,6 +16,8 @@ Copy sources in your docker host
 	cd startx-docker-images;
 	git clone https://github.com/startxfr/docker-images.git .
 
+Change configuration and personalize your base image. See sx/memcache_run.sh to perform some usefull when configuring or every time you run a container.
+
 Build the container
 
 	docker build -t sv-memcache Services/memcache/
@@ -27,7 +29,7 @@ Build the container
 ## Accessing server
 access to the container itself
 
-	docker exec -it memcache bash
+	docker exec -it memcache /bin/bash
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/memcache)

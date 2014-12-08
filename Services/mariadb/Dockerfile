@@ -1,7 +1,6 @@
 FROM startx/centos:6
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
-COPY mariadb_run.sh /bin/
 RUN yum -y install \
     mariadb-libs \
     mariadb-server \
@@ -10,13 +9,20 @@ RUN yum -y install \
     && mkdir -p /var/log/mysql \
     && touch /var/log/mysql/.keep /var/lib/mysql/.keep \
     && chown -R mysql:mysql /var/log/mysql /var/lib/mysql \
-    && chmod ug+rx /bin/mariadb_*
-
-VOLUME ["/var/lib/mysql", "/var/log/mysql"]
-USER mysql
+    && mkdir -p /tmp/sql 
+COPY sx/* /sx/
+COPY *.sql /tmp/sql/
+RUN chmod ug+rx /sx/mariadb* /tmp/sql \
+    && chown -R mysql:mysql /sx/mariadb* /tmp/sql
 
 EXPOSE 3306
+VOLUME ["/var/lib/mysql", "/var/log/mysql"]
 
-#CMD ["/usr/libexec/mysqld"]
-CMD ["/bin/mariadb_run.sh"]
-ONBUILD CMD ["/bin/mariadb_run.sh"]
+USER mysql
+# if you wan't to set root password, otherwise auto-generated
+# see docker logs <containerId>
+ENV mysql_newadminpwd newRootPassword
+
+
+#ENDPOINT ["/sx/mariadb_run.sh"]
+CMD ["/sx/mariadb_run.sh"]

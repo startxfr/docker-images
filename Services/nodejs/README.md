@@ -28,7 +28,7 @@ access to the running webserver
 
 access to the container itself
 
-	docker exec -it nodejs bash
+	docker exec -it nodejs /bin/bash
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/nodejs)

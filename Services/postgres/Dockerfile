@@ -1,24 +1,19 @@
 FROM startx/centos:6
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
-COPY postgres_run.sh postgres_modify_pass.sh /bin/
-RUN yum -y install \
-    mariadb-galera-common \
-    mariadb-galera-server \
-    mariadb-libs \
-    mariadb-server \
-    mariadb \
+RUN yum -y install postgresql postgresql-libs postgresql-server \
     && yum clean all \
-    && mkdir -p /var/log/mysql \
-    && touch /var/log/mysql/.keep /var/lib/mysql/.keep \
-    && chown -R mysql:mysql /var/log/mysql /var/lib/mysql \
-    && chmod ug+rx /bin/postgres_*
+    && mkdir -p /var/log/pgsql /var/lib/pgsql \
+    && touch /var/log/pgsql/.keep /var/lib/pgsql/.keep \
+    && chown -R postgres:postgres /var/log/pgsql /var/lib/pgsql
+# Copy startx toolkit
+COPY sx/* /sx/
+COPY postgresql.conf /var/lib/pgsql/postgresql.conf
+RUN chmod ug+rx /sx/postgres* \
+    && chown -R postgres:postgres /sx/postgresql*
 
-VOLUME	["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql"]
-USER postgresql
-
+USER postgres
 EXPOSE 5432
+VOLUME	["/var/log/pgsql", "/var/lib/pgsql"]
 
-#CMD ["/usr/libexec/pgsqld"]
-CMD ["/bin/postgres_run.sh"]
-ONBUILD CMD ["/bin/postgres_run.sh"]
+CMD ["/sx/postgresql_run.sh"]
