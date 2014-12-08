@@ -3,13 +3,13 @@ This container run mongod on fedora server.
 
 ## Running from docker registry
 
-	docker run -d -p 27017:27017 --name="mongo" startx/sv-mongo
+	docker run -d -p 27017:27017 --name="mongo" startx/sv-mongo:fc20
         # when used with a volume container (run data container, then run service)
-	docker run -d -v /var/lib/mongodb -v /var/log/mongodb --name mongo-data startx/sv-mongo  echo "Data container for mongodb"
-	docker run -d -p 27017:27017 --volumes-from mongo-data --name="mongo" startx/sv-mongo
+	docker run -d -v /var/lib/mongodb -v /var/log/mongodb --name mongo-data startx/sv-mongo:fc20  echo "Data container for mongodb"
+	docker run -d -p 27017:27017 --volumes-from mongo-data --name="mongo" startx/sv-mongo:fc20
 	when linked to another container
-	docker run -d --name="mongo" startx/sv-mongo
-	docker run -d -p 80:80 --name="php" --link mongo:mongo startx/sv-php
+	docker run -d --name="mongo" startx/sv-mongo:fc20
+	docker run -d -p 80:80 --name="php" --link mongo:mongo startx/sv-php:fc20
 
 ## Build and run from local Dockerfile
 ### Building docker image
@@ -23,11 +23,11 @@ Change configuration and personalize your base image. See sx/mongod_run.sh to pe
 
 Build the container
 
-	docker build -t sv-mongo Services/mongo/
+	docker build -t sv-mongo:fc20 Services/mongo/
 
 ### Running local image
 
-	docker run -d -p 27017:27017 --name="mongo" sv-mongo
+	docker run -d -p 27017:27017 --name="mongo" sv-mongo:fc20
 
 ## Accessing server
 access to the running database

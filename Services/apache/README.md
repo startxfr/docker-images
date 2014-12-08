@@ -3,13 +3,13 @@ This container run apache on fedora server.
 
 ## Running from docker registry
 
-	docker run -d -p 80:80 --name="apache" startx/sv-apache
+	docker run -d -p 80:80 --name="apache" startx/sv-apache:fc20
         # when used with a volume container (run data container, then run service)
-        docker run -d -v /var/www/html -v /var/log/httpd --name apache-data startx/sv-apache echo "Data container for apache"
-        docker run -d -p 80:80 --volumes-from apache-data --name="apache" startx/sv-apache
+        docker run -d -v /var/www/html -v /var/log/httpd --name apache-data startx/sv-apache:fc20 echo "Data container for apache"
+        docker run -d -p 80:80 --volumes-from apache-data --name="apache" startx/sv-apache:fc20
 	# when used in a linked container
-	docker run -d --name="apache" startx/sv-apache
-	docker run -d -p 80:80 --name="apache2" --link apache:apache startx/sv-apache
+	docker run -d --name="apache" startx/sv-apache:fc20
+	docker run -d -p 80:80 --name="apache2" --link apache:apache startx/sv-apache:fc20
 
 ## Build and run from local Dockerfile
 ### Building docker image
@@ -23,11 +23,11 @@ Change configuration and personalize your base image. you can change file httpd.
 
 Build the container
 
-	docker build -t sv-apache Services/apache/
+	docker build -t sv-apache:fc20 Services/apache/
 
 ### Running local image
 
-	docker run -d -p 80:80 --name="apache" sv-apache
+	docker run -d -p 80:80 --name="apache" sv-apache:fc20
 
 ## Accessing server
 access to the running webserver

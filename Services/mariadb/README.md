@@ -3,13 +3,13 @@ This container run mariadb on fedora server.
 
 ## Running from docker registry
 
-	docker run -d -p 3306:3306 --name="mariadb" startx/sv-mariadb
+	docker run -d -p 3306:3306 --name="mariadb" startx/sv-mariadb:fc20
         # when used with a volume container (run data container, then run service)
-	docker run -d -v /var/lib/mysql -v /var/log/mysql --name mariadb-data startx/sv-mariadb  echo "Data container for mariadb"
-	docker run -d -p 3306:3306 --volumes-from mariadb-data --name="mariadb" startx/sv-mariadb
+	docker run -d -v /var/lib/mysql -v /var/log/mysql --name mariadb-data startx/sv-mariadb:fc20  echo "Data container for mariadb"
+	docker run -d -p 3306:3306 --volumes-from mariadb-data --name="mariadb" startx/sv-mariadb:fc20
 	# when used in a linked container
-	docker run -d --name="mariadb" startx/sv-mariadb
-	docker run -d --name="php" --link mariadb:mariadb startx/sv-php
+	docker run -d --name="mariadb" startx/sv-mariadb:fc20
+	docker run -d --name="php" --link mariadb:mariadb startx/sv-php:fc20
 
 ## Build and run from local Dockerfile
 ### Building docker image
@@ -23,11 +23,11 @@ Change configuration and personalize your base image. See sx/mariadb_run.sh to p
 
 Build the container
 
-	docker build -t sv-mariadb Services/mariadb/
+	docker build -t sv-mariadb:fc20 Services/mariadb/
 
 ### Running local image
 
-	docker run -d -p 3306:3306 --name="mariadb" sv-mariadb
+	docker run -d -p 3306:3306 --name="mariadb" sv-mariadb:fc20
 
 ## Accessing server
 get connection information's, use docker logs to see result and connection details
