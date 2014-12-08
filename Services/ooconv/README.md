@@ -3,13 +3,13 @@ This container run ooconv on fedora server.
 
 ## Running from docker registry
 
-	docker run -d -p 2002:2002 --name="ooconv" startx/sv-ooconv
+	docker run -d -p 2002:2002 --name="ooconv" startx/sv-ooconv:centos7
         # when used with a volume container (run data container, then run service)
-	docker run -d -v /tmp/ootmp --name ooconv-data startx/sv-ooconv  echo "Data container for ooconv"
-	docker run -d -p 2002:2002 --volumes-from ooconv-data --name="ooconv" startx/sv-ooconv
+	docker run -d -v /tmp/ootmp --name ooconv-data startx/sv-ooconv:centos7  echo "Data container for ooconv"
+	docker run -d -p 2002:2002 --volumes-from ooconv-data --name="ooconv" startx/sv-ooconv:centos7
 	when linked to another container
-	docker run -d --name="ooconv" startx/sv-ooconv
-	docker run -d -p 80:80 --name="php" --link ooconv:ooconv startx/sv-php
+	docker run -d --name="ooconv" startx/sv-ooconv:centos7
+	docker run -d -p 80:80 --name="php" --link ooconv:ooconv startx/sv-php:centos7
 
 ## Build and run from local Dockerfile
 ### Building docker image
@@ -21,11 +21,11 @@ Copy sources in your docker host
 
 Build the container
 
-	docker build -t sv-ooconv Services/ooconv/
+	docker build -t sv-ooconv:centos7 Services/ooconv/
 
 ### Running local image
 
-	docker run -d -p 2002:2002 --name="ooconv" sv-ooconv
+	docker run -d -p 2002:2002 --name="ooconv" sv-ooconv:centos7
 
 ## Accessing server
 access to the running webserver

@@ -3,13 +3,13 @@ This container run postgres on fedora server.
 
 ## Running from docker registry
 
-	docker run -d -p 5432:5432 --name="postgres" startx/sv-postgres
+	docker run -d -p 5432:5432 --name="postgres" startx/sv-postgres:centos7
         # when used with a volume container (run data container, then run service)
-	docker run -d -v /var/log/pgsql -v /var/lib/pgsql --name postgres-data startx/sv-postgres  echo "Data container for postgresql"
-	docker run -d -p 5432:5432 --volumes-from postgres-data --name="postgres" startx/sv-postgres
+	docker run -d -v /var/log/pgsql -v /var/lib/pgsql --name postgres-data startx/sv-postgres:centos7  echo "Data container for postgresql"
+	docker run -d -p 5432:5432 --volumes-from postgres-data --name="postgres" startx/sv-postgres:centos7
 	when linked to another container
-	docker run -d --name="postgres" startx/sv-postgres
-	docker run -d --name="php" --link postgres:postgres startx/sv-php
+	docker run -d --name="postgres" startx/sv-postgres:centos7
+	docker run -d --name="php" --link postgres:postgres startx/sv-php:centos7
 
 ## Build and run from local Dockerfile
 ### Building docker image
@@ -21,11 +21,11 @@ Copy sources in your docker host
 
 Build the container
 
-	docker build -t sv-postgres Services/postgres/
+	docker build -t sv-postgres:centos7 Services/postgres/
 
 ### Running local image
 
-	docker run -d -p 5432:5432 --name="postgres" sv-postgres
+	docker run -d -p 5432:5432 --name="postgres" sv-postgres:centos7
 
 ## Accessing server
 access to the running database
