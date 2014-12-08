@@ -2,7 +2,11 @@
 This container run phpMyAdmin on PHP server running under a fedora server. 
 
 ## Running from docker registry
+
 	docker run -d -p 80:80 --name="pma" startx/app-pma
+	when linked to another container
+	docker run -d --name="mariadb" startx/sv-mariadb
+	docker run -d -p 80:80 --name="pma" --link mariadb:mariadb startx/app-pma
 
 ## Build and run from local Dockerfile
 ### Building docker image
