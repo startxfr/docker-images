@@ -4,11 +4,11 @@ This container run mariadb on fedora server.
 ## Running from docker registry
 
 	docker run -d -p 3306:3306 --name="mariadb" startx/sv-mariadb
-	# when used with a volume container
-	docker run -d -v /var/lib/mysql -v /var/log/mysql --name mariadb-data startx/sv-mariadb
-	docker run -d --volumes-from mariadb-data -p 3306:3306 --name="mariadb" startx/sv-mariadb
+        # when used with a volume container (run data container, then run service)
+	docker run -d -v /var/lib/mysql -v /var/log/mysql --name mariadb-data startx/sv-mariadb  echo "Data container for mariadb"
+	docker run -d -p 3306:3306 --volumes-from mariadb-data --name="mariadb" startx/sv-mariadb
 	# when used in a linked container
-	docker run -d -p 3306:3306 --name="mariadb" startx/sv-mariadb
+	docker run -d --name="mariadb" startx/sv-mariadb
 	docker run -d --name="php" --link mariadb:mariadb startx/sv-php
 
 ## Build and run from local Dockerfile
