@@ -16,6 +16,8 @@ Copy sources in your docker host
 	cd startx-docker-images;
 	git clone https://github.com/startxfr/docker-images.git .
 
+Change configuration and personalize your base image. See sx/mongod_run.sh to perform some usefull task against the database, especially importing sql script, adding users and changing passwords. See also mongodb.conf for configuring the mongo server running in the container.
+
 Build the container
 
 	docker build -t sv-mongo Services/mongo/
@@ -31,7 +33,7 @@ access to the running database
 
 access to the container itself
 
-	docker exec -it mongo bash
+	docker exec -it mongo /bin/bash
 
 ## Related Resources
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/mongo)
