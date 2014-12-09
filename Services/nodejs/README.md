@@ -1,5 +1,6 @@
 # STARTX Services docker-images : NodeJS Server
-This container run nodejs on fedora server.
+
+Container running nodejs daemon under a fedora server
 
 ## Running from docker registry
 
