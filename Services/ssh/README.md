@@ -1,6 +1,6 @@
 # STARTX Services docker-images : SSH Server
 
-Container running sshd daemon under a fedora server. You can add your own list of autorized keys
+Container running sshd daemon under a centos server. You can add your own list of autorized keys
 
 ## Running from docker registry
 

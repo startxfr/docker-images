@@ -1,6 +1,6 @@
 # STARTX Services docker-images : NodeJS Server
 
-Container running ooconv daemon under a fedora server
+Container running ooconv daemon under a centos server
 
 ## Running from docker registry
 

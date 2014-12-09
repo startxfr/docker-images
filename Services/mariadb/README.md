@@ -1,6 +1,6 @@
 # STARTX Services docker-images : MariaDB Server
 
-Container running mysqld daemon under a fedora server
+Container running mysqld daemon under a centos server
 
 ## Running from docker registry
 

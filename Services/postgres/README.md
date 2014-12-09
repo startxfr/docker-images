@@ -1,6 +1,6 @@
 # STARTX Services docker-images : PostgreSQL Server
 
-Container running postgres daemon under a fedora server. 
+Container running postgres daemon under a centos server. 
 
 ## Running from docker registry
 

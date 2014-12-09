@@ -1,6 +1,6 @@
 # STARTX Services docker-images : MongoDB Server
 
-Container running mongod daemon under a fedora server
+Container running mongod daemon under a centos server
 
 ## Running from docker registry
 

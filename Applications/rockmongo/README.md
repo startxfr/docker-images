@@ -1,6 +1,6 @@
 # STARTX Application docker-images : Rockmongo
 
-Container running rockmongo under a fedora server.
+Container running rockmongo under a centos server.
 
 ## Running from docker registry
 
