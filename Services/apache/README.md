@@ -1,5 +1,6 @@
-# STARTX Services docker-images : PHP Webserver
-This container run apache on fedora server.
+# STARTX Services docker-images : Simple Webserver
+
+Container running httpd daemon under a fedora server
 
 ## Running from docker registry
 
