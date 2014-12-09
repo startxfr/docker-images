@@ -1,4 +1,6 @@
-# STARTX Services docker-images : PostgreSQL Server
+# STARTX Services docker-images : Memcache Server
+
+Container running memcached daemon under a fedora server
 This container run memcached on fedora server. 
 
 ## Running from docker registry

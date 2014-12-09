@@ -1,5 +1,6 @@
-# STARTX Services docker-images : MongoDB Server
-This container run mariadb on fedora server. 
+# STARTX Services docker-images : MariaDB Server
+
+Container running mysqld daemon under a fedora server
 
 ## Running from docker registry
 
