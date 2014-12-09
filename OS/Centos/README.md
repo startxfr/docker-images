@@ -1,5 +1,6 @@
 # STARTX OS docker-images : Fedora
-Fedora image builded with minimal and updated binaries
+
+Centos image builded with minimal and updated binaries
 
 ## Running from docker registry
 

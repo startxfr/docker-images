@@ -1,5 +1,6 @@
 # STARTX Services docker-images : SSH Server
-This container run sshd on fedora server. You can overwrite /root/.ssh/autorized_keys with your own list of autorized keys.
+
+Container running sshd daemon under a fedora server. You can add your own list of autorized keys
 
 ## Running from docker registry
 
@@ -12,6 +13,8 @@ Copy sources in your docker host
 	mkdir startx-docker-images; 
 	cd startx-docker-images;
 	git clone https://github.com/startxfr/docker-images.git .
+
+You can overwrite /root/.ssh/autorized_keys with your own list of autorized keys.
 
 Build the container
 
