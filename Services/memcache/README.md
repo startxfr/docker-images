@@ -1,6 +1,6 @@
 # STARTX Services docker-images : Memcache Server
 
-Container running memcached daemon under a fedora server
+Container running memcached daemon under a centos server
 This container run memcached on fedora server. 
 
 ## Running from docker registry

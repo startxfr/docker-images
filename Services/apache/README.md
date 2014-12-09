@@ -1,6 +1,6 @@
 # STARTX Services docker-images : Simple Webserver
 
-Container running httpd daemon under a fedora server
+Container running httpd daemon under a centos server
 
 ## Running from docker registry
 

@@ -1,6 +1,6 @@
 # STARTX Application docker-images : PHPMyAdmin
 
-Container running phpMyAdmin under a fedora server.
+Container running phpMyAdmin under a centos server.
 
 ## Running from docker registry
 
