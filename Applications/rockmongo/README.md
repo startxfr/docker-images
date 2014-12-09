@@ -1,5 +1,6 @@
 # STARTX Application docker-images : Rockmongo
-This container run Rockmongo on PHP server running under a fedora server. 
+
+Container running rockmongo under a fedora server.
 
 ## Running from docker registry
 

@@ -1,12 +1,18 @@
 #!/bin/bash
 
 export TERM=dumb
+export HTTPDCONF=/etc/httpd/conf.d/sx.conf
 
 # Begin configuration before starting daemonized process
 # and start generating host keys
 function begin_config {
     echo "=> Begin httpd configuration for host $HOSTNAME"
     mkdir -p /var/run/httpd
+    if [ -z "$DOCROOT" ]; then
+        echo "===> Changing document root to $DOCROOT"
+        ${DOCROOT=/var/www/html}
+        echo "DocumentRoot \"$DOCROOT\"" >> $HTTPDCONF
+    fi
 }
 
 # End configuration process just before starting daemon
