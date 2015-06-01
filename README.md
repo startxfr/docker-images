@@ -151,6 +151,7 @@ This repository offer various flavour of Red Hat like distribution. Tag `:latest
 	docker run -d -p 50508:80 --name="centos7-pma" startx/app-pma:centos7
 	docker run -d -p 50509:80 --name="centos7-rockmongo" startx/app-rockmongo:centos7
 
+
 ## Build and run from local Dockerfile
 ### Building docker image
 Copy sources in your docker host / build server
