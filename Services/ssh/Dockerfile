@@ -2,7 +2,7 @@ FROM startx/fedora:22
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 # Install packages and set up sshd
-RUN dnf -y update \
+RUN dnf -y upgrade \
     && dnf -y install openssh-server \
     && dnf clean all 
 # Copy startx toolkit
