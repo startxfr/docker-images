@@ -3,8 +3,8 @@ MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
 # Install packages and set up httpd
-RUN yum -y install httpd \
-    && yum clean all \
+RUN dnf -y install httpd \
+    && dnf clean all \
     && mkdir -p /var/www/html \
     && mkdir -p /var/log/httpd 
 # Copy startx toolkit

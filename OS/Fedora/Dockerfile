@@ -3,7 +3,8 @@ MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
 # Install minimal packages
-RUN yum -y install deltarpm pwgen tar psmisc \
-    && yum -y update \
-    && yum clean all \
+RUN dnf install python-dnf-plugins-extras-migrate && dnf-2 migrate
+    && dnf -y install deltarpm pwgen tar psmisc \
+    && dnf -y update \
+    && dnf clean all \
     && mkdir -p /sx 

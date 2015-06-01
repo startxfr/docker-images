@@ -1,8 +1,8 @@
 FROM startx/fedora:22
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
-RUN yum -y install postgresql postgresql-libs postgresql-server \
-    && yum clean all \
+RUN dnf -y install postgresql postgresql-libs postgresql-server \
+    && dnf clean all \
     && mkdir -p /var/log/pgsql /var/lib/pgsql \
     && touch /var/log/pgsql/.keep /var/lib/pgsql/.keep \
     && chown -R postgres:postgres /var/log/pgsql /var/lib/pgsql

@@ -1,8 +1,8 @@
 FROM startx/fedora:22
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
-RUN yum -y install nodejs npm \
-    && yum clean all \
+RUN dnf -y install nodejs npm \
+    && dnf clean all \
     && mkdir -p /app \
     && chmod ug+rx /app
 VOLUME ["/app"]

@@ -2,9 +2,9 @@ FROM startx/fedora:22
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 # Install packages and set up sshd
-RUN yum -y update \
-    && yum -y install openssh-server \
-    && yum clean all 
+RUN dnf -y update \
+    && dnf -y install openssh-server \
+    && dnf clean all 
 # Copy startx toolkit
 COPY sx/* /sx/
 # Copy ssh keys
