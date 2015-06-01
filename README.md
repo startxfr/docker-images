@@ -1,6 +1,7 @@
 # STARTX docker-images repository
 
-Docker container images all based on red hat like distributions. Actually you can find fedora and centos.
+Docker container images all based on red hat like distributions. 
+Actually you can find fedora and centos.
 
 ## Running container from docker registry images
 
