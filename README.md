@@ -34,29 +34,29 @@ Docker container images all based on red hat like distributions. Actually you ca
 This repository offer various flavour of Red Hat like distribution. Tag `:latest` is actually pointing to fedora core 20
 
 ### Operating Systems
-| OS            | Docker Hub repository          | Flavour                |
-|---------------|--------------------------------|------------------------|
-| Fedora Core   | `startx/fedora`                | `:latest` `:20` `:21`  | 
-| CentOS        | `startx/centos`                | `:6` `:7`              |
+| OS            | Docker Hub repository          | Flavour                      |
+|---------------|--------------------------------|------------------------------|
+| Fedora Core   | `startx/fedora`                | `:latest` `:20` `:21` `:22`  | 
+| CentOS        | `startx/centos`                | `:6` `:7`                    |
 
 ### Services
-| Service    | Docker Hub repository | Fedora                    | CentOS                |
-|------------|-----------------------|---------------------------|-----------------------|
-| Apache     | `startx/sv-apache`    | `:latest` `:fc20` `:fc21` | `:centos6` `:centos7` |
-| MariaDB    | `startx/sv-mariadb`   | `:latest` `:fc20` `:fc21` | `:centos6` `:centos7` |
-| Memcache   | `startx/sv-memcache`  | `:latest` `:fc20` `:fc21` | `:centos6` `:centos7` |
-| MongoDB    | `startx/sv-mongo`     | `:latest` `:fc20` `:fc21` | `:centos6` `:centos7` |
-| nodejs     | `startx/sv-nodejs`    | `:latest` `:fc20` `:fc21` | `:centos6` `:centos7` |
-| ooconv     | `startx/sv-ooconv`    | `:latest` `:fc20` `:fc21` | `:centos6` `:centos7` |
-| php        | `startx/sv-php`       | `:latest` `:fc20` `:fc21` | `:centos6` `:centos7` |
-| postgreSQL | `startx/sv-postgres`  | `:latest` `:fc20` `:fc21` | `:centos6` `:centos7` |
-| SSH        | `startx/sv-ssh`       | `:latest` `:fc20` `:fc21` | `:centos6` `:centos7` |
+| Service    | Docker Hub repository | Fedora                            | CentOS                |
+|------------|-----------------------|-----------------------------------|-----------------------|
+| Apache     | `startx/sv-apache`    | `:latest` `:fc20` `:fc21` `:fc22` | `:centos6` `:centos7` |
+| MariaDB    | `startx/sv-mariadb`   | `:latest` `:fc20` `:fc21` `:fc22` | `:centos6` `:centos7` |
+| Memcache   | `startx/sv-memcache`  | `:latest` `:fc20` `:fc21` `:fc22` | `:centos6` `:centos7` |
+| MongoDB    | `startx/sv-mongo`     | `:latest` `:fc20` `:fc21` `:fc22` | `:centos6` `:centos7` |
+| nodejs     | `startx/sv-nodejs`    | `:latest` `:fc20` `:fc21` `:fc22` | `:centos6` `:centos7` |
+| ooconv     | `startx/sv-ooconv`    | `:latest` `:fc20` `:fc21` `:fc22` | `:centos6` `:centos7` |
+| php        | `startx/sv-php`       | `:latest` `:fc20` `:fc21` `:fc22` | `:centos6` `:centos7` |
+| postgreSQL | `startx/sv-postgres`  | `:latest` `:fc20` `:fc21` `:fc22` | `:centos6` `:centos7` |
+| SSH        | `startx/sv-ssh`       | `:latest` `:fc20` `:fc21` `:fc22` | `:centos6` `:centos7` |
 
 ### Applications
-| Service    | Docker Hub repository | Fedora                    | CentOS                |
-|------------|-----------------------|---------------------------|-----------------------|
-| PhpMyAdmin | `startx/sv-pma`       | `:latest` `:fc20` `:fc21` | `:centos6` `:centos7` |
-| RockMongo  | `startx/sv-rockmongo` | `:latest` `:fc20` `:fc21` | `:centos6` `:centos7` |
+| Service    | Docker Hub repository | Fedora                            | CentOS                |
+|------------|-----------------------|-----------------------------------|-----------------------|
+| PhpMyAdmin | `startx/sv-pma`       | `:latest` `:fc20` `:fc21` `:fc22` | `:centos6` `:centos7` |
+| RockMongo  | `startx/sv-rockmongo` | `:latest` `:fc20` `:fc21` `:fc22` | `:centos6` `:centos7` |
 
 ### Running sample container's
 
@@ -104,6 +104,21 @@ This repository offer various flavour of Red Hat like distribution. Tag `:latest
 	docker run -d -p 50307:22 --name="fedora21-ssh" startx/sv-ssh:fc21
 	docker run -d -p 50308:80 --name="fedora21-pma" startx/app-pma:fc21
 	docker run -d -p 50309:80 --name="fedora21-rockmongo" startx/app-rockmongo:fc21
+
+#### Fedora Core 22 container's
+
+	# For Fedora core 22 example, port start from 50600
+	docker run -d -it --name="fedora22" startx/fedora:22 bash
+	docker run -d -p 50600:80 --name="fedora22-apache" startx/sv-apache:fc22
+	docker run -d -p 50601:3306 --name="fedora22-mariadb" startx/sv-mariadb:fc22
+	docker run -d -p 50602:11211 --name="fedora22-memcache" startx/sv-memcache:fc22
+	docker run -d -p 50603:27017 --name="fedora22-mongo" startx/sv-mongo:fc22
+	docker run -d -p 50604:8000 --name="fedora22-nodejs" startx/sv-nodejs:fc22
+	docker run -d -p 50605:80 --name="fedora22-php" startx/sv-php:fc22
+	docker run -d -p 50606:5432 --name="fedora22-postgres" startx/sv-postgres:fc22
+	docker run -d -p 50607:22 --name="fedora22-ssh" startx/sv-ssh:fc22
+	docker run -d -p 50608:80 --name="fedora22-pma" startx/app-pma:fc22
+	docker run -d -p 50609:80 --name="fedora22-rockmongo" startx/app-rockmongo:fc22
 
 #### CentOS 6 container's
 

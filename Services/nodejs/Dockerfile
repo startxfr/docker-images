@@ -1,4 +1,4 @@
-FROM startx/fedora:21
+FROM startx/fedora:22
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 RUN yum -y install nodejs npm \
