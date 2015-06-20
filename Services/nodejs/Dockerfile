@@ -1,7 +1,7 @@
 FROM startx/fedora:20
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
-RUN yum -y install nodejs npm \
+RUN yum -y install nodejs npm python make gcc \
     && yum clean all \
     && mkdir -p /app \
     && chmod ug+rx /app
