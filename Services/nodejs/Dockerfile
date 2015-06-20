@@ -1,8 +1,10 @@
 FROM startx/fedora:22
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
-RUN dnf -y install nodejs npm && dnf clean all \
-    && mkdir -p /app && chmod ug+rx /app
+RUN dnf -y install nodejs npm python make gcc \
+    && dnf clean all \
+    && mkdir -p /app \
+    && chmod ug+rx /app
 VOLUME ["/app"]
 WORKDIR /app
 COPY app /app
