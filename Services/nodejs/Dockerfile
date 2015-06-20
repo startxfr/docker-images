@@ -1,7 +1,8 @@
 FROM startx/centos:7
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
-RUN yum -y install nodejs npm \
+RUN yum -y install  epel-release python make gcc \
+    && yum -y install nodejs npm \
     && yum clean all \
     && mkdir -p /app \
     && chmod ug+rx /app
