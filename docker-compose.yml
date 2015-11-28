@@ -12,10 +12,11 @@ php:
   extends:
     file: Services/php/docker-compose.yml
     service: server
-
-#mariadb:
-#  build: Services/mariadb/
-#  container_name: "startx-sv-mariadb"
+    
+mariadb:
+  extends:
+    file: Services/mariadb/docker-compose.yml
+    service: server
 
 #memcache:
 #  build: Services/memcache/
