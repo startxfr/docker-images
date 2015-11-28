@@ -1,0 +1,22 @@
+language: python
+python:
+  - "3.4"
+
+services:
+  - docker
+
+before_install:
+- docker pull startx/fedora
+- docker run -it --name="fedora" startx/fedora
+- mkdir startx-docker-images; 
+- cd startx-docker-images;
+- git clone https://github.com/startxfr/docker-images.git .
+- docker build -t fedora OS/
+- docker run -it --name="fedora" fedora bash
+- docker-compose up -d
+- docker-compose logs
+
+# command to install dependencies
+#install: "pip install -r requirements.txt"
+# command to run tests
+script: nosetests
