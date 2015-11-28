@@ -10,6 +10,7 @@ apache:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "apache"
     CONTAINER_INSTANCE: "sx-apache"
+    SERVER_NAME: "localhost"
   volumes:
     - "/tmp/container/logs:/data/logs"
     - "/tmp/container/www:/data/www"

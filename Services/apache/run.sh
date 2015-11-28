@@ -10,8 +10,8 @@ fi
 
 check_environment
 check_httpd_environment
-display_container_header
+display_container_httpd_header
 begin_config
 end_config
-start_daemon
 display_container_started
+start_daemon

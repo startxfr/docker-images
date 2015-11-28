@@ -2,8 +2,35 @@
 
 function check_httpd_environment {
     if [ ! -v SERVER_NAME ]; then
-        export SERVER_NAME=$CONTAINER_NAME
+        SERVER_NAME="localhost"
+        export SERVER_NAME
+        echo "! WARNING : environment var SERVER_NAME is missing..."
+        echo "! WARNING : auto-assigned value : $SERVER_NAME"
     fi
+    if [ ! -v DOCROOT ]; then
+        DOCROOT="/data/www"
+        export DOCROOT
+        echo "! WARNING : environment var DOCROOT is missing..."
+        echo "! WARNING : auto-assigned value : $DOCROOT"
+    fi
+}
+
+function display_container_httpd_header {
+    echo "+====================================================="
+    echo "| Container   : $HOSTNAME"
+    if [ -v CONTAINER_TYPE ]; then
+        echo "| Type        : $CONTAINER_TYPE"
+    fi
+    if [ -v CONTAINER_INSTANCE ]; then
+        echo "| Instance    : $CONTAINER_INSTANCE"
+    fi
+    if [ -v CONTAINER_SERVICE ]; then
+        echo "| Service     : $CONTAINER_SERVICE"
+    fi
+    if [ -v CONTAINER_SERVICE ]; then
+        echo "| ServerName  : $SERVER_NAME"
+    fi
+    echo "+====================================================="
 }
 
 # Begin configuration before starting daemonized process
@@ -12,9 +39,12 @@ function begin_config {
     echo "=> BEGIN APACHE CONFIGURATION"
     mkdir -p /var/run/httpd
     if [ -v DOCROOT ]; then
-        echo "=> Changing document root to $DOCROOT"
-        ${DOCROOT=/data/www}
+        echo "=> Set DocumentRoot to $DOCROOT in $HTTPDCONF"
         echo "DocumentRoot \"$DOCROOT\"" >> $HTTPDCONF
+    fi
+    if [ -v SERVER_NAME ]; then
+        echo "=> Set ServerName to $SERVER_NAME in $HTTPDCONF"
+        echo "ServerName \"$SERVER_NAME\"" >> $HTTPDCONF
     fi
 }
 
