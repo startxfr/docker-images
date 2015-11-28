@@ -1,12 +1,12 @@
-server:
+fedora:
   build: ./
 #  image: sx-fedora
-  container_name: "sx-fedora"
+  container_name: "os-fedora"
   mem_limit: 1g
   memswap_limit: 2g
   cpu_shares: 2
   restart: "on-failure:2"
   environment:
-    CONTAINER_TYPE: "OS"
+    CONTAINER_TYPE: "os"
     CONTAINER_SERVICE: "fedora"
-    CONTAINER_INSTANCE: "sx-fedora"
+    CONTAINER_INSTANCE: "os-fedora"

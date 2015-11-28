@@ -1,12 +1,12 @@
 # STARTX Services docker-images : Simple Webserver
 
-Container running httpd daemon under a fedora server
+Container running apache httpd daemon under a fedora server
 
 ## Running from docker registry
 
 	docker run -d -p 80:80 --name="apache" startx/sv-apache
         # when used with a volume container (run data container, then run service)
-        docker run -d -v /var/www/html -v /var/log/httpd --name apache-data startx/sv-apache echo "Data container for apache"
+        docker run -d -v /var/www/html -v /var/logs/apache --name apache-data startx/sv-apache echo "Data container for apache"
         docker run -d -p 80:80 --volumes-from apache-data --name="apache" startx/sv-apache
 	# when used in a linked container
 	docker run -d --name="apache" startx/sv-apache

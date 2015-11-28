@@ -8,15 +8,15 @@ function check_httpd_environment {
         echo "! WARNING : auto-assigned value : $SERVER_NAME"
     fi
     if [ ! -v DOC_ROOT ]; then
-        DOC_ROOT="/data/httpd"
+        DOC_ROOT="/data/apache"
         export DOC_ROOT
     fi
     if [ ! -v APP_PATH ]; then
-        APP_PATH="/data/httpd"
+        APP_PATH="/data/apache"
         export APP_PATH
     fi
     if [ ! -v LOG_PATH ]; then
-        LOG_PATH="/data/logs/httpd"
+        LOG_PATH="/data/logs/apache"
         export LOG_PATH
     fi
 }
