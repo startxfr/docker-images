@@ -3,8 +3,8 @@ server:
 #  image: sx-mariadb
   container_name: "sx-mariadb"
   mem_limit: 1g
-  memswap_limit: 2g
-  cpu_shares: 2
+  memswap_limit: 1g
+  cpu_shares: 8
   restart: "on-failure:2"
   environment:
     CONTAINER_TYPE: "service"
@@ -15,5 +15,5 @@ server:
     MYSQL_PASSWORD: "pwd-test"
     MYSQL_DATABASE: "db_test"
   volumes:
-    - "/tmp/container/logs:/data/logs"
+    - "/tmp/container/logs/mariadb:/data/logs/mariadb"
     - "/tmp/container/mariadb:/data/mariadb"

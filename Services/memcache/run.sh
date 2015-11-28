@@ -6,7 +6,7 @@ function display_container_memcache_header {
     echo "+====================================================="
     echo "| Container   : $HOSTNAME"
     echo "| OS          : $(</etc/redhat-release)"
-    echo "| Engine      : " memcached -h | head -1
+    echo "| Engine      : $(memcached -h | head -1)" 
     if [ -v CONTAINER_TYPE ]; then
         echo "| Type        : $CONTAINER_TYPE"
     fi

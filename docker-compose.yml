@@ -24,8 +24,9 @@ memcache:
     service: server
 
 #mongo:
-#  build: Services/mongo/
-#  container_name: "startx-sv-mongo"
+#  extends:
+#    file: Services/mongo/docker-compose.yml
+#    service: server
 
 #nodejs:
 #  build: Services/nodejs/

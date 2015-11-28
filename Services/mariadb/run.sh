@@ -3,9 +3,9 @@ source /bin/sx-lib.sh
 
 function check_mariadb_environment {
     check_environment
-    if [ ! -v APP_PATH ]; then
-        APP_PATH="/data/mariadb"
-        export APP_PATH
+    if [ ! -v DATA_PATH ]; then
+        DATA_PATH="/data/mariadb"
+        export DATA_PATH
     fi
     if [ ! -v LOG_PATH ]; then
         LOG_PATH="/data/logs/mariadb"
@@ -17,7 +17,7 @@ function display_container_mariadb_header {
     echo "+====================================================="
     echo "| Container   : $HOSTNAME"
     echo "| OS          : $(</etc/redhat-release)"
-    echo "| Engine      : $(mysql -V)"
+    echo "| Engine      : $(mysql -V | head -1)"
     if [ -v CONTAINER_TYPE ]; then
         echo "| Type        : $CONTAINER_TYPE"
     fi
@@ -27,7 +27,7 @@ function display_container_mariadb_header {
     if [ -v CONTAINER_SERVICE ]; then
         echo "| Service     : $CONTAINER_SERVICE"
     fi
-    if [ -v APP_PATH ]; then
+    if [ -v DATA_PATH ]; then
         echo "| Data path   : $DATA_PATH"
     fi
     if [ -v LOG_PATH ]; then
