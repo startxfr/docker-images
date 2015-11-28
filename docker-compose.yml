@@ -1,6 +1,7 @@
 fedora:
   build: OS/
   container_name: "startx-fedora"
+  command: cat /etc/redhat-release
 
 apache:
   build: Services/apache/
