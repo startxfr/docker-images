@@ -3,9 +3,9 @@ fedora:
   container_name: "startx-fedora"
   command: cat /etc/redhat-release
 
-apache:
-  build: Services/apache/
-  container_name: "startx-sv-apache"
+#apache:
+#  build: Services/apache/
+#  container_name: "startx-sv-apache"
 
 #mariadb:
 #  build: Services/mariadb/
@@ -19,18 +19,18 @@ apache:
 #  build: Services/mongo/
 #  container_name: "startx-sv-mongo"
 
-nodejs:
-  build: Services/nodejs/
-  container_name: "startx-sv-nodejs"
-  command: node /app/app.js
+#nodejs:
+#  build: Services/nodejs/
+#  container_name: "startx-sv-nodejs"
+#  command: node /app/app.js
 
 #ooconv:
 #  build: Services/ooconv/
 #  container_name: "startx-sv-ooconv"
 
-php:
-  build: Services/php/
-  container_name: "startx-sv-php"
+#php:
+#  build: Services/php/
+#  container_name: "startx-sv-php"
 
 #postgres:
 #  build: Services/postgres/
