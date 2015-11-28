@@ -124,16 +124,16 @@ This repository offer various flavour of Red Hat like distribution. Tag `:latest
 
 	# For Fedora core 23 example, port start from 50300
 	docker run -d -it --name="fedora23" startx/fedora:23 bash
-	docker run -d -p 50600:80 --name="fedora23-apache" startx/sv-apache:fc23
-	docker run -d -p 50601:3306 --name="fedora23-mariadb" startx/sv-mariadb:fc23
-	docker run -d -p 50602:11211 --name="fedora23-memcache" startx/sv-memcache:fc23
-	docker run -d -p 50603:27017 --name="fedora23-mongo" startx/sv-mongo:fc23
-	docker run -d -p 50604:8000 --name="fedora23-nodejs" startx/sv-nodejs:fc23
-	docker run -d -p 50605:80 --name="fedora23-php" startx/sv-php:fc23
-	docker run -d -p 50606:5432 --name="fedora23-postgres" startx/sv-postgres:fc23
-	docker run -d -p 50607:22 --name="fedora23-ssh" startx/sv-ssh:fc23
-	docker run -d -p 50608:80 --name="fedora23-pma" startx/app-pma:fc23
-	docker run -d -p 50609:80 --name="fedora23-rockmongo" startx/app-rockmongo:fc23
+	docker run -d -p 50700:80 --name="fedora23-apache" startx/sv-apache:fc23
+	docker run -d -p 50701:3306 --name="fedora23-mariadb" startx/sv-mariadb:fc23
+	docker run -d -p 50702:11211 --name="fedora23-memcache" startx/sv-memcache:fc23
+	docker run -d -p 50703:27017 --name="fedora23-mongo" startx/sv-mongo:fc23
+	docker run -d -p 50704:8000 --name="fedora23-nodejs" startx/sv-nodejs:fc23
+	docker run -d -p 50705:80 --name="fedora23-php" startx/sv-php:fc23
+	docker run -d -p 50706:5432 --name="fedora23-postgres" startx/sv-postgres:fc23
+	docker run -d -p 50707:22 --name="fedora23-ssh" startx/sv-ssh:fc23
+	docker run -d -p 50708:80 --name="fedora23-pma" startx/app-pma:fc23
+	docker run -d -p 50709:80 --name="fedora23-rockmongo" startx/app-rockmongo:fc23
 
 #### CentOS 6 container's
 
