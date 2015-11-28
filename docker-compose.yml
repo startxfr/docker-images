@@ -22,6 +22,7 @@ mariadb:
 nodejs:
   build: Services/nodejs/
   container_name: "startx-sv-nodejs"
+  command: node /app/app.js
 
 #ooconv:
 #  build: Services/ooconv/
