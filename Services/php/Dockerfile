@@ -8,14 +8,17 @@ RUN dnf -y install php php-pecl-mongo php-cli php-pear \
         php-bcmath php-pecl-zip php-php-gettext php-tcpdf \
         php-tcpdf-dejavu-sans-fonts php-tidy \
     && dnf clean all  
-# Copy application content
-COPY app/* /var/www/html/
-COPY httpd.conf /etc/httpd/conf.d/sx.conf
+COPY httpd.conf /etc/httpd/conf.d/app.conf
 COPY php.ini /etc/php.d/sx.ini
-RUN chmod ug+r /var/www/html/* \
-    && chown -R apache:apache /var/www/html /var/log/httpd 
+COPY run.sh /bin/
+RUN chmod 775 /bin/run.sh && \
+    chmod ug+r /etc/httpd/conf.d/app.conf
+COPY ./ /data/www
+RUN rm -f /data/www/Dockerfile /data/www/httpd.conf /data/www/run.sh && \
+    chown -R apache:apache /data/www /data/logs && \
+    chmod ug+r -R /data/www
 
 EXPOSE 80
 EXPOSE 443
-VOLUME ["/var/www/html", "/var/log/httpd"]
-CMD ["/sx/httpd_run.sh"]
+VOLUME ["/data/www","/data/logs"]
+CMD ["/bin/run.sh"]

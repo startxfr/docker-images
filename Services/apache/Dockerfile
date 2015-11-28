@@ -5,8 +5,8 @@ USER root
 RUN dnf -y install httpd && \
     dnf clean all 
 COPY httpd.conf /etc/httpd/conf.d/app.conf
-COPY run.sh /bin/
-RUN chmod 775 /bin/run.sh && \
+COPY *.sh /bin/
+RUN chmod 775 /bin/run.sh /bin/sx-httpd.sh && \
     chmod ug+r /etc/httpd/conf.d/app.conf && \
     rm -f /etc/httpd/conf.d/autoindex.conf && \
     rm -f /etc/httpd/conf.d/welcome.conf && \
@@ -14,7 +14,8 @@ RUN chmod 775 /bin/run.sh && \
     mkdir /data/www && \
     mkdir /data/logs
 COPY ./ /data/www
-RUN rm -f /data/www/Dockerfile /data/www/httpd.conf /data/www/run.sh
+RUN rm -f /data/www/Dockerfile /data/www/httpd.conf /data/www/run.sh /data/www/sx-httpd.sh && \
+    chown -R apache:apache /data/www /data/logs
 
 EXPOSE 80
 EXPOSE 443

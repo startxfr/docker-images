@@ -7,6 +7,10 @@ apache:
   build: Services/apache/
   container_name: "startx-sv-apache"
 
+php:
+  build: Services/php/
+  container_name: "startx-sv-php"
+
 #mariadb:
 #  build: Services/mariadb/
 #  container_name: "startx-sv-mariadb"
@@ -27,10 +31,6 @@ apache:
 #ooconv:
 #  build: Services/ooconv/
 #  container_name: "startx-sv-ooconv"
-
-#php:
-#  build: Services/php/
-#  container_name: "startx-sv-php"
 
 #postgres:
 #  build: Services/postgres/
