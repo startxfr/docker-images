@@ -10,33 +10,29 @@ mariadb:
   build: Services/mariadb/
   container_name: "startx-sv-mariadb"
 
-memcache:
-  build: Services/memcache/
-  container_name: "startx-sv-memcache"
+#memcache:
+#  build: Services/memcache/
+#  container_name: "startx-sv-memcache"
 
-mongo:
-  build: Services/mongo/
-  container_name: "startx-sv-mongo"
+#mongo:
+#  build: Services/mongo/
+#  container_name: "startx-sv-mongo"
 
 nodejs:
   build: Services/nodejs/
   container_name: "startx-sv-nodejs"
 
-ooconv:
-  build: Services/ooconv/
-  container_name: "startx-sv-ooconv"
+#ooconv:
+#  build: Services/ooconv/
+#  container_name: "startx-sv-ooconv"
 
 php:
   build: Services/php/
   container_name: "startx-sv-php"
 
-postgres:
-  build: Services/postgres/
-  container_name: "startx-sv-postgres"
-
-ssh:
-  build: Services/ssh/
-  container_name: "startx-sv-ssh"
+#postgres:
+#  build: Services/postgres/
+#  container_name: "startx-sv-postgres"
 
 #pma:
 #  build: Applications/phpmyadmin/
