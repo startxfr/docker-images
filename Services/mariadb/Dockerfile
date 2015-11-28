@@ -1,11 +1,8 @@
 FROM startx/fedora
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
-RUN yum -y install \
-    mariadb-libs \
-    mariadb-server \
-    mariadb \
-    && yum clean all \
+RUN dnf -y install  mariadb-common mariadb-libs mariadb-config mariadb-errmsg mariadb-server mariadb \
+    && dnf clean all \
     && mkdir -p /var/log/mysql \
     && touch /var/log/mysql/.keep /var/lib/mysql/.keep \
     && chown -R mysql:mysql /var/log/mysql /var/lib/mysql \

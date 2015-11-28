@@ -3,8 +3,8 @@ MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
 # Install packages and set up unoconv
-RUN yum -y install unoconv libreoffice-headless libreoffice-writer libreoffice-calc pdftk gs \
-    && yum clean all \
+RUN dnf -y install unoconv libreoffice-headless libreoffice-writer libreoffice-calc pdftk gs \
+    && dnf clean all \
     && mkdir -p /tmp/ootmp 
 # Copy startx toolkit
 COPY sx/* /sx/

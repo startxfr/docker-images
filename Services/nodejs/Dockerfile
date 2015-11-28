@@ -1,8 +1,8 @@
 FROM startx/fedora
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
-RUN yum -y install nodejs npm python make gcc \
-    && yum clean all \
+RUN dnf -y install nodejs npm python make gcc \
+    && dnf clean all \
     && mkdir -p /app \
     && chmod ug+rx /app
 VOLUME ["/app"]

@@ -1,26 +1,40 @@
 # STARTX OS docker-images : Fedora
 
-Fedora image builded with minimal and updated binaries
+Fedora image builded with minimal and updated rpm and core-utils loaded
 
 ## Running from docker registry
 
 	docker run -it --name="fedora" startx/fedora
 
 ## Build and run from local Dockerfile
-### Building docker image
-Copy sources in your docker host 
+1. Building docker image
 
+        # Step 1 : Copy sources in your docker host 
 	mkdir startx-docker-images; 
 	cd startx-docker-images;
 	git clone https://github.com/startxfr/docker-images.git .
+        # Step 2 : Build the container
+	docker build -t fedora OS/
 
-Build the container
-
-	docker build -t fedora OS/Fedora/
-
-### Running local image
+2. Running local image
 
 	docker run -it --name="fedora" fedora bash
+
+
+## Building and running using docker-compose
+1. Building from source
+
+        # Step 1 : Copy sources in your docker host 
+	mkdir startx-docker-images; 
+	git clone https://github.com/startxfr/docker-images.git startx-docker-images;
+        cd startx-docker-images/OS;
+        # Step 2 : Build the container
+	docker-compose build;
+
+2. Running this service
+
+	docker-compose up -d;
+	docker-compose logs;
 
 ## Accessing server
 

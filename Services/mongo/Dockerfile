@@ -1,14 +1,14 @@
 FROM startx/fedora
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
-RUN yum -y install \
+RUN dnf -y install \
     mongodb \
     mongodb-server \
     libmongo-client \
     rsyslog-mongodb \
     mongodb-mms-backup-agent \
     mongodb-mms-monitoring-agent \
-    && yum clean all \
+    && dnf clean all \
     && mkdir -p /var/lib/mongodb \
     && touch /var/lib/mongodb/.keep 
 COPY sx/* /sx/
