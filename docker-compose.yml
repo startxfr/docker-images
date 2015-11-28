@@ -1,8 +1,47 @@
-server:
-  build: ./
-#  image: sx-fedora
-  container_name: "sx-fedora"
-  mem_limit: 1g
-  memswap_limit: 2g
-  cpu_shares: 4096
-  restart: "on-failure:2"
+fedora:
+  build: OS/
+  container_name: "startx-fedora"
+
+apache:
+  build: Services/apache/
+  container_name: "startx-sv-apache"
+
+mariadb:
+  build: Services/mariadb/
+  container_name: "startx-sv-mariadb"
+
+memcache:
+  build: Services/memcache/
+  container_name: "startx-sv-memcache"
+
+mongo:
+  build: Services/mongo/
+  container_name: "startx-sv-mongo"
+
+nodejs:
+  build: Services/nodejs/
+  container_name: "startx-sv-nodejs"
+
+ooconv:
+  build: Services/ooconv/
+  container_name: "startx-sv-ooconv"
+
+php:
+  build: Services/php/
+  container_name: "startx-sv-php"
+
+postgres:
+  build: Services/postgres/
+  container_name: "startx-sv-postgres"
+
+ssh:
+  build: Services/ssh/
+  container_name: "startx-sv-ssh"
+
+pma:
+  build: Applications/phpmyadmin/
+  container_name: "startx-app-phpmyadmin"
+
+rockmongo:
+  build: Applications/rockmongo/
+  container_name: "startx-app-rockmongo"
