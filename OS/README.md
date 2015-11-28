@@ -1,8 +1,4 @@
 # STARTX OS docker-images : Fedora 
-[Docker Hub](https://registry.hub.docker.com/u/startx/fedora/) [GitHub](https://github.com/startx/fedora) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images)
-
-
-
 Fedora image builded with minimal and updated rpm and core-utils loaded
 
 ## Running from docker registry

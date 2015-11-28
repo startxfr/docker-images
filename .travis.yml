@@ -5,16 +5,8 @@ python:
 services:
   - docker
 
-before_install:
-- sudo mkdir startx-docker-images; 
-- sudo cd startx-docker-images;
-- sudo git clone https://github.com/startxfr/docker-images.git .
-- sudo docker build -t fedora OS/
-- sudo docker run -it --name="fedora" fedora bash
-- sudo docker-compose up -d
-- sudo docker-compose logs
-
 # command to install dependencies
 #install: "pip install -r requirements.txt"
 # command to run tests
-script: nosetests
+script: ./run-tests.sh
+
