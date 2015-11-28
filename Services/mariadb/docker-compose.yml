@@ -10,6 +10,11 @@ server:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mariadb"
     CONTAINER_INSTANCE: "sx-mariadb"
+    SERVER_NAME: "localhost"
+    MYSQL_ROOT_PASSWORD: "secretdemerde"
+    MYSQL_USER: "user-test"
+    MYSQL_PASSWORD: "pwd-test"
+    MYSQL_DATABASE: "db_test"
   volumes:
     - "/tmp/container/logs:/data/logs"
     - "/tmp/container/mariadb:/data/mariadb"

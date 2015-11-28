@@ -1,5 +1,6 @@
 # STARTX OS docker-images : Fedora 
-Fedora image builded with minimal and updated rpm and core-utils loaded
+Fedora image builded with minimal and updated rpm and core-utils loaded (utils like ps, top, find, wget)
+All other images on this repository are build on top of this container image
 
 ## Running from docker registry
 

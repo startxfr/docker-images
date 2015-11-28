@@ -21,9 +21,9 @@ RUN chmod 775 /bin/run.sh && \
     mkdir $LOG_PATH && \
     touch $STARTUPLOG && \
     touch $DATA_PATH/.keep && \
-    chown -R mariadb:mariadb $LOG_PATH $DATA_PATH $LOADSQL_PATH
+    chown -R mysql:mysql $LOG_PATH $DATA_PATH $LOADSQL_PATH
 
 EXPOSE 3306
 VOLUME [$DATA_PATH,$LOG_PATH]
 
-CMD ["/sx/run.sh"]
+CMD ["/bin/run.sh"]
