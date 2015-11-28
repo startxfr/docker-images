@@ -1,15 +1,17 @@
-apache:
+httpd_php:
   build: ./
-#  image: sx-apache
-  container_name: "sx-apache"
+#  image: sx-httpd_php
+  container_name: "sx-httpd_php"
   mem_limit: 1g
   memswap_limit: 2g
   cpu_shares: 2
   restart: "on-failure:2"
   environment:
     CONTAINER_TYPE: "service"
-    CONTAINER_SERVICE: "apache"
-    CONTAINER_INSTANCE: "sx-apache"
+    CONTAINER_SERVICE: "httpd_php"
+    CONTAINER_INSTANCE: "sx-httpd_php"
+    SERVER_NAME: "localhost"
+    DOC_ROOT: "/data/httpd_php"
   volumes:
-    - "/tmp/container/logs:/data/logs"
-    - "/tmp/container/www:/data/www"
+    - "/tmp/container/logs/httpd_php:/data/logs/httpd_php"
+    - "/tmp/container/httpd_php:/data/httpd_php"

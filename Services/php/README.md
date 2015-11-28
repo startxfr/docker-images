@@ -6,7 +6,7 @@ Container running apache + php daemon under a fedora server
 
 	docker run -d -p 80:80 --name="php" startx/sv-php
         # when used with a volume container (run data container, then run service)
-	docker run -d -v /var/www/html -v /var/log/httpd --name php-data startx/sv-php  echo "Data container for php webserver"
+	docker run -d -v /var/www/html -v /var/logs/httpd --name php-data startx/sv-php  echo "Data container for php webserver"
 	docker run -d -p 80:80 --volumes-from php-data --name="php" startx/sv-php
 	when linked to another container
 	docker run -d --name="mongo" startx/sv-mongo

@@ -24,6 +24,7 @@ function check_environment {
 function display_container_header {
     echo "+====================================================="
     echo "| Container   : $HOSTNAME"
+    echo "| OS          : $(</etc/redhat-release)"
     if [ -v CONTAINER_TYPE ]; then
         echo "| Type        : $CONTAINER_TYPE"
     fi

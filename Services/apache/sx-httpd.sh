@@ -7,17 +7,24 @@ function check_httpd_environment {
         echo "! WARNING : environment var SERVER_NAME is missing..."
         echo "! WARNING : auto-assigned value : $SERVER_NAME"
     fi
-    if [ ! -v DOCROOT ]; then
-        DOCROOT="/data/www"
-        export DOCROOT
-        echo "! WARNING : environment var DOCROOT is missing..."
-        echo "! WARNING : auto-assigned value : $DOCROOT"
+    if [ ! -v DOC_ROOT ]; then
+        DOC_ROOT="/data/httpd"
+        export DOC_ROOT
+    fi
+    if [ ! -v APP_PATH ]; then
+        APP_PATH="/data/httpd"
+        export APP_PATH
+    fi
+    if [ ! -v LOG_PATH ]; then
+        LOG_PATH="/data/logs/httpd"
+        export LOG_PATH
     fi
 }
 
 function display_container_httpd_header {
     echo "+====================================================="
     echo "| Container   : $HOSTNAME"
+    echo "| OS          : $(</etc/redhat-release)"
     if [ -v CONTAINER_TYPE ]; then
         echo "| Type        : $CONTAINER_TYPE"
     fi
@@ -30,6 +37,12 @@ function display_container_httpd_header {
     if [ -v CONTAINER_SERVICE ]; then
         echo "| ServerName  : $SERVER_NAME"
     fi
+    if [ -v APP_PATH ]; then
+        echo "| App path    : $APP_PATH"
+    fi
+    if [ -v LOG_PATH ]; then
+        echo "| Log path    : $LOG_PATH"
+    fi
     echo "+====================================================="
 }
 
@@ -37,20 +50,10 @@ function display_container_httpd_header {
 # and start generating host keys
 function begin_config {
     echo "=> BEGIN APACHE CONFIGURATION"
-    mkdir -p /var/run/httpd
-    if [ -v DOCROOT ]; then
-        echo "=> Set DocumentRoot to $DOCROOT in $HTTPDCONF"
-        echo "DocumentRoot \"$DOCROOT\"" >> $HTTPDCONF
-    fi
-    if [ -v SERVER_NAME ]; then
-        echo "=> Set ServerName to $SERVER_NAME in $HTTPDCONF"
-        echo "ServerName \"$SERVER_NAME\"" >> $HTTPDCONF
-    fi
 }
 
 # End configuration process just before starting daemon
 function end_config {
-    stop_server
     echo "=> END APACHE CONFIGURATION"
 }
 
@@ -74,5 +77,6 @@ function stop_server {
 # the running shell
 function start_daemon {
     echo "=> Starting httpd daemon ..."
+    display_container_started
     exec /usr/sbin/apachectl -D FOREGROUND
 }

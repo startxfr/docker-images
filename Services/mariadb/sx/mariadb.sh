@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export TERM=dumb
-export logfile="/var/log/mysql/mysqld.log"
+export logfile="/var/logs/mysql/mysqld.log"
 
 # Begin configuration before starting daemonized process
 # redirect mysql.log to /dev/stderr

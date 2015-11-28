@@ -1,25 +1,29 @@
 FROM startx/fedora
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
+USER root
 RUN dnf -y install  mariadb-common mariadb-libs mariadb-config mariadb-errmsg mariadb-server mariadb \
     && dnf clean all \
-    && mkdir -p /var/log/mysql \
-    && touch /var/log/mysql/.keep /var/lib/mysql/.keep \
-    && chown -R mysql:mysql /var/log/mysql /var/lib/mysql \
+    && mkdir -p /var/logs/mariadb \
+    && touch /var/logs/mariadb/.keep /var/lib/mariadb/.keep \
+    && chown -R mariadb:mariadb /var/logs/mariadb /var/lib/mariadb \
     && mkdir -p /tmp/sql 
-COPY sx/* /sx/
+ENV STARTUPLOG=/data/logs/mariadb/startup.log
+COPY *.sh /bin/
 COPY *.sql /tmp/sql/
+RUN chmod 775 /bin/run.sh && \
+    mkdir /data && \
+    mkdir /data/mariadb && \
+    mkdir /data/logs && \
+    mkdir /data/logs/mariadb && \
+    touch $STARTUPLOG
+COPY ./ /data/www
+RUN rm -f /data/www/Dockerfile /data/www/httpd.conf /data/www/run.sh /data/www/sx-httpd.sh && \
+    chown -R apache:apache /data/www /data/logs
 RUN chmod ug+rx /sx/mariadb* /tmp/sql \
     && chown -R mysql:mysql /sx/mariadb* /tmp/sql
 
 EXPOSE 3306
-VOLUME ["/var/lib/mysql", "/var/log/mysql"]
+VOLUME ["/data/mariadb", "/var/logs/mariadb"]
 
-USER mysql
-# if you wan't to set root password, otherwise auto-generated
-# see docker logs <containerId>
-ENV mysql_newadminpwd newRootPassword
-
-
-#ENDPOINT ["/sx/mariadb_run.sh"]
-CMD ["/sx/mariadb_run.sh"]
+CMD ["/sx/run.sh"]
