@@ -16,3 +16,9 @@ function display_container_header {
     fi
     echo "+====================================================="
 }
+
+function display_container_started {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is now running..."
+    echo "+====================================================="
+}

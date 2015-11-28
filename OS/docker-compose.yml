@@ -7,6 +7,6 @@ server:
   cpu_shares: 2
   restart: "on-failure:2"
   environment:
-    CONTAINER_SERVICE: "os"
-    CONTAINER_TYPE: "fedora"
+    CONTAINER_TYPE: "OS"
+    CONTAINER_SERVICE: "fedora"
     CONTAINER_INSTANCE: "sx-fedora"

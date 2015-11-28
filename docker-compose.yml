@@ -3,9 +3,9 @@ fedora:
   container_name: "startx-fedora"
   command: cat /etc/redhat-release
 
-#apache:
-#  build: Services/apache/
-#  container_name: "startx-sv-apache"
+apache:
+  build: Services/apache/
+  container_name: "startx-sv-apache"
 
 #mariadb:
 #  build: Services/mariadb/
