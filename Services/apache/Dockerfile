@@ -14,10 +14,8 @@ RUN chmod 775 /bin/run.sh /bin/sx-httpd.sh && \
     chmod ug+r $HTTPDCONF && \
     rm -f /etc/httpd/conf.d/autoindex.conf && \
     rm -f /etc/httpd/conf.d/welcome.conf && \
-    mkdir /data && \
-    mkdir /data/logs && \
-    mkdir $APP_PATH && \
-    mkdir $LOG_PATH && \
+    mkdir -p $APP_PATH && \
+    mkdir -p $LOG_PATH && \
     touch $STARTUPLOG
 COPY ./ $APP_PATH
 RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/run.sh $APP_PATH/sx-httpd.sh && \

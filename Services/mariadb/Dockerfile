@@ -15,10 +15,8 @@ COPY my.cnf $MY_CONF
 COPY *.sql $LOADSQL_PATH/
 RUN chmod 775 /bin/run.sh && \
     chmod ug+r $MY_CONF && \
-    mkdir /data && \
-    mkdir /data/logs && \
-    mkdir $DATA_PATH && \
-    mkdir $LOG_PATH && \
+    mkdir -p $DATA_PATH && \
+    mkdir -p $LOG_PATH && \
     touch $STARTUPLOG && \
     touch $DATA_PATH/.keep && \
     chown -R mysql:mysql $LOG_PATH $DATA_PATH $LOADSQL_PATH

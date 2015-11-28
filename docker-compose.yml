@@ -17,10 +17,11 @@ mariadb:
   extends:
     file: Services/mariadb/docker-compose.yml
     service: server
-
-#memcache:
-#  build: Services/memcache/
-#  container_name: "startx-sv-memcache"
+    
+memcache:
+  extends:
+    file: Services/memcache/docker-compose.yml
+    service: server
 
 #mongo:
 #  build: Services/mongo/
