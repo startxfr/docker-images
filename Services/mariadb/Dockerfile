@@ -3,27 +3,27 @@ MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
 RUN dnf -y install  mariadb-common mariadb-libs mariadb-config mariadb-errmsg mariadb-server mariadb \
-    && dnf clean all \
-    && mkdir -p /var/logs/mariadb \
-    && touch /var/logs/mariadb/.keep /var/lib/mariadb/.keep \
-    && chown -R mariadb:mariadb /var/logs/mariadb /var/lib/mariadb \
-    && mkdir -p /tmp/sql 
-ENV STARTUPLOG=/data/logs/mariadb/startup.log
+    && dnf clean all && \
+    mkdir -p /tmp/sql 
+ENV MY_CONF=/etc/my.cnf \
+    STARTUPLOG=/data/logs/mariadb/startup.log \
+    LOG_PATH=/data/logs/mariadb \
+    DATA_PATH=/data/mariadb \
+    LOADSQL_PATH=/tmp/sql 
 COPY *.sh /bin/
-COPY *.sql /tmp/sql/
+COPY my.cnf $MY_CONF
+COPY *.sql $LOADSQL_PATH/
 RUN chmod 775 /bin/run.sh && \
+    chmod ug+r $MY_CONF && \
     mkdir /data && \
-    mkdir /data/mariadb && \
     mkdir /data/logs && \
-    mkdir /data/logs/mariadb && \
-    touch $STARTUPLOG
-COPY ./ /data/www
-RUN rm -f /data/www/Dockerfile /data/www/httpd.conf /data/www/run.sh /data/www/sx-httpd.sh && \
-    chown -R apache:apache /data/www /data/logs
-RUN chmod ug+rx /sx/mariadb* /tmp/sql \
-    && chown -R mysql:mysql /sx/mariadb* /tmp/sql
+    mkdir $DATA_PATH && \
+    mkdir $LOG_PATH && \
+    touch $STARTUPLOG && \
+    touch $DATA_PATH/.keep && \
+    chown -R mariadb:mariadb $LOG_PATH $DATA_PATH $LOADSQL_PATH
 
 EXPOSE 3306
-VOLUME ["/data/mariadb", "/var/logs/mariadb"]
+VOLUME [$DATA_PATH,$LOG_PATH]
 
 CMD ["/sx/run.sh"]

@@ -1,4 +1,4 @@
-mariadb:
+server:
   build: ./
 #  image: sx-mariadb
   container_name: "sx-mariadb"

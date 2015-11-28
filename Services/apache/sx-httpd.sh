@@ -1,6 +1,7 @@
 #!/bin/bash
 
 function check_httpd_environment {
+    check_environment
     if [ ! -v SERVER_NAME ]; then
         SERVER_NAME="localhost"
         export SERVER_NAME
@@ -25,6 +26,7 @@ function display_container_httpd_header {
     echo "+====================================================="
     echo "| Container   : $HOSTNAME"
     echo "| OS          : $(</etc/redhat-release)"
+    echo "| Engine      : " httpd -v | head -1
     if [ -v CONTAINER_TYPE ]; then
         echo "| Type        : $CONTAINER_TYPE"
     fi
