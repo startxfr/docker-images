@@ -1,0 +1,15 @@
+server:
+  build: ./
+#  image: sv-nodejs
+  container_name: "nodejs-server"
+  mem_limit: 1g
+  memswap_limit: 1g
+  cpu_shares: 5
+  restart: "on-failure:2"
+  environment:
+    CONTAINER_TYPE: "service"
+    CONTAINER_SERVICE: "nodejs"
+    CONTAINER_INSTANCE: "service-nodejs"
+  volumes:
+    - "/tmp/container/logs/nodejs:/data/logs/nodejs"
+    - "/tmp/container/nodejs:/data/nodejs"

@@ -36,7 +36,7 @@ function display_container_httpd_header {
     if [ -v CONTAINER_SERVICE ]; then
         echo "| Service     : $CONTAINER_SERVICE"
     fi
-    if [ -v CONTAINER_SERVICE ]; then
+    if [ -v SERVER_NAME ]; then
         echo "| ServerName  : $SERVER_NAME"
     fi
     if [ -v APP_PATH ]; then

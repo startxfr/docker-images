@@ -27,11 +27,11 @@ memcache:
 #  extends:
 #    file: Services/mongo/docker-compose.yml
 #    service: server
-
+    
 #nodejs:
-#  build: Services/nodejs/
-#  container_name: "startx-sv-nodejs"
-#  command: node /app/app.js
+#  extends:
+#    file: Services/nodejs/docker-compose.yml
+#    service: server
 
 #ooconv:
 #  build: Services/ooconv/
