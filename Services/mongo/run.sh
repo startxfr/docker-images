@@ -72,9 +72,9 @@ function end_config {
 # Start the mongodb server as a deamon and execute it inside 
 # the running shell
 function start_daemon {
-    echo "=> Starting mongodb daemon ..."
+    echo "=> Starting mongodb daemon ..." | tee -a $STARTUPLOG
     su mongodb
-    display_container_started
+    display_container_started | tee -a $STARTUPLOG
     exec /usr/bin/mongod --config $MONGOCONF --logappend --logpath $LOG_PATH \
     --dbpath $DATA_PATH --journal --httpinterface \
     --rest --master --storageEngine mmapv1
@@ -89,4 +89,4 @@ check_mongodb_environment | tee -a $STARTUPLOG
 display_container_mongodb_header | tee -a $STARTUPLOG
 begin_config | tee -a $STARTUPLOG
 end_config | tee -a $STARTUPLOG
-start_daemon | tee -a $STARTUPLOG
+start_daemon

@@ -45,8 +45,8 @@ function end_config {
 # Start the memcache server as a deamon and execute it inside 
 # the running shell
 function start_daemon {
-    echo "=> Starting memcache daemon ..."
-    display_container_started
+    echo "=> Starting memcache daemon ..." | tee -a $STARTUPLOG
+    display_container_started | tee -a $STARTUPLOG
     exec memcached -u daemon -v
 }
 
@@ -59,4 +59,4 @@ check_environment | tee -a $STARTUPLOG
 display_container_memcache_header | tee -a $STARTUPLOG
 begin_config | tee -a $STARTUPLOG
 end_config | tee -a $STARTUPLOG
-start_daemon | tee -a $STARTUPLOG
+start_daemon

@@ -7,14 +7,16 @@ RUN dnf -y install nodejs npm python make gcc && \
 ENV STARTUPLOG=/data/logs/nodejs/startup.log \
     LOG_PATH=/data/logs/nodejs  \
     APP_PATH=/data/nodejs \
+    TMP_APP_PATH=/tmp/nodejs \
     APP_MAIN=/data/nodejs/app.js
 COPY *.sh /bin/
 RUN chmod 775 /bin/run.sh && \
     mkdir -p $APP_PATH && \
     mkdir -p $LOG_PATH && \
     touch $STARTUPLOG
-COPY ./ $APP_PATH
-RUN rm -f $APP_PATH/Dockerfile $APP_PATH/README.md $APP_PATH/run.sh $APP_PATH/docker-compose.yml
+COPY *.json $TMP_APP_PATH/
+COPY *.js $TMP_APP_PATH/
+RUN cd $TMP_APP_PATH && npm install -production
 
 EXPOSE 8000
 VOLUME [$APP_PATH,$LOG_PATH]

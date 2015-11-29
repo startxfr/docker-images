@@ -78,7 +78,7 @@ function stop_server {
 # Start the httpd server as a deamon and execute it inside 
 # the running shell
 function start_daemon {
-    echo "=> Starting httpd daemon ..."
-    display_container_started
+    echo "=> Starting httpd daemon ..." | tee -a $STARTUPLOG
+    display_container_started | tee -a $STARTUPLOG
     exec /usr/sbin/apachectl -D FOREGROUND
 }

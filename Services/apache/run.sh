@@ -10,4 +10,4 @@ check_httpd_environment | tee -a $STARTUPLOG
 display_container_httpd_header | tee -a $STARTUPLOG
 begin_config | tee -a $STARTUPLOG
 end_config | tee -a $STARTUPLOG
-start_daemon | tee -a $STARTUPLOG
+start_daemon

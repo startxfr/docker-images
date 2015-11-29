@@ -154,7 +154,7 @@ function config_createdatabase {
 function config_importsql {
     if [[ -n "$LOADSQL_PATH" ]]; then
         echo "import sql data into " $MYSQL_DATABASE
-        if [[ ! -d $LOADSQL_PATH ]]; then
+        if [[ -d $LOADSQL_PATH ]]; then
             SCHEMALIST=$(find $LOADSQL_PATH/schema-*.sql -type f -printf "%f\n")
             for SCHEMAFILE in $SCHEMALIST; do 
                 echo "SET NAMES utf8;"|cat - $LOADSQL_PATH/$SCHEMAFILE > /tmp/out && mv /tmp/out $LOADSQL_PATH/$SCHEMAFILE
@@ -184,8 +184,8 @@ function end_config {
 # Start the mariadb server as a deamon and execute it inside 
 # the running shell
 function start_daemon {
-    echo "=> Starting mariadb daemon ..."
-    display_container_started
+    echo "=> Starting mariadb daemon ..." | tee -a $STARTUPLOG
+    display_container_started | tee -a $STARTUPLOG
     exec mysqld_safe
 }
 
@@ -204,4 +204,4 @@ config_createdatabase | tee -a $STARTUPLOG
 config_importsql | tee -a $STARTUPLOG
 config_stopserver | tee -a $STARTUPLOG
 end_config | tee -a $STARTUPLOG
-start_daemon | tee -a $STARTUPLOG
+start_daemon

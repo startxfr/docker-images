@@ -41,6 +41,15 @@ function display_container_nodejs_header {
 # and start generating host keys
 function begin_config {
     echo "=> BEGIN NODEJS CONFIGURATION"
+    if [[ -d $TMP_APP_PATH ]]; then
+        echo "COPY application from $TMP_APP_PATH into $APP_PATH"
+        FILE_LIST=$(find $TMP_APP_PATH -maxdepth 1 -mindepth 1 -printf "%f\n")
+        for FILE in $FILE_LIST; do 
+            echo -n "adding $APP_PATH/$FILE"
+            mv -f $TMP_APP_PATH/$FILE $APP_PATH/
+            echo " DONE"
+        done
+    fi
 }
 
 # End configuration process just before starting daemon
@@ -51,8 +60,8 @@ function end_config {
 # Start the nodejs executable with application entrypoint
 # the running shell
 function start_daemon {
-    echo "=> Starting nodejs daemon ..."
-    display_container_started
+    echo "=> Starting nodejs daemon ..." | tee -a $STARTUPLOG
+    display_container_started | tee -a $STARTUPLOG
     exec node $APP_MAIN
 }
 
@@ -64,4 +73,4 @@ check_nodejs_environment | tee -a $STARTUPLOG
 display_container_nodejs_header | tee -a $STARTUPLOG
 begin_config | tee -a $STARTUPLOG
 end_config | tee -a $STARTUPLOG
-start_daemon | tee -a $STARTUPLOG
+start_daemon
