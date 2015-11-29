@@ -12,4 +12,5 @@ RUN chmod 775 /bin/run.sh && \
     touch $STARTUPLOG
 
 EXPOSE 11211
+VOLUME [$LOG_PATH]
 CMD ["/bin/run.sh"]

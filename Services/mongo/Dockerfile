@@ -4,14 +4,11 @@ MAINTAINER Christophe LARUE <dev@startx.fr>
 USER root
 RUN dnf -y install mongodb mongodb-server libmongo-client rsyslog-mongodb  && \
     dnf clean all 
-ENV MONGOCONF=/etc/mongodb.conf \
-    STARTUPLOG=/data/logs/mongodb/startup.log \
+ENV STARTUPLOG=/data/logs/mongodb/startup.log \
     LOG_PATH=/data/logs/mongodb  \
     DATA_PATH=/data/mongodb
-COPY mongodb.conf $MONGOCONF
 COPY *.sh /bin/
 RUN chmod 775 /bin/run.sh && \
-    chmod ug+r $MONGOCONF && \
     mkdir -p $DATA_PATH && \
     mkdir -p $LOG_PATH && \
     touch $STARTUPLOG

@@ -23,19 +23,20 @@ memcache:
     file: Services/memcache/docker-compose.yml
     service: server
 
-#mongo:
-#  extends:
-#    file: Services/mongo/docker-compose.yml
-#    service: server
+mongo:
+  extends:
+    file: Services/mongo/docker-compose.yml
+    service: server
     
-#nodejs:
-#  extends:
-#    file: Services/nodejs/docker-compose.yml
-#    service: server
-
-#ooconv:
-#  build: Services/ooconv/
-#  container_name: "startx-sv-ooconv"
+nodejs:
+  extends:
+    file: Services/nodejs/docker-compose.yml
+    service: server
+    
+ooconv:
+  extends:
+    file: Services/ooconv/docker-compose.yml
+    service: server
 
 #postgres:
 #  build: Services/postgres/

@@ -23,5 +23,4 @@ RUN chmod 775 /bin/run.sh && \
 
 EXPOSE 3306
 VOLUME [$DATA_PATH,$LOG_PATH]
-
 CMD ["/bin/run.sh"]

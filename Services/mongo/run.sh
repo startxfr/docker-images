@@ -75,9 +75,8 @@ function start_daemon {
     echo "=> Starting mongodb daemon ..." | tee -a $STARTUPLOG
     su mongodb
     display_container_started | tee -a $STARTUPLOG
-    exec /usr/bin/mongod --config $MONGOCONF --logappend --logpath $LOG_PATH \
-    --dbpath $DATA_PATH --journal --httpinterface \
-    --rest --master --storageEngine mmapv1
+    /usr/bin/mongod --logappend --logpath $LOG_PATH/mongodb.log --dbpath $DATA_PATH --journal --fork
+    exec tail -f $LOG_PATH/mongodb.log 
 }
 
 
