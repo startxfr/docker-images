@@ -2,22 +2,22 @@ os:
   extends:
     file: OS/docker-compose.yml
     service: fedora
-    
+
 apache:
   extends:
     file: Services/apache/docker-compose.yml
     service: server
-    
+
 php:
   extends:
     file: Services/php/docker-compose.yml
     service: server
-    
+
 mariadb:
   extends:
     file: Services/mariadb/docker-compose.yml
     service: server
-    
+
 memcache:
   extends:
     file: Services/memcache/docker-compose.yml
@@ -27,20 +27,21 @@ mongo:
   extends:
     file: Services/mongo/docker-compose.yml
     service: server
-    
+
 nodejs:
   extends:
     file: Services/nodejs/docker-compose.yml
     service: server
-    
+
 ooconv:
   extends:
     file: Services/ooconv/docker-compose.yml
     service: server
 
-#postgres:
-#  build: Services/postgres/
-#  container_name: "startx-sv-postgres"
+postgres:
+  extends:
+    file: Services/postgres/docker-compose.yml
+    service: server
 
 #pma:
 #  build: Applications/phpmyadmin/
