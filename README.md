@@ -15,26 +15,8 @@ or as a parent container in your own container's.
 Each container is provided with various underlying OS version based on CentOS or 
 Fedora Linux distribution
 
-<table>
-    <thead>
-        <tr>
-            <th><a href="https://travis-ci.org/startxfr/docker-images" target="_blank"><img src="https://travis-ci.org/startxfr/docker-images.svg"></a></th>
-            <th>[Registry]([Github STARTX profile](https://github.com/startxfr/docker-images))</th>
-            <th>[Sources](https://github.com/startxfr/docker-images/tree/master/)</th>
-            <th>[STARTX](https://github.com/startxfr/docker-images)</th>
-        </tr>
-    </thead>
-</table>
 
-
-
-
-
-
-
-
-
-
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Registry]([Github STARTX profile](https://github.com/startxfr/docker-images)) | [Sources](https://github.com/startxfr/docker-images/tree/master/) | [STARTX](https://github.com/startxfr/docker-images) | 
 
 
 
