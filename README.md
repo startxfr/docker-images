@@ -15,9 +15,8 @@ or as a parent container in your own container's.
 Each container is provided with various underlying OS version based on CentOS or 
 Fedora Linux distribution
 
+| OS                  | Command                                                              |
 |---------------------|----------------------------------------------------------------------|
-| Fedora Core         | `docker run -it --name="fedora" startx/fedora bash`                  | 
-| CentOS              | `docker run -it --name="centos" startx/centos bash`                  |
 
 |-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------------|
 | [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Registry]([Github STARTX profile](https://github.com/startxfr/docker-images)) | [Sources](https://github.com/startxfr/docker-images/tree/master/) | [STARTX](https://github.com/startxfr/docker-images) | 
