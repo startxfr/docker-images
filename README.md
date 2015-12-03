@@ -24,14 +24,24 @@ your project and start using stable or experimental services in your application
 
 ### Operating Systems
 
-| OS            | Docker Hub repository                                      | Documentation                              | Flavour                            |
-|---------------|------------------------------------------------------------|--------------------------------------------|------------------------------------|
-| Fedora Core   | [`startx/fedora`](https://hub.docker.com/r/startx/fedora)  | [read documentation](OS/fedora/README.md)  | `:latest` `:20` `:21` `:22` `:23`  | 
-| CentOS        | [`startx/centos`](https://hub.docker.com/r/startx/centos)  | [read documentation](OS/fedora/README.md)  | `:6` `:7`                          |
+| OS            | Docker Hub repository                                      | Flavour                            | Documentation                                    | 
+|---------------|------------------------------------------------------------|------------------------------------|--------------------------------------------------|
+| Fedora Core   | [`startx/fedora`](https://hub.docker.com/r/startx/fedora)  | `:latest` `:20` `:21` `:22` `:23`  | [read documentation](tree/master/OS/README.md)   | 
+| CentOS        | [`startx/centos`](https://hub.docker.com/r/startx/centos)  | `:6` `:7`                          | [read documentation](tree/centos7/OS/README.md)  |
 
 
+### Services
 
-
+| Service       | Docker Hub repository                                               | Fedora                                    | CentOS                  | Documentation                                                 | 
+|---------------|---------------------------------------------------------------------|-------------------------------------------|-------------------------|---------------------------------------------------------------|
+| Apache        | [`startx/sv-apache`](https://hub.docker.com/r/startx/sv-apache)     | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [read documentation](tree/master/Services/apache/README.md)   | 
+| MariaDB       | [`startx/sv-mariadb`](https://hub.docker.com/r/startx/sv-mariadb)   | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [read documentation](tree/master/Services/mariadb/README.md)  | 
+| Memcache      | [`startx/sv-memcache`](https://hub.docker.com/r/startx/sv-memcache) | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [read documentation](tree/master/Services/memcache/README.md) | 
+| MongoDB       | [`startx/sv-mongo`](https://hub.docker.com/r/startx/sv-mongo)       | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [read documentation](tree/master/Services/mongo/README.md)    | 
+| nodejs        | [`startx/sv-nodejs`](https://hub.docker.com/r/startx/sv-nodejs)     | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [read documentation](tree/master/Services/nodejs/README.md)   | 
+| ooconv        | [`startx/sv-ooconv`](https://hub.docker.com/r/startx/sv-ooconv)     | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [read documentation](tree/master/Services/ooconv/README.md)   | 
+| php           | [`startx/sv-php`](https://hub.docker.com/r/startx/sv-php)           | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [read documentation](tree/master/Services/php/README.md)      | 
+| postgreSQL    | [`startx/sv-postgres`](https://hub.docker.com/r/startx/sv-postgres) | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [read documentation](tree/master/Services/postgres/README.md) | 
 
 
 
