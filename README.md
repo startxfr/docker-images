@@ -1,3 +1,47 @@
+<!--[metadata]>
++++
+title = "STARTX Docker Images Repository"
+description = "Docker container based on fedora or CentOS and deliverying main opensource project as container"
+keywords = ["home, docker, startx, container, swarn, compose, howto, "]
+weight=3
++++
+<![end-metadata]-->
+
+# STARTX Docker-Images Repository
+
+This repository host various Open Source application or services as a container. 
+You can use it to instanciate new container from the dockerhub public registry 
+or as a parent container in your own container's. 
+Each container is provided with various underlying OS version based on CentOS or 
+Fedora Linux distribution
+
+<table>
+    <thead>
+        <tr>
+            <th>[![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images)</th>
+            <th>[Registry]([Github STARTX profile](https://github.com/startxfr/docker-images))</th>
+            <th>[Sources](https://github.com/startxfr/docker-images/tree/master/)</th>
+            <th>[STARTX](https://github.com/startxfr/docker-images)</th>
+        </tr>
+    </thead>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # STARTX docker-images repository [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images)
 
 Docker container images all based on red hat like distributions. Actually you can find fedora (from fc20 to fc23) and centos (from 6 to 7).
