@@ -66,24 +66,24 @@ This section is usefull if you want :
 ### Setup your working environment
 
 1. **Install docker and docker-compose on you environment** 
-   a. Check if you have a running docker daemon using `docker --version` If not try to run it using `sudo docker --daemon`. If docker is not installed, follow [docker installation guidelines](https://docs.docker.com/v1.8/installation/)
-   b. Check if you have docker compose installed using `docker-compose --version`. If docker-compose is not installed, follow [docker-compose installation guidelines](https://docs.docker.com/compose/install/)
+  a. Check if you have a running docker daemon using `docker --version` If not try to run it using `sudo docker --daemon`. If docker is not installed, follow [docker installation guidelines](https://docs.docker.com/v1.8/installation/)
+  b. Check if you have docker compose installed using `docker-compose --version`. If docker-compose is not installed, follow [docker-compose installation guidelines](https://docs.docker.com/compose/install/)
 2. **Copy repository source locally**
-   a. Setup a working directory with `mkdir startx-docker-images; cd startx-docker-images;`
-   b. Clone source repository with `git clone https://github.com/startxfr/docker-images.git .`
+  a. Setup a working directory with `mkdir startx-docker-images; cd startx-docker-images;`
+  b. Clone source repository with `git clone https://github.com/startxfr/docker-images.git .`
 
 
 ### Build all containers (using docker-compose)
 If you want to build and run locally all the images provided in this repository, you can follow this instructions
 
 3. Run a complete set of container
-   a. Choose your flavour with `git checkout ≤flavour_name>`. You can use every flavour available in this repository. Default is set to master branch related to the `:latest` flavour
-   b. Create host directory to store container content with `mkdir /tmp/container`.
-   c. Start building all containers with `docker-compose build`. You should be on top of your working directory to run this command. It will use the docker-compose.yml file located into this directory.
-   d. Wait... (could take some time as you are building the complete list of services
-   e. Run your multi-container with `docker-compose up -d`
-   f. Look at your containers startup with `docker-compose logs`. You can add a service name to get logs about this specific container. You can also monitor /tmp/container/logs to see logs comming from all containers
-   g. Monitor containers with `docker-compose ps`.
+  a. Choose your flavour with `git checkout ≤flavour_name>`. You can use every flavour available in this repository. Default is set to master branch related to the `:latest` flavour
+  b. Create host directory to store container content with `mkdir /tmp/container`.
+  c. Start building all containers with `docker-compose build`. You should be on top of your working directory to run this command. It will use the docker-compose.yml file located into this directory.
+  d. Wait... (could take some time as you are building the complete list of services
+  e. Run your multi-container with `docker-compose up -d`
+  f. Look at your containers startup with `docker-compose logs`. You can add a service name to get logs about this specific container. You can also monitor /tmp/container/logs to see logs comming from all containers
+  g. Monitor containers with `docker-compose ps`.
 
 ### Build a single container
 
@@ -91,8 +91,8 @@ If you want to build and run locally all the images provided in this repository,
 
 1. Build the container using `docker build -t <image_name> <path_to_Dockerfile>` where *image_name* is the name of your future local image and *path_to_Dockerfile* should point to the targeted service or application directory, not including the Dockefile filename
 2. Run this container 
-   a. Interactively with `docker run -it <image_name>` where *image_name* is the name of your previously created image name. If you add a second parameter, you can run a particular command instead of the default entrypoint. Could be usefull when you add ` /bin/bash` to get a shell running into the container
-   b. As a deamon with `docker run -d <image_name>` where *image_name* is the name of your previously created image name. 
+  a. Interactively with `docker run -it <image_name>` where *image_name* is the name of your previously created image name. If you add a second parameter, you can run a particular command instead of the default entrypoint. Could be usefull when you add ` /bin/bash` to get a shell running into the container
+  b. As a deamon with `docker run -d <image_name>` where *image_name* is the name of your previously created image name. 
 
 
 
