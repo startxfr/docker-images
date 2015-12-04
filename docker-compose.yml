@@ -8,40 +8,40 @@ server_apache:
     file: Services/apache/docker-compose.yml
     service: server
 
-server_php:
-  extends:
-    file: Services/php/docker-compose.yml
-    service: server
+#server_php:
+#  extends:
+#    file: Services/php/docker-compose.yml
+#    service: server
 
-server_mariadb:
-  extends:
-    file: Services/mariadb/docker-compose.yml
-    service: server
+#server_mariadb:
+#  extends:
+#    file: Services/mariadb/docker-compose.yml
+#    service: server
 
-server_memcache:
-  extends:
-    file: Services/memcache/docker-compose.yml
-    service: server
+#server_memcache:
+#  extends:
+#    file: Services/memcache/docker-compose.yml
+#    service: server
 
-server_mongo:
-  extends:
-    file: Services/mongo/docker-compose.yml
-    service: server
+#server_mongo:
+#  extends:
+#    file: Services/mongo/docker-compose.yml
+#    service: server
+#
+#server_nodejs:
+#  extends:
+#    file: Services/nodejs/docker-compose.yml
+#    service: server
+#
+#server_ooconv:
+#  extends:
+#    file: Services/ooconv/docker-compose.yml
+#    service: server
 
-server_nodejs:
-  extends:
-    file: Services/nodejs/docker-compose.yml
-    service: server
-
-server_ooconv:
-  extends:
-    file: Services/ooconv/docker-compose.yml
-    service: server
-
-server_postgres:
-  extends:
-    file: Services/postgres/docker-compose.yml
-    service: server
+#server_postgres:
+#  extends:
+#    file: Services/postgres/docker-compose.yml
+#    service: server
 
 #pma:
 #  build: Applications/phpmyadmin/

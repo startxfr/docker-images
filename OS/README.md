@@ -9,7 +9,7 @@ weight=3
 
 # Fedora OS container's
 
-Simple container used for all startx based services and application published in [Dockerhub registry](https://github.com/startxfr/docker-images). 
+Simple and extralight (110Mo) container used for all startx based services and application published in [Dockerhub registry](https://github.com/startxfr/docker-images). 
 This container contain updated core OS rpm (kernel, libs,...) as well as usefull tools like pwgen, tar, zip, psmisc, procps, coreutils, findutils, wget
 
 | [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/fedora) | [Sources](https://github.com/startxfr/docker-images/OS/)             | [STARTX Profile](https://github.com/startxfr) | 
@@ -26,7 +26,7 @@ This container contain updated core OS rpm (kernel, libs,...) as well as usefull
 
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="fedora" startx/fedora` from every docker host
+* with `docker` you can run `docker run -it --name="fedora" startx/fedora` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 fedora:
@@ -40,12 +40,22 @@ fedora:
 
 ## Using this image in your own container
 
-You can use this Dockerfile template to start a new prsonalized container based on this container
+You can use this Dockerfile template to start a new personalized container based on this container
  ```
 FROM startx/fedora:latest
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```
+
+## Environment variable
+
+| Variable                  | Type     | Mandatory | Description                                                              |
+|---------------------------|----------|-----------|--------------------------------------------------------------------------|
+| CONTAINER_TYPE            | `string` | `no`      | Container family (os, service, application. could be enhanced 
+| CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
+| CONTAINER_INSTANCE        | `string` | `yes`     | Container name. Should be uning to get fine grained log and application reporting
+| HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
+
 
 ## For advanced users
 
