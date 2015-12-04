@@ -16,10 +16,10 @@ or as a parent container in your own container's.
 Each container is provided with various underlying OS version based on CentOS or 
 Fedora Linux distribution.
 
-You can read each container manual for more information on how you can use it in 
+Please **read each container manual** for more information on how you can use it in 
 your project and start using stable or experimental services in your applications
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Registry](https://github.com/startxfr/docker-images) | [Sources](https://github.com/startxfr/docker-images/tree/master/) | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx) | [Sources](https://github.com/startxfr/docker-images/)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------|
 
 ## Available services and images
@@ -28,39 +28,39 @@ your project and start using stable or experimental services in your application
 
 | OS            | Docker Hub repository                                      | Flavour                            | Documentation                        | 
 |---------------|------------------------------------------------------------|------------------------------------|--------------------------------------|
-| Fedora Core   | [`startx/fedora`](https://hub.docker.com/r/startx/fedora)  | `:latest` `:20` `:21` `:22` `:23`  | [manual](tree/master/OS/README.md)   | 
-| CentOS        | [`startx/centos`](https://hub.docker.com/r/startx/centos)  | `:6` `:7`                          | [manual](tree/centos7/OS/README.md)  |
+| Fedora Core   | [`startx/fedora`](https://hub.docker.com/r/startx/fedora)  | `:latest` `:20` `:21` `:22` `:23`  | [manual](OS/README.md)               | 
+| CentOS        | [`startx/centos`](https://hub.docker.com/r/startx/centos)  | `:6` `:7`                          | [manual](../centos7/OS/README.md)    |
 
 
 ### Services
 
 | Service       | Docker Hub repository                                               | Fedora                                    | CentOS                  | Doc                                               | 
 |---------------|---------------------------------------------------------------------|-------------------------------------------|-------------------------|---------------------------------------------------|
-| Apache        | [`startx/sv-apache`](https://hub.docker.com/r/startx/sv-apache)     | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [manual](tree/master/Services/apache/README.md)   | 
-| MariaDB       | [`startx/sv-mariadb`](https://hub.docker.com/r/startx/sv-mariadb)   | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [manual](tree/master/Services/mariadb/README.md)  | 
-| Memcache      | [`startx/sv-memcache`](https://hub.docker.com/r/startx/sv-memcache) | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [manual](tree/master/Services/memcache/README.md) | 
-| MongoDB       | [`startx/sv-mongo`](https://hub.docker.com/r/startx/sv-mongo)       | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [manual](tree/master/Services/mongo/README.md)    | 
-| nodejs        | [`startx/sv-nodejs`](https://hub.docker.com/r/startx/sv-nodejs)     | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [manual](tree/master/Services/nodejs/README.md)   | 
-| ooconv        | [`startx/sv-ooconv`](https://hub.docker.com/r/startx/sv-ooconv)     | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [manual](tree/master/Services/ooconv/README.md)   | 
-| php           | [`startx/sv-php`](https://hub.docker.com/r/startx/sv-php)           | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [manual](tree/master/Services/php/README.md)      | 
-| postgreSQL    | [`startx/sv-postgres`](https://hub.docker.com/r/startx/sv-postgres) | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [manual](tree/master/Services/postgres/README.md) | 
+| Apache        | [`startx/sv-apache`](https://hub.docker.com/r/startx/sv-apache)     | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [manual](Services/apache/README.md)               | 
+| MariaDB       | [`startx/sv-mariadb`](https://hub.docker.com/r/startx/sv-mariadb)   | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [manual](Services/mariadb/README.md)              | 
+| Memcache      | [`startx/sv-memcache`](https://hub.docker.com/r/startx/sv-memcache) | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [manual](Services/memcache/README.md)             | 
+| MongoDB       | [`startx/sv-mongo`](https://hub.docker.com/r/startx/sv-mongo)       | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [manual](Services/mongo/README.md)                | 
+| nodejs        | [`startx/sv-nodejs`](https://hub.docker.com/r/startx/sv-nodejs)     | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [manual](Services/nodejs/README.md)               | 
+| ooconv        | [`startx/sv-ooconv`](https://hub.docker.com/r/startx/sv-ooconv)     | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [manual](Services/ooconv/README.md)               | 
+| php           | [`startx/sv-php`](https://hub.docker.com/r/startx/sv-php)           | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [manual](Services/php/README.md)                  | 
+| postgreSQL    | [`startx/sv-postgres`](https://hub.docker.com/r/startx/sv-postgres) | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [manual](Services/postgres/README.md)             | 
 
 
 ### Applications
 
 | Service         | Docker Hub repository                                                     | Fedora                                    | CentOS                  | Doc                                                     | 
 |-----------------|---------------------------------------------------------------------------|-------------------------------------------|-------------------------|---------------------------------------------------------|
-| PhpMyAdmin      | [`startx/app-pma`](https://hub.docker.com/r/startx/app-pma)               | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [manual](tree/master/Applications/pma/README.md)        | 
-| RockMongo       | [`startx/app-rockmongo`](https://hub.docker.com/r/startx/app-rockmongo)   | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [manual](tree/master/Applications/rockmongo/README.md)  | 
+| PhpMyAdmin      | [`startx/app-pma`](https://hub.docker.com/r/startx/app-pma)               | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [manual](Applications/pma/README.md)                    | 
+| RockMongo       | [`startx/app-rockmongo`](https://hub.docker.com/r/startx/app-rockmongo)   | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [manual](Applications/rockmongo/README.md)              | 
 
 
 ## For advanced users
 
-You you want to use this repository and code to build and create locally theses containers. You can follow theses instructions to settup and working environment.
+You you want to use this repository and code to build and create locally theses containers. You can follow theses instructions to setup and working environment.
 
 This section is usefull if you want :
 * Get latest version of embedded services, applications and underlying OS
-* Ehance container content by adding instruction into container(s) Dockefile before the build process
+* Enhance container content by adding instruction into container(s) Dockefile before the build process
 * Use this set of container and flavour to benchmark application performance
 
 ### Setup your working environment (mandatory)
@@ -73,7 +73,7 @@ This section is usefull if you want :
   2. Clone source repository with `git clone https://github.com/startxfr/docker-images.git .`
 
 
-### Build all containers (using docker-compose)
+### Build all containers using `docker-compose`
 
 If you want to build and run locally all the images provided in this repository, you can follow this instructions
 
@@ -99,7 +99,7 @@ If you want to build and run locally all the images provided in this repository,
 
 1. Jump into the container directory you wan to build with `cd <path_to_service>` where *path_to_service* is the targeted service or application directory, not including the docker-compose.yml filename
 2. Run this container 
-  1. Interactively with `docker-compose up`You should see container startup logs and escaping this command will stop the container
+  1. Interactively with `docker-compose up`. You should see container startup logs and escaping this command will stop the container
   2. As a daemon with `docker-compose up -d`. You can look at your container startup and behaviour with `docker-compose logs`
 
 
@@ -284,6 +284,6 @@ Running an image as a daemon
 	docker exec -it <image_name> <cmd>
 
 ## Related Resources
-* [Sources files](https://github.com/startxfr/docker-images/tree/master/)
+* [Sources files](https://github.com/startxfr/docker-images/)
 * [Github STARTX profile](https://github.com/startxfr/docker-images)
 * [Docker registry for this container](https://registry.hub.docker.com/u/startx/fedora/)
