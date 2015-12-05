@@ -40,7 +40,7 @@ your project and start using stable or experimental services in your application
 | postgreSQL    | [`startx/sv-postgres`](https://hub.docker.com/r/startx/sv-postgres) | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7`   | [manual](Services/postgres/README.md)             | 
 
 
-## Running container from docker registry images
+## Running from dockerhub registry
 
 | Services            | Command                                                              |
 |---------------------|----------------------------------------------------------------------|
@@ -53,7 +53,7 @@ your project and start using stable or experimental services in your application
 | **php**             | `docker run -d -p 80:80 --name="php" startx/sv-php`                  | 
 | **postgreSQL**      | `docker run -d -p 5432:5432 --name="postgres" startx/sv-postgres`    | 
 
-## Flavors (tags) for Red Hat like container's
+## Container flavours
 
 | Service    | Docker Hub repository | Fedora                                    | CentOS                |
 |------------|-----------------------|-------------------------------------------|-----------------------|
