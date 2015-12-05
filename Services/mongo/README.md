@@ -27,12 +27,12 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="sv-mongo" startx/sv-mongo` from any docker host
+* with `docker` you can run `docker run -it --name="service-mongo" startx/sv-mongo` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
   image: startx/sv-mongo:latest
-  container_name: "sv-mongo"
+  container_name: "service-mongo"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mongo"
@@ -48,7 +48,7 @@ service:
 ```
 service:
   image: startx/sv-mongo:latest
-  container_name: "sv-mongo"
+  container_name: "service-mongo"
   environment:
     CONTAINER_INSTANCE: "service-mongo"
   ports:
@@ -58,7 +58,7 @@ service:
 ```
 service:
   image: startx/sv-mongo:latest
-  container_name: "sv-mongo"
+  container_name: "service-mongo"
   environment:
     CONTAINER_INSTANCE: "service-mongo"
   expose:
@@ -68,12 +68,12 @@ service:
 ```
 data:
   image: startx/fedora:latest
-  container_name: "sv-mongo-data"
+  container_name: "service-mongo-data"
   environment:
     CONTAINER_INSTANCE: "service-mongo-data"
 service:
   image: startx/sv-mongo:latest
-  container_name: "sv-mongo"
+  container_name: "service-mongo"
   environment:
     CONTAINER_INSTANCE: "service-mongo"
   volume_from:

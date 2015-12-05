@@ -27,12 +27,12 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="sv-memcache" startx/sv-memcache` from any docker host
+* with `docker` you can run `docker run -it --name="service-memcache" startx/sv-memcache` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
   image: startx/sv-memcache:latest
-  container_name: "sv-memcache"
+  container_name: "service-memcache"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "memcache"
@@ -47,7 +47,7 @@ service:
 ```
 service:
   image: startx/sv-memcache:latest
-  container_name: "sv-memcache"
+  container_name: "service-memcache"
   environment:
     CONTAINER_INSTANCE: "service-memcache"
   ports:
@@ -57,7 +57,7 @@ service:
 ```
 service:
   image: startx/sv-memcache:latest
-  container_name: "sv-memcache"
+  container_name: "service-memcache"
   environment:
     CONTAINER_INSTANCE: "service-memcache"
   expose:

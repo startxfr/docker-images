@@ -27,12 +27,12 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="sv-mariadb" startx/sv-mariadb` from any docker host
+* with `docker` you can run `docker run -it --name="service-mariadb" startx/sv-mariadb` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
   image: startx/sv-mariadb:latest
-  container_name: "sv-mariadb"
+  container_name: "service-mariadb"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mariadb"
@@ -52,7 +52,7 @@ service:
 ```
 service:
   image: startx/sv-mariadb:latest
-  container_name: "sv-mariadb"
+  container_name: "service-mariadb"
   environment:
     CONTAINER_INSTANCE: "service-mariadb"
   ports:
@@ -62,7 +62,7 @@ service:
 ```
 service:
   image: startx/sv-mariadb:latest
-  container_name: "sv-mariadb"
+  container_name: "service-mariadb"
   environment:
     CONTAINER_INSTANCE: "service-mariadb"
   expose:
@@ -72,12 +72,12 @@ service:
 ```
 data:
   image: startx/fedora:latest
-  container_name: "sv-mariadb-data"
+  container_name: "service-mariadb-data"
   environment:
     CONTAINER_INSTANCE: "service-mariadb-data"
 service:
   image: startx/sv-mariadb:latest
-  container_name: "sv-mariadb"
+  container_name: "service-mariadb"
   environment:
     CONTAINER_INSTANCE: "service-mariadb"
   volume_from:

@@ -28,12 +28,12 @@ Could use various network protocol (like http, websocket, smtp, telnet) accordin
 
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="sv-nodejs" startx/sv-nodejs` from any docker host
+* with `docker` you can run `docker run -it --name="service-nodejs" startx/sv-nodejs` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
   image: startx/sv-nodejs:latest
-  container_name: "sv-nodejs"
+  container_name: "service-nodejs"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "nodejs"
@@ -49,7 +49,7 @@ service:
 ```
 service:
   image: startx/sv-nodejs:latest
-  container_name: "sv-nodejs"
+  container_name: "service-nodejs"
   environment:
     CONTAINER_INSTANCE: "service-nodejs"
   ports:
@@ -59,7 +59,7 @@ service:
 ```
 service:
   image: startx/sv-nodejs:latest
-  container_name: "sv-nodejs"
+  container_name: "service-nodejs"
   environment:
     CONTAINER_INSTANCE: "service-nodejs"
   expose:
@@ -69,12 +69,12 @@ service:
 ```
 data:
   image: startx/fedora:latest
-  container_name: "sv-nodejs-data"
+  container_name: "service-nodejs-data"
   environment:
     CONTAINER_INSTANCE: "service-nodejs-data"
 service:
   image: startx/sv-nodejs:latest
-  container_name: "sv-nodejs"
+  container_name: "service-nodejs"
   environment:
     CONTAINER_INSTANCE: "service-nodejs"
   volume_from:

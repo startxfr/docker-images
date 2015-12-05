@@ -27,12 +27,12 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="sv-ooconv" startx/sv-ooconv` from any docker host
+* with `docker` you can run `docker run -it --name="service-ooconv" startx/sv-ooconv` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
   image: startx/sv-ooconv:latest
-  container_name: "sv-ooconv"
+  container_name: "service-ooconv"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "ooconv"
@@ -47,7 +47,7 @@ service:
 ```
 service:
   image: startx/sv-ooconv:latest
-  container_name: "sv-ooconv"
+  container_name: "service-ooconv"
   environment:
     CONTAINER_INSTANCE: "service-ooconv"
   ports:
@@ -57,7 +57,7 @@ service:
 ```
 service:
   image: startx/sv-ooconv:latest
-  container_name: "sv-ooconv"
+  container_name: "service-ooconv"
   environment:
     CONTAINER_INSTANCE: "service-ooconv"
   expose:

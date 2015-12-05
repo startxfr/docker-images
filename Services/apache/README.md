@@ -27,12 +27,12 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="sv-apache" startx/sv-apache` from any docker host
+* with `docker` you can run `docker run -it --name="service-apache" startx/sv-apache` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
   image: startx/sv-apache:latest
-  container_name: "sv-apache"
+  container_name: "service-apache"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "apache"
@@ -50,7 +50,7 @@ service:
 ```
 service:
   image: startx/sv-apache:latest
-  container_name: "sv-apache"
+  container_name: "service-apache"
   environment:
     CONTAINER_INSTANCE: "service-apache"
   ports:
@@ -60,7 +60,7 @@ service:
 ```
 service:
   image: startx/sv-apache:latest
-  container_name: "sv-apache"
+  container_name: "service-apache"
   environment:
     CONTAINER_INSTANCE: "service-apache"
   expose:
@@ -70,12 +70,12 @@ service:
 ```
 data:
   image: startx/fedora:latest
-  container_name: "sv-apache-data"
+  container_name: "service-apache-data"
   environment:
     CONTAINER_INSTANCE: "service-apache-data"
 service:
   image: startx/sv-apache:latest
-  container_name: "sv-apache"
+  container_name: "service-apache"
   environment:
     CONTAINER_INSTANCE: "service-apache"
   volume_from:

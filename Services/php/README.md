@@ -27,12 +27,12 @@ based on [startx/sv-apache container](https://hub.docker.com/r/startx/sv-apache)
 
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="sv-php" startx/sv-php` from any docker host
+* with `docker` you can run `docker run -it --name="service-php" startx/sv-php` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
   image: startx/sv-php:latest
-  container_name: "sv-php"
+  container_name: "service-php"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "php"
@@ -50,7 +50,7 @@ service:
 ```
 service:
   image: startx/sv-php:latest
-  container_name: "sv-php"
+  container_name: "service-php"
   environment:
     CONTAINER_INSTANCE: "service-php"
   ports:
@@ -60,7 +60,7 @@ service:
 ```
 service:
   image: startx/sv-php:latest
-  container_name: "sv-php"
+  container_name: "service-php"
   environment:
     CONTAINER_INSTANCE: "service-php"
   expose:
@@ -70,12 +70,12 @@ service:
 ```
 data:
   image: startx/fedora:latest
-  container_name: "sv-php-data"
+  container_name: "service-php-data"
   environment:
     CONTAINER_INSTANCE: "service-php-data"
 service:
   image: startx/sv-php:latest
-  container_name: "sv-php"
+  container_name: "service-php"
   environment:
     CONTAINER_INSTANCE: "service-php"
   volume_from:

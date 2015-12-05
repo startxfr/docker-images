@@ -27,12 +27,12 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="sv-postgres" startx/sv-postgres` from any docker host
+* with `docker` you can run `docker run -it --name="service-postgres" startx/sv-postgres` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
   image: startx/sv-postgres:latest
-  container_name: "sv-postgres"
+  container_name: "service-postgres"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "postgres"
@@ -52,7 +52,7 @@ service:
 ```
 service:
   image: startx/sv-postgres:latest
-  container_name: "sv-postgres"
+  container_name: "service-postgres"
   environment:
     CONTAINER_INSTANCE: "service-postgres"
   ports:
@@ -62,7 +62,7 @@ service:
 ```
 service:
   image: startx/sv-postgres:latest
-  container_name: "sv-postgres"
+  container_name: "service-postgres"
   environment:
     CONTAINER_INSTANCE: "service-postgres"
   expose:
@@ -72,12 +72,12 @@ service:
 ```
 data:
   image: startx/fedora:latest
-  container_name: "sv-postgres-data"
+  container_name: "service-postgres-data"
   environment:
     CONTAINER_INSTANCE: "service-postgres-data"
 service:
   image: startx/sv-postgres:latest
-  container_name: "sv-postgres"
+  container_name: "service-postgres"
   environment:
     CONTAINER_INSTANCE: "service-postgres"
   volume_from:
