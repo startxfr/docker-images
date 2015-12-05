@@ -37,8 +37,8 @@ service:
     MYSQL_PASSWORD: "pwd-test"
     MYSQL_DATABASE: "db_test"
   volumes:
-    - "/tmp/container-fc23/logs/mariadb:/data/logs/mariadb"
-    - "/tmp/container-fc23/mariadb:/data/mariadb"
+    - "/tmp/container-fc21/logs/mariadb:/data/logs/mariadb"
+    - "/tmp/container-fc21/mariadb:/data/mariadb"
 ```
 
 ## Docker-compose in various situations

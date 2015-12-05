@@ -35,8 +35,8 @@ service:
     SERVER_NAME: "localhost"
     DOC_ROOT: "/data/apache_php"
   volumes:
-    - "/tmp/container-fc23/logs/php:/data/logs/apache_php"
-    - "/tmp/container-fc23/php:/data/apache_php"
+    - "/tmp/container-fc21/logs/php:/data/logs/apache_php"
+    - "/tmp/container-fc21/php:/data/apache_php"
 ```
 
 ## Docker-compose in various situations

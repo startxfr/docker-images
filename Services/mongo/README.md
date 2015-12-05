@@ -33,8 +33,8 @@ service:
     CONTAINER_SERVICE: "mongo"
     CONTAINER_INSTANCE: "service-mongo-fc21"
   volumes:
-    - "/tmp/container-fc23/logs/mongo:/data/logs/mongo"
-    - "/tmp/container-fc23/mongo:/data/mongo"
+    - "/tmp/container-fc21/logs/mongo:/data/logs/mongo"
+    - "/tmp/container-fc21/mongo:/data/mongo"
 ```
 
 ## Docker-compose in various situations
