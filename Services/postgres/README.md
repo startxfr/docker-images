@@ -37,8 +37,8 @@ service:
     POSTGRESQL_PASSWORD: "pwd-test"
     POSTGRESQL_DATABASE: "db_test"
   volumes:
-    - "/tmp/container-fc23/logs/postgres:/data/logs/postgres"
-    - "/tmp/container-fc23/postgres:/data/postgres"
+    - "/tmp/container-fc22/logs/postgres:/data/logs/postgres"
+    - "/tmp/container-fc22/postgres:/data/postgres"
 ```
 
 ## Docker-compose in various situations

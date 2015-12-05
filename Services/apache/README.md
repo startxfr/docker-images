@@ -35,8 +35,8 @@ service:
     SERVER_NAME: "localhost"
     DOC_ROOT: "/data/apache"
   volumes:
-    - "/tmp/container-fc23/logs/apache:/data/logs/apache"
-    - "/tmp/container-fc23/apache:/data/apache"
+    - "/tmp/container-fc22/logs/apache:/data/logs/apache"
+    - "/tmp/container-fc22/apache:/data/apache"
 ```
 
 ## Docker-compose in various situations
