@@ -30,14 +30,14 @@ your project and start using stable or experimental services in your application
 
 | Service       | Docker Hub repository                                               | Fedora flavours                   | CentOS flavours | Doc                                               | 
 |---------------|---------------------------------------------------------------------|-----------------------------------|-----------------|---------------------------------------------------|
-| Apache        | [`startx/sv-apache`](https://hub.docker.com/r/startx/sv-apache)     | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](Services/apache/README.md)               | 
-| MariaDB       | [`startx/sv-mariadb`](https://hub.docker.com/r/startx/sv-mariadb)   | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](Services/mariadb/README.md)              | 
-| Memcache      | [`startx/sv-memcache`](https://hub.docker.com/r/startx/sv-memcache) | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](Services/memcache/README.md)             | 
-| MongoDB       | [`startx/sv-mongo`](https://hub.docker.com/r/startx/sv-mongo)       | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](Services/mongo/README.md)                | 
-| nodejs        | [`startx/sv-nodejs`](https://hub.docker.com/r/startx/sv-nodejs)     | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](Services/nodejs/README.md)               | 
-| ooconv        | [`startx/sv-ooconv`](https://hub.docker.com/r/startx/sv-ooconv)     | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](Services/ooconv/README.md)               | 
-| php           | [`startx/sv-php`](https://hub.docker.com/r/startx/sv-php)           | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](Services/php/README.md)                  | 
-| postgreSQL    | [`startx/sv-postgres`](https://hub.docker.com/r/startx/sv-postgres) | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](Services/postgres/README.md)             | 
+| Apache        | [`startx/sv-apache`](https://hub.docker.com/r/startx/sv-apache)     | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](apache/README.md)               | 
+| MariaDB       | [`startx/sv-mariadb`](https://hub.docker.com/r/startx/sv-mariadb)   | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](mariadb/README.md)              | 
+| Memcache      | [`startx/sv-memcache`](https://hub.docker.com/r/startx/sv-memcache) | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](memcache/README.md)             | 
+| MongoDB       | [`startx/sv-mongo`](https://hub.docker.com/r/startx/sv-mongo)       | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](mongo/README.md)                | 
+| nodejs        | [`startx/sv-nodejs`](https://hub.docker.com/r/startx/sv-nodejs)     | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](nodejs/README.md)               | 
+| ooconv        | [`startx/sv-ooconv`](https://hub.docker.com/r/startx/sv-ooconv)     | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](ooconv/README.md)               | 
+| php           | [`startx/sv-php`](https://hub.docker.com/r/startx/sv-php)           | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](php/README.md)                  | 
+| postgreSQL    | [`startx/sv-postgres`](https://hub.docker.com/r/startx/sv-postgres) | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](postgres/README.md)             | 
 
 
 ## Running from dockerhub registry
