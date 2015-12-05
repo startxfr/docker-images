@@ -1,8 +1,3 @@
-fedora:
-  extends:
-    file: OS/docker-compose.yml
-    service: fedora
-
 server_apache:
   extends:
     file: Services/apache/docker-compose.yml
@@ -42,11 +37,3 @@ server_memcache:
   extends:
     file: Services/memcache/docker-compose.yml
     service: server
-
-pma:
-  build: Applications/phpmyadmin/
-  container_name: "startx-app-phpmyadmin"
-
-rockmongo:
-  build: Applications/rockmongo/
-  container_name: "startx-app-rockmongo"

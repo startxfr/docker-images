@@ -1,8 +1,8 @@
 server:
   build: ./
   container_name: "memcache-server"
-  mem_limit: 1.5g
-  memswap_limit: 500m
+  mem_limit: 2g
+  memswap_limit: 3g
   cpu_shares: 2
   restart: "on-failure:2"
   environment:
@@ -11,4 +11,3 @@ server:
     CONTAINER_INSTANCE: "service-memcache"
   volumes:
     - "/tmp/container/logs/memcache:/data/logs/memcache"
-    - "/tmp/container/memcache:/data/memcache"
