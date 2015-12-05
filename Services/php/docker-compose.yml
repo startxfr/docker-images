@@ -5,6 +5,9 @@ server:
   memswap_limit: 1g
   cpu_shares: 5
   restart: "on-failure:2"
+  ports:
+    - "80:80"
+    - "443:443"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "php"
