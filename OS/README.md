@@ -1,13 +1,13 @@
 <!--[metadata]>
 +++
-title = "STARTX Docker OS Images : FEDORA 23"
-description = "Docker container repository based on fedora 23"
-keywords = ["home, docker, startx, fedora 23, repository, container, swarm, compose, howto, "]
+title = "STARTX Docker OS Images : Fedora 21"
+description = "Docker container repository based on fedora 21"
+keywords = ["home, docker, startx, fedora 21, repository, container, swarm, compose, howto, "]
 weight=3
 +++
 <![end-metadata]-->
 
-# Docker OS Images : FEDORA 23
+# Docker OS Images : Fedora 21
 
 Simple and lightweight (110Mo) container used for all startx based services and applications published in [Dockerhub registry](https://github.com/startxfr/docker-images). 
 This container contain updated core OS rpm (kernel, libs,...) as well as usefull tools like pwgen, tar, zip, psmisc, procps, coreutils, findutils, wget
@@ -20,23 +20,23 @@ or [other OS distributions and flavours](https://github.com/startxfr/docker-imag
 
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="fedora23" startx/fedora:23` from any docker host
+* with `docker` you can run `docker run -it --name="fedora21" startx/fedora:21` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 fedora:
-  image: startx/fedora:23
-  container_name: "os-fedora23"
+  image: startx/fedora:21
+  container_name: "os-fedora21"
   environment:
     CONTAINER_TYPE: "os"
-    CONTAINER_SERVICE: "fedora23"
-    CONTAINER_INSTANCE: "os-fedora23"
+    CONTAINER_SERVICE: "fedora21"
+    CONTAINER_INSTANCE: "os-fedora21"
 ```
 
 ## Using this image in your own container
 
 You can use this Dockerfile template to start a new personalized container based on this container
  ```
-FROM startx/fedora:23
+FROM startx/fedora:21
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```
@@ -63,7 +63,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-1. Switch to the flavour branch with `git branch fc23`
+1. Switch to the flavour branch with `git branch fc21`
 2. Jump into the container directory with `cd OS`
 3. Build the container using `docker build -t fedora .`
 4. Run this container 
@@ -73,7 +73,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker-compose`
 
-1. Switch to the flavour branch with `git branch fc23`
+1. Switch to the flavour branch with `git branch fc21`
 2. Jump into the container directory with `cd OS`
 3. Run this container 
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container

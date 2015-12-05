@@ -1,15 +1,15 @@
 <!--[metadata]>
 +++
-title = "STARTX Docker Images Repository : Application in Fedora 23"
-description = "Docker applications containers based on fedora 23 and deliverying main opensources project as container"
-keywords = ["home, docker, startx, applications, fedora 23, container, swarm, compose, howto, "]
+title = "STARTX Docker Images Repository : Application in Fedora 21"
+description = "Docker applications containers based on fedora 21 and deliverying main opensources project as container"
+keywords = ["home, docker, startx, applications, fedora 21, container, swarm, compose, howto, "]
 weight=3
 +++
 <![end-metadata]-->
 
-# STARTX Docker-Images Applications based on Fedora 23
+# STARTX Docker-Images Applications based on Fedora 21
 
-This directory host various Open Source applications into docker containers based on [startx/fedora:23 container](https://hub.docker.com/r/startx/fedora)
+This directory host various Open Source applications into docker containers based on [startx/fedora:21 container](https://hub.docker.com/r/startx/fedora)
 
 You can use it to instanciate new container from the dockerhub public registry 
 or as a parent container in your own container's. 
@@ -27,13 +27,13 @@ your project and start using stable or experimental applications in your applica
 
 | Service         | Docker Hub repository                                                          | Doc
 |-----------------|--------------------------------------------------------------------------------|--------------------------------
-| PhpMyAdmin      | [`startx/app-pma:fc23`](https://hub.docker.com/r/startx/app-pma)               | [manual](pma/README.md)
-| RockMongo       | [`startx/app-rockmongo:fc23`](https://hub.docker.com/r/startx/app-rockmongo)   | [manual](rockmongo/README.md)
+| PhpMyAdmin      | [`startx/app-pma:fc21`](https://hub.docker.com/r/startx/app-pma)               | [manual](pma/README.md)
+| RockMongo       | [`startx/app-rockmongo:fc21`](https://hub.docker.com/r/startx/app-rockmongo)   | [manual](rockmongo/README.md)
 
 
 ## Running from dockerhub registry
 
 | Applications        | Command                                                                   |
 |---------------------|---------------------------------------------------------------------------|
-| **PhpMyAdmin**      | `docker run -d -p 80:80 --name="fc23-pma" startx/app-pma:fc23`            | 
-| **RockMongo**       | `docker run -d -p 80:80 --name="fc23-rockmongo" startx/app-rockmongo:fc23`| 
+| **PhpMyAdmin**      | `docker run -d -p 80:80 --name="fc21-pma" startx/app-pma:fc21`            | 
+| **RockMongo**       | `docker run -d -p 80:80 --name="fc21-rockmongo" startx/app-rockmongo:fc21`| 

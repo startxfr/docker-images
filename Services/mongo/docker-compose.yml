@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "mongo-fc23"
+  container_name: "mongo-fc21"
   mem_limit: 2g
   memswap_limit: 2g
   cpu_shares: 10

@@ -1,17 +1,17 @@
 <!--[metadata]>
 +++
-title = "STARTX Docker Services Images : OOCONV on Fedora 23"
-description = "Docker container with ooconv service based on fedora 23"
-keywords = ["home, docker, startx, ooconv, fedora 23, centos, repository, container, swarm, compose"]
+title = "STARTX Docker Services Images : OOCONV on Fedora 21"
+description = "Docker container with ooconv service based on fedora 21"
+keywords = ["home, docker, startx, ooconv, fedora 21, centos, repository, container, swarm, compose"]
 weight=3
 +++
 <![end-metadata]-->
 
-# Docker OS Images : OOCONV on Fedora 23
+# Docker OS Images : OOCONV on Fedora 21
 
 Simple and lightweight (450Mo) container used to document convertion and manipulation tools
 Run [libreoffice](https://www.libreoffice.org/) as a daemon using [dagwieers unoconv](https://github.com/dagwieers/unoconv) under a container 
-based on [startx/fedora:23 container](https://hub.docker.com/r/startx/fedora)
+based on [startx/fedora:21 container](https://hub.docker.com/r/startx/fedora)
 
 Each container is provided with various underlying OS version based on CentOS or 
 Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
@@ -26,12 +26,12 @@ or **[other ooconv flavours](https://github.com/startxfr/docker-images/Services/
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-ooconv:fc23
-  container_name: "service-ooconv-fc23"
+  image: startx/sv-ooconv:fc21
+  container_name: "service-ooconv-fc21"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "ooconv"
-    CONTAINER_INSTANCE: "service-ooconv-fc23"
+    CONTAINER_INSTANCE: "service-ooconv-fc21"
   volumes:
     - "/tmp/container/logs/ooconv:/data/logs/ooconv"
 ```
@@ -41,20 +41,20 @@ service:
 * sample docker-compose.yml linked to host port 1000
 ```
 service:
-  image: startx/sv-ooconv:fc23
-  container_name: "service-ooconv-fc23"
+  image: startx/sv-ooconv:fc21
+  container_name: "service-ooconv-fc21"
   environment:
-    CONTAINER_INSTANCE: "service-ooconv-fc23"
+    CONTAINER_INSTANCE: "service-ooconv-fc21"
   ports:
     - "1000:2002"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
 service:
-  image: startx/sv-ooconv:fc23
-  container_name: "service-ooconv-fc23"
+  image: startx/sv-ooconv:fc21
+  container_name: "service-ooconv-fc21"
   environment:
-    CONTAINER_INSTANCE: "service-ooconv-fc23"
+    CONTAINER_INSTANCE: "service-ooconv-fc21"
   expose:
     - "2002"
 ```
@@ -63,7 +63,7 @@ service:
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
  ```
-FROM startx/sv-ooconv:fc23
+FROM startx/sv-ooconv:fc21
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```
@@ -106,7 +106,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-1. Switch to the flavour branch with `git branch fc23`
+1. Switch to the flavour branch with `git branch fc21`
 2. Jump into the container directory with `cd Services/ooconv`
 3. Build the container using `docker build -t sv-ooconv .`
 4. Run this container 
@@ -116,7 +116,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker-compose`
 
-1. Switch to the flavour branch with `git branch fc23`
+1. Switch to the flavour branch with `git branch fc21`
 2. Jump into the container directory with `cd Services/ooconv`
 3. Run this container 
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container

@@ -1,15 +1,15 @@
 <!--[metadata]>
 +++
-title = "STARTX Docker Images Repository based on Fedora 23"
-description = "Docker container repository based on fedora 23 and deliverying main opensource project as container"
-keywords = ["home, docker, startx, repository, fedora 23, container, swarm, compose, howto, "]
+title = "STARTX Docker Images Repository based on Fedora 21"
+description = "Docker container repository based on fedora 21 and deliverying main opensource project as container"
+keywords = ["home, docker, startx, repository, fedora 21, container, swarm, compose, howto, "]
 weight=3
 +++
 <![end-metadata]-->
 
-# STARTX Docker-Images Repository based on Fedora 23
+# STARTX Docker-Images Repository based on Fedora 21
 
-This repository host various Open Source application or services as a container based on the fedora 23 distribution
+This repository host various Open Source application or services as a container based on the fedora 21 distribution
 
 You can use it to instanciate new container from the dockerhub public registry 
 or as a parent container in your own container's. 
