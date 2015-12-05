@@ -1,7 +1,7 @@
 fc22:
   extends:
     file: OS/docker-compose.yml
-    service: fedora
+    service: fc22
 
 fc22_apache:
   extends:
