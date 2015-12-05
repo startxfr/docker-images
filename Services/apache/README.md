@@ -10,7 +10,8 @@ weight=3
 # Docker OS Images : APACHE
 
 Simple and lightweight (120Mo) container used to deliver static http content include all apache's modules but no external languages engines (like php). For dynamic content, you should use our [sv-php service container](https://hub.docker.com/r/startx/sv-php)
-Run [apache httpd daemon](https://httpd.apache.org/) under a container based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
+Run [apache httpd daemon](https://httpd.apache.org/) under a container 
+based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 | [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-apache/) | [Sources](https://github.com/startxfr/docker-images/Services/apache)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------------------------|-----------------------------------------------|
