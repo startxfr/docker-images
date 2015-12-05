@@ -36,11 +36,8 @@ service:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "memcache"
     CONTAINER_INSTANCE: "service-memcache"
-    SERVER_NAME: "localhost"
-    DOC_ROOT: "/data/memcache"
   volumes:
     - "/tmp/container/logs/memcache:/data/logs/memcache"
-    - "/tmp/container/memcache:/data/memcache"
 ```
 
 ## Docker-compose in various situations

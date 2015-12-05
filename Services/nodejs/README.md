@@ -92,10 +92,10 @@ CMD ["/bin/run.sh"]
 
 | Variable                  | Type     | Mandatory | Description                                                              |
 |---------------------------|----------|-----------|--------------------------------------------------------------------------|
+| APP_MAIN                  | `string` | `yes`     | Path to the application entrypoint. default is /data/nodejs/app.js
 | CONTAINER_INSTANCE        | `string` | `yes`     | Container name. Should be uning to get fine grained log and application reporting
 | CONTAINER_TYPE            | `string` | `no`      | Container family (os, service, application. could be enhanced 
 | CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
-| APP_MAIN                  | `string` | `no`      | Path to the application entrypoint. default is /data/nodejs/app.js
 | LOG_PATH                  | `auto`   | `auto`    | default set to /data/logs/nodejs and used as a volume mountpoint
 | APP_PATH                  | `auto`   | `auto`    | default set to /data/nodejs and used as a volume mountpoint
 | TMP_APP_PATH              | `auto`   | `auto`    | default set to /tmp/nodejs and used to hold app content and copy to $APP_PATH on startup (if $APP_PATH is empty)

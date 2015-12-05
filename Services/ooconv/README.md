@@ -1,64 +1,127 @@
-# STARTX Services docker-images : NodeJS Server
+<!--[metadata]>
++++
+title = "STARTX Docker Services Images : OOCONV"
+description = "Docker container with ooconv service based on latest fedora"
+keywords = ["home, docker, startx, ooconv, fedora, centos, repository, container, swarm, compose"]
+weight=3
++++
+<![end-metadata]-->
 
-Container running ooconv daemon under a fedora server
+# Docker OS Images : OOCONV
 
-## Running from docker registry
+Simple and lightweight (450Mo) container used to document convertion and manipulation tools
+Run [libreoffice](https://www.libreoffice.org/) as a daemon using [dagwieers unoconv](https://github.com/dagwieers/unoconv) under a container based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
-	docker run -d -p 2002:2002 --name="ooconv" startx/sv-ooconv
-        # when used with a volume container (run data container, then run service)
-	docker run -d -v /tmp/ootmp --name ooconv-data startx/sv-ooconv  echo "Data container for ooconv"
-	docker run -d -p 2002:2002 --volumes-from ooconv-data --name="ooconv" startx/sv-ooconv
-	when linked to another container
-	docker run -d --name="ooconv" startx/sv-ooconv
-	docker run -d -p 80:80 --name="php" --link ooconv:ooconv startx/sv-php
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-ooconv/) | [Sources](https://github.com/startxfr/docker-images/Services/ooconv)             | [STARTX Profile](https://github.com/startxfr) | 
+|-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------------------------|-----------------------------------------------|
 
-## Build and run from local Dockerfile
-### Building docker image
-Copy sources in your docker host 
+## Available flavours
 
-	mkdir startx-docker-images; 
-	cd startx-docker-images;
-	git clone https://github.com/startxfr/docker-images.git .
+* `:latest` : Fedora core 23 + OOConv 
+* `:fc23` : Fedora core 23 + OOConv 
+* `:fc22` : Fedora core 22 + OOConv 
+* `:fc21` : Fedora core 21 + OOConv 
+* `:centos7` : CentOS 7 + OOConv 
+* `:centos6` : Centos 6 + OOConv 
 
-Build the container
+## Running from dockerhub registry
 
-	docker build -t sv-ooconv Services/ooconv/
+* with `docker` you can run `docker run -it --name="sv-ooconv" startx/sv-ooconv` from any docker host
+* with `docker-compose` you can create a docker-compose.yml file with the following content
+```
+service:
+  image: startx/sv-ooconv:latest
+  container_name: "sv-ooconv"
+  environment:
+    CONTAINER_TYPE: "service"
+    CONTAINER_SERVICE: "ooconv"
+    CONTAINER_INSTANCE: "service-ooconv"
+  volumes:
+    - "/tmp/container/logs/ooconv:/data/logs/ooconv"
+```
 
-### Running local image
+## Docker-compose in various situations
 
-	docker run -d -p 2002:2002 --name="ooconv" sv-ooconv
+* sample docker-compose.yml linked to host port 1000
+```
+service:
+  image: startx/sv-ooconv:latest
+  container_name: "sv-ooconv"
+  environment:
+    CONTAINER_INSTANCE: "service-ooconv"
+  ports:
+    - "1000:2002"
+```
+* sample docker-compose.yml with port exposed only to linked services
+```
+service:
+  image: startx/sv-ooconv:latest
+  container_name: "sv-ooconv"
+  environment:
+    CONTAINER_INSTANCE: "service-ooconv"
+  expose:
+    - "2002"
+```
 
-## Accessing server
-access to the running webserver
+## Using this image in your own container
 
-	firefox http://localhost:2002
+You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
+ ```
+FROM startx/sv-ooconv:latest
+#... your container specifications
+CMD ["/bin/run.sh"]
+```
 
-access to the container itself
+## Environment variable
 
-	docker exec -it ooconv /bin/bash
+| Variable                  | Type     | Mandatory | Description                                                              |
+|---------------------------|----------|-----------|--------------------------------------------------------------------------|
+| CONTAINER_INSTANCE        | `string` | `yes`     | Container name. Should be uning to get fine grained log and application reporting
+| CONTAINER_TYPE            | `string` | `no`      | Container family (os, service, application. could be enhanced 
+| CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
+| HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
+| LOG_PATH                  | `auto`   | `auto`    | default set to /data/logs/ooconv and used as a volume mountpoint
 
-## Related Resources
-* [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/ooconv)
-* [Github STARTX profile](https://github.com/startxfr/docker-images)
-* [Docker registry for this container](https://registry.hub.docker.com/u/startx/sv-ooconv/)
-* [Docker registry for Fedora](https://registry.hub.docker.com/u/fedora/)
+## Exposed port
 
-STARTX docker-images - OOConv
-=============================
+| Port  | Description                                                              |
+|-------|--------------------------------------------------------------------------|
+| 2002  | network port used to communicate with unoconv service
 
-**Description**  
-Based on the docker default centos Dockerfile
+## Exposed volumes
 
-**Usage**  
+| Container directory  | Description                                                              |
+|----------------------|--------------------------------------------------------------------------|
+| /data/logs/ooconv    | log directory used to record container and ooconv logs
 
-	  docker run --name="test-ooconv" startx/sv-ooconv unoconv
-	  docker run -d -p 2002:2002 --name="test-ooconv" startx/sv-ooconv
+## Testing the service
+
+access to the running unoconv service with unoconv client `unoconv -s localhost -p 2002`. Change port and hostname according to your current configuration
+
+## For advanced users
+
+You want to use this container and code to build and create locally this container, follow theses instructions.
+
+This section will help you if you want to :
+* Get latest version of this service container
+* Enhance container content by adding instruction in Dockefile before build step
+
+You must have a working environment with the source code of this repository. Read and follow [how to setup your working environment](https://github.com/startxfr/docker-images#setup-your-working-environment-mandatory) to get a working directory. The following instructions assume you are at the top level of your working directory.
+
+### Build & run a container using `docker`
+
+1. Jump into the container directory with `cd Services/ooconv`
+2. Build the container using `docker build -t sv-ooconv .`
+3. Run this container 
+  1. Interactively with `docker run -p 2002:2002 -v /data/logs/ooconv -it sv-ooconv`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 2002:2002 -v /data/logs/ooconv -d sv-ooconv`
 
 
-**Converting documents**
+### Build & run a container using `docker-compose`
 
-	// Start the server 
-	unoconv --listener --server 1.2.3.4 --port 2002
+1. Jump into the container directory with `cd Services/ooconv`
+2. Run this container 
+  1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
+  2. As a daemon with `docker-compose up -d`. Container startup logs can be read using `docker-compose logs`
 
-	// Use the client to connect to the convertion server
-	unoconv --server 1.2.3.4 --port 2002
+If you experience trouble with port already used, edit docker-compose.yml file and change port mapping
