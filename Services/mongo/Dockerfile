@@ -1,4 +1,4 @@
-FROM startx/fedora
+FROM startx/fedora:23
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
