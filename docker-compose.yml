@@ -1,44 +1,44 @@
-fc23:
+fc22:
   extends:
     file: OS/docker-compose.yml
     service: fedora
 
-fc23_apache:
+fc22_apache:
   extends:
     file: Services/apache/docker-compose.yml
     service: server
 
-#fc23_php:
+#fc22_php:
 #  extends:
 #    file: Services/php/docker-compose.yml
 #    service: server
 
-#fc23_mariadb:
+#fc22_mariadb:
 #  extends:
 #    file: Services/mariadb/docker-compose.yml
 #    service: server
 
-#fc23_memcache:
+#fc22_memcache:
 #  extends:
 #    file: Services/memcache/docker-compose.yml
 #    service: server
 
-#fc23_mongo:
+#fc22_mongo:
 #  extends:
 #    file: Services/mongo/docker-compose.yml
 #    service: server
 #
-#fc23_nodejs:
+#fc22_nodejs:
 #  extends:
 #    file: Services/nodejs/docker-compose.yml
 #    service: server
 #
-#fc23_ooconv:
+#fc22_ooconv:
 #  extends:
 #    file: Services/ooconv/docker-compose.yml
 #    service: server
 
-#fc23_postgres:
+#fc22_postgres:
 #  extends:
 #    file: Services/postgres/docker-compose.yml
 #    service: server

@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "postgres-fc23"
+  container_name: "postgres-fc22"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 8

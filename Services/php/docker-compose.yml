@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "php-fc23"
+  container_name: "php-fc22"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 5

@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "apache-fc23"
+  container_name: "apache-fc22"
   mem_limit: 500m
   memswap_limit: 500m
   cpu_shares: 2

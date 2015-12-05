@@ -1,15 +1,15 @@
 <!--[metadata]>
 +++
-title = "STARTX Docker Images Repository : Services in Fedora 23"
-description = "Docker services containers based on fedora 23 and deliverying main opensources project as container"
-keywords = ["home, docker, startx, services, fedora 23, container, swarm, compose, howto, "]
+title = "STARTX Docker Images Repository : Services in Fedora 22"
+description = "Docker services containers based on fedora 22 and deliverying main opensources project as container"
+keywords = ["home, docker, startx, services, fedora 22, container, swarm, compose, howto, "]
 weight=3
 +++
 <![end-metadata]-->
 
-# STARTX Docker-Images Services based on Fedora 23
+# STARTX Docker-Images Services based on Fedora 22
 
-This directory host various Open Source services into docker containers based on [startx/fedora:23 container](https://hub.docker.com/r/startx/fedora)
+This directory host various Open Source services into docker containers based on [startx/fedora:22 container](https://hub.docker.com/r/startx/fedora)
 
 You can use it to instanciate new container from the dockerhub public registry 
 or as a parent container in your own container's. 
@@ -41,11 +41,11 @@ your project and start using stable or experimental applications in your applica
 
 | Services            | Command                                                                        |
 |---------------------|--------------------------------------------------------------------------------|
-| **Apache**          | `docker run -d -p 80:80 --name="fc23-apache" startx/sv-apache:fc23`            | 
-| **MariaDB**         | `docker run -d -p 3306:3306 --name="fc23-mariadb" startx/sv-mariadb:fc23`      | 
-| **Memcache**        | `docker run -d -p 11211:11211 --name="fc23-memcache" startx/sv-memcache:fc23`  | 
-| **MongoDB**         | `docker run -d -p 27017:27017 --name="fc23-mongo" startx/sv-mongo:fc23`        | 
-| **nodejs**          | `docker run -d -p 8000:8000 --name="fc23-nodejs" startx/sv-nodejs:fc23`        | 
-| **ooconv**          | `docker run -d -p XXX:XXX --name="fc23-ooconv" startx/sv-ooconv:fc23`          | 
-| **php**             | `docker run -d -p 80:80 --name="fc23-php" startx/sv-php:fc23`                  | 
-| **postgreSQL**      | `docker run -d -p 5432:5432 --name="fc23-postgres" startx/sv-postgres:fc23`    | 
+| **Apache**          | `docker run -d -p 80:80 --name="fc22-apache" startx/sv-apache:fc22`            | 
+| **MariaDB**         | `docker run -d -p 3306:3306 --name="fc22-mariadb" startx/sv-mariadb:fc22`      | 
+| **Memcache**        | `docker run -d -p 11211:11211 --name="fc22-memcache" startx/sv-memcache:fc22`  | 
+| **MongoDB**         | `docker run -d -p 27017:27017 --name="fc22-mongo" startx/sv-mongo:fc22`        | 
+| **nodejs**          | `docker run -d -p 8000:8000 --name="fc22-nodejs" startx/sv-nodejs:fc22`        | 
+| **ooconv**          | `docker run -d -p XXX:XXX --name="fc22-ooconv" startx/sv-ooconv:fc22`          | 
+| **php**             | `docker run -d -p 80:80 --name="fc22-php" startx/sv-php:fc22`                  | 
+| **postgreSQL**      | `docker run -d -p 5432:5432 --name="fc22-postgres" startx/sv-postgres:fc22`    | 
