@@ -10,7 +10,8 @@ weight=3
 # Docker OS Images : APACHE + PHP
 
 Simple and lightweight (145Mo) container used to deliver dynamic http content using apache associated with PHP engine
-Run [PHP engine](https://www.php.net) under a container based on [startx/sv-apache container](https://hub.docker.com/r/startx/sv-apache)
+Run [PHP engine](https://www.php.net) under a container 
+based on [startx/sv-apache container](https://hub.docker.com/r/startx/sv-apache)
 
 | [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-php/) | [Sources](https://github.com/startxfr/docker-images/Services/php)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------|-------------------------------------------------------------------------------|-----------------------------------------------|
