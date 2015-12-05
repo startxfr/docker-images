@@ -47,7 +47,8 @@ This section is usefull if you want :
 
 1. **Install docker and docker-compose on you environment** 
   1. Check if you have a running docker daemon using `docker --version` If not try to run it using `sudo docker --daemon`. If docker is not installed, follow [docker installation guidelines](https://docs.docker.com/v1.8/installation/)
-  2. Check if you have docker compose installed using `docker-compose --version`. If docker-compose is not installed, follow [docker-compose installation guidelines](https://docs.docker.com/compose/install/)
+  2. Check if you have docker-compose installed using `docker-compose --version`. If docker-compose is not installed, follow [docker-compose installation guidelines](https://docs.docker.com/compose/install/)
+  3. Check if you have git installed using `git --version`. If git is not installed, execute `sudo dnf install -y git`
 2. **Copy repository source locally**
   1. Setup a working directory with `mkdir startx-docker-images; cd startx-docker-images;`
   2. Clone source repository with `git clone https://github.com/startxfr/docker-images.git .`
