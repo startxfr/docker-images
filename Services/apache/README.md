@@ -15,7 +15,6 @@ Run [apache httpd daemon](https://httpd.apache.org/) under a container based on 
 | [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-apache/) | [Sources](https://github.com/startxfr/docker-images/Services/apache)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------------------------|-----------------------------------------------|
 
-
 ## Available flavours
 
 * `:latest` : Fedora core 23 + Apache 

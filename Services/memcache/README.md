@@ -1,47 +1,46 @@
 <!--[metadata]>
 +++
-title = "STARTX Docker Services Images : APACHE"
-description = "Docker container with apache service based on latest fedora"
-keywords = ["home, docker, startx, apache, fedora, centos, repository, container, swarm, compose"]
+title = "STARTX Docker Services Images : MEMCACHE"
+description = "Docker container with memcache service based on latest fedora"
+keywords = ["home, docker, startx, memcache, fedora, centos, repository, container, swarm, compose"]
 weight=3
 +++
 <![end-metadata]-->
 
-# Docker OS Images : APACHE
+# Docker OS Images : MEMCACHE
 
-Simple and lightweight (120Mo) container used to deliver static http content include all apache's modules but no external languages engines (like php). For dynamic content, you should use our [sv-php service container](https://hub.docker.com/r/startx/sv-php)
-Run [apache httpd daemon](https://httpd.apache.org/) under a container based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
+Simple and lightweight (130Mo) container used to deliver distributed memory object caching system
+Run [memcached daemon](https://httpd.memcached.org/) under a container based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-apache/) | [Sources](https://github.com/startxfr/docker-images/Services/apache)             | [STARTX Profile](https://github.com/startxfr) | 
-|-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------------------------|-----------------------------------------------|
-
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-memcache/) | [Sources](https://github.com/startxfr/docker-images/Services/memcache)             | [STARTX Profile](https://github.com/startxfr) | 
+|-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|------------------------------------------------------------------------------------|-----------------------------------------------|
 
 ## Available flavours
 
-* `:latest` : Fedora core 23 + Apache 
-* `:fc23` : Fedora core 23 + Apache 
-* `:fc22` : Fedora core 22 + Apache 
-* `:fc21` : Fedora core 21 + Apache 
-* `:centos7` : CentOS 7 + Apache 
-* `:centos6` : Centos 6 + Apache 
+* `:latest` : Fedora core 23 + Memcached 
+* `:fc23` : Fedora core 23 + Memcached
+* `:fc22` : Fedora core 22 + Memcached 
+* `:fc21` : Fedora core 21 + Memcached 
+* `:centos7` : CentOS 7 + Memcached
+* `:centos6` : Centos 6 + Memcached 
 
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="sv-apache" startx/sv-apache` from any docker host
+* with `docker` you can run `docker run -it --name="sv-memcache" startx/sv-memcache` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-apache:latest
-  container_name: "sv-apache"
+  image: startx/sv-memcache:latest
+  container_name: "sv-memcache"
   environment:
     CONTAINER_TYPE: "service"
-    CONTAINER_SERVICE: "apache"
-    CONTAINER_INSTANCE: "service-apache"
+    CONTAINER_SERVICE: "memcache"
+    CONTAINER_INSTANCE: "service-memcache"
     SERVER_NAME: "localhost"
-    DOC_ROOT: "/data/apache"
+    DOC_ROOT: "/data/memcache"
   volumes:
-    - "/tmp/container/logs/apache:/data/logs/apache"
-    - "/tmp/container/apache:/data/apache"
+    - "/tmp/container/logs/memcache:/data/logs/memcache"
+    - "/tmp/container/memcache:/data/memcache"
 ```
 
 ## Docker-compose in various situations
@@ -49,44 +48,29 @@ service:
 * sample docker-compose.yml linked to host port 1000
 ```
 service:
-  image: startx/sv-apache:latest
-  container_name: "sv-apache"
+  image: startx/sv-memcache:latest
+  container_name: "sv-memcache"
   environment:
-    CONTAINER_INSTANCE: "service-apache"
+    CONTAINER_INSTANCE: "service-memcache"
   ports:
-    - "1000:80"
+    - "1000:11211"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
 service:
-  image: startx/sv-apache:latest
-  container_name: "sv-apache"
+  image: startx/sv-memcache:latest
+  container_name: "sv-memcache"
   environment:
-    CONTAINER_INSTANCE: "service-apache"
+    CONTAINER_INSTANCE: "service-memcache"
   expose:
-    - "80"
-```
-* sample docker-compose.yml using data container
-```
-data:
-  image: startx/fedora:latest
-  container_name: "sv-apache-data"
-  environment:
-    CONTAINER_INSTANCE: "service-apache-data"
-service:
-  image: startx/sv-apache:latest
-  container_name: "sv-apache"
-  environment:
-    CONTAINER_INSTANCE: "service-apache"
-  volume_from:
-    - data:rw
+    - "11211"
 ```
 
 ## Using this image in your own container
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
  ```
-FROM startx/sv-apache:latest
+FROM startx/sv-memcache:latest
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```
@@ -98,29 +82,25 @@ CMD ["/bin/run.sh"]
 | CONTAINER_INSTANCE        | `string` | `yes`     | Container name. Should be uning to get fine grained log and application reporting
 | CONTAINER_TYPE            | `string` | `no`      | Container family (os, service, application. could be enhanced 
 | CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
-| SERVER_NAME               | `string` | `no`      | Server name for this container. If no name localhost will be assigned
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
-| DOC_ROOT                  | `auto`   | `auto`    | document root, will use the $APP_PATH variable
-| LOG_PATH                  | `auto`   | `auto`    | is set to /data/logs/apache and used as a volume mountpoint
-| APP_PATH                  | `auto`   | `auto`    | is set to /data/apache and used as a volume mountpoint
+| LOG_PATH                  | `auto`   | `auto`    | is set to /data/logs/memcache and used as a volume mountpoint
 
 ## Exposed port
 
 | Port  | Description                                                              |
 |-------|--------------------------------------------------------------------------|
-| 80    | standard httpd network port used for non encrypted http traffic
-| 443   | SSL enabeled http port used for encrypted traffic (certificate not actually implemented)
+| 11211 | standard memcached network port used for key/value recovery
 
 ## Exposed volumes
 
 | Container directory  | Description                                                              |
 |----------------------|--------------------------------------------------------------------------|
-| /data/logs/apache    | log directory used to record container and apache logs
-| /data/apache         | data directory served by apache. If empty will be filled with app on startup. In other case use content from mountpoint or data volumes
+| /data/logs/memcache  | log directory used to record container and memcache logs
+| /data/memcache       | data directory served by memcache. If empty will be filled with app on startup. In other case use content from mountpoint or data volumes
 
 ## Testing the service
 
-access to the running webserver with your favorites browser `firefox http://localhost:80`. Change port and hostname according to your current configuration
+access to the running memcached daemon with `telnet localhost 11211; stats`. Change port and hostname according to your current configuration
 
 ## For advanced users
 
@@ -134,68 +114,18 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-1. Jump into the container directory with `cd Services/apache`
-2. Build the container using `docker build -t sv-apache .`
+1. Jump into the container directory with `cd Services/memcache`
+2. Build the container using `docker build -t sv-memcache .`
 3. Run this container 
-  1. Interactively with `docker run -p 80:80 -v /data/logs/apache -it sv-apache`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -p 80:80 -v /data/logs/apache -d sv-apache`
+  1. Interactively with `docker run -p 11211:11211 -v /data/logs/memcache -it sv-memcache`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 11211:11211 -v /data/logs/memcache -d sv-memcache`
 
 
 ### Build & run a container using `docker-compose`
 
-1. Jump into the container directory with `cd Services/apache`
+1. Jump into the container directory with `cd Services/memcache`
 2. Run this container 
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
   2. As a daemon with `docker-compose up -d`. Container startup logs can be read using `docker-compose logs`
 
 If you experience trouble with port already used, edit docker-compose.yml file and change port mapping
-
-
-
-
-
-
-
-*************
-
-
-# STARTX Services docker-images : Memcache Server
-
-Container running memcached daemon under a fedora server
-This container run memcached on fedora server. 
-
-## Running from docker registry
-
-	docker run -d -p 11211:11211 --name="memcache" startx/sv-memcache
-	when linked to another container
-	docker run -d --name="memcache" startx/sv-memcache
-	docker run -d --name="php" --link memcache:memcache startx/sv-php
-
-## Build and run from local Dockerfile
-### Building docker image
-Copy sources in your docker host 
-
-	mkdir startx-docker-images; 
-	cd startx-docker-images;
-	git clone https://github.com/startxfr/docker-images.git .
-
-Change configuration and personalize your base image. See sx/memcache_run.sh to perform some usefull when configuring or every time you run a container.
-
-Build the container
-
-	docker build -t sv-memcache Services/memcache/
-
-### Running local image
-
-	docker run -d -p 11211:11211 --name="memcache" sv-memcache
-
-## Accessing server
-access to the container itself
-
-	docker exec -it memcache /bin/bash
-
-## Related Resources
-* [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/memcache)
-* [Github STARTX profile](https://github.com/startxfr/docker-images)
-* [Docker registry for this container](https://registry.hub.docker.com/u/startx/sv-memcache/)
-* [Docker registry for Fedora](https://registry.hub.docker.com/u/fedora/)

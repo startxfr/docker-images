@@ -13,8 +13,7 @@ Simple and lightweight (170Mo) container used to deliver mysql like database ser
 Run [mariadb daemon](https://mariadb.org/) under a container based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 | [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-mariadb/) | [Sources](https://github.com/startxfr/docker-images/Services/mariadb)             | [STARTX Profile](https://github.com/startxfr) | 
-|-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------------------------|-----------------------------------------------|
-
+|-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------|-----------------------------------------------|
 
 ## Available flavours
 
