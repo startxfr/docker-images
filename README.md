@@ -28,11 +28,11 @@ your project and start using stable or experimental services in your application
 
 ## OS, Services and Applications guidelines
 
-| Type             | Manual                      | Available                                       | Running sample                                               | Flavours
-|------------------|-----------------------------|-------------------------------------------------|--------------------------------------------------------------|-------------------------------------------------|
-| **OS**           | [read manual](OS)           | [read section](OS#container-flavours)           | [OS](OS#running-from-dockerhub-registry)                     | [OS](OS#container-flavours)                     |
-| **Services**     | [read manual](Services)     | [read section](Services#container-flavours)     | [Services](Services#running-from-dockerhub-registry)         | [Services](Services#container-flavours)         |
-| **Applications** | [read manual](Applications) | [read section](Applications#container-flavours) | [Applications](Applications#running-from-dockerhub-registry) | [Applications](Applications#container-flavours) |
+| Type             | Manual                      | Available                                                 | Running sample                                                  | Flavours
+|------------------|-----------------------------|-----------------------------------------------------------|-----------------------------------------------------------------|------------------------------------------------------|
+| **OS**           | [read manual](OS)           | [read OS list](OS#container-flavours)                     | [see sample code](OS#running-from-dockerhub-registry)           | [read flavours list](OS#container-flavours)          |
+| **Services**     | [read manual](Services)     | [read services list](Services#container-flavours)         | [see sample code](Services#running-from-dockerhub-registry)     | [read flavours list](Services#container-flavours)    |
+| **Applications** | [read manual](Applications) | [read applications list](Applications#container-flavours) | [see sample code](Applications#running-from-dockerhub-registry) | [read flavours list](Applications#container-flavours)|
 
 ## For advanced users
 
