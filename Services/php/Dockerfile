@@ -1,4 +1,4 @@
-FROM startx/sv-apache:fc22
+FROM startx/sv-apache:fc23
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
@@ -8,14 +8,22 @@ RUN dnf -y install php php-pecl-mongo php-cli php-pear \
         php-bcmath php-pecl-zip php-php-gettext php-tcpdf \
         php-tcpdf-dejavu-sans-fonts php-tidy \
     && dnf clean all  
-# Copy application content
-COPY app/* /var/www/html/
-COPY httpd.conf /etc/httpd/conf.d/sx.conf
+ENV LOG_PATH=/data/logs/apache_php  \
+    APP_PATH=/data/apache_php \
+    STARTUPLOG=/data/logs/apache_php/startup.log
+COPY httpd.conf $HTTPDCONF
 COPY php.ini /etc/php.d/sx.ini
-RUN chmod ug+r /var/www/html/* \
-    && chown -R apache:apache /var/www/html /var/log/httpd 
+COPY run.sh /bin/
+RUN chmod 775 /bin/run.sh && \
+    chmod ug+r $HTTPDCONF && \
+    mkdir $APP_PATH && \
+    mkdir $LOG_PATH && \
+    touch $STARTUPLOG
+COPY ./ $APP_PATH
+RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/run.sh && \
+    chown -R apache:apache $APP_PATH $LOG_PATH && \
+    chmod ug+r -R $APP_PATH
 
-EXPOSE 80
-EXPOSE 443
-VOLUME ["/var/www/html", "/var/log/httpd"]
-CMD ["/sx/httpd_run.sh"]
+EXPOSE 80 443
+VOLUME [$APP_PATH,$LOG_PATH]
+CMD ["/bin/run.sh"]

@@ -1,9 +1,5 @@
-
-
-FROM       openshift/centos-rockmongo:22
+FROM startx/sv-php:fc22
 MAINTAINER startx dev@startx.fr
-
-
 
 # update, install required, clean
 RUN yum -y update && yum install -y httpd php php-devel wget php-pear unzip gcc-c++ make && yum clean all

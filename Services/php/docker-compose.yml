@@ -1,0 +1,16 @@
+server:
+  build: ./
+  container_name: "php-fc23"
+  mem_limit: 1g
+  memswap_limit: 1g
+  cpu_shares: 5
+  restart: "on-failure:2"
+  environment:
+    CONTAINER_TYPE: "service"
+    CONTAINER_SERVICE: "php"
+    CONTAINER_INSTANCE: "service-apache_php"
+    SERVER_NAME: "localhost"
+    DOC_ROOT: "/data/apache_php"
+  volumes:
+    - "/tmp/container/logs/apache_php:/data/logs/apache_php"
+    - "/tmp/container/apache_php:/data/apache_php"
