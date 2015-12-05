@@ -35,7 +35,7 @@ service:
     CONTAINER_INSTANCE: "service-nodejs-fc22"
   volumes:
     - "/tmp/container-fc22/logs/nodejs:/data/logs/nodejs"
-    - "/tmp/container-fc22/nodejs:/data/nodejs-fc22"
+    - "/tmp/container-fc22/nodejs:/data/nodejs"
 ```
 
 ## Docker-compose in various situations
