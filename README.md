@@ -26,23 +26,13 @@ your project and start using stable or experimental services in your application
 | [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx) | [Sources](https://github.com/startxfr/docker-images/)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------|
 
-## Available services, applications and OS images
+## OS, Services and Applications guidelines
 
-* [OS](OS#container-flavours)
-* [Services](Services#available-services)
-* [Applications](Applications#available-applications)
-
-## Running from dockerhub registry
-
-* [OS](OS#running-from-dockerhub-registry)
-* [Services](Services#running-from-dockerhub-registry)
-* [Applications](Applications#running-from-dockerhub-registry)
-
-## Container flavours
-
-* [OS](OS#container-flavours)
-* [Services](Services#container-flavours)
-* [Applications](Applications#container-flavours)
+| Type             | Manual                      | Available                                       | Running sample                                               | Flavours
+|------------------|-----------------------------|-------------------------------------------------|--------------------------------------------------------------|-------------------------------------------------|
+| **OS**           | [read manual](OS)           | [read section](OS#container-flavours)           | [OS](OS#running-from-dockerhub-registry)                     | [OS](OS#container-flavours)                     |
+| **Services**     | [read manual](Services)     | [read section](Services#container-flavours)     | [Services](Services#running-from-dockerhub-registry)         | [Services](Services#container-flavours)         |
+| **Applications** | [read manual](Applications) | [read section](Applications#container-flavours) | [Applications](Applications#running-from-dockerhub-registry) | [Applications](Applications#container-flavours) |
 
 ## For advanced users
 
