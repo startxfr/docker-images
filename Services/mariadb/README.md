@@ -104,6 +104,7 @@ CMD ["/bin/run.sh"]
 | MYSQL_USER                | `string` | `no`      | If present, add a new user with this name
 | MYSQL_PASSWORD            | `string` | `no`      | Password associated to the new user declared with $MYSQL_USER
 | MYSQL_DATABASE            | `string` | `no`      | If present, add a new database with this name
+| LOADSQL_PATH              | `string` | `auto`    | Path used to find sql dump to import at startup
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
 | LOG_PATH                  | `auto`   | `auto`    | is set to /data/logs/mariadb and used as a volume mountpoint
 | APP_PATH                  | `auto`   | `auto`    | is set to /data/mariadb and used as a volume mountpoint
