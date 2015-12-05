@@ -11,7 +11,7 @@ weight=3
 
 Simple and lightweight (150Mo) container used to deliver document-oriented database
 Run [mongodb daemon](https://www.mongodb.org/) under a container 
-based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
+based on [startx/fedora:23 container](https://hub.docker.com/r/startx/fedora)
 
 | [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-mongo/) | [Sources](https://github.com/startxfr/docker-images/Services/mongo)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|---------------------------------------------------------------------------------|-----------------------------------------------|

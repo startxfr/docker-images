@@ -11,7 +11,7 @@ weight=3
 
 Simple and lightweight (190Mo) container used to run server side executed javascript content. include all nodejs and npm dependency.
 Run [nodejs main app.js](https://www.nodejs.org/) under a container 
-based on [startx/fedora container](https://hub.docker.com/r/startx/fedora). Could use various network protocol (like http, websocket, smtp, telnet) according to the content of the running app.
+based on [startx/fedora:23 container](https://hub.docker.com/r/startx/fedora). Could use various network protocol (like http, websocket, smtp, telnet) according to the content of the running app.
 
 | [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-nodejs/) | [Sources](https://github.com/startxfr/docker-images/Services/nodejs)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------------------------|-----------------------------------------------|

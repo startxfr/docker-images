@@ -11,7 +11,7 @@ weight=3
 
 Simple and lightweight (130Mo) container used to deliver distributed memory object caching system
 Run [memcached daemon](https://www.memcached.org/) under a container 
-based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
+based on [startx/fedora:23 container](https://hub.docker.com/r/startx/fedora)
 
 | [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-memcache/) | [Sources](https://github.com/startxfr/docker-images/Services/memcache)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|------------------------------------------------------------------------------------|-----------------------------------------------|
