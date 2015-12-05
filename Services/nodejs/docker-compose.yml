@@ -1,7 +1,7 @@
 server:
   build: ./
 #  image: sv-nodejs
-  container_name: "nodejs-server"
+  container_name: "nodejs-fc23"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 5

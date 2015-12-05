@@ -1,7 +1,7 @@
 server:
   build: ./
 #  image: sx-postgresql
-  container_name: "sx-postgresql"
+  container_name: "postgres-fc23"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 8

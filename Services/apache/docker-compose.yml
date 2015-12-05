@@ -1,7 +1,7 @@
 server:
   build: ./
 #  image: sv-apache
-  container_name: "apache-server"
+  container_name: "apache-fc23"
   mem_limit: 500m
   memswap_limit: 500m
   cpu_shares: 2

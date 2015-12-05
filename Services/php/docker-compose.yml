@@ -1,7 +1,7 @@
 server:
   build: ./
 #  image: sx-php
-  container_name: "php-server"
+  container_name: "php-fc23"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 5
