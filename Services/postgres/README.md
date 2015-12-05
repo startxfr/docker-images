@@ -1,42 +1,37 @@
 <!--[metadata]>
 +++
-title = "STARTX Docker Services Images : POSTGRESQL"
-description = "Docker container with postgres service based on latest fedora"
-keywords = ["home, docker, startx, postgres, fedora, centos, repository, container, swarm, compose"]
+title = "STARTX Docker Services Images : POSTGRESQL on Fedora 23"
+description = "Docker container with postgres service based on fedora 23"
+keywords = ["home, docker, startx, postgres, fedora 23, centos, repository, container, swarm, compose"]
 weight=3
 +++
 <![end-metadata]-->
 
-# Docker OS Images : POSTGRESQL
+# Docker OS Images : POSTGRESQL on Fedora 23
 
 Simple and lightweight (130Mo) container used to deliver highly reliable and configurable transactional database service using postgresql opensource project.
 Run [postgres daemon](http://www.postgresql.org/) under a container 
 based on [startx/fedora:23 container](https://hub.docker.com/r/startx/fedora)
 
+Each container is provided with various underlying OS version based on CentOS or 
+Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
+or **[other postgres flavours](https://github.com/startxfr/docker-images/Services/postgres/#available-flavours)**
+
 | [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-postgres/) | [Sources](https://github.com/startxfr/docker-images/Services/postgres)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------|-----------------------------------------------|
 
-## Available flavours
-
-* `:latest` : Fedora core 23 + PostgreSQL 
-* `:fc23` : Fedora core 23 + PostgreSQL 
-* `:fc22` : Fedora core 22 + PostgreSQL 
-* `:fc21` : Fedora core 21 + PostgreSQL 
-* `:centos7` : CentOS 7 + PostgreSQL 
-* `:centos6` : Centos 6 + PostgreSQL 
-
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="sv-postgres" startx/sv-postgres` from any docker host
+* with `docker` you can run `docker run -it --name="service-postgres" startx/sv-postgres` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-postgres:latest
-  container_name: "sv-postgres"
+  image: startx/sv-postgres:fc23
+  container_name: "service-postgres-fc23"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "postgres"
-    CONTAINER_INSTANCE: "service-postgres"
+    CONTAINER_INSTANCE: "service-postgres-fc23"
     POSTGRESQL_ROOT_PASSWORD: "rootpassword"
     POSTGRESQL_USER: "user-test"
     POSTGRESQL_PASSWORD: "pwd-test"
@@ -51,35 +46,35 @@ service:
 * sample docker-compose.yml linked to host port 1000
 ```
 service:
-  image: startx/sv-postgres:latest
-  container_name: "sv-postgres"
+  image: startx/sv-postgres:fc23
+  container_name: "service-postgres-fc23"
   environment:
-    CONTAINER_INSTANCE: "service-postgres"
+    CONTAINER_INSTANCE: "service-postgres-fc23"
   ports:
     - "1001:5432"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
 service:
-  image: startx/sv-postgres:latest
-  container_name: "sv-postgres"
+  image: startx/sv-postgres:fc23
+  container_name: "service-postgres-fc23"
   environment:
-    CONTAINER_INSTANCE: "service-postgres"
+    CONTAINER_INSTANCE: "service-postgres-fc23"
   expose:
     - "5432"
 ```
 * sample docker-compose.yml using data container
 ```
 data:
-  image: startx/fedora:latest
-  container_name: "sv-postgres-data"
+  image: startx/fedora:fc23
+  container_name: "service-postgres-data-fc23"
   environment:
-    CONTAINER_INSTANCE: "service-postgres-data"
+    CONTAINER_INSTANCE: "service-postgres-data-fc23"
 service:
-  image: startx/sv-postgres:latest
-  container_name: "sv-postgres"
+  image: startx/sv-postgres:fc23
+  container_name: "service-postgres-fc23"
   environment:
-    CONTAINER_INSTANCE: "service-postgres"
+    CONTAINER_INSTANCE: "service-postgres-fc23"
   volume_from:
     - data:rw
 ```
@@ -88,7 +83,7 @@ service:
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
  ```
-FROM startx/sv-postgres:latest
+FROM startx/sv-postgres:fc23
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```
@@ -138,17 +133,19 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-1. Jump into the container directory with `cd Services/postgres`
-2. Build the container using `docker build -t sv-postgres .`
-3. Run this container 
+1. Switch to the flavour branch with `git branch fc23`
+2. Jump into the container directory with `cd Services/postgres`
+3. Build the container using `docker build -t sv-postgres .`
+4. Run this container 
   1. Interactively with `docker run -p 5432:5432 -v /data/logs/postgres -it sv-postgres`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
   2. As a daemon with `docker run -p 5432:5432 -v /data/logs/postgres -d sv-postgres`
 
 
 ### Build & run a container using `docker-compose`
 
-1. Jump into the container directory with `cd Services/postgres`
-2. Run this container 
+1. Switch to the flavour branch with `git branch fc23`
+2. Jump into the container directory with `cd Services/postgres`
+3. Run this container 
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
   2. As a daemon with `docker-compose up -d`. Container startup logs can be read using `docker-compose logs`
 

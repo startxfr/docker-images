@@ -1,42 +1,37 @@
 <!--[metadata]>
 +++
-title = "STARTX Docker Services Images : MONGO"
-description = "Docker container with mongo service based on latest fedora"
-keywords = ["home, docker, startx, mongo, fedora, centos, repository, container, swarm, compose"]
+title = "STARTX Docker Services Images : MONGO on Fedora 23"
+description = "Docker container with mongo service based on fedora 23"
+keywords = ["home, docker, startx, mongo, fedora 23, centos, repository, container, swarm, compose"]
 weight=3
 +++
 <![end-metadata]-->
 
-# Docker OS Images : MONGO
+# Docker OS Images : MONGO on Fedora 23
 
 Simple and lightweight (150Mo) container used to deliver document-oriented database
 Run [mongodb daemon](https://www.mongodb.org/) under a container 
 based on [startx/fedora:23 container](https://hub.docker.com/r/startx/fedora)
 
+Each container is provided with various underlying OS version based on CentOS or 
+Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
+or **[other mongo flavours](https://github.com/startxfr/docker-images/Services/mongo/#available-flavours)**
+
 | [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-mongo/) | [Sources](https://github.com/startxfr/docker-images/Services/mongo)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|---------------------------------------------------------------------------------|-----------------------------------------------|
 
-## Available flavours
-
-* `:latest` : Fedora core 23 + Mongo 
-* `:fc23` : Fedora core 23 + Mongo 
-* `:fc22` : Fedora core 22 + Mongo 
-* `:fc21` : Fedora core 21 + Mongo 
-* `:centos7` : CentOS 7 + Mongo 
-* `:centos6` : Centos 6 + Mongo 
-
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="sv-mongo" startx/sv-mongo` from any docker host
+* with `docker` you can run `docker run -it --name="service-mongo" startx/sv-mongo` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-mongo:latest
-  container_name: "sv-mongo"
+  image: startx/sv-mongo:fc23
+  container_name: "service-mongo-fc23"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mongo"
-    CONTAINER_INSTANCE: "service-mongo"
+    CONTAINER_INSTANCE: "service-mongo-fc23"
   volumes:
     - "/tmp/container/logs/mongo:/data/logs/mongo"
     - "/tmp/container/mongo:/data/mongo"
@@ -47,35 +42,35 @@ service:
 * sample docker-compose.yml linked to host port 1000
 ```
 service:
-  image: startx/sv-mongo:latest
-  container_name: "sv-mongo"
+  image: startx/sv-mongo:fc23
+  container_name: "service-mongo-fc23"
   environment:
-    CONTAINER_INSTANCE: "service-mongo"
+    CONTAINER_INSTANCE: "service-mongo-fc23"
   ports:
     - "1000:27017"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
 service:
-  image: startx/sv-mongo:latest
-  container_name: "sv-mongo"
+  image: startx/sv-mongo:fc23
+  container_name: "service-mongo-fc23"
   environment:
-    CONTAINER_INSTANCE: "service-mongo"
+    CONTAINER_INSTANCE: "service-mongo-fc23"
   expose:
     - "27017"
 ```
 * sample docker-compose.yml using data container
 ```
 data:
-  image: startx/fedora:latest
-  container_name: "sv-mongo-data"
+  image: startx/fedora:fc23
+  container_name: "service-mongo-data-fc23"
   environment:
-    CONTAINER_INSTANCE: "service-mongo-data"
+    CONTAINER_INSTANCE: "service-mongo-data-fc23"
 service:
-  image: startx/sv-mongo:latest
-  container_name: "sv-mongo"
+  image: startx/sv-mongo:fc23
+  container_name: "service-mongo"
   environment:
-    CONTAINER_INSTANCE: "service-mongo"
+    CONTAINER_INSTANCE: "service-mongo-fc23"
   volume_from:
     - data:rw
 ```
@@ -84,7 +79,7 @@ service:
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
  ```
-FROM startx/sv-mongo:latest
+FROM startx/sv-mongo:fc23
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```
@@ -129,17 +124,19 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-1. Jump into the container directory with `cd Services/mongo`
-2. Build the container using `docker build -t sv-mongo .`
-3. Run this container 
+1. Switch to the flavour branch with `git branch fc23`
+2. Jump into the container directory with `cd Services/mongo`
+3. Build the container using `docker build -t sv-mongo .`
+4. Run this container 
   1. Interactively with `docker run -p 27017:27017 -v /data/logs/mongo -it sv-mongo`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
   2. As a daemon with `docker run -p 27017:27017 -v /data/logs/mongo -d sv-mongo`
 
 
 ### Build & run a container using `docker-compose`
 
-1. Jump into the container directory with `cd Services/mongo`
-2. Run this container 
+1. Switch to the flavour branch with `git branch fc23`
+2. Jump into the container directory with `cd Services/mongo`
+3. Run this container 
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
   2. As a daemon with `docker-compose up -d`. Container startup logs can be read using `docker-compose logs`
 

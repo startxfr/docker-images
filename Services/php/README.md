@@ -1,42 +1,37 @@
 <!--[metadata]>
 +++
-title = "STARTX Docker Services Images : APACHE + PHP"
-description = "Docker container with apache + php service based on latest fedora"
-keywords = ["home, docker, startx, apache, php, fedora, centos, repository, container, swarm, compose"]
+title = "STARTX Docker Services Images : APACHE + PHP on Fedora 23"
+description = "Docker container with apache + php service based on fedora 23"
+keywords = ["home, docker, startx, apache, php, fedora 23, centos, repository, container, swarm, compose"]
 weight=3
 +++
 <![end-metadata]-->
 
-# Docker OS Images : APACHE + PHP
+# Docker OS Images : APACHE + PHP on Fedora 23
 
 Simple and lightweight (145Mo) container used to deliver dynamic http content using apache associated with PHP engine
 Run [PHP engine](https://www.php.net) under a container 
 based on [startx/fedora:23 container](https://hub.docker.com/r/startx/fedora)
 
+Each container is provided with various underlying OS version based on CentOS or 
+Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
+or **[other apache + php flavours](https://github.com/startxfr/docker-images/Services/php/#available-flavours)**
+
 | [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-php/) | [Sources](https://github.com/startxfr/docker-images/Services/php)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------|-------------------------------------------------------------------------------|-----------------------------------------------|
 
-## Available flavours
-
-* `:latest` : Fedora core 23 + Apache + PHP 
-* `:fc23` : Fedora core 23 + Apache + PHP 
-* `:fc22` : Fedora core 22 + Apache + PHP 
-* `:fc21` : Fedora core 21 + Apache + PHP 
-* `:centos7` : CentOS 7 + Apache + PHP 
-* `:centos6` : Centos 6 + Apache + PHP 
-
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="sv-php" startx/sv-php` from any docker host
+* with `docker` you can run `docker run -it --name="service-php" startx/sv-php` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-php:latest
-  container_name: "sv-php"
+  image: startx/sv-php:fc23
+  container_name: "service-php-fc23"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "php"
-    CONTAINER_INSTANCE: "service-php"
+    CONTAINER_INSTANCE: "service-php-fc23"
     SERVER_NAME: "localhost"
     DOC_ROOT: "/data/apache_php"
   volumes:
@@ -49,35 +44,35 @@ service:
 * sample docker-compose.yml linked to host port 1000
 ```
 service:
-  image: startx/sv-php:latest
-  container_name: "sv-php"
+  image: startx/sv-php:fc23
+  container_name: "service-php-fc23"
   environment:
-    CONTAINER_INSTANCE: "service-php"
+    CONTAINER_INSTANCE: "service-php-fc23"
   ports:
     - "1000:80"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
 service:
-  image: startx/sv-php:latest
-  container_name: "sv-php"
+  image: startx/sv-php:fc23
+  container_name: "service-php-fc23"
   environment:
-    CONTAINER_INSTANCE: "service-php"
+    CONTAINER_INSTANCE: "service-php-fc23"
   expose:
     - "80"
 ```
 * sample docker-compose.yml using data container
 ```
 data:
-  image: startx/fedora:latest
-  container_name: "sv-php-data"
+  image: startx/fedora:fc23
+  container_name: "service-php-data-fc23"
   environment:
-    CONTAINER_INSTANCE: "service-php-data"
+    CONTAINER_INSTANCE: "service-php-data-fc23"
 service:
-  image: startx/sv-php:latest
-  container_name: "sv-php"
+  image: startx/sv-php:fc23
+  container_name: "service-php-fc23"
   environment:
-    CONTAINER_INSTANCE: "service-php"
+    CONTAINER_INSTANCE: "service-php-fc23"
   volume_from:
     - data:rw
 ```
@@ -86,7 +81,7 @@ service:
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
  ```
-FROM startx/sv-php:latest
+FROM startx/sv-php:fc23
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```
@@ -134,17 +129,19 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-1. Jump into the container directory with `cd Services/php`
-2. Build the container using `docker build -t sv-php .`
-3. Run this container 
+1. Switch to the flavour branch with `git branch fc23`
+2. Jump into the container directory with `cd Services/php`
+3. Build the container using `docker build -t sv-php .`
+4. Run this container 
   1. Interactively with `docker run -p 80:80 -v /data/logs/apache_php -it sv-php`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
   2. As a daemon with `docker run -p 80:80 -v /data/logs/apache_php -d sv-php`
 
 
 ### Build & run a container using `docker-compose`
 
-1. Jump into the container directory with `cd Services/php`
-2. Run this container 
+1. Switch to the flavour branch with `git branch fc23`
+2. Jump into the container directory with `cd Services/php`
+3. Run this container 
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
   2. As a daemon with `docker-compose up -d`. Container startup logs can be read using `docker-compose logs`
 
