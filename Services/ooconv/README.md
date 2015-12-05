@@ -33,7 +33,7 @@ service:
     CONTAINER_SERVICE: "ooconv"
     CONTAINER_INSTANCE: "service-ooconv-fc21"
   volumes:
-    - "/tmp/container/logs/ooconv:/data/logs/ooconv"
+    - "/tmp/container-fc23/logs/ooconv:/data/logs/ooconv"
 ```
 
 ## Docker-compose in various situations

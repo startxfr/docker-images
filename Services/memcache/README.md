@@ -33,7 +33,7 @@ service:
     CONTAINER_SERVICE: "memcache"
     CONTAINER_INSTANCE: "service-memcache-fc21"
   volumes:
-    - "/tmp/container/logs/memcache:/data/logs/memcache"
+    - "/tmp/container-fc23/logs/memcache:/data/logs/memcache"
 ```
 
 ## Docker-compose in various situations

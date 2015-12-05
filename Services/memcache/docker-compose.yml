@@ -10,4 +10,4 @@ server:
     CONTAINER_SERVICE: "memcache"
     CONTAINER_INSTANCE: "service-memcache"
   volumes:
-    - "/tmp/container/logs/memcache:/data/logs/memcache"
+    - "/tmp/container-fc23/logs/memcache:/data/logs/memcache"
