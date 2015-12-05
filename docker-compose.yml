@@ -62,16 +62,16 @@ server_memcache:
   ports:
     - "11211:11211"
 
-pma:
-  build: Applications/phpmyadmin/
-  container_name: "startx-app-phpmyadmin"
-  ports:
-    - "82:80"
-    - "445:443"
-
-rockmongo:
-  build: Applications/rockmongo/
-  container_name: "startx-app-rockmongo"
-  ports:
-    - "83:80"
-    - "446:443"
+#pma:
+#  build: Applications/phpmyadmin/
+#  container_name: "startx-app-phpmyadmin"
+#  ports:
+#    - "82:80"
+#    - "445:443"
+#
+#rockmongo:
+#  build: Applications/rockmongo/
+#  container_name: "startx-app-rockmongo"
+#  ports:
+#    - "83:80"
+#    - "446:443"
