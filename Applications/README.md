@@ -1,24 +1,21 @@
 <!--[metadata]>
 +++
-title = "STARTX Docker Images Repository : Application"
-description = "Docker applications containers based on fedora or CentOS and deliverying main opensources project as container"
-keywords = ["home, docker, startx, applications, container, swarm, compose, howto, "]
+title = "STARTX Docker Images Repository : Application in Fedora 23"
+description = "Docker applications containers based on fedora 23 and deliverying main opensources project as container"
+keywords = ["home, docker, startx, applications, fedora 23, container, swarm, compose, howto, "]
 weight=3
 +++
 <![end-metadata]-->
 
-# STARTX Docker-Images Application Repository
+# STARTX Docker-Images Applications based on Fedora 23
 
-This directory host various Open Source applications into docker containers based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
+This directory host various Open Source applications into docker containers based on [startx/fedora:23 container](https://hub.docker.com/r/startx/fedora)
 
 You can use it to instanciate new container from the dockerhub public registry 
 or as a parent container in your own container's. 
 Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux distribution.
-
-If you're used to work with redhat like and distribution, you would prefer start working
-from a container based on this distribution rather than ubuntu or debian like distributions.
-OS, applications and application you will find here will be closer to your favorite distrbution
+Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
+or [other applications flavours](https://github.com/startxfr/docker-images/Applications#container-flavours)
 
 Please **read each container manual** for more information on how you can use it in 
 your project and start using stable or experimental applications in your applications
@@ -28,22 +25,15 @@ your project and start using stable or experimental applications in your applica
 
 ## Available applications
 
-| Service         | Docker Hub repository                                                     | Fedora flavours                   | CentOS flavours | Doc                                        | 
-|-----------------|---------------------------------------------------------------------------|-----------------------------------|-----------------|--------------------------------------------|
-| PhpMyAdmin      | [`startx/app-pma`](https://hub.docker.com/r/startx/app-pma)               | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](pma/README.md)                    | 
-| RockMongo       | [`startx/app-rockmongo`](https://hub.docker.com/r/startx/app-rockmongo)   | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](rockmongo/README.md)              | 
+| Service         | Docker Hub repository                                                          | Doc
+|-----------------|--------------------------------------------------------------------------------|--------------------------------
+| PhpMyAdmin      | [`startx/app-pma:fc23`](https://hub.docker.com/r/startx/app-pma)               | [manual](pma/README.md)
+| RockMongo       | [`startx/app-rockmongo:fc23`](https://hub.docker.com/r/startx/app-rockmongo)   | [manual](rockmongo/README.md)
 
 
 ## Running from dockerhub registry
 
-| Applications        | Command                                                              |
-|---------------------|----------------------------------------------------------------------|
-| **PhpMyAdmin**      | `docker run -d -p 80:80 --name="pma" startx/app-pma`                 | 
-| **RockMongo**       | `docker run -d -p 80:80 --name="rockmongo" startx/app-rockmongo`     | 
-
-## Container flavours
-
-| Service    | Docker Hub repository                                                   | Fedora                                    | CentOS                |
-|------------|-------------------------------------------------------------------------|-------------------------------------------|-----------------------|
-| PhpMyAdmin | [`startx/app-pma`](https://hub.docker.com/r/startx/app-pma)             | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7` |
-| RockMongo  | [`startx/app-rockmongo`](https://hub.docker.com/r/startx/app-rockmongo) | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` | `:centos6` `:centos7` |
+| Applications        | Command                                                                   |
+|---------------------|---------------------------------------------------------------------------|
+| **PhpMyAdmin**      | `docker run -d -p 80:80 --name="fc23-pma" startx/app-pma:fc23`            | 
+| **RockMongo**       | `docker run -d -p 80:80 --name="fc23-rockmongo" startx/app-rockmongo:fc23`| 
