@@ -9,7 +9,7 @@ weight=3
 
 # Docker OS Images : MONGO
 
-Simple and lightweight (120Mo) container used to deliver document-oriented database
+Simple and lightweight (150Mo) container used to deliver document-oriented database
 Run [mongodb daemon](https://httpd.mongodb.org/) under a container based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 | [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-mongo/) | [Sources](https://github.com/startxfr/docker-images/Services/mongo)             | [STARTX Profile](https://github.com/startxfr) | 
@@ -96,8 +96,8 @@ CMD ["/bin/run.sh"]
 | CONTAINER_TYPE            | `string` | `no`      | Container family (os, service, application. could be enhanced 
 | CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
-| LOG_PATH                  | `auto`   | `auto`    | is set to /data/logs/mongo and used as a volume mountpoint
-| DATA_PATH                 | `auto`   | `auto`    | is set to /data/mongo and used as a volume mountpoint
+| LOG_PATH                  | `auto`   | `auto`    | default set to /data/logs/mongo and used as a volume mountpoint
+| DATA_PATH                 | `auto`   | `auto`    | default set to /data/mongo and used as a volume mountpoint
 
 ## Exposed port
 

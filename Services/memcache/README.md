@@ -83,7 +83,7 @@ CMD ["/bin/run.sh"]
 | CONTAINER_TYPE            | `string` | `no`      | Container family (os, service, application. could be enhanced 
 | CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
-| LOG_PATH                  | `auto`   | `auto`    | is set to /data/logs/memcache and used as a volume mountpoint
+| LOG_PATH                  | `auto`   | `auto`    | default set to /data/logs/memcache and used as a volume mountpoint
 
 ## Exposed port
 

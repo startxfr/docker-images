@@ -100,8 +100,8 @@ CMD ["/bin/run.sh"]
 | SERVER_NAME               | `string` | `no`      | Server name for this container. If no name localhost will be assigned
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
 | DOC_ROOT                  | `auto`   | `auto`    | document root, will use the $APP_PATH variable
-| LOG_PATH                  | `auto`   | `auto`    | is set to /data/logs/apache and used as a volume mountpoint
-| APP_PATH                  | `auto`   | `auto`    | is set to /data/apache and used as a volume mountpoint
+| LOG_PATH                  | `auto`   | `auto`    | default set to /data/logs/apache and used as a volume mountpoint
+| APP_PATH                  | `auto`   | `auto`    | default set to /data/apache and used as a volume mountpoint
 
 ## Exposed port
 
