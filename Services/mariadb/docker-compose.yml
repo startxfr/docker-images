@@ -1,7 +1,6 @@
 server:
   build: ./
-#  image: sx-mariadb
-  container_name: "sx-mariadb"
+  container_name: "mariadb-server"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 8

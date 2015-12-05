@@ -1,6 +1,5 @@
 server:
   build: ./
-#  image: sv-nodejs
   container_name: "nodejs-server"
   mem_limit: 1g
   memswap_limit: 1g

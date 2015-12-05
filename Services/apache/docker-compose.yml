@@ -1,6 +1,5 @@
 server:
   build: ./
-#  image: sv-apache
   container_name: "apache-server"
   mem_limit: 500m
   memswap_limit: 500m

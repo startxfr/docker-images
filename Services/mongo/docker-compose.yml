@@ -1,7 +1,6 @@
 server:
   build: ./
-#  image: sx-mongo
-  container_name: "sx-mongo"
+  container_name: "mongo-server"
   mem_limit: 2g
   memswap_limit: 2g
   cpu_shares: 10

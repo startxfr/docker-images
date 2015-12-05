@@ -1,6 +1,5 @@
 server:
   build: ./
-#  image: sx-php
   container_name: "php-server"
   mem_limit: 1g
   memswap_limit: 1g
