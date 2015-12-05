@@ -68,7 +68,7 @@ data:
     CONTAINER_INSTANCE: "service-mongo-data-fc23"
 service:
   image: startx/sv-mongo:fc23
-  container_name: "service-mongo"
+  container_name: "service-mongo-fc23"
   environment:
     CONTAINER_INSTANCE: "service-mongo-fc23"
   volume_from:
