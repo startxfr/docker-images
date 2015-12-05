@@ -16,6 +16,10 @@ or as a parent container in your own container's.
 Each container is provided with various underlying OS version based on CentOS or 
 Fedora Linux distribution.
 
+If you're used to work with redhat like and distribution, you would prefer start working
+from a container based on this distribution rather than ubuntu or debian like distributions.
+OS, services and application you will find here will be closer to your favorite distrbution
+
 Please **read each container manual** for more information on how you can use it in 
 your project and start using stable or experimental services in your applications
 

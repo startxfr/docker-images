@@ -8,13 +8,11 @@ function check_httpd_environment {
         echo "! WARNING : environment var SERVER_NAME is missing..."
         echo "! WARNING : auto-assigned value : $SERVER_NAME"
     fi
-    if [ ! -v DOC_ROOT ]; then
-        DOC_ROOT="/data/apache"
-        export DOC_ROOT
-    fi
     if [ ! -v APP_PATH ]; then
         APP_PATH="/data/apache"
         export APP_PATH
+        DOC_ROOT=$APP_PATH
+        export DOC_ROOT
     fi
     if [ ! -v LOG_PATH ]; then
         LOG_PATH="/data/logs/apache"

@@ -8,6 +8,8 @@ RUN dnf -y install deltarpm pwgen tar python-dnf-plugins-extras-migrate && \
     dnf -y install psmisc procps coreutils findutils wget logrotate zip && \
     dnf clean all 
 COPY *.sh /bin/
-RUN chmod 775 /bin/sx-lib.sh /bin/run.sh
+RUN chmod 775 /bin/sx-lib.sh /bin/run.sh && \
+    mkdir /data && \
+    mkdir /data/logs
 
 CMD ["/bin/run.sh"]

@@ -1,15 +1,15 @@
 <!--[metadata]>
 +++
-title = "STARTX Docker Images Repository"
-description = "Docker container repository based on fedora or CentOS and deliverying main opensource project as container"
-keywords = ["home, docker, startx, repository, container, swarm, compose, howto, "]
+title = "STARTX Docker OS Images : FEDORA"
+description = "Docker container repository based on latest fedora"
+keywords = ["home, docker, startx, fedora, repository, container, swarm, compose, howto, "]
 weight=3
 +++
 <![end-metadata]-->
 
-# Fedora OS container's
+# Docker OS Images : FEDORA
 
-Simple and extralight (110Mo) container used for all startx based services and application published in [Dockerhub registry](https://github.com/startxfr/docker-images). 
+Simple and lightweight (110Mo) container used for all startx based services and applications published in [Dockerhub registry](https://github.com/startxfr/docker-images). 
 This container contain updated core OS rpm (kernel, libs,...) as well as usefull tools like pwgen, tar, zip, psmisc, procps, coreutils, findutils, wget
 
 | [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/fedora) | [Sources](https://github.com/startxfr/docker-images/OS/)             | [STARTX Profile](https://github.com/startxfr) | 
@@ -22,7 +22,7 @@ This container contain updated core OS rpm (kernel, libs,...) as well as usefull
 * `:23` : Fedora core 23 
 * `:22` : Fedora core 22
 * `:21` : Fedora core 21
-* `:21` : Fedora core 21
+* `:20` : Fedora core 20
 
 ## Running from dockerhub registry
 
@@ -30,7 +30,7 @@ This container contain updated core OS rpm (kernel, libs,...) as well as usefull
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 fedora:
-  image: startx/fedora
+  image: startx/fedora:latest
   container_name: "os-fedora"
   environment:
     CONTAINER_TYPE: "os"
@@ -51,9 +51,9 @@ CMD ["/bin/run.sh"]
 
 | Variable                  | Type     | Mandatory | Description                                                              |
 |---------------------------|----------|-----------|--------------------------------------------------------------------------|
+| CONTAINER_INSTANCE        | `string` | `yes`     | Container name. Should be uning to get fine grained log and application reporting
 | CONTAINER_TYPE            | `string` | `no`      | Container family (os, service, application. could be enhanced 
 | CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
-| CONTAINER_INSTANCE        | `string` | `yes`     | Container name. Should be uning to get fine grained log and application reporting
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
 
 
