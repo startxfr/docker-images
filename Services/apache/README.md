@@ -1,7 +1,7 @@
 <!--[metadata]>
 +++
 title = "STARTX Docker Services Images : APACHE"
-description = "Docker container repository based on latest fedora"
+description = "Docker container with apache service based on latest fedora"
 keywords = ["home, docker, startx, apache, fedora, centos, repository, container, swarm, compose"]
 weight=3
 +++
@@ -9,8 +9,8 @@ weight=3
 
 # Docker OS Images : APACHE
 
-Simple and lightweight (120Mo) container used to deliver static http content include all aache module but no externa languages engines (like php). For dynamic content, you should use our [sv-php service container](https://hub.docker.com/r/startx/sv-php)
-This container contain updated core OS rpm (kernel, libs,...) as well as usefull tools like pwgen, tar, zip, psmisc, procps, coreutils, findutils, wget
+Simple and lightweight (120Mo) container used to deliver static http content include all apache's modules but no external languages engines (like php). For dynamic content, you should use our [sv-php service container](https://hub.docker.com/r/startx/sv-php)
+Run [apache httpd daemon](https://httpd.apache.org/) under a container based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 | [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-apache/) | [Sources](https://github.com/startxfr/docker-images/Services/apache)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------------------------|-----------------------------------------------|
@@ -27,7 +27,7 @@ This container contain updated core OS rpm (kernel, libs,...) as well as usefull
 
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="startx_apache" startx/sv-apache` from any docker host
+* with `docker` you can run `docker run -it --name="sv-apache" startx/sv-apache` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
@@ -84,9 +84,9 @@ service:
 
 ## Using this image in your own container
 
-You can use this Dockerfile template to start a new personalized container based on this container
+You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
  ```
-FROM startx/fedora:latest
+FROM startx/sv-apache:latest
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```
@@ -124,28 +124,28 @@ access to the running webserver with your favorites browser `firefox http://loca
 
 ## For advanced users
 
-You you want to use this container and code to build and create locally this container. You can follow theses instructions to setup and working environment.
+You want to use this container and code to build and create locally this container, follow theses instructions.
 
 This section will help you if you want to :
-* Get latest version of this container OS
+* Get latest version of this service container
 * Enhance container content by adding instruction in Dockefile before build step
 
 You must have a working environment with the source code of this repository. Read and follow [how to setup your working environment](https://github.com/startxfr/docker-images#setup-your-working-environment-mandatory) to get a working directory. The following instructions assume you are at the top level of your working directory.
 
 ### Build & run a container using `docker`
 
-1. Jump into the container directory with `cd OS`
-2. Build the container using `docker build -t fedora .`
+1. Jump into the container directory with `cd Services/apache`
+2. Build the container using `docker build -t sv-apache .`
 3. Run this container 
-  1. Interactively with `docker run -p 80:80 -v /data/logs/apache -it fedora`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -p 80:80 -v /data/logs/apache -d fedora`
+  1. Interactively with `docker run -p 80:80 -v /data/logs/apache -it sv-apache`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 80:80 -v /data/logs/apache -d sv-apache`
 
 
 ### Build & run a container using `docker-compose`
 
-1. Jump into the container directory with `cd OS`
+1. Jump into the container directory with `cd Services/apache`
 2. Run this container 
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
-  2. As a daemon with `docker-compose up -d`. Container startup and behaviour can be read using `docker-compose logs`
+  2. As a daemon with `docker-compose up -d`. Container startup logs can be read using `docker-compose logs`
 
 If you experience trouble with port already used, edit docker-compose.yml file and change port mapping
