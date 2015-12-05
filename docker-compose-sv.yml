@@ -1,52 +1,39 @@
-fc23:
-  extends:
-    file: OS/docker-compose.yml
-    service: fedora
-
-fc23_apache:
+server_apache:
   extends:
     file: Services/apache/docker-compose.yml
     service: server
 
-fc23_php:
+server_php:
   extends:
     file: Services/php/docker-compose.yml
     service: server
 
-fc23_nodejs:
+server_nodejs:
   extends:
     file: Services/nodejs/docker-compose.yml
     service: server
 
-fc23_mariadb:
+server_mariadb:
   extends:
     file: Services/mariadb/docker-compose.yml
     service: server
 
-fc23_postgres:
+server_postgres:
   extends:
     file: Services/postgres/docker-compose.yml
     service: server
 
-fc23_mongo:
+server_mongo:
   extends:
     file: Services/mongo/docker-compose.yml
     service: server
 
-fc23_ooconv:
+server_ooconv:
   extends:
     file: Services/ooconv/docker-compose.yml
     service: server
 
-fc23_memcache:
+server_memcache:
   extends:
     file: Services/memcache/docker-compose.yml
     service: server
-
-pma:
-  build: Applications/phpmyadmin/
-  container_name: "startx-app-phpmyadmin"
-
-rockmongo:
-  build: Applications/rockmongo/
-  container_name: "startx-app-rockmongo"
