@@ -1,48 +1,48 @@
 <!--[metadata]>
 +++
-title = "STARTX Docker Services Images : MARIADB"
-description = "Docker container with mariadb service based on latest fedora"
-keywords = ["home, docker, startx, mariadb, fedora, centos, repository, container, swarm, compose"]
+title = "STARTX Docker Services Images : POSTGRESQL"
+description = "Docker container with postgres service based on latest fedora"
+keywords = ["home, docker, startx, postgres, fedora, centos, repository, container, swarm, compose"]
 weight=3
 +++
 <![end-metadata]-->
 
-# Docker OS Images : MARIADB
+# Docker OS Images : POSTGRESQL
 
-Simple and lightweight (170Mo) container used to deliver mysql like database service using [mariadb project](https://mariadb.org/).
-Run [mariadb daemon](https://mariadb.org/) under a container based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
+Simple and lightweight (130Mo) container used to deliver highly reliable and configurable transactional database service using postgresql opensource project.
+Run [postgres daemon](http://www.postgresql.org/) under a container based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-mariadb/) | [Sources](https://github.com/startxfr/docker-images/Services/mariadb)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-postgres/) | [Sources](https://github.com/startxfr/docker-images/Services/postgres)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------|-----------------------------------------------|
 
 ## Available flavours
 
-* `:latest` : Fedora core 23 + MariaDB 
-* `:fc23` : Fedora core 23 + MariaDB 
-* `:fc22` : Fedora core 22 + MariaDB 
-* `:fc21` : Fedora core 21 + MariaDB 
-* `:centos7` : CentOS 7 + MariaDB 
-* `:centos6` : Centos 6 + MariaDB 
+* `:latest` : Fedora core 23 + PostgreSQL 
+* `:fc23` : Fedora core 23 + PostgreSQL 
+* `:fc22` : Fedora core 22 + PostgreSQL 
+* `:fc21` : Fedora core 21 + PostgreSQL 
+* `:centos7` : CentOS 7 + PostgreSQL 
+* `:centos6` : Centos 6 + PostgreSQL 
 
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="sv-mariadb" startx/sv-mariadb` from any docker host
+* with `docker` you can run `docker run -it --name="sv-postgres" startx/sv-postgres` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-mariadb:latest
-  container_name: "sv-mariadb"
+  image: startx/sv-postgres:latest
+  container_name: "sv-postgres"
   environment:
     CONTAINER_TYPE: "service"
-    CONTAINER_SERVICE: "mariadb"
-    CONTAINER_INSTANCE: "service-mariadb"
-    MYSQL_ROOT_PASSWORD: "rootpassword"
-    MYSQL_USER: "user-test"
-    MYSQL_PASSWORD: "pwd-test"
-    MYSQL_DATABASE: "db_test"
+    CONTAINER_SERVICE: "postgres"
+    CONTAINER_INSTANCE: "service-postgres"
+    POSTGRESQL_ROOT_PASSWORD: "rootpassword"
+    POSTGRESQL_USER: "user-test"
+    POSTGRESQL_PASSWORD: "pwd-test"
+    POSTGRESQL_DATABASE: "db_test"
   volumes:
-    - "/tmp/container/logs/mariadb:/data/logs/mariadb"
-    - "/tmp/container/mariadb:/data/mariadb"
+    - "/tmp/container/logs/postgres:/data/logs/postgres"
+    - "/tmp/container/postgres:/data/postgres"
 ```
 
 ## Docker-compose in various situations
@@ -50,35 +50,35 @@ service:
 * sample docker-compose.yml linked to host port 1000
 ```
 service:
-  image: startx/sv-mariadb:latest
-  container_name: "sv-mariadb"
+  image: startx/sv-postgres:latest
+  container_name: "sv-postgres"
   environment:
-    CONTAINER_INSTANCE: "service-mariadb"
+    CONTAINER_INSTANCE: "service-postgres"
   ports:
-    - "1001:3306"
+    - "1001:5432"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
 service:
-  image: startx/sv-mariadb:latest
-  container_name: "sv-mariadb"
+  image: startx/sv-postgres:latest
+  container_name: "sv-postgres"
   environment:
-    CONTAINER_INSTANCE: "service-mariadb"
+    CONTAINER_INSTANCE: "service-postgres"
   expose:
-    - "3306"
+    - "5432"
 ```
 * sample docker-compose.yml using data container
 ```
 data:
   image: startx/fedora:latest
-  container_name: "sv-mariadb-data"
+  container_name: "sv-postgres-data"
   environment:
-    CONTAINER_INSTANCE: "service-mariadb-data"
+    CONTAINER_INSTANCE: "service-postgres-data"
 service:
-  image: startx/sv-mariadb:latest
-  container_name: "sv-mariadb"
+  image: startx/sv-postgres:latest
+  container_name: "sv-postgres"
   environment:
-    CONTAINER_INSTANCE: "service-mariadb"
+    CONTAINER_INSTANCE: "service-postgres"
   volume_from:
     - data:rw
 ```
@@ -87,7 +87,7 @@ service:
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
  ```
-FROM startx/sv-mariadb:latest
+FROM startx/sv-postgres:latest
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```
@@ -99,31 +99,31 @@ CMD ["/bin/run.sh"]
 | CONTAINER_INSTANCE        | `string` | `yes`     | Container name. Should be uning to get fine grained log and application reporting
 | CONTAINER_TYPE            | `string` | `no`      | Container family (os, service, application. could be enhanced 
 | CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
-| MYSQL_ROOT_PASSWORD       | `string` | `no`      | Root password used for this instance. Default will use an auto generated password displayed on startup
-| MYSQL_USER                | `string` | `no`      | If present, add a new user with this name
-| MYSQL_PASSWORD            | `string` | `no`      | Password associated to the new user declared with $MYSQL_USER
-| MYSQL_DATABASE            | `string` | `no`      | If present, add a new database with this name
+| POSTGRESQL_ROOT_PASSWORD  | `string` | `no`      | Root password used for this instance. Default will use an auto generated password displayed on startup
+| POSTGRESQL_USER           | `string` | `no`      | If present, add a new user with this name
+| POSTGRESQL_PASSWORD       | `string` | `no`      | Password associated to the new user declared with $POSTGRESQL_USER
+| POSTGRESQL_DATABASE       | `string` | `no`      | If present, add a new database with this name
 | LOADSQL_PATH              | `string` | `auto`    | Path used to find sql dump to import at startup
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
-| LOG_PATH                  | `auto`   | `auto`    | default set to /data/logs/mariadb and used as a volume mountpoint
-| DATA_PATH                 | `auto`   | `auto`    | default set to /data/mariadb and used as a volume mountpoint
+| LOG_PATH                  | `auto`   | `auto`    | default set to /data/logs/postgres and used as a volume mountpoint
+| DATA_PATH                 | `auto`   | `auto`    | default set to /data/postgres and used as a volume mountpoint
 
 ## Exposed port
 
 | Port  | Description                                                              |
 |-------|--------------------------------------------------------------------------|
-| 3306  | standard mariadb network port used for sql communication
+| 5432  | standard postgres network port used for sql communication
 
 ## Exposed volumes
 
 | Container directory  | Description                                                              |
 |----------------------|--------------------------------------------------------------------------|
-| /data/logs/mariadb    | log directory used to record container and mariadb logs
-| /data/mariadb         | data directory served by mariadb. If empty will be filled with database files on startup. In other case use content from mountpoint or data volumes
+| /data/logs/postgres  | log directory used to record container and postgres logs
+| /data/postgres       | data directory served by postgres. If empty will be filled with database files on startup. In other case use content from mountpoint or data volumes
 
 ## Testing the service
 
-access to the running service with mysql terminal `mysql --host=localhost --port=3306 --user=<MYSQL_USER> --password=<MYSQL_PASSWORD>`. Change port and hostname according to your current configuration
+access to the running service with mysql terminal `psql -h localhost -p 5432 -U <POSTGRESQL_USER>`. Change port and hostname according to your current configuration
 
 ## For advanced users
 
@@ -137,16 +137,16 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-1. Jump into the container directory with `cd Services/mariadb`
-2. Build the container using `docker build -t sv-mariadb .`
+1. Jump into the container directory with `cd Services/postgres`
+2. Build the container using `docker build -t sv-postgres .`
 3. Run this container 
-  1. Interactively with `docker run -p 3306:3306 -v /data/logs/mariadb -it sv-mariadb`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -p 3306:3306 -v /data/logs/mariadb -d sv-mariadb`
+  1. Interactively with `docker run -p 5432:5432 -v /data/logs/postgres -it sv-postgres`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 5432:5432 -v /data/logs/postgres -d sv-postgres`
 
 
 ### Build & run a container using `docker-compose`
 
-1. Jump into the container directory with `cd Services/mariadb`
+1. Jump into the container directory with `cd Services/postgres`
 2. Run this container 
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
   2. As a daemon with `docker-compose up -d`. Container startup logs can be read using `docker-compose logs`
