@@ -1,6 +1,5 @@
 server:
   build: ./
-#  image: sv-ooconv
   container_name: "ooconv-fc23"
   mem_limit: 2g
   memswap_limit: 2g

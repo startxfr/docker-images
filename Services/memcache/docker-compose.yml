@@ -1,6 +1,5 @@
 server:
   build: ./
-#  image: sv-memcache
   container_name: "memcache-fc23"
   mem_limit: 1.5g
   memswap_limit: 500m

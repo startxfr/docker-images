@@ -1,6 +1,5 @@
 server:
   build: ./
-#  image: sx-mongo
   container_name: "mongo-fc23"
   mem_limit: 2g
   memswap_limit: 2g

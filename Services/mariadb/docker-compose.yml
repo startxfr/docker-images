@@ -1,6 +1,5 @@
 server:
   build: ./
-#  image: sx-mariadb
   container_name: "mariadb-fc23"
   mem_limit: 1g
   memswap_limit: 1g
