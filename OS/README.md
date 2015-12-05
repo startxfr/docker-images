@@ -85,4 +85,3 @@ You must have a working environment with the source code of this repository. Rea
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
   2. As a daemon with `docker-compose up -d`. Container startup logs can be read using `docker-compose logs`
 
-## Running container from docker registry images
