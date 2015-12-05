@@ -1,47 +1,148 @@
-# STARTX Services docker-images : Simple Webserver
+<!--[metadata]>
++++
+title = "STARTX Docker Services Images : APACHE on Fedora 23"
+description = "Docker container with apache service based on fedora 23"
+keywords = ["home, docker, startx, apache, fedora 23, centos, repository, container, swarm, compose"]
+weight=3
++++
+<![end-metadata]-->
 
-Container running httpd daemon under a fedora server
+# Docker OS Images : APACHE on Fedora 23
 
-## Running from docker registry
+Simple and lightweight (120Mo) container used to deliver static http content include all apache's modules but no external languages engines (like php). For dynamic content, you should use our [sv-php service container](https://hub.docker.com/r/startx/sv-php)
+Run [apache httpd daemon](https://httpd.apache.org/) under a container 
+based on [startx/fedora:23 container](https://hub.docker.com/r/startx/fedora)
 
-	docker run -d -p 80:80 --name="apache" startx/sv-apache:fc21
-        # when used with a volume container (run data container, then run service)
-        docker run -d -v /var/www/html -v /var/log/httpd --name apache-data startx/sv-apache:fc21 echo "Data container for apache"
-        docker run -d -p 80:80 --volumes-from apache-data --name="apache" startx/sv-apache:fc21
-	# when used in a linked container
-	docker run -d --name="apache" startx/sv-apache:fc21
-	docker run -d -p 80:80 --name="apache2" --link apache:apache startx/sv-apache:fc21
+Each container is provided with various underlying OS version based on CentOS or 
+Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
+or **[other apache flavours](https://github.com/startxfr/docker-images/Services/apache/#available-flavours)**
 
-## Build and run from local Dockerfile
-### Building docker image
-Copy sources in your docker host 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-apache/) | [Sources](https://github.com/startxfr/docker-images/Services/apache)             | [STARTX Profile](https://github.com/startxfr) | 
+|-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------------------------|-----------------------------------------------|
 
-	mkdir startx-docker-images; 
-	cd startx-docker-images;
-	git clone https://github.com/startxfr/docker-images.git .
+## Running from dockerhub registry
 
-Change configuration and personalize your base image. you can change file httpd.conf if you want to add some config into http server
+* with `docker` you can run `docker run -it --name="service-apache-fc23" startx/sv-apache:fc23` from any docker host
+* with `docker-compose` you can create a docker-compose.yml file with the following content
+```
+service:
+  image: startx/sv-apache:fc23
+  container_name: "service-apache-fc23"
+  environment:
+    CONTAINER_TYPE: "service"
+    CONTAINER_SERVICE: "apache"
+    CONTAINER_INSTANCE: "service-apache-fc23"
+    SERVER_NAME: "localhost"
+    DOC_ROOT: "/data/apache"
+  volumes:
+    - "/tmp/container/logs/apache:/data/logs/apache"
+    - "/tmp/container/apache:/data/apache"
+```
 
-Build the container
+## Docker-compose in various situations
 
-	docker build -t sv-apache:fc21 Services/apache/
+* sample docker-compose.yml linked to host port 1000
+```
+service:
+  image: startx/sv-apache:fc23
+  container_name: "service-apache-fc23"
+  environment:
+    CONTAINER_INSTANCE: "service-apache-fc23"
+  ports:
+    - "1000:80"
+```
+* sample docker-compose.yml with port exposed only to linked services
+```
+service:
+  image: startx/sv-apache:fc23
+  container_name: "service-apache-fc23"
+  environment:
+    CONTAINER_INSTANCE: "service-apache-fc23"
+  expose:
+    - "80"
+```
+* sample docker-compose.yml using data container
+```
+data:
+  image: startx/fedora:23
+  container_name: "service-apache-fc23-data"
+  environment:
+    CONTAINER_INSTANCE: "service-apache-fc23-data"
+service:
+  image: startx/sv-apache:fc23
+  container_name: "service-apache-fc23"
+  environment:
+    CONTAINER_INSTANCE: "service-apache-fc23"
+  volume_from:
+    - data:rw
+```
 
-### Running local image
+## Using this image in your own container
 
-	docker run -d -p 80:80 --name="apache" sv-apache:fc21
+You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
+ ```
+FROM startx/sv-apache:fc23
+#... your container specifications
+CMD ["/bin/run.sh"]
+```
 
-## Accessing server
-access to the running webserver
+## Environment variable
 
-	firefox http://localhost:80
+| Variable                  | Type     | Mandatory | Description                                                              |
+|---------------------------|----------|-----------|--------------------------------------------------------------------------|
+| CONTAINER_INSTANCE        | `string` | `yes`     | Container name. Should be uning to get fine grained log and application reporting
+| CONTAINER_TYPE            | `string` | `no`      | Container family (os, service, application. could be enhanced 
+| CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
+| SERVER_NAME               | `string` | `no`      | Server name for this container. If no name localhost will be assigned
+| HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
+| DOC_ROOT                  | `auto`   | `auto`    | document root, will use the $APP_PATH variable
+| LOG_PATH                  | `auto`   | `auto`    | default set to /data/logs/apache and used as a volume mountpoint
+| APP_PATH                  | `auto`   | `auto`    | default set to /data/apache and used as a volume mountpoint
 
-access to the container itself
+## Exposed port
 
-	docker exec -it apache /bin/bash
+| Port  | Description                                                              |
+|-------|--------------------------------------------------------------------------|
+| 80    | standard httpd network port used for non encrypted http traffic
+| 443   | SSL enabeled http port used for encrypted traffic (certificate not actually implemented)
 
-## Related Resources
-* [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/apache)
-* [Github STARTX profile](https://github.com/startxfr/docker-images)
-* [Docker registry for this container](https://registry.hub.docker.com/u/startx/sv-apache/)
-* [Docker registry for Fedora](https://registry.hub.docker.com/u/fedora/)
+## Exposed volumes
 
+| Container directory  | Description                                                              |
+|----------------------|--------------------------------------------------------------------------|
+| /data/logs/apache    | log directory used to record container and apache logs
+| /data/apache         | data directory served by apache. If empty will be filled with app on startup. In other case use content from mountpoint or data volumes
+
+## Testing the service
+
+access to the running webserver with your favorites browser `firefox http://localhost:80`. Change port and hostname according to your current configuration
+
+## For advanced users
+
+You want to use this container and code to build and create locally this container, follow theses instructions.
+
+This section will help you if you want to :
+* Get latest version of this service container
+* Enhance container content by adding instruction in Dockefile before build step
+
+You must have a working environment with the source code of this repository. Read and follow [how to setup your working environment](https://github.com/startxfr/docker-images#setup-your-working-environment-mandatory) to get a working directory. The following instructions assume you are at the top level of your working directory.
+
+### Build & run a container using `docker`
+
+1. Switch to the flavour branch with `git branch fc23`
+2. Jump into the container directory with `cd Services/apache`
+3. Build the container using `docker build -t sv-apache-fc23 .`
+4. Run this container 
+  1. Interactively with `docker run -p 80:80 -v /data/logs/apache -it sv-apache-fc23`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 80:80 -v /data/logs/apache -d sv-apache-fc23`
+
+
+### Build & run a container using `docker-compose`
+
+1. Switch to the flavour branch with `git branch fc23`
+2. Jump into the container directory with `cd Services/apache`
+3. Run this container 
+  1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
+  2. As a daemon with `docker-compose up -d`. Container startup logs can be read using `docker-compose logs`
+
+If you experience trouble with port already used, edit docker-compose.yml file and change port mapping

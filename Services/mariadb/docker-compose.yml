@@ -1,0 +1,18 @@
+server:
+  build: ./
+  container_name: "mariadb-fc23"
+  mem_limit: 1g
+  memswap_limit: 1g
+  cpu_shares: 8
+  restart: "on-failure:2"
+  environment:
+    CONTAINER_TYPE: "service"
+    CONTAINER_SERVICE: "mariadb"
+    CONTAINER_INSTANCE: "sx-mariadb"
+    MYSQL_ROOT_PASSWORD: "secretdemerde"
+    MYSQL_USER: "user-test"
+    MYSQL_PASSWORD: "pwd-test"
+    MYSQL_DATABASE: "db_test"
+  volumes:
+    - "/tmp/container/logs/mariadb:/data/logs/mariadb"
+    - "/tmp/container/mariadb:/data/mariadb"

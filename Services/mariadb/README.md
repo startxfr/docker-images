@@ -1,54 +1,152 @@
-# STARTX Services docker-images : MariaDB Server
+<!--[metadata]>
++++
+title = "STARTX Docker Services Images : MARIADB on Fedora 23"
+description = "Docker container with mariadb service based on fedora 23"
+keywords = ["home, docker, startx, mariadb, fedora 23, centos, repository, container, swarm, compose"]
+weight=3
++++
+<![end-metadata]-->
 
-Container running mysqld daemon under a fedora server
+# Docker OS Images : MARIADB on Fedora 23
 
-## Running from docker registry
+Simple and lightweight (170Mo) container used to deliver simple and easy to use transactional database using mysql like database provided by [mariadb open-source project](https://mariadb.org/).
+Run [mariadb daemon](https://mariadb.org/) under a container 
+based on [startx/fedora:23 container](https://hub.docker.com/r/startx/fedora)
 
-	docker run -d -p 3306:3306 --name="mariadb" startx/sv-mariadb:fc21
-        # when used with a volume container (run data container, then run service)
-	docker run -d -v /var/lib/mysql -v /var/log/mysql --name mariadb-data startx/sv-mariadb:fc21  echo "Data container for mariadb"
-	docker run -d -p 3306:3306 --volumes-from mariadb-data --name="mariadb" startx/sv-mariadb:fc21
-	# when used in a linked container
-	docker run -d --name="mariadb" startx/sv-mariadb:fc21
-	docker run -d --name="php" --link mariadb:mariadb startx/sv-php:fc21
+Each container is provided with various underlying OS version based on CentOS or 
+Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
+or **[other mariadb flavours](https://github.com/startxfr/docker-images/Services/mariadb/#available-flavours)**
 
-## Build and run from local Dockerfile
-### Building docker image
-Copy sources in your docker host 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-mariadb/) | [Sources](https://github.com/startxfr/docker-images/Services/mariadb)             | [STARTX Profile](https://github.com/startxfr) | 
+|-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------|-----------------------------------------------|
 
-	mkdir startx-docker-images; 
-	cd startx-docker-images;
-	git clone https://github.com/startxfr/docker-images.git .
+## Running from dockerhub registry
 
-Change configuration and personalize your base image. See sx/mariadb_run.sh to perform some usefull task against the database, especially importing sql script, adding users and changing passwords. See also example.sql for injecting sql content when creating container.
+* with `docker` you can run `docker run -it --name="service-mariadb-fc23" startx/sv-mariadb:fc23` from any docker host
+* with `docker-compose` you can create a docker-compose.yml file with the following content
+```
+service:
+  image: startx/sv-mariadb:fc23
+  container_name: "service-mariadb-fc23"
+  environment:
+    CONTAINER_TYPE: "service"
+    CONTAINER_SERVICE: "mariadb"
+    CONTAINER_INSTANCE: "service-mariadb-fc23"
+    MYSQL_ROOT_PASSWORD: "rootpassword"
+    MYSQL_USER: "user-test"
+    MYSQL_PASSWORD: "pwd-test"
+    MYSQL_DATABASE: "db_test"
+  volumes:
+    - "/tmp/container/logs/mariadb:/data/logs/mariadb"
+    - "/tmp/container/mariadb:/data/mariadb"
+```
 
-Build the container
+## Docker-compose in various situations
 
-	docker build -t sv-mariadb:fc21 Services/mariadb/
+* sample docker-compose.yml linked to host port 1000
+```
+service:
+  image: startx/sv-mariadb:fc23
+  container_name: "service-mariadb-fc23"
+  environment:
+    CONTAINER_INSTANCE: "service-mariadb-fc23"
+  ports:
+    - "1001:3306"
+```
+* sample docker-compose.yml with port exposed only to linked services
+```
+service:
+  image: startx/sv-mariadb:fc23
+  container_name: "service-mariadb-fc23"
+  environment:
+    CONTAINER_INSTANCE: "service-mariadb-fc23"
+  expose:
+    - "3306"
+```
+* sample docker-compose.yml using data container
+```
+data:
+  image: startx/fedora:23
+  container_name: "service-mariadb-fc23-data"
+  environment:
+    CONTAINER_INSTANCE: "service-mariadb-fc23-data"
+service:
+  image: startx/sv-mariadb:fc23
+  container_name: "service-mariadb-fc23"
+  environment:
+    CONTAINER_INSTANCE: "service-mariadb-fc23"
+  volume_from:
+    - data:rw
+```
 
-### Running local image
+## Using this image in your own container
 
-	docker run -d -p 3306:3306 --name="mariadb" sv-mariadb:fc21
+You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
+ ```
+FROM startx/sv-mariadb:latest
+#... your container specifications
+CMD ["/bin/run.sh"]
+```
 
-## Accessing server
-get connection information's, use docker logs to see result and connection details
+## Environment variable
 
-	docker logs mariadb
+| Variable                  | Type     | Mandatory | Description                                                              |
+|---------------------------|----------|-----------|--------------------------------------------------------------------------|
+| CONTAINER_INSTANCE        | `string` | `yes`     | Container name. Should be uning to get fine grained log and application reporting
+| CONTAINER_TYPE            | `string` | `no`      | Container family (os, service, application. could be enhanced 
+| CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
+| MYSQL_ROOT_PASSWORD       | `string` | `no`      | Root password used for this instance. Default will use an auto generated password displayed on startup
+| MYSQL_USER                | `string` | `no`      | If present, add a new user with this name
+| MYSQL_PASSWORD            | `string` | `no`      | Password associated to the new user declared with $MYSQL_USER
+| MYSQL_DATABASE            | `string` | `no`      | If present, add a new database with this name
+| LOADSQL_PATH              | `string` | `auto`    | Path used to find sql dump to import at startup
+| HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
+| LOG_PATH                  | `auto`   | `auto`    | default set to /data/logs/mariadb and used as a volume mountpoint
+| DATA_PATH                 | `auto`   | `auto`    | default set to /data/mariadb and used as a volume mountpoint
 
-access to the running database
+## Exposed port
 
-	mysql -h localhost -p 3306
+| Port  | Description                                                              |
+|-------|--------------------------------------------------------------------------|
+| 3306  | standard mariadb network port used for sql communication
 
-access to the container itself
+## Exposed volumes
 
-	docker exec -it mariadb /bin/bash
+| Container directory  | Description                                                              |
+|----------------------|--------------------------------------------------------------------------|
+| /data/logs/mariadb    | log directory used to record container and mariadb logs
+| /data/mariadb         | data directory served by mariadb. If empty will be filled with database files on startup. In other case use content from mountpoint or data volumes
 
-## Related Resources
-* [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/mariadb)
-* [Github STARTX profile](https://github.com/startxfr/docker-images)
-* [Docker registry for this container](https://registry.hub.docker.com/u/startx/sv-mariadb/)
-* [Docker registry for Fedora](https://registry.hub.docker.com/u/fedora/)
-* [Fedora-files mariadb container](https://github.com/fedora-cloud/Fedora-Dockerfiles/tree/master/mariadb)
-* [Tutum mariadb container](https://registry.hub.docker.com/u/tutum/mariadb/)
-* [Tutum mariadb github](https://github.com/tutumcloud/tutum-docker-mariadb)
-* [Dylan Lindgren mariadb container](https://registry.hub.docker.com/u/dylanlindgren/docker-mariadb/)
+## Testing the service
+
+access to the running service with mysql terminal `mysql --host=localhost --port=3306 --user=<MYSQL_USER> --password=<MYSQL_PASSWORD>`. Change port and hostname according to your current configuration
+
+## For advanced users
+
+You want to use this container and code to build and create locally this container, follow theses instructions.
+
+This section will help you if you want to :
+* Get latest version of this service container
+* Enhance container content by adding instruction in Dockefile before build step
+
+You must have a working environment with the source code of this repository. Read and follow [how to setup your working environment](https://github.com/startxfr/docker-images#setup-your-working-environment-mandatory) to get a working directory. The following instructions assume you are at the top level of your working directory.
+
+### Build & run a container using `docker`
+
+1. Switch to the flavour branch with `git branch fc23`
+2. Jump into the container directory with `cd Services/mariadb`
+3. Build the container using `docker build -t sv-mariadb .`
+4. Run this container 
+  1. Interactively with `docker run -p 3306:3306 -v /data/logs/mariadb -it sv-mariadb`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 3306:3306 -v /data/logs/mariadb -d sv-mariadb`
+
+
+### Build & run a container using `docker-compose`
+
+1. Switch to the flavour branch with `git branch fc23`
+2. Jump into the container directory with `cd Services/mariadb`
+3. Run this container 
+  1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
+  2. As a daemon with `docker-compose up -d`. Container startup logs can be read using `docker-compose logs`
+
+If you experience trouble with port already used, edit docker-compose.yml file and change port mapping

@@ -1,16 +1,17 @@
-FROM startx/fedora:21
+FROM startx/fedora:23
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
-# Install packages and set up unoconv
-RUN yum -y install unoconv libreoffice-headless libreoffice-writer libreoffice-calc pdftk gs \
-    && yum clean all \
-    && mkdir -p /tmp/ootmp 
-# Copy startx toolkit
-COPY sx/* /sx/
-RUN chmod ug+rx /sx/ooconv*
+RUN dnf -y install unoconv libreoffice-headless libreoffice-writer libreoffice-calc pdfmod ghostscript && \
+    dnf clean all 
+ENV STARTUPLOG=/data/logs/ooconv/startup.log \
+    LOG_PATH=/data/logs/ooconv
+COPY *.sh /bin/
+RUN chmod 775 /bin/run.sh && \
+    mkdir -p $LOG_PATH  && \
+    mkdir -p /tmp/ootmp  && \
+    touch $STARTUPLOG
 
 EXPOSE 2002
-VOLUME ["/tmp/ootmp"]
-
-CMD ["/sx/ooconv_run.sh"]
+VOLUME [$LOG_PATH]
+CMD ["/bin/run.sh"]

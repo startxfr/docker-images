@@ -1,24 +1,19 @@
-FROM startx/fedora:21
+FROM startx/fedora:23
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
-RUN yum -y install \
-    mongodb \
-    mongodb-server \
-    libmongo-client \
-    rsyslog-mongodb \
-    mongodb-mms-backup-agent \
-    mongodb-mms-monitoring-agent \
-    && yum clean all \
-    && mkdir -p /var/lib/mongodb \
-    && touch /var/lib/mongodb/.keep 
-COPY sx/* /sx/
-COPY mongodb.conf /etc/mongodb.conf
-RUN chmod ug+rx /sx/mongod* \
-    && chown -R mongodb:mongodb /sx/mongod* /var/lib/mongodb /var/log/mongodb
+USER root
+RUN dnf -y install mongodb mongodb-server libmongo-client rsyslog-mongodb  && \
+    dnf clean all 
+ENV STARTUPLOG=/data/logs/mongodb/startup.log \
+    LOG_PATH=/data/logs/mongodb  \
+    DATA_PATH=/data/mongodb
+COPY *.sh /bin/
+RUN chmod 775 /bin/run.sh && \
+    mkdir -p $DATA_PATH && \
+    mkdir -p $LOG_PATH && \
+    touch $STARTUPLOG
+RUN chown -R mongodb:mongodb $DATA_PATH $LOG_PATH
 
-EXPOSE 27017
-VOLUME ["/var/lib/mongodb", "/var/log/mongodb"]
-
-USER mongodb
-#ENDPOINT ["/sx/mongod_run.sh"]
-CMD ["/sx/mongod_run.sh"]
+EXPOSE 27017 28017
+VOLUME [$DATA_PATH,$LOG_PATH]
+CMD ["/bin/run.sh"]

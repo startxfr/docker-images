@@ -1,163 +1,36 @@
-# STARTX docker-images repository
+<!--[metadata]>
++++
+title = "STARTX Docker Images Repository based on Fedora 23"
+description = "Docker container repository based on fedora 23 and deliverying main opensource project as container"
+keywords = ["home, docker, startx, repository, fedora 23, container, swarm, compose, howto, "]
+weight=3
++++
+<![end-metadata]-->
 
-Docker container images all based on red hat like distributions. Actually you can find fedora and centos.
+# STARTX Docker-Images Repository based on Fedora 23
 
-## Running container from docker registry images
+This repository host various Open Source application or services as a container based on the fedora 23 distribution
 
-### Operating Systems
-| OS                  | Command                                                              |
-|---------------------|----------------------------------------------------------------------|
-| Fedora Core         | `docker run -it --name="fedora" startx/fedora bash`                  | 
-| CentOS              | `docker run -it --name="centos" startx/centos bash`                  |
+You can use it to instanciate new container from the dockerhub public registry 
+or as a parent container in your own container's. 
+Each container is provided with various underlying OS version based on CentOS or 
+Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
+for [other OS flavours](https://github.com/startxfr/docker-images/OS#container-flavours)
 
-### Services
-| Services            | Command                                                              |
-|---------------------|----------------------------------------------------------------------|
-| **Apache**          | `docker run -d -p 80:80 --name="apache" startx/sv-apache`            | 
-| **MariaDB**         | `docker run -d -p 3306:3306 --name="mariadb" startx/sv-mariadb`      | 
-| **Memcache**        | `docker run -d -p 11211:11211 --name="memcache" startx/sv-memcache`  | 
-| **MongoDB**         | `docker run -d -p 27017:27017 --name="mongo" startx/sv-mongo`        | 
-| **nodejs**          | `docker run -d -p 8000:8000 --name="nodejs" startx/sv-nodejs`        | 
-| **ooconv**          | `docker run -d -p XXX:XXX --name="ooconv" startx/sv-ooconv`          | 
-| **php**             | `docker run -d -p 80:80 --name="php" startx/sv-php`                  | 
-| **postgreSQL**      | `docker run -d -p 5432:5432 --name="postgres" startx/sv-postgres`    | 
-| **SSH**             | `docker run -d -p 22:22 --name="ssh" startx/sv-ssh`                  | 
+If you're used to work with redhat like and distribution, you would prefer start working
+from a container based on this distribution rather than ubuntu or debian like distributions.
+OS, services and application you will find here will be closer to your favorite distrbution
 
-### Applications
-| Applications        | Command                                                              |
-|---------------------|----------------------------------------------------------------------|
-| **PhpMyAdmin**      | `docker run -d -p 80:80 --name="pma" startx/app-pma`                 | 
-| **RockMongo**       | `docker run -d -p 80:80 --name="rockmongo" startx/app-rockmongo`     | 
+Please **read each container manual** for more information on how you can use it in 
+your project and start using stable or experimental services in your applications
 
-## Flavors (tags) for Red Hat like container's
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx) | [Sources](https://github.com/startxfr/docker-images/)             | [STARTX Profile](https://github.com/startxfr) | 
+|-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------|
 
-This repository offer various flavour of Red Hat like distribution. Tag `:latest` is actually pointing to fedora core 20
+## OS, Services and Applications guidelines
 
-### Operating Systems
-| OS            | Docker Hub repository          | Flavour                |
-|---------------|--------------------------------|------------------------|
-| Fedora Core   | `startx/fedora`                | `:latest` `:20` `:21`  | 
-| CentOS        | `startx/centos`                | `:6` `:7`              |
-
-### Services
-| Service    | Docker Hub repository | Fedora                    | CentOS                |
-|------------|-----------------------|---------------------------|-----------------------|
-| Apache     | `startx/sv-apache`    | `:latest` `:fc20` `:fc21` | `:centos6` `:centos7` |
-| MariaDB    | `startx/sv-mariadb`   | `:latest` `:fc20` `:fc21` | `:centos6` `:centos7` |
-| Memcache   | `startx/sv-memcache`  | `:latest` `:fc20` `:fc21` | `:centos6` `:centos7` |
-| MongoDB    | `startx/sv-mongo`     | `:latest` `:fc20` `:fc21` | `:centos6` `:centos7` |
-| nodejs     | `startx/sv-nodejs`    | `:latest` `:fc20` `:fc21` | `:centos6` `:centos7` |
-| ooconv     | `startx/sv-ooconv`    | `:latest` `:fc20` `:fc21` | `:centos6` `:centos7` |
-| php        | `startx/sv-php`       | `:latest` `:fc20` `:fc21` | `:centos6` `:centos7` |
-| postgreSQL | `startx/sv-postgres`  | `:latest` `:fc20` `:fc21` | `:centos6` `:centos7` |
-| SSH        | `startx/sv-ssh`       | `:latest` `:fc20` `:fc21` | `:centos6` `:centos7` |
-
-### Applications
-| Service    | Docker Hub repository | Fedora                    | CentOS                |
-|------------|-----------------------|---------------------------|-----------------------|
-| PhpMyAdmin | `startx/sv-pma`       | `:latest` `:fc20` `:fc21` | `:centos6` `:centos7` |
-| RockMongo  | `startx/sv-rockmongo` | `:latest` `:fc20` `:fc21` | `:centos6` `:centos7` |
-
-### Running sample container's
-
-#### Fedora Core latest (actually fc20) container's
-
-	# For Fedora example, port start from 50100
-	docker run -d -it --name="fedora" startx/fedora bash
-	docker run -d -p 50100:80 --name="fedora-apache" startx/sv-apache
-	docker run -d -p 50101:3306 --name="fedora-mariadb" startx/sv-mariadb
-	docker run -d -p 50102:11211 --name="fedora-memcache" startx/sv-memcache
-	docker run -d -p 50103:27017 --name="fedora-mongo" startx/sv-mongo
-	docker run -d -p 50104:8000 --name="fedora-nodejs" startx/sv-nodejs
-	docker run -d -p 50105:80 --name="fedora-php" startx/sv-php
-	docker run -d -p 50106:5432 --name="fedora-postgres" startx/sv-postgres
-	docker run -d -p 50107:22 --name="fedora-ssh" startx/sv-ssh
-	docker run -d -p 50108:80 --name="fedora-pma" startx/app-pma
-	docker run -d -p 50109:80 --name="fedora-rockmongo" startx/app-rockmongo
-
-#### Fedora Core 20 container's
-
-	# For Fedora core 20 example, port start from 50200
-	docker run -d -it --name="fedora20" startx/fedora:20 bash
-	docker run -d -p 50200:80 --name="fedora20-apache" startx/sv-apache:fc20
-	docker run -d -p 50201:3306 --name="fedora20-mariadb" startx/sv-mariadb:fc20
-	docker run -d -p 50202:11211 --name="fedora20-memcache" startx/sv-memcache:fc20
-	docker run -d -p 50203:27017 --name="fedora20-mongo" startx/sv-mongo:fc20
-	docker run -d -p 50204:8000 --name="fedora20-nodejs" startx/sv-nodejs:fc20
-	docker run -d -p 50205:80 --name="fedora20-php" startx/sv-php:fc20
-	docker run -d -p 50206:5432 --name="fedora20-postgres" startx/sv-postgres:fc20
-	docker run -d -p 50207:22 --name="fedora20-ssh" startx/sv-ssh:fc20
-	docker run -d -p 50208:80 --name="fedora20-pma" startx/app-pma:fc20
-	docker run -d -p 50209:80 --name="fedora20-rockmongo" startx/app-rockmongo:fc20
-
-#### Fedora Core 21 container's
-
-	# For Fedora core 21 example, port start from 50300
-	docker run -d -it --name="fedora21" startx/fedora:21 bash
-	docker run -d -p 50300:80 --name="fedora21-apache" startx/sv-apache:fc21
-	docker run -d -p 50301:3306 --name="fedora21-mariadb" startx/sv-mariadb:fc21
-	docker run -d -p 50302:11211 --name="fedora21-memcache" startx/sv-memcache:fc21
-	docker run -d -p 50303:27017 --name="fedora21-mongo" startx/sv-mongo:fc21
-	docker run -d -p 50304:8000 --name="fedora21-nodejs" startx/sv-nodejs:fc21
-	docker run -d -p 50305:80 --name="fedora21-php" startx/sv-php:fc21
-	docker run -d -p 50306:5432 --name="fedora21-postgres" startx/sv-postgres:fc21
-	docker run -d -p 50307:22 --name="fedora21-ssh" startx/sv-ssh:fc21
-	docker run -d -p 50308:80 --name="fedora21-pma" startx/app-pma:fc21
-	docker run -d -p 50309:80 --name="fedora21-rockmongo" startx/app-rockmongo:fc21
-
-#### CentOS 6 container's
-
-	# For CentOS 6 example, port start from 50400
-	docker run -d -it --name="centos6" startx/centos:6 bash
-	docker run -d -p 50400:80 --name="centos6-apache" startx/sv-apache:centos6
-	docker run -d -p 50401:3306 --name="centos6-mariadb" startx/sv-mariadb:centos6
-	docker run -d -p 50402:11211 --name="centos6-memcache" startx/sv-memcache:centos6
-	docker run -d -p 50403:27017 --name="centos6-mongo" startx/sv-mongo:centos6
-	docker run -d -p 50404:8000 --name="centos6-nodejs" startx/sv-nodejs:centos6
-	docker run -d -p 50405:80 --name="centos6-php" startx/sv-php:centos6
-	docker run -d -p 50406:5432 --name="centos6-postgres" startx/sv-postgres:centos6
-	docker run -d -p 50407:22 --name="centos6-ssh" startx/sv-ssh:centos6
-	docker run -d -p 50408:80 --name="centos6-pma" startx/app-pma:centos6
-	docker run -d -p 50409:80 --name="centos6-rockmongo" startx/app-rockmongo:centos6
-
-#### CentOS 7 container's
-
-	# For CentOS 7 example, port start from 50500
-	docker run -d -it --name="centos7" startx/centos:7 bash
-	docker run -d -p 50500:80 --name="centos7-apache" startx/sv-apache:centos7
-	docker run -d -p 50501:3306 --name="centos7-mariadb" startx/sv-mariadb:centos7
-	docker run -d -p 50502:11211 --name="centos7-memcache" startx/sv-memcache:centos7
-	docker run -d -p 50503:27017 --name="centos7-mongo" startx/sv-mongo:centos7
-	docker run -d -p 50504:8000 --name="centos7-nodejs" startx/sv-nodejs:centos7
-	docker run -d -p 50505:80 --name="centos7-php" startx/sv-php:centos7
-	docker run -d -p 50506:5432 --name="centos7-postgres" startx/sv-postgres:centos7
-	docker run -d -p 50507:22 --name="centos7-ssh" startx/sv-ssh:centos7
-	docker run -d -p 50508:80 --name="centos7-pma" startx/app-pma:centos7
-	docker run -d -p 50509:80 --name="centos7-rockmongo" startx/app-rockmongo:centos7
-
-## Build and run from local Dockerfile
-### Building docker image
-Copy sources in your docker host / build server
-
-	mkdir startx-docker-images; 
-	cd startx-docker-images;
-	git clone https://github.com/startxfr/docker-images.git .
-
-Build the container
-
-	docker build -t <tag_name> <path_to_Dockerfile>
-
-### Running local image
-Running an interactive image and get access to shell
-
-	docker run -it <image_name> <cmd>
-
-Running an image as a daemon
-
-	docker run -d <image_name>
-	docker exec -it <image_name> <cmd>
-
-## Related Resources
-* [Sources files](https://github.com/startxfr/docker-images/tree/master/)
-* [Github STARTX profile](https://github.com/startxfr/docker-images)
-* [Docker registry for this container](https://registry.hub.docker.com/u/startx/fedora/)
+| Type             | Manual                      | Available                                                 | Running sample                                                  | Flavours
+|------------------|-----------------------------|-----------------------------------------------------------|-----------------------------------------------------------------|------------------------------------------------------|
+| **OS**           | [read manual](OS)           | [read OS list](OS#container-flavours)                     | [see sample code](OS#running-from-dockerhub-registry)           | [read flavours list](OS#container-flavours)          |
+| **Services**     | [read manual](Services)     | [read services list](Services#container-flavours)         | [see sample code](Services#running-from-dockerhub-registry)     | [read flavours list](Services#container-flavours)    |
+| **Applications** | [read manual](Applications) | [read applications list](Applications#container-flavours) | [see sample code](Applications#running-from-dockerhub-registry) | [read flavours list](Applications#container-flavours)|
