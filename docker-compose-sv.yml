@@ -2,38 +2,57 @@ server_apache:
   extends:
     file: Services/apache/docker-compose.yml
     service: server
+  ports:
+    - "80:80"
+    - "443:443"
 
 server_php:
   extends:
     file: Services/php/docker-compose.yml
     service: server
+  ports:
+    - "81:80"
+    - "444:443"
 
 server_nodejs:
   extends:
     file: Services/nodejs/docker-compose.yml
     service: server
+  ports:
+    - "82:8000"
 
 server_mariadb:
   extends:
     file: Services/mariadb/docker-compose.yml
     service: server
+  ports:
+    - "3306:3306"
 
 server_postgres:
   extends:
     file: Services/postgres/docker-compose.yml
     service: server
+  ports:
+    - "5432:5432"
 
 server_mongo:
   extends:
     file: Services/mongo/docker-compose.yml
     service: server
+  ports:
+    - "27017:27017"
+    - "28017:28017"
 
 server_ooconv:
   extends:
     file: Services/ooconv/docker-compose.yml
     service: server
+  ports:
+    - "2002:2002"
 
 server_memcache:
   extends:
     file: Services/memcache/docker-compose.yml
     service: server
+  ports:
+    - "11211:11211"

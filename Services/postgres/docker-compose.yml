@@ -5,6 +5,8 @@ server:
   memswap_limit: 1g
   cpu_shares: 8
   restart: "on-failure:2"
+  ports:
+    - "5432:5432"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "postgresql"
