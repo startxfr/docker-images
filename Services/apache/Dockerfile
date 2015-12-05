@@ -2,8 +2,8 @@ FROM startx/fedora:21
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
-RUN dnf -y install httpd && \
-    dnf clean all 
+RUN yum -y install httpd && \
+    yum clean all 
 ENV HTTPDCONF=/etc/httpd/conf.d/app.conf \
     STARTUPLOG=/data/logs/apache/startup.log \
     LOG_PATH=/data/logs/apache  \

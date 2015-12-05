@@ -2,8 +2,8 @@ FROM startx/fedora:21
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
-RUN dnf -y install nodejs npm python make gcc && \
-    dnf clean all 
+RUN yum -y install nodejs npm python make gcc && \
+    yum clean all 
 ENV STARTUPLOG=/data/logs/nodejs/startup.log \
     LOG_PATH=/data/logs/nodejs  \
     APP_PATH=/data/nodejs \

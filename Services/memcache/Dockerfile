@@ -2,8 +2,8 @@ FROM startx/fedora:21
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
-RUN dnf -y install memcached && \
-    dnf clean all 
+RUN yum -y install memcached && \
+    yum clean all 
 ENV STARTUPLOG=/data/logs/memcache/startup.log \
     LOG_PATH=/data/logs/memcache
 COPY *.sh /bin/

@@ -2,8 +2,8 @@ FROM startx/fedora:21
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
-RUN dnf -y install unoconv libreoffice-headless libreoffice-writer libreoffice-calc pdfmod ghostscript && \
-    dnf clean all 
+RUN yum -y install unoconv libreoffice-headless libreoffice-writer libreoffice-calc pdfmod ghostscript && \
+    yum clean all 
 ENV STARTUPLOG=/data/logs/ooconv/startup.log \
     LOG_PATH=/data/logs/ooconv
 COPY *.sh /bin/

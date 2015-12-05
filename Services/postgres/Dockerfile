@@ -2,8 +2,8 @@ FROM startx/fedora:21
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
-RUN dnf -y install postgresql postgresql-libs postgresql-server \
-    && dnf clean all && \
+RUN yum -y install postgresql postgresql-libs postgresql-server \
+    && yum clean all && \
     mkdir -p /tmp/sql 
 ENV STARTUPLOG=/data/logs/postgresql/startup.log \
     LOG_PATH=/data/logs/postgresql \

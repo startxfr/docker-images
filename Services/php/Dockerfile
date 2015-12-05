@@ -2,12 +2,12 @@ FROM startx/sv-apache:fc21
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
-RUN dnf -y install php php-pecl-mongo php-cli php-pear \
+RUN yum -y install php php-pecl-mongo php-cli php-pear \
         php-gd php-mcrypt php-mysqlnd php-soap php-pecl-xdebug \
         php-pdo php-process php-common php-mbstring \
         php-bcmath php-pecl-zip php-php-gettext php-tcpdf \
         php-tcpdf-dejavu-sans-fonts php-tidy \
-    && dnf clean all  
+    && yum clean all  
 ENV HTTPDCONF=/etc/httpd/conf.d/app.conf \
     LOG_PATH=/data/logs/apache_php  \
     APP_PATH=/data/apache_php \

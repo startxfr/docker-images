@@ -1,8 +1,8 @@
 FROM startx/sv-php:fc21
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
-RUN dnf -y install phpMyAdmin \
-    && dnf clean all
+RUN yum -y install phpMyAdmin \
+    && yum clean all
 COPY config.php /etc/phpMyAdmin/config.inc.php
 COPY test.php /var/www/html/test.php
 

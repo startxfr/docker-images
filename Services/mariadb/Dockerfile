@@ -2,8 +2,8 @@ FROM startx/fedora:21
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
-RUN dnf -y install  mariadb-common mariadb-libs mariadb-config mariadb-errmsg mariadb-server mariadb \
-    && dnf clean all && \
+RUN yum -y install  mariadb-common mariadb-libs mariadb-config mariadb-errmsg mariadb-server mariadb \
+    && yum clean all && \
     mkdir -p /tmp/sql 
 ENV MY_CONF=/etc/my.cnf \
     STARTUPLOG=/data/logs/mariadb/startup.log \
