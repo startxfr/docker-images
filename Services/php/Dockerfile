@@ -24,7 +24,6 @@ RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/run.sh && \
     chown -R apache:apache $APP_PATH $LOG_PATH && \
     chmod ug+r -R $APP_PATH
 
-EXPOSE 80
-EXPOSE 443
+EXPOSE 80 443
 VOLUME [$APP_PATH,$LOG_PATH]
 CMD ["/bin/run.sh"]
