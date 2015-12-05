@@ -1,7 +1,7 @@
 fc21:
   extends:
     file: OS/docker-compose.yml
-    service: fedora
+    service: fc21
 
 fc21_apache:
   extends:
