@@ -2,7 +2,9 @@ FROM startx/centos:6
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
-RUN yum -y install  mariadb-common mariadb-libs mariadb-config mariadb-errmsg mariadb-server mariadb \
+COPY mariadb.repo /etc/yum.repos.d/mariadb.repo
+RUN yum -y remove mysql-server mysql && \
+    yum -y install mysql-server mysql \
     && yum clean all && \
     mkdir -p /tmp/sql 
 ENV MY_CONF=/etc/my.cnf \
