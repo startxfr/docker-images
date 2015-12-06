@@ -18,12 +18,12 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-* `:latest` : Fedora core 23 + OOConv 
-* `:fc23` : Fedora core 23 + OOConv 
-* `:fc22` : Fedora core 22 + OOConv 
-* `:fc21` : Fedora core 21 + OOConv 
-* `:centos7` : CentOS 7 + OOConv 
-* `:centos6` : Centos 6 + OOConv 
+* `:latest` : Fedora core 23 + unoconv 0.7 + LibreOffice 5.0.3.2
+* `:fc23` : Fedora core 23 + unoconv 0.7 + LibreOffice 5.0.3.2
+* `:fc22` : Fedora core 22 + unoconv 
+* `:fc21` : Fedora core 21 + unoconv 
+* `:centos7` : CentOS 7 + unoconv 
+* `:centos6` : Centos 6 + unoconv 
 
 ## Running from dockerhub registry
 

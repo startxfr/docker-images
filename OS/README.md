@@ -20,7 +20,7 @@ This container contain updated core OS rpm (kernel, libs,...) as well as usefull
 
 | Version    | Docker Hub repository                                                   | Fedora distribution                         |
 |------------|-------------------------------------------------------------------------|---------------------------------------------|
-| Latest     | [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora)        | Fedora 23 (kernel 4.2 + GNU 3.18  )         |
+| Latest     | [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora)        | Fedora 24 (kernel 4.2 + GNU 3.18  )         |
 | 23         | [`startx/fedora:23`](https://hub.docker.com/r/startx/fedora)            | Fedora 23 (kernel 4.2 + GNU 3.18  )         |
 | 22         | [`startx/fedora:22`](https://hub.docker.com/r/startx/fedora)            | Fedora 22 (kernel 4.0 + GNU 3.16  )         |
 | 21         | [`startx/fedora:21`](https://hub.docker.com/r/startx/fedora)            | Fedora 21 (kernel 3.16 + GNU 3.14  )        |

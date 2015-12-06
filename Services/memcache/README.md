@@ -18,12 +18,12 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-* `:latest` : Fedora core 23 + Memcached 
-* `:fc23` : Fedora core 23 + Memcached
-* `:fc22` : Fedora core 22 + Memcached 
-* `:fc21` : Fedora core 21 + Memcached 
-* `:centos7` : CentOS 7 + Memcached
-* `:centos6` : Centos 6 + Memcached 
+* `:latest` : Fedora core 23 + memcached 1.4.17 
+* `:fc23` : Fedora core 23 + memcached 1.4.17
+* `:fc22` : Fedora core 22 + memcached 
+* `:fc21` : Fedora core 21 + memcached 
+* `:centos7` : CentOS 7 + memcached
+* `:centos6` : Centos 6 + memcached 
 
 ## Running from dockerhub registry
 

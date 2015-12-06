@@ -18,12 +18,12 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-* `:latest` : Fedora core 23 + Mongo 
-* `:fc23` : Fedora core 23 + Mongo 
-* `:fc22` : Fedora core 22 + Mongo 
-* `:fc21` : Fedora core 21 + Mongo 
-* `:centos7` : CentOS 7 + Mongo 
-* `:centos6` : Centos 6 + Mongo 
+* `:latest` : Fedora core 23 + MongoDB 3.0.7 
+* `:fc23` : Fedora core 23 + MongoDB 3.0.7  
+* `:fc22` : Fedora core 22 + MongoDB 
+* `:fc21` : Fedora core 21 + MongoDB 
+* `:centos7` : CentOS 7 + MongoDB 
+* `:centos6` : Centos 6 + MongoDB 
 
 ## Running from dockerhub registry
 

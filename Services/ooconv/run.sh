@@ -11,11 +11,11 @@ function display_container_ooconv_header {
     if [ -v CONTAINER_TYPE ]; then
         echo "| Type        : $CONTAINER_TYPE"
     fi
-    if [ -v CONTAINER_INSTANCE ]; then
-        echo "| Instance    : $CONTAINER_INSTANCE"
-    fi
     if [ -v CONTAINER_SERVICE ]; then
         echo "| Service     : $CONTAINER_SERVICE"
+    fi
+    if [ -v CONTAINER_INSTANCE ]; then
+        echo "| Instance    : $CONTAINER_INSTANCE"
     fi
     if [ -v LOG_PATH ]; then
         echo "| Log path    : $LOG_PATH"
@@ -27,7 +27,7 @@ function display_container_ooconv_header {
 # Begin configuration before starting daemonized process
 # and start generating host keys
 function begin_config {
-    echo "=> BEGIN MEMCACHE CONFIGURATION"
+    echo "=> BEGIN OOCONV CONFIGURATION"
     if [[ ! -d $LOG_PATH ]]; then
         echo "log directory $LOG_PATH not found"
         mkdir -p $LOG_PATH;
@@ -40,7 +40,7 @@ function begin_config {
 
 # End configuration process just before starting daemon
 function end_config {
-    echo "=> END MEMCACHE CONFIGURATION"
+    echo "=> END OOCONV CONFIGURATION"
 }
 
 # Start the ooconv server as a deamon and execute it inside 

@@ -10,11 +10,11 @@ function display_container_memcache_header {
     if [ -v CONTAINER_TYPE ]; then
         echo "| Type        : $CONTAINER_TYPE"
     fi
-    if [ -v CONTAINER_INSTANCE ]; then
-        echo "| Instance    : $CONTAINER_INSTANCE"
-    fi
     if [ -v CONTAINER_SERVICE ]; then
         echo "| Service     : $CONTAINER_SERVICE"
+    fi
+    if [ -v CONTAINER_INSTANCE ]; then
+        echo "| Instance    : $CONTAINER_INSTANCE"
     fi
     if [ -v LOG_PATH ]; then
         echo "| Log path    : $LOG_PATH"

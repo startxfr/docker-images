@@ -18,8 +18,8 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-* `:latest` : Fedora core 23 + Apache 
-* `:fc23` : Fedora core 23 + Apache 
+* `:latest` : Fedora core 23 + Apache 2.4.17
+* `:fc23` : Fedora core 23 + Apache 2.4.17
 * `:fc22` : Fedora core 22 + Apache 
 * `:fc21` : Fedora core 21 + Apache 
 * `:centos7` : CentOS 7 + Apache 

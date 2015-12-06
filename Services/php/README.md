@@ -18,8 +18,8 @@ based on [startx/sv-apache container](https://hub.docker.com/r/startx/sv-apache)
 
 ## Available flavours
 
-* `:latest` : Fedora core 23 + Apache + PHP 
-* `:fc23` : Fedora core 23 + Apache + PHP 
+* `:latest` : Fedora core 23 + Apache 2.4.17 + PHP 5.6.16
+* `:fc23` : Fedora core 23 + Apache 2.4.17 + PHP 5.6.16
 * `:fc22` : Fedora core 22 + Apache + PHP 
 * `:fc21` : Fedora core 21 + Apache + PHP 
 * `:centos7` : CentOS 7 + Apache + PHP 

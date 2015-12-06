@@ -21,11 +21,11 @@ function display_container_mariadb_header {
     if [ -v CONTAINER_TYPE ]; then
         echo "| Type        : $CONTAINER_TYPE"
     fi
-    if [ -v CONTAINER_INSTANCE ]; then
-        echo "| Instance    : $CONTAINER_INSTANCE"
-    fi
     if [ -v CONTAINER_SERVICE ]; then
         echo "| Service     : $CONTAINER_SERVICE"
+    fi
+    if [ -v CONTAINER_INSTANCE ]; then
+        echo "| Instance    : $CONTAINER_INSTANCE"
     fi
     if [ -v DATA_PATH ]; then
         echo "| Data path   : $DATA_PATH"
@@ -65,11 +65,19 @@ function begin_config {
         chmod 0774 $LOADSQL_PATH; 
         chown mysql:mysql $LOADSQL_PATH
     fi
+    echo "" >> $MY_CONF
+    echo "[mysqld]" >> $MY_CONF
+    echo "datadir=$DATA_PATH" >> $MY_CONF
+    echo "log-error=$LOG_PATH/mysqld.log" >> $MY_CONF
+    echo "" >> $MY_CONF
+    echo "[mariadb]" >> $MY_CONF
+    echo "datadir=$DATA_PATH" >> $MY_CONF
+    echo "log-error=$LOG_PATH/mariadb.log" >> $MY_CONF
     VOLUME_HOME=$DATA_PATH/mysql
     if [[ ! -d $VOLUME_HOME ]]; then
         echo "mariadb directory is empty or uninitialized"
         echo "Installing MariaDB in $DATA_PATH ..."
-        mysql_install_db > /dev/null 2>&1 
+        mysql_install_db --datadir=$DATA_PATH --defaults-file=$MY_CONF --user=mysql > /dev/null 2>&1 
         chown mysql:mysql -R $DATA_PATH
         echo "Installing MariaDB in $DATA_PATH is DONE !"
     else
@@ -77,13 +85,6 @@ function begin_config {
         echo "Reusing MariaDB in $DATA_PATH ..."
         chown mysql:mysql -R $DATA_PATH
     fi
-    echo "" >> $MY_CONF
-    echo "[mysqld]" >> $MY_CONF
-    echo "datadir=$DATA_PATH" >> $MY_CONF
-    echo "log-error=$LOG_PATH/mysqld.log" >> $MY_CONF
-    echo "" >> $MY_CONF
-    echo "[mariadb]" >> $MY_CONF
-    echo "log-error=$LOG_PATH/mariadb.log" >> $MY_CONF
 }
 
 function config_startserver {

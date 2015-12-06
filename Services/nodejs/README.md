@@ -19,8 +19,8 @@ Could use various network protocol (like http, websocket, smtp, telnet) accordin
 
 ## Available flavours
 
-* `:latest` : Fedora core 23 + NodeJS 
-* `:fc23` : Fedora core 23 + NodeJS 
+* `:latest` : Fedora core 23 + NodeJS v0.10.36
+* `:fc23` : Fedora core 23 + NodeJS v0.10.36
 * `:fc22` : Fedora core 22 + NodeJS 
 * `:fc21` : Fedora core 21 + NodeJS 
 * `:centos7` : CentOS 7 + NodeJS 

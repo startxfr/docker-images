@@ -6,8 +6,8 @@ server:
   cpu_shares: 10
   restart: "on-failure:2"
   ports:
-    - "27017:27017"
-    - "28017:28017"
+    - "9251:27017"
+    - "9252:28017"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mongo"
