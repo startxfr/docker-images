@@ -47,7 +47,8 @@ function end_config {
 function start_daemon {
     echo "=> Starting couchbase daemon ..." | tee -a $STARTUPLOG
     display_container_started | tee -a $STARTUPLOG
-    exec couchbase -u daemon -v
+#    exec couchbase -u daemon -v
+exec tail -f /etc/redhat-release
 }
 
 
