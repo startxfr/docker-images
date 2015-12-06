@@ -53,7 +53,7 @@ service:
 * sample docker-compose.yml using data container
 ```
 data:
-  image: startx/fedora:centos7
+  image: startx/centos:7
   container_name: "service-mongo-data-centos7"
   environment:
     CONTAINER_INSTANCE: "service-mongo-data-centos7"
