@@ -1,4 +1,4 @@
-FROM startx/sv-apache:fc21
+FROM startx/sv-apache:fc20
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root

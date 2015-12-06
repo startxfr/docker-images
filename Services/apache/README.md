@@ -1,8 +1,8 @@
-# Docker OS Images : APACHE on Fedora 21
+# Docker OS Images : APACHE on Fedora 20
 
 Simple container used to deliver static http content include all apache's modules but no external languages engines (like php). For dynamic content, you should use our [sv-php service container](https://hub.docker.com/r/startx/sv-php)
 Run [apache httpd daemon](https://httpd.apache.org/) under a container 
-based on [startx/fedora:21 container](https://hub.docker.com/r/startx/fedora)
+based on [startx/fedora:20 container](https://hub.docker.com/r/startx/fedora)
 
 Each container is provided with various underlying OS version based on CentOS or 
 Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
@@ -13,21 +13,21 @@ or **[other apache flavours](https://github.com/startxfr/docker-images/Services/
 
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="service-apache-fc21" startx/sv-apache:fc21` from any docker host
+* with `docker` you can run `docker run -it --name="service-apache-fc20" startx/sv-apache:fc20` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-apache:fc21
-  container_name: "service-apache-fc21"
+  image: startx/sv-apache:fc20
+  container_name: "service-apache-fc20"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "apache"
-    CONTAINER_INSTANCE: "service-apache-fc21"
+    CONTAINER_INSTANCE: "service-apache-fc20"
     SERVER_NAME: "localhost"
     DOC_ROOT: "/data/apache"
   volumes:
-    - "/tmp/container-fc21/logs/apache:/data/logs/apache"
-    - "/tmp/container-fc21/apache:/data/apache"
+    - "/tmp/container-fc20/logs/apache:/data/logs/apache"
+    - "/tmp/container-fc20/apache:/data/apache"
 ```
 
 ## Docker-compose in various situations
@@ -35,35 +35,35 @@ service:
 * sample docker-compose.yml linked to host port 1000
 ```
 service:
-  image: startx/sv-apache:fc21
-  container_name: "service-apache-fc21"
+  image: startx/sv-apache:fc20
+  container_name: "service-apache-fc20"
   environment:
-    CONTAINER_INSTANCE: "service-apache-fc21"
+    CONTAINER_INSTANCE: "service-apache-fc20"
   ports:
     - "1000:80"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
 service:
-  image: startx/sv-apache:fc21
-  container_name: "service-apache-fc21"
+  image: startx/sv-apache:fc20
+  container_name: "service-apache-fc20"
   environment:
-    CONTAINER_INSTANCE: "service-apache-fc21"
+    CONTAINER_INSTANCE: "service-apache-fc20"
   expose:
     - "80"
 ```
 * sample docker-compose.yml using data container
 ```
 data:
-  image: startx/fedora:21
-  container_name: "service-apache-fc21-data"
+  image: startx/fedora:20
+  container_name: "service-apache-fc20-data"
   environment:
-    CONTAINER_INSTANCE: "service-apache-fc21-data"
+    CONTAINER_INSTANCE: "service-apache-fc20-data"
 service:
-  image: startx/sv-apache:fc21
-  container_name: "service-apache-fc21"
+  image: startx/sv-apache:fc20
+  container_name: "service-apache-fc20"
   environment:
-    CONTAINER_INSTANCE: "service-apache-fc21"
+    CONTAINER_INSTANCE: "service-apache-fc20"
   volume_from:
     - data:rw
 ```
@@ -72,7 +72,7 @@ service:
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
  ```
-FROM startx/sv-apache:fc21
+FROM startx/sv-apache:fc20
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```
@@ -120,17 +120,17 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-1. Switch to the flavour branch with `git branch fc21`
+1. Switch to the flavour branch with `git branch fc20`
 2. Jump into the container directory with `cd Services/apache`
-3. Build the container using `docker build -t sv-apache-fc21 .`
+3. Build the container using `docker build -t sv-apache-fc20 .`
 4. Run this container 
-  1. Interactively with `docker run -p 80:80 -v /data/logs/apache -it sv-apache-fc21`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -p 80:80 -v /data/logs/apache -d sv-apache-fc21`
+  1. Interactively with `docker run -p 80:80 -v /data/logs/apache -it sv-apache-fc20`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 80:80 -v /data/logs/apache -d sv-apache-fc20`
 
 
 ### Build & run a container using `docker-compose`
 
-1. Switch to the flavour branch with `git branch fc21`
+1. Switch to the flavour branch with `git branch fc20`
 2. Jump into the container directory with `cd Services/apache`
 3. Run this container 
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container

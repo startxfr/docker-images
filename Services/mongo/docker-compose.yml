@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "mongo-fc21"
+  container_name: "mongo-fc20"
   mem_limit: 2g
   memswap_limit: 2g
   cpu_shares: 10
@@ -13,5 +13,5 @@ server:
     CONTAINER_SERVICE: "mongo"
     CONTAINER_INSTANCE: "sx-mongo"
   volumes:
-    - "/tmp/container-fc21/logs/mongodb:/data/logs/mongodb"
-    - "/tmp/container-fc21/mongodb:/data/mongodb"
+    - "/tmp/container-fc20/logs/mongodb:/data/logs/mongodb"
+    - "/tmp/container-fc20/mongodb:/data/mongodb"

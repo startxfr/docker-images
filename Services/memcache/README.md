@@ -1,8 +1,8 @@
-# Docker OS Images : MEMCACHE on Fedora 21
+# Docker OS Images : MEMCACHE on Fedora 20
 
 Simple container used to deliver distributed memory object caching system
 Run [memcached daemon](https://www.memcached.org/) under a container 
-based on [startx/fedora:21 container](https://hub.docker.com/r/startx/fedora)
+based on [startx/fedora:20 container](https://hub.docker.com/r/startx/fedora)
 
 Each container is provided with various underlying OS version based on CentOS or 
 Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
@@ -13,18 +13,18 @@ or **[other memcache flavours](https://github.com/startxfr/docker-images/Service
 
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="service-memcache-fc21" startx/sv-memcache:fc21` from any docker host
+* with `docker` you can run `docker run -it --name="service-memcache-fc20" startx/sv-memcache:fc20` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-memcache:fc21
-  container_name: "service-memcache-fc21"
+  image: startx/sv-memcache:fc20
+  container_name: "service-memcache-fc20"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "memcache"
-    CONTAINER_INSTANCE: "service-memcache-fc21"
+    CONTAINER_INSTANCE: "service-memcache-fc20"
   volumes:
-    - "/tmp/container-fc21/logs/memcache:/data/logs/memcache"
+    - "/tmp/container-fc20/logs/memcache:/data/logs/memcache"
 ```
 
 ## Docker-compose in various situations
@@ -32,20 +32,20 @@ service:
 * sample docker-compose.yml linked to host port 1000
 ```
 service:
-  image: startx/sv-memcache:fc21
-  container_name: "service-memcache-fc21"
+  image: startx/sv-memcache:fc20
+  container_name: "service-memcache-fc20"
   environment:
-    CONTAINER_INSTANCE: "service-memcache-fc21"
+    CONTAINER_INSTANCE: "service-memcache-fc20"
   ports:
     - "1000:11211"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
 service:
-  image: startx/sv-memcache:fc21
-  container_name: "service-memcache-fc21"
+  image: startx/sv-memcache:fc20
+  container_name: "service-memcache-fc20"
   environment:
-    CONTAINER_INSTANCE: "service-memcache-fc21"
+    CONTAINER_INSTANCE: "service-memcache-fc20"
   expose:
     - "11211"
 ```
@@ -54,7 +54,7 @@ service:
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
  ```
-FROM startx/sv-memcache:fc21
+FROM startx/sv-memcache:fc20
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```
@@ -98,7 +98,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-1. Switch to the flavour branch with `git branch fc21`
+1. Switch to the flavour branch with `git branch fc20`
 2. Jump into the container directory with `cd Services/memcache`
 3. Build the container using `docker build -t sv-memcache .`
 4. Run this container 
@@ -108,7 +108,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker-compose`
 
-1. Switch to the flavour branch with `git branch fc21`
+1. Switch to the flavour branch with `git branch fc20`
 2. Jump into the container directory with `cd Services/memcache`
 3. Run this container 
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container

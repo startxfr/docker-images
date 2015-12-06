@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "memcache-fc21"
+  container_name: "memcache-fc20"
   mem_limit: 2g
   memswap_limit: 3g
   cpu_shares: 2
@@ -12,4 +12,4 @@ server:
     CONTAINER_SERVICE: "memcache"
     CONTAINER_INSTANCE: "service-memcache"
   volumes:
-    - "/tmp/container-fc21/logs/memcache:/data/logs/memcache"
+    - "/tmp/container-fc20/logs/memcache:/data/logs/memcache"

@@ -1,4 +1,4 @@
-FROM startx/sv-php:fc21
+FROM startx/sv-php:fc20
 MAINTAINER startx dev@startx.fr
 
 # update, install required, clean

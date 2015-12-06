@@ -1,6 +1,6 @@
-# STARTX Docker-Images Repository based on Fedora 21
+# STARTX Docker-Images Repository based on Fedora 20
 
-This repository host various Open Source application or services as a container based on the fedora 21 distribution
+This repository host various Open Source application or services as a container based on the fedora 20 distribution
 
 You can use it to instanciate new container from the dockerhub public registry 
 or as a parent container in your own container's. 

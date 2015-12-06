@@ -1,8 +1,8 @@
-# Docker OS Images : MONGO on Fedora 21
+# Docker OS Images : MONGO on Fedora 20
 
 Simple container used to deliver document-oriented database
 Run [mongodb daemon](https://www.mongodb.org/) under a container 
-based on [startx/fedora:21 container](https://hub.docker.com/r/startx/fedora)
+based on [startx/fedora:20 container](https://hub.docker.com/r/startx/fedora)
 
 Each container is provided with various underlying OS version based on CentOS or 
 Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
@@ -17,15 +17,15 @@ or **[other mongo flavours](https://github.com/startxfr/docker-images/Services/m
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-mongo:fc21
-  container_name: "service-mongo-fc21"
+  image: startx/sv-mongo:fc20
+  container_name: "service-mongo-fc20"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mongo"
-    CONTAINER_INSTANCE: "service-mongo-fc21"
+    CONTAINER_INSTANCE: "service-mongo-fc20"
   volumes:
-    - "/tmp/container-fc21/logs/mongo:/data/logs/mongo"
-    - "/tmp/container-fc21/mongo:/data/mongo"
+    - "/tmp/container-fc20/logs/mongo:/data/logs/mongo"
+    - "/tmp/container-fc20/mongo:/data/mongo"
 ```
 
 ## Docker-compose in various situations
@@ -33,35 +33,35 @@ service:
 * sample docker-compose.yml linked to host port 1000
 ```
 service:
-  image: startx/sv-mongo:fc21
-  container_name: "service-mongo-fc21"
+  image: startx/sv-mongo:fc20
+  container_name: "service-mongo-fc20"
   environment:
-    CONTAINER_INSTANCE: "service-mongo-fc21"
+    CONTAINER_INSTANCE: "service-mongo-fc20"
   ports:
     - "1000:27017"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
 service:
-  image: startx/sv-mongo:fc21
-  container_name: "service-mongo-fc21"
+  image: startx/sv-mongo:fc20
+  container_name: "service-mongo-fc20"
   environment:
-    CONTAINER_INSTANCE: "service-mongo-fc21"
+    CONTAINER_INSTANCE: "service-mongo-fc20"
   expose:
     - "27017"
 ```
 * sample docker-compose.yml using data container
 ```
 data:
-  image: startx/fedora:fc21
-  container_name: "service-mongo-data-fc21"
+  image: startx/fedora:fc20
+  container_name: "service-mongo-data-fc20"
   environment:
-    CONTAINER_INSTANCE: "service-mongo-data-fc21"
+    CONTAINER_INSTANCE: "service-mongo-data-fc20"
 service:
-  image: startx/sv-mongo:fc21
-  container_name: "service-mongo-fc21"
+  image: startx/sv-mongo:fc20
+  container_name: "service-mongo-fc20"
   environment:
-    CONTAINER_INSTANCE: "service-mongo-fc21"
+    CONTAINER_INSTANCE: "service-mongo-fc20"
   volume_from:
     - data:rw
 ```
@@ -70,7 +70,7 @@ service:
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
  ```
-FROM startx/sv-mongo:fc21
+FROM startx/sv-mongo:fc20
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```
@@ -115,7 +115,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-1. Switch to the flavour branch with `git branch fc21`
+1. Switch to the flavour branch with `git branch fc20`
 2. Jump into the container directory with `cd Services/mongo`
 3. Build the container using `docker build -t sv-mongo .`
 4. Run this container 
@@ -125,7 +125,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker-compose`
 
-1. Switch to the flavour branch with `git branch fc21`
+1. Switch to the flavour branch with `git branch fc20`
 2. Jump into the container directory with `cd Services/mongo`
 3. Run this container 
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container

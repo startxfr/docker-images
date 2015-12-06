@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "mariadb-fc21"
+  container_name: "mariadb-fc20"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 8
@@ -16,5 +16,5 @@ server:
     MYSQL_PASSWORD: "pwd-test"
     MYSQL_DATABASE: "db_test"
   volumes:
-    - "/tmp/container-fc21/logs/mariadb:/data/logs/mariadb"
-    - "/tmp/container-fc21/mariadb:/data/mariadb"
+    - "/tmp/container-fc20/logs/mariadb:/data/logs/mariadb"
+    - "/tmp/container-fc20/mariadb:/data/mariadb"

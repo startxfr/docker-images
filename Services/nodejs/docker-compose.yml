@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "nodejs-fc21"
+  container_name: "nodejs-fc20"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 5
@@ -12,5 +12,5 @@ server:
     CONTAINER_SERVICE: "nodejs"
     CONTAINER_INSTANCE: "service-nodejs"
   volumes:
-    - "/tmp/container-fc21/logs/nodejs:/data/logs/nodejs"
-    - "/tmp/container-fc21/nodejs:/data/nodejs"
+    - "/tmp/container-fc20/logs/nodejs:/data/logs/nodejs"
+    - "/tmp/container-fc20/nodejs:/data/nodejs"
