@@ -1,4 +1,4 @@
-FROM fedora:latest
+FROM fedora:rawhide
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
