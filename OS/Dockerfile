@@ -11,5 +11,6 @@ COPY *.sh /bin/
 RUN chmod 775 /bin/sx-lib.sh /bin/run.sh && \
     mkdir /data && \
     mkdir /data/logs
+ENV TERM=xterm
 
 CMD ["/bin/run.sh"]
