@@ -8,10 +8,10 @@ fc20_php:
     file: Services/php/docker-compose.yml
     service: server
 
-fc20_nodejs:
-  extends:
-    file: Services/nodejs/docker-compose.yml
-    service: server
+#fc20_nodejs:
+#  extends:
+#    file: Services/nodejs/docker-compose.yml
+#    service: server
 
 fc20_mariadb:
   extends:
