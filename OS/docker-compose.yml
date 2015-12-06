@@ -1,4 +1,4 @@
-fc22:
+fedora22:
   build: ./
   container_name: "os-fedora22"
   mem_limit: 1g
