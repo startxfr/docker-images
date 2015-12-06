@@ -1,39 +1,39 @@
-server_apache:
+fc23_apache:
   extends:
     file: Services/apache/docker-compose.yml
     service: server
 
-server_php:
+fc23_php:
   extends:
     file: Services/php/docker-compose.yml
     service: server
 
-server_nodejs:
+fc23_nodejs:
   extends:
     file: Services/nodejs/docker-compose.yml
     service: server
 
-server_mariadb:
+fc23_mariadb:
   extends:
     file: Services/mariadb/docker-compose.yml
     service: server
 
-server_postgres:
+fc23_postgres:
   extends:
     file: Services/postgres/docker-compose.yml
     service: server
 
-server_mongo:
+fc23_mongo:
   extends:
     file: Services/mongo/docker-compose.yml
     service: server
 
-server_ooconv:
+fc23_ooconv:
   extends:
     file: Services/ooconv/docker-compose.yml
     service: server
 
-server_memcache:
+fc23_memcache:
   extends:
     file: Services/memcache/docker-compose.yml
     service: server

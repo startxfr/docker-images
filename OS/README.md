@@ -14,7 +14,7 @@ or [other OS distributions and flavours](https://github.com/startxfr/docker-imag
 * with `docker` you can run `docker run -it --name="fedora23" startx/fedora:23` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
-fedora:
+fedora23:
   image: startx/fedora:23
   container_name: "os-fedora23"
   environment:

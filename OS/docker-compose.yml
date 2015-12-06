@@ -1,4 +1,4 @@
-fc23:
+fedora23:
   build: ./
   container_name: "os-fedora23"
   mem_limit: 1g
