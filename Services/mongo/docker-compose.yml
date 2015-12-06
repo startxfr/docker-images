@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "mongo-fc20"
+  container_name: "mongo-centos6"
   mem_limit: 2g
   memswap_limit: 2g
   cpu_shares: 10
@@ -13,5 +13,5 @@ server:
     CONTAINER_SERVICE: "mongo"
     CONTAINER_INSTANCE: "sx-mongo"
   volumes:
-    - "/tmp/container-fc20/logs/mongodb:/data/logs/mongodb"
-    - "/tmp/container-fc20/mongodb:/data/mongodb"
+    - "/tmp/container-centos6/logs/mongodb:/data/logs/mongodb"
+    - "/tmp/container-centos6/mongodb:/data/mongodb"

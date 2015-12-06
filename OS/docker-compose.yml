@@ -1,6 +1,6 @@
-fc20:
+centos6:
   build: ./
-  container_name: "os-fedora20"
+  container_name: "os-centos6"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 2
@@ -8,4 +8,4 @@ fc20:
   environment:
     CONTAINER_TYPE: "os"
     CONTAINER_SERVICE: "fedora"
-    CONTAINER_INSTANCE: "os-fedora20"
+    CONTAINER_INSTANCE: "os-centos6"

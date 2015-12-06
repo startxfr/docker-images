@@ -1,8 +1,8 @@
-# Docker OS Images : NODEJS on Fedora 20
+# Docker OS Images : NODEJS on CentOS 6
 
 Simple container used to run server side executed javascript content. include all nodejs and npm dependency.
 Run [nodejs main app.js](https://www.nodejs.org/) under a container 
-based on [startx/fedora:20 container](https://hub.docker.com/r/startx/fedora). 
+based on [startx/centos:6 container](https://hub.docker.com/r/startx/fedora). 
 Could use various network protocol (like http, websocket, smtp, telnet) according to the content of the running app.
 
 Each container is provided with various underlying OS version based on CentOS or 
@@ -18,15 +18,15 @@ or **[other nodejs flavours](https://github.com/startxfr/docker-images/Services/
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-nodejs:fc20
-  container_name: "service-nodejs-fc20"
+  image: startx/sv-nodejs:centos6
+  container_name: "service-nodejs-centos6"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "nodejs"
-    CONTAINER_INSTANCE: "service-nodejs-fc20"
+    CONTAINER_INSTANCE: "service-nodejs-centos6"
   volumes:
-    - "/tmp/container-fc20/logs/nodejs:/data/logs/nodejs"
-    - "/tmp/container-fc20/nodejs:/data/nodejs"
+    - "/tmp/container-centos6/logs/nodejs:/data/logs/nodejs"
+    - "/tmp/container-centos6/nodejs:/data/nodejs"
 ```
 
 ## Docker-compose in various situations
@@ -34,35 +34,35 @@ service:
 * sample docker-compose.yml linked to host port 1000
 ```
 service:
-  image: startx/sv-nodejs:fc20
-  container_name: "service-nodejs-fc20"
+  image: startx/sv-nodejs:centos6
+  container_name: "service-nodejs-centos6"
   environment:
-    CONTAINER_INSTANCE: "service-nodejs-fc20"
+    CONTAINER_INSTANCE: "service-nodejs-centos6"
   ports:
     - "1000:8000"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
 service:
-  image: startx/sv-nodejs:fc20
-  container_name: "service-nodejs-fc20"
+  image: startx/sv-nodejs:centos6
+  container_name: "service-nodejs-centos6"
   environment:
-    CONTAINER_INSTANCE: "service-nodejs-fc20"
+    CONTAINER_INSTANCE: "service-nodejs-centos6"
   expose:
     - "8000"
 ```
 * sample docker-compose.yml using data container
 ```
 data:
-  image: startx/fedora:fc20
-  container_name: "service-nodejs-data-fc20"
+  image: startx/fedora:centos6
+  container_name: "service-nodejs-data-centos6"
   environment:
-    CONTAINER_INSTANCE: "service-nodejs-data-fc20"
+    CONTAINER_INSTANCE: "service-nodejs-data-centos6"
 service:
-  image: startx/sv-nodejs:fc20
-  container_name: "service-nodejs-fc20"
+  image: startx/sv-nodejs:centos6
+  container_name: "service-nodejs-centos6"
   environment:
-    CONTAINER_INSTANCE: "service-nodejs-fc20"
+    CONTAINER_INSTANCE: "service-nodejs-centos6"
   volume_from:
     - data:rw
 ```
@@ -71,7 +71,7 @@ service:
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
  ```
-FROM startx/sv-nodejs:fc20
+FROM startx/sv-nodejs:centos6
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```
@@ -117,7 +117,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-1. Switch to the flavour branch with `git branch fc20`
+1. Switch to the flavour branch with `git branch centos6`
 2. Jump into the container directory with `cd Services/nodejs`
 3. Build the container using `docker build -t sv-nodejs .`
 4. Run this container 
@@ -127,7 +127,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker-compose`
 
-1. Switch to the flavour branch with `git branch fc20`
+1. Switch to the flavour branch with `git branch centos6`
 2. Jump into the container directory with `cd Services/nodejs`
 3. Run this container 
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container

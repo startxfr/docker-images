@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "nodejs-fc20"
+  container_name: "nodejs-centos6"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 5
@@ -12,5 +12,5 @@ server:
     CONTAINER_SERVICE: "nodejs"
     CONTAINER_INSTANCE: "service-nodejs"
   volumes:
-    - "/tmp/container-fc20/logs/nodejs:/data/logs/nodejs"
-    - "/tmp/container-fc20/nodejs:/data/nodejs"
+    - "/tmp/container-centos6/logs/nodejs:/data/logs/nodejs"
+    - "/tmp/container-centos6/nodejs:/data/nodejs"

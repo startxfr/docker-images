@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "apache-fc20"
+  container_name: "apache-centos6"
   mem_limit: 500m
   memswap_limit: 500m
   cpu_shares: 2
@@ -15,5 +15,5 @@ server:
     SERVER_NAME: "localhost"
     DOC_ROOT: "/data/apache"
   volumes:
-    - "/tmp/container-fc20/logs/apache:/data/logs/apache"
-    - "/tmp/container-fc20/apache:/data/apache"
+    - "/tmp/container-centos6/logs/apache:/data/logs/apache"
+    - "/tmp/container-centos6/apache:/data/apache"

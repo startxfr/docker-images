@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "ooconv-fc20"
+  container_name: "ooconv-centos6"
   mem_limit: 2g
   memswap_limit: 2g
   cpu_shares: 8
@@ -12,4 +12,4 @@ server:
     CONTAINER_SERVICE: "ooconv"
     CONTAINER_INSTANCE: "service-ooconv"
   volumes:
-    - "/tmp/container-fc20/logs/ooconv:/data/logs/ooconv"
+    - "/tmp/container-centos6/logs/ooconv:/data/logs/ooconv"

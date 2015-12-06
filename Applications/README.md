@@ -1,6 +1,6 @@
-# STARTX Docker-Images Applications based on Fedora 20
+# STARTX Docker-Images Applications based on CentOS 6
 
-This directory host various Open Source applications into docker containers based on [startx/fedora:20 container](https://hub.docker.com/r/startx/fedora)
+This directory host various Open Source applications into docker containers based on [startx/centos:6 container](https://hub.docker.com/r/startx/fedora)
 
 You can use it to instanciate new container from the dockerhub public registry 
 or as a parent container in your own container's. 
@@ -18,13 +18,13 @@ your project and start using stable or experimental applications in your applica
 
 | Service         | Docker Hub repository                                                          | Doc
 |-----------------|--------------------------------------------------------------------------------|--------------------------------
-| PhpMyAdmin      | [`startx/app-pma:fc20`](https://hub.docker.com/r/startx/app-pma)               | [manual](pma/README.md)
-| RockMongo       | [`startx/app-rockmongo:fc20`](https://hub.docker.com/r/startx/app-rockmongo)   | [manual](rockmongo/README.md)
+| PhpMyAdmin      | [`startx/app-pma:centos6`](https://hub.docker.com/r/startx/app-pma)               | [manual](pma/README.md)
+| RockMongo       | [`startx/app-rockmongo:centos6`](https://hub.docker.com/r/startx/app-rockmongo)   | [manual](rockmongo/README.md)
 
 
 ## Running from dockerhub registry
 
 | Applications        | Command                                                                   |
 |---------------------|---------------------------------------------------------------------------|
-| **PhpMyAdmin**      | `docker run -d -p 80:80 --name="fc20-pma" startx/app-pma:fc20`            | 
-| **RockMongo**       | `docker run -d -p 80:80 --name="fc20-rockmongo" startx/app-rockmongo:fc20`| 
+| **PhpMyAdmin**      | `docker run -d -p 80:80 --name="centos6-pma" startx/app-pma:centos6`            | 
+| **RockMongo**       | `docker run -d -p 80:80 --name="centos6-rockmongo" startx/app-rockmongo:centos6`| 

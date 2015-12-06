@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "php-fc20"
+  container_name: "php-centos6"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 5
@@ -15,5 +15,5 @@ server:
     SERVER_NAME: "localhost"
     DOC_ROOT: "/data/apache_php"
   volumes:
-    - "/tmp/container-fc20/logs/apache_php:/data/logs/apache_php"
-    - "/tmp/container-fc20/apache_php:/data/apache_php"
+    - "/tmp/container-centos6/logs/apache_php:/data/logs/apache_php"
+    - "/tmp/container-centos6/apache_php:/data/apache_php"
