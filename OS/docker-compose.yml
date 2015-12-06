@@ -1,4 +1,4 @@
-fc21:
+fedora21:
   build: ./
   container_name: "os-fedora21"
   mem_limit: 1g
