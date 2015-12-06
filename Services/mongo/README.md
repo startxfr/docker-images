@@ -1,12 +1,3 @@
-<!--[metadata]>
-+++
-title = "STARTX Docker Services Images : MONGO"
-description = "Docker container with mongo service based on latest fedora"
-keywords = ["home, docker, startx, mongo, fedora, centos, repository, container, swarm, compose"]
-weight=3
-+++
-<![end-metadata]-->
-
 # Docker OS Images : MONGO
 
 Simple container used to deliver document-oriented database

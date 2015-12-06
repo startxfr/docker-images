@@ -1,12 +1,3 @@
-<!--[metadata]>
-+++
-title = "STARTX Docker Services Images : MEMCACHE"
-description = "Docker container with memcache service based on latest fedora"
-keywords = ["home, docker, startx, memcache, fedora, centos, repository, container, swarm, compose"]
-weight=3
-+++
-<![end-metadata]-->
-
 # Docker OS Images : MEMCACHE
 
 Simple container used to deliver distributed memory object caching system

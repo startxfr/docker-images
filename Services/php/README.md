@@ -1,12 +1,3 @@
-<!--[metadata]>
-+++
-title = "STARTX Docker Services Images : APACHE + PHP"
-description = "Docker container with apache + php service based on latest fedora"
-keywords = ["home, docker, startx, apache, php, fedora, centos, repository, container, swarm, compose"]
-weight=3
-+++
-<![end-metadata]-->
-
 # Docker OS Images : APACHE + PHP
 
 Simple container used to deliver dynamic http content using apache associated with PHP engine

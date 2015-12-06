@@ -1,12 +1,3 @@
-<!--[metadata]>
-+++
-title = "STARTX Docker Images Repository"
-description = "Docker container repository based on fedora or CentOS and deliverying main opensource project as container"
-keywords = ["home, docker, startx, repository, container, swarm, compose, howto, "]
-weight=3
-+++
-<![end-metadata]-->
-
 # STARTX Docker-Images Repository
 
 This repository host various Open Source application or services as a container. 

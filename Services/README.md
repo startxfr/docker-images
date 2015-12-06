@@ -1,12 +1,3 @@
-<!--[metadata]>
-+++
-title = "STARTX Docker Images Repository : Services"
-description = "Docker services containers based on fedora or CentOS and deliverying main opensources project as container"
-keywords = ["home, docker, startx, services, container, swarm, compose, howto, "]
-weight=3
-+++
-<![end-metadata]-->
-
 # STARTX Docker-Images Services Repository
 
 This directory host various Open Source services into docker containers based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
