@@ -9,7 +9,7 @@ weight=3
 
 # Docker OS Images : FEDORA
 
-Simple and lightweight (110Mo) container used for all startx based services and applications published in [Dockerhub registry](https://github.com/startxfr/docker-images). 
+Simple container used for all startx based services and applications published in [Dockerhub registry](https://github.com/startxfr/docker-images). 
 This container contain updated core OS rpm (kernel, libs,...) as well as usefull tools like pwgen, tar, zip, psmisc, procps, coreutils, findutils, wget
 
 | [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/fedora) | [Sources](https://github.com/startxfr/docker-images/OS/)             | [STARTX Profile](https://github.com/startxfr) | 

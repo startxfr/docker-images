@@ -9,7 +9,7 @@ weight=3
 
 # Docker OS Images : APACHE + PHP
 
-Simple and lightweight (145Mo) container used to deliver dynamic http content using apache associated with PHP engine
+Simple container used to deliver dynamic http content using apache associated with PHP engine
 Run [PHP engine](https://www.php.net) under a container 
 based on [startx/sv-apache container](https://hub.docker.com/r/startx/sv-apache)
 
