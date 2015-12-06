@@ -1,0 +1,4 @@
+fc20:
+  extends:
+    file: OS/docker-compose.yml
+    service: fc20

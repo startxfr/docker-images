@@ -1,28 +1,26 @@
 FROM startx/centos:6
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
-RUN yum -y install \
-    mariadb-libs \
-    mariadb-server \
-    mariadb \
-    && yum clean all \
-    && mkdir -p /var/log/mysql \
-    && touch /var/log/mysql/.keep /var/lib/mysql/.keep \
-    && chown -R mysql:mysql /var/log/mysql /var/lib/mysql \
-    && mkdir -p /tmp/sql 
-COPY sx/* /sx/
-COPY *.sql /tmp/sql/
-RUN chmod ug+rx /sx/mariadb* /tmp/sql \
-    && chown -R mysql:mysql /sx/mariadb* /tmp/sql
+USER root
+RUN yum -y install  mariadb-common mariadb-libs mariadb-config mariadb-errmsg mariadb-server mariadb \
+    && yum clean all && \
+    mkdir -p /tmp/sql 
+ENV MY_CONF=/etc/my.cnf \
+    STARTUPLOG=/data/logs/mariadb/startup.log \
+    LOG_PATH=/data/logs/mariadb \
+    DATA_PATH=/data/mariadb \
+    LOADSQL_PATH=/tmp/sql 
+COPY *.sh /bin/
+COPY my.cnf $MY_CONF
+COPY *.sql $LOADSQL_PATH/
+RUN chmod 775 /bin/run.sh && \
+    chmod ug+r $MY_CONF && \
+    mkdir -p $DATA_PATH && \
+    mkdir -p $LOG_PATH && \
+    touch $STARTUPLOG && \
+    touch $DATA_PATH/.keep && \
+    chown -R mysql:mysql $LOG_PATH $DATA_PATH $LOADSQL_PATH
 
 EXPOSE 3306
-VOLUME ["/var/lib/mysql", "/var/log/mysql"]
-
-USER mysql
-# if you wan't to set root password, otherwise auto-generated
-# see docker logs <containerId>
-ENV mysql_newadminpwd newRootPassword
-
-
-#ENDPOINT ["/sx/mariadb_run.sh"]
-CMD ["/sx/mariadb_run.sh"]
+VOLUME [$DATA_PATH,$LOG_PATH]
+CMD ["/bin/run.sh"]

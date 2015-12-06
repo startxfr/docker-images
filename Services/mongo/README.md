@@ -1,47 +1,134 @@
-# STARTX Services docker-images : MongoDB Server
+# Docker OS Images : MONGO on Fedora 20
 
-Container running mongod daemon under a centos server
+Simple container used to deliver document-oriented database
+Run [mongodb daemon](https://www.mongodb.org/) under a container 
+based on [startx/fedora:20 container](https://hub.docker.com/r/startx/fedora)
 
-## Running from docker registry
+Each container is provided with various underlying OS version based on CentOS or 
+Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
+or **[other mongo flavours](https://github.com/startxfr/docker-images/Services/mongo/#available-flavours)**
 
-	docker run -d -p 27017:27017 --name="mongo" startx/sv-mongo:centos6
-        # when used with a volume container (run data container, then run service)
-	docker run -d -v /var/lib/mongodb -v /var/log/mongodb --name mongo-data startx/sv-mongo:centos6  echo "Data container for mongodb"
-	docker run -d -p 27017:27017 --volumes-from mongo-data --name="mongo" startx/sv-mongo:centos6
-	when linked to another container
-	docker run -d --name="mongo" startx/sv-mongo:centos6
-	docker run -d -p 80:80 --name="php" --link mongo:mongo startx/sv-php:centos6
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-mongo/) | [Sources](https://github.com/startxfr/docker-images/Services/mongo)             | [STARTX Profile](https://github.com/startxfr) | 
+|-------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|---------------------------------------------------------------------------------|-----------------------------------------------|
 
-## Build and run from local Dockerfile
-### Building docker image
-Copy sources in your docker host 
+## Running from dockerhub registry
 
-	mkdir startx-docker-images; 
-	cd startx-docker-images;
-	git clone https://github.com/startxfr/docker-images.git .
+* with `docker` you can run `docker run -it --name="service-mongo" startx/sv-mongo` from any docker host
+* with `docker-compose` you can create a docker-compose.yml file with the following content
+```
+service:
+  image: startx/sv-mongo:fc20
+  container_name: "service-mongo-fc20"
+  environment:
+    CONTAINER_TYPE: "service"
+    CONTAINER_SERVICE: "mongo"
+    CONTAINER_INSTANCE: "service-mongo-fc20"
+  volumes:
+    - "/tmp/container-fc20/logs/mongo:/data/logs/mongo"
+    - "/tmp/container-fc20/mongo:/data/mongo"
+```
 
-Change configuration and personalize your base image. See sx/mongod_run.sh to perform some usefull task against the database, especially importing sql script, adding users and changing passwords. See also mongodb.conf for configuring the mongo server running in the container.
+## Docker-compose in various situations
 
-Build the container
+* sample docker-compose.yml linked to host port 1000
+```
+service:
+  image: startx/sv-mongo:fc20
+  container_name: "service-mongo-fc20"
+  environment:
+    CONTAINER_INSTANCE: "service-mongo-fc20"
+  ports:
+    - "1000:27017"
+```
+* sample docker-compose.yml with port exposed only to linked services
+```
+service:
+  image: startx/sv-mongo:fc20
+  container_name: "service-mongo-fc20"
+  environment:
+    CONTAINER_INSTANCE: "service-mongo-fc20"
+  expose:
+    - "27017"
+```
+* sample docker-compose.yml using data container
+```
+data:
+  image: startx/fedora:fc20
+  container_name: "service-mongo-data-fc20"
+  environment:
+    CONTAINER_INSTANCE: "service-mongo-data-fc20"
+service:
+  image: startx/sv-mongo:fc20
+  container_name: "service-mongo-fc20"
+  environment:
+    CONTAINER_INSTANCE: "service-mongo-fc20"
+  volume_from:
+    - data:rw
+```
 
-	docker build -t sv-mongo:centos6 Services/mongo/
+## Using this image in your own container
 
-### Running local image
+You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
+ ```
+FROM startx/sv-mongo:fc20
+#... your container specifications
+CMD ["/bin/run.sh"]
+```
 
-	docker run -d -p 27017:27017 --name="mongo" sv-mongo:centos6
+## Environment variable
 
-## Accessing server
-access to the running database
+| Variable                  | Type     | Mandatory | Description                                                              |
+|---------------------------|----------|-----------|--------------------------------------------------------------------------|
+| CONTAINER_INSTANCE        | `string` | `yes`     | Container name. Should be uning to get fine grained log and application reporting
+| CONTAINER_TYPE            | `string` | `no`      | Container family (os, service, application. could be enhanced 
+| CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
+| HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
+| LOG_PATH                  | `auto`   | `auto`    | default set to /data/logs/mongo and used as a volume mountpoint
+| DATA_PATH                 | `auto`   | `auto`    | default set to /data/mongo and used as a volume mountpoint
 
-	mongo -h localhost -p 27017
+## Exposed port
 
-access to the container itself
+| Port  | Description                                                              |
+|-------|--------------------------------------------------------------------------|
+| 27017 | standard mongodb network port used for non encrypted traffic
 
-	docker exec -it mongo /bin/bash
+## Exposed volumes
 
-## Related Resources
-* [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/mongo)
-* [Github STARTX profile](https://github.com/startxfr/docker-images)
-* [Docker registry for this container](https://registry.hub.docker.com/u/startx/sv-mongo/)
-* [Docker registry for Fedora](https://registry.hub.docker.com/u/fedora/)
+| Container directory  | Description                                                              |
+|----------------------|--------------------------------------------------------------------------|
+| /data/logs/mongo     | log directory used to record container and mongo logs
+| /data/mongo          | data directory served by mongo. If empty will be filled with app on startup. In other case use content from mountpoint or data volumes
 
+## Testing the service
+
+access to the running webserver with your favorites browser `mongo localhost:27017`. Change port and hostname according to your current configuration
+
+## For advanced users
+
+You want to use this container and code to build and create locally this container, follow theses instructions.
+
+This section will help you if you want to :
+* Get latest version of this service container
+* Enhance container content by adding instruction in Dockefile before build step
+
+You must have a working environment with the source code of this repository. Read and follow [how to setup your working environment](https://github.com/startxfr/docker-images#setup-your-working-environment-mandatory) to get a working directory. The following instructions assume you are at the top level of your working directory.
+
+### Build & run a container using `docker`
+
+1. Switch to the flavour branch with `git branch fc20`
+2. Jump into the container directory with `cd Services/mongo`
+3. Build the container using `docker build -t sv-mongo .`
+4. Run this container 
+  1. Interactively with `docker run -p 27017:27017 -v /data/logs/mongo -it sv-mongo`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 27017:27017 -v /data/logs/mongo -d sv-mongo`
+
+
+### Build & run a container using `docker-compose`
+
+1. Switch to the flavour branch with `git branch fc20`
+2. Jump into the container directory with `cd Services/mongo`
+3. Run this container 
+  1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
+  2. As a daemon with `docker-compose up -d`. Container startup logs can be read using `docker-compose logs`
+
+If you experience trouble with port already used, edit docker-compose.yml file and change port mapping

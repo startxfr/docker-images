@@ -1,0 +1,17 @@
+server:
+  build: ./
+  container_name: "mongo-fc20"
+  mem_limit: 2g
+  memswap_limit: 2g
+  cpu_shares: 10
+  restart: "on-failure:2"
+  ports:
+    - "9251:27017"
+    - "9252:28017"
+  environment:
+    CONTAINER_TYPE: "service"
+    CONTAINER_SERVICE: "mongo"
+    CONTAINER_INSTANCE: "sx-mongo"
+  volumes:
+    - "/tmp/container-fc20/logs/mongodb:/data/logs/mongodb"
+    - "/tmp/container-fc20/mongodb:/data/mongodb"

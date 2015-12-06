@@ -1,0 +1,19 @@
+server:
+  build: ./
+  container_name: "apache-fc20"
+  mem_limit: 500m
+  memswap_limit: 500m
+  cpu_shares: 2
+  restart: "on-failure:2"
+  ports:
+    - "9201:80"
+    - "9202:443"
+  environment:
+    CONTAINER_TYPE: "service"
+    CONTAINER_SERVICE: "apache"
+    CONTAINER_INSTANCE: "service-apache"
+    SERVER_NAME: "localhost"
+    DOC_ROOT: "/data/apache"
+  volumes:
+    - "/tmp/container-fc20/logs/apache:/data/logs/apache"
+    - "/tmp/container-fc20/apache:/data/apache"
