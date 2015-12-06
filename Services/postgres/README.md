@@ -1,12 +1,3 @@
-<!--[metadata]>
-+++
-title = "STARTX Docker Services Images : POSTGRESQL on Fedora 23"
-description = "Docker container with postgres service based on fedora 23"
-keywords = ["home, docker, startx, postgres, fedora 23, centos, repository, container, swarm, compose"]
-weight=3
-+++
-<![end-metadata]-->
-
 # Docker OS Images : POSTGRESQL on Fedora 23
 
 Simple container used to deliver highly reliable and configurable transactional database service using postgresql opensource project.

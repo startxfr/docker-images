@@ -1,12 +1,3 @@
-<!--[metadata]>
-+++
-title = "STARTX Docker Services Images : OOCONV on Fedora 23"
-description = "Docker container with ooconv service based on fedora 23"
-keywords = ["home, docker, startx, ooconv, fedora 23, centos, repository, container, swarm, compose"]
-weight=3
-+++
-<![end-metadata]-->
-
 # Docker OS Images : OOCONV on Fedora 23
 
 Simple container used to document convertion and manipulation tools

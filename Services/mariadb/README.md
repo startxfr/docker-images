@@ -1,12 +1,3 @@
-<!--[metadata]>
-+++
-title = "STARTX Docker Services Images : MARIADB on Fedora 23"
-description = "Docker container with mariadb service based on fedora 23"
-keywords = ["home, docker, startx, mariadb, fedora 23, centos, repository, container, swarm, compose"]
-weight=3
-+++
-<![end-metadata]-->
-
 # Docker OS Images : MARIADB on Fedora 23
 
 Simple container used to deliver simple and easy to use transactional database using mysql like database provided by [mariadb open-source project](https://mariadb.org/).

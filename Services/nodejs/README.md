@@ -1,12 +1,3 @@
-<!--[metadata]>
-+++
-title = "STARTX Docker Services Images : NODEJS on Fedora 23"
-description = "Docker container with nodejs service based on fedora 23"
-keywords = ["home, docker, startx, nodejs, fedora 23, centos, repository, container, swarm, compose"]
-weight=3
-+++
-<![end-metadata]-->
-
 # Docker OS Images : NODEJS on Fedora 23
 
 Simple container used to run server side executed javascript content. include all nodejs and npm dependency.

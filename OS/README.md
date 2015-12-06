@@ -1,12 +1,3 @@
-<!--[metadata]>
-+++
-title = "STARTX Docker OS Images : FEDORA 23"
-description = "Docker container repository based on fedora 23"
-keywords = ["home, docker, startx, fedora 23, repository, container, swarm, compose, howto, "]
-weight=3
-+++
-<![end-metadata]-->
-
 # Docker OS Images : FEDORA 23
 
 Simple container used for all startx based services and applications published in [Dockerhub registry](https://github.com/startxfr/docker-images). 
