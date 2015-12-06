@@ -2,7 +2,8 @@ FROM startx/centos:6
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
-RUN yum -y install mongodb mongodb-server libmongo-client rsyslog-mongodb  && \
+RUN yum -y install epel-release && \
+    yum -y install mongodb mongodb-server libmongo-client rsyslog-mongodb  && \
     yum clean all 
 ENV STARTUPLOG=/data/logs/mongodb/startup.log \
     LOG_PATH=/data/logs/mongodb  \
