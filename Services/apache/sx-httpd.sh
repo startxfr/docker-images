@@ -50,6 +50,17 @@ function display_container_httpd_header {
 # and start generating host keys
 function begin_config {
     echo "=> BEGIN APACHE CONFIGURATION"
+    if [[ -d $TMP_APP_PATH ]]; then
+        if [ "$(ls -A $TMP_APP_PATH)" ]; then
+            echo "COPY application from $TMP_APP_PATH into $APP_PATH"
+            FILE_LIST=$(find $TMP_APP_PATH -maxdepth 1 -mindepth 1 -printf "%f\n")
+            for FILE in $FILE_LIST; do 
+                echo -n "adding $APP_PATH/$FILE"
+                cp -r $TMP_APP_PATH/$FILE $APP_PATH/
+                echo " DONE"
+            done
+        fi
+    fi
 }
 
 # End configuration process just before starting daemon

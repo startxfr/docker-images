@@ -113,9 +113,12 @@ function config_createadmin {
     mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION"
     echo ""
     echo " +------------------------------------------------------"
+    echo " | SUPERADMIN USER CREATED ! "
     echo " | You can now connect to this server using:"
+    echo " | "
     echo " | user     : admin"
     echo " | password : $PASS"
+    echo " | "
     echo " | shell    : mysql -uadmin -p$PASS -h<host> -P<port>"
     echo " +------------------------------------------------------"
     echo ""
@@ -128,9 +131,12 @@ function config_createuser {
         mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%' WITH GRANT OPTION"
         echo ""
         echo " +------------------------------------------------------"
+        echo " | USER CREATED ! "
         echo " | You can now connect to this server using:"
+        echo " | "
         echo " | user     : $MYSQL_USER"
         echo " | password : $MYSQL_PASSWORD"
+        echo " | "
         echo " | shell    : mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h<host> -P<port>"
         echo " +------------------------------------------------------"
         echo ""
@@ -143,7 +149,16 @@ function config_createdatabase {
         if [[ ! -d $DIR_DB_DATA/$MYSQL_DATABASE ]]; then
             echo "database " $MYSQL_DATABASE " doesn't exist"
             mysql -uroot -e "CREATE DATABASE $MYSQL_DATABASE DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;"
-            echo "database " $MYSQL_DATABASE " CREATED"
+            echo ""
+            echo " +------------------------------------------------------"
+            echo " | DATABASE CREATED ! "
+            echo " | You can connect to this database using :"
+            echo " | "
+            echo " | database : $MYSQL_DATABASE"
+            echo " | "
+            echo " | shell    : mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h<host> -P<port> $MYSQL_DATABASE"
+            echo " +------------------------------------------------------"
+            echo ""
         else
             echo "database " $MYSQL_DATABASE " already exist"
         fi
@@ -156,20 +171,26 @@ function config_importsql {
     if [[ -n "$LOADSQL_PATH" ]]; then
         echo "import sql data into " $MYSQL_DATABASE
         if [[ -d $LOADSQL_PATH ]]; then
-            SCHEMALIST=$(find $LOADSQL_PATH/schema-*.sql -type f -printf "%f\n")
-            for SCHEMAFILE in $SCHEMALIST; do 
-                echo "SET NAMES utf8;"|cat - $LOADSQL_PATH/$SCHEMAFILE > /tmp/out && mv /tmp/out $LOADSQL_PATH/$SCHEMAFILE
-                echo -n "Creating schema " $SCHEMAFILE " ... "
-                mysql -uroot $MYSQL_DATABASE < $LOADSQL_PATH/$SCHEMAFILE
-                echo " DONE"
-            done
-            DATALIST=$(find $LOADSQL_PATH/data-*.sql -type f -printf "%f\n")
-            for DATAFILE in $DATALIST; do 
-                echo "SET NAMES utf8;"|cat - $LOADSQL_PATH/$DATAFILE > /tmp/out && mv /tmp/out $LOADSQL_PATH/$DATAFILE
-                echo -n "Creating data " $DATAFILE " ... "
-                mysql -uroot $MYSQL_DATABASE < $LOADSQL_PATH/$DATAFILE
-                echo " DONE"
-            done
+            if [ "$(ls -A $LOADSQL_PATH/schema-*.sql)" ]; then
+                echo "Importing schema from $LOADSQL_PATH "
+                SCHEMALIST=$(find $LOADSQL_PATH/schema-*.sql -type f -printf "%f\n")
+                for SCHEMAFILE in $SCHEMALIST; do 
+                    echo "SET NAMES utf8;"|cat - $LOADSQL_PATH/$SCHEMAFILE > /tmp/out && mv /tmp/out $LOADSQL_PATH/$SCHEMAFILE
+                    echo -n "Creating schema " $SCHEMAFILE " ... "
+                    mysql -uroot $MYSQL_DATABASE < $LOADSQL_PATH/$SCHEMAFILE
+                    echo " DONE"
+                done
+            fi
+            if [ "$(ls -A $LOADSQL_PATH/data-*.sql)" ]; then
+                echo "Importing data from $LOADSQL_PATH "
+                DATALIST=$(find $LOADSQL_PATH/data-*.sql -type f -printf "%f\n")
+                for DATAFILE in $DATALIST; do 
+                    echo "SET NAMES utf8;"|cat - $LOADSQL_PATH/$DATAFILE > /tmp/out && mv /tmp/out $LOADSQL_PATH/$DATAFILE
+                    echo -n "Creating data " $DATAFILE " ... "
+                    mysql -uroot $MYSQL_DATABASE < $LOADSQL_PATH/$DATAFILE
+                    echo " DONE"
+                done
+            fi
         fi
     else
         echo "no sql data to import into " $MYSQL_DATABASE
