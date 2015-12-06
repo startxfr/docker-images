@@ -2,7 +2,10 @@ FROM startx/fedora:20
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
-RUN yum -y install nodejs npm python make gcc && \
+RUN yum --skip-broken -y install nodejs python make gcc && \
+    yum --skip-broken -y downgrade nss-3.19.1 nss-sysinit-3.19.1 nss-tools-3.19.1 nss-softokn-3.19.1 nss-softokn-freebl-3.19.1 && \
+    yum --skip-broken -y install npm && \
+    yum -y install nodejs npm && \
     yum clean all 
 ENV STARTUPLOG=/data/logs/nodejs/startup.log \
     LOG_PATH=/data/logs/nodejs  \

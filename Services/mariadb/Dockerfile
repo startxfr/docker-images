@@ -2,7 +2,7 @@ FROM startx/fedora:20
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
-RUN yum -y install  mariadb-common mariadb-libs mariadb-config mariadb-errmsg mariadb-server mariadb \
+RUN yum --skip-broken -y install mariadb-server mariadb mariadb-libs && \
     && yum clean all && \
     mkdir -p /tmp/sql 
 ENV MY_CONF=/etc/my.cnf \
@@ -19,6 +19,7 @@ RUN chmod 775 /bin/run.sh && \
     mkdir -p $LOG_PATH && \
     touch $STARTUPLOG && \
     touch $DATA_PATH/.keep && \
+    useradd -U mysql && \
     chown -R mysql:mysql $LOG_PATH $DATA_PATH $LOADSQL_PATH
 
 EXPOSE 3306
