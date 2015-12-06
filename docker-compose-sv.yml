@@ -37,3 +37,8 @@ centos7_memcache:
   extends:
     file: Services/memcache/docker-compose.yml
     service: server
+    
+centos7_couchbase:
+  extends:
+    file: Services/couchbase/docker-compose.yml
+    service: server
