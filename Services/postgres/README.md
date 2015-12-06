@@ -1,15 +1,6 @@
-<!--[metadata]>
-+++
-title = "STARTX Docker Services Images : POSTGRESQL on Fedora 21"
-description = "Docker container with postgres service based on fedora 21"
-keywords = ["home, docker, startx, postgres, fedora 21, centos, repository, container, swarm, compose"]
-weight=3
-+++
-<![end-metadata]-->
-
 # Docker OS Images : POSTGRESQL on Fedora 21
 
-Simple and lightweight (130Mo) container used to deliver highly reliable and configurable transactional database service using postgresql opensource project.
+Simple container used to deliver highly reliable and configurable transactional database service using postgresql opensource project.
 Run [postgres daemon](http://www.postgresql.org/) under a container 
 based on [startx/fedora:21 container](https://hub.docker.com/r/startx/fedora)
 

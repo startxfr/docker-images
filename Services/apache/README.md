@@ -1,15 +1,6 @@
-<!--[metadata]>
-+++
-title = "STARTX Docker Services Images : APACHE on Fedora 21"
-description = "Docker container with apache service based on fedora 21"
-keywords = ["home, docker, startx, apache, fedora 21, centos, repository, container, swarm, compose"]
-weight=3
-+++
-<![end-metadata]-->
-
 # Docker OS Images : APACHE on Fedora 21
 
-Simple and lightweight (120Mo) container used to deliver static http content include all apache's modules but no external languages engines (like php). For dynamic content, you should use our [sv-php service container](https://hub.docker.com/r/startx/sv-php)
+Simple container used to deliver static http content include all apache's modules but no external languages engines (like php). For dynamic content, you should use our [sv-php service container](https://hub.docker.com/r/startx/sv-php)
 Run [apache httpd daemon](https://httpd.apache.org/) under a container 
 based on [startx/fedora:21 container](https://hub.docker.com/r/startx/fedora)
 

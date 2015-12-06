@@ -1,12 +1,3 @@
-<!--[metadata]>
-+++
-title = "STARTX Docker Images Repository : Application in Fedora 21"
-description = "Docker applications containers based on fedora 21 and deliverying main opensources project as container"
-keywords = ["home, docker, startx, applications, fedora 21, container, swarm, compose, howto, "]
-weight=3
-+++
-<![end-metadata]-->
-
 # STARTX Docker-Images Applications based on Fedora 21
 
 This directory host various Open Source applications into docker containers based on [startx/fedora:21 container](https://hub.docker.com/r/startx/fedora)

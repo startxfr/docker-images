@@ -1,15 +1,6 @@
-<!--[metadata]>
-+++
-title = "STARTX Docker Services Images : MONGO on Fedora 21"
-description = "Docker container with mongo service based on fedora 21"
-keywords = ["home, docker, startx, mongo, fedora 21, centos, repository, container, swarm, compose"]
-weight=3
-+++
-<![end-metadata]-->
-
 # Docker OS Images : MONGO on Fedora 21
 
-Simple and lightweight (150Mo) container used to deliver document-oriented database
+Simple container used to deliver document-oriented database
 Run [mongodb daemon](https://www.mongodb.org/) under a container 
 based on [startx/fedora:21 container](https://hub.docker.com/r/startx/fedora)
 

@@ -7,71 +7,46 @@ fc21_apache:
   extends:
     file: Services/apache/docker-compose.yml
     service: server
-  ports:
-    - "80:80"
-    - "443:443"
 
 fc21_php:
   extends:
     file: Services/php/docker-compose.yml
     service: server
-  ports:
-    - "81:80"
-    - "444:443"
 
 fc21_nodejs:
   extends:
     file: Services/nodejs/docker-compose.yml
     service: server
-  ports:
-    - "82:8000"
 
 fc21_mariadb:
   extends:
     file: Services/mariadb/docker-compose.yml
     service: server
-  ports:
-    - "3306:3306"
 
 fc21_postgres:
   extends:
     file: Services/postgres/docker-compose.yml
     service: server
-  ports:
-    - "5432:5432"
 
 fc21_mongo:
   extends:
     file: Services/mongo/docker-compose.yml
     service: server
-  ports:
-    - "27017:27017"
-    - "28017:28017"
 
 fc21_ooconv:
   extends:
     file: Services/ooconv/docker-compose.yml
     service: server
-  ports:
-    - "2002:2002"
 
 fc21_memcache:
   extends:
     file: Services/memcache/docker-compose.yml
     service: server
-  ports:
-    - "11211:11211"
 
 #pma:
 #  build: Applications/phpmyadmin/
 #  container_name: "startx-app-phpmyadmin"
-#  ports:
-#    - "82:80"
-#    - "445:443"
 #
 #rockmongo:
 #  build: Applications/rockmongo/
 #  container_name: "startx-app-rockmongo"
-#  ports:
-#    - "83:80"
-#    - "446:443"
