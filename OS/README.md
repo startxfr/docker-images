@@ -14,7 +14,7 @@ or [other OS distributions and flavours](https://github.com/startxfr/docker-imag
 * with `docker` you can run `docker run -it --name="centos6" startx/centos:6` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
-fedora:
+centos6:
   image: startx/centos:6
   container_name: "os-centos6"
   environment:
