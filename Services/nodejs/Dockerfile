@@ -2,7 +2,8 @@ FROM startx/centos:7
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
-RUN yum -y install nodejs npm python make gcc && \
+RUN yum -y install epel-release && \
+    yum -y install nodejs npm python make gcc && \
     yum clean all 
 ENV STARTUPLOG=/data/logs/nodejs/startup.log \
     LOG_PATH=/data/logs/nodejs  \
