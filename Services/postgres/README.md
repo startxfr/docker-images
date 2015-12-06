@@ -1,8 +1,8 @@
-# Docker OS Images : POSTGRESQL on CentOS 6
+# Docker OS Images : POSTGRESQL on CentOS 7
 
 Simple container used to deliver highly reliable and configurable transactional database service using postgresql opensource project.
 Run [postgres daemon](http://www.postgresql.org/) under a container 
-based on [startx/centos:6 container](https://hub.docker.com/r/startx/fedora)
+based on [startx/centos:7 container](https://hub.docker.com/r/startx/fedora)
 
 Each container is provided with various underlying OS version based on CentOS or 
 Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
@@ -17,19 +17,19 @@ or **[other postgres flavours](https://github.com/startxfr/docker-images/Service
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-postgres:centos6
-  container_name: "service-postgres-centos6"
+  image: startx/sv-postgres:centos7
+  container_name: "service-postgres-centos7"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "postgres"
-    CONTAINER_INSTANCE: "service-postgres-centos6"
+    CONTAINER_INSTANCE: "service-postgres-centos7"
     POSTGRESQL_ROOT_PASSWORD: "rootpassword"
     POSTGRESQL_USER: "user-test"
     POSTGRESQL_PASSWORD: "pwd-test"
     POSTGRESQL_DATABASE: "db_test"
   volumes:
-    - "/tmp/container-centos6/logs/postgres:/data/logs/postgres"
-    - "/tmp/container-centos6/postgres:/data/postgres"
+    - "/tmp/container-centos7/logs/postgres:/data/logs/postgres"
+    - "/tmp/container-centos7/postgres:/data/postgres"
 ```
 
 ## Docker-compose in various situations
@@ -37,35 +37,35 @@ service:
 * sample docker-compose.yml linked to host port 1000
 ```
 service:
-  image: startx/sv-postgres:centos6
-  container_name: "service-postgres-centos6"
+  image: startx/sv-postgres:centos7
+  container_name: "service-postgres-centos7"
   environment:
-    CONTAINER_INSTANCE: "service-postgres-centos6"
+    CONTAINER_INSTANCE: "service-postgres-centos7"
   ports:
     - "1001:5432"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
 service:
-  image: startx/sv-postgres:centos6
-  container_name: "service-postgres-centos6"
+  image: startx/sv-postgres:centos7
+  container_name: "service-postgres-centos7"
   environment:
-    CONTAINER_INSTANCE: "service-postgres-centos6"
+    CONTAINER_INSTANCE: "service-postgres-centos7"
   expose:
     - "5432"
 ```
 * sample docker-compose.yml using data container
 ```
 data:
-  image: startx/fedora:centos6
-  container_name: "service-postgres-data-centos6"
+  image: startx/fedora:centos7
+  container_name: "service-postgres-data-centos7"
   environment:
-    CONTAINER_INSTANCE: "service-postgres-data-centos6"
+    CONTAINER_INSTANCE: "service-postgres-data-centos7"
 service:
-  image: startx/sv-postgres:centos6
-  container_name: "service-postgres-centos6"
+  image: startx/sv-postgres:centos7
+  container_name: "service-postgres-centos7"
   environment:
-    CONTAINER_INSTANCE: "service-postgres-centos6"
+    CONTAINER_INSTANCE: "service-postgres-centos7"
   volume_from:
     - data:rw
 ```
@@ -74,7 +74,7 @@ service:
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
  ```
-FROM startx/sv-postgres:centos6
+FROM startx/sv-postgres:centos7
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```
@@ -124,7 +124,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-1. Switch to the flavour branch with `git branch centos6`
+1. Switch to the flavour branch with `git branch centos7`
 2. Jump into the container directory with `cd Services/postgres`
 3. Build the container using `docker build -t sv-postgres .`
 4. Run this container 
@@ -134,7 +134,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker-compose`
 
-1. Switch to the flavour branch with `git branch centos6`
+1. Switch to the flavour branch with `git branch centos7`
 2. Jump into the container directory with `cd Services/postgres`
 3. Run this container 
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container

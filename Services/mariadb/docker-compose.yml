@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "mariadb-centos6"
+  container_name: "mariadb-centos7"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 8
@@ -16,5 +16,5 @@ server:
     MYSQL_PASSWORD: "pwd-test"
     MYSQL_DATABASE: "db_test"
   volumes:
-    - "/tmp/container-centos6/logs/mariadb:/data/logs/mariadb"
-    - "/tmp/container-centos6/mariadb:/data/mariadb"
+    - "/tmp/container-centos7/logs/mariadb:/data/logs/mariadb"
+    - "/tmp/container-centos7/mariadb:/data/mariadb"

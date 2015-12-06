@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "postgres-centos6"
+  container_name: "postgres-centos7"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 8
@@ -16,5 +16,5 @@ server:
     POSTGRESQL_PASSWORD: "pwd-test"
     POSTGRESQL_DATABASE: "db_test"
   volumes:
-    - "/tmp/container-centos6/logs/postgresql:/data/logs/postgresql"
-    - "/tmp/container-centos6/postgresql:/data/postgresql"
+    - "/tmp/container-centos7/logs/postgresql:/data/logs/postgresql"
+    - "/tmp/container-centos7/postgresql:/data/postgresql"
