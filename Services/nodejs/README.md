@@ -1,44 +1,136 @@
-# STARTX Services docker-images : NodeJS Server
+# Docker OS Images : NODEJS on Fedora 21
 
-Container running nodejs daemon under a fedora server
+Simple container used to run server side executed javascript content. include all nodejs and npm dependency.
+Run [nodejs main app.js](https://www.nodejs.org/) under a container 
+based on [startx/fedora:21 container](https://hub.docker.com/r/startx/fedora). 
+Could use various network protocol (like http, websocket, smtp, telnet) according to the content of the running app.
 
-## Running from docker registry
+Each container is provided with various underlying OS version based on CentOS or 
+Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
+or **[other nodejs flavours](https://github.com/startxfr/docker-images/Services/nodejs/#available-flavours)**
 
-	docker run -d -p 8000:8000 --name="nodejs" startx/sv-nodejs:fc20
-        # when used with a volume container (run data container, then run service)
-	docker run -d -v /var/nodejs/app --name nodejs-data startx/sv-nodejs:fc20  echo "Data container for nodejs"
-	docker run -d -p 8000:8000 --volumes-from nodejs-data --name="nodejs" startx/sv-nodejs:fc20
-	when linked to another container
-	docker run -d --name="mongo" startx/sv-mongo:fc20
-	docker run -d -p 8000:8000 --name="nodejs" --link mongo:mongo startx/sv-nodejs:fc20
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-nodejs/) | [Sources](https://github.com/startxfr/docker-images/Services/nodejs)             | [STARTX Profile](https://github.com/startxfr) | 
+|-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------------------------|-----------------------------------------------|
 
-## Build and run from local Dockerfile
-### Building docker image
-Copy sources in your docker host 
+## Running from dockerhub registry
 
-	mkdir startx-docker-images; 
-	cd startx-docker-images;
-	git clone https://github.com/startxfr/docker-images.git .
+* with `docker` you can run `docker run -it --name="service-nodejs" startx/sv-nodejs` from any docker host
+* with `docker-compose` you can create a docker-compose.yml file with the following content
+```
+service:
+  image: startx/sv-nodejs:fc21
+  container_name: "service-nodejs-fc21"
+  environment:
+    CONTAINER_TYPE: "service"
+    CONTAINER_SERVICE: "nodejs"
+    CONTAINER_INSTANCE: "service-nodejs-fc21"
+  volumes:
+    - "/tmp/container-fc21/logs/nodejs:/data/logs/nodejs"
+    - "/tmp/container-fc21/nodejs:/data/nodejs"
+```
 
-Build the container
+## Docker-compose in various situations
 
-	docker build -t sv-nodejs:fc20 Services/nodejs/
+* sample docker-compose.yml linked to host port 1000
+```
+service:
+  image: startx/sv-nodejs:fc21
+  container_name: "service-nodejs-fc21"
+  environment:
+    CONTAINER_INSTANCE: "service-nodejs-fc21"
+  ports:
+    - "1000:8000"
+```
+* sample docker-compose.yml with port exposed only to linked services
+```
+service:
+  image: startx/sv-nodejs:fc21
+  container_name: "service-nodejs-fc21"
+  environment:
+    CONTAINER_INSTANCE: "service-nodejs-fc21"
+  expose:
+    - "8000"
+```
+* sample docker-compose.yml using data container
+```
+data:
+  image: startx/fedora:fc21
+  container_name: "service-nodejs-data-fc21"
+  environment:
+    CONTAINER_INSTANCE: "service-nodejs-data-fc21"
+service:
+  image: startx/sv-nodejs:fc21
+  container_name: "service-nodejs-fc21"
+  environment:
+    CONTAINER_INSTANCE: "service-nodejs-fc21"
+  volume_from:
+    - data:rw
+```
 
-### Running local image
+## Using this image in your own container
 
-	docker run -d -p 8000:8000 --name="nodejs" sv-nodejs:fc20
+You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
+ ```
+FROM startx/sv-nodejs:fc21
+#... your container specifications
+CMD ["/bin/run.sh"]
+```
 
-## Accessing server
-access to the running webserver
+## Environment variable
 
-	firefox http://localhost:8000
+| Variable                  | Type     | Mandatory | Description                                                              |
+|---------------------------|----------|-----------|--------------------------------------------------------------------------|
+| APP_MAIN                  | `string` | `yes`     | Path to the application entrypoint. default is /data/nodejs/app.js
+| CONTAINER_INSTANCE        | `string` | `yes`     | Container name. Should be uning to get fine grained log and application reporting
+| CONTAINER_TYPE            | `string` | `no`      | Container family (os, service, application. could be enhanced 
+| CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
+| LOG_PATH                  | `auto`   | `auto`    | default set to /data/logs/nodejs and used as a volume mountpoint
+| APP_PATH                  | `auto`   | `auto`    | default set to /data/nodejs and used as a volume mountpoint
+| TMP_APP_PATH              | `auto`   | `auto`    | default set to /tmp/nodejs and used to hold app content and copy to $APP_PATH on startup (if $APP_PATH is empty)
 
-access to the container itself
+## Exposed port
 
-	docker exec -it nodejs:fc20 /bin/bash
+| Port  | Description                                                              |
+|-------|--------------------------------------------------------------------------|
+| 8000  | network port used to communicate with the running application. Network protocol depend on the running app content.
 
-## Related Resources
-* [Sources files](https://github.com/startxfr/docker-images/tree/master/Services/nodejs)
-* [Github STARTX profile](https://github.com/startxfr/docker-images)
-* [Docker registry for this container](https://registry.hub.docker.com/u/startx/sv-nodejs/)
-* [Docker registry for Fedora](https://registry.hub.docker.com/u/fedora/)
+## Exposed volumes
+
+| Container directory  | Description                                                              |
+|----------------------|--------------------------------------------------------------------------|
+| /data/logs/nodejs    | log directory used to record container and nodejs logs
+| /data/nodejs         | data directory served by nodejs. If empty will be filled with app on startup. In other case use content from $TMP_APP_PATH directory
+
+## Testing the service
+
+access to the running application accoridn to the protocol(s) used in your application. For webcontent, you can use `firefox http://localhost:8000`. Change port and hostname according to your current configuration
+
+## For advanced users
+
+You want to use this container and code to build and create locally this container, follow theses instructions.
+
+This section will help you if you want to :
+* Get latest version of this service container
+* Enhance container content by adding instruction in Dockefile before build step
+
+You must have a working environment with the source code of this repository. Read and follow [how to setup your working environment](https://github.com/startxfr/docker-images#setup-your-working-environment-mandatory) to get a working directory. The following instructions assume you are at the top level of your working directory.
+
+### Build & run a container using `docker`
+
+1. Switch to the flavour branch with `git branch fc21`
+2. Jump into the container directory with `cd Services/nodejs`
+3. Build the container using `docker build -t sv-nodejs .`
+4. Run this container 
+  1. Interactively with `docker run -p 8000:8000 -v /data/logs/nodejs -it sv-nodejs`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 8000:8000 -v /data/logs/nodejs -d sv-nodejs`
+
+
+### Build & run a container using `docker-compose`
+
+1. Switch to the flavour branch with `git branch fc21`
+2. Jump into the container directory with `cd Services/nodejs`
+3. Run this container 
+  1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
+  2. As a daemon with `docker-compose up -d`. Container startup logs can be read using `docker-compose logs`
+
+If you experience trouble with port already used, edit docker-compose.yml file and change port mapping

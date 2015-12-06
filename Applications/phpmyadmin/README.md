@@ -4,10 +4,10 @@ Container running phpMyAdmin under a fedora server.
 
 ## Running from docker registry
 
-	docker run -d -p 80:80 --name="pma" startx/app-pma:fc20
+	docker run -d -p 80:80 --name="pma" startx/app-pma:fc21
 	when linked to another container
-	docker run -d --name="mariadb" startx/sv-mariadb:fc20
-	docker run -d -p 80:80 --name="pma" --link mariadb:mariadb startx/app-pma:fc20
+	docker run -d --name="mariadb" startx/sv-mariadb:fc21
+	docker run -d -p 80:80 --name="pma" --link mariadb:mariadb startx/app-pma:fc21
 
 ## Build and run from local Dockerfile
 ### Building docker image
@@ -19,11 +19,11 @@ Copy sources in your docker host
 
 Build the container
 
-	docker build -t startx/app-pma:fc20 Applications/phpmyadmin/
+	docker build -t startx/app-pma:fc21 Applications/phpmyadmin/
 
 ### Running local image
 
-	docker run -d -p 80:80 --name="pma" startx/app-pma:fc20
+	docker run -d -p 80:80 --name="pma" startx/app-pma:fc21
 
 ## Accessing server
 access to the running webserver

@@ -1,0 +1,16 @@
+server:
+  build: ./
+  container_name: "nodejs-fc21"
+  mem_limit: 1g
+  memswap_limit: 1g
+  cpu_shares: 5
+  restart: "on-failure:2"
+  ports:
+    - "9221:8000"
+  environment:
+    CONTAINER_TYPE: "service"
+    CONTAINER_SERVICE: "nodejs"
+    CONTAINER_INSTANCE: "service-nodejs"
+  volumes:
+    - "/tmp/container-fc21/logs/nodejs:/data/logs/nodejs"
+    - "/tmp/container-fc21/nodejs:/data/nodejs"
