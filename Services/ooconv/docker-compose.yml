@@ -6,7 +6,7 @@ server:
   cpu_shares: 8
   restart: "on-failure:2"
   ports:
-    - "2002:2002"
+    - "9261:2002"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "ooconv"

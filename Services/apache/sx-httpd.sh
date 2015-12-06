@@ -28,11 +28,11 @@ function display_container_httpd_header {
     if [ -v CONTAINER_TYPE ]; then
         echo "| Type        : $CONTAINER_TYPE"
     fi
-    if [ -v CONTAINER_INSTANCE ]; then
-        echo "| Instance    : $CONTAINER_INSTANCE"
-    fi
     if [ -v CONTAINER_SERVICE ]; then
         echo "| Service     : $CONTAINER_SERVICE"
+    fi
+    if [ -v CONTAINER_INSTANCE ]; then
+        echo "| Instance    : $CONTAINER_INSTANCE"
     fi
     if [ -v SERVER_NAME ]; then
         echo "| ServerName  : $SERVER_NAME"

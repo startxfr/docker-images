@@ -9,7 +9,7 @@ weight=3
 
 # Docker OS Images : OOCONV on Fedora 23
 
-Simple and lightweight (450Mo) container used to document convertion and manipulation tools
+Simple container used to document convertion and manipulation tools
 Run [libreoffice](https://www.libreoffice.org/) as a daemon using [dagwieers unoconv](https://github.com/dagwieers/unoconv) under a container 
 based on [startx/fedora:23 container](https://hub.docker.com/r/startx/fedora)
 

@@ -9,7 +9,7 @@ weight=3
 
 # Docker OS Images : MARIADB on Fedora 23
 
-Simple and lightweight (170Mo) container used to deliver simple and easy to use transactional database using mysql like database provided by [mariadb open-source project](https://mariadb.org/).
+Simple container used to deliver simple and easy to use transactional database using mysql like database provided by [mariadb open-source project](https://mariadb.org/).
 Run [mariadb daemon](https://mariadb.org/) under a container 
 based on [startx/fedora:23 container](https://hub.docker.com/r/startx/fedora)
 

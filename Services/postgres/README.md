@@ -9,7 +9,7 @@ weight=3
 
 # Docker OS Images : POSTGRESQL on Fedora 23
 
-Simple and lightweight (130Mo) container used to deliver highly reliable and configurable transactional database service using postgresql opensource project.
+Simple container used to deliver highly reliable and configurable transactional database service using postgresql opensource project.
 Run [postgres daemon](http://www.postgresql.org/) under a container 
 based on [startx/fedora:23 container](https://hub.docker.com/r/startx/fedora)
 

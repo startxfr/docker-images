@@ -9,7 +9,7 @@ weight=3
 
 # Docker OS Images : MEMCACHE on Fedora 23
 
-Simple and lightweight (130Mo) container used to deliver distributed memory object caching system
+Simple container used to deliver distributed memory object caching system
 Run [memcached daemon](https://www.memcached.org/) under a container 
 based on [startx/fedora:23 container](https://hub.docker.com/r/startx/fedora)
 

@@ -9,7 +9,7 @@ weight=3
 
 # Docker OS Images : MONGO on Fedora 23
 
-Simple and lightweight (150Mo) container used to deliver document-oriented database
+Simple container used to deliver document-oriented database
 Run [mongodb daemon](https://www.mongodb.org/) under a container 
 based on [startx/fedora:23 container](https://hub.docker.com/r/startx/fedora)
 

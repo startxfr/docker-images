@@ -15,7 +15,8 @@ RUN chmod 775 /bin/run.sh && \
     mkdir -p $DATA_PATH && \
     mkdir -p $LOG_PATH && \
     touch $STARTUPLOG && \
-    chown -R postgres:postgres $LOG_PATH $DATA_PATH $LOADSQL_PATH
+    chown -R postgres:postgres $LOG_PATH $DATA_PATH $LOADSQL_PATH $STARTUPLOG && \
+    chmod -R 0700 $DATA_PATH
 
 EXPOSE 5432
 VOLUME [$DATA_PATH,$LOG_PATH]
