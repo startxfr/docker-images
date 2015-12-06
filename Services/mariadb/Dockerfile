@@ -3,7 +3,7 @@ MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
 RUN yum --skip-broken -y install mariadb-server mariadb mariadb-libs && \
-    && yum clean all && \
+    yum clean all && \
     mkdir -p /tmp/sql 
 ENV MY_CONF=/etc/my.cnf \
     STARTUPLOG=/data/logs/mariadb/startup.log \
