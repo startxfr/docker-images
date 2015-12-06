@@ -9,9 +9,8 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-* `:latest` : Fedora core 23 + couchbase 1.4.17 
-* `:fc23` : Fedora core 23 + couchbase 1.4.17
-* `:centos7` : CentOS 7 + couchbase
+* `:latest` : Centos 7 + Couchbase Server 4.1.0
+* `:centos7` : Centos 7 + Couchbase Server 4.1.0
 
 ## Running from dockerhub registry
 
@@ -27,6 +26,7 @@ service:
     CONTAINER_INSTANCE: "service-couchbase"
   volumes:
     - "/tmp/container/logs/couchbase:/data/logs/couchbase"
+    - "/tmp/container/couchbase:/data/couchbase"
 ```
 
 ## Docker-compose in various situations
