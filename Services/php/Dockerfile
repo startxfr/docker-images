@@ -8,14 +8,25 @@ RUN yum -y install php php-pecl-mongo php-cli php-pear \
         php-bcmath php-pecl-zip php-php-gettext php-tcpdf \
         php-tcpdf-dejavu-sans-fonts php-tidy \
     && yum clean all  
-# Copy application content
-COPY app/* /var/www/html/
-COPY httpd.conf /etc/httpd/conf.d/sx.conf
+ENV HTTPDCONF=/etc/httpd/conf.d/app.conf \
+    LOG_PATH=/data/logs/apache_php  \
+    APP_PATH=/data/apache_php \
+    STARTUPLOG=/data/logs/apache_php/startup.log \
+    TMP_APP_PATH=/tmp/apache
+COPY httpd.conf $HTTPDCONF
 COPY php.ini /etc/php.d/sx.ini
-RUN chmod ug+r /var/www/html/* \
-    && chown -R apache:apache /var/www/html /var/log/httpd 
+COPY run.sh /bin/
+RUN chmod 775 /bin/run.sh && \
+    chmod ug+r $HTTPDCONF && \
+    mkdir -p $TMP_APP_PATH && \
+    mkdir -p $APP_PATH && \
+    mkdir -p $LOG_PATH && \
+    touch $STARTUPLOG
+COPY ./ $TMP_APP_PATH
+RUN rm -f $TMP_APP_PATH/Dockerfile $TMP_APP_PATH/httpd.conf $TMP_APP_PATH/run.sh && \
+    chown -R apache:apache $TMP_APP_PATH $APP_PATH $LOG_PATH && \
+    chmod ug+r -R $TMP_APP_PATH $APP_PATH
 
-EXPOSE 80
-EXPOSE 443
-VOLUME ["/var/www/html", "/var/log/httpd"]
-CMD ["/sx/httpd_run.sh"]
+EXPOSE 80 443
+VOLUME [$APP_PATH,$LOG_PATH]
+CMD ["/bin/run.sh"]
