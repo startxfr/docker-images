@@ -1,15 +1,6 @@
-<!--[metadata]>
-+++
-title = "STARTX Docker Services Images : MARIADB on Fedora 22"
-description = "Docker container with mariadb service based on fedora 22"
-keywords = ["home, docker, startx, mariadb, fedora 22, centos, repository, container, swarm, compose"]
-weight=3
-+++
-<![end-metadata]-->
-
 # Docker OS Images : MARIADB on Fedora 22
 
-Simple and lightweight (170Mo) container used to deliver simple and easy to use transactional database using mysql like database provided by [mariadb open-source project](https://mariadb.org/).
+Simple container used to deliver simple and easy to use transactional database using mysql like database provided by [mariadb open-source project](https://mariadb.org/).
 Run [mariadb daemon](https://mariadb.org/) under a container 
 based on [startx/fedora:22 container](https://hub.docker.com/r/startx/fedora)
 

@@ -1,15 +1,6 @@
-<!--[metadata]>
-+++
-title = "STARTX Docker Services Images : MEMCACHE on Fedora 22"
-description = "Docker container with memcache service based on fedora 22"
-keywords = ["home, docker, startx, memcache, fedora 22, centos, repository, container, swarm, compose"]
-weight=3
-+++
-<![end-metadata]-->
-
 # Docker OS Images : MEMCACHE on Fedora 22
 
-Simple and lightweight (130Mo) container used to deliver distributed memory object caching system
+Simple container used to deliver distributed memory object caching system
 Run [memcached daemon](https://www.memcached.org/) under a container 
 based on [startx/fedora:22 container](https://hub.docker.com/r/startx/fedora)
 

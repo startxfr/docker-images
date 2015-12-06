@@ -16,8 +16,10 @@ function check_environment {
         echo "! WARNING : auto-assigned value : $CONTAINER_SERVICE"
     fi
     if [ ! -v CONTAINER_INSTANCE ]; then
-        echo "ERROR : environment var CONTAINER_INSTANCE is missing. EXIT !!!"
-        exit 1;
+        CONTAINER_INSTANCE=$CONTAINER_TYPE "_" $CONTAINER_SERVICE;
+        export CONTAINER_INSTANCE;
+        echo "! WARNING : environment var CONTAINER_INSTANCE is missing..."
+        echo "! WARNING : auto-assigned value : $CONTAINER_INSTANCE"
     fi
 }
 
@@ -28,11 +30,11 @@ function display_container_header {
     if [ -v CONTAINER_TYPE ]; then
         echo "| Type        : $CONTAINER_TYPE"
     fi
-    if [ -v CONTAINER_INSTANCE ]; then
-        echo "| Instance    : $CONTAINER_INSTANCE"
-    fi
     if [ -v CONTAINER_SERVICE ]; then
         echo "| Service     : $CONTAINER_SERVICE"
+    fi
+    if [ -v CONTAINER_INSTANCE ]; then
+        echo "| Instance    : $CONTAINER_INSTANCE"
     fi
     echo "+====================================================="
 }

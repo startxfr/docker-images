@@ -1,12 +1,3 @@
-<!--[metadata]>
-+++
-title = "STARTX Docker Images Repository based on Fedora 22"
-description = "Docker container repository based on fedora 22 and deliverying main opensource project as container"
-keywords = ["home, docker, startx, repository, fedora 22, container, swarm, compose, howto, "]
-weight=3
-+++
-<![end-metadata]-->
-
 # STARTX Docker-Images Repository based on Fedora 22
 
 This repository host various Open Source application or services as a container based on the fedora 22 distribution

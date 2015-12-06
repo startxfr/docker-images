@@ -1,15 +1,6 @@
-<!--[metadata]>
-+++
-title = "STARTX Docker Services Images : APACHE + PHP on Fedora 22"
-description = "Docker container with apache + php service based on fedora 22"
-keywords = ["home, docker, startx, apache, php, fedora 22, centos, repository, container, swarm, compose"]
-weight=3
-+++
-<![end-metadata]-->
-
 # Docker OS Images : APACHE + PHP on Fedora 22
 
-Simple and lightweight (145Mo) container used to deliver dynamic http content using apache associated with PHP engine
+Simple container used to deliver dynamic http content using apache associated with PHP engine
 Run [PHP engine](https://www.php.net) under a container 
 based on [startx/fedora:22 container](https://hub.docker.com/r/startx/fedora)
 

@@ -1,15 +1,6 @@
-<!--[metadata]>
-+++
-title = "STARTX Docker Services Images : NODEJS on Fedora 22"
-description = "Docker container with nodejs service based on fedora 22"
-keywords = ["home, docker, startx, nodejs, fedora 22, centos, repository, container, swarm, compose"]
-weight=3
-+++
-<![end-metadata]-->
-
 # Docker OS Images : NODEJS on Fedora 22
 
-Simple and lightweight (190Mo) container used to run server side executed javascript content. include all nodejs and npm dependency.
+Simple container used to run server side executed javascript content. include all nodejs and npm dependency.
 Run [nodejs main app.js](https://www.nodejs.org/) under a container 
 based on [startx/fedora:22 container](https://hub.docker.com/r/startx/fedora). 
 Could use various network protocol (like http, websocket, smtp, telnet) according to the content of the running app.

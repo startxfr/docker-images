@@ -6,7 +6,7 @@ server:
   cpu_shares: 2
   restart: "on-failure:2"
   ports:
-    - "11211:11211"
+    - "9271:11211"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "memcache"

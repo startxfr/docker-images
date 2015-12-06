@@ -22,11 +22,11 @@ function display_container_nodejs_header {
     if [ -v CONTAINER_TYPE ]; then
         echo "| Type        : $CONTAINER_TYPE"
     fi
-    if [ -v CONTAINER_INSTANCE ]; then
-        echo "| Instance    : $CONTAINER_INSTANCE"
-    fi
     if [ -v CONTAINER_SERVICE ]; then
         echo "| Service     : $CONTAINER_SERVICE"
+    fi
+    if [ -v CONTAINER_INSTANCE ]; then
+        echo "| Instance    : $CONTAINER_INSTANCE"
     fi
     if [ -v APP_PATH ]; then
         echo "| App path    : $APP_PATH"
@@ -46,7 +46,7 @@ function begin_config {
         FILE_LIST=$(find $TMP_APP_PATH -maxdepth 1 -mindepth 1 -printf "%f\n")
         for FILE in $FILE_LIST; do 
             echo -n "adding $APP_PATH/$FILE"
-            mv -f $TMP_APP_PATH/$FILE $APP_PATH/
+            cp -r $TMP_APP_PATH/$FILE $APP_PATH/
             echo " DONE"
         done
     fi

@@ -1,15 +1,6 @@
-<!--[metadata]>
-+++
-title = "STARTX Docker OS Images : Fedora 22"
-description = "Docker container repository based on fedora 22"
-keywords = ["home, docker, startx, fedora 22, repository, container, swarm, compose, howto, "]
-weight=3
-+++
-<![end-metadata]-->
-
 # Docker OS Images : Fedora 22
 
-Simple and lightweight (110Mo) container used for all startx based services and applications published in [Dockerhub registry](https://github.com/startxfr/docker-images). 
+Simple container used for all startx based services and applications published in [Dockerhub registry](https://github.com/startxfr/docker-images). 
 This container contain updated core OS rpm (kernel, libs,...) as well as usefull tools like pwgen, tar, zip, psmisc, procps, coreutils, findutils, wget
 
 please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)

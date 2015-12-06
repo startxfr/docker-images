@@ -1,15 +1,6 @@
-<!--[metadata]>
-+++
-title = "STARTX Docker Services Images : OOCONV on Fedora 22"
-description = "Docker container with ooconv service based on fedora 22"
-keywords = ["home, docker, startx, ooconv, fedora 22, centos, repository, container, swarm, compose"]
-weight=3
-+++
-<![end-metadata]-->
-
 # Docker OS Images : OOCONV on Fedora 22
 
-Simple and lightweight (450Mo) container used to document convertion and manipulation tools
+Simple container used to document convertion and manipulation tools
 Run [libreoffice](https://www.libreoffice.org/) as a daemon using [dagwieers unoconv](https://github.com/dagwieers/unoconv) under a container 
 based on [startx/fedora:22 container](https://hub.docker.com/r/startx/fedora)
 
