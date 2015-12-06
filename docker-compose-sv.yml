@@ -1,39 +1,39 @@
-server_apache:
+centos7_apache:
   extends:
     file: Services/apache/docker-compose.yml
     service: server
 
-server_php:
+centos7_php:
   extends:
     file: Services/php/docker-compose.yml
     service: server
 
-server_nodejs:
+centos7_nodejs:
   extends:
     file: Services/nodejs/docker-compose.yml
     service: server
 
-server_mariadb:
+centos7_mariadb:
   extends:
     file: Services/mariadb/docker-compose.yml
     service: server
 
-server_postgres:
+centos7_postgres:
   extends:
     file: Services/postgres/docker-compose.yml
     service: server
 
-server_mongo:
+centos7_mongo:
   extends:
     file: Services/mongo/docker-compose.yml
     service: server
 
-server_ooconv:
+centos7_ooconv:
   extends:
     file: Services/ooconv/docker-compose.yml
     service: server
 
-server_memcache:
+centos7_memcache:
   extends:
     file: Services/memcache/docker-compose.yml
     service: server
