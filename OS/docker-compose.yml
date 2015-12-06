@@ -1,4 +1,4 @@
-fc20:
+fedora20:
   build: ./
   container_name: "os-fedora20"
   mem_limit: 1g
