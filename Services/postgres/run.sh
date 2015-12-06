@@ -1,6 +1,15 @@
 #!/bin/bash
 source /bin/sx-lib.sh
 
+set -e
+
+set_listen_addresses() {
+	sedEscapedValue="$(echo "$1" | sed 's/[\/&]/\\&/g')"
+	sed -ri "s/^#?(listen_addresses\s*=\s*)\S+/\1'$sedEscapedValue'/" "$POSTGRESQL_CONF"
+}
+
+
+
 function check_postgresql_environment {
     check_environment
     if [ ! -v DATA_PATH ]; then
@@ -51,6 +60,7 @@ function begin_config {
     else 
         echo "data directory $DATA_PATH EXIST"
     fi
+    export PGDATA=$DATA_PATH
     if [[ ! -d $LOG_PATH ]]; then
         echo "log directory $LOG_PATH not found"
         mkdir -p $LOG_PATH; chmod 0774 $LOG_PATH
@@ -78,19 +88,23 @@ function begin_config {
         echo "log_connections = on" >> $POSTGRESQL_CONF
         echo "log_hostname = on" >> $POSTGRESQL_CONF
         echo "log_line_prefix = '<%u@%r%%%d>'" >> $POSTGRESQL_CONF
+        { echo; echo "host all all 0.0.0.0/0 md5"; } >> "$DATA_PATH/pg_hba.conf"
         echo "Installing PostgreSQL in $DATA_PATH is DONE !"
+        chown root:postgres $STARTUPLOG
+        chmod ug+w $STARTUPLOG
     fi
 }
 
 function config_startserver {
     echo "start database for initial setup"
-    su - postgres -c "nohup /usr/bin/postgres -D $DATA_PATH >$STARTUPLOG 2>&1 </dev/null &" 
+    su - postgres -c "pg_ctl -D $DATA_PATH -o \"-c listen_addresses=''\" --log=$STARTUPLOG -w start "
     sleep 6
 }
 
 function config_stopserver {
     echo "stop database after initial setup"
-    killall postgres
+    su - postgres -c "pg_ctl -D $DATA_PATH -m fast -w stop" 
+    set_listen_addresses '*'
     sleep 3
 }
 
@@ -99,13 +113,16 @@ function config_createadmin {
     PASS=${POSTGRESQL_ROOT_PASSWORD:-$(pwgen -s 12 1)}
     _word=$( [ ${POSTGRESQL_ROOT_PASSWORD} ] && echo "preset" || echo "random" )
     echo "Creating PostgreSQL admin user with ${_word} password"
-    su - postgres -c "psql -U postgres -d postgres -c \"alter user postgres with password '$PASS';\""
+    su - postgres -c "psql -U postgres -c \"ALTER USER postgres WITH SUPERUSER PASSWORD '$PASS';\""
     echo ""
     echo " +------------------------------------------------------"
+    echo " | SUPERADMIN USER CREATED ! "
     echo " | You can now connect to this server using:"
+    echo " | "
     echo " | user     : postgres"
     echo " | password : $PASS"
-    echo " | shell    : postgres -U postgres -p$PASS -h<host> -P<port>"
+    echo " | "
+    echo " | shell    : psql --username=postgres --host=<host> --port=<port>"
     echo " +------------------------------------------------------"
     echo ""
 }
@@ -113,13 +130,16 @@ function config_createadmin {
 function config_createuser {
     if [[ -n "$POSTGRESQL_USER" ]]; then
         echo "Creating PostgreSQL $POSTGRESQL_USER user with preset password"
-        su - postgres -c "psql -U postgres -d postgres -c \"CREATE USER '$POSTGRESQL_USER' WITH PASSWORD '$POSTGRESQL_PASSWORD';\""
+        su - postgres -c 'psql -U postgres -c \"CREATE USER \"$POSTGRESQL_USER\" WITH PASSWORD \'$POSTGRESQL_PASSWORD\';\"'
         echo ""
         echo " +------------------------------------------------------"
+        echo " | USER CREATED ! "
         echo " | You can now connect to this server using:"
+        echo " | "
         echo " | user     : $POSTGRESQL_USER"
         echo " | password : $POSTGRESQL_PASSWORD"
-        echo " | shell    : mysql -u$POSTGRESQL_USER -p$POSTGRESQL_PASSWORD -h<host> -P<port>"
+        echo " | "
+        echo " | shell    : psql --username=$POSTGRESQL_USER --host=<host> --port=<port>"
         echo " +------------------------------------------------------"
         echo ""
     fi
@@ -130,8 +150,17 @@ function config_createdatabase {
         echo "processing database " $POSTGRESQL_DATABASE
         if [[ ! -d $DIR_DB_DATA/$POSTGRESQL_DATABASE ]]; then
             echo "database " $POSTGRESQL_DATABASE " doesn't exist"
-            su - postgres -c "psql -U postgres -d postgres -c \"CREATE DATABASE $POSTGRESQL_DATABASE;\""
-            echo "database " $POSTGRESQL_DATABASE " CREATED"
+            su - postgres -c "psql -U postgres -c \"CREATE DATABASE $POSTGRESQL_DATABASE;\""
+            echo ""
+            echo " +------------------------------------------------------"
+            echo " | DATABASE CREATED ! "
+            echo " | You can connect to this database using :"
+            echo " | "
+            echo " | database : $POSTGRESQL_DATABASE"
+            echo " | "
+            echo " | shell    : psql --username=postgres --host=<host> --port=<port> $POSTGRESQL_DATABASE "
+            echo " +------------------------------------------------------"
+            echo ""
         else
             echo "database " $POSTGRESQL_DATABASE " already exist"
         fi
@@ -144,18 +173,24 @@ function config_importsql {
     if [[ -n "$LOADSQL_PATH" ]]; then
         echo "import sql data into " $POSTGRESQL_DATABASE
         if [[ -d $LOADSQL_PATH ]]; then
-            SCHEMALIST=$(find $LOADSQL_PATH/schema-*.sql -type f -printf "%f\n")
-            for SCHEMAFILE in $SCHEMALIST; do 
-                echo -n "Creating schema " $SCHEMAFILE " ... "
-                su - postgres -c "psql -U postgres -d postgres < $LOADSQL_PATH/$SCHEMAFILE"
-                echo " DONE"
-            done
-            DATALIST=$(find $LOADSQL_PATH/data-*.sql -type f -printf "%f\n")
-            for DATAFILE in $DATALIST; do 
-                echo -n "Creating data " $DATAFILE " ... "
-                su - postgres -c "psql -U postgres -d postgres < $LOADSQL_PATH/$DATAFILE"
-                echo " DONE"
-            done
+            if [ "$(ls -A $LOADSQL_PATH/schema-*.sql)" ]; then
+                echo "Importing schema from $LOADSQL_PATH "
+                SCHEMALIST=$(find $LOADSQL_PATH/schema-*.sql -type f -printf "%f\n")
+                for SCHEMAFILE in $SCHEMALIST; do 
+                    echo -n "Creating schema " $SCHEMAFILE " ... "
+                    su - postgres -c "psql -U postgres -d $POSTGRESQL_DATABASE < $LOADSQL_PATH/$SCHEMAFILE"
+                    echo " DONE"
+                done
+            fi
+            if [ "$(ls -A $LOADSQL_PATH/data-*.sql)" ]; then
+                echo "Importing data from $LOADSQL_PATH "
+                DATALIST=$(find $LOADSQL_PATH/data-*.sql -type f -printf "%f\n")
+                for DATAFILE in $DATALIST; do 
+                    echo -n "Creating data " $DATAFILE " ... "
+                    su - postgres -c "psql -U postgres -d $POSTGRESQL_DATABASE < $LOADSQL_PATH/$DATAFILE"
+                    echo " DONE"
+                done
+            fi
         fi
     else
         echo "no sql data to import into " $POSTGRESQL_DATABASE
@@ -173,7 +208,9 @@ function end_config {
 function start_daemon {
     echo "=> Starting postgresql daemon ..." | tee -a $STARTUPLOG
     display_container_started | tee -a $STARTUPLOG
-    su - postgres -c "/usr/bin/postgres -D $DATA_PATH "
+    su - postgres -c "pg_ctl -D $DATA_PATH -w start "
+    echo "postgres daemon is started" > /tmp/started
+    exec tail -f /tmp/started
 }
 
 

@@ -48,6 +48,9 @@ function end_config {
 function start_daemon {
     echo "=> Starting ooconv daemon ..." | tee -a $STARTUPLOG
     display_container_started | tee -a $STARTUPLOG
+    unoconv --listener -vvv | tee -a $STARTUPLOG
+    sleep 1
+    killall unoconv soffice.bin 
     exec unoconv --listener
 }
 
