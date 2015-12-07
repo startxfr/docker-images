@@ -8,27 +8,11 @@ server:
   ports:
     - "9215:80"
     - "9216:443"
-  links:
-    - demo_db:db
   environment:
     CONTAINER_TYPE: "application"
     CONTAINER_SERVICE: "phpmyadmin"
     CONTAINER_INSTANCE: "application-phpmyadmin"
     SERVER_NAME: "localhost"
   volumes:
-    - "/tmp/container/logs/phpmyadmin:/data/logs/apache_php"
-    - "/tmp/container/phpmyadmin:/data/apache_php"
-    
-demo_db:
-  image: startx/sv-mariadb
-  container_name: "service-mariadb"
-  expose:
-    - "3306"
-  environment:
-    CONTAINER_TYPE: "service"
-    CONTAINER_SERVICE: "mariadb"
-    CONTAINER_INSTANCE: "service-mariadb"
-    MYSQL_ROOT_PASSWORD: "secretdemerde"
-    MYSQL_USER: "user-test"
-    MYSQL_PASSWORD: "pwd-test"
-    MYSQL_DATABASE: "db_test"
+    - "/tmp/container/logs/phpmyadmin:/data/logs/apache"
+    - "/tmp/container/phpmyadmin:/data/apache"

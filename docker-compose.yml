@@ -43,10 +43,10 @@ fedora_sv_memcache:
     file: Services/memcache/docker-compose.yml
     service: server
 
-#fedora_app_pma:
-#  build: Applications/phpmyadmin/
-#  container_name: "application-phpmyadmin"
-#
+fedora_app_pma:
+  build: Applications/phpmyadmin/
+  container_name: "application-phpmyadmin"
+
 #fedora_app_rockmongo:
 #  build: Applications/rockmongo/
 #  container_name: "application-rockmongo"

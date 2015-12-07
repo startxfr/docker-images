@@ -1,4 +1,5 @@
 <?php
+
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
  * phpMyAdmin sample configuration, you can use it as base for
@@ -9,12 +10,12 @@
  *
  * @package PhpMyAdmin
  */
-
 /**
  * This is needed for cookie based authentication to encrypt password in
  * cookie
  */
-$cfg['blowfish_secret'] = ''; /* YOU MUST FILL IN THIS FOR COOKIE AUTH! */
+$cfg['blowfish_secret'] = 'SECRET'; /* YOU MUST FILL IN THIS FOR COOKIE AUTH! */
+$cfg['PmaNoRelation_DisableWarning'] = true;
 
 /**
  * Servers configuration
@@ -24,19 +25,25 @@ $i = 0;
 /**
  * First server
  */
-$i++;
-/* Authentication type */
-$cfg['Servers'][$i]['auth_type'] = 'cookie';
-/* Server parameters */
-$cfg['Servers'][$i]['host'] = 'localhost';
-$cfg['Servers'][$i]['connect_type'] = 'tcp';
-$cfg['Servers'][$i]['compress'] = false;
-$cfg['Servers'][$i]['AllowNoPassword'] = false;
-
+if(getenv('DB_ENV_MYSQL_USER') != '') {
+    $i++;
+    $cfg['Servers'][$i]['extension'] = 'mysqli';
+    $cfg['Servers'][$i]['host'] = 'db';
+    $cfg['Servers'][$i]['controlhost'] = '';
+    $cfg['Servers'][$i]['controluser'] = getenv('DB_ENV_MYSQL_USER');
+    $cfg['Servers'][$i]['controlpass'] = getenv('DB_ENV_MYSQL_PASSWORD');
+}
+if(getenv('DB2_ENV_MYSQL_USER') != '') {
+    $i++;
+    $cfg['Servers'][$i]['extension'] = 'mysqli';
+    $cfg['Servers'][$i]['host'] = 'db2';
+    $cfg['Servers'][$i]['controlhost'] = '';
+    $cfg['Servers'][$i]['controluser'] = getenv('DB2_ENV_MYSQL_USER');
+    $cfg['Servers'][$i]['controlpass'] = getenv('DB2_ENV_MYSQL_PASSWORD');
+}
 /**
  * phpMyAdmin configuration storage settings.
  */
-
 /* User used to manipulate with storage */
 // $cfg['Servers'][$i]['controlhost'] = '';
 // $cfg['Servers'][$i]['controlport'] = '';
@@ -70,7 +77,6 @@ $cfg['Servers'][$i]['AllowNoPassword'] = false;
 /**
  * End of servers configuration
  */
-
 /**
  * Directories for saving/loading files from server
  */

@@ -4,7 +4,7 @@ demo_pma:
   ports:
     - "81:80"
   links:
-    - demo_db:db
+    - demo_pma_db:db
   environment:
     CONTAINER_TYPE: "application"
     CONTAINER_SERVICE: "phpmyadmin"
