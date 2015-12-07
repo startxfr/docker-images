@@ -1,10 +1,10 @@
-FROM startx/centos:7
+FROM startx/centos:6
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
 ENV CB_VERSION="4.1.0" \
     CB_RELEASE_URL="http://packages.couchbase.com/releases/4.1.0-dp" \
-    CB_PACKAGE="couchbase-server-4.1.0-dp-centos7.x86_64.rpm" \
+    CB_PACKAGE="couchbase-server-4.1.0-dp-centos6.x86_64.rpm" \
     STARTUPLOG=/data/logs/couchbase/startup.log \
     LOG_PATH=/data/logs/couchbase \
     DATA_PATH=/opt/couchbase/var

@@ -4,10 +4,10 @@ Container running phpMyAdmin under a centos server.
 
 ## Running from docker registry
 
-	docker run -d -p 80:80 --name="pma" startx/app-pma:centos7
+	docker run -d -p 80:80 --name="pma" startx/app-pma:centos6
 	when linked to another container
-	docker run -d --name="mariadb" startx/sv-mariadb:centos7
-	docker run -d -p 80:80 --name="pma" --link mariadb:mariadb startx/app-pma:centos7
+	docker run -d --name="mariadb" startx/sv-mariadb:centos6
+	docker run -d -p 80:80 --name="pma" --link mariadb:mariadb startx/app-pma:centos6
 
 ## Build and run from local Dockerfile
 ### Building docker image
@@ -19,11 +19,11 @@ Copy sources in your docker host
 
 Build the container
 
-	docker build -t app-pma:centos7 Applications/phpmyadmin/
+	docker build -t app-pma:centos6 Applications/phpmyadmin/
 
 ### Running local image
 
-	docker run -d -p 80:80 --name="pma" app-pma:centos7
+	docker run -d -p 80:80 --name="pma" app-pma:centos6
 
 ## Accessing server
 access to the running webserver

@@ -1,4 +1,4 @@
-FROM startx/sv-php:centos7
+FROM startx/sv-php:centos6
 MAINTAINER startx dev@startx.fr
 
 # update, install required, clean

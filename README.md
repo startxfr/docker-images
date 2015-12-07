@@ -1,6 +1,6 @@
-# STARTX Docker-Images Repository based on CentOS 7
+# STARTX Docker-Images Repository based on CentOS 6
 
-This repository host various Open Source application or services as a container based on the CentOS 7 distribution
+This repository host various Open Source application or services as a container based on the CentOS 6 distribution
 
 You can use it to instanciate new container from the dockerhub public registry 
 or as a parent container in your own container's. 

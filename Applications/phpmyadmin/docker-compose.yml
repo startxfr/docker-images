@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "centos7-application-phpmyadmin"
+  container_name: "centos6-application-phpmyadmin"
   mem_limit: 500m
   memswap_limit: 500m
   cpu_shares: 2
@@ -11,8 +11,8 @@ server:
   environment:
     CONTAINER_TYPE: "application"
     CONTAINER_SERVICE: "phpmyadmin"
-    CONTAINER_INSTANCE: "centos7-application-phpmyadmin"
+    CONTAINER_INSTANCE: "centos6-application-phpmyadmin"
     SERVER_NAME: "localhost"
   volumes:
-    - "/tmp/container-centos7/logs/phpmyadmin:/data/logs/apache"
-    - "/tmp/container-centos7/phpmyadmin:/data/apache"
+    - "/tmp/container-centos6/logs/phpmyadmin:/data/logs/apache"
+    - "/tmp/container-centos6/phpmyadmin:/data/apache"

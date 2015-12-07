@@ -1,140 +1,140 @@
-centos7-data:
-  image: startx/centos:7
-  container_name: "centos7-data"
+centos6-data:
+  image: startx/centos:6
+  container_name: "centos6-data"
   environment:
     CONTAINER_TYPE: "os"
     CONTAINER_SERVICE: "fedora"
-    CONTAINER_INSTANCE: "centos7-data"
+    CONTAINER_INSTANCE: "centos6-data"
 
-centos7-service-apache:
-  image: startx/sv-apache:centos7
-  container_name: "centos7-service-apache"
+centos6-service-apache:
+  image: startx/sv-apache:centos6
+  container_name: "centos6-service-apache"
   ports:
     - "81:80"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "apache"
-    CONTAINER_INSTANCE: "centos7-service-apache"
+    CONTAINER_INSTANCE: "centos6-service-apache"
   volumes_from:
-    - "centos7-data"
+    - "centos6-data"
 
-centos7-service-php:
-  image: startx/sv-php:centos7
-  container_name: "centos7-service-php"
+centos6-service-php:
+  image: startx/sv-php:centos6
+  container_name: "centos6-service-php"
   ports:
     - "82:80"
   links:
-    - "centos7-service-mariadb:mariadb"
-    - "centos7-service-postgres:postgres"
-    - "centos7-service-mongo:mongo"
-    - "centos7-service-memcache:memcache"
-    - "centos7-service-ooconv:ooconv"
+    - "centos6-service-mariadb:mariadb"
+    - "centos6-service-postgres:postgres"
+    - "centos6-service-mongo:mongo"
+    - "centos6-service-memcache:memcache"
+    - "centos6-service-ooconv:ooconv"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "php"
-    CONTAINER_INSTANCE: "centos7-service-php"
+    CONTAINER_INSTANCE: "centos6-service-php"
   volumes_from:
-    - "centos7-data"
+    - "centos6-data"
 
-centos7-service-nodejs:
-  image: startx/sv-nodejs:centos7
-  container_name: "centos7-service-nodejs"
+centos6-service-nodejs:
+  image: startx/sv-nodejs:centos6
+  container_name: "centos6-service-nodejs"
   ports:
     - "83:8000"
   links:
-    - "centos7-service-mariadb:mariadb"
-    - "centos7-service-postgres:postgres"
-    - "centos7-service-mongo:mongo"
-    - "centos7-service-memcache:memcache"
-    - "centos7-service-ooconv:ooconv"
+    - "centos6-service-mariadb:mariadb"
+    - "centos6-service-postgres:postgres"
+    - "centos6-service-mongo:mongo"
+    - "centos6-service-memcache:memcache"
+    - "centos6-service-ooconv:ooconv"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "nodejs"
-    CONTAINER_INSTANCE: "centos7-service-nodejs"
+    CONTAINER_INSTANCE: "centos6-service-nodejs"
   volumes_from:
-    - "centos7-data"
+    - "centos6-data"
 
-centos7-service-mariadb:
-  image: startx/sv-mariadb:centos7
-  container_name: "centos7-service-mariadb"
+centos6-service-mariadb:
+  image: startx/sv-mariadb:centos6
+  container_name: "centos6-service-mariadb"
   expose:
     - "3306"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mariadb"
-    CONTAINER_INSTANCE: "centos7-service-mariadb"
+    CONTAINER_INSTANCE: "centos6-service-mariadb"
     MYSQL_USER: "user-test"
     MYSQL_PASSWORD: "pwd-test"
     MYSQL_DATABASE: "db_test"
   volumes_from:
-    - "centos7-data"
+    - "centos6-data"
 
-centos7-service-postgres:
-  image: startx/sv-postgres:centos7
-  container_name: "centos7-service-postgres"
+centos6-service-postgres:
+  image: startx/sv-postgres:centos6
+  container_name: "centos6-service-postgres"
   expose:
     - "5432"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "postgres"
-    CONTAINER_INSTANCE: "centos7-service-postgres"
+    CONTAINER_INSTANCE: "centos6-service-postgres"
     POSTGRESQL_USER: "user-test"
     POSTGRESQL_PASSWORD: "pwd-test"
     POSTGRESQL_DATABASE: "db_test"
   volumes_from:
-    - "centos7-data"
+    - "centos6-data"
 
-centos7-service-mongo:
-  image: startx/sv-mongo:centos7
-  container_name: "centos7-service-mongo"
+centos6-service-mongo:
+  image: startx/sv-mongo:centos6
+  container_name: "centos6-service-mongo"
   expose:
     - "27017"
     - "28017"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mongo"
-    CONTAINER_INSTANCE: "centos7-service-mongo"
+    CONTAINER_INSTANCE: "centos6-service-mongo"
   volumes_from:
-    - "centos7-data"
+    - "centos6-data"
 
-centos7-service-ooconv:
-  image: startx/sv-ooconv:centos7
-  container_name: "centos7-service-ooconv"
+centos6-service-ooconv:
+  image: startx/sv-ooconv:centos6
+  container_name: "centos6-service-ooconv"
   expose:
     - "2002"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "ooconv"
-    CONTAINER_INSTANCE: "centos7-service-ooconv"
+    CONTAINER_INSTANCE: "centos6-service-ooconv"
   volumes_from:
-    - "centos7-data"
+    - "centos6-data"
 
-centos7-service-memcache:
-  image: startx/sv-memcache:centos7
-  container_name: "centos7-service-memcache"
+centos6-service-memcache:
+  image: startx/sv-memcache:centos6
+  container_name: "centos6-service-memcache"
   expose:
     - "11211"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "memcache"
-    CONTAINER_INSTANCE: "centos7-service-memcache"
+    CONTAINER_INSTANCE: "centos6-service-memcache"
   volumes_from:
-    - "centos7-data"
+    - "centos6-data"
 
-#centos7-application-pma:
-#  image: startx/app-phpmyadmin:centos7
+#centos6-application-pma:
+#  image: startx/app-phpmyadmin:centos6
 #  container_name: "application-phpmyadmin"
 #  ports:
 #    - "84:80"
 #  links:
-#    - centos7-service-mariadb:mariadb
+#    - centos6-service-mariadb:mariadb
 #  environment:
 #    CONTAINER_TYPE: "application"
 #    CONTAINER_SERVICE: "phpmyadmin"
-#    CONTAINER_INSTANCE: "centos7-application-phpmyadmin"
+#    CONTAINER_INSTANCE: "centos6-application-phpmyadmin"
 #  volumes_from:
-#    - "centos7-data"
+#    - "centos6-data"
 
-#centos7-application-rockmongo:
-#  image: startx/app-rockmongo:centos7
-#  container_name: "centos7-application-rockmongo"
+#centos6-application-rockmongo:
+#  image: startx/app-rockmongo:centos6
+#  container_name: "centos6-application-rockmongo"

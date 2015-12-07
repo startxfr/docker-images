@@ -1,7 +1,7 @@
-centos7_app_pma:
+centos6-application-pma:
   build: Applications/phpmyadmin/
   container_name: "application-phpmyadmin"
 
-centos7_app_rockmongo:
+centos6-application-rockmongo:
   build: Applications/rockmongo/
   container_name: "application-rockmongo"

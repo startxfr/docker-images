@@ -1,6 +1,6 @@
-centos7:
+centos6:
   build: ./
-  container_name: "os-centos7"
+  container_name: "os-centos6"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 2
@@ -8,4 +8,4 @@ centos7:
   environment:
     CONTAINER_TYPE: "os"
     CONTAINER_SERVICE: "fedora"
-    CONTAINER_INSTANCE: "os-centos7"
+    CONTAINER_INSTANCE: "os-centos6"

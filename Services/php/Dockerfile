@@ -1,4 +1,4 @@
-FROM startx/sv-apache:centos7
+FROM startx/sv-apache:centos6
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root

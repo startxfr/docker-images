@@ -1,8 +1,8 @@
-# Docker OS Images : COUCHBASE on CentOS 7
+# Docker OS Images : COUCHBASE on CentOS 6
 
 Simple container used to deliver distributed and low latency document oriented database
 Run [couchbase daemon](https://www.couchbase.org/) under a container 
-based on [startx/centos:7 container](https://hub.docker.com/r/startx/fedora)
+based on [startx/centos:6 container](https://hub.docker.com/r/startx/fedora)
 
 Each container is provided with various underlying OS version based on CentOS or 
 Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
@@ -17,8 +17,8 @@ or **[other postgres flavours](https://github.com/startxfr/docker-images/Service
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-couchbase:centos7
-  container_name: "centos7-service-couchbase"
+  image: startx/sv-couchbase:centos6
+  container_name: "centos6-service-couchbase"
   ports:
     - "8091:8091"
     - "8092:8092"
@@ -31,10 +31,10 @@ service:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "couchbase"
-    CONTAINER_INSTANCE: "centos7-service-couchbase"
+    CONTAINER_INSTANCE: "centos6-service-couchbase"
   volumes:
-    - "/tmp/container-centos7/logs/couchbase:/data/logs/couchbase"
-    - "/tmp/container-centos7/couchbase:/data/couchbase"
+    - "/tmp/container-centos6/logs/couchbase:/data/logs/couchbase"
+    - "/tmp/container-centos6/couchbase:/data/couchbase"
 ```
 
 ## Docker-compose in various situations
@@ -42,10 +42,10 @@ service:
 * sample docker-compose.yml linked to host port 1000 to 1007
 ```
 service:
-  image: startx/sv-couchbase:centos7
-  container_name: "centos7-service-couchbase"
+  image: startx/sv-couchbase:centos6
+  container_name: "centos6-service-couchbase"
   environment:
-    CONTAINER_INSTANCE: "centos7-service-couchbase"
+    CONTAINER_INSTANCE: "centos6-service-couchbase"
   ports:
     - "1000:8091"
     - "1001:8092"
@@ -59,10 +59,10 @@ service:
 * sample docker-compose.yml with port exposed only to linked services
 ```
 service:
-  image: startx/sv-couchbase:centos7
-  container_name: "centos7-service-couchbase"
+  image: startx/sv-couchbase:centos6
+  container_name: "centos6-service-couchbase"
   environment:
-    CONTAINER_INSTANCE: "centos7-service-couchbase"
+    CONTAINER_INSTANCE: "centos6-service-couchbase"
   expose:
     - "8091"
     - "8092"
@@ -76,15 +76,15 @@ service:
 * sample docker-compose.yml using data container
 ```
 data:
-  image: startx/centos:7
-  container_name: "centos7-service-couchbase-data"
+  image: startx/centos:6
+  container_name: "centos6-service-couchbase-data"
   environment:
-    CONTAINER_INSTANCE: "centos7-service-couchbase-data"
+    CONTAINER_INSTANCE: "centos6-service-couchbase-data"
 service:
-  image: startx/sv-couchbase:centos7
-  container_name: "centos7-service-couchbase"
+  image: startx/sv-couchbase:centos6
+  container_name: "centos6-service-couchbase"
   environment:
-    CONTAINER_INSTANCE: "centos7-service-couchbase"
+    CONTAINER_INSTANCE: "centos6-service-couchbase"
   volume_from:
     - data:rw
 ```
@@ -93,7 +93,7 @@ service:
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
  ```
-FROM startx/sv-couchbase:centos7
+FROM startx/sv-couchbase:centos6
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```
