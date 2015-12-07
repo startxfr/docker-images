@@ -1,140 +1,140 @@
-fedora_data:
+fc22-data:
   image: startx/fedora
-  container_name: "fedora_data"
+  container_name: "fc22-data"
   environment:
     CONTAINER_TYPE: "os"
     CONTAINER_SERVICE: "fedora"
-    CONTAINER_INSTANCE: "fedora_data"
+    CONTAINER_INSTANCE: "fc22-data"
 
-fedora_sv_apache:
+fc22-service-apache:
   image: startx/sv-apache
-  container_name: "fedora_sv_apache"
+  container_name: "fc22-service-apache"
   ports:
     - "81:80"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "apache"
-    CONTAINER_INSTANCE: "fedora_sv_apache"
+    CONTAINER_INSTANCE: "fc22-service-apache"
   volumes_from:
-    - fedora_data
+    - fc22-data
 
-fedora_sv_php:
+fc22-service-php:
   image: startx/sv-php
-  container_name: "fedora_sv_php"
+  container_name: "fc22-service-php"
   ports:
     - "82:80"
   links:
-    - fedora_sv_mariadb:mariadb
-    - fedora_sv_postgres:postgres
-    - fedora_sv_mongo:mongo
-    - fedora_sv_memcache:memcache
-    - fedora_sv_ooconv:ooconv
+    - fc22-service-mariadb:mariadb
+    - fc22-service-postgres:postgres
+    - fc22-service-mongo:mongo
+    - fc22-service-memcache:memcache
+    - fc22-service-ooconv:ooconv
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "php"
-    CONTAINER_INSTANCE: "fedora_sv_php"
+    CONTAINER_INSTANCE: "fc22-service-php"
   volumes_from:
-    - fedora_data
+    - fc22-data
 
-fedora_sv_nodejs:
+fc22-service-nodejs:
   image: startx/sv-nodejs
-  container_name: "fedora_sv_nodejs"
+  container_name: "fc22-service-nodejs"
   ports:
     - "83:8000"
   links:
-    - fedora_sv_mariadb:mariadb
-    - fedora_sv_postgres:postgres
-    - fedora_sv_mongo:mongo
-    - fedora_sv_memcache:memcache
-    - fedora_sv_ooconv:ooconv
+    - fc22-service-mariadb:mariadb
+    - fc22-service-postgres:postgres
+    - fc22-service-mongo:mongo
+    - fc22-service-memcache:memcache
+    - fc22-service-ooconv:ooconv
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "nodejs"
-    CONTAINER_INSTANCE: "fedora_sv_nodejs"
+    CONTAINER_INSTANCE: "fc22-service-nodejs"
   volumes_from:
-    - fedora_data
+    - fc22-data
 
-fedora_sv_mariadb:
+fc22-service-mariadb:
   image: startx/sv-mariadb
-  container_name: "fedora_sv_mariadb"
+  container_name: "fc22-service-mariadb"
   expose:
     - "3306"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mariadb"
-    CONTAINER_INSTANCE: "fedora_sv_mariadb"
+    CONTAINER_INSTANCE: "fc22-service-mariadb"
     MYSQL_USER: "user-test"
     MYSQL_PASSWORD: "pwd-test"
     MYSQL_DATABASE: "db_test"
   volumes_from:
-    - fedora_data
+    - fc22-data
 
-fedora_sv_postgres:
+fc22-service-postgres:
   image: startx/sv-postgres:latest
-  container_name: "fedora_sv_postgres"
+  container_name: "fc22-service-postgres"
   expose:
     - "5432"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "postgres"
-    CONTAINER_INSTANCE: "fedora_sv_postgres"
+    CONTAINER_INSTANCE: "fc22-service-postgres"
     POSTGRESQL_USER: "user-test"
     POSTGRESQL_PASSWORD: "pwd-test"
     POSTGRESQL_DATABASE: "db_test"
   volumes_from:
-    - fedora_data
+    - fc22-data
 
-fedora_sv_mongo:
+fc22-service-mongo:
   image: startx/sv-mongo
-  container_name: "fedora_sv_mongo"
+  container_name: "fc22-service-mongo"
   expose:
     - "27017"
     - "28017"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mongo"
-    CONTAINER_INSTANCE: "fedora_sv_mongo"
+    CONTAINER_INSTANCE: "fc22-service-mongo"
   volumes_from:
-    - fedora_data
+    - fc22-data
 
-fedora_sv_ooconv:
+fc22-service-ooconv:
   image: startx/sv-ooconv
-  container_name: "fedora_sv_ooconv"
+  container_name: "fc22-service-ooconv"
   expose:
     - "2002"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "ooconv"
-    CONTAINER_INSTANCE: "fedora_sv_ooconv"
+    CONTAINER_INSTANCE: "fc22-service-ooconv"
   volumes_from:
-    - fedora_data
+    - fc22-data
 
-fedora_sv_memcache:
+fc22-service-memcache:
   image: startx/sv-memcache
-  container_name: "fedora_sv_memcache"
+  container_name: "fc22-service-memcache"
   expose:
     - "11211"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "memcache"
-    CONTAINER_INSTANCE: "fedora_sv_memcache"
+    CONTAINER_INSTANCE: "fc22-service-memcache"
   volumes_from:
-    - fedora_data
+    - fc22-data
 
-#fedora_app_pma:
+#fc22-application-pma:
 #  image: startx/sv-phpmyadmin
 #  container_name: "application-phpmyadmin"
 #  ports:
 #    - "84:80"
 #  links:
-#    - fedora_sv_mariadb:mariadb
+#    - fc22-service-mariadb:mariadb
 #  environment:
 #    CONTAINER_TYPE: "application"
 #    CONTAINER_SERVICE: "phpmyadmin"
 #    CONTAINER_INSTANCE: "application-phpmyadmin"
 #  volumes_from:
-#    - fedora_data
+#    - fc22-data
 
-#fedora_app_rockmongo:
+#fc22-application-rockmongo:
 #  build: Applications/rockmongo/
 #  container_name: "application-rockmongo"
