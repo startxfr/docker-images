@@ -1,52 +1,52 @@
-fedora20:
+fedora21:
   extends:
     file: OS/docker-compose.yml
-    service: fedora20
+    service: fedora21
 
-fc20_apache:
+fc21_sv_apache:
   extends:
     file: Services/apache/docker-compose.yml
     service: server
 
-fc20_php:
+fc21_sv_php:
   extends:
     file: Services/php/docker-compose.yml
     service: server
 
-#fc20_nodejs:
-#  extends:
-#    file: Services/nodejs/docker-compose.yml
-#    service: server
+fc21_sv_nodejs:
+  extends:
+    file: Services/nodejs/docker-compose.yml
+    service: server
 
-fc20_mariadb:
+fc21_sv_mariadb:
   extends:
     file: Services/mariadb/docker-compose.yml
     service: server
 
-fc20_postgres:
+fc21_sv_postgres:
   extends:
     file: Services/postgres/docker-compose.yml
     service: server
 
-fc20_mongo:
+fc21_sv_mongo:
   extends:
     file: Services/mongo/docker-compose.yml
     service: server
 
-fc20_ooconv:
+fc21_sv_ooconv:
   extends:
     file: Services/ooconv/docker-compose.yml
     service: server
 
-fc20_memcache:
+fc21_sv_memcache:
   extends:
     file: Services/memcache/docker-compose.yml
     service: server
 
-#pma:
-#  build: Applications/phpmyadmin/
-#  container_name: "startx-app-phpmyadmin"
-#
-#rockmongo:
+fc21_app_pma:
+  build: Applications/phpmyadmin/
+  container_name: "application-phpmyadmin"
+
+#fc21_app_rockmongo:
 #  build: Applications/rockmongo/
-#  container_name: "startx-app-rockmongo"
+#  container_name: "application-rockmongo"

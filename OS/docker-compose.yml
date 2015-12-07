@@ -1,4 +1,4 @@
-fedora20:
+fedora21:
   build: ./
   container_name: "os-fedora20"
   mem_limit: 1g
@@ -8,4 +8,4 @@ fedora20:
   environment:
     CONTAINER_TYPE: "os"
     CONTAINER_SERVICE: "fedora"
-    CONTAINER_INSTANCE: "os-fedora20"
+    CONTAINER_INSTANCE: "os-fedora21"

@@ -1,4 +1,4 @@
-fedora20:
+fedora21:
   extends:
     file: OS/docker-compose.yml
-    service: fedora20
+    service: fedora21

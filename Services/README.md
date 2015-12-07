@@ -16,27 +16,29 @@ your project and start using stable or experimental applications in your applica
 
 ## Available services
 
-| Service       | Docker Hub repository                                               | Doc
-|---------------|---------------------------------------------------------------------|-----------------------------
-| Apache        | [`startx/sv-apache`](https://hub.docker.com/r/startx/sv-apache)     | [manual](apache/README.md)
-| MariaDB       | [`startx/sv-mariadb`](https://hub.docker.com/r/startx/sv-mariadb)   | [manual](mariadb/README.md)
-| Memcache      | [`startx/sv-memcache`](https://hub.docker.com/r/startx/sv-memcache) | [manual](memcache/README.md) 
-| MongoDB       | [`startx/sv-mongo`](https://hub.docker.com/r/startx/sv-mongo)       | [manual](mongo/README.md)
-| nodejs        | [`startx/sv-nodejs`](https://hub.docker.com/r/startx/sv-nodejs)     | [manual](nodejs/README.md)
-| ooconv        | [`startx/sv-ooconv`](https://hub.docker.com/r/startx/sv-ooconv)     | [manual](ooconv/README.md)
-| php           | [`startx/sv-php`](https://hub.docker.com/r/startx/sv-php)           | [manual](php/README.md)
-| postgreSQL    | [`startx/sv-postgres`](https://hub.docker.com/r/startx/sv-postgres) | [manual](postgres/README.md)
+| Service       | Docker Hub repository                                                | Doc
+|---------------|----------------------------------------------------------------------|-----------------------------
+| Apache        | [`startx/sv-apache`](https://hub.docker.com/r/startx/sv-apache)      | [manual](apache/README.md)
+| MariaDB       | [`startx/sv-mariadb`](https://hub.docker.com/r/startx/sv-mariadb)    | [manual](mariadb/README.md)
+| Memcache      | [`startx/sv-memcache`](https://hub.docker.com/r/startx/sv-memcache)  | [manual](memcache/README.md) 
+| MongoDB       | [`startx/sv-mongo`](https://hub.docker.com/r/startx/sv-mongo)        | [manual](mongo/README.md)
+| nodejs        | [`startx/sv-nodejs`](https://hub.docker.com/r/startx/sv-nodejs)      | [manual](nodejs/README.md)
+| ooconv        | [`startx/sv-ooconv`](https://hub.docker.com/r/startx/sv-ooconv)      | [manual](ooconv/README.md)
+| php           | [`startx/sv-php`](https://hub.docker.com/r/startx/sv-php)            | [manual](php/README.md)
+| postgreSQL    | [`startx/sv-postgres`](https://hub.docker.com/r/startx/sv-postgres)  | [manual](postgres/README.md)
+| Couchbase     | [`startx/sv-couchbase`](https://hub.docker.com/r/startx/sv-couchbase)| [manual](couchbase/README.md)
 
 
 ## Running from dockerhub registry
 
 | Services            | Command                                                                        |
 |---------------------|--------------------------------------------------------------------------------|
-| **Apache**          | `docker run -d -p 80:80 --name="fc20-apache" startx/sv-apache:fc20`            | 
-| **MariaDB**         | `docker run -d -p 3306:3306 --name="fc20-mariadb" startx/sv-mariadb:fc20`      | 
-| **Memcache**        | `docker run -d -p 11211:11211 --name="fc20-memcache" startx/sv-memcache:fc20`  | 
-| **MongoDB**         | `docker run -d -p 27017:27017 --name="fc20-mongo" startx/sv-mongo:fc20`        | 
-| **nodejs**          | `docker run -d -p 8000:8000 --name="fc20-nodejs" startx/sv-nodejs:fc20`        | 
-| **ooconv**          | `docker run -d -p XXX:XXX --name="fc20-ooconv" startx/sv-ooconv:fc20`          | 
-| **php**             | `docker run -d -p 80:80 --name="fc20-php" startx/sv-php:fc20`                  | 
-| **postgreSQL**      | `docker run -d -p 5432:5432 --name="fc20-postgres" startx/sv-postgres:fc20`    | 
+| **Apache**          | `docker run -d -p 80:80 --name="fc21-apache" startx/sv-apache:fc21`            | 
+| **MariaDB**         | `docker run -d -p 3306:3306 --name="fc21-mariadb" startx/sv-mariadb:fc21`      | 
+| **Memcache**        | `docker run -d -p 11211:11211 --name="fc21-memcache" startx/sv-memcache:fc21`  | 
+| **MongoDB**         | `docker run -d -p 27017:27017 --name="fc21-mongo" startx/sv-mongo:fc21`        | 
+| **nodejs**          | `docker run -d -p 8000:8000 --name="fc21-nodejs" startx/sv-nodejs:fc21`        | 
+| **ooconv**          | `docker run -d -p XXX:XXX --name="fc21-ooconv" startx/sv-ooconv:fc21`          | 
+| **php**             | `docker run -d -p 80:80 --name="fc21-php" startx/sv-php:fc21`                  | 
+| **postgreSQL**      | `docker run -d -p 5432:5432 --name="fc21-postgres" startx/sv-postgres:fc21`    | 
+| **Couchbase**       | `docker run -d -p 8091:8091 --name="fc21-couchbase" startx/sv-couchbase:fc21`  | 
