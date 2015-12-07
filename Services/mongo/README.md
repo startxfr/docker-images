@@ -1,8 +1,8 @@
-# Docker OS Images : MONGO on CentOS 6
+# Docker OS Images : MONGO on CentOS 7
 
 Simple container used to deliver document-oriented database
 Run [mongodb daemon](https://www.mongodb.org/) under a container 
-based on [startx/centos:6 container](https://hub.docker.com/r/startx/fedora)
+based on [startx/centos:7 container](https://hub.docker.com/r/startx/fedora)
 
 Each container is provided with various underlying OS version based on CentOS or 
 Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
@@ -17,15 +17,15 @@ or **[other mongo flavours](https://github.com/startxfr/docker-images/Services/m
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-mongo:centos6
-  container_name: "service-mongo-centos6"
+  image: startx/sv-mongo:centos7
+  container_name: "centos7-service-mongo"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mongo"
-    CONTAINER_INSTANCE: "service-mongo-centos6"
+    CONTAINER_INSTANCE: "centos7-service-mongo"
   volumes:
-    - "/tmp/container-centos6/logs/mongo:/data/logs/mongo"
-    - "/tmp/container-centos6/mongo:/data/mongo"
+    - "/tmp/container-centos7/logs/mongo:/data/logs/mongo"
+    - "/tmp/container-centos7/mongo:/data/mongo"
 ```
 
 ## Docker-compose in various situations
@@ -33,35 +33,35 @@ service:
 * sample docker-compose.yml linked to host port 1000
 ```
 service:
-  image: startx/sv-mongo:centos6
-  container_name: "service-mongo-centos6"
+  image: startx/sv-mongo:centos7
+  container_name: "centos7-service-mongo"
   environment:
-    CONTAINER_INSTANCE: "service-mongo-centos6"
+    CONTAINER_INSTANCE: "centos7-service-mongo"
   ports:
     - "1000:27017"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
 service:
-  image: startx/sv-mongo:centos6
-  container_name: "service-mongo-centos6"
+  image: startx/sv-mongo:centos7
+  container_name: "centos7-service-mongo"
   environment:
-    CONTAINER_INSTANCE: "service-mongo-centos6"
+    CONTAINER_INSTANCE: "centos7-service-mongo"
   expose:
     - "27017"
 ```
 * sample docker-compose.yml using data container
 ```
 data:
-  image: startx/fedora:centos6
-  container_name: "service-mongo-data-centos6"
+  image: startx/centos:7
+  container_name: "centos7-service-mongo-data"
   environment:
-    CONTAINER_INSTANCE: "service-mongo-data-centos6"
+    CONTAINER_INSTANCE: "centos7-service-mongo-data"
 service:
-  image: startx/sv-mongo:centos6
-  container_name: "service-mongo-centos6"
+  image: startx/sv-mongo:centos7
+  container_name: "centos7-service-mongo"
   environment:
-    CONTAINER_INSTANCE: "service-mongo-centos6"
+    CONTAINER_INSTANCE: "centos7-service-mongo"
   volume_from:
     - data:rw
 ```
@@ -70,7 +70,7 @@ service:
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
  ```
-FROM startx/sv-mongo:centos6
+FROM startx/sv-mongo:centos7
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```
@@ -115,7 +115,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-1. Switch to the flavour branch with `git branch centos6`
+1. Switch to the flavour branch with `git branch centos7`
 2. Jump into the container directory with `cd Services/mongo`
 3. Build the container using `docker build -t sv-mongo .`
 4. Run this container 
@@ -125,7 +125,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker-compose`
 
-1. Switch to the flavour branch with `git branch centos6`
+1. Switch to the flavour branch with `git branch centos7`
 2. Jump into the container directory with `cd Services/mongo`
 3. Run this container 
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container

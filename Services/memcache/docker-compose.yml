@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "memcache-centos6"
+  container_name: "centos7-service-memcache"
   mem_limit: 2g
   memswap_limit: 3g
   cpu_shares: 2
@@ -10,6 +10,6 @@ server:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "memcache"
-    CONTAINER_INSTANCE: "service-memcache"
+    CONTAINER_INSTANCE: "centos7-service-memcache"
   volumes:
-    - "/tmp/container-centos6/logs/memcache:/data/logs/memcache"
+    - "/tmp/container-centos7/logs/memcache:/data/logs/memcache"

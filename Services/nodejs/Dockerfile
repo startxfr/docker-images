@@ -1,4 +1,4 @@
-FROM startx/centos:6
+FROM startx/centos:7
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root

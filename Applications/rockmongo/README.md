@@ -4,10 +4,10 @@ Container running rockmongo under a centos server.
 
 ## Running from docker registry
 
-	docker run -d -p 80:80 --name="rockmongo" startx/app-rockmongo:centos6
+	docker run -d -p 80:80 --name="rockmongo" startx/app-rockmongo:centos7
 	when linked to another container
-	docker run -d --name="mongo" startx/sv-mongo:centos6
-	docker run -d -p 80:80 --name="rockmongo" --link mongo:mongo startx/app-rockmongo:centos6
+	docker run -d --name="mongo" startx/sv-mongo:centos7
+	docker run -d -p 80:80 --name="rockmongo" --link mongo:mongo startx/app-rockmongo:centos7
 
 ## Build and run from local Dockerfile
 ### Building docker image
@@ -19,11 +19,11 @@ Copy sources in your docker host
 
 Build the container
 
-	docker build -t app-rockmongo:centos6 Applications/rockmongo/
+	docker build -t app-rockmongo:centos7 Applications/rockmongo/
 
 ### Running local image
 
-	docker run -d -p 80:80 --name="rockmongo" app-rockmongo:centos6
+	docker run -d -p 80:80 --name="rockmongo" app-rockmongo:centos7
 
 ## Accessing server
 access to the running webserver

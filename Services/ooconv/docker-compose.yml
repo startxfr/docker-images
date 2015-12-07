@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "ooconv-centos6"
+  container_name: "centos7-service-ooconv"
   mem_limit: 2g
   memswap_limit: 2g
   cpu_shares: 8
@@ -10,6 +10,6 @@ server:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "ooconv"
-    CONTAINER_INSTANCE: "service-ooconv"
+    CONTAINER_INSTANCE: "centos7-service-ooconv"
   volumes:
-    - "/tmp/container-centos6/logs/ooconv:/data/logs/ooconv"
+    - "/tmp/container-centos7/logs/ooconv:/data/logs/ooconv"

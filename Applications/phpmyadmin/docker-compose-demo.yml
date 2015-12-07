@@ -1,0 +1,22 @@
+demo_pma:
+  image: startx/sv-phpmyadmin
+  container_name: "centos7-demo-pma"
+  ports:
+    - "81:80"
+  links:
+    - demo_pma_db:mariadb
+  environment:
+    CONTAINER_TYPE: "application"
+    CONTAINER_SERVICE: "phpmyadmin"
+    CONTAINER_INSTANCE: "centos7-demo-pma"
+    
+demo_pma_db:
+  image: startx/sv-mariadb
+  container_name: "centos7-demo-pma-db"
+  expose:
+    - "3306"
+  environment:
+    CONTAINER_TYPE: "service"
+    CONTAINER_SERVICE: "mariadb"
+    CONTAINER_INSTANCE: "centos7-demo-pma-db"
+    MYSQL_ROOT_PASSWORD: "secretdemerde"
