@@ -29,7 +29,6 @@ service:
     CONTAINER_SERVICE: "apache"
     CONTAINER_INSTANCE: "service-apache"
     SERVER_NAME: "localhost"
-    DOC_ROOT: "/data/apache"
   volumes:
     - "/tmp/container/logs/apache:/data/logs/apache"
     - "/tmp/container/apache:/data/apache"
@@ -91,7 +90,6 @@ CMD ["/bin/run.sh"]
 | CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
 | SERVER_NAME               | `string` | `no`      | Server name for this container. If no name localhost will be assigned
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
-| DOC_ROOT                  | `auto`   | `auto`    | document root, will use the $APP_PATH variable
 | LOG_PATH                  | `auto`   | `auto`    | default set to /data/logs/apache and used as a volume mountpoint
 | APP_PATH                  | `auto`   | `auto`    | default set to /data/apache and used as a volume mountpoint
 
