@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "apache-centos7"
+  container_name: "service-apache"
   mem_limit: 500m
   memswap_limit: 500m
   cpu_shares: 2
@@ -13,7 +13,6 @@ server:
     CONTAINER_SERVICE: "apache"
     CONTAINER_INSTANCE: "service-apache"
     SERVER_NAME: "localhost"
-    DOC_ROOT: "/data/apache"
   volumes:
     - "/tmp/container-centos7/logs/apache:/data/logs/apache"
     - "/tmp/container-centos7/apache:/data/apache"

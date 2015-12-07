@@ -24,10 +24,9 @@ service:
     CONTAINER_SERVICE: "php"
     CONTAINER_INSTANCE: "service-php-centos7"
     SERVER_NAME: "localhost"
-    DOC_ROOT: "/data/apache_php"
   volumes:
-    - "/tmp/container-centos7/logs/php:/data/logs/apache_php"
-    - "/tmp/container-centos7/php:/data/apache_php"
+    - "/tmp/container/logs/php:/data/logs/apache"
+    - "/tmp/container/php:/data/apache"
 ```
 
 ## Docker-compose in various situations
@@ -86,9 +85,8 @@ CMD ["/bin/run.sh"]
 | CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
 | SERVER_NAME               | `string` | `no`      | Server name for this container. If no name localhost will be assigned
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
-| DOC_ROOT                  | `auto`   | `auto`    | document root, will use the $APP_PATH variable
-| LOG_PATH                  | `auto`   | `auto`    | default set to /data/logs/apache_php and used as a volume mountpoint
-| APP_PATH                  | `auto`   | `auto`    | default set to /data/apache_php and used as a volume mountpoint
+| LOG_PATH                  | `auto`   | `auto`    | default set to /data/logs/apache and used as a volume mountpoint
+| APP_PATH                  | `auto`   | `auto`    | default set to /data/apache and used as a volume mountpoint
 
 ## Exposed port
 
@@ -101,8 +99,8 @@ CMD ["/bin/run.sh"]
 
 | Container directory  | Description                                                              |
 |----------------------|--------------------------------------------------------------------------|
-| /data/logs/apache_php    | log directory used to record container and php logs
-| /data/apache_php         | data directory served by php. If empty will be filled with app on startup. In other case use content from mountpoint or data volumes
+| /data/logs/apache    | log directory used to record container and php logs
+| /data/apache         | data directory served by php. If empty will be filled with app on startup. In other case use content from mountpoint or data volumes
 
 ## Testing the service
 

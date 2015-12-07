@@ -17,8 +17,10 @@ or **[other mariadb flavours](https://github.com/startxfr/docker-images/Services
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-mariadb:centos7
-  container_name: "service-mariadb-centos7"
+  image: startx/sv-mariadb:latest
+  container_name: "service-mariadb"
+  ports:
+    - "3306:3306"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mariadb"

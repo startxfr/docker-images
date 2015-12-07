@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "php-centos7"
+  container_name: "service-php"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 5
@@ -11,9 +11,8 @@ server:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "php"
-    CONTAINER_INSTANCE: "service-apache_php"
+    CONTAINER_INSTANCE: "service-php"
     SERVER_NAME: "localhost"
-    DOC_ROOT: "/data/apache_php"
   volumes:
-    - "/tmp/container-centos7/logs/apache_php:/data/logs/apache_php"
-    - "/tmp/container-centos7/apache_php:/data/apache_php"
+    - "/tmp/container/logs/php:/data/logs/apache"
+    - "/tmp/container/php:/data/apache"

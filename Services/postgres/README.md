@@ -17,8 +17,10 @@ or **[other postgres flavours](https://github.com/startxfr/docker-images/Service
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-postgres:centos7
-  container_name: "service-postgres-centos7"
+  image: startx/sv-postgres:latest
+  container_name: "service-postgres"
+  ports:
+    - "5432:5432"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "postgres"
