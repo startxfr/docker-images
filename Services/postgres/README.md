@@ -19,6 +19,8 @@ or **[other postgres flavours](https://github.com/startxfr/docker-images/Service
 service:
   image: startx/sv-postgres:fc22
   container_name: "service-postgres-fc22"
+  ports:
+    - "5432:5432"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "postgres"

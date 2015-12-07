@@ -16,16 +16,17 @@ your project and start using stable or experimental applications in your applica
 
 ## Available services
 
-| Service       | Docker Hub repository                                               | Doc
-|---------------|---------------------------------------------------------------------|-----------------------------
-| Apache        | [`startx/sv-apache`](https://hub.docker.com/r/startx/sv-apache)     | [manual](apache/README.md)
-| MariaDB       | [`startx/sv-mariadb`](https://hub.docker.com/r/startx/sv-mariadb)   | [manual](mariadb/README.md)
-| Memcache      | [`startx/sv-memcache`](https://hub.docker.com/r/startx/sv-memcache) | [manual](memcache/README.md) 
-| MongoDB       | [`startx/sv-mongo`](https://hub.docker.com/r/startx/sv-mongo)       | [manual](mongo/README.md)
-| nodejs        | [`startx/sv-nodejs`](https://hub.docker.com/r/startx/sv-nodejs)     | [manual](nodejs/README.md)
-| ooconv        | [`startx/sv-ooconv`](https://hub.docker.com/r/startx/sv-ooconv)     | [manual](ooconv/README.md)
-| php           | [`startx/sv-php`](https://hub.docker.com/r/startx/sv-php)           | [manual](php/README.md)
-| postgreSQL    | [`startx/sv-postgres`](https://hub.docker.com/r/startx/sv-postgres) | [manual](postgres/README.md)
+| Service       | Docker Hub repository                                                | Doc
+|---------------|----------------------------------------------------------------------|-----------------------------
+| Apache        | [`startx/sv-apache`](https://hub.docker.com/r/startx/sv-apache)      | [manual](apache/README.md)
+| MariaDB       | [`startx/sv-mariadb`](https://hub.docker.com/r/startx/sv-mariadb)    | [manual](mariadb/README.md)
+| Memcache      | [`startx/sv-memcache`](https://hub.docker.com/r/startx/sv-memcache)  | [manual](memcache/README.md) 
+| MongoDB       | [`startx/sv-mongo`](https://hub.docker.com/r/startx/sv-mongo)        | [manual](mongo/README.md)
+| nodejs        | [`startx/sv-nodejs`](https://hub.docker.com/r/startx/sv-nodejs)      | [manual](nodejs/README.md)
+| ooconv        | [`startx/sv-ooconv`](https://hub.docker.com/r/startx/sv-ooconv)      | [manual](ooconv/README.md)
+| php           | [`startx/sv-php`](https://hub.docker.com/r/startx/sv-php)            | [manual](php/README.md)
+| postgreSQL    | [`startx/sv-postgres`](https://hub.docker.com/r/startx/sv-postgres)  | [manual](postgres/README.md)
+| Couchbase     | [`startx/sv-couchbase`](https://hub.docker.com/r/startx/sv-couchbase)| [manual](couchbase/README.md)
 
 
 ## Running from dockerhub registry
@@ -40,3 +41,4 @@ your project and start using stable or experimental applications in your applica
 | **ooconv**          | `docker run -d -p XXX:XXX --name="fc22-ooconv" startx/sv-ooconv:fc22`          | 
 | **php**             | `docker run -d -p 80:80 --name="fc22-php" startx/sv-php:fc22`                  | 
 | **postgreSQL**      | `docker run -d -p 5432:5432 --name="fc22-postgres" startx/sv-postgres:fc22`    | 
+| **Couchbase**       | `docker run -d -p 8091:8091 --name="fc22-couchbase" startx/sv-couchbase:fc22`  | 

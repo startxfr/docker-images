@@ -11,8 +11,6 @@ function check_httpd_environment {
     if [ ! -v APP_PATH ]; then
         APP_PATH="/data/apache"
         export APP_PATH
-        DOC_ROOT=$APP_PATH
-        export DOC_ROOT
     fi
     if [ ! -v LOG_PATH ]; then
         LOG_PATH="/data/logs/apache"

@@ -13,16 +13,18 @@ or **[other mariadb flavours](https://github.com/startxfr/docker-images/Services
 
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="service-mariadb-fc22" startx/sv-mariadb:fc22` from any docker host
+* with `docker` you can run `docker run -it --name="fc22-service-mariadb" startx/sv-mariadb:fc22` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
   image: startx/sv-mariadb:fc22
-  container_name: "service-mariadb-fc22"
+  container_name: "fc22-service-mariadb"
+  ports:
+    - "3306:3306"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mariadb"
-    CONTAINER_INSTANCE: "service-mariadb-fc22"
+    CONTAINER_INSTANCE: "fc22-service-mariadb"
     MYSQL_ROOT_PASSWORD: "rootpassword"
     MYSQL_USER: "user-test"
     MYSQL_PASSWORD: "pwd-test"
@@ -38,9 +40,9 @@ service:
 ```
 service:
   image: startx/sv-mariadb:fc22
-  container_name: "service-mariadb-fc22"
+  container_name: "fc22-service-mariadb"
   environment:
-    CONTAINER_INSTANCE: "service-mariadb-fc22"
+    CONTAINER_INSTANCE: "fc22-service-mariadb"
   ports:
     - "1001:3306"
 ```
@@ -48,9 +50,9 @@ service:
 ```
 service:
   image: startx/sv-mariadb:fc22
-  container_name: "service-mariadb-fc22"
+  container_name: "fc22-service-mariadb"
   environment:
-    CONTAINER_INSTANCE: "service-mariadb-fc22"
+    CONTAINER_INSTANCE: "fc22-service-mariadb"
   expose:
     - "3306"
 ```
@@ -58,14 +60,14 @@ service:
 ```
 data:
   image: startx/fedora:22
-  container_name: "service-mariadb-fc22-data"
+  container_name: "fc22-service-mariadb-data"
   environment:
-    CONTAINER_INSTANCE: "service-mariadb-fc22-data"
+    CONTAINER_INSTANCE: "fc22-service-mariadb-data"
 service:
   image: startx/sv-mariadb:fc22
-  container_name: "service-mariadb-fc22"
+  container_name: "fc22-service-mariadb"
   environment:
-    CONTAINER_INSTANCE: "service-mariadb-fc22"
+    CONTAINER_INSTANCE: "fc22-service-mariadb"
   volume_from:
     - data:rw
 ```
