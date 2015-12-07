@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "apache-server"
+  container_name: "service-apache"
   mem_limit: 500m
   memswap_limit: 500m
   cpu_shares: 2

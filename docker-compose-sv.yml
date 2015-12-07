@@ -1,39 +1,39 @@
-server_apache:
+fedora_sv_apache:
   extends:
     file: Services/apache/docker-compose.yml
     service: server
 
-server_php:
+fedora_sv_php:
   extends:
     file: Services/php/docker-compose.yml
     service: server
 
-server_nodejs:
+fedora_sv_nodejs:
   extends:
     file: Services/nodejs/docker-compose.yml
     service: server
 
-server_mariadb:
+fedora_sv_mariadb:
   extends:
     file: Services/mariadb/docker-compose.yml
     service: server
 
-server_postgres:
+fedora_sv_postgres:
   extends:
     file: Services/postgres/docker-compose.yml
     service: server
 
-server_mongo:
+fedora_sv_mongo:
   extends:
     file: Services/mongo/docker-compose.yml
     service: server
 
-server_ooconv:
+fedora_sv_ooconv:
   extends:
     file: Services/ooconv/docker-compose.yml
     service: server
 
-server_memcache:
+fedora_sv_memcache:
   extends:
     file: Services/memcache/docker-compose.yml
     service: server

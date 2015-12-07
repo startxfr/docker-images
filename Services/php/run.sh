@@ -53,6 +53,7 @@ function begin_php_config {
 # End configuration process just before starting daemon
 function end_php_config {
     echo "=> END APACHE + PHP CONFIGURATION"
+    env | grep _ >> /etc/environment
 }
 
 check_httpd_environment | tee -a $STARTUPLOG

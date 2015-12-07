@@ -5,9 +5,10 @@ RUN cd $TMP_APP_PATH && \
     wget -q https://files.phpmyadmin.net/phpMyAdmin/4.5.2/phpMyAdmin-4.5.2-all-languages.zip && \
     unzip phpMyAdmin-4.5.2-all-languages.zip && \
     rm -f phpMyAdmin-4.5.2-all-languages.zip && \
-    mv phpMyAdmin-4.5.2-all-languages pma 
-COPY config.inc.php $TMP_APP_PATH/pma/config.inc.php
-COPY test.php $TMP_APP_PATH/pma/test.php
+    mv phpMyAdmin-4.5.2-all-languages/* ./  && \
+    rm -rf phpMyAdmin-4.5.2-all-languages 
+COPY config.inc.php $TMP_APP_PATH/config.inc.php
+COPY test.php $TMP_APP_PATH/test.php
 
 EXPOSE 80 443
 VOLUME [$APP_PATH,$LOG_PATH]

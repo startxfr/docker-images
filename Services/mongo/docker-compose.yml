@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "mongo-server"
+  container_name: "service-mongo"
   mem_limit: 2g
   memswap_limit: 2g
   cpu_shares: 10
@@ -11,7 +11,7 @@ server:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mongo"
-    CONTAINER_INSTANCE: "sx-mongo"
+    CONTAINER_INSTANCE: "service-mongo"
   volumes:
     - "/tmp/container/logs/mongodb:/data/logs/mongodb"
     - "/tmp/container/mongodb:/data/mongodb"
