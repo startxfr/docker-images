@@ -25,8 +25,8 @@ service:
     CONTAINER_SERVICE: "couchbase"
     CONTAINER_INSTANCE: "service-couchbase"
   volumes:
-    - "/tmp/container-fc22/logs/couchbase:/data/logs/couchbase"
-    - "/tmp/container-fc22/couchbase:/data/couchbase"
+    - "/tmp/container-fc21/logs/couchbase:/data/logs/couchbase"
+    - "/tmp/container-fc21/couchbase:/data/couchbase"
 ```
 
 ## Docker-compose in various situations

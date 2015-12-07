@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "fc22-service-memcache"
+  container_name: "fc21-service-memcache"
   mem_limit: 2g
   memswap_limit: 3g
   cpu_shares: 2
@@ -10,6 +10,6 @@ server:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "memcache"
-    CONTAINER_INSTANCE: "fc22-service-memcache"
+    CONTAINER_INSTANCE: "fc21-service-memcache"
   volumes:
-    - "/tmp/container-fc22/logs/memcache:/data/logs/memcache"
+    - "/tmp/container-fc21/logs/memcache:/data/logs/memcache"

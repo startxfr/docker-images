@@ -17,8 +17,8 @@ or **[other postgres flavours](https://github.com/startxfr/docker-images/Service
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-postgres:fc22
-  container_name: "service-postgres-fc22"
+  image: startx/sv-postgres:fc21
+  container_name: "service-postgres-fc21"
   ports:
     - "5432:5432"
   image: startx/sv-postgres:fc21

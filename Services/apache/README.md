@@ -13,16 +13,16 @@ or **[other apache flavours](https://github.com/startxfr/docker-images/Services/
 
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="fc22-service-apache" startx/sv-apache:fc22` from any docker host
+* with `docker` you can run `docker run -it --name="fc21-service-apache" startx/sv-apache:fc21` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-apache:fc22
-  container_name: "fc22-service-apache"
+  image: startx/sv-apache:fc21
+  container_name: "fc21-service-apache"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "apache"
-    CONTAINER_INSTANCE: "fc22-service-apache"
+    CONTAINER_INSTANCE: "fc21-service-apache"
     SERVER_NAME: "localhost"
   volumes:
     - "/tmp/container-fc21/logs/apache:/data/logs/apache"
@@ -34,35 +34,35 @@ service:
 * sample docker-compose.yml linked to host port 1000
 ```
 service:
-  image: startx/sv-apache:fc22
-  container_name: "fc22-service-apache"
+  image: startx/sv-apache:fc21
+  container_name: "fc21-service-apache"
   environment:
-    CONTAINER_INSTANCE: "fc22-service-apache"
+    CONTAINER_INSTANCE: "fc21-service-apache"
   ports:
     - "1000:80"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
 service:
-  image: startx/sv-apache:fc22
-  container_name: "fc22-service-apache"
+  image: startx/sv-apache:fc21
+  container_name: "fc21-service-apache"
   environment:
-    CONTAINER_INSTANCE: "fc22-service-apache"
+    CONTAINER_INSTANCE: "fc21-service-apache"
   expose:
     - "80"
 ```
 * sample docker-compose.yml using data container
 ```
 data:
-  image: startx/fedora:22
-  container_name: "fc22-service-apache-data"
+  image: startx/fedora:21
+  container_name: "fc21-service-apache-data"
   environment:
-    CONTAINER_INSTANCE: "fc22-service-apache-data"
+    CONTAINER_INSTANCE: "fc21-service-apache-data"
 service:
-  image: startx/sv-apache:fc22
-  container_name: "fc22-service-apache"
+  image: startx/sv-apache:fc21
+  container_name: "fc21-service-apache"
   environment:
-    CONTAINER_INSTANCE: "fc22-service-apache"
+    CONTAINER_INSTANCE: "fc21-service-apache"
   volume_from:
     - data:rw
 ```
