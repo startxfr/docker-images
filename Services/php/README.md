@@ -18,15 +18,15 @@ or **[other apache + php flavours](https://github.com/startxfr/docker-images/Ser
 ```
 service:
   image: startx/sv-php:centos7
-  container_name: "service-php-centos7"
+  container_name: "centos7-service-php"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "php"
-    CONTAINER_INSTANCE: "service-php-centos7"
+    CONTAINER_INSTANCE: "centos7-service-php"
     SERVER_NAME: "localhost"
   volumes:
-    - "/tmp/container/logs/php:/data/logs/apache"
-    - "/tmp/container/php:/data/apache"
+    - "/tmp/container-centos7/logs/php:/data/logs/apache"
+    - "/tmp/container-centos7/php:/data/apache"
 ```
 
 ## Docker-compose in various situations
@@ -35,9 +35,9 @@ service:
 ```
 service:
   image: startx/sv-php:centos7
-  container_name: "service-php-centos7"
+  container_name: "centos7-service-php"
   environment:
-    CONTAINER_INSTANCE: "service-php-centos7"
+    CONTAINER_INSTANCE: "centos7-service-php"
   ports:
     - "1000:80"
 ```
@@ -45,9 +45,9 @@ service:
 ```
 service:
   image: startx/sv-php:centos7
-  container_name: "service-php-centos7"
+  container_name: "centos7-service-php"
   environment:
-    CONTAINER_INSTANCE: "service-php-centos7"
+    CONTAINER_INSTANCE: "centos7-service-php"
   expose:
     - "80"
 ```
@@ -55,14 +55,14 @@ service:
 ```
 data:
   image: startx/centos:7
-  container_name: "service-php-data-centos7"
+  container_name: "centos7-service-php-data"
   environment:
-    CONTAINER_INSTANCE: "service-php-data-centos7"
+    CONTAINER_INSTANCE: "centos7-service-php-data"
 service:
   image: startx/sv-php:centos7
-  container_name: "service-php-centos7"
+  container_name: "centos7-service-php"
   environment:
-    CONTAINER_INSTANCE: "service-php-centos7"
+    CONTAINER_INSTANCE: "centos7-service-php"
   volume_from:
     - data:rw
 ```
@@ -122,8 +122,8 @@ You must have a working environment with the source code of this repository. Rea
 2. Jump into the container directory with `cd Services/php`
 3. Build the container using `docker build -t sv-php .`
 4. Run this container 
-  1. Interactively with `docker run -p 80:80 -v /data/logs/apache_php -it sv-php`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -p 80:80 -v /data/logs/apache_php -d sv-php`
+  1. Interactively with `docker run -p 80:80 -v /data/logs/apache -it sv-php`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 80:80 -v /data/logs/apache -d sv-php`
 
 
 ### Build & run a container using `docker-compose`

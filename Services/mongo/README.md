@@ -18,11 +18,11 @@ or **[other mongo flavours](https://github.com/startxfr/docker-images/Services/m
 ```
 service:
   image: startx/sv-mongo:centos7
-  container_name: "service-mongo-centos7"
+  container_name: "centos7-service-mongo"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mongo"
-    CONTAINER_INSTANCE: "service-mongo-centos7"
+    CONTAINER_INSTANCE: "centos7-service-mongo"
   volumes:
     - "/tmp/container-centos7/logs/mongo:/data/logs/mongo"
     - "/tmp/container-centos7/mongo:/data/mongo"
@@ -34,9 +34,9 @@ service:
 ```
 service:
   image: startx/sv-mongo:centos7
-  container_name: "service-mongo-centos7"
+  container_name: "centos7-service-mongo"
   environment:
-    CONTAINER_INSTANCE: "service-mongo-centos7"
+    CONTAINER_INSTANCE: "centos7-service-mongo"
   ports:
     - "1000:27017"
 ```
@@ -44,9 +44,9 @@ service:
 ```
 service:
   image: startx/sv-mongo:centos7
-  container_name: "service-mongo-centos7"
+  container_name: "centos7-service-mongo"
   environment:
-    CONTAINER_INSTANCE: "service-mongo-centos7"
+    CONTAINER_INSTANCE: "centos7-service-mongo"
   expose:
     - "27017"
 ```
@@ -54,14 +54,14 @@ service:
 ```
 data:
   image: startx/centos:7
-  container_name: "service-mongo-data-centos7"
+  container_name: "centos7-service-mongo-data"
   environment:
-    CONTAINER_INSTANCE: "service-mongo-data-centos7"
+    CONTAINER_INSTANCE: "centos7-service-mongo-data"
 service:
   image: startx/sv-mongo:centos7
-  container_name: "service-mongo-centos7"
+  container_name: "centos7-service-mongo"
   environment:
-    CONTAINER_INSTANCE: "service-mongo-centos7"
+    CONTAINER_INSTANCE: "centos7-service-mongo"
   volume_from:
     - data:rw
 ```

@@ -18,11 +18,11 @@ or **[other ooconv flavours](https://github.com/startxfr/docker-images/Services/
 ```
 service:
   image: startx/sv-ooconv:centos7
-  container_name: "service-ooconv-centos7"
+  container_name: "centos7-service-ooconv"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "ooconv"
-    CONTAINER_INSTANCE: "service-ooconv-centos7"
+    CONTAINER_INSTANCE: "centos7-service-ooconv"
   volumes:
     - "/tmp/container-centos7/logs/ooconv:/data/logs/ooconv"
 ```
@@ -33,9 +33,9 @@ service:
 ```
 service:
   image: startx/sv-ooconv:centos7
-  container_name: "service-ooconv-centos7"
+  container_name: "centos7-service-ooconv"
   environment:
-    CONTAINER_INSTANCE: "service-ooconv-centos7"
+    CONTAINER_INSTANCE: "centos7-service-ooconv"
   ports:
     - "1000:2002"
 ```
@@ -43,9 +43,9 @@ service:
 ```
 service:
   image: startx/sv-ooconv:centos7
-  container_name: "service-ooconv-centos7"
+  container_name: "centos7-service-ooconv"
   environment:
-    CONTAINER_INSTANCE: "service-ooconv-centos7"
+    CONTAINER_INSTANCE: "centos7-service-ooconv"
   expose:
     - "2002"
 ```

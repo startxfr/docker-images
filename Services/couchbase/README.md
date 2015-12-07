@@ -17,8 +17,8 @@ or **[other postgres flavours](https://github.com/startxfr/docker-images/Service
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-couchbase:latest
-  container_name: "service-couchbase"
+  image: startx/sv-couchbase:centos7
+  container_name: "centos7-service-couchbase"
   ports:
     - "8091:8091"
     - "8092:8092"
@@ -31,9 +31,9 @@ service:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "couchbase"
-    CONTAINER_INSTANCE: "service-couchbase"
+    CONTAINER_INSTANCE: "centos7-service-couchbase"
   volumes:
-    - "/tmp/container/logs/couchbase:/data/logs/couchbase"
+    - "/tmp/container-centos7/logs/couchbase:/data/logs/couchbase"
     - "/tmp/container-centos7/couchbase:/data/couchbase"
 ```
 
@@ -42,10 +42,10 @@ service:
 * sample docker-compose.yml linked to host port 1000 to 1007
 ```
 service:
-  image: startx/sv-couchbase:latest
-  container_name: "service-couchbase"
+  image: startx/sv-couchbase:centos7
+  container_name: "centos7-service-couchbase"
   environment:
-    CONTAINER_INSTANCE: "service-couchbase"
+    CONTAINER_INSTANCE: "centos7-service-couchbase"
   ports:
     - "1000:8091"
     - "1001:8092"
@@ -59,10 +59,10 @@ service:
 * sample docker-compose.yml with port exposed only to linked services
 ```
 service:
-  image: startx/sv-couchbase:latest
-  container_name: "service-couchbase"
+  image: startx/sv-couchbase:centos7
+  container_name: "centos7-service-couchbase"
   environment:
-    CONTAINER_INSTANCE: "service-couchbase"
+    CONTAINER_INSTANCE: "centos7-service-couchbase"
   expose:
     - "8091"
     - "8092"
@@ -77,14 +77,14 @@ service:
 ```
 data:
   image: startx/centos:7
-  container_name: "service-couchbase-data-centos7"
+  container_name: "centos7-service-couchbase-data"
   environment:
-    CONTAINER_INSTANCE: "service-couchbase-data-centos7"
+    CONTAINER_INSTANCE: "centos7-service-couchbase-data"
 service:
   image: startx/sv-couchbase:centos7
-  container_name: "service-couchbase-centos7"
+  container_name: "centos7-service-couchbase"
   environment:
-    CONTAINER_INSTANCE: "service-couchbase-centos7"
+    CONTAINER_INSTANCE: "centos7-service-couchbase"
   volume_from:
     - data:rw
 ```
@@ -93,7 +93,7 @@ service:
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
  ```
-FROM startx/sv-couchbase:latest
+FROM startx/sv-couchbase:centos7
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```

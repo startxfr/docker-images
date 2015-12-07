@@ -17,14 +17,14 @@ or **[other postgres flavours](https://github.com/startxfr/docker-images/Service
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-postgres:latest
-  container_name: "service-postgres"
+  image: startx/sv-postgres:centos7
+  container_name: "centos7-service-postgres"
   ports:
     - "5432:5432"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "postgres"
-    CONTAINER_INSTANCE: "service-postgres-centos7"
+    CONTAINER_INSTANCE: "centos7-service-postgres"
     POSTGRESQL_ROOT_PASSWORD: "rootpassword"
     POSTGRESQL_USER: "user-test"
     POSTGRESQL_PASSWORD: "pwd-test"
@@ -40,9 +40,9 @@ service:
 ```
 service:
   image: startx/sv-postgres:centos7
-  container_name: "service-postgres-centos7"
+  container_name: "centos7-service-postgres"
   environment:
-    CONTAINER_INSTANCE: "service-postgres-centos7"
+    CONTAINER_INSTANCE: "centos7-service-postgres"
   ports:
     - "1001:5432"
 ```
@@ -50,9 +50,9 @@ service:
 ```
 service:
   image: startx/sv-postgres:centos7
-  container_name: "service-postgres-centos7"
+  container_name: "centos7-service-postgres"
   environment:
-    CONTAINER_INSTANCE: "service-postgres-centos7"
+    CONTAINER_INSTANCE: "centos7-service-postgres"
   expose:
     - "5432"
 ```
@@ -60,14 +60,14 @@ service:
 ```
 data:
   image: startx/centos:7
-  container_name: "service-postgres-data-centos7"
+  container_name: "centos7-service-postgres-data"
   environment:
-    CONTAINER_INSTANCE: "service-postgres-data-centos7"
+    CONTAINER_INSTANCE: "centos7-service-postgres-data"
 service:
   image: startx/sv-postgres:centos7
-  container_name: "service-postgres-centos7"
+  container_name: "centos7-service-postgres"
   environment:
-    CONTAINER_INSTANCE: "service-postgres-centos7"
+    CONTAINER_INSTANCE: "centos7-service-postgres"
   volume_from:
     - data:rw
 ```

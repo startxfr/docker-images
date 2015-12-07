@@ -19,11 +19,11 @@ or **[other nodejs flavours](https://github.com/startxfr/docker-images/Services/
 ```
 service:
   image: startx/sv-nodejs:centos7
-  container_name: "service-nodejs-centos7"
+  container_name: "centos7-service-nodejs"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "nodejs"
-    CONTAINER_INSTANCE: "service-nodejs-centos7"
+    CONTAINER_INSTANCE: "centos7-service-nodejs"
   volumes:
     - "/tmp/container-centos7/logs/nodejs:/data/logs/nodejs"
     - "/tmp/container-centos7/nodejs:/data/nodejs"
@@ -35,9 +35,9 @@ service:
 ```
 service:
   image: startx/sv-nodejs:centos7
-  container_name: "service-nodejs-centos7"
+  container_name: "centos7-service-nodejs"
   environment:
-    CONTAINER_INSTANCE: "service-nodejs-centos7"
+    CONTAINER_INSTANCE: "centos7-service-nodejs"
   ports:
     - "1000:8000"
 ```
@@ -45,9 +45,9 @@ service:
 ```
 service:
   image: startx/sv-nodejs:centos7
-  container_name: "service-nodejs-centos7"
+  container_name: "centos7-service-nodejs"
   environment:
-    CONTAINER_INSTANCE: "service-nodejs-centos7"
+    CONTAINER_INSTANCE: "centos7-service-nodejs"
   expose:
     - "8000"
 ```
@@ -55,14 +55,14 @@ service:
 ```
 data:
   image: startx/centos:7
-  container_name: "service-nodejs-data-centos7"
+  container_name: "centos7-service-nodejs-data"
   environment:
-    CONTAINER_INSTANCE: "service-nodejs-data-centos7"
+    CONTAINER_INSTANCE: "centos7-service-nodejs-data"
 service:
   image: startx/sv-nodejs:centos7
-  container_name: "service-nodejs-centos7"
+  container_name: "centos7-service-nodejs"
   environment:
-    CONTAINER_INSTANCE: "service-nodejs-centos7"
+    CONTAINER_INSTANCE: "centos7-service-nodejs"
   volume_from:
     - data:rw
 ```

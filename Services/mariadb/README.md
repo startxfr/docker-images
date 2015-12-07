@@ -17,14 +17,14 @@ or **[other mariadb flavours](https://github.com/startxfr/docker-images/Services
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-mariadb:latest
-  container_name: "service-mariadb"
+  image: startx/sv-mariadb:centos7
+  container_name: "centos7-service-mariadb"
   ports:
     - "3306:3306"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mariadb"
-    CONTAINER_INSTANCE: "service-mariadb-centos7"
+    CONTAINER_INSTANCE: "centos7-service-mariadb"
     MYSQL_ROOT_PASSWORD: "rootpassword"
     MYSQL_USER: "user-test"
     MYSQL_PASSWORD: "pwd-test"
@@ -40,9 +40,9 @@ service:
 ```
 service:
   image: startx/sv-mariadb:centos7
-  container_name: "service-mariadb-centos7"
+  container_name: "centos7-service-mariadb"
   environment:
-    CONTAINER_INSTANCE: "service-mariadb-centos7"
+    CONTAINER_INSTANCE: "centos7-service-mariadb"
   ports:
     - "1001:3306"
 ```
@@ -50,9 +50,9 @@ service:
 ```
 service:
   image: startx/sv-mariadb:centos7
-  container_name: "service-mariadb-centos7"
+  container_name: "centos7-service-mariadb"
   environment:
-    CONTAINER_INSTANCE: "service-mariadb-centos7"
+    CONTAINER_INSTANCE: "centos7-service-mariadb"
   expose:
     - "3306"
 ```
@@ -60,14 +60,14 @@ service:
 ```
 data:
   image: startx/centos:7
-  container_name: "service-mariadb-centos7-data"
+  container_name: "centos7-service-mariadb-data"
   environment:
-    CONTAINER_INSTANCE: "service-mariadb-centos7-data"
+    CONTAINER_INSTANCE: "centos7-service-mariadb-data"
 service:
   image: startx/sv-mariadb:centos7
-  container_name: "service-mariadb-centos7"
+  container_name: "centos7-service-mariadb"
   environment:
-    CONTAINER_INSTANCE: "service-mariadb-centos7"
+    CONTAINER_INSTANCE: "centos7-service-mariadb"
   volume_from:
     - data:rw
 ```
@@ -76,7 +76,7 @@ service:
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
  ```
-FROM startx/sv-mariadb:latest
+FROM startx/sv-mariadb:centos7
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```

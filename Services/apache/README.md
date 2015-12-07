@@ -18,11 +18,11 @@ or **[other apache flavours](https://github.com/startxfr/docker-images/Services/
 ```
 service:
   image: startx/sv-apache:centos7
-  container_name: "service-apache-centos7"
+  container_name: "centos7-service-apache"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "apache"
-    CONTAINER_INSTANCE: "service-apache-centos7"
+    CONTAINER_INSTANCE: "centos7-service-apache"
     SERVER_NAME: "localhost"
   volumes:
     - "/tmp/container-centos7/logs/apache:/data/logs/apache"
@@ -35,9 +35,9 @@ service:
 ```
 service:
   image: startx/sv-apache:centos7
-  container_name: "service-apache-centos7"
+  container_name: "centos7-service-apache"
   environment:
-    CONTAINER_INSTANCE: "service-apache-centos7"
+    CONTAINER_INSTANCE: "centos7-service-apache"
   ports:
     - "1000:80"
 ```
@@ -45,9 +45,9 @@ service:
 ```
 service:
   image: startx/sv-apache:centos7
-  container_name: "service-apache-centos7"
+  container_name: "centos7-service-apache"
   environment:
-    CONTAINER_INSTANCE: "service-apache-centos7"
+    CONTAINER_INSTANCE: "centos7-service-apache"
   expose:
     - "80"
 ```
@@ -55,14 +55,14 @@ service:
 ```
 data:
   image: startx/centos:7
-  container_name: "service-apache-centos7-data"
+  container_name: "centos7-service-apache-data"
   environment:
-    CONTAINER_INSTANCE: "service-apache-centos7-data"
+    CONTAINER_INSTANCE: "centos7-service-apache-data"
 service:
   image: startx/sv-apache:centos7
-  container_name: "service-apache-centos7"
+  container_name: "centos7-service-apache"
   environment:
-    CONTAINER_INSTANCE: "service-apache-centos7"
+    CONTAINER_INSTANCE: "centos7-service-apache"
   volume_from:
     - data:rw
 ```

@@ -18,11 +18,11 @@ or **[other memcache flavours](https://github.com/startxfr/docker-images/Service
 ```
 service:
   image: startx/sv-memcache:centos7
-  container_name: "service-memcache-centos7"
+  container_name: "centos7-service-memcache"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "memcache"
-    CONTAINER_INSTANCE: "service-memcache-centos7"
+    CONTAINER_INSTANCE: "centos7-service-memcache"
   volumes:
     - "/tmp/container-centos7/logs/memcache:/data/logs/memcache"
 ```
@@ -33,9 +33,9 @@ service:
 ```
 service:
   image: startx/sv-memcache:centos7
-  container_name: "service-memcache-centos7"
+  container_name: "centos7-service-memcache"
   environment:
-    CONTAINER_INSTANCE: "service-memcache-centos7"
+    CONTAINER_INSTANCE: "centos7-service-memcache"
   ports:
     - "1000:11211"
 ```
@@ -43,9 +43,9 @@ service:
 ```
 service:
   image: startx/sv-memcache:centos7
-  container_name: "service-memcache-centos7"
+  container_name: "centos7-service-memcache"
   environment:
-    CONTAINER_INSTANCE: "service-memcache-centos7"
+    CONTAINER_INSTANCE: "centos7-service-memcache"
   expose:
     - "11211"
 ```

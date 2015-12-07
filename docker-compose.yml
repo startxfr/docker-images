@@ -3,42 +3,42 @@ centos7:
     file: OS/docker-compose.yml
     service: centos7
 
-fedora_sv_apache:
+centos7-service-apache:
   extends:
     file: Services/apache/docker-compose.yml
     service: server
 
-fedora_sv_php:
+centos7-service-php:
   extends:
     file: Services/php/docker-compose.yml
     service: server
 
-fedora_sv_nodejs:
+centos7-service-nodejs:
   extends:
     file: Services/nodejs/docker-compose.yml
     service: server
 
-fedora_sv_mariadb:
+centos7-service-mariadb:
   extends:
     file: Services/mariadb/docker-compose.yml
     service: server
 
-fedora_sv_postgres:
+centos7-service-postgres:
   extends:
     file: Services/postgres/docker-compose.yml
     service: server
 
-fedora_sv_mongo:
+centos7-service-mongo:
   extends:
     file: Services/mongo/docker-compose.yml
     service: server
 
-fedora_sv_ooconv:
+centos7-service-ooconv:
   extends:
     file: Services/ooconv/docker-compose.yml
     service: server
 
-fedora_sv_memcache:
+centos7-service-memcache:
   extends:
     file: Services/memcache/docker-compose.yml
     service: server
@@ -48,10 +48,10 @@ centos7_couchbase:
     file: Services/couchbase/docker-compose.yml
     service: server
 
-fedora_app_pma:
+centos7-application-pma:
   build: Applications/phpmyadmin/
   container_name: "application-phpmyadmin"
 
-#fedora_app_rockmongo:
+#centos7-application-rockmongo:
 #  build: Applications/rockmongo/
 #  container_name: "application-rockmongo"
