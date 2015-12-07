@@ -1,7 +1,7 @@
-fedora_app_pma:
+fc21-application-pma:
   build: Applications/phpmyadmin/
   container_name: "application-phpmyadmin"
 
-fedora_app_rockmongo:
+fc21-application-rockmongo:
   build: Applications/rockmongo/
   container_name: "application-rockmongo"
