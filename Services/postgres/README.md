@@ -24,6 +24,8 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 service:
   image: startx/sv-postgres:latest
   container_name: "service-postgres"
+  ports:
+    - "5432:5432"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "postgres"

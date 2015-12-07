@@ -24,6 +24,8 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 service:
   image: startx/sv-mariadb:latest
   container_name: "service-mariadb"
+  ports:
+    - "3306:3306"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mariadb"
