@@ -25,8 +25,8 @@ service:
     CONTAINER_INSTANCE: "service-php-fc20"
     SERVER_NAME: "localhost"
   volumes:
-    - "/tmp/container-fc21/logs/php:/data/logs/apache"
-    - "/tmp/container-fc21/php:/data/apache"
+    - "/tmp/container-fc20/logs/php:/data/logs/apache"
+    - "/tmp/container-fc20/php:/data/apache"
 ```
 
 ## Docker-compose in various situations

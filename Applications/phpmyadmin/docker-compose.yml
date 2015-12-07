@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "fc21-application-phpmyadmin"
+  container_name: "fc20-application-phpmyadmin"
   mem_limit: 500m
   memswap_limit: 500m
   cpu_shares: 2
@@ -11,8 +11,8 @@ server:
   environment:
     CONTAINER_TYPE: "application"
     CONTAINER_SERVICE: "phpmyadmin"
-    CONTAINER_INSTANCE: "fc21-application-phpmyadmin"
+    CONTAINER_INSTANCE: "fc20-application-phpmyadmin"
     SERVER_NAME: "localhost"
   volumes:
-    - "/tmp/container-fc21/logs/phpmyadmin:/data/logs/apache"
-    - "/tmp/container-fc21/phpmyadmin:/data/apache"
+    - "/tmp/container-fc20/logs/phpmyadmin:/data/logs/apache"
+    - "/tmp/container-fc20/phpmyadmin:/data/apache"

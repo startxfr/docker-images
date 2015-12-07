@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "fc21-service-postgres"
+  container_name: "fc20-service-postgres"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 8
@@ -10,7 +10,7 @@ server:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "postgresql"
-    CONTAINER_INSTANCE: "fc21-service-postgres"
+    CONTAINER_INSTANCE: "fc20-service-postgres"
     POSTGRESQL_ROOT_PASSWORD: "secretdemerde"
     POSTGRESQL_USER: "user-test"
     POSTGRESQL_PASSWORD: "pwd-test"

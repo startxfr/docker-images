@@ -13,18 +13,18 @@ or **[other mariadb flavours](https://github.com/startxfr/docker-images/Services
 
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="fc21-service-mariadb" startx/sv-mariadb:fc21` from any docker host
+* with `docker` you can run `docker run -it --name="fc20-service-mariadb" startx/sv-mariadb:fc20` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-mariadb:fc21
-  container_name: "fc21-service-mariadb"
+  image: startx/sv-mariadb:fc20
+  container_name: "fc20-service-mariadb"
   ports:
     - "3306:3306"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mariadb"
-    CONTAINER_INSTANCE: "fc21-service-mariadb"
+    CONTAINER_INSTANCE: "fc20-service-mariadb"
     MYSQL_ROOT_PASSWORD: "rootpassword"
     MYSQL_USER: "user-test"
     MYSQL_PASSWORD: "pwd-test"
@@ -39,35 +39,35 @@ service:
 * sample docker-compose.yml linked to host port 1000
 ```
 service:
-  image: startx/sv-mariadb:fc21
-  container_name: "fc21-service-mariadb"
+  image: startx/sv-mariadb:fc20
+  container_name: "fc20-service-mariadb"
   environment:
-    CONTAINER_INSTANCE: "fc21-service-mariadb"
+    CONTAINER_INSTANCE: "fc20-service-mariadb"
   ports:
     - "1001:3306"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
 service:
-  image: startx/sv-mariadb:fc21
-  container_name: "fc21-service-mariadb"
+  image: startx/sv-mariadb:fc20
+  container_name: "fc20-service-mariadb"
   environment:
-    CONTAINER_INSTANCE: "fc21-service-mariadb"
+    CONTAINER_INSTANCE: "fc20-service-mariadb"
   expose:
     - "3306"
 ```
 * sample docker-compose.yml using data container
 ```
 data:
-  image: startx/fedora:21
-  container_name: "fc21-service-mariadb-data"
+  image: startx/fedora:20
+  container_name: "fc20-service-mariadb-data"
   environment:
-    CONTAINER_INSTANCE: "fc21-service-mariadb-data"
+    CONTAINER_INSTANCE: "fc20-service-mariadb-data"
 service:
-  image: startx/sv-mariadb:fc21
-  container_name: "fc21-service-mariadb"
+  image: startx/sv-mariadb:fc20
+  container_name: "fc20-service-mariadb"
   environment:
-    CONTAINER_INSTANCE: "fc21-service-mariadb"
+    CONTAINER_INSTANCE: "fc20-service-mariadb"
   volume_from:
     - data:rw
 ```
