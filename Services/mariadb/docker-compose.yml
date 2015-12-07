@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "mariadb-fc23"
+  container_name: "fc23-service-mariadb"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 8
@@ -10,7 +10,7 @@ server:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mariadb"
-    CONTAINER_INSTANCE: "sx-mariadb"
+    CONTAINER_INSTANCE: "fc23-service-mariadb"
     MYSQL_ROOT_PASSWORD: "secretdemerde"
     MYSQL_USER: "user-test"
     MYSQL_PASSWORD: "pwd-test"

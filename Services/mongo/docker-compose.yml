@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "mongo-fc23"
+  container_name: "fc23-service-mongo"
   mem_limit: 2g
   memswap_limit: 2g
   cpu_shares: 10
@@ -11,7 +11,7 @@ server:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mongo"
-    CONTAINER_INSTANCE: "sx-mongo"
+    CONTAINER_INSTANCE: "fc23-service-mongo"
   volumes:
     - "/tmp/container-fc23/logs/mongodb:/data/logs/mongodb"
     - "/tmp/container-fc23/mongodb:/data/mongodb"

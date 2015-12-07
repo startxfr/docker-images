@@ -1,0 +1,18 @@
+server:
+  build: ./
+  container_name: "fc23-application-phpmyadmin"
+  mem_limit: 500m
+  memswap_limit: 500m
+  cpu_shares: 2
+  restart: "on-failure:2"
+  ports:
+    - "9215:80"
+    - "9216:443"
+  environment:
+    CONTAINER_TYPE: "application"
+    CONTAINER_SERVICE: "phpmyadmin"
+    CONTAINER_INSTANCE: "fc23-application-phpmyadmin"
+    SERVER_NAME: "localhost"
+  volumes:
+    - "/tmp/container-fc23/logs/phpmyadmin:/data/logs/apache"
+    - "/tmp/container-fc23/phpmyadmin:/data/apache"
