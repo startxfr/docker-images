@@ -1,3 +1,7 @@
+fedora22:
+  extends:
+    file: OS/docker-compose.yml
+    service: fedora22
 fedora21:
   extends:
     file: OS/docker-compose.yml

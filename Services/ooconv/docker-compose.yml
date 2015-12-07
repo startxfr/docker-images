@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "ooconv-fc21"
+  container_name: "fc22-service-ooconv"
   mem_limit: 2g
   memswap_limit: 2g
   cpu_shares: 8
@@ -10,6 +10,6 @@ server:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "ooconv"
-    CONTAINER_INSTANCE: "service-ooconv"
+    CONTAINER_INSTANCE: "fc22-service-ooconv"
   volumes:
-    - "/tmp/container-fc21/logs/ooconv:/data/logs/ooconv"
+    - "/tmp/container-fc22/logs/ooconv:/data/logs/ooconv"

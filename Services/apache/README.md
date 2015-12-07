@@ -13,18 +13,17 @@ or **[other apache flavours](https://github.com/startxfr/docker-images/Services/
 
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="service-apache-fc21" startx/sv-apache:fc21` from any docker host
+* with `docker` you can run `docker run -it --name="fc22-service-apache" startx/sv-apache:fc22` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-apache:fc21
-  container_name: "service-apache-fc21"
+  image: startx/sv-apache:fc22
+  container_name: "fc22-service-apache"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "apache"
-    CONTAINER_INSTANCE: "service-apache-fc21"
+    CONTAINER_INSTANCE: "fc22-service-apache"
     SERVER_NAME: "localhost"
-    DOC_ROOT: "/data/apache"
   volumes:
     - "/tmp/container-fc21/logs/apache:/data/logs/apache"
     - "/tmp/container-fc21/apache:/data/apache"
@@ -35,35 +34,35 @@ service:
 * sample docker-compose.yml linked to host port 1000
 ```
 service:
-  image: startx/sv-apache:fc21
-  container_name: "service-apache-fc21"
+  image: startx/sv-apache:fc22
+  container_name: "fc22-service-apache"
   environment:
-    CONTAINER_INSTANCE: "service-apache-fc21"
+    CONTAINER_INSTANCE: "fc22-service-apache"
   ports:
     - "1000:80"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
 service:
-  image: startx/sv-apache:fc21
-  container_name: "service-apache-fc21"
+  image: startx/sv-apache:fc22
+  container_name: "fc22-service-apache"
   environment:
-    CONTAINER_INSTANCE: "service-apache-fc21"
+    CONTAINER_INSTANCE: "fc22-service-apache"
   expose:
     - "80"
 ```
 * sample docker-compose.yml using data container
 ```
 data:
-  image: startx/fedora:21
-  container_name: "service-apache-fc21-data"
+  image: startx/fedora:22
+  container_name: "fc22-service-apache-data"
   environment:
-    CONTAINER_INSTANCE: "service-apache-fc21-data"
+    CONTAINER_INSTANCE: "fc22-service-apache-data"
 service:
-  image: startx/sv-apache:fc21
-  container_name: "service-apache-fc21"
+  image: startx/sv-apache:fc22
+  container_name: "fc22-service-apache"
   environment:
-    CONTAINER_INSTANCE: "service-apache-fc21"
+    CONTAINER_INSTANCE: "fc22-service-apache"
   volume_from:
     - data:rw
 ```
@@ -86,7 +85,6 @@ CMD ["/bin/run.sh"]
 | CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
 | SERVER_NAME               | `string` | `no`      | Server name for this container. If no name localhost will be assigned
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
-| DOC_ROOT                  | `auto`   | `auto`    | document root, will use the $APP_PATH variable
 | LOG_PATH                  | `auto`   | `auto`    | default set to /data/logs/apache and used as a volume mountpoint
 | APP_PATH                  | `auto`   | `auto`    | default set to /data/apache and used as a volume mountpoint
 

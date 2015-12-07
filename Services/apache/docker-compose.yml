@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "apache-fc21"
+  container_name: "fc22-service-apache"
   mem_limit: 500m
   memswap_limit: 500m
   cpu_shares: 2
@@ -11,9 +11,8 @@ server:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "apache"
-    CONTAINER_INSTANCE: "service-apache"
+    CONTAINER_INSTANCE: "fc22-service-apache"
     SERVER_NAME: "localhost"
-    DOC_ROOT: "/data/apache"
   volumes:
-    - "/tmp/container-fc21/logs/apache:/data/logs/apache"
-    - "/tmp/container-fc21/apache:/data/apache"
+    - "/tmp/container-fc22/logs/apache:/data/logs/apache"
+    - "/tmp/container-fc22/apache:/data/apache"
