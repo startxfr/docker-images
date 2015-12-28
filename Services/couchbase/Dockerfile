@@ -5,8 +5,8 @@ USER root
 ENV CB_VERSION=4.1.0-dp \
     CB_RELEASE_URL=http://packages.couchbase.com/releases/$CB_VERSION \
     CB_PACKAGE=couchbase-server-$CB_VERSION-centos7.x86_64.rpm
-RUN dnf -y install python-httplib2 openssl && \
-    dnf clean all && \
+RUN yum -y install python-httplib2 openssl && \
+    yum clean all && \
     wget $CB_RELEASE_URL/$CB_PACKAGE && \
     rpm --install $CB_PACKAGE
 ENV STARTUPLOG=/data/logs/couchbase/startup.log \

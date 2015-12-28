@@ -54,7 +54,7 @@ function display_container_postgresql_header {
 function begin_config {
     echo "=> BEGIN POSTGRESQL CONFIGURATION"
     if [[ ! -d $DATA_PATH ]]; then
-        echo "log directory $DATA_PATH not found"
+        echo "data directory $DATA_PATH not found"
         mkdir -p $DATA_PATH; chmod 0774 $DATA_PATH
         echo "data directory $DATA_PATH CREATED"
     else 
