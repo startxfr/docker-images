@@ -6,7 +6,7 @@ server:
   cpu_shares: 8
   restart: "on-failure:2"
   ports:
-    - "9221:3306"
+    - "9223:3306"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mariadb"
