@@ -87,5 +87,5 @@ function stop_server {
 function start_daemon {
     echo "=> Starting httpd daemon ..." | tee -a $STARTUPLOG
     display_container_started | tee -a $STARTUPLOG
-    exec /usr/sbin/apachectl && tail -f $LOG_PATH/error.log
+    exec /usr/sbin/apachectl
 }
