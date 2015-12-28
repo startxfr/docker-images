@@ -7,7 +7,7 @@ RUN yum -y install php php-pecl-mongo php-cli php-pear \
         php-pdo php-process php-common php-mbstring \
         php-bcmath php-pecl-zip php-php-gettext php-tcpdf \
         php-tcpdf-dejavu-sans-fonts php-tidy \
-    && dnf clean all  
+    && yum clean all  
 COPY httpd.conf $HTTPDCONF
 COPY php.ini /etc/php.d/sx.ini
 COPY run.sh /bin/
