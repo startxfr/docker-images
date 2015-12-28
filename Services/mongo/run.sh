@@ -45,7 +45,7 @@ function display_container_mongodb_header {
 function begin_config {
     echo "=> BEGIN MONGODB CONFIGURATION"
     if [[ ! -d $DATA_PATH ]]; then
-        echo "log directory $DATA_PATH not found"
+        echo "data directory $DATA_PATH not found"
         mkdir -p $DATA_PATH; chmod 0774 $DATA_PATH
         echo "data directory $DATA_PATH CREATED"
     else 
