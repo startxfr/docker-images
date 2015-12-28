@@ -25,7 +25,7 @@ your project and start using stable or experimental services in your application
 | MariaDB       | [`startx/sv-mariadb`](https://hub.docker.com/r/startx/sv-mariadb)    | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](mariadb/README.md)
 | Memcache      | [`startx/sv-memcache`](https://hub.docker.com/r/startx/sv-memcache)  | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](memcache/README.md)
 | MongoDB       | [`startx/sv-mongo`](https://hub.docker.com/r/startx/sv-mongo)        | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](mongo/README.md)
-| nodejs        | [`startx/sv-nodejs`](https://hub.docker.com/r/startx/sv-nodejs)      | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](nodejs/README.md)
+| nodejs        | [`startx/sv-nodejs`](https://hub.docker.com/r/startx/sv-nodejs)      | `:latest` `:21` `:22` `:23`       | `:6` `:7`       | [manual](nodejs/README.md)
 | ooconv        | [`startx/sv-ooconv`](https://hub.docker.com/r/startx/sv-ooconv)      | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](ooconv/README.md)
 | php           | [`startx/sv-php`](https://hub.docker.com/r/startx/sv-php)            | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](php/README.md)
 | postgreSQL    | [`startx/sv-postgres`](https://hub.docker.com/r/startx/sv-postgres)  | `:latest` `:20` `:21` `:22` `:23` | `:6` `:7`       | [manual](postgres/README.md)
@@ -52,7 +52,7 @@ your project and start using stable or experimental services in your application
 | MariaDB    | [`startx/sv-mariadb`](https://hub.docker.com/r/startx/sv-mariadb)    | `:latest` `:fc20` `:fc21` `:fc22` `:fc23`    | `:centos6` `:centos7` |
 | Memcache   | [`startx/sv-memcache`](https://hub.docker.com/r/startx/sv-memcache)  | `:latest` `:fc20` `:fc21` `:fc22` `:fc23`    | `:centos6` `:centos7` |
 | MongoDB    | [`startx/sv-mongo`](https://hub.docker.com/r/startx/sv-mongo)        | `:latest` `:fc20` `:fc21` `:fc22` `:fc23`    | `:centos6` `:centos7` |
-| nodejs     | [`startx/sv-nodejs`](https://hub.docker.com/r/startx/sv-nodejs)      | `:latest` `:fc20` `:fc21` `:fc22` `:fc23`    | `:centos6` `:centos7` |
+| nodejs     | [`startx/sv-nodejs`](https://hub.docker.com/r/startx/sv-nodejs)      | `:latest` `:fc21` `:fc22` `:fc23`            | `:centos6` `:centos7` |
 | ooconv     | [`startx/sv-ooconv`](https://hub.docker.com/r/startx/sv-ooconv)      | `:latest` `:fc20` `:fc21` `:fc22` `:fc23`    | `:centos6` `:centos7` |
 | php        | [`startx/sv-php`](https://hub.docker.com/r/startx/sv-php)            | `:latest` `:fc20` `:fc21` `:fc22` `:fc23`    | `:centos6` `:centos7` |
 | postgreSQL | [`startx/sv-postgres`](https://hub.docker.com/r/startx/sv-postgres)  | `:latest` `:fc20` `:fc21` `:fc22` `:fc23`    | `:centos6` `:centos7` |
