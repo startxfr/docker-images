@@ -36,24 +36,6 @@ fc20-service-php:
   volumes_from:
     - fc20-data
 
-fc20-service-nodejs:
-  image: startx/sv-nodejs
-  container_name: "fc20-service-nodejs"
-  ports:
-    - "83:8000"
-  links:
-    - fc20-service-mariadb:mariadb
-    - fc20-service-postgres:postgres
-    - fc20-service-mongo:mongo
-    - fc20-service-memcache:memcache
-    - fc20-service-ooconv:ooconv
-  environment:
-    CONTAINER_TYPE: "service"
-    CONTAINER_SERVICE: "nodejs"
-    CONTAINER_INSTANCE: "fc20-service-nodejs"
-  volumes_from:
-    - fc20-data
-
 fc20-service-mariadb:
   image: startx/sv-mariadb
   container_name: "fc20-service-mariadb"

@@ -22,7 +22,6 @@ your project and start using stable or experimental applications in your applica
 | MariaDB       | [`startx/sv-mariadb`](https://hub.docker.com/r/startx/sv-mariadb)    | [manual](mariadb/README.md)
 | Memcache      | [`startx/sv-memcache`](https://hub.docker.com/r/startx/sv-memcache)  | [manual](memcache/README.md) 
 | MongoDB       | [`startx/sv-mongo`](https://hub.docker.com/r/startx/sv-mongo)        | [manual](mongo/README.md)
-| nodejs        | [`startx/sv-nodejs`](https://hub.docker.com/r/startx/sv-nodejs)      | [manual](nodejs/README.md)
 | ooconv        | [`startx/sv-ooconv`](https://hub.docker.com/r/startx/sv-ooconv)      | [manual](ooconv/README.md)
 | php           | [`startx/sv-php`](https://hub.docker.com/r/startx/sv-php)            | [manual](php/README.md)
 | postgreSQL    | [`startx/sv-postgres`](https://hub.docker.com/r/startx/sv-postgres)  | [manual](postgres/README.md)
@@ -37,7 +36,6 @@ your project and start using stable or experimental applications in your applica
 | **MariaDB**         | `docker run -d -p 3306:3306 --name="fc20-mariadb" startx/sv-mariadb:fc20`      | 
 | **Memcache**        | `docker run -d -p 11211:11211 --name="fc20-memcache" startx/sv-memcache:fc20`  | 
 | **MongoDB**         | `docker run -d -p 27017:27017 --name="fc20-mongo" startx/sv-mongo:fc20`        | 
-| **nodejs**          | `docker run -d -p 8000:8000 --name="fc20-nodejs" startx/sv-nodejs:fc20`        | 
 | **ooconv**          | `docker run -d -p XXX:XXX --name="fc20-ooconv" startx/sv-ooconv:fc20`          | 
 | **php**             | `docker run -d -p 80:80 --name="fc20-php" startx/sv-php:fc20`                  | 
 | **postgreSQL**      | `docker run -d -p 5432:5432 --name="fc20-postgres" startx/sv-postgres:fc20`    | 
