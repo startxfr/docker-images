@@ -18,6 +18,7 @@ RUN chmod 775 /bin/run.sh /bin/sx-httpd.sh && \
     mkdir -p $TMP_APP_PATH && \
     mkdir -p $APP_PATH && \
     mkdir -p $LOG_PATH && \
+    mkdir -p /etc/httpd/logs && \
     touch $STARTUPLOG
 COPY ./ $TMP_APP_PATH
 RUN rm -f $TMP_APP_PATH/Dockerfile $TMP_APP_PATH/httpd.conf $TMP_APP_PATH/run.sh $TMP_APP_PATH/sx-httpd.sh && \
