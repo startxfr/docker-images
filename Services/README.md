@@ -31,8 +31,8 @@ your project and start using stable or experimental applications in your applica
 
 ## Running from dockerhub registry
 
-| Services            | Command                                                                        |
-|---------------------|--------------------------------------------------------------------------------|
+| Services            | Command                                                                              |
+|---------------------|--------------------------------------------------------------------------------------|
 | **Apache**          | `docker run -d -p 80:80 --name="centos6-apache" startx/sv-apache:centos6`            | 
 | **MariaDB**         | `docker run -d -p 3306:3306 --name="centos6-mariadb" startx/sv-mariadb:centos6`      | 
 | **Memcache**        | `docker run -d -p 11211:11211 --name="centos6-memcache" startx/sv-memcache:centos6`  | 
