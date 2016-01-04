@@ -127,6 +127,7 @@ function config_createadmin {
 function config_createuser {
     if [[ -n "$MYSQL_USER" ]]; then
         echo "Creating MariaDB $MYSQL_USER user with preset password"
+        mysql -uroot -e "DROP USER '$MYSQL_USER'@'%'; FLUSH PRIVILEGES;"
         mysql -uroot -e "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD'"
         mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%' WITH GRANT OPTION"
         echo ""
