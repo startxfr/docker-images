@@ -43,24 +43,28 @@ function end_config {
     echo "=> END OOCONV CONFIGURATION"
 }
 
+function stop_ooconv_handler {
+    killall unoconv soffice.bin 
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    echo "| Container $HOSTNAME is now STOPPED" | tee -a $STARTUPLOG
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    exit 143; # 128 + 15 -- SIGTERM
+}
+
 # Start the ooconv server as a deamon and execute it inside 
 # the running shell
-function start_daemon {
-    echo "=> Starting ooconv daemon ..." | tee -a $STARTUPLOG
-    display_container_started | tee -a $STARTUPLOG
+function start_service_ooconv {
+    trap 'kill ${!}; stop_ooconv_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    echo "| Container $HOSTNAME is now RUNNING" | tee -a $STARTUPLOG
+    echo "+=====================================================" | tee -a $STARTUPLOG
     unoconv --listener -vvv | tee -a $STARTUPLOG
-    sleep 1
     killall unoconv soffice.bin 
     exec unoconv --listener
 }
-
-
-if [[ "$0" == *"run.sh" && ! $1 = "" ]];then
-    eval "$@"; 
-fi
 
 check_environment | tee -a $STARTUPLOG
 display_container_ooconv_header | tee -a $STARTUPLOG
 begin_config | tee -a $STARTUPLOG
 end_config | tee -a $STARTUPLOG
-start_daemon
+start_service_ooconv

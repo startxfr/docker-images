@@ -4,11 +4,11 @@ MAINTAINER Christophe LARUE <dev@startx.fr>
 USER root
 RUN dnf -y install nodejs npm python make gcc && \
     dnf clean all 
-ENV STARTUPLOG=/data/logs/nodejs/startup.log \
-    LOG_PATH=/data/logs/nodejs  \
-    APP_PATH=/data/nodejs \
+ENV STARTUPLOG=/logs/startup.log \
+    LOG_PATH=/logs  \
+    APP_PATH=/data \
     TMP_APP_PATH=/tmp/nodejs \
-    APP_MAIN=/data/nodejs/app.js
+    APP_MAIN=/data/app.js
 COPY *.sh /bin/
 RUN chmod 775 /bin/run.sh && \
     mkdir -p $APP_PATH && \

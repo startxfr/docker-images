@@ -14,5 +14,5 @@ server:
     CONTAINER_INSTANCE: "application-phpmyadmin"
     SERVER_NAME: "localhost"
   volumes:
-    - "/tmp/container/logs/phpmyadmin:/data/logs/apache"
+    - "/tmp/container/logs/phpmyadmin:/logs/apache"
     - "/tmp/container/phpmyadmin:/data/apache"

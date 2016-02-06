@@ -12,4 +12,4 @@ server:
     CONTAINER_SERVICE: "couchbase"
     CONTAINER_INSTANCE: "service-couchbase"
   volumes:
-    - "/tmp/container/logs/couchbase:/data/logs/couchbase"
+    - "/tmp/container/logs/couchbase:/logs"

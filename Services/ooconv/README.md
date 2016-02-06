@@ -29,7 +29,7 @@ service:
     CONTAINER_SERVICE: "ooconv"
     CONTAINER_INSTANCE: "service-ooconv"
   volumes:
-    - "/tmp/container/logs/ooconv:/data/logs/ooconv"
+    - "/tmp/container/logs/ooconv:/logs"
 ```
 
 ## Docker-compose in various situations
@@ -72,7 +72,7 @@ CMD ["/bin/run.sh"]
 | CONTAINER_TYPE            | `string` | `no`      | Container family (os, service, application. could be enhanced 
 | CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
-| LOG_PATH                  | `auto`   | `auto`    | default set to /data/logs/ooconv and used as a volume mountpoint
+| LOG_PATH                  | `auto`   | `auto`    | default set to /logs and used as a volume mountpoint
 
 ## Exposed port
 
@@ -84,7 +84,7 @@ CMD ["/bin/run.sh"]
 
 | Container directory  | Description                                                              |
 |----------------------|--------------------------------------------------------------------------|
-| /data/logs/ooconv    | log directory used to record container and ooconv logs
+| /logs                | log directory used to record container and ooconv logs
 
 ## Testing the service
 
@@ -105,8 +105,8 @@ You must have a working environment with the source code of this repository. Rea
 1. Jump into the container directory with `cd Services/ooconv`
 2. Build the container using `docker build -t sv-ooconv .`
 3. Run this container 
-  1. Interactively with `docker run -p 2002:2002 -v /data/logs/ooconv -it sv-ooconv`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -p 2002:2002 -v /data/logs/ooconv -d sv-ooconv`
+  1. Interactively with `docker run -p 2002:2002 -v /logs -it sv-ooconv`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 2002:2002 -v /logs -d sv-ooconv`
 
 
 ### Build & run a container using `docker-compose`

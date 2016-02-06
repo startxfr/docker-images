@@ -14,5 +14,5 @@ server:
     CONTAINER_INSTANCE: "service-php"
     SERVER_NAME: "localhost"
   volumes:
-    - "/tmp/container/logs/php:/data/logs/apache"
-    - "/tmp/container/php:/data/apache"
+    - "/tmp/container/logs/php:/logs"
+    - "/tmp/container/php:/data"

@@ -14,5 +14,5 @@ server:
     CONTAINER_INSTANCE: "service-apache"
     SERVER_NAME: "localhost"
   volumes:
-    - "/tmp/container/logs/apache:/data/logs/apache"
-    - "/tmp/container/apache:/data/apache"
+    - "/tmp/container/logs/apache:/logs"
+    - "/tmp/container/apache:/data"

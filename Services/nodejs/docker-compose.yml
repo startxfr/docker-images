@@ -12,5 +12,5 @@ server:
     CONTAINER_SERVICE: "nodejs"
     CONTAINER_INSTANCE: "service-nodejs"
   volumes:
-    - "/tmp/container/logs/nodejs:/data/logs/nodejs"
-    - "/tmp/container/nodejs:/data/nodejs"
+    - "/tmp/container/logs/nodejs:/logs"
+    - "/tmp/container/nodejs:/data"

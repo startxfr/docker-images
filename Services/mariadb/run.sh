@@ -4,11 +4,11 @@ source /bin/sx-lib.sh
 function check_mariadb_environment {
     check_environment
     if [ ! -v DATA_PATH ]; then
-        DATA_PATH="/data/mariadb"
+        DATA_PATH="/data"
         export DATA_PATH
     fi
     if [ ! -v LOG_PATH ]; then
-        LOG_PATH="/data/logs/mariadb"
+        LOG_PATH="/logs"
         export LOG_PATH
     fi
 }
@@ -80,6 +80,12 @@ function begin_config {
         mysql_install_db --datadir=$DATA_PATH --defaults-file=$MY_CONF --user=mysql > /dev/null 2>&1 
         chown mysql:mysql -R $DATA_PATH
         echo "Installing MariaDB in $DATA_PATH is DONE !"
+        config_startserver
+        config_createadmin
+        config_createuser
+        config_createdatabase
+        config_importsql
+        config_stopserver
     else
         echo "mariadb directory is initialized"
         echo "Reusing MariaDB in $DATA_PATH ..."
@@ -203,27 +209,30 @@ function end_config {
     echo "=> END MARIADB CONFIGURATION"
 }
 
-# Start the mariadb server as a deamon and execute it inside 
-# the running shell
-function start_daemon {
-    echo "=> Starting mariadb daemon ..." | tee -a $STARTUPLOG
-    display_container_started | tee -a $STARTUPLOG
-    exec mysqld_safe
+function stop_mariadb_handler {
+    mysqladmin -uroot shutdown
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    echo "| Container $HOSTNAME is now STOPPED" | tee -a $STARTUPLOG
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    exit 143; # 128 + 15 -- SIGTERM
 }
 
-
-if [[ "$0" == *"run.sh" && ! $1 = "" ]];then
-    eval "$@"; 
-fi
+# Start the mariadb server as a deamon and execute it inside 
+# the running shell
+function start_service_mariadb {
+    trap 'kill ${!}; stop_mariadb_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    echo "| Container $HOSTNAME is now RUNNING" | tee -a $STARTUPLOG
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    exec mysqld_safe &
+    while true
+    do
+      tail -f /dev/null & wait ${!}
+    done
+}
 
 check_mariadb_environment | tee -a $STARTUPLOG
 display_container_mariadb_header | tee -a $STARTUPLOG
 begin_config | tee -a $STARTUPLOG
-config_startserver | tee -a $STARTUPLOG
-config_createadmin | tee -a $STARTUPLOG
-config_createuser | tee -a $STARTUPLOG
-config_createdatabase | tee -a $STARTUPLOG
-config_importsql | tee -a $STARTUPLOG
-config_stopserver | tee -a $STARTUPLOG
 end_config | tee -a $STARTUPLOG
-start_daemon
+start_service_mariadb

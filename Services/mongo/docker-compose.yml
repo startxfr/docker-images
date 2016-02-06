@@ -13,5 +13,5 @@ server:
     CONTAINER_SERVICE: "mongo"
     CONTAINER_INSTANCE: "service-mongo"
   volumes:
-    - "/tmp/container/logs/mongodb:/data/logs/mongodb"
-    - "/tmp/container/mongodb:/data/mongodb"
+    - "/tmp/container/logs/mongodb:/logs"
+    - "/tmp/container/mongodb:/data"

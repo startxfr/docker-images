@@ -12,4 +12,4 @@ server:
     CONTAINER_SERVICE: "ooconv"
     CONTAINER_INSTANCE: "service-ooconv"
   volumes:
-    - "/tmp/container/logs/ooconv:/data/logs/ooconv"
+    - "/tmp/container/logs/ooconv:/logs"

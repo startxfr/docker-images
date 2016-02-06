@@ -35,8 +35,8 @@ service:
     MYSQL_PASSWORD: "pwd-test"
     MYSQL_DATABASE: "db_test"
   volumes:
-    - "/tmp/container/logs/mariadb:/data/logs/mariadb"
-    - "/tmp/container/mariadb:/data/mariadb"
+    - "/tmp/container/logs/mariadb:/logs"
+    - "/tmp/container/mariadb:/data"
 ```
 
 ## Docker-compose in various situations
@@ -99,8 +99,8 @@ CMD ["/bin/run.sh"]
 | MYSQL_DATABASE            | `string` | `no`      | If present, add a new database with this name
 | LOADSQL_PATH              | `string` | `auto`    | Path used to find sql dump to import at startup
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
-| LOG_PATH                  | `auto`   | `auto`    | default set to /data/logs/mariadb and used as a volume mountpoint
-| DATA_PATH                 | `auto`   | `auto`    | default set to /data/mariadb and used as a volume mountpoint
+| LOG_PATH                  | `auto`   | `auto`    | default set to /logs and used as a volume mountpoint
+| DATA_PATH                 | `auto`   | `auto`    | default set to /data and used as a volume mountpoint
 
 ## Exposed port
 
@@ -112,8 +112,8 @@ CMD ["/bin/run.sh"]
 
 | Container directory  | Description                                                              |
 |----------------------|--------------------------------------------------------------------------|
-| /data/logs/mariadb    | log directory used to record container and mariadb logs
-| /data/mariadb         | data directory served by mariadb. If empty will be filled with database files on startup. In other case use content from mountpoint or data volumes
+| /logs                | log directory used to record container and mariadb logs
+| /data                | data directory served by mariadb. If empty will be filled with database files on startup. In other case use content from mountpoint or data volumes
 
 ## Testing the service
 
@@ -134,8 +134,8 @@ You must have a working environment with the source code of this repository. Rea
 1. Jump into the container directory with `cd Services/mariadb`
 2. Build the container using `docker build -t sv-mariadb .`
 3. Run this container 
-  1. Interactively with `docker run -p 3306:3306 -v /data/logs/mariadb -it sv-mariadb`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -p 3306:3306 -v /data/logs/mariadb -d sv-mariadb`
+  1. Interactively with `docker run -p 3306:3306 -v /logs -it sv-mariadb`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 3306:3306 -v /logs -d sv-mariadb`
 
 
 ### Build & run a container using `docker-compose`
