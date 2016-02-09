@@ -1,12 +1,15 @@
 #!/bin/bash
 source /bin/sx-lib.sh
 
-
 function check_nodejs_environment {
     check_environment
     if [ ! -v APP_PATH ]; then
-        APP_PATH="/data"
+        APP_PATH="/app"
         export APP_PATH
+    fi
+    if [ ! -v DATA_PATH ]; then
+        DATA_PATH="/data"
+        export DATA_PATH
     fi
     if [ ! -v LOG_PATH ]; then
         LOG_PATH="/logs"
@@ -31,32 +34,13 @@ function display_container_nodejs_header {
     if [ -v APP_PATH ]; then
         echo "| App path    : $APP_PATH"
     fi
+    if [ -v DATA_PATH ]; then
+        echo "| Data path    : $DATA_PATH"
+    fi
     if [ -v LOG_PATH ]; then
         echo "| Log path    : $LOG_PATH"
     fi
     echo "+====================================================="
-}
-
-# Begin configuration before starting daemonized process
-# and start generating host keys
-function begin_config {
-    echo "=> BEGIN NODEJS CONFIGURATION"
-    if [[ -d $TMP_APP_PATH ]]; then
-        if [ "$(ls -A $TMP_APP_PATH)" ]; then
-            echo "COPY application from $TMP_APP_PATH into $APP_PATH"
-            FILE_LIST=$(find $TMP_APP_PATH -maxdepth 1 -mindepth 1 -printf "%f\n")
-            for FILE in $FILE_LIST; do 
-                echo -n "adding $APP_PATH/$FILE"
-                cp -r $TMP_APP_PATH/$FILE $APP_PATH/
-                echo " DONE"
-            done
-        fi
-    fi
-}
-
-# End configuration process just before starting daemon
-function end_config {
-    echo "=> END NODEJS CONFIGURATION"
 }
 
 function stop_nodejs_handler {
@@ -79,6 +63,4 @@ function start_service_nodejs {
 
 check_nodejs_environment | tee -a $STARTUPLOG
 display_container_nodejs_header | tee -a $STARTUPLOG
-begin_config | tee -a $STARTUPLOG
-end_config | tee -a $STARTUPLOG
 start_service_nodejs
