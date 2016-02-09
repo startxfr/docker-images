@@ -121,19 +121,19 @@ fedora_sv_memcache:
   volumes_from:
     - fedora_data
 
-#fedora_app_pma:
-#  image: startx/sv-phpmyadmin
-#  container_name: "application-phpmyadmin"
-#  ports:
-#    - "84:80"
-#  links:
-#    - fedora_sv_mariadb:mariadb
-#  environment:
-#    CONTAINER_TYPE: "application"
-#    CONTAINER_SERVICE: "phpmyadmin"
-#    CONTAINER_INSTANCE: "application-phpmyadmin"
-#  volumes_from:
-#    - fedora_data
+fedora_app_pma:
+  image: startx/sv-phpmyadmin
+  container_name: "application-phpmyadmin"
+  ports:
+    - "84:80"
+  links:
+    - fedora_sv_mariadb:mariadb
+  environment:
+    CONTAINER_TYPE: "application"
+    CONTAINER_SERVICE: "phpmyadmin"
+    CONTAINER_INSTANCE: "application-phpmyadmin"
+  volumes_from:
+    - fedora_data
 
 #fedora_app_rockmongo:
 #  build: Applications/rockmongo/

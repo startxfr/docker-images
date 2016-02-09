@@ -1,4 +1,4 @@
-server:
+application:
   build: ./
   container_name: "application-phpmyadmin"
   mem_limit: 500m
