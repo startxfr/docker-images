@@ -25,8 +25,8 @@ service:
     CONTAINER_INSTANCE: "service-php-fc23"
     SERVER_NAME: "localhost"
   volumes:
-    - "/tmp/container-fc23/logs/php:/data/logs/apache"
-    - "/tmp/container-fc23/php:/data/apache"
+    - "/tmp/container-fc23/logs/php:/logs"
+    - "/tmp/container-fc23/php:/data"
 ```
 
 ## Docker-compose in various situations
@@ -85,8 +85,8 @@ CMD ["/bin/run.sh"]
 | CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
 | SERVER_NAME               | `string` | `no`      | Server name for this container. If no name localhost will be assigned
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
-| LOG_PATH                  | `auto`   | `auto`    | default set to /data/logs/apache and used as a volume mountpoint
-| APP_PATH                  | `auto`   | `auto`    | default set to /data/apache and used as a volume mountpoint
+| LOG_PATH                  | `auto`   | `auto`    | default set to /logs and used as a volume mountpoint
+| APP_PATH                  | `auto`   | `auto`    | default set to /data and used as a volume mountpoint
 
 ## Exposed port
 
@@ -99,8 +99,8 @@ CMD ["/bin/run.sh"]
 
 | Container directory  | Description                                                              |
 |----------------------|--------------------------------------------------------------------------|
-| /data/logs/apache    | log directory used to record container and php logs
-| /data/apache         | data directory served by php. If empty will be filled with app on startup. In other case use content from mountpoint or data volumes
+| /logs                | log directory used to record container and php logs
+| /data                | data directory served by php. If empty will be filled with app on startup. In other case use content from mountpoint or data volumes
 
 ## Testing the service
 
@@ -122,8 +122,8 @@ You must have a working environment with the source code of this repository. Rea
 2. Jump into the container directory with `cd Services/php`
 3. Build the container using `docker build -t sv-php .`
 4. Run this container 
-  1. Interactively with `docker run -p 80:80 -v /data/logs/apache -it sv-php`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -p 80:80 -v /data/logs/apache -d sv-php`
+  1. Interactively with `docker run -p 80:80 -v /logs -it sv-php`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 80:80 -v /logs -d sv-php`
 
 
 ### Build & run a container using `docker-compose`

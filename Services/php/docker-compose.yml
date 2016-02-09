@@ -14,5 +14,5 @@ server:
     CONTAINER_INSTANCE: "fc23-service-php"
     SERVER_NAME: "localhost"
   volumes:
-    - "/tmp/container-fc23/logs/php:/data/logs/apache"
-    - "/tmp/container-fc23/php:/data/apache"
+    - "/tmp/container-fc23/logs/php:/logs"
+    - "/tmp/container-fc23/php:/data"

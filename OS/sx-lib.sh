@@ -1,6 +1,7 @@
 #!/bin/bash
 
-export TERM=dumb
+export TERM=xterm
+pid=0
 
 function check_environment {
     if [ ! -v CONTAINER_TYPE ]; then
@@ -39,8 +40,26 @@ function display_container_header {
     echo "+====================================================="
 }
 
-function display_container_started {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is now running..."
-    echo "+====================================================="
+function stop_handler {
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    echo "| Container $HOSTNAME is now STOPPED" | tee -a $STARTUPLOG
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    if [ $pid -ne 0 ]; then
+        kill -SIGTERM "$pid"
+        wait "$pid"
+    fi
+    exit 143; # 128 + 15 -- SIGTERM
+}
+
+function start_service {
+    trap 'kill ${!}; stop_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    echo "| Container $HOSTNAME is now RUNNING" | tee -a $STARTUPLOG
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    tail -f /dev/null &
+    pid="$!"
+    while true
+    do
+      tail -f /dev/null & wait ${!}
+    done
 }

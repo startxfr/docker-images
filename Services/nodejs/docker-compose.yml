@@ -12,5 +12,5 @@ server:
     CONTAINER_SERVICE: "nodejs"
     CONTAINER_INSTANCE: "fc23-service-nodejs"
   volumes:
-    - "/tmp/container-fc23/logs/nodejs:/data/logs/nodejs"
-    - "/tmp/container-fc23/nodejs:/data/nodejs"
+    - "/tmp/container-fc23/logs/nodejs:/logs"
+    - "/tmp/container-fc23/nodejs:/data"

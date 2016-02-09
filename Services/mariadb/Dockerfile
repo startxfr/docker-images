@@ -6,9 +6,9 @@ RUN dnf -y install  mariadb-common mariadb-libs mariadb-config mariadb-errmsg ma
     && dnf clean all && \
     mkdir -p /tmp/sql 
 ENV MY_CONF=/etc/my.cnf \
-    STARTUPLOG=/data/logs/mariadb/startup.log \
-    LOG_PATH=/data/logs/mariadb \
-    DATA_PATH=/data/mariadb \
+    STARTUPLOG=/logs/startup.log \
+    LOG_PATH=/logs \
+    DATA_PATH=/data \
     LOADSQL_PATH=/tmp/sql 
 COPY *.sh /bin/
 COPY my.cnf $MY_CONF
