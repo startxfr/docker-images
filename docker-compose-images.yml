@@ -121,19 +121,19 @@ fc23-service-memcache:
   volumes_from:
     - fc23-data
 
-#fedora_app_pma:
-#  image: startx/sv-phpmyadmin
-#  container_name: "application-phpmyadmin"
-#  ports:
-#    - "84:80"
-#  links:
-#    - fc23-service-mariadb:mariadb
-#  environment:
-#    CONTAINER_TYPE: "application"
-#    CONTAINER_SERVICE: "phpmyadmin"
-#    CONTAINER_INSTANCE: "application-phpmyadmin"
-#  volumes_from:
-#    - fc23-data
+fedora_app_pma:
+  image: startx/sv-phpmyadmin
+  container_name: "fc23-application-phpmyadmin"
+  ports:
+    - "84:80"
+  links:
+    - fc23-service-mariadb:mariadb
+  environment:
+    CONTAINER_TYPE: "application"
+    CONTAINER_SERVICE: "phpmyadmin"
+    CONTAINER_INSTANCE: "fc23-application-phpmyadmin"
+  volumes_from:
+    - fc23-data
 
 #fedora_app_rockmongo:
 #  build: Applications/rockmongo/

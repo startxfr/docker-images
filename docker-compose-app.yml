@@ -2,6 +2,6 @@ fc23-application-pma:
   build: Applications/phpmyadmin/
   container_name: "application-phpmyadmin"
 
-fc23-application-rockmongo:
-  build: Applications/rockmongo/
-  container_name: "application-rockmongo"
+#fc23-application-rockmongo:
+#  build: Applications/rockmongo/
+#  container_name: "application-rockmongo"

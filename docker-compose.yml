@@ -43,10 +43,11 @@ fc23-service-memcache:
     file: Services/memcache/docker-compose.yml
     service: server
 
-fc23_app_pma:
-  build: Applications/phpmyadmin/
-  container_name: "application-phpmyadmin"
+fc23-app-pma:
+  extends:
+    file: Applications/phpmyadmin/docker-compose.yml
+    service: application
 
-#fc23_app_rockmongo:
+#fc23-app-rockmongo:
 #  build: Applications/rockmongo/
 #  container_name: "application-rockmongo"
