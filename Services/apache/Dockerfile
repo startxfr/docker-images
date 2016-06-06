@@ -18,7 +18,8 @@ RUN chmod 775 /bin/run.sh /bin/sx-httpd.sh && \
     touch $STARTUPLOG
 COPY ./ $APP_PATH
 RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/run.sh $APP_PATH/sx-httpd.sh && \
-    chown -R apache:apache $APP_PATH $DATA_PATH $LOG_PATH
+    chown -R apache:apache $APP_PATH $DATA_PATH $LOG_PATH && \
+    rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf
 
 EXPOSE 80 443
 VOLUME [$DATA_PATH,$LOG_PATH]
