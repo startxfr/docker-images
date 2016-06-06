@@ -3,9 +3,7 @@ MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
 # Install minimal packages
-RUN dnf -y install deltarpm pwgen tar python-dnf-plugins-extras-migrate && \
-    dnf-2 migrate && \
-    dnf -y install psmisc procps coreutils findutils iputils net-tools wget logrotate zip && \
+RUN dnf -y install pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip && \
     dnf clean all 
 ENV STARTUPLOG=/logs/startup.log \
     LOG_PATH=/logs
