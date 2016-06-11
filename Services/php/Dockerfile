@@ -12,9 +12,7 @@ COPY httpd.conf $HTTPDCONF
 COPY php.ini /etc/php.d/sx.ini
 COPY run.sh /bin/
 RUN chmod 775 /bin/run.sh && \
-    chmod ug+r $HTTPDCONF  && \
-    mkdir /etc/httpd/logs &> /dev/null && \
-    chown -R apache:apache /etc/httpd/logs &> /dev/null
+    chmod ug+r $HTTPDCONF
 COPY ./ $APP_PATH
 RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/run.sh && \
     chown -R apache:apache $DATA_PATH $APP_PATH $LOG_PATH && \
