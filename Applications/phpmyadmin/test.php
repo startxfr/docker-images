@@ -1,4 +1,5 @@
 <?php
-print_r($_SERVER);
-print_r($_ENV);
+var_dump($_SERVER);
+var_dump($_ENV);
+var_dump(getenv('MARIADB_ENV_MYSQL_USER'));
 ?>
