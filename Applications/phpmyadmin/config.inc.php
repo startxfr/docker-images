@@ -33,8 +33,9 @@ if(getenv('MARIADB_ENV_MYSQL_USER') != '') {
     $cfg['Servers'][$i]['port'] = getenv('MARIADB_PORT_3306_TCP_PORT');
     $cfg['Servers'][$i]['user'] = getenv('MARIADB_ENV_MYSQL_USER');
     $cfg['Servers'][$i]['password'] = getenv('MARIADB_ENV_MYSQL_PASSWORD');
-    
 }
+
+
 if(getenv('MARIADB2_ENV_MYSQL_USER') != '') {
     $i++;
     $cfg['Servers'][$i]['extension'] = 'mysqli';
