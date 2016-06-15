@@ -8,7 +8,6 @@ RUN cd $APP_PATH && \
     mv phpMyAdmin-4.5.2-all-languages/* ./  && \
     rm -rf phpMyAdmin-4.5.2-all-languages
 COPY config.inc.php $APP_PATH/config.inc.php
-COPY test.php $APP_PATH/test.php
 
 EXPOSE 80 443
 VOLUME [$DATA_PATH,$LOG_PATH]
