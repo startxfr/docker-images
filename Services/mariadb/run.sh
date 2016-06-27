@@ -46,20 +46,23 @@ function begin_config {
     echo "=> BEGIN MARIADB CONFIGURATION"
     if [[ ! -d $DATA_PATH ]]; then
         echo "data directory $DATA_PATH not found"
-        mkdir -p $DATA_PATH; chmod 0774 $DATA_PATH
+        mkdir -p $DATA_PATH; 
+        mkdir -p $DATA_PATH/store; 
+        chmod 0774 $DATA_PATH;
+        chown mysql:mysql $DATA_PATH; 
         echo "data directory $DATA_PATH CREATED"
     else 
         echo "data directory $DATA_PATH EXIST"
     fi
     if [[ ! -d $LOG_PATH ]]; then
         echo "log directory $LOG_PATH not found"
-        mkdir -p $LOG_PATH; chmod 0774 $LOG_PATH
+        mkdir -p $LOG_PATH; 
+        chmod 0774 $LOG_PATH;
+        chown mysql:mysql $LOG_PATH; 
         echo "log directory $LOG_PATH CREATED"
     else 
         echo "log directory $LOG_PATH EXIST"
     fi
-    chmod 0774 $DATA_PATH $LOG_PATH; 
-    chown mysql:mysql $DATA_PATH $LOG_PATH; 
     if [[ -d $LOADSQL_PATH ]]; then
         echo "sql directory $LOADSQL_PATH EXIST"
         chmod 0774 $LOADSQL_PATH; 
@@ -67,10 +70,13 @@ function begin_config {
     fi
     echo "" >> $MY_CONF
     echo "[mysqld]" >> $MY_CONF
+    echo "socket=/var/lib/mysql/mysql.sock" >> $MY_CONF
+    echo "pid-file=/var/run/mysqld/mysqld.pid" >> $MY_CONF
     echo "datadir=$DATA_PATH" >> $MY_CONF
     echo "log-error=$LOG_PATH/mysqld.log" >> $MY_CONF
     echo "" >> $MY_CONF
     echo "[mariadb]" >> $MY_CONF
+    echo "pid-file=/var/run/mariadb/mariadb.pid" >> $MY_CONF
     echo "datadir=$DATA_PATH" >> $MY_CONF
     echo "log-error=$LOG_PATH/mariadb.log" >> $MY_CONF
     VOLUME_HOME=$DATA_PATH/mysql
