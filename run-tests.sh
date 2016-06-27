@@ -17,6 +17,10 @@ echo "========> TESTING SERVICES Containers (latest)"
 sudo docker-compose -f docker-compose-sv.yml up -d
 echo "========> TESTING APPLICATIONS Containers (latest)"
 sudo docker-compose -f docker-compose-app.yml up -d
+echo "========> RESULT"
+sudo docker-compose -f docker-compose-os.yml ps
+sudo docker-compose -f docker-compose-sv.yml ps
+sudo docker-compose -f docker-compose-app.yml ps
 echo "=================> TEST ENDED SUCCESSFULLY"
 exit 0;
 
