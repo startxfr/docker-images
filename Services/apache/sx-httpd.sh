@@ -89,6 +89,7 @@ function setEnvironmentVariableInFile {
 
 
 function setSys2HttpEnvironmentVariable {
+    echo "adding environement to $1" | tee -a $STARTUPLOG
     echo "" >> $1
     for _curVar in `env | awk -F = '{print $1}'`;do
         setEnvironmentVariableInFile $1 ${_curVar} ${!_curVar}

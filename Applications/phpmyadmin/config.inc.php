@@ -35,7 +35,6 @@ if(getenv('MARIADB_ENV_MYSQL_USER') != '') {
     $cfg['Servers'][$i]['password'] = getenv('MARIADB_ENV_MYSQL_PASSWORD');
 }
 
-
 if(getenv('MARIADB2_ENV_MYSQL_USER') != '') {
     $i++;
     $cfg['Servers'][$i]['extension'] = 'mysqli';
@@ -44,6 +43,16 @@ if(getenv('MARIADB2_ENV_MYSQL_USER') != '') {
     $cfg['Servers'][$i]['port'] = getenv('MARIADB2_PORT_3306_TCP_PORT');
     $cfg['Servers'][$i]['user'] = getenv('MARIADB2_ENV_MYSQL_USER');
     $cfg['Servers'][$i]['password'] = getenv('MARIADB2_ENV_MYSQL_PASSWORD');
+}
+
+if(getenv('DB_ENV_MYSQL_USER') != '') {
+    $i++;
+    $cfg['Servers'][$i]['extension'] = 'mysqli';
+    $cfg['Servers'][$i]['auth_type'] = 'config';
+    $cfg['Servers'][$i]['host'] = getenv('DB_PORT_3306_TCP_ADDR');
+    $cfg['Servers'][$i]['port'] = getenv('DB_PORT_3306_TCP_PORT');
+    $cfg['Servers'][$i]['user'] = getenv('DB_ENV_MYSQL_USER');
+    $cfg['Servers'][$i]['password'] = getenv('DB_ENV_MYSQL_PASSWORD');
 }
 /**
  * phpMyAdmin configuration storage settings.
