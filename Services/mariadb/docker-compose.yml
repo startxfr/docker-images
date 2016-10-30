@@ -5,6 +5,7 @@ server:
   memswap_limit: 1g
   cpu_shares: 8
   restart: "on-failure:2"
+  privileged: true
   ports:
     - "9211:3306"
   environment:

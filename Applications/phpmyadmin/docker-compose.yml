@@ -5,6 +5,7 @@ application:
   memswap_limit: 500m
   cpu_shares: 2
   restart: "on-failure:2"
+  privileged: true
   ports:
     - "9215:80"
     - "9216:443"
