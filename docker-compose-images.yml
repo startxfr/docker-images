@@ -121,19 +121,19 @@ centos6-service-memcache:
   volumes_from:
     - "centos6-data"
 
-#centos6-application-pma:
-#  image: startx/app-phpmyadmin:centos6
-#  container_name: "application-phpmyadmin"
-#  ports:
-#    - "84:80"
-#  links:
-#    - centos6-service-mariadb:mariadb
-#  environment:
-#    CONTAINER_TYPE: "application"
-#    CONTAINER_SERVICE: "phpmyadmin"
-#    CONTAINER_INSTANCE: "centos6-application-phpmyadmin"
-#  volumes_from:
-#    - "centos6-data"
+centos6-application-pma:
+  image: startx/app-phpmyadmin:centos6
+  container_name: "application-phpmyadmin"
+  ports:
+    - "84:80"
+  links:
+    - centos6-service-mariadb:mariadb
+  environment:
+    CONTAINER_TYPE: "application"
+    CONTAINER_SERVICE: "phpmyadmin"
+    CONTAINER_INSTANCE: "centos6-application-phpmyadmin"
+  volumes_from:
+    - "centos6-data"
 
 #centos6-application-rockmongo:
 #  image: startx/app-rockmongo:centos6

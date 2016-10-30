@@ -13,11 +13,11 @@ set_listen_addresses() {
 function check_postgresql_environment {
     check_environment
     if [ ! -v DATA_PATH ]; then
-        DATA_PATH="/data/postgresql"
+        DATA_PATH="/data"
         export DATA_PATH
     fi
     if [ ! -v LOG_PATH ]; then
-        LOG_PATH="/data/logs/postgresql"
+        LOG_PATH="/logs"
         export LOG_PATH
     fi
 }
@@ -92,6 +92,12 @@ function begin_config {
         echo "Installing PostgreSQL in $DATA_PATH is DONE !"
         chown root:postgres $STARTUPLOG
         chmod ug+w $STARTUPLOG
+        config_startserver
+        config_createadmin
+        config_createuser
+        config_createdatabase
+        config_importsql
+        config_stopserver
     fi
 }
 
@@ -203,29 +209,33 @@ function end_config {
     echo "=> END POSTGRESQL CONFIGURATION"
 }
 
-# Start the postgresql server as a deamon and execute it inside 
-# the running shell
-function start_daemon {
-    echo "=> Starting postgresql daemon ..." | tee -a $STARTUPLOG
-    display_container_started | tee -a $STARTUPLOG
-    su - postgres -c "pg_ctl -D $DATA_PATH -w start "
-    echo "postgres daemon is started" > /tmp/started
-    exec tail -f /tmp/started
+function stop_postgres_handler {
+    su - postgres -c "pg_ctl -D $DATA_PATH -m fast -w stop" 
+    set_listen_addresses '*'
+    sleep 2
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    echo "| Container $HOSTNAME is now STOPPED" | tee -a $STARTUPLOG
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    exit 143; # 128 + 15 -- SIGTERM
 }
 
+# Start the postgresql server as a deamon and execute it inside 
+# the running shell
+function start_service_postgres {
+    trap 'kill ${!}; stop_postgres_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    echo "| Container $HOSTNAME is now RUNNING" | tee -a $STARTUPLOG
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    su - postgres -c "pg_ctl -D $DATA_PATH -w start " &
+    while true
+    do
+      tail -f /dev/null & wait ${!}
+    done
+}
 
-if [[ "$0" == *"run.sh" && ! $1 = "" ]];then
-    eval "$@"; 
-fi
 
 check_postgresql_environment | tee -a $STARTUPLOG
 display_container_postgresql_header | tee -a $STARTUPLOG
 begin_config | tee -a $STARTUPLOG
-config_startserver | tee -a $STARTUPLOG
-config_createadmin | tee -a $STARTUPLOG
-config_createuser | tee -a $STARTUPLOG
-config_createdatabase | tee -a $STARTUPLOG
-config_importsql | tee -a $STARTUPLOG
-config_stopserver | tee -a $STARTUPLOG
 end_config | tee -a $STARTUPLOG
-start_daemon
+start_service_postgres

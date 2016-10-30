@@ -8,13 +8,20 @@ git clone https://github.com/startxfr/docker-images.git .
 git checkout centos6
 echo "========> TESTING OS Container (CentOS 6)"
 sudo docker-compose -f docker-compose-os.yml build
+echo "========> BUILDING SERVICES Containers (CentOS 6)"
+sudo docker-compose -f docker-compose-sv.yml build
+echo "========> BUILDING APPLICATIONS Containers (CentOS 6)"
+sudo docker-compose -f docker-compose-app.yml build
+echo "========> TESTING OS Container (CentOS 6)"
 sudo docker-compose -f docker-compose-os.yml up -d
 echo "========> TESTING SERVICES Containers (CentOS 6)"
-sudo docker-compose -f docker-compose-sv.yml build
 sudo docker-compose -f docker-compose-sv.yml up -d
-#echo "========> TESTING APPLICATIONS Containers (CentOS 6)"
-#sudo docker-compose -f docker-compose-app.yml build
-#sudo docker-compose -f docker-compose-app.yml up -d
+echo "========> TESTING APPLICATIONS Containers (CentOS 6)"
+sudo docker-compose -f docker-compose-app.yml up -d
+echo "========> RESULT"
+sudo docker-compose -f docker-compose-os.yml ps
+sudo docker-compose -f docker-compose-sv.yml ps
+sudo docker-compose -f docker-compose-app.yml ps
 echo "=================> TEST ENDED SUCCESSFULLY"
 exit 0;
 

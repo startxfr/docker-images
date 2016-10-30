@@ -14,5 +14,5 @@ server:
     CONTAINER_INSTANCE: "centos6-service-php"
     SERVER_NAME: "localhost"
   volumes:
-    - "/tmp/container-centos6/logs/php:/data/logs/apache"
-    - "/tmp/container-centos6/php:/data/apache"
+    - "/tmp/container-centos6/logs/php:/logs"
+    - "/tmp/container-centos6/php:/data"

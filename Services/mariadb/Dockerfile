@@ -8,9 +8,9 @@ RUN yum -y remove mysql-server mysql && \
     && yum clean all && \
     mkdir -p /tmp/sql 
 ENV MY_CONF=/etc/my.cnf \
-    STARTUPLOG=/data/logs/mariadb/startup.log \
-    LOG_PATH=/data/logs/mariadb \
-    DATA_PATH=/data/mariadb \
+    STARTUPLOG=/logs/startup.log \
+    LOG_PATH=/logs \
+    DATA_PATH=/data \
     LOADSQL_PATH=/tmp/sql 
 COPY *.sh /bin/
 COPY my.cnf $MY_CONF
@@ -24,5 +24,5 @@ RUN chmod 775 /bin/run.sh && \
     chown -R mysql:mysql $LOG_PATH $DATA_PATH $LOADSQL_PATH
 
 EXPOSE 3306
-VOLUME [$DATA_PATH,$LOG_PATH]
-CMD ["/bin/run.sh"]
+VOLUME [ $DATA_PATH , $LOG_PATH ]
+CMD [ "/bin/run.sh" ]

@@ -16,5 +16,5 @@ server:
     POSTGRESQL_PASSWORD: "pwd-test"
     POSTGRESQL_DATABASE: "db_test"
   volumes:
-    - "/tmp/container-centos6/logs/postgresql:/data/logs/postgresql"
-    - "/tmp/container-centos6/postgresql:/data/postgresql"
+    - "/tmp/container-centos6/logs/postgresql:/logs"
+    - "/tmp/container-centos6/postgresql:/data"

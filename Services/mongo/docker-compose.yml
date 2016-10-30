@@ -13,5 +13,5 @@ server:
     CONTAINER_SERVICE: "mongo"
     CONTAINER_INSTANCE: "centos6-service-mongo"
   volumes:
-    - "/tmp/container-centos6/logs/mongodb:/data/logs/mongodb"
-    - "/tmp/container-centos6/mongodb:/data/mongodb"
+    - "/tmp/container-centos6/logs/mongodb:/logs"
+    - "/tmp/container-centos6/mongodb:/data"

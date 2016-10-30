@@ -9,3 +9,5 @@ centos6:
     CONTAINER_TYPE: "os"
     CONTAINER_SERVICE: "fedora"
     CONTAINER_INSTANCE: "os-centos6"
+  volumes:
+    - "/tmp/container/logs/centos6:/logs"

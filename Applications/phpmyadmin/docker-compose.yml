@@ -1,4 +1,4 @@
-server:
+application:
   build: ./
   container_name: "centos6-application-phpmyadmin"
   mem_limit: 500m
@@ -14,5 +14,5 @@ server:
     CONTAINER_INSTANCE: "centos6-application-phpmyadmin"
     SERVER_NAME: "localhost"
   volumes:
-    - "/tmp/container-centos6/logs/phpmyadmin:/data/logs/apache"
-    - "/tmp/container-centos6/phpmyadmin:/data/apache"
+    - "/tmp/container-centos6/logs/phpmyadmin:/logs"
+    - "/tmp/container-centos6/phpmyadmin:/data"
