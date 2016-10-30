@@ -7,7 +7,7 @@ fedora23:
   restart: "on-failure:2"
   environment:
     CONTAINER_TYPE: "os"
-    CONTAINER_SERVICE: "fedora"
+    CONTAINER_SERVICE: "fedora23"
     CONTAINER_INSTANCE: "os-fedora23"
   volumes:
     - "/tmp/container-fc23/logs/fedora:/logs"
