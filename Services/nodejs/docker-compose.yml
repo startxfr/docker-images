@@ -6,7 +6,7 @@ server:
   cpu_shares: 4
   restart: "on-failure:2"
   ports:
-    - "9212:8000"
+    - "9212:8080"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "nodejs"

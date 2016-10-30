@@ -39,7 +39,7 @@ service:
   environment:
     CONTAINER_INSTANCE: "service-nodejs-fc21"
   ports:
-    - "1000:8000"
+    - "1000:8080"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
@@ -49,7 +49,7 @@ service:
   environment:
     CONTAINER_INSTANCE: "service-nodejs-fc21"
   expose:
-    - "8000"
+    - "8080"
 ```
 * sample docker-compose.yml using data container
 ```
@@ -92,7 +92,7 @@ CMD ["/bin/run.sh"]
 
 | Port  | Description                                                              |
 |-------|--------------------------------------------------------------------------|
-| 8000  | network port used to communicate with the running application. Network protocol depend on the running app content.
+| 8080  | network port used to communicate with the running application. Network protocol depend on the running app content.
 
 ## Exposed volumes
 
@@ -121,8 +121,8 @@ You must have a working environment with the source code of this repository. Rea
 2. Jump into the container directory with `cd Services/nodejs`
 3. Build the container using `docker build -t sv-nodejs .`
 4. Run this container 
-  1. Interactively with `docker run -p 8000:8000 -v /logs -it sv-nodejs`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -p 8000:8000 -v /logs -d sv-nodejs`
+  1. Interactively with `docker run -p 8080:8080 -v /logs -it sv-nodejs`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 8080:8080 -v /logs -d sv-nodejs`
 
 
 ### Build & run a container using `docker-compose`
