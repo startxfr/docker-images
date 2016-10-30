@@ -14,5 +14,5 @@ server:
     CONTAINER_INSTANCE: "fc22-service-apache"
     SERVER_NAME: "localhost"
   volumes:
-    - "/tmp/container-fc22/logs/apache:/data/logs/apache"
-    - "/tmp/container-fc22/apache:/data/apache"
+    - "/tmp/container-fc22/logs/apache:/logs"
+    - "/tmp/container-fc22/apache:/data"

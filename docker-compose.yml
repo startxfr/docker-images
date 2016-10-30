@@ -43,9 +43,10 @@ fc22-service-memcache:
     file: Services/memcache/docker-compose.yml
     service: server
 
-fc22_app_pma:
-  build: Applications/phpmyadmin/
-  container_name: "application-phpmyadmin"
+fc22-app-pma:
+  extends:
+    file: Applications/phpmyadmin/docker-compose.yml
+    service: application
 
 #fc22_app_rockmongo:
 #  build: Applications/rockmongo/

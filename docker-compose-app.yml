@@ -1,7 +1,8 @@
 fc22-application-pma:
-  build: Applications/phpmyadmin/
-  container_name: "application-phpmyadmin"
+  extends:
+    file: Applications/phpmyadmin/docker-compose.yml
+    service: application
 
-fc22-application-rockmongo:
-  build: Applications/rockmongo/
-  container_name: "application-rockmongo"
+#fc22-application-rockmongo:
+#  build: Applications/rockmongo/
+#  container_name: "application-rockmongo"

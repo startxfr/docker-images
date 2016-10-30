@@ -12,4 +12,4 @@ server:
     CONTAINER_SERVICE: "ooconv"
     CONTAINER_INSTANCE: "fc22-service-ooconv"
   volumes:
-    - "/tmp/container-fc22/logs/ooconv:/data/logs/ooconv"
+    - "/tmp/container-fc22/logs/ooconv:/logs"

@@ -41,6 +41,15 @@ if(getenv('MARIADB2_ENV_MYSQL_USER') != '') {
     $cfg['Servers'][$i]['controluser'] = getenv('MARIADB2_ENV_MYSQL_USER');
     $cfg['Servers'][$i]['controlpass'] = getenv('MARIADB2_ENV_MYSQL_PASSWORD');
 }
+
+if(getenv('DB_ENV_MYSQL_USER') != '') {
+    $i++;
+    $cfg['Servers'][$i]['extension'] = 'mysqli';
+    $cfg['Servers'][$i]['host'] = getenv('DB_ENV_CONTAINER_INSTANCE');
+    $cfg['Servers'][$i]['controlhost'] = '';
+    $cfg['Servers'][$i]['controluser'] = getenv('DB_ENV_MYSQL_USER');
+    $cfg['Servers'][$i]['controlpass'] = getenv('DB_ENV_MYSQL_PASSWORD');
+}
 /**
  * phpMyAdmin configuration storage settings.
  */
