@@ -2,10 +2,10 @@ FROM startx/sv-apache
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
-RUN dnf -y install php php-pecl-mongo php-cli php-pear \
-        php-gd php-mcrypt php-mysqlnd php-soap php-pecl-xdebug \
+RUN dnf -y install php php-cli php-pear \
+        php-gd php-mcrypt php-mysqlnd php-soap \
         php-pdo php-process php-common php-mbstring \
-        php-bcmath php-pecl-zip php-php-gettext php-tcpdf \
+        php-bcmath php-php-gettext php-tcpdf \
         php-tcpdf-dejavu-sans-fonts php-tidy \
     && dnf clean all  
 COPY httpd.conf $HTTPDCONF
