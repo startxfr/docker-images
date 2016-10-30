@@ -14,5 +14,5 @@ server:
     CONTAINER_INSTANCE: "fc21-service-apache"
     SERVER_NAME: "localhost"
   volumes:
-    - "/tmp/container-fc21/logs/apache:/data/logs/apache"
-    - "/tmp/container-fc21/apache:/data/apache"
+    - "/tmp/container-fc21/logs/apache:/logs"
+    - "/tmp/container-fc21/apache:/data"

@@ -25,8 +25,8 @@ service:
     CONTAINER_SERVICE: "nodejs"
     CONTAINER_INSTANCE: "service-nodejs-fc21"
   volumes:
-    - "/tmp/container-fc21/logs/nodejs:/data/logs/nodejs"
-    - "/tmp/container-fc21/nodejs:/data/nodejs"
+    - "/tmp/container-fc21/logs/nodejs:/logs"
+    - "/tmp/container-fc21/nodejs:/data"
 ```
 
 ## Docker-compose in various situations
@@ -84,8 +84,8 @@ CMD ["/bin/run.sh"]
 | CONTAINER_INSTANCE        | `string` | `yes`     | Container name. Should be uning to get fine grained log and application reporting
 | CONTAINER_TYPE            | `string` | `no`      | Container family (os, service, application. could be enhanced 
 | CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
-| LOG_PATH                  | `auto`   | `auto`    | default set to /data/logs/nodejs and used as a volume mountpoint
-| APP_PATH                  | `auto`   | `auto`    | default set to /data/nodejs and used as a volume mountpoint
+| LOG_PATH                  | `auto`   | `auto`    | default set to /logs and used as a volume mountpoint
+| APP_PATH                  | `auto`   | `auto`    | default set to /data and used as a volume mountpoint
 | TMP_APP_PATH              | `auto`   | `auto`    | default set to /tmp/nodejs and used to hold app content and copy to $APP_PATH on startup (if $APP_PATH is empty)
 
 ## Exposed port
@@ -98,8 +98,8 @@ CMD ["/bin/run.sh"]
 
 | Container directory  | Description                                                              |
 |----------------------|--------------------------------------------------------------------------|
-| /data/logs/nodejs    | log directory used to record container and nodejs logs
-| /data/nodejs         | data directory served by nodejs. If empty will be filled with app on startup. In other case use content from $TMP_APP_PATH directory
+| /logs                | log directory used to record container and nodejs logs
+| /data                | data directory served by nodejs. If empty will be filled with app on startup. In other case use content from $TMP_APP_PATH directory
 
 ## Testing the service
 
@@ -121,8 +121,8 @@ You must have a working environment with the source code of this repository. Rea
 2. Jump into the container directory with `cd Services/nodejs`
 3. Build the container using `docker build -t sv-nodejs .`
 4. Run this container 
-  1. Interactively with `docker run -p 8000:8000 -v /data/logs/nodejs -it sv-nodejs`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -p 8000:8000 -v /data/logs/nodejs -d sv-nodejs`
+  1. Interactively with `docker run -p 8000:8000 -v /logs -it sv-nodejs`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 8000:8000 -v /logs -d sv-nodejs`
 
 
 ### Build & run a container using `docker-compose`

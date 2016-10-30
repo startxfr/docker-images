@@ -24,7 +24,7 @@ service:
     CONTAINER_SERVICE: "memcache"
     CONTAINER_INSTANCE: "service-memcache-fc21"
   volumes:
-    - "/tmp/container-fc21/logs/memcache:/data/logs/memcache"
+    - "/tmp/container-fc21/logs/memcache:/logs"
 ```
 
 ## Docker-compose in various situations
@@ -67,7 +67,7 @@ CMD ["/bin/run.sh"]
 | CONTAINER_TYPE            | `string` | `no`      | Container family (os, service, application. could be enhanced 
 | CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
-| LOG_PATH                  | `auto`   | `auto`    | default set to /data/logs/memcache and used as a volume mountpoint
+| LOG_PATH                  | `auto`   | `auto`    | default set to /logs and used as a volume mountpoint
 
 ## Exposed port
 
@@ -79,8 +79,8 @@ CMD ["/bin/run.sh"]
 
 | Container directory  | Description                                                              |
 |----------------------|--------------------------------------------------------------------------|
-| /data/logs/memcache  | log directory used to record container and memcache logs
-| /data/memcache       | data directory served by memcache. If empty will be filled with app on startup. In other case use content from mountpoint or data volumes
+| /logs                | log directory used to record container and memcache logs
+| /data                | data directory served by memcache. If empty will be filled with app on startup. In other case use content from mountpoint or data volumes
 
 ## Testing the service
 
@@ -102,8 +102,8 @@ You must have a working environment with the source code of this repository. Rea
 2. Jump into the container directory with `cd Services/memcache`
 3. Build the container using `docker build -t sv-memcache .`
 4. Run this container 
-  1. Interactively with `docker run -p 11211:11211 -v /data/logs/memcache -it sv-memcache`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -p 11211:11211 -v /data/logs/memcache -d sv-memcache`
+  1. Interactively with `docker run -p 11211:11211 -v /logs -it sv-memcache`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 11211:11211 -v /logs -d sv-memcache`
 
 
 ### Build & run a container using `docker-compose`

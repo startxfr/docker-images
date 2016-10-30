@@ -2,10 +2,6 @@
 source /bin/sx-lib.sh
 source /bin/sx-httpd.sh
 
-if [[ "$0" == *"run.sh" && ! $1 = "" ]];then
-    eval "$@"; 
-fi
-
 function display_container_php_header {
     echo "+====================================================="
     echo "| Container   : $HOSTNAME"
@@ -33,31 +29,7 @@ function display_container_php_header {
     echo "+====================================================="
 }
 
-# Begin configuration before starting daemonized process
-# and start generating host keys
-function begin_php_config {
-    echo "=> BEGIN APACHE + PHP CONFIGURATION"
-    if [[ -d $TMP_APP_PATH ]]; then
-        if [ "$(ls -A $TMP_APP_PATH)" ]; then
-            echo "COPY application from $TMP_APP_PATH into $APP_PATH"
-            FILE_LIST=$(find $TMP_APP_PATH -maxdepth 1 -mindepth 1 -printf "%f\n")
-            for FILE in $FILE_LIST; do 
-                echo -n "adding $APP_PATH/$FILE"
-                cp -r $TMP_APP_PATH/$FILE $APP_PATH/
-                echo " DONE"
-            done
-        fi
-    fi
-}
-
-# End configuration process just before starting daemon
-function end_php_config {
-    echo "=> END APACHE + PHP CONFIGURATION"
-    env | grep _ >> /etc/environment
-}
-
 check_httpd_environment | tee -a $STARTUPLOG
+setSys2HttpEnvironmentVariable $APP_PATH/.htaccess
 display_container_php_header | tee -a $STARTUPLOG
-begin_php_config | tee -a $STARTUPLOG
-end_php_config | tee -a $STARTUPLOG
-start_daemon
+start_service_httpd

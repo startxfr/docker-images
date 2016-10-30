@@ -24,8 +24,8 @@ service:
     CONTAINER_SERVICE: "mongo"
     CONTAINER_INSTANCE: "service-mongo-fc21"
   volumes:
-    - "/tmp/container-fc21/logs/mongo:/data/logs/mongo"
-    - "/tmp/container-fc21/mongo:/data/mongo"
+    - "/tmp/container-fc21/logs/mongo:/logs"
+    - "/tmp/container-fc21/mongo:/data"
 ```
 
 ## Docker-compose in various situations
@@ -83,8 +83,8 @@ CMD ["/bin/run.sh"]
 | CONTAINER_TYPE            | `string` | `no`      | Container family (os, service, application. could be enhanced 
 | CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
-| LOG_PATH                  | `auto`   | `auto`    | default set to /data/logs/mongo and used as a volume mountpoint
-| DATA_PATH                 | `auto`   | `auto`    | default set to /data/mongo and used as a volume mountpoint
+| LOG_PATH                  | `auto`   | `auto`    | default set to /logs and used as a volume mountpoint
+| DATA_PATH                 | `auto`   | `auto`    | default set to /data and used as a volume mountpoint
 
 ## Exposed port
 
@@ -96,8 +96,8 @@ CMD ["/bin/run.sh"]
 
 | Container directory  | Description                                                              |
 |----------------------|--------------------------------------------------------------------------|
-| /data/logs/mongo     | log directory used to record container and mongo logs
-| /data/mongo          | data directory served by mongo. If empty will be filled with app on startup. In other case use content from mountpoint or data volumes
+| /logs                | log directory used to record container and mongo logs
+| /data                | data directory served by mongo. If empty will be filled with app on startup. In other case use content from mountpoint or data volumes
 
 ## Testing the service
 
@@ -119,8 +119,8 @@ You must have a working environment with the source code of this repository. Rea
 2. Jump into the container directory with `cd Services/mongo`
 3. Build the container using `docker build -t sv-mongo .`
 4. Run this container 
-  1. Interactively with `docker run -p 27017:27017 -v /data/logs/mongo -it sv-mongo`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -p 27017:27017 -v /data/logs/mongo -d sv-mongo`
+  1. Interactively with `docker run -p 27017:27017 -v /logs -it sv-mongo`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 27017:27017 -v /logs -d sv-mongo`
 
 
 ### Build & run a container using `docker-compose`

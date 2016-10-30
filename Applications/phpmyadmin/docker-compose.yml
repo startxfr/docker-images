@@ -1,4 +1,4 @@
-server:
+application:
   build: ./
   container_name: "fc21-application-phpmyadmin"
   mem_limit: 500m
@@ -14,5 +14,5 @@ server:
     CONTAINER_INSTANCE: "fc21-application-phpmyadmin"
     SERVER_NAME: "localhost"
   volumes:
-    - "/tmp/container-fc21/logs/phpmyadmin:/data/logs/apache"
-    - "/tmp/container-fc21/phpmyadmin:/data/apache"
+    - "/tmp/container-fc21/logs/phpmyadmin:/logs"
+    - "/tmp/container-fc21/phpmyadmin:/data"

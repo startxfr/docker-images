@@ -16,5 +16,5 @@ server:
     MYSQL_PASSWORD: "pwd-test"
     MYSQL_DATABASE: "db_test"
   volumes:
-    - "/tmp/container-fc21/logs/mariadb:/data/logs/mariadb"
-    - "/tmp/container-fc21/mariadb:/data/mariadb"
+    - "/tmp/container-fc21/logs/mariadb:/logs"
+    - "/tmp/container-fc21/mariadb:/data"

@@ -12,4 +12,4 @@ server:
     CONTAINER_SERVICE: "memcache"
     CONTAINER_INSTANCE: "fc21-service-memcache"
   volumes:
-    - "/tmp/container-fc21/logs/memcache:/data/logs/memcache"
+    - "/tmp/container-fc21/logs/memcache:/logs"

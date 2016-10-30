@@ -5,9 +5,9 @@ USER root
 RUN yum -y install postgresql postgresql-libs postgresql-server \
     && yum clean all && \
     mkdir -p /tmp/sql 
-ENV STARTUPLOG=/data/logs/postgresql/startup.log \
-    LOG_PATH=/data/logs/postgresql \
-    DATA_PATH=/data/postgresql \
+ENV STARTUPLOG=/logs/startup.log \
+    LOG_PATH=/logs \
+    DATA_PATH=/data \
     LOADSQL_PATH=/tmp/sql 
 COPY *.sh /bin/
 COPY *.sql $LOADSQL_PATH/
@@ -19,5 +19,5 @@ RUN chmod 775 /bin/run.sh && \
     chmod -R 0700 $DATA_PATH
 
 EXPOSE 5432
-VOLUME [$DATA_PATH, $LOG_PATH]
-CMD ["/bin/run.sh"]
+VOLUME [ $DATA_PATH, $LOG_PATH ]
+CMD [ "/bin/run.sh" ]
