@@ -7,7 +7,7 @@ fedora22:
   restart: "on-failure:2"
   environment:
     CONTAINER_TYPE: "os"
-    CONTAINER_SERVICE: "fedora"
+    CONTAINER_SERVICE: "fedora22"
     CONTAINER_INSTANCE: "os-fedora22"
   volumes:
     - "/tmp/container/logs/fedora22:/logs"
