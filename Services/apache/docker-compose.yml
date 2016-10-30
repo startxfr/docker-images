@@ -14,5 +14,5 @@ server:
     CONTAINER_INSTANCE: "fc20-service-apache"
     SERVER_NAME: "localhost"
   volumes:
-    - "/tmp/container-fc20/logs/apache:/data/logs/apache"
-    - "/tmp/container-fc20/apache:/data/apache"
+    - "/tmp/container-fc20/logs/apache:/logs"
+    - "/tmp/container-fc20/apache:/data"

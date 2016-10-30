@@ -16,5 +16,5 @@ server:
     POSTGRESQL_PASSWORD: "pwd-test"
     POSTGRESQL_DATABASE: "db_test"
   volumes:
-    - "/tmp/container-fc20/logs/postgresql:/data/logs/postgresql"
-    - "/tmp/container-fc20/postgresql:/data/postgresql"
+    - "/tmp/container-fc20/logs/postgresql:/logs"
+    - "/tmp/container-fc20/postgresql:/data"

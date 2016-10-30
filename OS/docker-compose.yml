@@ -9,3 +9,5 @@ fedora20:
     CONTAINER_TYPE: "os"
     CONTAINER_SERVICE: "fedora"
     CONTAINER_INSTANCE: "os-fedora20"
+  volumes:
+    - "/tmp/container/logs/fedora20:/logs"

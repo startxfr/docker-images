@@ -42,22 +42,34 @@ function end_config {
     echo "=> END COUCHBASE CONFIGURATION"
 }
 
-# Start the couchbase server as a deamon and execute it inside 
-# the running shell
-function start_daemon {
-    echo "=> Starting couchbase daemon ..." | tee -a $STARTUPLOG
-    display_container_started | tee -a $STARTUPLOG
-#    exec couchbase -u daemon -v
-exec tail -f /etc/redhat-release
+function stop_couchbase_handler {
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    echo "| Container $HOSTNAME is now STOPPED" | tee -a $STARTUPLOG
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    if [ $pid -ne 0 ]; then
+        kill -SIGTERM "$pid"
+        wait "$pid"
+    fi
+    exit 143; # 128 + 15 -- SIGTERM
 }
 
-
-if [[ "$0" == *"run.sh" && ! $1 = "" ]];then
-    eval "$@"; 
-fi
+# Start the couchbase server as a deamon and execute it inside 
+# the running shell
+function start_service_couchbase {
+    trap 'kill ${!}; stop_couchbase_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    echo "| Container $HOSTNAME is now RUNNING" | tee -a $STARTUPLOG
+    echo "+=====================================================" | tee -a $STARTUPLOG
+#    exec couchbase -u daemon -v
+    exec tail -f /dev/null  &
+    while true
+    do
+      tail -f /dev/null & wait ${!}
+    done
+}
 
 check_environment | tee -a $STARTUPLOG
 display_container_couchbase_header | tee -a $STARTUPLOG
 begin_config | tee -a $STARTUPLOG
 end_config | tee -a $STARTUPLOG
-start_daemon
+start_service_couchbase

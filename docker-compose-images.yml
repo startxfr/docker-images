@@ -103,19 +103,19 @@ fc20-service-memcache:
   volumes_from:
     - fc20-data
 
-#fc20-application-pma:
-#  image: startx/sv-phpmyadmin
-#  container_name: "application-phpmyadmin"
-#  ports:
-#    - "84:80"
-#  links:
-#    - fc20-service-mariadb:mariadb
-#  environment:
-#    CONTAINER_TYPE: "application"
-#    CONTAINER_SERVICE: "phpmyadmin"
-#    CONTAINER_INSTANCE: "application-phpmyadmin"
-#  volumes_from:
-#    - fc20-data
+fc20-application-pma:
+  image: startx/sv-phpmyadmin
+  container_name: "application-phpmyadmin"
+  ports:
+    - "84:80"
+  links:
+    - fc20-service-mariadb:mariadb
+  environment:
+    CONTAINER_TYPE: "application"
+    CONTAINER_SERVICE: "phpmyadmin"
+    CONTAINER_INSTANCE: "application-phpmyadmin"
+  volumes_from:
+    - fc20-data
 
 #fc20-application-rockmongo:
 #  build: Applications/rockmongo/

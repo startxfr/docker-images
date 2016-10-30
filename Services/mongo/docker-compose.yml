@@ -13,5 +13,5 @@ server:
     CONTAINER_SERVICE: "mongo"
     CONTAINER_INSTANCE: "fc20-service-mongo"
   volumes:
-    - "/tmp/container-fc20/logs/mongodb:/data/logs/mongodb"
-    - "/tmp/container-fc20/mongodb:/data/mongodb"
+    - "/tmp/container-fc20/logs/mongodb:/logs"
+    - "/tmp/container-fc20/mongodb:/data"

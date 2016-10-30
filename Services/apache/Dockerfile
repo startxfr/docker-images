@@ -2,27 +2,23 @@ FROM startx/fedora:20
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
-RUN yum -y install httpd && \
-    yum clean all 
+RUN yum -y install httpd && yum clean all 
 ENV HTTPDCONF=/etc/httpd/conf.d/app.conf \
-    STARTUPLOG=/data/logs/apache/startup.log \
-    LOG_PATH=/data/logs/apache \
-    APP_PATH=/data/apache \
-    TMP_APP_PATH=/tmp/apache
+    STARTUPLOG=/logs/startup.log \
+    LOG_PATH=/logs \
+    APP_PATH=/app \
+    DATA_PATH=/data
 COPY httpd.conf $HTTPDCONF
 COPY *.sh /bin/
 RUN chmod 775 /bin/run.sh /bin/sx-httpd.sh && \
     chmod ug+r $HTTPDCONF && \
-    rm -f /etc/httpd/conf.d/autoindex.conf && \
-    rm -f /etc/httpd/conf.d/welcome.conf && \
-    mkdir -p $TMP_APP_PATH && \
-    mkdir -p $APP_PATH && \
-    mkdir -p $LOG_PATH && \
+    rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf && \
+    mkdir -p $DATA_PATH $APP_PATH $LOG_PATH && \
     touch $STARTUPLOG
-COPY ./ $TMP_APP_PATH
-RUN rm -f $TMP_APP_PATH/Dockerfile $TMP_APP_PATH/httpd.conf $TMP_APP_PATH/run.sh $TMP_APP_PATH/sx-httpd.sh && \
-    chown -R apache:apache $TMP_APP_PATH $APP_PATH $LOG_PATH
+COPY ./ $APP_PATH
+RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/run.sh $APP_PATH/sx-httpd.sh && \
+    chown -R apache:apache $APP_PATH $DATA_PATH $LOG_PATH
 
 EXPOSE 80 443
-VOLUME [$APP_PATH,$LOG_PATH]
-CMD ["/bin/run.sh"]
+VOLUME [ $DATA_PATH , $LOG_PATH ]
+CMD [ "/bin/run.sh" ]
