@@ -15,10 +15,10 @@ RUN chmod 775 /bin/run.sh && \
     mkdir -p $DATA_PATH && \
     mkdir -p $LOG_PATH && \
     touch $STARTUPLOG
-COPY *.json $APP_PATH/
 COPY *.js $APP_PATH/
+COPY *.json $APP_PATH/
 RUN cd $APP_PATH && npm install -production
 
 EXPOSE 8000
-VOLUME [$DATA_PATH,$LOG_PATH]
-CMD ["/bin/run.sh"]
+VOLUME [ $DATA_PATH , $LOG_PATH ]
+CMD [ "/bin/run.sh" ]

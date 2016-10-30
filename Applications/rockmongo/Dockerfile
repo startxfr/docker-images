@@ -22,4 +22,4 @@ RUN echo '<?php phpInfo(); ?>' > /var/www/html/info.php
 # Expose ports
 EXPOSE 80
 
-CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+CMD [ "/usr/sbin/httpd", "-D", "FOREGROUND" ]

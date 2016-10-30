@@ -75,3 +75,23 @@ function start_service_httpd {
       tail -f /dev/null & wait ${!}
     done
 }
+
+
+
+# set env var $2 (val $3) in file $1
+function setEnvironmentVariableInFile {
+    if [ -z "$3" ]; then
+            echo "Environment variable '$2' not set."
+            return
+    fi
+    echo "SetEnv $2 $3" >> $1
+}
+
+
+function setSys2HttpEnvironmentVariable {
+    echo "adding environement to $1" | tee -a $STARTUPLOG
+    echo "" >> $1
+    for _curVar in `env | awk -F = '{print $1}'`;do
+        setEnvironmentVariableInFile $1 ${_curVar} ${!_curVar}
+    done
+}

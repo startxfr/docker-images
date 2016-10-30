@@ -2,8 +2,8 @@ server:
   build: ./
   container_name: "fc23-service-nodejs"
   mem_limit: 1g
-  memswap_limit: 1g
-  cpu_shares: 5
+  memswap_limit: 2g
+  cpu_shares: 4
   restart: "on-failure:2"
   ports:
     - "9221:8000"
