@@ -1,4 +1,5 @@
 #!/bin/bash
+
 echo "=================> STARTING TEST"
 echo "=================> SETUP TEST ENVIRONMENT"
 set -ev
