@@ -19,5 +19,4 @@ RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/run.sh && \
     chmod ug+r -R $DATA_PATH $APP_PATH
 
 EXPOSE 80 443
-VOLUME [ $DATA_PATH , $LOG_PATH ]
 CMD [ "/bin/run.sh" ]
