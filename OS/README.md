@@ -6,7 +6,7 @@ This container contain updated core OS rpm (kernel, libs,...) as well as usefull
 please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
 or [other OS distributions and flavours](https://github.com/startxfr/docker-images/OS#container-flavours)
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/fedora) | [Sources](https://github.com/startxfr/docker-images/OS/)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc23)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/fedora) | [Sources](https://github.com/startxfr/docker-images/OS/)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|----------------------------------------------------------------------|-----------------------------------------------|
 
 ## Running from dockerhub registry
