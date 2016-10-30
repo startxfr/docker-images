@@ -12,5 +12,5 @@ RUN chmod 775 /bin/sx-lib.sh /bin/run.sh && \
     mkdir /data /logs && \
     touch $STARTUPLOG
 
-VOLUME [$LOG_PATH]
-CMD ["/bin/run.sh"]
+VOLUME $LOG_PATH
+CMD [ "/bin/run.sh" ]

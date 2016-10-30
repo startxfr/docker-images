@@ -21,5 +21,5 @@ RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/run.sh $APP_PATH/s
     rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf
 
 EXPOSE 80 443
-VOLUME [$DATA_PATH,$LOG_PATH]
-CMD ["/bin/run.sh"]
+VOLUME [ $DATA_PATH , $LOG_PATH ]
+CMD [ "/bin/run.sh" ]

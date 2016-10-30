@@ -10,5 +10,5 @@ RUN cd $APP_PATH && \
 COPY config.inc.php $APP_PATH/config.inc.php
 
 EXPOSE 80 443
-VOLUME [$DATA_PATH,$LOG_PATH]
-CMD ["/bin/run.sh"]
+VOLUME [ $DATA_PATH , $LOG_PATH ]
+CMD [ "/bin/run.sh" ]
