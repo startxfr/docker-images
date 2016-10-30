@@ -19,6 +19,6 @@ COPY *.js $APP_PATH/
 COPY *.json $APP_PATH/
 RUN cd $APP_PATH && npm install -production
 
-EXPOSE 8000
+EXPOSE 8080
 VOLUME [ $DATA_PATH , $LOG_PATH ]
 CMD [ "/bin/run.sh" ]
