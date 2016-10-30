@@ -2,7 +2,7 @@ FROM startx/fedora
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
-RUN dnf -y install mongodb mongodb-server rsyslog-mongodb  && \
+RUN dnf -y install mongodb mongodb-server  && \
     dnf clean all 
 ENV STARTUPLOG=/logs/startup.log \
     LOG_PATH=/logs  \
