@@ -1,6 +1,7 @@
 demo_pma:
   image: startx/sv-phpmyadmin
   container_name: "centos7-demo-pma"
+  privileged: true
   ports:
     - "81:80"
   links:
@@ -13,6 +14,7 @@ demo_pma:
 demo_pma_db:
   image: startx/sv-mariadb
   container_name: "centos7-demo-pma-db"
+  privileged: true
   expose:
     - "3306"
   environment:
