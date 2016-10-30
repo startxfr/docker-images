@@ -2,15 +2,15 @@ server:
   build: ./
   container_name: "centos7-service-nodejs"
   mem_limit: 1g
-  memswap_limit: 1g
-  cpu_shares: 5
+  memswap_limit: 2g
+  cpu_shares: 4
   restart: "on-failure:2"
   ports:
-    - "9221:8000"
+    - "9221:8080"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "nodejs"
     CONTAINER_INSTANCE: "centos7-service-nodejs"
   volumes:
-    - "/tmp/container-centos7/logs/nodejs:/data/logs/nodejs"
-    - "/tmp/container-centos7/nodejs:/data/nodejs"
+    - "/tmp/container-centos7/logs/nodejs:/logs"
+    - "/tmp/container-centos7/nodejs:/data"

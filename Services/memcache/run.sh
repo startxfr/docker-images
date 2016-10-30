@@ -42,21 +42,27 @@ function end_config {
     echo "=> END MEMCACHE CONFIGURATION"
 }
 
-# Start the memcache server as a deamon and execute it inside 
-# the running shell
-function start_daemon {
-    echo "=> Starting memcache daemon ..." | tee -a $STARTUPLOG
-    display_container_started | tee -a $STARTUPLOG
-    exec memcached -u daemon -v
+function stop_memcache_handler {
+    killall memcached
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    echo "| Container $HOSTNAME is now STOPPED" | tee -a $STARTUPLOG
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    exit 143; # 128 + 15 -- SIGTERM
 }
 
 
-if [[ "$0" == *"run.sh" && ! $1 = "" ]];then
-    eval "$@"; 
-fi
+# Start the memcache server as a deamon and execute it inside 
+# the running shell
+function start_service_memcache {
+    trap 'kill ${!}; stop_memcache_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    echo "| Container $HOSTNAME is now RUNNING" | tee -a $STARTUPLOG
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    exec memcached -u daemon -v
+}
 
 check_environment | tee -a $STARTUPLOG
 display_container_memcache_header | tee -a $STARTUPLOG
 begin_config | tee -a $STARTUPLOG
 end_config | tee -a $STARTUPLOG
-start_daemon
+start_service_memcache

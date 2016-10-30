@@ -19,5 +19,4 @@ server:
     CONTAINER_SERVICE: "couchbase"
     CONTAINER_INSTANCE: "centos7-service-couchbase"
   volumes:
-    - "/tmp/container-centos7/logs/couchbase:/data/logs/couchbase"
-    - "/tmp/container-centos7/couchbase:/data/couchbase"
+    - "/tmp/container-centos7/logs/couchbase:/logs"

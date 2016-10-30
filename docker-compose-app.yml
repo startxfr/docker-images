@@ -1,7 +1,8 @@
-centos7_app_pma:
-  build: Applications/phpmyadmin/
-  container_name: "application-phpmyadmin"
+centos7-app-pma:
+  extends:
+    file: Applications/phpmyadmin/docker-compose.yml
+    service: application
 
-centos7_app_rockmongo:
-  build: Applications/rockmongo/
-  container_name: "application-rockmongo"
+#centos7-app-rockmongo:
+#  build: Applications/rockmongo/
+#  container_name: "application-rockmongo"

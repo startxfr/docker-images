@@ -12,4 +12,4 @@ server:
     CONTAINER_SERVICE: "ooconv"
     CONTAINER_INSTANCE: "centos7-service-ooconv"
   volumes:
-    - "/tmp/container-centos7/logs/ooconv:/data/logs/ooconv"
+    - "/tmp/container-centos7/logs/ooconv:/logs"

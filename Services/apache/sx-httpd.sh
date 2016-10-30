@@ -9,11 +9,15 @@ function check_httpd_environment {
         echo "! WARNING : auto-assigned value : $SERVER_NAME"
     fi
     if [ ! -v APP_PATH ]; then
-        APP_PATH="/data/apache"
+        APP_PATH="/app"
         export APP_PATH
     fi
+    if [ ! -v DATA_PATH ]; then
+        DATA_PATH="/data"
+        export DATA_PATH
+    fi
     if [ ! -v LOG_PATH ]; then
-        LOG_PATH="/data/logs/apache"
+        LOG_PATH="/logs"
         export LOG_PATH
     fi
 }
@@ -38,54 +42,56 @@ function display_container_httpd_header {
     if [ -v APP_PATH ]; then
         echo "| App path    : $APP_PATH"
     fi
+    if [ -v DATA_PATH ]; then
+        echo "| Data path   : $DATA_PATH"
+    fi
     if [ -v LOG_PATH ]; then
         echo "| Log path    : $LOG_PATH"
     fi
     echo "+====================================================="
 }
 
-# Begin configuration before starting daemonized process
-# and start generating host keys
-function begin_config {
-    echo "=> BEGIN APACHE CONFIGURATION"
-    if [[ -d $TMP_APP_PATH ]]; then
-        if [ "$(ls -A $TMP_APP_PATH)" ]; then
-            echo "COPY application from $TMP_APP_PATH into $APP_PATH"
-            FILE_LIST=$(find $TMP_APP_PATH -maxdepth 1 -mindepth 1 -printf "%f\n")
-            for FILE in $FILE_LIST; do 
-                echo -n "adding $APP_PATH/$FILE"
-                cp -r $TMP_APP_PATH/$FILE $APP_PATH/
-                echo " DONE"
-            done
-        fi
-    fi
-}
-
-# End configuration process just before starting daemon
-function end_config {
-    echo "=> END APACHE CONFIGURATION"
-}
-
-# Start the httpd server in background. Used to perform config
-# against the database structure such as user creation
-function start_server {
-    echo "=> Starting httpd server"
-    /usr/sbin/apachectl &
-    sleep 2
-}
-
-# Stop the httpd server running in background. 
-function stop_server {
-    echo "=> Stopping httpd server ..."
+function stop_httpd_handler {
     killall httpd
     rm -rf /run/httpd/*
-    sleep 2
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    echo "| Container $HOSTNAME is now STOPPED" | tee -a $STARTUPLOG
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    exit 143; # 128 + 15 -- SIGTERM
 }
+
 
 # Start the httpd server as a deamon and execute it inside 
 # the running shell
-function start_daemon {
-    echo "=> Starting httpd daemon ..." | tee -a $STARTUPLOG
-    display_container_started | tee -a $STARTUPLOG
-    exec /usr/sbin/apachectl && tail -f $LOG_PATH/error.log
+function start_service_httpd {
+    trap 'kill ${!}; stop_httpd_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    echo "| Container $HOSTNAME is now RUNNING" | tee -a $STARTUPLOG
+    echo "+=====================================================" | tee -a $STARTUPLOG
+    rm -rf /run/httpd/* /tmp/httpd*
+    exec /usr/sbin/httpd -D FOREGROUND &
+    while true
+    do
+      tail -f /dev/null & wait ${!}
+    done
+}
+
+
+
+# set env var $2 (val $3) in file $1
+function setEnvironmentVariableInFile {
+    if [ -z "$3" ]; then
+            echo "Environment variable '$2' not set."
+            return
+    fi
+    echo "SetEnv $2 $3" >> $1
+}
+
+
+function setSys2HttpEnvironmentVariable {
+    echo "adding environement to $1" | tee -a $STARTUPLOG
+    echo "" >> $1
+    for _curVar in `env | awk -F = '{print $1}'`;do
+        setEnvironmentVariableInFile $1 ${_curVar} ${!_curVar}
+    done
 }

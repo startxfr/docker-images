@@ -121,19 +121,19 @@ centos7-service-memcache:
   volumes_from:
     - "centos7-data"
 
-#centos7-application-pma:
-#  image: startx/app-phpmyadmin:centos7
-#  container_name: "application-phpmyadmin"
-#  ports:
-#    - "84:80"
-#  links:
-#    - centos7-service-mariadb:mariadb
-#  environment:
-#    CONTAINER_TYPE: "application"
-#    CONTAINER_SERVICE: "phpmyadmin"
-#    CONTAINER_INSTANCE: "centos7-application-phpmyadmin"
-#  volumes_from:
-#    - "centos7-data"
+centos7-application-pma:
+  image: startx/app-phpmyadmin:centos7
+  container_name: "application-phpmyadmin"
+  ports:
+    - "84:80"
+  links:
+    - centos7-service-mariadb:mariadb
+  environment:
+    CONTAINER_TYPE: "application"
+    CONTAINER_SERVICE: "phpmyadmin"
+    CONTAINER_INSTANCE: "centos7-application-phpmyadmin"
+  volumes_from:
+    - "centos7-data"
 
 #centos7-application-rockmongo:
 #  image: startx/app-rockmongo:centos7

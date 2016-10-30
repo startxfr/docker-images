@@ -12,4 +12,4 @@ server:
     CONTAINER_SERVICE: "memcache"
     CONTAINER_INSTANCE: "centos7-service-memcache"
   volumes:
-    - "/tmp/container-centos7/logs/memcache:/data/logs/memcache"
+    - "/tmp/container-centos7/logs/memcache:/logs"

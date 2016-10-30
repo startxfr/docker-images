@@ -7,5 +7,7 @@ centos7:
   restart: "on-failure:2"
   environment:
     CONTAINER_TYPE: "os"
-    CONTAINER_SERVICE: "fedora"
+    CONTAINER_SERVICE: "centos7"
     CONTAINER_INSTANCE: "os-centos7"
+  volumes:
+    - "/tmp/container/logs/centos7:/logs"

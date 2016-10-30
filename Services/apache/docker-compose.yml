@@ -14,5 +14,5 @@ server:
     CONTAINER_INSTANCE: "centos7-service-apache"
     SERVER_NAME: "localhost"
   volumes:
-    - "/tmp/container-centos7/logs/apache:/data/logs/apache"
-    - "/tmp/container-centos7/apache:/data/apache"
+    - "/tmp/container-centos7/logs/apache:/logs"
+    - "/tmp/container-centos7/apache:/data"
