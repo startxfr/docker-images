@@ -20,5 +20,5 @@ RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/run.sh $APP_PATH/s
     chown -R apache:apache $APP_PATH $DATA_PATH $LOG_PATH
 
 EXPOSE 80 443
-VOLUME [ $DATA_PATH , $LOG_PATH ]
+VOLUME $DATA_PATH
 CMD [ "/bin/run.sh" ]
