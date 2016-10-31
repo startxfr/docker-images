@@ -19,5 +19,5 @@ RUN chmod 775 /bin/run.sh && \
     chmod -R 0700 $DATA_PATH
 
 EXPOSE 5432
-VOLUME [ $DATA_PATH, $LOG_PATH ]
+VOLUME $DATA_PATH
 CMD [ "/bin/run.sh" ]

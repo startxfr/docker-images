@@ -22,5 +22,5 @@ RUN chmod 775 /bin/run.sh && \
     chown -R mysql:mysql $LOG_PATH $DATA_PATH $LOADSQL_PATH
 
 EXPOSE 3306
-VOLUME [ $DATA_PATH , $LOG_PATH ]
+VOLUME $DATA_PATH
 CMD [ "/bin/run.sh" ]

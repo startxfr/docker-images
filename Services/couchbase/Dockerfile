@@ -16,6 +16,5 @@ RUN chmod 775 /bin/run.sh && \
     mkdir -p $LOG_PATH && \
     touch $STARTUPLOG
 
-EXPOSE 8091 8092 8093 11207 11210 11211 18091 18092
-VOLUME $LOG_PATH
+EXPOSE 11211
 CMD [ "/bin/run.sh" ]
