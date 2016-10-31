@@ -2,7 +2,7 @@ FROM startx/fedora:22
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
-RUN dnf -y install mongodb mongodb-server libmongo-client rsyslog-mongodb  && \
+RUN dnf -y install mongodb mongodb-server  && \
     dnf clean all 
 ENV STARTUPLOG=/logs/startup.log \
     LOG_PATH=/logs  \
@@ -15,5 +15,5 @@ RUN chmod 775 /bin/run.sh && \
 RUN chown -R mongodb:mongodb $DATA_PATH $LOG_PATH
 
 EXPOSE 27017 28017
-VOLUME [ $DATA_PATH , $LOG_PATH ]
+VOLUME $DATA_PATH
 CMD [ "/bin/run.sh" ]
