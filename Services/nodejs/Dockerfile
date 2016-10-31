@@ -21,5 +21,5 @@ COPY *.json $APP_PATH/
 RUN cd $APP_PATH && npm install -production
 
 EXPOSE 8080
-VOLUME [ $DATA_PATH , $LOG_PATH ]
+VOLUME $DATA_PATH
 CMD [ "/bin/run.sh" ]
