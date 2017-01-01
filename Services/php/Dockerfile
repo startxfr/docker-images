@@ -10,11 +10,11 @@ RUN dnf -y install php php-cli php-pear \
     && dnf clean all  
 COPY httpd.conf $HTTPDCONF
 COPY php.ini /etc/php.d/sx.ini
-COPY run.sh /bin/
-RUN chmod 775 /bin/run.sh && \
+COPY *.sh /bin/
+RUN chmod 775 /bin/run.sh /bin/sx-php.sh && \
     chmod ug+r $HTTPDCONF
 COPY ./ $APP_PATH
-RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/run.sh && \
+RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/run.sh $APP_PATH/sx-php.sh && \
     chown -R apache:apache $DATA_PATH $APP_PATH $LOG_PATH && \
     chmod ug+r -R $DATA_PATH $APP_PATH
 
