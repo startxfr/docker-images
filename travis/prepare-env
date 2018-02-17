@@ -7,6 +7,6 @@ sudo service docker restart
 echo "INFO: Cache fedora image"
 docker pull fedora:rawhide
 echo "INFO: Login to dockerhub registry"
-docker login -u $DOCKER_USER -p $DOCKER_PASS
+docker login -u $DOCKER_USER -p $DOCKER_PASS -e $DOCKER_EMAIL
 echo "========> END SETUP TEST ENVIRONMENT"
 exit 0;
