@@ -6,18 +6,21 @@ This container contain updated core OS rpm (kernel, libs,...) as well as usefull
 | [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/fedora) | [Sources](https://github.com/startxfr/docker-images/OS/)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|----------------------------------------------------------------------|-----------------------------------------------|
 
-
 ## Container flavours
 
 | Version    | Docker Hub repository                                                   | Fedora distribution                         |
 |------------|-------------------------------------------------------------------------|---------------------------------------------|
-| latest     | [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora)        | Fedora 27 (kernel 4.14 + GNU 2.23  )         |
+| latest     | [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora)        | Fedora 28 (kernel 4.14 + GNU 2.23  )        |
+| 27         | [`startx/fedora:27`](https://hub.docker.com/r/startx/fedora)            | Fedora 27 (kernel 4.11 + GNU 2.21  )        |
+| 26         | [`startx/fedora:26`](https://hub.docker.com/r/startx/fedora)            | Fedora 26 (kernel 4.09 + GNU 2.20  )        |
 | 23         | [`startx/fedora:23`](https://hub.docker.com/r/startx/fedora)            | Fedora 23 (kernel 4.2 + GNU 3.18  )         |
 | 22         | [`startx/fedora:22`](https://hub.docker.com/r/startx/fedora)            | Fedora 22 (kernel 4.0 + GNU 3.16  )         |
 | 21         | [`startx/fedora:21`](https://hub.docker.com/r/startx/fedora)            | Fedora 21 (kernel 3.16 + GNU 3.14  )        |
 | 20         | [`startx/fedora:20`](https://hub.docker.com/r/startx/fedora)            | Fedora 20 (kernel 3.11 + GNU 3.10  )        |
 
-## Running from dockerhub registry
+## Running this image
+
+### Running from dockerhub registry
 
 * with `docker` you can run `docker run -it --name="fedora" startx/fedora` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
@@ -27,7 +30,7 @@ fedora:
   container_name: "os-fedora"
 ```
 
-## Using this image as S2I builder
+### Using this image as S2I builder
 
 You can use this image as an s2i builder image. 
  ```bash
@@ -35,8 +38,7 @@ s2i build https://github.com/youraccount/yourcode startx/fedora test-fedora
 docker run --rm -i -t test-fedora
 ```
 
-
-## Using this image in your own container
+### Using this image as base container
 
 You can use this Dockerfile template to start a new personalized container based on this container
  ```
@@ -44,6 +46,7 @@ FROM startx/fedora:latest
 #... your container specifications
 CMD ["/bin/sx"]
 ```
+
 
 ## Environment variable
 
