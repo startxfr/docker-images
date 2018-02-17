@@ -9,7 +9,7 @@ ENV SX_VERSION="latest" \
     SX_NAME="Startx OS base image (fedora rawhide)" \
     SX_SUMMARY="Startx OS base image based on fedora rawhide"
 
-LABEL name="startx/$SX_ID" \
+LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
       description="$SX_SUMMARY" \
       version="$SX_VERSION" \
@@ -22,7 +22,7 @@ LABEL name="startx/$SX_ID" \
       io.openshift.min-memory="100Mi" \
       io.openshift.min-cpu="500m" \
       io.openshift.s2i.destination="/tmp" \
-      fr.startx.component="$SX_ID"
+      fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
 COPY lib/sx* /bin/

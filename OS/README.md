@@ -11,7 +11,7 @@ This container contain updated core OS rpm (kernel, libs,...) as well as usefull
 
 | Version    | Docker Hub repository                                                   | Fedora distribution                         |
 |------------|-------------------------------------------------------------------------|---------------------------------------------|
-| Latest     | [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora)        | Fedora 24 (kernel 4.x + GNU 3.xx  )         |
+| latest     | [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora)        | Fedora 27 (kernel 4.14 + GNU 2.23  )         |
 | 23         | [`startx/fedora:23`](https://hub.docker.com/r/startx/fedora)            | Fedora 23 (kernel 4.2 + GNU 3.18  )         |
 | 22         | [`startx/fedora:22`](https://hub.docker.com/r/startx/fedora)            | Fedora 22 (kernel 4.0 + GNU 3.16  )         |
 | 21         | [`startx/fedora:21`](https://hub.docker.com/r/startx/fedora)            | Fedora 21 (kernel 3.16 + GNU 3.14  )        |
@@ -21,15 +21,20 @@ This container contain updated core OS rpm (kernel, libs,...) as well as usefull
 
 * with `docker` you can run `docker run -it --name="fedora" startx/fedora` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
-```
+```yaml
 fedora:
   image: startx/fedora:latest
   container_name: "os-fedora"
-  environment:
-    CONTAINER_TYPE: "os"
-    CONTAINER_SERVICE: "fedora"
-    CONTAINER_INSTANCE: "os-fedora"
 ```
+
+## Using this image as S2I builder
+
+You can use this image as an s2i builder image. 
+ ```bash
+s2i build https://github.com/youraccount/yourcode startx/fedora test-fedora
+docker run --rm -i -t test-fedora
+```
+
 
 ## Using this image in your own container
 
@@ -37,17 +42,19 @@ You can use this Dockerfile template to start a new personalized container based
  ```
 FROM startx/fedora:latest
 #... your container specifications
-CMD ["/bin/run.sh"]
+CMD ["/bin/sx"]
 ```
 
 ## Environment variable
 
-| Variable                  | Type     | Mandatory | Description                                                              |
-|---------------------------|----------|-----------|--------------------------------------------------------------------------|
-| CONTAINER_INSTANCE        | `string` | `yes`     | Container name. Should be uning to get fine grained log and application reporting
-| CONTAINER_TYPE            | `string` | `no`      | Container family (os, service, application. could be enhanced 
-| CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
-| HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
+| Variable                  | Type     | Default         | Description                                                              |
+|---------------------------|----------|-----------------|--------------------------------------------------------------------------|
+| SX_VERSION                | `string` | `latest`        | container version
+| SX_TYPE                   | `string` | `OS`            | Container family (os, service, application). could be enhanced 
+| SX_SERVICE                | `string` | `fedora`        | Define the type of service or application provided
+| SX_ID                     | `auto`   | `startx/fedora` | Container ID coresponding to the image repository 
+| SX_NAME                   | `auto`   | `yes`           | Container name
+| SX_SUMMARY                | `auto`   | `yes`           | Container purpose description
 
 
 ## For advanced users
