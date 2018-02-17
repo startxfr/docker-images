@@ -25,7 +25,7 @@ LABEL name="startx/$SX_ID" \
       fr.startx.component="$SX_ID"
 
 USER root
-COPY *.sh /bin/
+COPY lib/sx* /bin/
 # Install minimal packages
 RUN dnf -y install pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip && \
     dnf clean all && \

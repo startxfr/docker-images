@@ -1,0 +1,24 @@
+env:
+  global:
+    - secure: "PX1ZKZnDbG99xYPimFWWN02PYNG4lvkUmtLN4uOH+S3aciYRhQYMYfJnj1s0Nbf17kHyw1iJCq8UhrXsCG0J33K5TY6jAyT2g4gHOo4a/GAeE0Htn5s0vMFH2djvYF54vLo8ZagV2cb+sGZOVCLo3eHsRod9ua6phT+6SH90KI0=" # DOCKER_EMAIL
+    - secure: "jFV9uEh0VysIXRk7EFdFrROtoaCCuRyaY+aZ94eWtdUGBAFTrbcFPkkdWatE9ZviKshlw7bRLKyoyEEr5uP/qVKRXA4SVHrcup99V5eoEnnZneCXQf/YTdB21/Bp+VEIbu+aLvs5Bg3eLMCWuudOdOXLGkLFhyQtd2hEiVkONKU=" # DOCKER_USER
+    - secure: "fE6BfW8tPQZ9PsaututMg4OTj4F/OTEQWhB7jCwrZKAEF/QFeSjmvldhDuIxocUcNp7vW/s9QJ7B66V5N10WZAjlJ16s8pfVXXjHkm17hZ0npDA0sZx6ZZ6Vcz0Wjbctu0+tm4LNyEVpKeCZi7i6m5QFK5uoDd45wJVQ0I4xo4M=" # DOCKER_PASS
+    - COMMIT=${TRAVIS_COMMIT::8}
+    - REPO=startx/fedora
+
+sudo: required
+
+services:
+  - docker
+
+before_install:
+- docker pull fedora:rawhide
+- docker images
+
+script: ./travis/travis-test.sh
+
+after_success:
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo ${TRAVIS_BRANCH:1} ; fi`
+  - docker build -f Dockerfile --squash -t $REPO:$TAG .
+  - docker push $REPO
