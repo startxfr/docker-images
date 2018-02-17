@@ -13,6 +13,10 @@ function check_httpd_environment {
         LOG_PATH="/logs"
         export LOG_PATH
     fi
+    if [ ! -v SERVER_NAME ]; then
+        SERVER_NAME="localhost"
+        export SERVER_NAME
+    fi
 }
 
 function display_container_httpd_header {

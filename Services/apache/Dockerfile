@@ -20,11 +20,10 @@ LABEL name="startx/$SX_ID" \
       release="1" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,fedora" \
+      io.openshift.tags="startx,os,fedora,apache,httpd" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="200Mi" \
       io.openshift.min-cpu="1000m" \
-      io.openshift.s2i.destination="/tmp" \
       fr.startx.component="$SX_ID"
 
 USER root
@@ -32,9 +31,9 @@ COPY httpd.conf $HTTPDCONF
 COPY *.sh /bin/
 RUN dnf -y install httpd && dnf clean all && \
     chmod 775 /bin/sx* && \
-    mv /bin/run.sh /bin/sx && \
-    chgrp -R 0 /bin/sx*.sh /bin/sx && \
-    chmod -R g=u /bin/sx*.sh /bin/sx && \
+    mv /bin/run.sh /bin/sx-apache && \
+    chgrp -R 0 /bin/sx*.sh /bin/sx-apache && \
+    chmod -R g=u /bin/sx*.sh /bin/sx-apache && \
     chmod ug+r $HTTPDCONF && \
     rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf && \
     mkdir -p $DATA_PATH $APP_PATH $LOG_PATH && \
@@ -52,5 +51,5 @@ VOLUME $DATA_PATH
 ONBUILD COPY ./ $APP_PATH
 ONBUILD RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/run.sh $APP_PATH/sx-httpd.sh && chown -R apache:apache $APP_PATH
 
-ENTRYPOINT [ "/bin/sx" ]
+ENTRYPOINT [ "/bin/sx-apache" ]
 CMD [ "start" ]
