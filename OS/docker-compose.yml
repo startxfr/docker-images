@@ -1,6 +1,6 @@
-fedora23:
+fedora26:
   build: ./
-  container_name: "os-fedora23"
+  container_name: "os-fedora26"
   mem_limit: 100m
   memswap_limit: 200m
   cpu_shares: 2

@@ -1,4 +1,4 @@
-fedora23:
+fedora26:
   extends:
     file: OS/docker-compose.yml
-    service: fedora23
+    service: fedora26

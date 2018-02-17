@@ -1,6 +1,6 @@
 demo_pma:
-  image: startx/sv-phpmyadmin:fc23
-  container_name: "fc23-demo-pma"
+  image: startx/sv-phpmyadmin:fc26
+  container_name: "fc26-demo-pma"
   privileged: true
   ports:
     - "81:80"
@@ -9,16 +9,16 @@ demo_pma:
   environment:
     CONTAINER_TYPE: "application"
     CONTAINER_SERVICE: "phpmyadmin"
-    CONTAINER_INSTANCE: "fc23-demo-pma"
+    CONTAINER_INSTANCE: "fc26-demo-pma"
     
 demo_pma_db:
   image: startx/sv-mariadb
-  container_name: "fc23-demo-pma-db"
+  container_name: "fc26-demo-pma-db"
   privileged: true
   expose:
     - "3306"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mariadb"
-    CONTAINER_INSTANCE: "fc23-demo-pma-db"
+    CONTAINER_INSTANCE: "fc26-demo-pma-db"
     MYSQL_ROOT_PASSWORD: "secretdemerde"

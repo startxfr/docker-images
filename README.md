@@ -1,6 +1,6 @@
-# STARTX Docker-Images Repository based on Fedora 23
+# STARTX Docker-Images Repository based on Fedora 26
 
-This repository host various Open Source application or services as a container based on the fedora 23 distribution
+This repository host various Open Source application or services as a container based on the fedora 26 distribution
 
 You can use it to instanciate new container from the dockerhub public registry 
 or as a parent container in your own container's. 
@@ -15,7 +15,7 @@ OS, services and application you will find here will be closer to your favorite 
 Please **read each container manual** for more information on how you can use it in 
 your project and start using stable or experimental services in your applications
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc23)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx) | [Sources](https://github.com/startxfr/docker-images/)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc26)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx) | [Sources](https://github.com/startxfr/docker-images/)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------|
 
 ## OS, Services and Applications guidelines

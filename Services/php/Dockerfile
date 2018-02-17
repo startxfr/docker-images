@@ -1,8 +1,8 @@
-FROM startx/sv-apache:fc23
+FROM startx/sv-apache:fc26
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="26" \
     SX_TYPE="service" \
     SX_SERVICE="php" \
     SX_ID="startx/sv-php" \

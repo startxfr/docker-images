@@ -57,7 +57,7 @@
                 <h2>Congratulation !!!</h2>
             </header>
             <p>
-                You are actually running an apache webserver + php running under the latest fedora release. For more information about this container and how to add your content instead of this message, please read the following links.
+                You are actually running an apache webserver + php running under the 26 fedora release. For more information about this container and how to add your content instead of this message, please read the following links.
             <ul>
                 <li><a href="https://github.com/startxfr/docker-images/tree/master/Services/php" target="_blank">See this container Dockerfile</a></li>
                 <li><a href="https://github.com/startxfr/docker-images" target="_blank">STARTX github docker images repository</a></li>

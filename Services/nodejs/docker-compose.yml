@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "fc23-service-nodejs"
+  container_name: "fc26-service-nodejs"
   mem_limit: 1g
   memswap_limit: 2g
   cpu_shares: 4
@@ -11,7 +11,7 @@ server:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "nodejs"
-    CONTAINER_INSTANCE: "fc23-service-nodejs"
+    CONTAINER_INSTANCE: "fc26-service-nodejs"
   volumes:
-    - "/tmp/container-fc23/logs/nodejs:/logs"
-    - "/tmp/container-fc23/nodejs:/data"
+    - "/tmp/container-fc26/logs/nodejs:/logs"
+    - "/tmp/container-fc26/nodejs:/data"
