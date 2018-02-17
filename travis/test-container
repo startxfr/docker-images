@@ -1,0 +1,9 @@
+#!/bin/bash
+
+function dockerPs {
+    sudo docker-compose -f docker-compose-$1.yml ps $2
+}
+
+echo "========> TEST $1 $2"
+dockerPs $1 $2
+exit 0;

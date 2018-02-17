@@ -8,9 +8,6 @@ function dockerPublish {
     cd -
 }
 
-echo "========> START PUBLISHING $2"
-docker login -u $DOCKER_USER -p $DOCKER_PASS
-echo "========> BUILD & PUBLISH $1 Containers (public)"
+echo "========> BUILD & PUBLISH $2:$TAG Container (public)"
 dockerPublish $1 $2
-echo "========> END PUBLISHING $2"
 exit 0;

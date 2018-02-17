@@ -12,11 +12,12 @@ services:
   - docker
 
 before_install:
-  - ./travis/travis-prepare.sh
+  - ./travis/prepare-env
 
 script:
-  - ./travis/travis-test.sh
+  - ./travis/start-container os fedora
+  - ./travis/test-container  os fedora
 
 after_success:
-  - ./travis/travis-push.sh OS startx/fedora
-  - ./travis/travis-push.sh Services/apache startx/sv-apache
+  - ./travis/publish OS                 startx/fedora
+  - ./travis/publish Services/apache    startx/sv-apache
