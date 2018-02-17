@@ -2,7 +2,7 @@ FROM startx/centos:7
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="7" \
     SX_TYPE="service" \
     SX_SERVICE="apache" \
     SX_ID="startx/sv-apache" \
