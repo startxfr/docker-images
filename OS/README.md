@@ -1,36 +1,36 @@
-# Docker OS Images : FEDORA 26
+# Docker OS Images : FEDORA 27
 
 Simple container used for all startx based services and applications published in [Dockerhub registry](https://github.com/startxfr/docker-images). 
 This container contain updated core OS rpm (kernel, libs,...) as well as usefull tools like pwgen, tar, zip, psmisc, procps, coreutils, findutils, wget
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc26)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/fedora) | [Sources](https://github.com/startxfr/docker-images/OS/)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc27)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/fedora) | [Sources](https://github.com/startxfr/docker-images/OS/)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|----------------------------------------------------------------------|-----------------------------------------------|
 
 ## Running this image
 
 ### Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="fedora26" startx/fedora:26` from any docker host
+* with `docker` you can run `docker run -it --name="fedora27" startx/fedora:27` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```yaml
 fedora:
-  image: startx/fedora:26
-  container_name: "os-fedora26"
+  image: startx/fedora:27
+  container_name: "os-fedora27"
 ```
 
 ### Using this image as S2I builder
 
 You can use this image as an s2i builder image. 
  ```bash
-s2i build https://github.com/youraccount/yourcode startx/fedora:26 test-fedora26
-docker run --rm -i -t test-fedora26
+s2i build https://github.com/youraccount/yourcode startx/fedora:27 test-fedora27
+docker run --rm -i -t test-fedora27
 ```
 
 ### Using this image as base container
 
 You can use this Dockerfile template to start a new personalized container based on this container
  ```
-FROM startx/fedora:26
+FROM startx/fedora:27
 #... your container specifications
 CMD ["/bin/sx"]
 ```
@@ -40,7 +40,7 @@ CMD ["/bin/sx"]
 
 | Variable                  | Type     | Default         | Description                                                              |
 |---------------------------|----------|-----------------|--------------------------------------------------------------------------|
-| SX_VERSION                | `string` | `26`        | container version
+| SX_VERSION                | `string` | `27`        | container version
 | SX_TYPE                   | `string` | `OS`            | Container family (os, service, application). could be enhanced 
 | SX_SERVICE                | `string` | `fedora`        | Define the type of service or application provided
 | SX_ID                     | `auto`   | `startx/fedora` | Container ID coresponding to the image repository 
@@ -60,7 +60,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-1. Switch to the flavour branch with `git branch fc26`
+1. Switch to the flavour branch with `git branch fc27`
 2. Jump into the container directory with `cd OS`
 3. Build the container using `docker build -t fedora .`
 4. Run this container 
@@ -70,7 +70,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker-compose`
 
-1. Switch to the flavour branch with `git branch fc26`
+1. Switch to the flavour branch with `git branch fc27`
 2. Jump into the container directory with `cd OS`
 3. Run this container 
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container

@@ -1,8 +1,8 @@
-FROM fedora:26
+FROM fedora:27
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="26" \
+ENV SX_VERSION="27" \
     SX_TYPE="OS" \
     SX_SERVICE="fedora" \
     SX_ID="startx/fedora" \

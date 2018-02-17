@@ -1,14 +1,14 @@
-# Docker OS Images : POSTGRESQL on Fedora 26
+# Docker OS Images : POSTGRESQL on Fedora 27
 
 Simple container used to deliver highly reliable and configurable transactional database service using postgresql opensource project.
 Run [postgres daemon](http://www.postgresql.org/) under a container 
-based on [startx/fedora:26 container](https://hub.docker.com/r/startx/fedora)
+based on [startx/fedora:27 container](https://hub.docker.com/r/startx/fedora)
 
 Each container is provided with various underlying OS version based on CentOS or 
 Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
 or **[other postgres flavours](https://github.com/startxfr/docker-images/Services/postgres/#available-flavours)**
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc26)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-postgres/) | [Sources](https://github.com/startxfr/docker-images/Services/postgres)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc27)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-postgres/) | [Sources](https://github.com/startxfr/docker-images/Services/postgres)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------|-----------------------------------------------|
 
 ## Running from dockerhub registry
@@ -17,21 +17,21 @@ or **[other postgres flavours](https://github.com/startxfr/docker-images/Service
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-postgres:fc26
-  container_name: "service-postgres-fc26"
+  image: startx/sv-postgres:fc27
+  container_name: "service-postgres-fc27"
   ports:
     - "5432:5432"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "postgres"
-    CONTAINER_INSTANCE: "service-postgres-fc26"
+    CONTAINER_INSTANCE: "service-postgres-fc27"
     POSTGRESQL_ROOT_PASSWORD: "rootpassword"
     POSTGRESQL_USER: "user-test"
     POSTGRESQL_PASSWORD: "pwd-test"
     POSTGRESQL_DATABASE: "db_test"
   volumes:
-    - "/tmp/container-fc26/logs/postgres:/data/logs/postgres"
-    - "/tmp/container-fc26/postgres:/data/postgres"
+    - "/tmp/container-fc27/logs/postgres:/data/logs/postgres"
+    - "/tmp/container-fc27/postgres:/data/postgres"
 ```
 
 ## Docker-compose in various situations
@@ -39,35 +39,35 @@ service:
 * sample docker-compose.yml linked to host port 1000
 ```
 service:
-  image: startx/sv-postgres:fc26
-  container_name: "service-postgres-fc26"
+  image: startx/sv-postgres:fc27
+  container_name: "service-postgres-fc27"
   environment:
-    CONTAINER_INSTANCE: "service-postgres-fc26"
+    CONTAINER_INSTANCE: "service-postgres-fc27"
   ports:
     - "1001:5432"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
 service:
-  image: startx/sv-postgres:fc26
-  container_name: "service-postgres-fc26"
+  image: startx/sv-postgres:fc27
+  container_name: "service-postgres-fc27"
   environment:
-    CONTAINER_INSTANCE: "service-postgres-fc26"
+    CONTAINER_INSTANCE: "service-postgres-fc27"
   expose:
     - "5432"
 ```
 * sample docker-compose.yml using data container
 ```
 data:
-  image: startx/fedora:fc26
-  container_name: "service-postgres-data-fc26"
+  image: startx/fedora:fc27
+  container_name: "service-postgres-data-fc27"
   environment:
-    CONTAINER_INSTANCE: "service-postgres-data-fc26"
+    CONTAINER_INSTANCE: "service-postgres-data-fc27"
 service:
-  image: startx/sv-postgres:fc26
-  container_name: "service-postgres-fc26"
+  image: startx/sv-postgres:fc27
+  container_name: "service-postgres-fc27"
   environment:
-    CONTAINER_INSTANCE: "service-postgres-fc26"
+    CONTAINER_INSTANCE: "service-postgres-fc27"
   volume_from:
     - data:rw
 ```
@@ -76,7 +76,7 @@ service:
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
  ```
-FROM startx/sv-postgres:fc26
+FROM startx/sv-postgres:fc27
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```
@@ -126,7 +126,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-1. Switch to the flavour branch with `git branch fc26`
+1. Switch to the flavour branch with `git branch fc27`
 2. Jump into the container directory with `cd Services/postgres`
 3. Build the container using `docker build -t sv-postgres .`
 4. Run this container 
@@ -136,7 +136,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker-compose`
 
-1. Switch to the flavour branch with `git branch fc26`
+1. Switch to the flavour branch with `git branch fc27`
 2. Jump into the container directory with `cd Services/postgres`
 3. Run this container 
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
