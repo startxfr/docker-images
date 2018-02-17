@@ -2,6 +2,14 @@
 source /bin/sx-lib.sh
 source /bin/sx-httpd.sh
 
-check_httpd_environment | tee -a $STARTUPLOG
-display_container_httpd_header | tee -a $STARTUPLOG
+check_httpd_environment
+display_container_httpd_header
 start_service_httpd
+
+# Dispatch input arguments
+case $1 in
+    start)                  start_service_httpd;;
+    info)                   displayInformation $@ ;;
+    version|--version)      displayVersion $@ ;;
+    *)                      displayWelcome $@ ;;
+esac

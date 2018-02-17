@@ -1,24 +1,56 @@
 FROM startx/fedora
-MAINTAINER Christophe LARUE <dev@startx.fr>
 
-USER root
-RUN dnf -y install httpd && dnf clean all 
-ENV HTTPDCONF=/etc/httpd/conf.d/app.conf \
-    STARTUPLOG=/logs/startup.log \
+MAINTAINER Startx <dev@startx.fr>
+
+ENV SX_VERSION="latest" \
+    SX_TYPE="service" \
+    SX_SERVICE="apache" \
+    SX_ID="startx/sv-apache" \
+    SX_NAME="Startx Apache service image (fedora rawhide)" \
+    SX_SUMMARY="Startx apache service based on fedora rawhide" \
+    HTTPDCONF=/etc/httpd/conf.d/app.conf \
     LOG_PATH=/logs \
     APP_PATH=/app \
     DATA_PATH=/data
+
+LABEL name="startx/$SX_ID" \
+      summary="$SX_SUMMARY" \
+      description="$SX_SUMMARY" \
+      version="$SX_VERSION" \
+      release="1" \
+      io.k8s.description="$SX_SUMMARY" \
+      io.k8s.display-name="$SX_ID" \
+      io.openshift.tags="startx,os,fedora" \
+      io.openshift.non-scalable="false" \
+      io.openshift.min-memory="200Mi" \
+      io.openshift.min-cpu="1000m" \
+      io.openshift.s2i.destination="/tmp" \
+      fr.startx.component="$SX_ID"
+
+USER root
 COPY httpd.conf $HTTPDCONF
 COPY *.sh /bin/
-RUN chmod 775 /bin/run.sh /bin/sx-httpd.sh && \
+RUN dnf -y install httpd && dnf clean all && \
+    chmod 775 /bin/sx* && \
+    mv /bin/run.sh /bin/sx && \
+    chgrp -R 0 /bin/sx*.sh /bin/sx && \
+    chmod -R g=u /bin/sx*.sh /bin/sx && \
     chmod ug+r $HTTPDCONF && \
     rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf && \
     mkdir -p $DATA_PATH $APP_PATH $LOG_PATH && \
-    touch $STARTUPLOG
+    chown -R apache:apache $APP_PATH $DATA_PATH $LOG_PATH
 COPY ./ $APP_PATH
 RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/run.sh $APP_PATH/sx-httpd.sh && \
-    chown -R apache:apache $APP_PATH $DATA_PATH $LOG_PATH
+    chown -R apache:apache $APP_PATH
 
 EXPOSE 80 443
+
+VOLUME $APP_PATH
+VOLUME $LOG_PATH
 VOLUME $DATA_PATH
-CMD [ "/bin/run.sh" ]
+
+ONBUILD COPY ./ $APP_PATH
+ONBUILD RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/run.sh $APP_PATH/sx-httpd.sh && chown -R apache:apache $APP_PATH
+
+ENTRYPOINT [ "/bin/sx" ]
+CMD [ "start" ]

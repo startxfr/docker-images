@@ -1,13 +1,6 @@
 #!/bin/bash
 
 function check_httpd_environment {
-    check_environment
-    if [ ! -v SERVER_NAME ]; then
-        SERVER_NAME="localhost"
-        export SERVER_NAME
-        echo "! WARNING : environment var SERVER_NAME is missing..."
-        echo "! WARNING : auto-assigned value : $SERVER_NAME"
-    fi
     if [ ! -v APP_PATH ]; then
         APP_PATH="/app"
         export APP_PATH
@@ -24,39 +17,20 @@ function check_httpd_environment {
 
 function display_container_httpd_header {
     echo "+====================================================="
-    echo "| Container   : $HOSTNAME"
-    echo "| OS          : $(</etc/redhat-release)"
-    echo "| Engine      : $(httpd -v | head -1)" 
-    if [ -v CONTAINER_TYPE ]; then
-        echo "| Type        : $CONTAINER_TYPE"
-    fi
-    if [ -v CONTAINER_SERVICE ]; then
-        echo "| Service     : $CONTAINER_SERVICE"
-    fi
-    if [ -v CONTAINER_INSTANCE ]; then
-        echo "| Instance    : $CONTAINER_INSTANCE"
-    fi
-    if [ -v SERVER_NAME ]; then
-        echo "| ServerName  : $SERVER_NAME"
-    fi
-    if [ -v APP_PATH ]; then
-        echo "| App path    : $APP_PATH"
-    fi
-    if [ -v DATA_PATH ]; then
-        echo "| Data path   : $DATA_PATH"
-    fi
-    if [ -v LOG_PATH ]; then
-        echo "| Log path    : $LOG_PATH"
-    fi
+    displayInformation
+    echo "version   : $SX_VERSION"
+    echo "app path  : $APP_PATH"
+    echo "log path  : $LOG_PATH"
+    echo "data path : $DATA_PATH"
     echo "+====================================================="
 }
 
 function stop_httpd_handler {
     killall httpd
     rm -rf /run/httpd/*
-    echo "+=====================================================" | tee -a $STARTUPLOG
-    echo "| Container $HOSTNAME is now STOPPED" | tee -a $STARTUPLOG
-    echo "+=====================================================" | tee -a $STARTUPLOG
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is now STOPPED"
+    echo "+====================================================="
     exit 143; # 128 + 15 -- SIGTERM
 }
 
@@ -65,9 +39,9 @@ function stop_httpd_handler {
 # the running shell
 function start_service_httpd {
     trap 'kill ${!}; stop_httpd_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
-    echo "+=====================================================" | tee -a $STARTUPLOG
-    echo "| Container $HOSTNAME is now RUNNING" | tee -a $STARTUPLOG
-    echo "+=====================================================" | tee -a $STARTUPLOG
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is now RUNNING"
+    echo "+====================================================="
     rm -rf /run/httpd/* /tmp/httpd*
     exec /usr/sbin/httpd -D FOREGROUND &
     while true
@@ -89,7 +63,7 @@ function setEnvironmentVariableInFile {
 
 
 function setSys2HttpEnvironmentVariable {
-    echo "adding environement to $1" | tee -a $STARTUPLOG
+    echo "adding environement to $1"
     echo "" >> $1
     for _curVar in `env | awk -F = '{print $1}'`;do
         setEnvironmentVariableInFile $1 ${_curVar} ${!_curVar}
