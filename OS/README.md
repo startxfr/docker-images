@@ -3,43 +3,49 @@
 Simple container used for all startx based services and applications published in [Dockerhub registry](https://github.com/startxfr/docker-images). 
 This container contain updated core OS rpm (kernel, libs,...) as well as usefull tools like pwgen, tar, zip, psmisc, procps, coreutils, findutils, wget
 
-please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
-or [other OS distributions and flavours](https://github.com/startxfr/docker-images/OS#container-flavours)
-
 | [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc23)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/fedora) | [Sources](https://github.com/startxfr/docker-images/OS/)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|----------------------------------------------------------------------|-----------------------------------------------|
 
-## Running from dockerhub registry
+## Running this image
+
+### Running from dockerhub registry
 
 * with `docker` you can run `docker run -it --name="fedora23" startx/fedora:23` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
-```
-fedora23:
+```yaml
+fedora:
   image: startx/fedora:23
   container_name: "os-fedora23"
-  environment:
-    CONTAINER_TYPE: "os"
-    CONTAINER_SERVICE: "fedora23"
-    CONTAINER_INSTANCE: "os-fedora23"
 ```
 
-## Using this image in your own container
+### Using this image as S2I builder
+
+You can use this image as an s2i builder image. 
+ ```bash
+s2i build https://github.com/youraccount/yourcode startx/fedora:23 test-fedora23
+docker run --rm -i -t test-fedora23
+```
+
+### Using this image as base container
 
 You can use this Dockerfile template to start a new personalized container based on this container
  ```
 FROM startx/fedora:23
 #... your container specifications
-CMD ["/bin/run.sh"]
+CMD ["/bin/sx"]
 ```
+
 
 ## Environment variable
 
-| Variable                  | Type     | Mandatory | Description                                                              |
-|---------------------------|----------|-----------|--------------------------------------------------------------------------|
-| CONTAINER_INSTANCE        | `string` | `yes`     | Container name. Should be uning to get fine grained log and application reporting
-| CONTAINER_TYPE            | `string` | `no`      | Container family (os, service, application. could be enhanced 
-| CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
-| HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
+| Variable                  | Type     | Default         | Description                                                              |
+|---------------------------|----------|-----------------|--------------------------------------------------------------------------|
+| SX_VERSION                | `string` | `latest`        | container version
+| SX_TYPE                   | `string` | `OS`            | Container family (os, service, application). could be enhanced 
+| SX_SERVICE                | `string` | `fedora`        | Define the type of service or application provided
+| SX_ID                     | `auto`   | `startx/fedora` | Container ID coresponding to the image repository 
+| SX_NAME                   | `auto`   | `yes`           | Container name
+| SX_SUMMARY                | `auto`   | `yes`           | Container purpose description
 
 
 ## For advanced users

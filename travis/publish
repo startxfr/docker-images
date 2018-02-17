@@ -1,0 +1,13 @@
+#!/bin/bash
+export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo ${TRAVIS_BRANCH:1} ; fi`
+
+function dockerPublish {
+    cd $1/
+    docker build -f Dockerfile --squash -t $2:$3 .
+    docker push $2
+    cd -
+}
+
+echo "========> BUILD & PUBLISH $2:$3 Container (public)"
+dockerPublish $1 $2 $3
+exit 0;
