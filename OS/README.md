@@ -6,7 +6,7 @@ This container contain updated core OS rpm (kernel, libs,...) as well as usefull
 please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
 or [other OS distributions and flavours](https://github.com/startxfr/docker-images/OS#container-flavours)
 
-| Version    | Docker Hub repository                                                   | Fedora distribution                         |
+| Version    | Docker Hub repository                                                   | CentOS distribution                         |
 |------------|-------------------------------------------------------------------------|---------------------------------------------|
 | latest     | [`startx/centos:latest`](https://hub.docker.com/r/startx/centos)        | Centos 7  (kernel 3.10 + GNU 3.10  ) 
 | 7          | [`startx/centos:7`](https://hub.docker.com/r/startx/centos)             | Centos 7  (kernel 4.2 + GNU 3.10  )
