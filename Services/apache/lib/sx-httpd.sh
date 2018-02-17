@@ -19,13 +19,17 @@ function check_httpd_environment {
     fi
 }
 
-function display_container_httpd_header {
-    echo "+====================================================="
+function displayApacheInformation {
     displayInformation
     echo "version   : $SX_VERSION"
     echo "app path  : $APP_PATH"
     echo "log path  : $LOG_PATH"
     echo "data path : $DATA_PATH"
+}
+
+function display_container_httpd_header {
+    echo "+====================================================="
+    displayApacheInformation
     echo "+====================================================="
 }
 

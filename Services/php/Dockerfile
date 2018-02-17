@@ -23,7 +23,7 @@ LABEL name="startx/$SX_ID" \
 
 USER root
 COPY httpd.conf $HTTPDCONF
-COPY *.sh /bin/
+COPY lib/* /bin/
 COPY php.ini /etc/php.d/sx.ini
 RUN dnf -y install php php-cli php-pear \
         php-gd php-mcrypt php-mysqlnd php-soap \
@@ -36,11 +36,11 @@ RUN dnf -y install php php-cli php-pear \
     chgrp -R 0 /bin/sx*.sh /bin/sx-php && \
     chmod -R g=u /bin/sx*.sh /bin/sx-php && \
     chmod ug+r $HTTPDCONF && \
-    rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf && \
-    chown -R apache:apache $APP_PATH $DATA_PATH $LOG_PATH
+    rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf
 COPY ./ $APP_PATH
-RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/*.sh $APP_PATH/*.ini && \
-    chown -R apache:apache $APP_PATH
+RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib $APP_PATH/*.ini && \
+    chgrp -R 0 $APP_PATH && \
+    chmod -R g=u $APP_PATH
 
 EXPOSE 80 443
 
@@ -49,8 +49,7 @@ VOLUME $LOG_PATH
 VOLUME $DATA_PATH
 
 ONBUILD COPY ./ $APP_PATH
-ONBUILD RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/*.sh $APP_PATH/*.ini && chown -R apache:apache $APP_PATH
+ONBUILD RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib $APP_PATH/*.ini &&  chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH
 
 ENTRYPOINT [ "/bin/sx-php" ]
 CMD [ "start" ]
-

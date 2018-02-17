@@ -1,9 +1,8 @@
 #!/bin/bash
-source /bin/sx-lib.sh
-source /bin/sx-httpd.sh
+source /bin/sx-php.sh
 
 check_httpd_environment
-display_container_httpd_header
+display_container_php_header
 
 # Dispatch input arguments
 case $1 in
