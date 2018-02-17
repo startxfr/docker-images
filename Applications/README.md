@@ -16,8 +16,8 @@ your project and start using stable or experimental applications in your applica
 
 ## Available applications
 
-| Service         | Docker Hub repository                                                          | Doc
-|-----------------|--------------------------------------------------------------------------------|--------------------------------
+| Service         | Docker Hub repository                                                             | Doc
+|-----------------|-----------------------------------------------------------------------------------|--------------------------------
 | PhpMyAdmin      | [`startx/app-pma:centos7`](https://hub.docker.com/r/startx/app-pma)               | [manual](pma/README.md)
 | RockMongo       | [`startx/app-rockmongo:centos7`](https://hub.docker.com/r/startx/app-rockmongo)   | [manual](rockmongo/README.md)
 

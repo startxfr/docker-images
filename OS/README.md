@@ -12,26 +12,27 @@ or [other OS distributions and flavours](https://github.com/startxfr/docker-imag
 | 7          | [`startx/centos:7`](https://hub.docker.com/r/startx/centos)             | Centos 7  (kernel 4.2 + GNU 3.10  )
 | 6          | [`startx/centos:6`](https://hub.docker.com/r/startx/centos)             | Centos 6  (kernel 3.16 + GNU 3.6  ) 
 
-## Running from dockerhub registry
+## Running this image
+
+### Running from dockerhub registry
 
 * with `docker` you can run `docker run -it --name="centos7" startx/centos:7` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```yaml
 centos:
-  image: startx/centos:latest
-  container_name: "os-centos"
+  image: startx/centos:7
+  container_name: "os-centos7"
 ```
 
-## Using this image as S2I builder
+### Using this image as S2I builder
 
 You can use this image as an s2i builder image. 
  ```bash
-s2i build https://github.com/youraccount/yourcode startx/centos test-centos
-docker run --rm -i -t test-centos
+s2i build https://github.com/youraccount/yourcode startx/centos test-centos7
+docker run --rm -i -t test-centos7
 ```
 
-
-## Using this image in your own container
+### Using this image as base container
 
 You can use this Dockerfile template to start a new personalized container based on this container
  ```
@@ -40,11 +41,12 @@ FROM startx/centos:7
 CMD ["/bin/sx"]
 ```
 
+
 ## Environment variable
 
 | Variable                  | Type     | Default         | Description                                                              |
 |---------------------------|----------|-----------------|--------------------------------------------------------------------------|
-| SX_VERSION                | `string` | `latest`        | container version
+| SX_VERSION                | `string` | `7`             | container version
 | SX_TYPE                   | `string` | `OS`            | Container family (os, service, application). could be enhanced 
 | SX_SERVICE                | `string` | `centos`        | Define the type of service or application provided
 | SX_ID                     | `auto`   | `startx/centos` | Container ID coresponding to the image repository 

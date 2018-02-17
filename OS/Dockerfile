@@ -2,7 +2,7 @@ FROM centos:centos7
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="7" \
     SX_TYPE="OS" \
     SX_SERVICE="centos" \
     SX_ID="startx/centos" \
@@ -11,7 +11,7 @@ ENV SX_VERSION="latest" \
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
-      description="$SX_SUMMARY" \
+      description="$SX_SUMMARY. Use for executing application based on bash script or as container mainstream image for your application containers." \
       version="$SX_VERSION" \
       release="1" \
       maintainer="Startx <dev@startx.fr>" \

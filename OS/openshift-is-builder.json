@@ -7,9 +7,9 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx_fedora",
+                "name": "startx_os",
                 "annotations": {
-                    "openshift.io/display-name": "S2I Startx Fedora"
+                    "openshift.io/display-name": "S2I Startx Base OS"
                 }
             },
             "spec": {
