@@ -6,22 +6,30 @@ This container contain updated core OS rpm (kernel, libs,...) as well as usefull
 please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
 or [other OS distributions and flavours](https://github.com/startxfr/docker-images/OS#container-flavours)
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/centos) | [Sources](https://github.com/startxfr/docker-images/OS/)             | [STARTX Profile](https://github.com/startxfr) | 
-|-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|----------------------------------------------------------------------|-----------------------------------------------|
+| Version    | Docker Hub repository                                                   | Fedora distribution                         |
+|------------|-------------------------------------------------------------------------|---------------------------------------------|
+| latest     | [`startx/centos:latest`](https://hub.docker.com/r/startx/centos)        | Centos 7  (kernel 3.10 + GNU 3.10  ) 
+| 7          | [`startx/centos:7`](https://hub.docker.com/r/startx/centos)             | Centos 7  (kernel 4.2 + GNU 3.10  )
+| 6          | [`startx/centos:6`](https://hub.docker.com/r/startx/centos)             | Centos 6  (kernel 3.16 + GNU 3.6  ) 
 
 ## Running from dockerhub registry
 
 * with `docker` you can run `docker run -it --name="centos7" startx/centos:7` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
+```yaml
+centos:
+  image: startx/centos:latest
+  container_name: "os-centos"
 ```
-centos7:
-  image: startx/centos:7
-  container_name: "os-centos7"
-  environment:
-    CONTAINER_TYPE: "os"
-    CONTAINER_SERVICE: "centos7"
-    CONTAINER_INSTANCE: "os-centos7"
+
+## Using this image as S2I builder
+
+You can use this image as an s2i builder image. 
+ ```bash
+s2i build https://github.com/youraccount/yourcode startx/centos test-centos
+docker run --rm -i -t test-centos
 ```
+
 
 ## Using this image in your own container
 
@@ -29,17 +37,19 @@ You can use this Dockerfile template to start a new personalized container based
  ```
 FROM startx/centos:7
 #... your container specifications
-CMD ["/bin/run.sh"]
+CMD ["/bin/sx"]
 ```
 
 ## Environment variable
 
-| Variable                  | Type     | Mandatory | Description                                                              |
-|---------------------------|----------|-----------|--------------------------------------------------------------------------|
-| CONTAINER_INSTANCE        | `string` | `yes`     | Container name. Should be uning to get fine grained log and application reporting
-| CONTAINER_TYPE            | `string` | `no`      | Container family (os, service, application. could be enhanced 
-| CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
-| HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
+| Variable                  | Type     | Default         | Description                                                              |
+|---------------------------|----------|-----------------|--------------------------------------------------------------------------|
+| SX_VERSION                | `string` | `latest`        | container version
+| SX_TYPE                   | `string` | `OS`            | Container family (os, service, application). could be enhanced 
+| SX_SERVICE                | `string` | `centos`        | Define the type of service or application provided
+| SX_ID                     | `auto`   | `startx/centos` | Container ID coresponding to the image repository 
+| SX_NAME                   | `auto`   | `yes`           | Container name
+| SX_SUMMARY                | `auto`   | `yes`           | Container purpose description
 
 
 ## For advanced users

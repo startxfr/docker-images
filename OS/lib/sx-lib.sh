@@ -1,5 +1,5 @@
 #!/bin/bash
-OS=`cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g' | awk '{print $1}'`
+OS=`cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g'`
 
 export TERM=xterm
 pid=0
@@ -16,10 +16,10 @@ function display_container_header {
 #######################################
 function displayUsage {
 cat <<EOF
-docker run $SX_ID help
+Basic OS container to execute arbitrary commands
 
 Usage:
-  docker run $SX_ID [command]
+  docker run $SX_ID /bin/sx [command]
 
 - General Commands:
   usage            this message
@@ -27,6 +27,23 @@ Usage:
   info             give information about the running container
   version          give the version of the running container
   daemon           execute the container as a daemon (keep alive)
+
+EOF
+exit 0;
+}
+
+
+#######################################
+# Display S2I usage
+#######################################
+function displayUsageS2I {
+cat <<EOF
+Basic OS container to build bash applications
+
+Usage:
+  s2i $SX_ID <code_repo_url> ≤image_name>
+
+Code repository must have a `run` script who will be executed on container startup
 
 EOF
 exit 0;
@@ -42,7 +59,7 @@ cat <<EOF
 Welcome to the $SX_ID base image. If you see this message, you have
 probably run this container without arguments. See usage for more informations.
 
-docker run $SX_ID usage
+docker run $SX_ID /bin/sx usage
 
 EOF
 exit 0;
@@ -52,13 +69,13 @@ exit 0;
 # Display information
 #######################################
 function displayInformation {
-echo "ID        : $SX_ID"
+echo "name      : $SX_NAME"
+echo "ID        : $SX_ID:$SX_VERSION"
 echo "type      : $SX_TYPE"
 echo "service   : $SX_SERVICE"
 echo "OS        : $OS"
 echo "container : $HOSTNAME"
-echo "name      : $SX_NAME"
-echo "version   : $SX_VERSION"
+env
 exit 0;
 }
 
@@ -67,9 +84,6 @@ exit 0;
 #######################################
 function displayVersion {
 echo $SXDBTOOLS_VERSION
-if [ `isDebug` == "true" ]; then
-    env
-fi 
 exit 0;
 }
 
@@ -78,11 +92,7 @@ exit 0;
 #######################################
 function displayDaemon {
     while true; do
-        if [ `isDebug` == "true" ]; then
-            echo "$HOSTNAME is alive and running $SX_ID:$SX_VERSION"
-        else
-            echo "$HOSTNAME is alive"
-        fi
+        echo "$HOSTNAME is alive and running $SX_ID:$SX_VERSION"
         sleep 10
     done
 }
