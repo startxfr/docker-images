@@ -2,7 +2,7 @@
 export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo ${TRAVIS_BRANCH:1} ; fi`
 
 function dockerPublish {
-    cd ../$1/
+    cd $1/
     docker build -f Dockerfile --squash -t $2:$TAG .
     docker push $2
     cd -

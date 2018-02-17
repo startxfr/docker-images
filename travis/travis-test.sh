@@ -2,20 +2,19 @@
 
 
 function dockerBuild {
-    sudo docker-compose -f ../docker-compose-$1.yml build $2
+    sudo docker-compose -f docker-compose-$1.yml build $2
 }
 
 function dockerRun {
-    sudo docker-compose -f ../docker-compose-$1.yml up $2
+    sudo docker-compose -f docker-compose-$1.yml up $2
 }
 
 function dockerPs {
-    sudo docker-compose -f ../docker-compose-$1.yml ps $2
+    sudo docker-compose -f docker-compose-$1.yml ps $2
 }
 
 
 echo "========> START TEST"
-set -ev
 echo "========> BUILDING OS Containers (test)"
 dockerBuild os fedora
 echo "========> BUILDING Services Containers (test)"
