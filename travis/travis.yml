@@ -12,9 +12,10 @@ services:
   - docker
 
 before_install:
-- ./travis/travis-prepare.sh
+  - ./travis/travis-prepare.sh
 
-script: ./travis/travis-test.sh
+script:
+  - ./travis/travis-test.sh
 
 after_success:
   - ./travis/travis-push.sh OS startx/fedora
