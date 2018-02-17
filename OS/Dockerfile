@@ -11,7 +11,7 @@ ENV SX_VERSION="latest" \
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
-      description="$SX_SUMMARY" \
+      description="$SX_SUMMARY. Use for executing application based on bash script or as container mainstream image for your application containers." \
       version="$SX_VERSION" \
       release="1" \
       maintainer="Startx <dev@startx.fr>" \
