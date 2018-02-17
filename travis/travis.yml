@@ -12,13 +12,10 @@ services:
   - docker
 
 before_install:
-- docker pull fedora:rawhide
-- docker images
+- ./travis/travis-prepare.sh
 
 script: ./travis/travis-test.sh
 
 after_success:
-  - docker login -u $DOCKER_USER -p $DOCKER_PASS
-  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo ${TRAVIS_BRANCH:1} ; fi`
-  - docker build -f Dockerfile --squash -t $REPO:$TAG .
-  - docker push $REPO
+  - ./travis/travis-push.sh OS startx/fedora
+  - ./travis/travis-push.sh Services/apache startx/sv-apache

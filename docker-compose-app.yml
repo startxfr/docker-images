@@ -1,8 +1,8 @@
-fedora_app_pma:
+pma:
   extends:
     file: Applications/phpmyadmin/docker-compose.yml
     service: application
 
-#fedora_app_rockmongo:
+#rockmongo:
 #  build: Applications/rockmongo/
 #  container_name: "application-rockmongo"
