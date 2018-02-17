@@ -1,6 +1,6 @@
 # STARTX Docker-Images Services based on CentOS 7
 
-This directory host various Open Source services into docker containers based on [startx/centos:7 container](https://hub.docker.com/r/startx/fedora)
+This directory host various Open Source services into docker containers based on [startx/centos:7 container](https://hub.docker.com/r/startx/centos)
 
 You can use it to instanciate new container from the dockerhub public registry 
 or as a parent container in your own container's. 

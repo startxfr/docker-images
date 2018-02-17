@@ -2,7 +2,7 @@
 
 Simple container used to deliver distributed memory object caching system
 Run [memcached daemon](https://www.memcached.org/) under a container 
-based on [startx/centos:7 container](https://hub.docker.com/r/startx/fedora)
+based on [startx/centos:7 container](https://hub.docker.com/r/startx/centos)
 
 Each container is provided with various underlying OS version based on CentOS or 
 Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)

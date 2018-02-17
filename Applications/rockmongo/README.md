@@ -38,6 +38,6 @@ access to the container itself
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Applications/rockmongo)
 * [Github STARTX profile](https://github.com/startxfr/docker-images)
 * [Docker registry for this container](https://registry.hub.docker.com/u/startx/app-rockmongo/)
-* [Docker registry for Fedora](https://registry.hub.docker.com/u/fedora/)
+* [Docker registry for Centos](https://registry.hub.docker.com/u/centos/)
 
 

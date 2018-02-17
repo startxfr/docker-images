@@ -6,7 +6,7 @@ This container contain updated core OS rpm (kernel, libs,...) as well as usefull
 please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
 or [other OS distributions and flavours](https://github.com/startxfr/docker-images/OS#container-flavours)
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/fedora) | [Sources](https://github.com/startxfr/docker-images/OS/)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/centos) | [Sources](https://github.com/startxfr/docker-images/OS/)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|----------------------------------------------------------------------|-----------------------------------------------|
 
 ## Running from dockerhub registry
@@ -56,10 +56,10 @@ You must have a working environment with the source code of this repository. Rea
 
 1. Switch to the flavour branch with `git branch centos7`
 2. Jump into the container directory with `cd OS`
-3. Build the container using `docker build -t fedora .`
+3. Build the container using `docker build -t centos .`
 4. Run this container 
-  1. Interactively with `docker run -it fedora`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -d fedora`
+  1. Interactively with `docker run -it centos`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -d centos`
 
 
 ### Build & run a container using `docker-compose`
