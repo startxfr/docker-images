@@ -1,14 +1,6 @@
 centos7:
   build: ./
   container_name: "os-centos7"
-  mem_limit: 1g
-  memswap_limit: 1g
+  mem_limit: 100m
+  memswap_limit: 200m
   cpu_shares: 2
-  restart: "on-failure:2"
-  privileged: true
-  environment:
-    CONTAINER_TYPE: "os"
-    CONTAINER_SERVICE: "centos7"
-    CONTAINER_INSTANCE: "os-centos7"
-  volumes:
-    - "/tmp/container/logs/centos7:/logs"
