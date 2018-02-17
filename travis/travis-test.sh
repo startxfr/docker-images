@@ -18,20 +18,20 @@ echo "========> START TEST"
 echo "========> BUILDING OS Containers (test)"
 dockerBuild os fedora
 echo "========> BUILDING Services Containers (test)"
-dockerBuild sv
+#dockerBuild sv
 echo "========> BUILDING Applications Containers (test)"
-dockerBuild app
+#dockerBuild app
 echo "========> START OS Containers (test)"
-dockerRun os fedora
+#dockerRun os fedora
 echo "========> START Services Containers (test)"
-dockerRun sv
+#dockerRun sv
 echo "========> START Applications Containers (test)"
-dockerRun app
+#dockerRun app
 echo "========> STATUS OS Containers (test)"
-dockerPs os fedora
+#dockerPs os fedora
 echo "========> STATUS Services Containers (test)"
-dockerPs sv
+#dockerPs sv
 echo "========> STATUS Applications Containers (test)"
-dockerPs app
+#dockerPs app
 echo "========> END TEST"
 exit 0;
