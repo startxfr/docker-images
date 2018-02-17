@@ -28,7 +28,7 @@ LABEL name="startx/$SX_ID" \
 
 USER root
 COPY httpd.conf $HTTPDCONF
-COPY *.sh /bin/
+COPY lib/* /bin/
 RUN dnf -y install httpd && dnf clean all && \
     chmod 775 /bin/sx* && \
     mv /bin/run.sh /bin/sx-apache && \
@@ -39,8 +39,9 @@ RUN dnf -y install httpd && dnf clean all && \
     mkdir -p $DATA_PATH $APP_PATH $LOG_PATH && \
     chown -R apache:apache $APP_PATH $DATA_PATH $LOG_PATH
 COPY ./ $APP_PATH
-RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/run.sh $APP_PATH/sx-httpd.sh && \
-    chown -R apache:apache $APP_PATH
+RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib && \
+    chgrp -R 0 $APP_PATH && \
+    chmod -R g=u $APP_PATH
 
 EXPOSE 80 443
 
@@ -49,7 +50,7 @@ VOLUME $LOG_PATH
 VOLUME $DATA_PATH
 
 ONBUILD COPY ./ $APP_PATH
-ONBUILD RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/run.sh $APP_PATH/sx-httpd.sh && chown -R apache:apache $APP_PATH
+ONBUILD RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib && chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH
 
 ENTRYPOINT [ "/bin/sx-apache" ]
 CMD [ "start" ]
