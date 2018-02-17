@@ -1,23 +1,18 @@
 env:
   global:
-    - secure: "PX1ZKZnDbG99xYPimFWWN02PYNG4lvkUmtLN4uOH+S3aciYRhQYMYfJnj1s0Nbf17kHyw1iJCq8UhrXsCG0J33K5TY6jAyT2g4gHOo4a/GAeE0Htn5s0vMFH2djvYF54vLo8ZagV2cb+sGZOVCLo3eHsRod9ua6phT+6SH90KI0=" # DOCKER_EMAIL
-    - secure: "jFV9uEh0VysIXRk7EFdFrROtoaCCuRyaY+aZ94eWtdUGBAFTrbcFPkkdWatE9ZviKshlw7bRLKyoyEEr5uP/qVKRXA4SVHrcup99V5eoEnnZneCXQf/YTdB21/Bp+VEIbu+aLvs5Bg3eLMCWuudOdOXLGkLFhyQtd2hEiVkONKU=" # DOCKER_USER
-    - secure: "fE6BfW8tPQZ9PsaututMg4OTj4F/OTEQWhB7jCwrZKAEF/QFeSjmvldhDuIxocUcNp7vW/s9QJ7B66V5N10WZAjlJ16s8pfVXXjHkm17hZ0npDA0sZx6ZZ6Vcz0Wjbctu0+tm4LNyEVpKeCZi7i6m5QFK5uoDd45wJVQ0I4xo4M=" # DOCKER_PASS
-    - COMMIT=${TRAVIS_COMMIT::8}
-    - REPO=startx/fedora
-
+  - secure: HWmKOrMrFKxUIZtDVSheCiP/eoK3AMAbugF2ftLoF2klA9FJla1XwXfSbVksPwqr58JvAKykvhqPzElWkRWWeI2rwMYTAyDftBCsmhuvS3VCZ6nw0g1XDShAr3NlYxIoMS5NREA5xBs+9oPXbUIj7HXK6O2HlflQ8fJF+VAslrI=
+  - secure: kzN582HpicVz3xJXJav8nSidBS29A9hTm+wzllCI4Xl5EtiMNBSHlIGQypiR3HLGqJkP8dUVpfnGQM9gR2EdaVBz4IgnFMR/gwL5KozVCOx4wKa800S4MjT7KUzYrhoL2Nd+O5i+Oe8SZyUHk1htLgdTBsCXaLOVrJYT42PD9zE=
+  - secure: lhRjmrvx/t+u2IW9yQhxNaFjHNE6R9cE38yUte4R0OgOa4hpQAtwKLCEgH/JeiBMBLsXNzZnqAmyiqoGvrPpsGaxIEgnweV4fK00HLvicP0p/7iiVhxAf8r8o+4hyAXW4K3S3eDLoHnUhRNlbWy7gDADKxcOdkvMwg2OxuXi61k=
+  - COMMIT=${TRAVIS_COMMIT::8}
+  - REPO=startx/fedora
 sudo: required
-
 services:
-  - docker
-
+- docker
 before_install:
-  - ./travis/prepare-env
-
+- "./travis/prepare-env"
 script:
-  - ./travis/start-container os fedora
-  - ./travis/test-container  os fedora
-
+- "./travis/start-container os fedora"
+- "./travis/test-container  os fedora"
 after_success:
-  - ./travis/publish OS                 startx/fedora
-  - ./travis/publish Services/apache    startx/sv-apache
+- "./travis/publish OS                 startx/fedora"
+- "./travis/publish Services/apache    startx/sv-apache"
