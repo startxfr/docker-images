@@ -1,65 +1,88 @@
 #!/bin/bash
+OS=`cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g' | awk '{print $1}'`
 
 export TERM=xterm
 pid=0
 
-function check_environment {
-    if [ ! -v CONTAINER_TYPE ]; then
-        CONTAINER_TYPE="unknown"
-        export CONTAINER_TYPE
-        echo "! WARNING : environment var CONTAINER_TYPE is missing..."
-        echo "! WARNING : auto-assigned value : $CONTAINER_TYPE"
-    fi
-    if [ ! -v CONTAINER_SERVICE ]; then
-        CONTAINER_SERVICE=$CONTAINER_TYPE;
-        export CONTAINER_SERVICE;
-        echo "! WARNING : environment var CONTAINER_SERVICE is missing..."
-        echo "! WARNING : auto-assigned value : $CONTAINER_SERVICE"
-    fi
-    if [ ! -v CONTAINER_INSTANCE ]; then
-        CONTAINER_INSTANCE=$CONTAINER_TYPE "_" $CONTAINER_SERVICE;
-        export CONTAINER_INSTANCE;
-        echo "! WARNING : environment var CONTAINER_INSTANCE is missing..."
-        echo "! WARNING : auto-assigned value : $CONTAINER_INSTANCE"
-    fi
-}
-
 function display_container_header {
     echo "+====================================================="
-    echo "| Container   : $HOSTNAME"
-    echo "| OS          : $(</etc/redhat-release)"
-    if [ -v CONTAINER_TYPE ]; then
-        echo "| Type        : $CONTAINER_TYPE"
-    fi
-    if [ -v CONTAINER_SERVICE ]; then
-        echo "| Service     : $CONTAINER_SERVICE"
-    fi
-    if [ -v CONTAINER_INSTANCE ]; then
-        echo "| Instance    : $CONTAINER_INSTANCE"
-    fi
+    displayInformation
     echo "+====================================================="
 }
 
-function stop_handler {
-    echo "+=====================================================" | tee -a $STARTUPLOG
-    echo "| Container $HOSTNAME is now STOPPED" | tee -a $STARTUPLOG
-    echo "+=====================================================" | tee -a $STARTUPLOG
-    if [ $pid -ne 0 ]; then
-        kill -SIGTERM "$pid"
-        wait "$pid"
-    fi
-    exit 143; # 128 + 15 -- SIGTERM
+
+#######################################
+# Display general usage
+#######################################
+function displayUsage {
+cat <<EOF
+docker run $SX_ID help
+
+Usage:
+  docker run $SX_ID [command]
+
+- General Commands:
+  usage            this message
+  help             display information about this tools
+  info             give information about the running container
+  version          give the version of the running container
+  daemon           execute the container as a daemon (keep alive)
+
+EOF
+exit 0;
 }
 
-function start_service {
-    trap 'kill ${!}; stop_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
-    echo "+=====================================================" | tee -a $STARTUPLOG
-    echo "| Container $HOSTNAME is now RUNNING" | tee -a $STARTUPLOG
-    echo "+=====================================================" | tee -a $STARTUPLOG
-    tail -f /dev/null &
-    pid="$!"
-    while true
-    do
-      tail -f /dev/null & wait ${!}
+
+
+#######################################
+# Display general welcome message
+#######################################
+function displayWelcome {
+cat <<EOF
+Welcome to the $SX_ID base image. If you see this message, you have
+probably run this container without arguments. See usage for more informations.
+
+docker run $SX_ID usage
+
+EOF
+exit 0;
+}
+
+#######################################
+# Display information
+#######################################
+function displayInformation {
+echo "ID        : $SX_ID"
+echo "type      : $SX_TYPE"
+echo "service   : $SX_SERVICE"
+echo "OS        : $OS"
+echo "container : $HOSTNAME"
+echo "name      : $SX_NAME"
+echo "version   : $SX_VERSION"
+exit 0;
+}
+
+#######################################
+# Display version
+#######################################
+function displayVersion {
+echo $SXDBTOOLS_VERSION
+if [ `isDebug` == "true" ]; then
+    env
+fi 
+exit 0;
+}
+
+#######################################
+# Display daemon
+#######################################
+function displayDaemon {
+    while true; do
+        if [ `isDebug` == "true" ]; then
+            echo "$HOSTNAME is alive and running $SX_ID:$SX_VERSION"
+        else
+            echo "$HOSTNAME is alive"
+        fi
+        sleep 10
     done
 }
