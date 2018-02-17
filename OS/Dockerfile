@@ -27,7 +27,8 @@ LABEL name="$SX_ID" \
 USER root
 COPY lib/sx* /bin/
 # Install minimal packages
-RUN dnf -y install pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip && \
+RUN yum install epel-release dnf && \
+    dnf -y install pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip && \
     dnf clean all && \
     chmod 775 /bin/sx-lib.sh /bin/sx.sh && \
     mv /bin/sx.sh /bin/sx && \

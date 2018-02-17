@@ -1,4 +1,4 @@
-centos7:
+centos:
   build: ./
   container_name: "os-centos7"
   mem_limit: 100m
