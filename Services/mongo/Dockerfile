@@ -2,8 +2,8 @@ FROM startx/centos:7
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
-RUN dnf -y install mongodb mongodb-server  && \
-    dnf clean all 
+RUN yum -y install mongodb mongodb-server  && \
+    yum clean all 
 ENV STARTUPLOG=/logs/startup.log \
     LOG_PATH=/logs  \
     DATA_PATH=/data

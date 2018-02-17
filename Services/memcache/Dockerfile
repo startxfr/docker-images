@@ -2,8 +2,8 @@ FROM startx/centos:7
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
-RUN dnf -y install memcached && \
-    dnf clean all 
+RUN yum -y install memcached && \
+    yum clean all 
 ENV STARTUPLOG=/logs/startup.log \
     LOG_PATH=/logs
 COPY *.sh /bin/

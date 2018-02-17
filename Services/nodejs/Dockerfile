@@ -2,8 +2,8 @@ FROM startx/centos:7
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
-RUN dnf -y install nodejs npm python make gcc && \
-    dnf clean all 
+RUN yum -y install nodejs npm python make gcc && \
+    yum clean all 
 ENV STARTUPLOG=/logs/startup.log \
     LOG_PATH=/logs  \
     DATA_PATH=/data \

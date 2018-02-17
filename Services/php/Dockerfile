@@ -25,12 +25,12 @@ USER root
 COPY httpd.conf $HTTPDCONF
 COPY lib/* /bin/
 COPY php.ini /etc/php.d/sx.ini
-RUN dnf -y install php php-cli php-pear \
+RUN yum -y install php php-cli php-pear \
         php-gd php-mcrypt php-mysqlnd php-soap \
         php-pdo php-process php-common php-mbstring \
         php-bcmath php-php-gettext php-tcpdf \
         php-tcpdf-dejavu-sans-fonts php-tidy && \
-    dnf clean all && \
+    yum clean all && \
     chmod 775 /bin/sx* && \
     mv /bin/run.sh /bin/sx-php && \
     chgrp -R 0 /bin/sx*.sh /bin/sx-php && \

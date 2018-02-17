@@ -29,7 +29,7 @@ LABEL name="startx/$SX_ID" \
 USER root
 COPY httpd.conf $HTTPDCONF
 COPY lib/* /bin/
-RUN dnf -y install httpd && dnf clean all && \
+RUN yum -y install httpd && yum clean all && \
     chmod 775 /bin/sx* && \
     mv /bin/run.sh /bin/sx-apache && \
     chgrp -R 0 /bin/sx*.sh /bin/sx-apache && \
