@@ -46,6 +46,7 @@ RUN dnf -y install httpd && dnf clean all && \
 COPY ./ $APP_PATH
 RUN rm -rf $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib && \
     chgrp -R 0 $APP_PATH && \
+    chown -R 1001:0 $APP_PATH && \
     chmod -R g=u $APP_PATH
 
 USER 1001
