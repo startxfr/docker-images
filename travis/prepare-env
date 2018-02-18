@@ -6,6 +6,7 @@ echo '{ "experimental": true, "storage-driver": "overlay2", "max-concurrent-down
 sudo service docker restart
 echo "INFO: Cache fedora image"
 docker pull fedora:rawhide
+docker pull startx/fedora:latest
 echo "INFO: Login to dockerhub registry"
 docker login -u $DOCKER_USER -p $DOCKER_PASS
 echo "========> END SETUP TEST ENVIRONMENT"
