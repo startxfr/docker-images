@@ -44,6 +44,4 @@ WORKDIR /tmp
 
 EXPOSE 11211
 
-VOLUME $LOG_PATH
-
 CMD [ "/bin/sx-memcache" , "start" ]

@@ -52,8 +52,6 @@ WORKDIR $APP_PATH
 
 EXPOSE 8080
 
-VOLUME $APP_PATH
-VOLUME $LOG_PATH
 VOLUME $DATA_PATH
 
 CMD [ "/bin/sx-nodejs" , "start" ]
