@@ -8,9 +8,9 @@
             "description": "Minimal CentOS container for bash operations",
             "iconClass": "icon-beaker",
             "tags": "startx,os,centos",
-            "openshift.io/long-description": "This template provides a centos container with minimal tools and scripts. Ready to use in openshift with a simple deployement config, or as a s2i builder for bash applications. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/long-description": "This template provides a centos container with minimal tools and scripts. Ready to use in openshift with a simple deployement config, or as a s2i builder for bash applications. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/centos7/README.md.",
             "openshift.io/provider-display-name": "STARTX",
-            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
+            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/centos7/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
@@ -31,9 +31,9 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "7",
                         "annotations": {
-                            "openshift.io/display-name": "Startx CentOS (latest)",
+                            "openshift.io/display-name": "Startx CentOS (7)",
                             "description": "Minimal CentOS for bash operations",
                             "iconClass": "icon-beaker",
                             "tags": "builder,startx,centos",
@@ -43,7 +43,7 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/centos:latest"
+                            "name": "startx/centos:7"
                         }
                     }
                 ]
@@ -93,7 +93,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:latest"
+                                "name": "${APP_NAME}:7"
                             }
                         }
                     },

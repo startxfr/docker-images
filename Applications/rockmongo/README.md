@@ -35,7 +35,7 @@ access to the container itself
 	docker exec -it rockmongo bash
 
 ## Related Resources
-* [Sources files](https://github.com/startxfr/docker-images/tree/master/Applications/rockmongo)
+* [Sources files](https://github.com/startxfr/docker-images/tree/centos7/Applications/rockmongo)
 * [Github STARTX profile](https://github.com/startxfr/docker-images)
 * [Docker registry for this container](https://registry.hub.docker.com/u/startx/app-rockmongo/)
 * [Docker registry for Centos](https://registry.hub.docker.com/u/centos/)

@@ -6,6 +6,9 @@ This container contain updated core OS rpm (kernel, libs,...) as well as usefull
 please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
 or [other OS distributions and flavours](https://github.com/startxfr/docker-images/OS#container-flavours)
 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/centos) | [Sources](https://github.com/startxfr/docker-images/tree/centos7/OS/)             | [STARTX Profile](https://github.com/startxfr) | 
+|-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|----------------------------------------------------------------------|-----------------------------------------------|
+
 ## Container flavours
 
 | Version    | Docker Hub repository                                                   | Openshift                                   | CentOS distribution                         |

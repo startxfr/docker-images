@@ -59,7 +59,7 @@
             <p>
                 You are actually running an apache webserver + php running under the latest centos release. For more information about this container and how to add your content instead of this message, please read the following links.
             <ul>
-                <li><a href="https://github.com/startxfr/docker-images/tree/master/Services/php" target="_blank">See this container Dockerfile</a></li>
+                <li><a href="https://github.com/startxfr/docker-images/tree/centos7/Services/php" target="_blank">See this container Dockerfile</a></li>
                 <li><a href="https://github.com/startxfr/docker-images" target="_blank">STARTX github docker images repository</a></li>
                 <li><a href="https://registry.hub.docker.com/u/startx/" target="_blank">STARTX Dockerhub profile</a></li>
             </ul>
