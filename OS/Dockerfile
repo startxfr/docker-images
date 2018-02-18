@@ -31,7 +31,7 @@ COPY .s2i/bin/* /s2i/
 # Install minimal packages
 RUN dnf -y install pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip && \
     dnf clean all && \
-    chmod 775 -R /bin/sx-lib.sh /bin/sx.sh /s2i && \
+    chmod -R 775 /bin/sx-lib.sh /bin/sx.sh /s2i && \
     mv /bin/sx.sh /bin/sx && \
     chgrp -R 0 /bin/sx*.sh /bin/sx /tmp && \
     chmod -R g=u /bin/sx*.sh /bin/sx /tmp

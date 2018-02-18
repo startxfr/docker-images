@@ -35,8 +35,8 @@ COPY httpd.conf $HTTPDCONF
 COPY lib/* /bin/
 COPY .s2i/bin/* /s2i/
 RUN dnf -y install httpd && dnf clean all && \
-    chmod 775 /bin/sx* /s2i && \
-    mv /bin/run.sh /bin/sx-apache && \
+    chmod -R 775 /bin/sx* /s2i && \
+    mv /bin/sx.sh /bin/sx-apache && \
     chgrp -R 0 /bin/sx*.sh /bin/sx-apache && \
     chmod -R g=u /bin/sx*.sh /bin/sx-apache && \
     chmod ug+r $HTTPDCONF && \
@@ -47,6 +47,10 @@ COPY ./ $APP_PATH
 RUN rm -rf $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib && \
     chgrp -R 0 $APP_PATH && \
     chmod -R g=u $APP_PATH
+
+USER 1001
+
+WORKDIR $APP_PATH
 
 EXPOSE 80
 
