@@ -31,7 +31,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-os-fedora"
+                    "template": "startx-os-centos"
                 }
             },
             "spec": {
@@ -44,7 +44,7 @@
                             "iconClass": "icon-beaker",
                             "tags": "builder,startx,centos",
                             "supports": "centos",
-                            "version": "latest",
+                            "version": "7",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
                         },
                         "from": {
@@ -66,7 +66,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-os-fedora"
+                    "template": "startx-os-centos"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -131,7 +131,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-os-fedora",
+                            "template": "startx-os-centos",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {

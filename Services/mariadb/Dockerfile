@@ -2,12 +2,12 @@ FROM startx/centos:7
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="7" \
     SX_TYPE="service" \
     SX_SERVICE="mariadb" \
     SX_ID="startx/sv-mariadb" \
-    SX_NAME="Startx Mariadb service image (fedora rawhide)" \
-    SX_SUMMARY="Startx mariadb service based on fedora rawhide" \
+    SX_NAME="Startx Mariadb service image (CentOS 7)" \
+    SX_SUMMARY="Startx mariadb service based on CentOS 7" \
     MY_CONF=/etc/my.cnf \
     DATA_PATH=/data \
     LOG_PATH=/logs \
@@ -21,7 +21,7 @@ LABEL name="$SX_ID" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,fedora,database,mariadb" \
+      io.openshift.tags="startx,os,centos,database,mariadb" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="400Mi" \
       io.openshift.min-cpu="2000m" \

@@ -42,7 +42,7 @@
                             "openshift.io/display-name": "Startx WebServer (CentOS 7)",
                             "description": "Http server for simple web application running under CentOS 7",
                             "iconClass": "icon-apache",
-                            "tags": "builder,startx,fedora,apache,httpd",
+                            "tags": "builder,startx,centos,apache,httpd",
                             "supports": "http",
                             "version": "rawhide",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-apache.git"

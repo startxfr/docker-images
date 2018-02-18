@@ -4,13 +4,13 @@
     "metadata": {
         "name": "startx-sv-mariadb",
         "annotations": {
-            "openshift.io/display-name": "Startx MariaDB server (fedora)",
+            "openshift.io/display-name": "Startx MariaDB server (centos)",
             "description": "MariaDB server for simple SQL database running under Fedora",
             "iconClass": "icon-mariadb",
-            "tags": "startx,os,fedora,mariadb,database",
-            "openshift.io/long-description": "This template provides an mariadb db Mariadb Database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "tags": "startx,os,centos,mariadb,database",
+            "openshift.io/long-description": "This template provides an mariadb db Mariadb Database in a Centos container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/centos7/README.md.",
             "openshift.io/provider-display-name": "STARTX",
-            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
+            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/centos7/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
@@ -37,19 +37,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "centos7",
                         "annotations": {
-                            "openshift.io/display-name": "Startx Mariadb Database (Fedora rawhide)",
-                            "description": "MariaDB server for simple SQL database running under Fedora rawhide",
+                            "openshift.io/display-name": "Startx Mariadb Database (Centos 7)",
+                            "description": "MariaDB server for simple SQL database running under CentOS 7",
                             "iconClass": "icon-mariadb",
-                            "tags": "builder,startx,fedora,mariadb,database",
+                            "tags": "builder,startx,centos,mariadb,database",
                             "supports": "db",
-                            "version": "rawhide",
+                            "version": "7",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-mariadb:latest"
+                            "name": "startx/sv-mariadb:centos7"
                         }
                     }
                 ]
@@ -133,7 +133,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:latest"
+                                "name": "${APP_NAME}:centos7"
                             }
                         }
                     },
