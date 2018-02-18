@@ -7,4 +7,4 @@
 #  https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
 #
 
-exec /bin/sx-mariadb start
+exec /bin/sx-mariadb run

@@ -85,7 +85,7 @@
                             "execNewPod": {
                                 "command": [
                                     "/bin/sx-apache",
-                                    "info"
+                                    "health"
                                 ],
                                 "containerName": "${APP_NAME}"
                             }
@@ -140,14 +140,14 @@
                                     "/bin/sx-apache"
                                 ],
                                 "args": [
-                                    "start"
+                                    "run"
                                 ],
                                 "resources": {},
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
                                             "/bin/sx-apache",
-                                            "version"
+                                            "health"
                                         ]
                                     },
                                     "initialDelaySeconds": 5,
@@ -160,7 +160,7 @@
                                     "exec": {
                                         "command": [
                                             "/bin/sx-apache",
-                                            "version"
+                                            "health"
                                         ]
                                     },
                                     "initialDelaySeconds": 2,

@@ -12,6 +12,54 @@ function display_container_header {
     echo "+====================================================="
 }
 
+function genericPreDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    echo "| "
+    displayInformation "| "
+    echo "+====================================================="
+}
+
+function genericPostDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    echo "| "
+    displayInformation "| "
+    echo "+====================================================="
+}
+
+function genericPostBuild {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-BUILD HOOK"
+    echo "| "
+    displayInformation "| "
+    echo "+====================================================="
+}
+
+function genericAssemble {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running ASSEMBLE"
+    echo "| "
+    displayInformation "| "
+    echo "+====================================================="
+    echo "Fixing perm on /tmp/src"
+    chown 1001:0 -R /tmp/src
+    chmod g=u -R /tmp/src
+    echo "Copy source from /tmp/src > /tmp"
+    cp -R /tmp/src/* /tmp/
+    rm -rf /tmp/src
+}
+
+function genericRun {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is RUNNING"
+    echo "| "
+    displayInformation "| "
+    echo "+====================================================="
+    displayDaemon
+}
+
+
 
 #######################################
 # Display general usage
@@ -24,6 +72,12 @@ Usage:
   docker run $SX_ID /bin/sx [command]
 
 - General Commands:
+  assemble         execute for building output image when using s2i 
+  post-build       execute after building image
+  pre-deploy       execute before the deployment begins (openshift).
+  post-deploy      execute after the deployment strategy completes (openshift).
+  run              execute the service on container startup
+  health           return the service health
   usage            this message
   help             display information about this tools
   info             give information about the running container
@@ -92,6 +146,14 @@ env
 #######################################
 function displayVersion {
 echo $SXDBTOOLS_VERSION
+exit 0;
+}
+
+#######################################
+# Display health
+#######################################
+function displayHealth {
+echo "OK"
 exit 0;
 }
 

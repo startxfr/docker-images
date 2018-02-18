@@ -5,8 +5,12 @@ source /bin/sx-mysql.sh
 check_mariadb_environment
 # Dispatch input arguments
 case $1 in
-    init)                   init_service_mariadb;;
-    start)                  start_service_mariadb;;
+    assemble)               mysqlAssemble $@ ;;
+    post-build)             mysqlPostBuild $@ ;;
+    pre-deploy)             mysqlPreDeploy $@ ;;
+    post-deploy)            mysqlPostDeploy $@ ;;
+    run)                    mysqlRun $@ ;;
+    health)                 displayHealth $@ ;;
     info)                   displayMysqlInformation $@ ;;
     version|--version)      displayVersion $@ ;;
     *)                      displayWelcome $@ ;;

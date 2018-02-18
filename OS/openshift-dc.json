@@ -75,7 +75,7 @@
                             "execNewPod": {
                                 "command": [
                                     "/bin/sx",
-                                    "info"
+                                    "health"
                                 ],
                                 "containerName": "${APP_NAME}"
                             }
@@ -129,14 +129,14 @@
                                     "/bin/sx"
                                 ],
                                 "args": [
-                                    "daemon"
+                                    "run"
                                 ],
                                 "resources": {},
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
                                             "/bin/sx",
-                                            "version"
+                                            "health"
                                         ]
                                     },
                                     "initialDelaySeconds": 5,
@@ -149,7 +149,7 @@
                                     "exec": {
                                         "command": [
                                             "/bin/sx",
-                                            "version"
+                                            "health"
                                         ]
                                     },
                                     "initialDelaySeconds": 2,

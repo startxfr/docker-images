@@ -20,6 +20,54 @@ function displayMysqlInformation {
     echo $1 "data path : $DATA_PATH"
 }
 
+function mysqlPreDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    echo "| "
+    displayMysqlInformation "| "
+    echo "+====================================================="
+}
+
+function mysqlPostDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    echo "| "
+    displayMysqlInformation "| "
+    echo "+====================================================="
+}
+
+function mysqlPostBuild {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-BUILD HOOK"
+    echo "| "
+    displayMysqlInformation "| "
+    echo "+====================================================="
+}
+
+function mysqlAssemble {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running ASSEMBLE"
+    echo "| "
+    displayMysqlInformation "| "
+    echo "+====================================================="
+    echo "Fixing perm on /tmp/src"
+    chown 1001:0 -R /tmp/src
+    chmod g=u -R /tmp/src
+    echo "Copy sql scripts from /tmp/src > $LOADSQL_PATH"
+    cp -R /tmp/src/*.sql $LOADSQL_PATH/
+    rm -rf /tmp/src
+    init_service_mariadb
+}
+
+function mysqlRun {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is RUNNING"
+    echo "| "
+    displayMysqlInformation "| "
+    echo "+====================================================="
+    start_service_mariadb
+}
+
 # Begin configuration before starting daemonized process
 # and start generating host keys
 function begin_config {
@@ -207,11 +255,6 @@ function stop_mariadb_handler {
 # the running shell
 function start_service_mariadb {
     trap 'kill ${!}; stop_mariadb_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is now RUNNING"
-    echo "| "
-    displayMysqlInformation "| "
-    echo "+====================================================="
     exec mysqld_safe &
     while true
     do
