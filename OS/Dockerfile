@@ -29,11 +29,12 @@ USER root
 COPY lib/sx* /bin/
 COPY .s2i/bin/* /s2i/
 # Install minimal packages
-RUN dnf -y install pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip && \
+RUN dnf -y install pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip hostname && \
     dnf clean all && \
     chmod -R 775 /bin/sx-lib.sh /bin/sx.sh /s2i && \
     mv /bin/sx.sh /bin/sx && \
     chgrp -R 0 /bin/sx*.sh /bin/sx /tmp && \
+    chown -R 1001:0 /tmp && \
     chmod -R g=u /bin/sx*.sh /bin/sx /tmp
 
 USER 1001

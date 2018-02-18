@@ -6,9 +6,59 @@ pid=0
 
 function display_container_header {
     echo "+====================================================="
-    displayInformation
+    echo "| Container $HOSTNAME is now RUNNING"
+    echo "| "
+    displayInformation "| "
     echo "+====================================================="
 }
+
+function genericPreDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    echo "| "
+    displayInformation "| "
+    echo "+====================================================="
+}
+
+function genericPostDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    echo "| "
+    displayInformation "| "
+    echo "+====================================================="
+}
+
+function genericPostBuild {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-BUILD HOOK"
+    echo "| "
+    displayInformation "| "
+    echo "+====================================================="
+}
+
+function genericAssemble {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running ASSEMBLE"
+    echo "| "
+    displayInformation "| "
+    echo "+====================================================="
+    echo "Fixing perm on /tmp/src"
+    chown 1001:0 -R /tmp/src
+    chmod g=u -R /tmp/src
+    echo "Copy source from /tmp/src > /tmp"
+    cp -R /tmp/src/* /tmp/
+    rm -rf /tmp/src
+}
+
+function genericRun {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is RUNNING"
+    echo "| "
+    displayInformation "| "
+    echo "+====================================================="
+    displayDaemon
+}
+
 
 
 #######################################
@@ -22,6 +72,12 @@ Usage:
   docker run $SX_ID /bin/sx [command]
 
 - General Commands:
+  assemble         execute for building output image when using s2i 
+  post-build       execute after building image
+  pre-deploy       execute before the deployment begins (openshift).
+  post-deploy      execute after the deployment strategy completes (openshift).
+  run              execute the service on container startup
+  health           return the service health
   usage            this message
   help             display information about this tools
   info             give information about the running container
@@ -69,14 +125,20 @@ exit 0;
 # Display information
 #######################################
 function displayInformation {
-echo "name      : $SX_NAME"
-echo "ID        : $SX_ID:$SX_VERSION"
-echo "type      : $SX_TYPE"
-echo "service   : $SX_SERVICE"
-echo "OS        : $OS"
-echo "container : $HOSTNAME"
+echo $1 "name      : $SX_NAME"
+echo $1 "ID        : $SX_ID:$SX_VERSION"
+echo $1 "type      : $SX_TYPE"
+echo $1 "service   : $SX_SERVICE"
+echo $1 "OS        : $OS"
+echo $1 "container : $HOSTNAME"
+}
+
+#######################################
+# Display information
+#######################################
+function displayAllInformation {
+displayInformation
 env
-exit 0;
 }
 
 #######################################
@@ -84,6 +146,14 @@ exit 0;
 #######################################
 function displayVersion {
 echo $SXDBTOOLS_VERSION
+exit 0;
+}
+
+#######################################
+# Display health
+#######################################
+function displayHealth {
+echo "OK"
 exit 0;
 }
 

@@ -9,7 +9,7 @@ ENV SX_VERSION="27" \
     SX_NAME="Startx Apache service image (fedora rawhide)" \
     SX_SUMMARY="Startx apache service based on fedora rawhide" \
     HTTPDCONF=/etc/httpd/conf.d/app.conf \
-    LOG_PATH=/logs \
+    LOG_PATH=/var/log/httpd \
     APP_PATH=/app \
     DATA_PATH=/data
 
@@ -25,7 +25,7 @@ LABEL name="$SX_ID" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="200Mi" \
       io.openshift.min-cpu="1000m" \
-      io.openshift.expose-services="80:http" \
+      io.openshift.expose-services="8080:http" \
       io.openshift.s2i.destination="/tmp" \
       io.openshift.s2i.scripts-url="image:///s2i" \
       fr.startx.component="$SX_ID:$SX_VERSION"
@@ -37,12 +37,13 @@ COPY .s2i/bin/* /s2i/
 RUN dnf -y install httpd && dnf clean all && \
     chmod -R 775 /bin/sx* /s2i && \
     mv /bin/sx.sh /bin/sx-apache && \
-    chgrp -R 0 /bin/sx*.sh /bin/sx-apache && \
-    chmod -R g=u /bin/sx*.sh /bin/sx-apache && \
+    cat /etc/httpd/conf/httpd.conf | sed -e "s/Listen 80/#Listen 80/" > /etc/httpd/conf/httpd.conf && \
     chmod ug+r $HTTPDCONF && \
     rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf && \
     mkdir -p $DATA_PATH $APP_PATH $LOG_PATH && \
-    chown -R apache:apache $APP_PATH $DATA_PATH $LOG_PATH
+    chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /run/httpd /bin/sx*.sh /bin/sx-apache && \
+    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /run/httpd /bin/sx*.sh /bin/sx-apache && \
+    chmod -R ugo+rwx $LOG_PATH
 COPY ./ $APP_PATH
 RUN rm -rf $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib && \
     chgrp -R 0 $APP_PATH && \
@@ -52,7 +53,7 @@ USER 1001
 
 WORKDIR $APP_PATH
 
-EXPOSE 80
+EXPOSE 8080
 
 VOLUME $APP_PATH
 VOLUME $LOG_PATH
