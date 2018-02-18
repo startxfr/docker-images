@@ -184,43 +184,6 @@
             }
         },
         {
-            "kind": "Route",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APP_NAME}",
-                "creationTimestamp": null,
-                "labels": {
-                    "app": "${APP_NAME}",
-                    "provider": "startx",
-                    "type": "${APP_TYPE}",
-                    "template": "startx-sv-mariadb"
-                },
-                "annotations": {
-                    "openshift.io/generated-by": "STARTX"
-                }
-            },
-            "spec": {
-                "to": {
-                    "kind": "Service",
-                    "name": "${APP_NAME}",
-                    "weight": 100
-                }
-            },
-            "status": {
-                "ingress": [
-                    {
-                        "routerName": "router",
-                        "conditions": [
-                            {
-                                "type": "Admitted",
-                                "status": "True"
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        {
             "kind": "Service",
             "apiVersion": "v1",
             "metadata": {
@@ -240,8 +203,8 @@
                 "ports": [
                     {
                         "protocol": "TCP",
-                        "port": 80,
-                        "targetPort": 80
+                        "port": 3306,
+                        "targetPort": 3306
                     }
                 ],
                 "selector": {
@@ -268,7 +231,7 @@
             "name": "APP_TYPE",
             "displayName": "Application type",
             "description": "The type of the created application",
-            "value": "Mariadb Database"
+            "value": "database"
         }
     ]
 }

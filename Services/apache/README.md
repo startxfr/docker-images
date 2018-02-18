@@ -111,7 +111,7 @@ CMD ["/bin/run.sh"]
 
 ## Testing the service
 
-access to the running webserver with your favorites browser `firefox http://localhost:80`. Change port and hostname according to your current configuration
+access to the running webserver with your favorites browser `firefox http://localhost:8080`. Change port and hostname according to your current configuration
 
 ## For advanced users
 
@@ -128,8 +128,8 @@ You must have a working environment with the source code of this repository. Rea
 1. Jump into the container directory with `cd Services/apache`
 2. Build the container using `docker build -t sv-apache .`
 3. Run this container 
-  1. Interactively with `docker run -p 80:80 -v /logs -it sv-apache`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -p 80:80 -v /logs -d sv-apache`
+  1. Interactively with `docker run -p 8080:8080 -v /logs -it sv-apache`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 8080:8080 -v /logs -d sv-apache`
 
 
 ### Build & run a container using `docker-compose`

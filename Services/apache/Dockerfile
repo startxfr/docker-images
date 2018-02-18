@@ -44,7 +44,7 @@ RUN dnf -y install httpd && dnf clean all && \
     mkdir -p $DATA_PATH $APP_PATH $LOG_PATH && \
     chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /run/httpd && \
     chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /run/httpd && \
-    chmod -R ugo+rw $LOG_PATH
+    chmod -R ugo+rwx $LOG_PATH
 COPY ./ $APP_PATH
 RUN rm -rf $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib && \
     chgrp -R 0 $APP_PATH && \
@@ -54,7 +54,7 @@ USER 1001
 
 WORKDIR $APP_PATH
 
-EXPOSE 80
+EXPOSE 8080
 
 VOLUME $APP_PATH
 VOLUME $LOG_PATH
