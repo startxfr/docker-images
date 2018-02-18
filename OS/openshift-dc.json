@@ -1,0 +1,143 @@
+{
+    "kind": "Template",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "startx-os",
+        "creationTimestamp": null
+    },
+    "objects": [
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "generation": 10,
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "provider": "startx",
+                    "type": "${APP_TYPE}"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "STARTX"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Rolling",
+                    "rollingParams": {
+                        "updatePeriodSeconds": 1,
+                        "intervalSeconds": 1,
+                        "timeoutSeconds": 600,
+                        "maxUnavailable": "25%",
+                        "maxSurge": "25%"
+                    },
+                    "resources": {}
+                },
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "${APP_NAME}"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "namespace": "${IMAGE_NAMESPACE}",
+                                "name": "${IMAGE_STREAM}:${IMAGE_TAG}"
+                            }
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "test": false,
+                "selector": {
+                    "app": "${APP_NAME}",
+                    "deploymentconfig": "${APP_NAME}"
+                },
+                "template": {
+                    "metadata": {
+                        "creationTimestamp": null,
+                        "labels": {
+                            "app": "${APP_NAME}",
+                            "provider": "startx",
+                            "type": "${APP_TYPE}",
+                            "deploymentconfig": "${APP_NAME}"
+                        },
+                        "annotations": {
+                            "openshift.io/generated-by": "STARTX"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "name": "${APP_NAME}",
+                                "image": "startx/fedora@sha256:7566c86d34616e3a4b597ff7c616aae6e15cb0fee0b04bd6f7fd3390b6dd8d3c",
+                                "command": [
+                                    "/bin/sx"
+                                ],
+                                "args": [
+                                    "daemon"
+                                ],
+                                "resources": {},
+                                "terminationMessagePath": "/dev/termination-log",
+                                "imagePullPolicy": "Always"
+                            }
+                        ],
+                        "restartPolicy": "Always",
+                        "terminationGracePeriodSeconds": 30,
+                        "dnsPolicy": "ClusterFirst",
+                        "securityContext": {}
+                    }
+                }
+            },
+            "status": {
+                "observedGeneration": 10,
+                "replicas": 1,
+                "updatedReplicas": 1,
+                "availableReplicas": 1
+            }
+        }
+    ],
+    "parameters": [
+        {
+            "name": "IMAGE_STREAM",
+            "displayName": "Image stream",
+            "description": "Name of the image stream to use",
+            "value": "startx-os",
+            "required": true
+        },
+        {
+            "name": "IMAGE_TAG",
+            "displayName": "Image tag",
+            "description": "Tag of the image to use",
+            "value": "rawhide",
+            "required": true
+        },
+        {
+            "name": "IMAGE_NAMESPACE",
+            "displayName": "Image namespace",
+            "description": "Namespace where the image reside",
+            "value": "openshift",
+            "required": true
+        },
+        {
+            "name": "APP_NAME",
+            "displayName": "Application name",
+            "description": "The name of the created application",
+            "value": "startx-os",
+            "required": true
+        },
+        {
+            "name": "APP_TYPE",
+            "displayName": "Application type",
+            "description": "The type of the created application",
+            "value": "os",
+            "required": true
+        }
+    ]
+}
