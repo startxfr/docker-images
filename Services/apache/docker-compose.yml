@@ -5,5 +5,4 @@ server:
   memswap_limit: 300m
   cpu_shares: 2
   ports:
-    - "9201:80"
-    - "9202:443"
+    - "9201:8080"

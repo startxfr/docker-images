@@ -9,7 +9,7 @@
     "express": "3.20.2",
     "body-parser": "~1.12.3"
   },
-  "description": "docker template for nodejs app running on centos linux)",
+  "description": "docker template for nodejs app running under centos linux",
   "version": "0.0.1",
   "name": "startx-nodejs-server",
   "keywords": [

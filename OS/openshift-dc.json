@@ -26,6 +26,12 @@
                 "name": "${APP_NAME}",
                 "annotations": {
                     "openshift.io/display-name": "Startx Base OS (centos)"
+                },
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx",
+                    "template": "startx-os-fedora"
                 }
             },
             "spec": {
@@ -58,8 +64,9 @@
                 "creationTimestamp": null,
                 "labels": {
                     "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "type": "${APP_TYPE}"
+                    "template": "startx-os-fedora"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -70,12 +77,22 @@
                     "type": "Recreate",
                     "recreateParams": {
                         "timeoutSeconds": 40,
+                        "pre": {
+                            "failurePolicy": "Abort",
+                            "execNewPod": {
+                                "command": [
+                                    "/bin/sx",
+                                    "pre-deploy"
+                                ],
+                                "containerName": "${APP_NAME}"
+                            }
+                        },
                         "post": {
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
                                     "/bin/sx",
-                                    "info"
+                                    "post-deploy"
                                 ],
                                 "containerName": "${APP_NAME}"
                             }
@@ -112,9 +129,10 @@
                         "creationTimestamp": null,
                         "labels": {
                             "app": "${APP_NAME}",
-                            "deploymentconfig": "${APP_NAME}",
+                            "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "type": "${APP_TYPE}"
+                            "template": "startx-os-fedora",
+                            "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
                             "openshift.io/generated-by": "STARTX"
@@ -129,14 +147,14 @@
                                     "/bin/sx"
                                 ],
                                 "args": [
-                                    "daemon"
+                                    "run"
                                 ],
                                 "resources": {},
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
                                             "/bin/sx",
-                                            "version"
+                                            "health"
                                         ]
                                     },
                                     "initialDelaySeconds": 5,
@@ -149,7 +167,7 @@
                                     "exec": {
                                         "command": [
                                             "/bin/sx",
-                                            "version"
+                                            "health"
                                         ]
                                     },
                                     "initialDelaySeconds": 2,

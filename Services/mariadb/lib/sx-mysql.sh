@@ -1,8 +1,6 @@
 #!/bin/bash
-source /bin/sx-lib.sh
 
 function check_mariadb_environment {
-    check_environment
     if [ ! -v DATA_PATH ]; then
         DATA_PATH="/data"
         export DATA_PATH
@@ -13,32 +11,69 @@ function check_mariadb_environment {
     fi
 }
 
-function display_container_mariadb_header {
+function displayMysqlInformation {
+    displayInformation $1
+    echo $1 "version   : $SX_VERSION"
+    echo $1 "engine    : $(mysql -V | head -1)"
+    echo $1 "sql path  : $LOADSQL_PATH"
+    echo $1 "log path  : $LOG_PATH"
+    echo $1 "data path : $DATA_PATH"
+}
+
+function displayMysqlRunInformation {
+    displayMysqlInformation $1
+    echo $1 "admin     : root:$MYSQL_ROOT_PASSWORD"
+    echo $1 "user      : $MYSQL_USER:$MYSQL_PASSWORD"
+    echo $1 "database  : $MYSQL_DATABASE"
+}
+
+function mysqlPreDeploy {
     echo "+====================================================="
-    echo "| Container   : $HOSTNAME"
-    echo "| OS          : $(</etc/redhat-release)"
-    echo "| Engine      : $(mysql -V | head -1)"
-    if [ -v CONTAINER_TYPE ]; then
-        echo "| Type        : $CONTAINER_TYPE"
-    fi
-    if [ -v CONTAINER_SERVICE ]; then
-        echo "| Service     : $CONTAINER_SERVICE"
-    fi
-    if [ -v CONTAINER_INSTANCE ]; then
-        echo "| Instance    : $CONTAINER_INSTANCE"
-    fi
-    if [ -v DATA_PATH ]; then
-        echo "| Data path   : $DATA_PATH"
-    fi
-    if [ -v LOG_PATH ]; then
-        echo "| Log path    : $LOG_PATH"
-    fi
-    if [ -v LOADSQL_PATH ]; then
-        echo "| sql path    : $LOADSQL_PATH"
-    fi
+    echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    echo "| "
+    displayMysqlInformation "| "
     echo "+====================================================="
 }
 
+function mysqlPostDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    echo "| "
+    displayMysqlInformation "| "
+    echo "+====================================================="
+}
+
+function mysqlPostBuild {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-BUILD HOOK"
+    echo "| "
+    displayMysqlInformation "| "
+    echo "+====================================================="
+}
+
+function mysqlAssemble {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running ASSEMBLE"
+    echo "| "
+    displayMysqlInformation "| "
+    echo "+====================================================="
+    echo "Fixing perm on /tmp/src"
+    chown 1001:0 -R /tmp/src
+    chmod g=u -R /tmp/src
+    echo "Copy sql scripts from /tmp/src > $LOADSQL_PATH"
+    cp -R /tmp/src/*.sql $LOADSQL_PATH/
+    rm -rf /tmp/src
+    init_service_mariadb
+}
+
+function mysqlRun {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is RUNNING"
+    echo "| "
+    displayMysqlRunInformation "| "
+    echo "+====================================================="
+    start_service_mariadb
+}
 
 # Begin configuration before starting daemonized process
 # and start generating host keys
@@ -49,7 +84,7 @@ function begin_config {
         mkdir -p $DATA_PATH; 
         mkdir -p $DATA_PATH/store; 
         chmod 0774 $DATA_PATH;
-        chown mysql:mysql $DATA_PATH; 
+        chown -R mysql:0 $DATA_PATH; 
         echo "data directory $DATA_PATH CREATED"
     else 
         echo "data directory $DATA_PATH EXIST"
@@ -58,7 +93,7 @@ function begin_config {
         echo "log directory $LOG_PATH not found"
         mkdir -p $LOG_PATH; 
         chmod 0774 $LOG_PATH;
-        chown mysql:mysql $LOG_PATH; 
+        chown mysql:0 $LOG_PATH; 
         echo "log directory $LOG_PATH CREATED"
     else 
         echo "log directory $LOG_PATH EXIST"
@@ -66,7 +101,7 @@ function begin_config {
     if [[ -d $LOADSQL_PATH ]]; then
         echo "sql directory $LOADSQL_PATH EXIST"
         chmod 0774 $LOADSQL_PATH; 
-        chown mysql:mysql $LOADSQL_PATH
+        chown mysql:0 $LOADSQL_PATH
     fi
     echo "" >> $MY_CONF
     echo "[mysqld]" >> $MY_CONF
@@ -84,7 +119,7 @@ function begin_config {
         echo "mariadb directory is empty or uninitialized"
         echo "Installing MariaDB in $DATA_PATH ..."
         mysql_install_db --datadir=$DATA_PATH --defaults-file=$MY_CONF --user=mysql > /dev/null 2>&1 
-        chown mysql:mysql -R $DATA_PATH
+        chown mysql:0 -R $DATA_PATH
         echo "Installing MariaDB in $DATA_PATH is DONE !"
         config_startserver
         config_createadmin
@@ -95,7 +130,7 @@ function begin_config {
     else
         echo "mariadb directory is initialized"
         echo "Reusing MariaDB in $DATA_PATH ..."
-        chown mysql:mysql -R $DATA_PATH
+        chown mysql:0 -R $DATA_PATH
     fi
 }
 
@@ -139,7 +174,8 @@ function config_createadmin {
 function config_createuser {
     if [[ -n "$MYSQL_USER" ]]; then
         echo "Creating MariaDB $MYSQL_USER user with preset password"
-        mysql -uroot -e "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD'"
+        PASS=${MYSQL_PASSWORD:-$(pwgen -s 12 1)}
+        mysql -uroot -e "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$PASS'"
         mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%' WITH GRANT OPTION"
         echo ""
         echo " +------------------------------------------------------"
@@ -147,9 +183,9 @@ function config_createuser {
         echo " | You can now connect to this server using:"
         echo " | "
         echo " | user     : $MYSQL_USER"
-        echo " | password : $MYSQL_PASSWORD"
+        echo " | password : $PASS"
         echo " | "
-        echo " | shell    : mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h<host> -P<port>"
+        echo " | shell    : mysql -u$MYSQL_USER -p$PASS -h<host> -P<port>"
         echo " +------------------------------------------------------"
         echo ""
     fi
@@ -217,9 +253,9 @@ function end_config {
 
 function stop_mariadb_handler {
     mysqladmin -uroot shutdown
-    echo "+=====================================================" | tee -a $STARTUPLOG
-    echo "| Container $HOSTNAME is now STOPPED" | tee -a $STARTUPLOG
-    echo "+=====================================================" | tee -a $STARTUPLOG
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is now STOPPED"
+    echo "+====================================================="
     exit 143; # 128 + 15 -- SIGTERM
 }
 
@@ -227,9 +263,6 @@ function stop_mariadb_handler {
 # the running shell
 function start_service_mariadb {
     trap 'kill ${!}; stop_mariadb_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
-    echo "+=====================================================" | tee -a $STARTUPLOG
-    echo "| Container $HOSTNAME is now RUNNING" | tee -a $STARTUPLOG
-    echo "+=====================================================" | tee -a $STARTUPLOG
     exec mysqld_safe &
     while true
     do
@@ -237,8 +270,8 @@ function start_service_mariadb {
     done
 }
 
-check_mariadb_environment | tee -a $STARTUPLOG
-display_container_mariadb_header | tee -a $STARTUPLOG
-begin_config | tee -a $STARTUPLOG
-end_config | tee -a $STARTUPLOG
-start_service_mariadb
+# Init the mariadb server
+function init_service_mariadb {
+    begin_config
+    end_config
+}
