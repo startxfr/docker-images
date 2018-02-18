@@ -66,8 +66,8 @@ function apacheAssemble {
     rm -rf $APP_PATH/.gitignore $APP_PATH/.git
 #    rm -rf /tmp/src
     echo "Fixing perm on $APP_PATH"
-    chown 1001:0 -R $APP_PATH
-    chmod g=u -R $APP_PATH
+#    chown 1001:0 -R $APP_PATH
+#    chmod g=u -R $APP_PATH
 }
 
 function apacheRun {
