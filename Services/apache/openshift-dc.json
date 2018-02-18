@@ -135,7 +135,7 @@
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
-                                "image": "startx/sv-apache@sha256:5cb90731ded2b0f2d0d2c54b8a73bc869a419035f062e3ce431f9d4fec041300",
+                                "image": "startx/sv-apache@sha256:fdeea7651d752e09fd9d6e760e85ef7667f7e443c9712d0e5f051c105e66bf05",
                                 "command": [
                                     "/bin/sx-apache"
                                 ],

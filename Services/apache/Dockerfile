@@ -40,7 +40,7 @@ RUN dnf -y install httpd && dnf clean all && \
     chgrp -R 0 /bin/sx*.sh /bin/sx-apache && \
     chmod -R g=u /bin/sx*.sh /bin/sx-apache && \
     chmod ug+r $HTTPDCONF && \
-    useradd -G apache 1001 && \
+    usermod -a -G apache 1001 && \
     rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf && \
     mkdir -p $DATA_PATH $APP_PATH $LOG_PATH && \
     chown -R apache:apache $APP_PATH $DATA_PATH $LOG_PATH
