@@ -6,8 +6,8 @@ ENV SX_VERSION="26" \
     SX_TYPE="service" \
     SX_SERVICE="php" \
     SX_ID="startx/sv-php" \
-    SX_NAME="Startx Apache-PHP service image (fedora rawhide)" \
-    SX_SUMMARY="Startx apache-php service based on fedora rawhide"
+    SX_NAME="Startx Apache-PHP service image (fedora 26)" \
+    SX_SUMMARY="Startx apache-php service based on fedora 26"
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \

@@ -6,8 +6,8 @@ ENV SX_VERSION="26" \
     SX_TYPE="OS" \
     SX_SERVICE="fedora" \
     SX_ID="startx/fedora" \
-    SX_NAME="Startx OS base image (fedora rawhide)" \
-    SX_SUMMARY="Startx OS base image based on fedora rawhide"
+    SX_NAME="Startx OS base image (fedora 26)" \
+    SX_SUMMARY="Startx OS base image based on fedora 26"
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
