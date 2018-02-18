@@ -8,8 +8,10 @@ Each container is provided with various underlying OS version based on CentOS or
 Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
 or **[other postgres flavours](https://github.com/startxfr/docker-images/Services/postgres/#available-flavours)**
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc27)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-postgres/) | [Sources](https://github.com/startxfr/docker-images/Services/postgres)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc27)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-postgres/) | [Sources](https://github.com/startxfr/docker-images/tree/fc27/Services/postgres)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------|-----------------------------------------------|
+
+## Available flavours
 
 ## Running from dockerhub registry
 

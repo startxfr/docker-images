@@ -35,7 +35,7 @@ access to the container itself
 	docker exec -it pma bash
 
 ## Related Resources
-* [Sources files](https://github.com/startxfr/docker-images/tree/master/Applications/phpmyadmin)
+* [Sources files](https://github.com/startxfr/docker-images/tree/fc27/Applications/phpmyadmin)
 * [Github STARTX profile](https://github.com/startxfr/docker-images)
 * [Docker registry for this container](https://registry.hub.docker.com/u/startx/app-phpmyadmin/)
 * [Docker registry for Fedora](https://registry.hub.docker.com/u/fedora/)
