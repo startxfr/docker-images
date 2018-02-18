@@ -5,7 +5,7 @@ echo "INFO: Updating docker configuration (experimental)"
 echo '{ "experimental": true, "storage-driver": "overlay2", "max-concurrent-downloads": 50, "max-concurrent-uploads": 50 }' | sudo tee /etc/docker/daemon.json
 sudo service docker restart
 echo "INFO: Cache fedora image"
-docker pull fedora:rawhide
+docker pull fedora:27
 docker pull startx/fedora:27
 echo "INFO: Login to dockerhub registry"
 docker login -u $DOCKER_USER -p $DOCKER_PASS

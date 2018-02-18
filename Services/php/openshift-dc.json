@@ -8,9 +8,9 @@
             "description": "Http server for simple web application running under Fedora",
             "iconClass": "icon-php",
             "tags": "startx,os,fedora,apache,httpd,php",
-            "openshift.io/long-description": "This template provides an apache + php httpd webserver in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/long-description": "This template provides an apache + php httpd webserver in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/fc27/README.md.",
             "openshift.io/provider-display-name": "STARTX",
-            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
+            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc27/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
@@ -37,19 +37,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "fc27",
                         "annotations": {
-                            "openshift.io/display-name": "Startx WebServer (Fedora rawhide)",
-                            "description": "Http server for simple web application running under Fedora rawhide",
+                            "openshift.io/display-name": "Startx WebServer (Fedora 27)",
+                            "description": "Http server for simple web application running under Fedora 27",
                             "iconClass": "icon-php",
                             "tags": "builder,startx,fedora,apache,httpd,php",
                             "supports": "http",
-                            "version": "rawhide",
+                            "version": "27",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-php.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-php:latest"
+                            "name": "startx/sv-php:fc27"
                         }
                     }
                 ]
@@ -114,7 +114,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:latest"
+                                "name": "${APP_NAME}:fc27"
                             }
                         }
                     },

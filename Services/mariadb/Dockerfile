@@ -2,12 +2,12 @@ FROM startx/fedora:27
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="27" \
     SX_TYPE="service" \
     SX_SERVICE="mariadb" \
     SX_ID="startx/sv-mariadb" \
-    SX_NAME="Startx Mariadb service image (fedora rawhide)" \
-    SX_SUMMARY="Startx mariadb service based on fedora rawhide" \
+    SX_NAME="Startx Mariadb service image (fedora 27)" \
+    SX_SUMMARY="Startx mariadb service based on fedora 27" \
     MY_CONF=/etc/my.cnf \
     DATA_PATH=/data \
     LOG_PATH=/logs \
