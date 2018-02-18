@@ -60,6 +60,5 @@ VOLUME $LOG_PATH
 VOLUME $DATA_PATH
 
 ONBUILD COPY ./ $APP_PATH
-ONBUILD RUN rm -rf $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib && chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH
 
 CMD [ "/bin/sx-apache" , "start" ]

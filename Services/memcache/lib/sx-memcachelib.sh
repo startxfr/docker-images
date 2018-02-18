@@ -1,37 +1,23 @@
 #!/bin/bash
 
-function check_httpd_environment {
-    if [ ! -v APP_PATH ]; then
-        APP_PATH="/app"
-        export APP_PATH
-    fi
-    if [ ! -v DATA_PATH ]; then
-        DATA_PATH="/data"
-        export DATA_PATH
-    fi
+function check_memcache_environment {
     if [ ! -v LOG_PATH ]; then
         LOG_PATH="/logs"
         export LOG_PATH
     fi
-    if [ ! -n SERVER_NAME ]; then
-        SERVER_NAME="localhost"
-        export SERVER_NAME
-    fi
 }
 
-function displayApacheInformation {
+function displayMemcacheInformation {
     displayInformation $1 
-    echo $1 "app path  : $APP_PATH"
     echo $1 "log path  : $LOG_PATH"
-    echo $1 "data path : $DATA_PATH"
-    echo $1 "httpd     : $(httpd -v | head -1)" 
+    echo $1 "memcache  : $(memcached -h | head -1)" 
 }
 
-function apachePreDeploy {
+function memcachePreDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
     echo "| "
-    displayApacheInformation "| "
+    displayMemcacheInformation "| "
     echo "+====================================================="
     echo "Create log directory $LOG_PATH"
     touch $LOG_PATH/access.log
@@ -39,27 +25,27 @@ function apachePreDeploy {
     chmod g=u -R $LOG_PATH
 }
 
-function apachePostDeploy {
+function memcachePostDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
     echo "| "
-    displayApacheInformation "| "
+    displayMemcacheInformation "| "
     echo "+====================================================="
 }
 
-function apachePostBuild {
+function memcachePostBuild {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-BUILD HOOK"
     echo "| "
-    displayApacheInformation "| "
+    displayMemcacheInformation "| "
     echo "+====================================================="
 }
 
-function apacheAssemble {
+function memcacheAssemble {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running ASSEMBLE"
     echo "| "
-    displayApacheInformation "| "
+    displayMemcacheInformation "| "
     echo "+====================================================="
     echo "Fixing perm on /tmp/src"
     chown 1001:0 -R /tmp/src
@@ -69,18 +55,17 @@ function apacheAssemble {
     rm -rf /tmp/src
 }
 
-function apacheRun {
+function memcacheRun {
     echo "+====================================================="
     echo "| Container $HOSTNAME is RUNNING"
     echo "| "
-    displayApacheInformation "| "
+    displayMemcacheInformation "| "
     echo "+====================================================="
-    start_service_httpd
+    start_service_memcache
 }
 
-function stop_httpd_handler {
-    killall httpd
-    rm -rf /run/httpd/*
+function stop_memcache_handler {
+    killall memcached
     echo "+====================================================="
     echo "| Container $HOSTNAME is now STOPPED"
     echo "+====================================================="
@@ -88,34 +73,9 @@ function stop_httpd_handler {
 }
 
 
-# Start the httpd server as a deamon and execute it inside 
+# Start the memcache server as a deamon and execute it inside 
 # the running shell
-function start_service_httpd {
-    trap 'kill ${!}; stop_httpd_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
-    rm -rf /run/httpd/* /tmp/httpd*
-    exec /usr/sbin/httpd -D FOREGROUND > $LOG_PATH/access.log &
-    while true
-    do
-        tail -f $LOG_PATH/access.log & wait ${!}
-    done
-}
-
-
-
-# set env var $2 (val $3) in file $1
-function setEnvironmentVariableInFile {
-    if [ -z "$3" ]; then
-            echo "Environment variable '$2' not set."
-            return
-    fi
-    echo "SetEnv $2 $3" >> $1
-}
-
-
-function setSys2HttpEnvironmentVariable {
-    echo "adding environement to $1"
-    echo "" >> $1
-    for _curVar in `env | awk -F = '{print $1}'`;do
-        setEnvironmentVariableInFile $1 ${_curVar} ${!_curVar}
-    done
+function start_service_memcache {
+    trap 'kill ${!}; stop_memcache_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
+    exec memcached -u daemon -v
 }
