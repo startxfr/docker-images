@@ -13,18 +13,70 @@ function check_httpd_environment {
         LOG_PATH="/logs"
         export LOG_PATH
     fi
-    if [ ! -v SERVER_NAME ]; then
+    if [ ! -n SERVER_NAME ]; then
         SERVER_NAME="localhost"
         export SERVER_NAME
     fi
 }
 
 function displayApacheInformation {
-    displayInformation
-    echo "version   : $SX_VERSION"
-    echo "app path  : $APP_PATH"
-    echo "log path  : $LOG_PATH"
-    echo "data path : $DATA_PATH"
+    displayInformation $1 
+    echo $1 "version   : $SX_VERSION"
+    echo $1 "app path  : $APP_PATH"
+    echo $1 "log path  : $LOG_PATH"
+    echo $1 "data path : $DATA_PATH"
+    echo $1 "httpd     : $(httpd -v | head -1)" 
+}
+
+function apachePreDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    echo "| "
+    displayApacheInformation "| "
+    echo "+====================================================="
+    echo "Create log directory $LOG_PATH"
+    touch $LOG_PATH/access.log
+    chown 1001:0 -R $LOG_PATH
+    chmod g=u -R $LOG_PATH
+}
+
+function apachePostDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    echo "| "
+    displayApacheInformation "| "
+    echo "+====================================================="
+}
+
+function apachePostBuild {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-BUILD HOOK"
+    echo "| "
+    displayApacheInformation "| "
+    echo "+====================================================="
+}
+
+function apacheAssemble {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running ASSEMBLE"
+    echo "| "
+    displayApacheInformation "| "
+    echo "+====================================================="
+    echo "Fixing perm on /tmp/src"
+    chown 1001:0 -R /tmp/src
+    chmod g=u -R /tmp/src
+    echo "Copy source from /tmp/src > $APP_PATH"
+    cp -R /tmp/src/* $APP_PATH/
+    rm -rf /tmp/src
+}
+
+function apacheRun {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is RUNNING"
+    echo "| "
+    displayApacheInformation "| "
+    echo "+====================================================="
+    start_service_httpd
 }
 
 function stop_httpd_handler {
@@ -41,14 +93,11 @@ function stop_httpd_handler {
 # the running shell
 function start_service_httpd {
     trap 'kill ${!}; stop_httpd_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is now RUNNING"
-    echo "+====================================================="
     rm -rf /run/httpd/* /tmp/httpd*
-    exec /usr/sbin/httpd -D FOREGROUND &
+    exec /usr/sbin/httpd -D FOREGROUND > $LOG_PATH/access.log &
     while true
     do
-      tail -f /dev/null & wait ${!}
+        tail -f $LOG_PATH/access.log & wait ${!}
     done
 }
 
