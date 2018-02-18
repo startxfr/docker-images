@@ -21,7 +21,7 @@
                             "description": "Http server builder for simple web application running under Fedora 26",
                             "iconClass": "icon-apache",
                             "tags": "builder,startx,fedora,apache,httpd",
-                            "supports": "httpd",
+                            "supports": "http",
                             "version": "fc26",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-apache.git"
                         },
@@ -37,7 +37,7 @@
                             "description": "Http server builder for simple web application running under Fedora 27",
                             "iconClass": "icon-apache",
                             "tags": "builder,startx,fedora,apache,httpd",
-                            "supports": "httpd",
+                            "supports": "http",
                             "version": "fc27",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-apache.git"
                         },
@@ -53,7 +53,7 @@
                             "description": "Http server builder for simple web application running under Fedora rawhide",
                             "iconClass": "icon-apache",
                             "tags": "builder,startx,fedora,apache,httpd",
-                            "supports": "httpd",
+                            "supports": "http",
                             "version": "rawhide",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-apache.git"
                         },
@@ -69,7 +69,7 @@
                             "description": "Http server builder for simple web application running under Centos 7",
                             "iconClass": "icon-apache",
                             "tags": "builder,startx,centos,apache,httpd",
-                            "supports": "httpd",
+                            "supports": "http",
                             "version": "7",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-apache.git"
                         },

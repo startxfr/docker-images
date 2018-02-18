@@ -25,6 +25,7 @@ function displayApacheInformation {
     echo $1 "app path  : $APP_PATH"
     echo $1 "log path  : $LOG_PATH"
     echo $1 "data path : $DATA_PATH"
+    echo $1 "httpd     : $(httpd -v | head -1)" 
 }
 
 function apachePreDeploy {
