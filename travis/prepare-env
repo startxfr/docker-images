@@ -6,6 +6,7 @@ echo '{ "experimental": true, "storage-driver": "overlay2", "max-concurrent-down
 sudo service docker restart
 echo "INFO: Cache centos image"
 docker pull centos:centos7
+docker pull startx/centos:7
 echo "INFO: Login to dockerhub registry"
 docker login -u $DOCKER_USER -p $DOCKER_PASS
 echo "========> END SETUP TEST ENVIRONMENT"
