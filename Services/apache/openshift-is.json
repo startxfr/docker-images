@@ -9,7 +9,7 @@
             "metadata": {
                 "name": "startx-sv-apache",
                 "annotations": {
-                    "openshift.io/display-name": "Startx Http Server (S2I)"
+                    "openshift.io/display-name": "Startx WebServer (S2I)"
                 }
             },
             "spec": {
@@ -17,9 +17,9 @@
                     {
                         "name": "fc26",
                         "annotations": {
-                            "openshift.io/display-name": "S2I Http Server (Fedora 26)",
+                            "openshift.io/display-name": "S2I WebServer (Fedora 26)",
                             "description": "Http server builder for simple web application running on Fedora 26",
-                            "iconClass": "icon-beaker",
+                            "iconClass": "icon-apache",
                             "tags": "builder,startx,fedora,apache,httpd",
                             "supports": "httpd",
                             "version": "fc26",
@@ -33,9 +33,9 @@
                     {
                         "name": "fc27",
                         "annotations": {
-                            "openshift.io/display-name": "S2I Http Server (Fedora 27)",
+                            "openshift.io/display-name": "S2I WebServer (Fedora 27)",
                             "description": "Http server builder for simple web application running on Fedora 27",
-                            "iconClass": "icon-beaker",
+                            "iconClass": "icon-apache",
                             "tags": "builder,startx,fedora,apache,httpd",
                             "supports": "httpd",
                             "version": "fc27",
@@ -49,9 +49,9 @@
                     {
                         "name": "latest",
                         "annotations": {
-                            "openshift.io/display-name": "S2I Http Server (Fedora rawhide)",
+                            "openshift.io/display-name": "S2I WebServer (Fedora rawhide)",
                             "description": "Http server builder for simple web application running on Fedora rawhide",
-                            "iconClass": "icon-beaker",
+                            "iconClass": "icon-apache",
                             "tags": "builder,startx,fedora,apache,httpd",
                             "supports": "httpd",
                             "version": "rawhide",
@@ -65,9 +65,9 @@
                     {
                         "name": "centos7",
                         "annotations": {
-                            "openshift.io/display-name": "S2I Http Server (Centos 7)",
+                            "openshift.io/display-name": "S2I WebServer (Centos 7)",
                             "description": "Http server builder for simple web application running on Centos 7",
-                            "iconClass": "icon-beaker",
+                            "iconClass": "icon-apache",
                             "tags": "builder,startx,centos,apache,httpd",
                             "supports": "httpd",
                             "version": "7",

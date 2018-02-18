@@ -25,6 +25,7 @@ LABEL name="$SX_ID" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="200Mi" \
       io.openshift.min-cpu="1000m" \
+      io.openshift.expose-services="80:http" \
       io.openshift.s2i.destination="/tmp" \
       io.openshift.s2i.scripts-url="image:///s2i" \
       fr.startx.component="$SX_ID:$SX_VERSION"
@@ -47,7 +48,7 @@ RUN rm -rf $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib && \
     chgrp -R 0 $APP_PATH && \
     chmod -R g=u $APP_PATH
 
-EXPOSE 80 443
+EXPOSE 80
 
 VOLUME $APP_PATH
 VOLUME $LOG_PATH
