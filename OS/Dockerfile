@@ -31,7 +31,6 @@ COPY .s2i/bin/* /s2i/
 # Install minimal packages
 RUN dnf -y install pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip && \
     dnf clean all && \
-    useradd -u 1001 -r -g 0 -s /sbin/nologin -c "Default Application User" default
     chmod -R 775 /bin/sx-lib.sh /bin/sx.sh /s2i && \
     mv /bin/sx.sh /bin/sx && \
     chgrp -R 0 /bin/sx*.sh /bin/sx /tmp && \

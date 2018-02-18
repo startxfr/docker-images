@@ -40,10 +40,10 @@ RUN dnf -y install httpd && dnf clean all && \
     chgrp -R 0 /bin/sx*.sh /bin/sx-apache && \
     chmod -R g=u /bin/sx*.sh /bin/sx-apache && \
     chmod ug+r $HTTPDCONF && \
-    usermod -a -G apache 1001 && \
     rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf && \
     mkdir -p $DATA_PATH $APP_PATH $LOG_PATH && \
-    chown -R apache:apache $APP_PATH $DATA_PATH $LOG_PATH
+    chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /run/httpd && \
+    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /run/httpd
 COPY ./ $APP_PATH
 RUN rm -rf $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib && \
     chgrp -R 0 $APP_PATH && \
