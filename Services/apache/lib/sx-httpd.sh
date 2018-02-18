@@ -50,7 +50,7 @@ function start_service_httpd {
     exec /usr/sbin/httpd -D FOREGROUND &
     while true
     do
-      tail -f /dev/null & wait ${!}
+        tail -f $LOG_PATH/access.log & wait ${!}
     done
 }
 
