@@ -46,7 +46,7 @@ service:
   environment:
     CONTAINER_INSTANCE: "service-apache"
   ports:
-    - "1000:80"
+    - "1000:8080"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
@@ -56,7 +56,7 @@ service:
   environment:
     CONTAINER_INSTANCE: "service-apache"
   expose:
-    - "80"
+    - "8080"
 ```
 * sample docker-compose.yml using data container
 ```
@@ -99,8 +99,7 @@ CMD ["/bin/run.sh"]
 
 | Port  | Description                                                              |
 |-------|--------------------------------------------------------------------------|
-| 80    | standard httpd network port used for non encrypted http traffic
-| 443   | SSL enabeled http port used for encrypted traffic (certificate not actually implemented)
+| 8080  | standard httpd network port used for non encrypted http traffic
 
 ## Exposed volumes
 
