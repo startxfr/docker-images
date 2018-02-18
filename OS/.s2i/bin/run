@@ -9,6 +9,6 @@
 
 if [[ -r /tmp/run ]]; then
     exec /tmp/run $@
-else; then
+else
     exec /bin/sx $@
 fi 
