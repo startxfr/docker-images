@@ -9,7 +9,7 @@ ENV SX_VERSION="latest" \
     SX_NAME="Startx Apache service image (fedora rawhide)" \
     SX_SUMMARY="Startx apache service based on fedora rawhide" \
     HTTPDCONF=/etc/httpd/conf.d/app.conf \
-    LOG_PATH=/logs \
+    LOG_PATH=/var/log/httpd \
     APP_PATH=/app \
     DATA_PATH=/data
 
@@ -36,17 +36,13 @@ COPY lib/* /bin/
 COPY .s2i/bin/* /s2i/
 RUN dnf -y install httpd && dnf clean all && \
     chmod -R 775 /bin/sx* /s2i && \
-    rm -rf /var/log/httpd && \
-    ln -s $LOG_PATH /var/log/httpd && \
     mv /bin/sx.sh /bin/sx-apache && \
-    chgrp -R 0 /bin/sx*.sh /bin/sx-apache /var/log/httpd && \
-    chmod -R g=u /bin/sx*.sh /bin/sx-apache /var/log/httpd && \
     cat /etc/httpd/conf/httpd.conf | sed -e "s/Listen 80/#Listen 80/" > /etc/httpd/conf/httpd.conf && \
     chmod ug+r $HTTPDCONF && \
     rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf && \
     mkdir -p $DATA_PATH $APP_PATH $LOG_PATH && \
-    chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /run/httpd && \
-    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /run/httpd && \
+    chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /run/httpd /bin/sx*.sh /bin/sx-apache && \
+    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /run/httpd /bin/sx*.sh /bin/sx-apache && \
     chmod -R ugo+rwx $LOG_PATH
 COPY ./ $APP_PATH
 RUN rm -rf $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib && \
