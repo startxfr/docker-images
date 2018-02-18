@@ -64,7 +64,8 @@
                 "labels": {
                     "app": "${APP_NAME}",
                     "provider": "startx",
-                    "type": "${APP_TYPE}"
+                    "type": "${APP_TYPE}",
+                    "template": "startx-sv-apache"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -72,9 +73,13 @@
             },
             "spec": {
                 "strategy": {
-                    "type": "Recreate",
-                    "recreateParams": {
+                    "type": "Rolling",
+                    "rollingParams": {
+                        "updatePeriodSeconds": 1,
+                        "intervalSeconds": 1,
                         "timeoutSeconds": 40,
+                        "maxUnavailable": "25%",
+                        "maxSurge": "25%",
                         "post": {
                             "failurePolicy": "Abort",
                             "execNewPod": {
@@ -117,9 +122,10 @@
                         "creationTimestamp": null,
                         "labels": {
                             "app": "${APP_NAME}",
-                            "deploymentconfig": "${APP_NAME}",
                             "provider": "startx",
-                            "type": "${APP_TYPE}"
+                            "type": "${APP_TYPE}",
+                            "template": "startx-sv-apache",
+                            "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
                             "openshift.io/generated-by": "STARTX"
@@ -131,10 +137,10 @@
                                 "name": "${APP_NAME}",
                                 "image": "startx/sv-apache@sha256:5cb90731ded2b0f2d0d2c54b8a73bc869a419035f062e3ce431f9d4fec041300",
                                 "command": [
-                                    "/bin/sx"
+                                    "/bin/sx-apache"
                                 ],
                                 "args": [
-                                    "daemon"
+                                    "start"
                                 ],
                                 "resources": {},
                                 "livenessProbe": {
@@ -166,11 +172,7 @@
                                 "terminationMessagePath": "/dev/termination-log",
                                 "imagePullPolicy": "Always"
                             }
-                        ],
-                        "restartPolicy": "Always",
-                        "terminationGracePeriodSeconds": 30,
-                        "dnsPolicy": "ClusterFirst",
-                        "securityContext": {}
+                        ]
                     }
                 }
             },
@@ -179,6 +181,78 @@
                 "replicas": 1,
                 "updatedReplicas": 1,
                 "availableReplicas": 1
+            }
+        },
+        {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "provider": "startx",
+                    "type": "${APP_TYPE}",
+                    "template": "startx-sv-apache"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "STARTX"
+                }
+            },
+            "spec": {
+                "to": {
+                    "kind": "Service",
+                    "name": "${APP_NAME}",
+                    "weight": 100
+                }
+            },
+            "status": {
+                "ingress": [
+                    {
+                        "routerName": "router",
+                        "conditions": [
+                            {
+                                "type": "Admitted",
+                                "status": "True"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "provider": "startx",
+                    "type": "${APP_TYPE}",
+                    "template": "startx-sv-apache"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "STARTX"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "protocol": "TCP",
+                        "port": 80,
+                        "targetPort": 80
+                    }
+                ],
+                "selector": {
+                    "app": "${APP_NAME}",
+                    "deploymentconfig": "${APP_NAME}"
+                },
+                "type": "ClusterIP",
+                "sessionAffinity": "None"
+            },
+            "status": {
+                "loadBalancer": {}
             }
         }
     ],
