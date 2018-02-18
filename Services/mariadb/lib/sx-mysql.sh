@@ -1,8 +1,6 @@
 #!/bin/bash
-source /bin/sx-lib.sh
 
 function check_mariadb_environment {
-    check_environment
     if [ ! -v DATA_PATH ]; then
         DATA_PATH="/data"
         export DATA_PATH
@@ -13,32 +11,14 @@ function check_mariadb_environment {
     fi
 }
 
-function display_container_mariadb_header {
-    echo "+====================================================="
-    echo "| Container   : $HOSTNAME"
-    echo "| OS          : $(</etc/redhat-release)"
-    echo "| Engine      : $(mysql -V | head -1)"
-    if [ -v CONTAINER_TYPE ]; then
-        echo "| Type        : $CONTAINER_TYPE"
-    fi
-    if [ -v CONTAINER_SERVICE ]; then
-        echo "| Service     : $CONTAINER_SERVICE"
-    fi
-    if [ -v CONTAINER_INSTANCE ]; then
-        echo "| Instance    : $CONTAINER_INSTANCE"
-    fi
-    if [ -v DATA_PATH ]; then
-        echo "| Data path   : $DATA_PATH"
-    fi
-    if [ -v LOG_PATH ]; then
-        echo "| Log path    : $LOG_PATH"
-    fi
-    if [ -v LOADSQL_PATH ]; then
-        echo "| sql path    : $LOADSQL_PATH"
-    fi
-    echo "+====================================================="
+function displayMysqlInformation {
+    displayInformation
+    echo "version   : $SX_VERSION"
+    echo "engine    : $(mysql -V | head -1)"
+    echo "sql path  : $LOADSQL_PATH"
+    echo "log path  : $LOG_PATH"
+    echo "data path : $DATA_PATH"
 }
-
 
 # Begin configuration before starting daemonized process
 # and start generating host keys
@@ -49,7 +29,7 @@ function begin_config {
         mkdir -p $DATA_PATH; 
         mkdir -p $DATA_PATH/store; 
         chmod 0774 $DATA_PATH;
-        chown mysql:mysql $DATA_PATH; 
+        chown -R mysql:0 $DATA_PATH; 
         echo "data directory $DATA_PATH CREATED"
     else 
         echo "data directory $DATA_PATH EXIST"
@@ -58,7 +38,7 @@ function begin_config {
         echo "log directory $LOG_PATH not found"
         mkdir -p $LOG_PATH; 
         chmod 0774 $LOG_PATH;
-        chown mysql:mysql $LOG_PATH; 
+        chown mysql:0 $LOG_PATH; 
         echo "log directory $LOG_PATH CREATED"
     else 
         echo "log directory $LOG_PATH EXIST"
@@ -66,7 +46,7 @@ function begin_config {
     if [[ -d $LOADSQL_PATH ]]; then
         echo "sql directory $LOADSQL_PATH EXIST"
         chmod 0774 $LOADSQL_PATH; 
-        chown mysql:mysql $LOADSQL_PATH
+        chown mysql:0 $LOADSQL_PATH
     fi
     echo "" >> $MY_CONF
     echo "[mysqld]" >> $MY_CONF
@@ -84,7 +64,7 @@ function begin_config {
         echo "mariadb directory is empty or uninitialized"
         echo "Installing MariaDB in $DATA_PATH ..."
         mysql_install_db --datadir=$DATA_PATH --defaults-file=$MY_CONF --user=mysql > /dev/null 2>&1 
-        chown mysql:mysql -R $DATA_PATH
+        chown mysql:0 -R $DATA_PATH
         echo "Installing MariaDB in $DATA_PATH is DONE !"
         config_startserver
         config_createadmin
@@ -95,7 +75,7 @@ function begin_config {
     else
         echo "mariadb directory is initialized"
         echo "Reusing MariaDB in $DATA_PATH ..."
-        chown mysql:mysql -R $DATA_PATH
+        chown mysql:0 -R $DATA_PATH
     fi
 }
 
@@ -237,8 +217,8 @@ function start_service_mariadb {
     done
 }
 
-check_mariadb_environment | tee -a $STARTUPLOG
-display_container_mariadb_header | tee -a $STARTUPLOG
-begin_config | tee -a $STARTUPLOG
-end_config | tee -a $STARTUPLOG
-start_service_mariadb
+# Init the mariadb server
+function init_service_mariadb {
+    begin_config
+    end_config
+}

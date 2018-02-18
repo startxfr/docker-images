@@ -1,3 +1,4 @@
 /nbproject
 OS/s2i
 Services/apache/s2i
+Services/mariadb/s2i
