@@ -18,7 +18,7 @@
                         "name": "fc26",
                         "annotations": {
                             "openshift.io/display-name": "S2I WebServer (Fedora 26)",
-                            "description": "Http server builder for simple web application running on Fedora 26",
+                            "description": "Http server builder for simple web application running under Fedora 26",
                             "iconClass": "icon-apache",
                             "tags": "builder,startx,fedora,apache,httpd",
                             "supports": "httpd",
@@ -34,7 +34,7 @@
                         "name": "fc27",
                         "annotations": {
                             "openshift.io/display-name": "S2I WebServer (Fedora 27)",
-                            "description": "Http server builder for simple web application running on Fedora 27",
+                            "description": "Http server builder for simple web application running under Fedora 27",
                             "iconClass": "icon-apache",
                             "tags": "builder,startx,fedora,apache,httpd",
                             "supports": "httpd",
@@ -50,7 +50,7 @@
                         "name": "latest",
                         "annotations": {
                             "openshift.io/display-name": "S2I WebServer (Fedora rawhide)",
-                            "description": "Http server builder for simple web application running on Fedora rawhide",
+                            "description": "Http server builder for simple web application running under Fedora rawhide",
                             "iconClass": "icon-apache",
                             "tags": "builder,startx,fedora,apache,httpd",
                             "supports": "httpd",
@@ -66,7 +66,7 @@
                         "name": "centos7",
                         "annotations": {
                             "openshift.io/display-name": "S2I WebServer (Centos 7)",
-                            "description": "Http server builder for simple web application running on Centos 7",
+                            "description": "Http server builder for simple web application running under Centos 7",
                             "iconClass": "icon-apache",
                             "tags": "builder,startx,centos,apache,httpd",
                             "supports": "httpd",

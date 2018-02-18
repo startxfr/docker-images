@@ -5,7 +5,7 @@
         "name": "startx-sv-apache",
         "annotations": {
             "openshift.io/display-name": "Startx Http Server (fedora)",
-            "description": "Http server for simple web application running on Fedora",
+            "description": "Http server for simple web application running under Fedora",
             "iconClass": "icon-apache",
             "tags": "startx,os,fedora,apache,httpd",
             "openshift.io/long-description": "This template provides an apache httpd webserver in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
@@ -39,7 +39,7 @@
                         "name": "latest",
                         "annotations": {
                             "openshift.io/display-name": "Startx WebServer (Fedora rawhide)",
-                            "description": "Http server for simple web application running on Fedora rawhide",
+                            "description": "Http server for simple web application running under Fedora rawhide",
                             "iconClass": "icon-apache",
                             "tags": "builder,startx,fedora,apache,httpd",
                             "supports": "httpd",
