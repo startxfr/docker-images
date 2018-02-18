@@ -57,6 +57,4 @@ VOLUME $APP_PATH
 VOLUME $LOG_PATH
 VOLUME $DATA_PATH
 
-ONBUILD COPY ./ $APP_PATH
-
 CMD [ "/bin/sx-php" , "start" ]

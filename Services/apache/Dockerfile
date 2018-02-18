@@ -45,8 +45,7 @@ RUN dnf -y install httpd && dnf clean all && \
     chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /run/httpd /bin/sx*.sh /bin/sx-apache && \
     chmod -R ugo+rwx $LOG_PATH
 COPY ./index.html $APP_PATH
-RUN chgrp -R 0 $APP_PATH && \
-    chmod -R g=u $APP_PATH
+RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH
 
 USER 1001
 
@@ -57,7 +56,5 @@ EXPOSE 8080
 VOLUME $APP_PATH
 VOLUME $LOG_PATH
 VOLUME $DATA_PATH
-
-ONBUILD COPY ./ $APP_PATH
 
 CMD [ "/bin/sx-apache" , "start" ]

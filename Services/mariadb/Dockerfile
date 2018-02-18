@@ -58,6 +58,5 @@ VOLUME $DATA_PATH
 VOLUME $LOG_PATH
 
 ONBUILD COPY ./*.sql $LOADSQL_PATH/
-ONBUILD RUN chgrp -R 0 $LOADSQL_PATH && chmod -R g=u $LOADSQL_PATH
 
 CMD [ "/bin/sx-mariadb" , "start" ]
