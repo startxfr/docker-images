@@ -1,4 +1,4 @@
-FROM startx/fedora:latest
+FROM startx/sv-apache:latest
 
 MAINTAINER Startx <dev@startx.fr>
 
