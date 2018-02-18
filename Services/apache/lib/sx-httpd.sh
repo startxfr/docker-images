@@ -61,12 +61,13 @@ function apacheAssemble {
     echo "| "
     displayApacheInformation "| "
     echo "+====================================================="
-    echo "Fixing perm on /tmp/src"
-    chown 1001:0 -R /tmp/src
-    chmod g=u -R /tmp/src
     echo "Copy source from /tmp/src > $APP_PATH"
     cp -R /tmp/src/* $APP_PATH/
+    rm -rf $APP_PATH/.gitignore $APP_PATH/.git
     rm -rf /tmp/src
+    echo "Fixing perm on $APP_PATH"
+    chown 1001:0 -R $APP_PATH
+    chmod g=u -R $APP_PATH
 }
 
 function apacheRun {
