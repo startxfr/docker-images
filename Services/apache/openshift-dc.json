@@ -2,13 +2,13 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-os-fedora",
+        "name": "startx-sv-apache",
         "annotations": {
-            "openshift.io/display-name": "Startx Base OS (fedora)",
-            "description": "Minimal Fedora OS container for bash operations",
-            "iconClass": "icon-beaker",
-            "tags": "startx,os,fedora",
-            "openshift.io/long-description": "This template provides a fedora container with minimal tools and scripts. Ready to use in openshift with a simple deployement config, or as a s2i builder for bash applications. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/display-name": "Startx Http Server (fedora)",
+            "description": "Http server for simple web application running on Fedora",
+            "iconClass": "icon-apache",
+            "tags": "startx,os,fedora,apache,httpd",
+            "openshift.io/long-description": "This template provides an apache httpd webserver in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -16,7 +16,7 @@
     },
     "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
     "labels": {
-        "template": "startx-os-fedora"
+        "template": "startx-sv-apache"
     },
     "objects": [
         {
@@ -25,7 +25,12 @@
             "metadata": {
                 "name": "${APP_NAME}",
                 "annotations": {
-                    "openshift.io/display-name": "Startx Base OS (fedora)"
+                    "openshift.io/display-name": "Startx WebServer"
+                },
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "provider": "startx",
+                    "type": "${APP_TYPE}"
                 }
             },
             "spec": {
@@ -33,17 +38,17 @@
                     {
                         "name": "fc27",
                         "annotations": {
-                            "openshift.io/display-name": "Startx Fedora (27)",
-                            "description": "Minimal Fedora 27 OS for bash operations",
-                            "iconClass": "icon-beaker",
-                            "tags": "builder,startx,fedora",
-                            "supports": "fedora",
+                            "openshift.io/display-name": "Startx WebServer (Fedora 27)",
+                            "description": "Http server for simple web application running on Fedora 27",
+                            "iconClass": "icon-apache",
+                            "tags": "builder,startx,fedora,apache,httpd",
+                            "supports": "httpd",
                             "version": "27",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-apache.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/fedora:27"
+                            "name": "startx/sv-apache:fc27"
                         }
                     }
                 ]
@@ -124,7 +129,7 @@
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
-                                "image": "startx/fedora@sha256:7566c86d34616e3a4b597ff7c616aae6e15cb0fee0b04bd6f7fd3390b6dd8d3c",
+                                "image": "startx/sv-apache@sha256:5cb90731ded2b0f2d0d2c54b8a73bc869a419035f062e3ce431f9d4fec041300",
                                 "command": [
                                     "/bin/sx"
                                 ],
@@ -182,14 +187,14 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "startx-os",
+            "value": "apache",
             "required": true
         },
         {
             "name": "APP_TYPE",
             "displayName": "Application type",
             "description": "The type of the created application",
-            "value": "os"
+            "value": "webserver"
         }
     ]
 }

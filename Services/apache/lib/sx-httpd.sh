@@ -27,12 +27,6 @@ function displayApacheInformation {
     echo "data path : $DATA_PATH"
 }
 
-function display_container_httpd_header {
-    echo "+====================================================="
-    displayApacheInformation
-    echo "+====================================================="
-}
-
 function stop_httpd_handler {
     killall httpd
     rm -rf /run/httpd/*

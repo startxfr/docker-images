@@ -22,7 +22,7 @@ fedora:
 
 You can use this image as an s2i builder image. 
  ```bash
-s2i build https://github.com/youraccount/yourcode startx/fedora:27 test-fedora27
+s2i build https://github.com/startxfr/docker-images-example-bash startx/fedora:27 test-fedora27
 docker run --rm -i -t test-fedora27
 ```
 

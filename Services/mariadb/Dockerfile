@@ -2,7 +2,7 @@ FROM startx/fedora:27
 MAINTAINER Christophe LARUE <dev@startx.fr>
 
 USER root
-RUN dnf -y install  mariadb-common mariadb-libs mariadb-config mariadb-errmsg mariadb-server mariadb \
+RUN dnf -y install mariadb-tokudb-engine mariadb-connect-engine mariadb-rocksdb-engine mariadb-oqgraph-engine mariadb-connector-c mariadb-connector-odbc mariadb-server-utils mariadb-java-client mariadb-backup mariadb-common mariadb-config mariadb-errmsg mariadb-gssapi-server mariadb-cracklib-password-check mariadb \
     && dnf clean all && \
     mkdir -p /tmp/sql 
 ENV MY_CONF=/etc/my.cnf \

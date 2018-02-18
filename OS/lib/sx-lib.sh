@@ -38,7 +38,7 @@ exit 0;
 #######################################
 function displayUsageS2I {
 cat <<EOF
-Basic OS container to build bash applications
+Startx builder container to use with s2i or openshift
 
 Usage:
   s2i $SX_ID <code_repo_url> ≤image_name>
