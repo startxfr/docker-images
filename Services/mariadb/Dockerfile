@@ -42,12 +42,11 @@ RUN dnf -y install mariadb-tokudb-engine mariadb-connect-engine mariadb-rocksdb-
     chgrp -R 0 /bin/sx*.sh /bin/sx-mariadb && \
     chmod -R g=u /bin/sx*.sh /bin/sx-mariadb && \
     chmod ug+r $MY_CONF && \
-    rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf && \
     mkdir -p $DATA_PATH $LOG_PATH && \
     touch $DATA_PATH/.keep && \
     chown -R mysql:mysql $LOG_PATH $DATA_PATH $LOADSQL_PATH && \
-    chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /run/httpd && \
-    chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /run/httpd
+    chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH && \
+    chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH
 
 USER 1001
 
