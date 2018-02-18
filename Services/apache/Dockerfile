@@ -1,4 +1,4 @@
-FROM startx/fedora
+FROM fedora:rawhide
 
 MAINTAINER Startx <dev@startx.fr>
 
@@ -32,8 +32,9 @@ LABEL name="$SX_ID" \
 USER root
 COPY httpd.conf $HTTPDCONF
 COPY lib/* /bin/
+COPY .s2i/bin/* /s2i/
 RUN dnf -y install httpd && dnf clean all && \
-    chmod 775 /bin/sx* && \
+    chmod 775 /bin/sx* /s2i && \
     mv /bin/run.sh /bin/sx-apache && \
     chgrp -R 0 /bin/sx*.sh /bin/sx-apache && \
     chmod -R g=u /bin/sx*.sh /bin/sx-apache && \
@@ -53,7 +54,6 @@ VOLUME $LOG_PATH
 VOLUME $DATA_PATH
 
 ONBUILD COPY ./ $APP_PATH
-ONBUILD RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib && chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH
+ONBUILD RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib $APP_PATH/.s2i $APP_PATH/s2i && chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH
 
-ENTRYPOINT [ "/bin/sx-apache" ]
-CMD [ "start" ]
+CMD [ "/bin/sx-apache" , "start" ]
