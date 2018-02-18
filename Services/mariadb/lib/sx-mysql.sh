@@ -197,9 +197,9 @@ function end_config {
 
 function stop_mariadb_handler {
     mysqladmin -uroot shutdown
-    echo "+=====================================================" | tee -a $STARTUPLOG
-    echo "| Container $HOSTNAME is now STOPPED" | tee -a $STARTUPLOG
-    echo "+=====================================================" | tee -a $STARTUPLOG
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is now STOPPED"
+    echo "+====================================================="
     exit 143; # 128 + 15 -- SIGTERM
 }
 
@@ -207,10 +207,11 @@ function stop_mariadb_handler {
 # the running shell
 function start_service_mariadb {
     trap 'kill ${!}; stop_mariadb_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
-    echo "+=====================================================" | tee -a $STARTUPLOG
-    echo "| Container $HOSTNAME is now RUNNING" | tee -a $STARTUPLOG
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is now RUNNING"
+    echo "| "
     displayMysqlInformation "| "
-    echo "+=====================================================" | tee -a $STARTUPLOG
+    echo "+====================================================="
     exec mysqld_safe &
     while true
     do

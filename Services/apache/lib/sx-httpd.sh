@@ -43,6 +43,7 @@ function start_service_httpd {
     trap 'kill ${!}; stop_httpd_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
     echo "+====================================================="
     echo "| Container $HOSTNAME is now RUNNING"
+    echo "| "
     displayApacheInformation "| "
     echo "+====================================================="
     rm -rf /run/httpd/* /tmp/httpd*

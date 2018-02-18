@@ -39,8 +39,8 @@ RUN dnf -y install mariadb-tokudb-engine mariadb-connect-engine mariadb-rocksdb-
     mkdir -p $LOADSQL_PATH && \
     chmod -R 775 /bin/sx* /s2i && \
     mv /bin/sx.sh /bin/sx-mariadb && \
-    chgrp -R 0 /bin/sx*.sh /bin/sx-mariadb && \
-    chmod -R g=u /bin/sx*.sh /bin/sx-mariadb && \
+    chgrp -R 0 /bin/sx*.sh /bin/sx-mariadb /var/lib/mysql && \
+    chmod -R g=u /bin/sx*.sh /bin/sx-mariadb /var/lib/mysql && \
     chmod ug+r $MY_CONF && \
     mkdir -p $DATA_PATH $LOG_PATH && \
     touch $DATA_PATH/.keep && \

@@ -6,6 +6,8 @@ pid=0
 
 function display_container_header {
     echo "+====================================================="
+    echo "| Container $HOSTNAME is now RUNNING"
+    echo "| "
     displayInformation "| "
     echo "+====================================================="
 }
