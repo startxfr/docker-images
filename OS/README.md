@@ -6,11 +6,13 @@ This container contain updated core OS rpm (kernel, libs,...) as well as usefull
 please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
 or [other OS distributions and flavours](https://github.com/startxfr/docker-images/OS#container-flavours)
 
-| Version    | Docker Hub repository                                                   | CentOS distribution                         |
-|------------|-------------------------------------------------------------------------|---------------------------------------------|
-| latest     | [`startx/centos:latest`](https://hub.docker.com/r/startx/centos)        | Centos 7  (kernel 3.10 + GNU 3.10  ) 
-| 7          | [`startx/centos:7`](https://hub.docker.com/r/startx/centos)             | Centos 7  (kernel 4.2 + GNU 3.10  )
-| 6          | [`startx/centos:6`](https://hub.docker.com/r/startx/centos)             | Centos 6  (kernel 3.16 + GNU 3.6  ) 
+## Container flavours
+
+| Version    | Docker Hub repository                                                   | Openshift                                   | CentOS distribution                         |
+|------------|-------------------------------------------------------------------------|---------------------------------------------|---------------------------------------------|
+| latest     | [`startx/centos:latest`](https://hub.docker.com/r/startx/centos)        | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-is.json) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-dc.json)   | Centos 7  (kernel 3.10 + GNU 3.10  ) 
+| 7          | [`startx/centos:7`](https://hub.docker.com/r/startx/centos)             | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-is.json) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-dc.json)   | Centos 7  (kernel 4.2 + GNU 3.10  )
+| 6          | [`startx/centos:6`](https://hub.docker.com/r/startx/centos)             | **N/A**                                                                                                                                                                                                          | Centos 6  (kernel 3.16 + GNU 3.6  ) 
 
 ## Running this image
 
