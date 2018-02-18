@@ -4,7 +4,7 @@ Simple container used to deliver distributed and low latency document oriented d
 Run [couchbase daemon](https://www.couchbase.org/) under a container 
 based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-couchbase/) | [Sources](https://github.com/startxfr/docker-images/Services/couchbase)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-couchbase/) | [Sources](https://github.com/startxfr/docker-images/tree/master/Services/couchbase)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|------------------------------------------------------------------------------------|-----------------------------------------------|
 
 ## Available flavours

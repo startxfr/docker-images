@@ -4,7 +4,7 @@ Simple container used to deliver document-oriented database
 Run [mongodb daemon](https://www.mongodb.org/) under a container 
 based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-mongo/) | [Sources](https://github.com/startxfr/docker-images/Services/mongo)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-mongo/) | [Sources](https://github.com/startxfr/docker-images/tree/master/Services/mongo)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|---------------------------------------------------------------------------------|-----------------------------------------------|
 
 ## Available flavours
