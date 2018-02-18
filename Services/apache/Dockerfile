@@ -43,11 +43,11 @@ RUN dnf -y install httpd && dnf clean all && \
     rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf && \
     mkdir -p $DATA_PATH $APP_PATH $LOG_PATH && \
     chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /run/httpd && \
-    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /run/httpd
+    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /run/httpd && \
+    chmod -R ugo+rw $LOG_PATH
 COPY ./ $APP_PATH
 RUN rm -rf $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib && \
     chgrp -R 0 $APP_PATH && \
-    chown -R 1001:0 $APP_PATH && \
     chmod -R g=u $APP_PATH
 
 USER 1001
