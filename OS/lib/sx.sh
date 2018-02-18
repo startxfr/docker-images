@@ -5,7 +5,7 @@ source /bin/sx-lib.sh
 case $1 in
     usage|help|--help)      displayUsage $@ ;;
     usageS2i)               displayUsageS2I $@ ;;
-    info|--info)            displayInformation $@ ;;
+    info|--info)            displayAllInformation $@ ;;
     daemon)                 displayDaemon $@ ;;
     version|--version)      displayVersion $@ ;;
     *)                      displayWelcome $@ ;;

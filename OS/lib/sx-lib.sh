@@ -6,7 +6,7 @@ pid=0
 
 function display_container_header {
     echo "+====================================================="
-    displayInformation
+    displayInformation "| "
     echo "+====================================================="
 }
 
@@ -69,14 +69,20 @@ exit 0;
 # Display information
 #######################################
 function displayInformation {
-echo "name      : $SX_NAME"
-echo "ID        : $SX_ID:$SX_VERSION"
-echo "type      : $SX_TYPE"
-echo "service   : $SX_SERVICE"
-echo "OS        : $OS"
-echo "container : $HOSTNAME"
+echo $1 "name      : $SX_NAME"
+echo $1 "ID        : $SX_ID:$SX_VERSION"
+echo $1 "type      : $SX_TYPE"
+echo $1 "service   : $SX_SERVICE"
+echo $1 "OS        : $OS"
+echo $1 "container : $HOSTNAME"
+}
+
+#######################################
+# Display information
+#######################################
+function displayAllInformation {
+displayInformation
 env
-exit 0;
 }
 
 #######################################

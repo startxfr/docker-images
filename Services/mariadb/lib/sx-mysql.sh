@@ -12,12 +12,12 @@ function check_mariadb_environment {
 }
 
 function displayMysqlInformation {
-    displayInformation
-    echo "version   : $SX_VERSION"
-    echo "engine    : $(mysql -V | head -1)"
-    echo "sql path  : $LOADSQL_PATH"
-    echo "log path  : $LOG_PATH"
-    echo "data path : $DATA_PATH"
+    displayInformation $1
+    echo $1 "version   : $SX_VERSION"
+    echo $1 "engine    : $(mysql -V | head -1)"
+    echo $1 "sql path  : $LOADSQL_PATH"
+    echo $1 "log path  : $LOG_PATH"
+    echo $1 "data path : $DATA_PATH"
 }
 
 # Begin configuration before starting daemonized process
@@ -209,6 +209,7 @@ function start_service_mariadb {
     trap 'kill ${!}; stop_mariadb_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
     echo "+=====================================================" | tee -a $STARTUPLOG
     echo "| Container $HOSTNAME is now RUNNING" | tee -a $STARTUPLOG
+    displayMysqlInformation "| "
     echo "+=====================================================" | tee -a $STARTUPLOG
     exec mysqld_safe &
     while true

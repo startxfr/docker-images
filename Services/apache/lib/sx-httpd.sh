@@ -20,11 +20,11 @@ function check_httpd_environment {
 }
 
 function displayApacheInformation {
-    displayInformation
-    echo "version   : $SX_VERSION"
-    echo "app path  : $APP_PATH"
-    echo "log path  : $LOG_PATH"
-    echo "data path : $DATA_PATH"
+    displayInformation $1 
+    echo $1 "version   : $SX_VERSION"
+    echo $1 "app path  : $APP_PATH"
+    echo $1 "log path  : $LOG_PATH"
+    echo $1 "data path : $DATA_PATH"
 }
 
 function stop_httpd_handler {
@@ -43,6 +43,7 @@ function start_service_httpd {
     trap 'kill ${!}; stop_httpd_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
     echo "+====================================================="
     echo "| Container $HOSTNAME is now RUNNING"
+    displayApacheInformation "| "
     echo "+====================================================="
     rm -rf /run/httpd/* /tmp/httpd*
     exec /usr/sbin/httpd -D FOREGROUND &
