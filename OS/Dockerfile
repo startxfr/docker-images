@@ -33,8 +33,8 @@ RUN yum -y install pwgen tar psmisc procps findutils iputils net-tools wget logr
     yum clean all && \
     chmod 775 -R /bin/sx-lib.sh /bin/sx.sh /s2i && \
     mv /bin/sx.sh /bin/sx && \
-    chgrp -R 0 /bin/sx*.sh /bin/sx && \
-    chmod -R g=u /bin/sx*.sh /bin/sx
+    chgrp -R 0 /bin/sx*.sh /bin/sx /tmp && \
+    chmod -R g=u /bin/sx*.sh /bin/sx /tmp
 
 USER 1001
 

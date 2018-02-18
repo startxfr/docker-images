@@ -28,7 +28,7 @@ centos:
 
 You can use this image as an s2i builder image. 
  ```bash
-s2i build https://github.com/youraccount/yourcode startx/centos test-centos7
+s2i build https://github.com/startxfr/docker-images-example-bash startx/centos:7 test-centos7
 docker run --rm -i -t test-centos7
 ```
 

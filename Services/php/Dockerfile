@@ -38,7 +38,7 @@ RUN yum -y install php php-cli php-pear \
     chmod ug+r $HTTPDCONF && \
     rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf
 COPY ./ $APP_PATH
-RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib $APP_PATH/*.ini && \
+RUN rm -rf $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib $APP_PATH/*.ini && \
     chgrp -R 0 $APP_PATH && \
     chmod -R g=u $APP_PATH
 

@@ -23,7 +23,7 @@
                             "tags": "builder,startx,fedora",
                             "supports": "fedora",
                             "version": "fc26",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example.git"
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
                         },
                         "from": {
                             "kind": "DockerImage",
@@ -39,7 +39,7 @@
                             "tags": "builder,startx,fedora",
                             "supports": "fedora",
                             "version": "fc27",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example.git"
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
                         },
                         "from": {
                             "kind": "DockerImage",
@@ -55,7 +55,7 @@
                             "tags": "builder,startx,fedora",
                             "supports": "fedora",
                             "version": "rawhide",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example.git"
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
                         },
                         "from": {
                             "kind": "DockerImage",
@@ -70,7 +70,7 @@
                             "iconClass": "icon-beaker",
                             "tags": "builder,startx,fedora",
                             "supports": "fedora",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example.git"
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
                         },
                         "from": {
                             "kind": "ImageStreamTag",
@@ -86,7 +86,7 @@
                             "tags": "builder,startx,centos",
                             "supports": "centos",
                             "version": "7",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example.git"
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
                         },
                         "from": {
                             "kind": "DockerImage",

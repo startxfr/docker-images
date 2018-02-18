@@ -13,24 +13,29 @@ ENV SX_VERSION="7" \
     APP_PATH=/app \
     DATA_PATH=/data
 
-LABEL name="startx/$SX_ID" \
+LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
-      description="$SX_SUMMARY" \
+      description="$SX_SUMMARY. Use for executing application based on http or as container mainstream image for your web application containers." \
       version="$SX_VERSION" \
       release="1" \
+      maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
       io.openshift.tags="startx,os,centos,apache,httpd" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="200Mi" \
       io.openshift.min-cpu="1000m" \
-      fr.startx.component="$SX_ID"
+      io.openshift.expose-services="80:http" \
+      io.openshift.s2i.destination="/tmp" \
+      io.openshift.s2i.scripts-url="image:///s2i" \
+      fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
 COPY httpd.conf $HTTPDCONF
 COPY lib/* /bin/
+COPY .s2i/bin/* /s2i/
 RUN yum -y install httpd && yum clean all && \
-    chmod 775 /bin/sx* && \
+    chmod 775 /bin/sx* /s2i && \
     mv /bin/run.sh /bin/sx-apache && \
     chgrp -R 0 /bin/sx*.sh /bin/sx-apache && \
     chmod -R g=u /bin/sx*.sh /bin/sx-apache && \
@@ -39,18 +44,17 @@ RUN yum -y install httpd && yum clean all && \
     mkdir -p $DATA_PATH $APP_PATH $LOG_PATH && \
     chown -R apache:apache $APP_PATH $DATA_PATH $LOG_PATH
 COPY ./ $APP_PATH
-RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib && \
+RUN rm -rf $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib && \
     chgrp -R 0 $APP_PATH && \
     chmod -R g=u $APP_PATH
 
-EXPOSE 80 443
+EXPOSE 80
 
 VOLUME $APP_PATH
 VOLUME $LOG_PATH
 VOLUME $DATA_PATH
 
 ONBUILD COPY ./ $APP_PATH
-ONBUILD RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib && chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH
+ONBUILD RUN rm -f $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib $APP_PATH/.s2i $APP_PATH/s2i && chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH
 
-ENTRYPOINT [ "/bin/sx-apache" ]
-CMD [ "start" ]
+CMD [ "/bin/sx-apache" , "start" ]
