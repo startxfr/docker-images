@@ -100,12 +100,22 @@
                         "timeoutSeconds": 120,
                         "maxUnavailable": "25%",
                         "maxSurge": "25%",
+                        "pre": {
+                            "failurePolicy": "Abort",
+                            "execNewPod": {
+                                "command": [
+                                    "/bin/sx-mariadb",
+                                    "pre-deploy"
+                                ],
+                                "containerName": "${APP_NAME}"
+                            }
+                        },
                         "post": {
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
                                     "/bin/sx-mariadb",
-                                    "health"
+                                    "post-deploy"
                                 ],
                                 "containerName": "${APP_NAME}"
                             }

@@ -13,7 +13,7 @@ function check_httpd_environment {
         LOG_PATH="/logs"
         export LOG_PATH
     fi
-    if [ ! -v SERVER_NAME ]; then
+    if [ ! -n SERVER_NAME ]; then
         SERVER_NAME="localhost"
         export SERVER_NAME
     fi
@@ -33,6 +33,10 @@ function apachePreDeploy {
     echo "| "
     displayApacheInformation "| "
     echo "+====================================================="
+    echo "Create log directory $LOG_PATH"
+    touch $LOG_PATH/access.log
+    chown 1001:0 -R $LOG_PATH
+    chmod g=u -R $LOG_PATH
 }
 
 function apachePostDeploy {
@@ -89,7 +93,7 @@ function stop_httpd_handler {
 function start_service_httpd {
     trap 'kill ${!}; stop_httpd_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
     rm -rf /run/httpd/* /tmp/httpd*
-    exec /usr/sbin/httpd -D FOREGROUND &
+    exec /usr/sbin/httpd -D FOREGROUND > $LOG_PATH/access.log &
     while true
     do
         tail -f $LOG_PATH/access.log & wait ${!}

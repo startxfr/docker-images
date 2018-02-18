@@ -77,12 +77,22 @@
                     "type": "Recreate",
                     "recreateParams": {
                         "timeoutSeconds": 40,
+                        "pre": {
+                            "failurePolicy": "Abort",
+                            "execNewPod": {
+                                "command": [
+                                    "/bin/sx",
+                                    "pre-deploy"
+                                ],
+                                "containerName": "${APP_NAME}"
+                            }
+                        },
                         "post": {
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
                                     "/bin/sx",
-                                    "health"
+                                    "post-deploy"
                                 ],
                                 "containerName": "${APP_NAME}"
                             }

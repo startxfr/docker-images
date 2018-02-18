@@ -81,12 +81,22 @@
                         "timeoutSeconds": 60,
                         "maxUnavailable": "25%",
                         "maxSurge": "25%",
+                        "pre": {
+                            "failurePolicy": "Abort",
+                            "execNewPod": {
+                                "command": [
+                                    "/bin/sx-apache",
+                                    "pre-deploy"
+                                ],
+                                "containerName": "${APP_NAME}"
+                            }
+                        },
                         "post": {
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
                                     "/bin/sx-apache",
-                                    "health"
+                                    "post-deploy"
                                 ],
                                 "containerName": "${APP_NAME}"
                             }
@@ -262,7 +272,7 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "apache",
+            "value": "www",
             "required": true
         },
         {
