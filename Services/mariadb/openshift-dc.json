@@ -29,8 +29,9 @@
                 },
                 "labels": {
                     "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "type": "${APP_TYPE}"
+                    "template": "startx-sv-mariadb"
                 }
             },
             "spec": {
@@ -55,6 +56,25 @@
             }
         },
         {
+            "kind": "Secret",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx",
+                    "template": "startx-sv-mariadb"
+                }
+            },
+            "stringData": {
+                "MYSQL_ROOT_PASSWORD": "${MYSQL_ROOT_PASSWORD}",
+                "MYSQL_USER": "${MYSQL_USER}",
+                "MYSQL_PASSWORD": "${MYSQL_PASSWORD}"
+            }
+        },
+        {
             "kind": "DeploymentConfig",
             "apiVersion": "v1",
             "metadata": {
@@ -63,8 +83,8 @@
                 "creationTimestamp": null,
                 "labels": {
                     "app": "${APP_NAME}",
-                    "provider": "startx",
                     "type": "${APP_TYPE}",
+                    "provider": "startx",
                     "template": "startx-sv-mariadb"
                 },
                 "annotations": {
@@ -122,8 +142,8 @@
                         "creationTimestamp": null,
                         "labels": {
                             "app": "${APP_NAME}",
-                            "provider": "startx",
                             "type": "${APP_TYPE}",
+                            "provider": "startx",
                             "template": "startx-sv-mariadb",
                             "deploymentconfig": "${APP_NAME}"
                         },
@@ -141,6 +161,39 @@
                                 ],
                                 "args": [
                                     "run"
+                                ],
+                                "env": [
+                                    {
+                                        "name": "MYSQL_ROOT_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "name": "${APP_NAME}",
+                                                "key": "MYSQL_ROOT_PASSWORD"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MYSQL_USER",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "name": "${APP_NAME}",
+                                                "key": "MYSQL_USER"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MYSQL_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "name": "${APP_NAME}",
+                                                "key": "MYSQL_PASSWORD"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MYSQL_DATABASE",
+                                        "value": "${MYSQL_DATABASE}"
+                                    }
                                 ],
                                 "resources": {},
                                 "livenessProbe": {
@@ -191,8 +244,8 @@
                 "creationTimestamp": null,
                 "labels": {
                     "app": "${APP_NAME}",
-                    "provider": "startx",
                     "type": "${APP_TYPE}",
+                    "provider": "startx",
                     "template": "startx-sv-mariadb"
                 },
                 "annotations": {
@@ -232,6 +285,34 @@
             "displayName": "Application type",
             "description": "The type of the created application",
             "value": "database"
+        },
+        {
+            "name": "MYSQL_ROOT_PASSWORD",
+            "displayName": "Mysql root password",
+            "description": "The mysql root password to use. Generated if not provided",
+            "from": "[A-Z0-9]{16}",
+            "generate": "expression"
+        },
+        {
+            "name": "MYSQL_USER",
+            "displayName": "Mysql user",
+            "description": "Default user to create",
+            "value": "demo",
+            "from": "[A-Z0-9]{8}",
+            "generate": "expression"
+        },
+        {
+            "name": "MYSQL_PASSWORD",
+            "displayName": "Mysql password",
+            "description": "Password of the default user",
+            "value": "demo",
+            "from": "[A-Z0-9]{16}",
+            "generate": "expression"
+        },
+        {
+            "name": "MYSQL_DATABASE",
+            "displayName": "Mysql database",
+            "description": "name of the default database to create"
         }
     ]
 }

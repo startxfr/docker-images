@@ -29,8 +29,9 @@
                 },
                 "labels": {
                     "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "type": "${APP_TYPE}"
+                    "template": "startx-sv-apache"
                 }
             },
             "spec": {
@@ -63,8 +64,8 @@
                 "creationTimestamp": null,
                 "labels": {
                     "app": "${APP_NAME}",
-                    "provider": "startx",
                     "type": "${APP_TYPE}",
+                    "provider": "startx",
                     "template": "startx-sv-apache"
                 },
                 "annotations": {
@@ -122,8 +123,8 @@
                         "creationTimestamp": null,
                         "labels": {
                             "app": "${APP_NAME}",
-                            "provider": "startx",
                             "type": "${APP_TYPE}",
+                            "provider": "startx",
                             "template": "startx-sv-apache",
                             "deploymentconfig": "${APP_NAME}"
                         },
@@ -191,8 +192,8 @@
                 "creationTimestamp": null,
                 "labels": {
                     "app": "${APP_NAME}",
-                    "provider": "startx",
                     "type": "${APP_TYPE}",
+                    "provider": "startx",
                     "template": "startx-sv-apache"
                 },
                 "annotations": {
@@ -228,8 +229,8 @@
                 "creationTimestamp": null,
                 "labels": {
                     "app": "${APP_NAME}",
-                    "provider": "startx",
                     "type": "${APP_TYPE}",
+                    "provider": "startx",
                     "template": "startx-sv-apache"
                 },
                 "annotations": {

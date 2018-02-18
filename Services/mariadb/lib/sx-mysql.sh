@@ -20,6 +20,13 @@ function displayMysqlInformation {
     echo $1 "data path : $DATA_PATH"
 }
 
+function displayMysqlRunInformation {
+    displayMysqlInformation $1
+    echo $1 "admin     : root:$MYSQL_ROOT_PASSWORD"
+    echo $1 "user      : $MYSQL_USER:$MYSQL_PASSWORD"
+    echo $1 "database  : $MYSQL_DATABASE"
+}
+
 function mysqlPreDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
@@ -63,7 +70,7 @@ function mysqlRun {
     echo "+====================================================="
     echo "| Container $HOSTNAME is RUNNING"
     echo "| "
-    displayMysqlInformation "| "
+    displayMysqlRunInformation "| "
     echo "+====================================================="
     start_service_mariadb
 }
@@ -167,7 +174,8 @@ function config_createadmin {
 function config_createuser {
     if [[ -n "$MYSQL_USER" ]]; then
         echo "Creating MariaDB $MYSQL_USER user with preset password"
-        mysql -uroot -e "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD'"
+        PASS=${MYSQL_PASSWORD:-$(pwgen -s 12 1)}
+        mysql -uroot -e "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$PASS'"
         mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%' WITH GRANT OPTION"
         echo ""
         echo " +------------------------------------------------------"
@@ -175,9 +183,9 @@ function config_createuser {
         echo " | You can now connect to this server using:"
         echo " | "
         echo " | user     : $MYSQL_USER"
-        echo " | password : $MYSQL_PASSWORD"
+        echo " | password : $PASS"
         echo " | "
-        echo " | shell    : mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h<host> -P<port>"
+        echo " | shell    : mysql -u$MYSQL_USER -p$PASS -h<host> -P<port>"
         echo " +------------------------------------------------------"
         echo ""
     fi
