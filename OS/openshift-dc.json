@@ -3,7 +3,20 @@
     "apiVersion": "v1",
     "metadata": {
         "name": "startx-os",
-        "creationTimestamp": null
+        "annotations": {
+            "openshift.io/display-name": "Startx Base OS (fedora/Centos)",
+            "description": "Minimal Fedora/CentOS OS container for bash operations",
+            "iconClass": "icon-beaker",
+            "tags": "startx,os,fedora,centos",
+            "openshift.io/long-description": "This template provides a fedora or centos container with minimal tools and scripts. Ready to use in openshift with a simple deployement config, or as a s2i builder for bash applications. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/provider-display-name": "STARTX",
+            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
+            "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
+        }
+    },
+    "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
+    "labels": {
+        "template": "startx-os"
     },
     "objects": [
         {
@@ -11,7 +24,7 @@
             "apiVersion": "v1",
             "metadata": {
                 "name": "${APP_NAME}",
-                "generation": 10,
+                "generation": 2,
                 "creationTimestamp": null,
                 "labels": {
                     "app": "${APP_NAME}",
@@ -24,20 +37,23 @@
             },
             "spec": {
                 "strategy": {
-                    "type": "Rolling",
-                    "rollingParams": {
-                        "updatePeriodSeconds": 1,
-                        "intervalSeconds": 1,
-                        "timeoutSeconds": 600,
-                        "maxUnavailable": "25%",
-                        "maxSurge": "25%"
+                    "type": "Recreate",
+                    "recreateParams": {
+                        "timeoutSeconds": 40,
+                        "post": {
+                            "failurePolicy": "Abort",
+                            "execNewPod": {
+                                "command": [
+                                    "/bin/sx",
+                                    "info"
+                                ],
+                                "containerName": "${APP_NAME}"
+                            }
+                        }
                     },
                     "resources": {}
                 },
                 "triggers": [
-                    {
-                        "type": "ConfigChange"
-                    },
                     {
                         "type": "ImageChange",
                         "imageChangeParams": {
@@ -51,6 +67,9 @@
                                 "name": "${IMAGE_STREAM}:${IMAGE_TAG}"
                             }
                         }
+                    },
+                    {
+                        "type": "ConfigChange"
                     }
                 ],
                 "replicas": 1,
@@ -64,9 +83,9 @@
                         "creationTimestamp": null,
                         "labels": {
                             "app": "${APP_NAME}",
+                            "deploymentconfig": "${APP_NAME}",
                             "provider": "startx",
-                            "type": "${APP_TYPE}",
-                            "deploymentconfig": "${APP_NAME}"
+                            "type": "${APP_TYPE}"
                         },
                         "annotations": {
                             "openshift.io/generated-by": "STARTX"
@@ -84,6 +103,32 @@
                                     "daemon"
                                 ],
                                 "resources": {},
+                                "livenessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/bin/sx",
+                                            "version"
+                                        ]
+                                    },
+                                    "initialDelaySeconds": 5,
+                                    "timeoutSeconds": 2,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "failureThreshold": 3
+                                },
+                                "readinessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/bin/sx",
+                                            "version"
+                                        ]
+                                    },
+                                    "initialDelaySeconds": 2,
+                                    "timeoutSeconds": 2,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "failureThreshold": 3
+                                },
                                 "terminationMessagePath": "/dev/termination-log",
                                 "imagePullPolicy": "Always"
                             }
@@ -96,7 +141,7 @@
                 }
             },
             "status": {
-                "observedGeneration": 10,
+                "observedGeneration": 2,
                 "replicas": 1,
                 "updatedReplicas": 1,
                 "availableReplicas": 1
@@ -104,27 +149,6 @@
         }
     ],
     "parameters": [
-        {
-            "name": "IMAGE_STREAM",
-            "displayName": "Image stream",
-            "description": "Name of the image stream to use",
-            "value": "startx-os",
-            "required": true
-        },
-        {
-            "name": "IMAGE_TAG",
-            "displayName": "Image tag",
-            "description": "Tag of the image to use",
-            "value": "rawhide",
-            "required": true
-        },
-        {
-            "name": "IMAGE_NAMESPACE",
-            "displayName": "Image namespace",
-            "description": "Namespace where the image reside",
-            "value": "openshift",
-            "required": true
-        },
         {
             "name": "APP_NAME",
             "displayName": "Application name",
@@ -136,7 +160,27 @@
             "name": "APP_TYPE",
             "displayName": "Application type",
             "description": "The type of the created application",
-            "value": "os",
+            "value": "os"
+        },
+        {
+            "name": "IMAGE_NAMESPACE",
+            "displayName": "Image namespace",
+            "description": "Namespace where the image reside. If no image, you can import startx OS image streams",
+            "value": "openshift",
+            "required": true
+        },
+        {
+            "name": "IMAGE_STREAM",
+            "displayName": "Image stream",
+            "description": "Name of the image stream to use",
+            "value": "startx-os",
+            "required": true
+        },
+        {
+            "name": "IMAGE_TAG",
+            "displayName": "Image tag",
+            "description": "Tag of the image to use. Available in startx OS image streams are fc26, fc27, centos7, rawhide, latest",
+            "value": "rawhide",
             "required": true
         }
     ]
