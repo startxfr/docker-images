@@ -8,15 +8,15 @@ This container contain updated core OS rpm (kernel, libs,...) as well as usefull
 
 ## Container flavours
 
-| Version    | Docker Hub repository                                                   | Fedora distribution                         |
-|------------|-------------------------------------------------------------------------|---------------------------------------------|
-| latest     | [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora)        | Fedora 28 (kernel 4.14 + GNU 2.23  )        |
-| 27         | [`startx/fedora:27`](https://hub.docker.com/r/startx/fedora)            | Fedora 27 (kernel 4.11 + GNU 2.21  )        |
-| 26         | [`startx/fedora:26`](https://hub.docker.com/r/startx/fedora)            | Fedora 26 (kernel 4.09 + GNU 2.20  )        |
-| 23         | [`startx/fedora:23`](https://hub.docker.com/r/startx/fedora)            | Fedora 23 (kernel 4.2 + GNU 3.18  )         |
-| 22         | [`startx/fedora:22`](https://hub.docker.com/r/startx/fedora)            | Fedora 22 (kernel 4.0 + GNU 3.16  )         |
-| 21         | [`startx/fedora:21`](https://hub.docker.com/r/startx/fedora)            | Fedora 21 (kernel 3.16 + GNU 3.14  )        |
-| 20         | [`startx/fedora:20`](https://hub.docker.com/r/startx/fedora)            | Fedora 20 (kernel 3.11 + GNU 3.10  )        |
+| Version    | Docker Hub repository                                                   | Openshift                                   | Fedora distribution                         |
+|------------|-------------------------------------------------------------------------|---------------------------------------------|---------------------------------------------|
+| latest     | [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora)        | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-is.json) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-dc.json)        | Fedora 28 (kernel 4.14 + GNU 2.23  )        |
+| 27         | [`startx/fedora:27`](https://hub.docker.com/r/startx/fedora)            | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/fc27/OS/openshift-is.json) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/fc27/OS/openshift-dc.json)        | Fedora 27 (kernel 4.11 + GNU 2.21  )        |
+| 26         | [`startx/fedora:26`](https://hub.docker.com/r/startx/fedora)            | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/fc26/OS/openshift-is.json) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/fc26/OS/openshift-dc.json)        | Fedora 26 (kernel 4.09 + GNU 2.20  )        |
+| 23         | [`startx/fedora:23`](https://hub.docker.com/r/startx/fedora)            | **N/A**                                                                                                                                                                                                             | Fedora 23 (kernel 4.2 + GNU 3.18  )         |
+| 22         | [`startx/fedora:22`](https://hub.docker.com/r/startx/fedora)            | **N/A**                                                                                                                                                                                                             | Fedora 22 (kernel 4.0 + GNU 3.16  )         |
+| 21         | [`startx/fedora:21`](https://hub.docker.com/r/startx/fedora)            | **N/A**                                                                                                                                                                                                             | Fedora 21 (kernel 3.16 + GNU 3.14  )        |
+| 20         | [`startx/fedora:20`](https://hub.docker.com/r/startx/fedora)            | **N/A**                                                                                                                                                                                                             | Fedora 20 (kernel 3.11 + GNU 3.10  )        |
 
 ## Running this image
 
