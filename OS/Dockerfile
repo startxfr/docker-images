@@ -7,7 +7,9 @@ ENV SX_VERSION="latest" \
     SX_SERVICE="fedora" \
     SX_ID="startx/fedora" \
     SX_NAME="Startx OS base image (fedora rawhide)" \
-    SX_SUMMARY="Startx OS base image based on fedora rawhide"
+    SX_SUMMARY="Startx OS base image based on fedora rawhide" \
+    SX_QUIET="false" \
+    SX_DEBUG="true"
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -26,16 +28,19 @@ LABEL name="$SX_ID" \
       fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
-COPY lib/sx* /bin/
-COPY .s2i/bin/* /s2i/
-# Install minimal packages
+
+COPY sx /tmp/
 RUN dnf -y install pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip hostname && \
     dnf clean all && \
-    chmod -R 775 /bin/sx-lib.sh /bin/sx.sh /s2i && \
-    mv /bin/sx.sh /bin/sx && \
-    chgrp -R 0 /bin/sx*.sh /bin/sx /tmp && \
-    chown -R 1001:0 /tmp && \
-    chmod -R g=u /bin/sx*.sh /bin/sx /tmp
+    mkdir /var/lib/sx && \
+    chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib && \
+    mv /tmp/sx/bin/* /bin/ && \
+    mv /tmp/s2i/bin /s2i && \
+    mv /tmp/sx/lib/* /var/lib/sx/ && \
+    rm -rf /tmp/sx /tmp/s2i && \
+    chgrp -R 0 /bin/sx /bin/sx* /s2i /var/lib/sx /tmp && \
+    chown -R 1001:0 /bin/sx /bin/sx* /s2i /var/lib/sx /tmp && \
+    chmod -R g=u /bin/sx /bin/sx* /s2i /var/lib/sx /tmp
 
 USER 1001
 

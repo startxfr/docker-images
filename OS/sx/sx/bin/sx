@@ -1,0 +1,18 @@
+#!/bin/bash
+source /var/lib/sx/sxlib.sh
+
+# Dispatch input arguments
+case $1 in
+    assemble)               genericAssemble $@ ;;
+    post-build)             genericPostBuild $@ ;;
+    pre-deploy)             genericPreDeploy $@ ;;
+    post-deploy)            genericPostDeploy $@ ;;
+    run)                    genericRun $@ ;;
+    health)                 genericHealth $@ ;;
+    usage|help|--help)      genericUsage $@ ;;
+    usageS2i)               genericUsageS2I $@ ;;
+    info|--info)            genericAllInformation $@ ;;
+    daemon)                 genericDaemon $@ ;;
+    version|--version)      genericVersion $@ ;;
+    *)                      genericWelcome $@ ;;
+esac
