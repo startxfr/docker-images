@@ -1,4 +1,6 @@
 #!/bin/bash
+chgrp 0   ~/.config
+chmod g=u ~/.config
 
 function check_nodejs_environment {
     if [ ! -v APP_PATH ]; then
@@ -34,10 +36,6 @@ function nodejsPreDeploy {
     echo "| "
     displayNodejsInformation "| "
     echo "+====================================================="
-    echo "Create log directory $LOG_PATH"
-    touch $LOG_PATH/access.log
-    chown 1001:0 -R $LOG_PATH
-    chmod g=u -R $LOG_PATH
 }
 
 function nodejsPostDeploy {
@@ -62,6 +60,7 @@ function nodejsAssemble {
     echo "| "
     displayNodejsInformation "| "
     echo "+====================================================="
+    echo "Fixing perm on ~/.config"
     echo "Fixing perm on /tmp/src"
     chown 1001:0 -R /tmp/src
     chmod g=u -R /tmp/src

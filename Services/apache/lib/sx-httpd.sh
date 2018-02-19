@@ -13,7 +13,7 @@ function check_httpd_environment {
         LOG_PATH="/logs"
         export LOG_PATH
     fi
-    if [ ! -n SERVER_NAME ]; then
+    if [ ! -n "$SERVER_NAME" ]; then
         SERVER_NAME="localhost"
         export SERVER_NAME
     fi
