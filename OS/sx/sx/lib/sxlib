@@ -71,11 +71,16 @@ function genericAssemble {
     fi 
     chown 1001:0 -R /tmp/src
     chmod g=u -R /tmp/src
-    chmod ug+x -R /tmp/src/.sx/*
     if [ `isVerbose` == "true" ]; then
         echo "Copy source from /tmp/src > /tmp"
     fi 
     cp -R /tmp/src/* /tmp/
+    if [[ -r /tmp/src/.sx ]]; then
+        chown 1001:0 -R /tmp/src/.sx
+        chmod g=u -R /tmp/src/.sx
+        chmod ug+x -R /tmp/src/.sx/*
+        mv /tmp/src/.sx /tmp/.sx
+    fi 
     if [ `isVerbose` == "true" ]; then
         echo "Remove source temp /tmp/src"
     fi 
