@@ -1,6 +1,4 @@
 #!/bin/bash
-chgrp 0   ~/.config
-chmod g=u ~/.config
 
 function check_nodejs_environment {
     if [ ! -v APP_PATH ]; then

@@ -38,8 +38,9 @@ RUN dnf -y install nodejs npm python make gcc && dnf clean all && \
     chmod -R 775 /bin/sx* /s2i && \
     mv /bin/sx.sh /bin/sx-nodejs && \
     mkdir -p $DATA_PATH $APP_PATH $LOG_PATH && \
-    chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx*.sh /bin/sx-nodejs && \
-    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx*.sh /bin/sx-nodejs && \
+    touch /.config /.npm && \
+    chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx*.sh /bin/sx-nodejs /.config /.npm && \
+    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx*.sh /bin/sx-nodejs /.config /.npm && \
     chmod -R ugo+rwx $LOG_PATH
 COPY ./ $APP_PATH
 RUN rm -rf $APP_PATH/Dockerfile $APP_PATH/openshift-* $APP_PATH/docker-* $APP_PATH/.s2i $APP_PATH/lib && \
