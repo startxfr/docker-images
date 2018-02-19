@@ -2,12 +2,12 @@ FROM startx/fedora:26
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="fc26" \
     SX_TYPE="service" \
     SX_SERVICE="nodejs" \
     SX_ID="startx/sv-nodejs" \
-    SX_NAME="Startx Nodejs service image (fedora rawhide)" \
-    SX_SUMMARY="Startx nodejs service based on fedora rawhide" \
+    SX_NAME="Startx Nodejs service image (fedora 26)" \
+    SX_SUMMARY="Startx nodejs service based on fedora 26" \
     HTTPDCONF=/etc/httpd/conf.d/app.conf \
     LOG_PATH=/var/log/httpd \
     APP_PATH=/app \

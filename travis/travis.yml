@@ -10,10 +10,10 @@ services:
 before_install:
 - "./travis/prepare-env"
 script:
-- "#./travis/start-container os fedora"
-- "#./travis/start-container sv"
-- "#./travis/test-container  os fedora"
-- "#./travis/test-container  sv"
+- "./travis/start-container os fedora"
+- "./travis/start-container sv"
+- "./travis/test-container  os fedora"
+- "./travis/test-container  sv"
 after_success:
 - "./travis/publish OS                 startx/fedora        26"
 - "./travis/publish Services/apache    startx/sv-apache     fc26"

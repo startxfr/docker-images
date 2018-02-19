@@ -6,8 +6,8 @@ ENV SX_VERSION="fc26" \
     SX_TYPE="service" \
     SX_SERVICE="memcache" \
     SX_ID="startx/sv-memcache" \
-    SX_NAME="Startx Memcached service image (fedora rawhide)" \
-    SX_SUMMARY="Startx Memcached service based on fedora rawhide" \
+    SX_NAME="Startx Memcached service image (fedora 26)" \
+    SX_SUMMARY="Startx Memcached service based on fedora 26" \
     LOG_PATH=/var/log/httpd
 
 LABEL name="$SX_ID" \

@@ -2,7 +2,7 @@ FROM fedora:26
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="26" \
+ENV SX_VERSION="fc26" \
     SX_TYPE="OS" \
     SX_SERVICE="fedora" \
     SX_ID="startx/fedora" \

@@ -2,7 +2,7 @@ FROM startx/fedora:26
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="26" \
+ENV SX_VERSION="fc26" \
     SX_TYPE="service" \
     SX_SERVICE="mariadb" \
     SX_ID="startx/sv-mariadb" \

@@ -37,19 +37,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "fc26",
                         "annotations": {
-                            "openshift.io/display-name": "Startx NodeJS (Fedora rawhide)",
-                            "description": "NodeJS micro-server for micro-service application running under Fedora rawhide",
+                            "openshift.io/display-name": "Startx NodeJS (Fedora 26)",
+                            "description": "NodeJS micro-server for micro-service application running under Fedora 26",
                             "iconClass": "icon-nodejs",
                             "tags": "builder,startx,fedora,nodejs,httpd",
                             "supports": "http",
-                            "version": "rawhide",
+                            "version": "26",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-nodejs.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-nodejs:latest"
+                            "name": "startx/sv-nodejs:fc26"
                         }
                     }
                 ]
@@ -114,7 +114,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:latest"
+                                "name": "${APP_NAME}:fc26"
                             }
                         }
                     },
