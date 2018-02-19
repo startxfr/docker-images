@@ -1,5 +1,5 @@
 #!/bin/bash
-source /var/lib/sx/sxlib.sh
+source /var/lib/sx/sxlib
 
 # Dispatch input arguments
 case $1 in

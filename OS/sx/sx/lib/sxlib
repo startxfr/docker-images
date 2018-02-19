@@ -28,58 +28,92 @@ function isQuiet {
 function genericPreDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
-    if [ `isQuiet` == "true" ]; then
+    if [ `isQuiet` == "false" ]; then
         echo "| "
         displayInformation "| "
     fi 
     echo "+====================================================="
+    testAndRunSourceCodeScript "pre-deploy" 
 }
 
 function genericPostDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
-    if [ `isQuiet` == "true" ]; then
+    if [ `isQuiet` == "false" ]; then
         echo "| "
         displayInformation "| "
     fi 
     echo "+====================================================="
+    testAndRunSourceCodeScript "post-deploy" 
 }
 
 function genericPostBuild {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-BUILD HOOK"
-    if [ `isQuiet` == "true" ]; then
+    if [ `isQuiet` == "false" ]; then
         echo "| "
         displayInformation "| "
     fi 
     echo "+====================================================="
+    testAndRunSourceCodeScript "post-build" 
 }
 
 function genericAssemble {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running ASSEMBLE"
-    if [ `isQuiet` == "true" ]; then
+    if [ `isQuiet` == "false" ]; then
         echo "| "
         displayInformation "| "
     fi 
     echo "+====================================================="
-    echo "Fixing perm on /tmp/src"
+    if [ `isQuiet` == "false" ]; then
+        echo "Fixing perm on /tmp/src"
+    fi 
     chown 1001:0 -R /tmp/src
     chmod g=u -R /tmp/src
-    echo "Copy source from /tmp/src > /tmp"
+    chmod ug+x -R /tmp/src/.sx/*
+    if [ `isQuiet` == "false" ]; then
+        echo "Copy source from /tmp/src > /tmp"
+    fi 
     cp -R /tmp/src/* /tmp/
+    if [ `isQuiet` == "false" ]; then
+        echo "Remove source temp /tmp/src"
+    fi 
     rm -rf /tmp/src
+    testAndRunSourceCodeScript "assemble" 
 }
+
 
 function genericRun {
     echo "+====================================================="
     echo "| Container $HOSTNAME is RUNNING"
-    if [ `isQuiet` == "true" ]; then
+    if [ `isQuiet` == "false" ]; then
         echo "| "
         displayInformation "| "
     fi 
     echo "+====================================================="
-    genericDaemon
+    if [[ -r /tmp/.sx ]]; then
+        if [ `isQuiet` == "false" ]; then
+            echo "Found source code CI/CD scripts in .sx/"
+        fi 
+        if [[ -r /tmp/.sx/run ]]; then
+            if [ `isQuiet` == "false" ]; then
+                echo "Found source code run script"
+            fi 
+            if [[ -x /tmp/.sx/run ]]; then
+                echo "Execute source code run script"
+                exec /tmp/.sx/run
+            else
+                echo "Start default daemon (source code run is script not executable)"
+                genericDaemon
+            fi 
+        else
+            echo "Start default daemon (no source code run script)"
+            genericDaemon
+        fi 
+    else
+        genericDaemon
+    fi 
 }
 
 
@@ -190,4 +224,31 @@ function genericDaemon {
         echo "$HOSTNAME is alive and running $SX_ID:$SX_VERSION"
         sleep 10
     done
+}
+
+function testAndRunSourceCodeScript {
+    if [[ -r /tmp/.sx ]]; then
+        if [ `isQuiet` == "false" ]; then
+            echo "Found source code CI/CD scripts in .sx/"
+        fi 
+        if [[ -r /tmp/.sx/$1 ]]; then
+            if [ `isQuiet` == "false" ]; then
+                echo "Found source code $1 script"
+            fi 
+            if [[ -x /tmp/.sx/$1 ]]; then
+                echo "Execute source code $1 script"
+                . /tmp/.sx/$1
+            else
+                echo "WARN: source code $1 script is not executable"
+            fi 
+        else
+            if [ `isQuiet` == "false" ]; then
+                echo "No source code $1 script"
+            fi 
+        fi 
+    else
+        if [ `isQuiet` == "false" ]; then
+            echo "no source code .sx directory"
+        fi 
+    fi 
 }
