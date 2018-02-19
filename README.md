@@ -2,15 +2,16 @@
 
 This repository host various Open Source application or services as a container based on the fedora 26 distribution
 
-You can use it to instanciate new container from the dockerhub public registry 
-or as a parent container in your own container's. 
+You can use them to instanciate new container from the dockerhub public registry 
+or as a parent container for your own container's. 
 Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
-for [other OS flavours](https://github.com/startxfr/docker-images/OS#container-flavours)
+Fedora Linux distribution. Kumbernetes and Openshift friendly, they can all be used as a s2i builder
+within an openshift cluster.
+Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/) for [other OS flavours](https://github.com/startxfr/docker-images/OS#container-flavours)
 
 If you're used to work with redhat like and distribution, you would prefer start working
 from a container based on this distribution rather than ubuntu or debian like distributions.
-OS, services and application you will find here will be closer to your favorite distrbution
+OS, services and application you will find here will be closer to your favorite distribution
 
 Please **read each container manual** for more information on how you can use it in 
 your project and start using stable or experimental services in your applications

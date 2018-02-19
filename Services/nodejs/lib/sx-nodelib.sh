@@ -1,9 +1,13 @@
 #!/bin/bash
 
-function check_httpd_environment {
+function check_nodejs_environment {
     if [ ! -v APP_PATH ]; then
         APP_PATH="/app"
         export APP_PATH
+    fi
+    if [ ! -v APP_MAIN ]; then
+        APP_MAIN="app.js"
+        export APP_MAIN
     fi
     if [ ! -v DATA_PATH ]; then
         DATA_PATH="/data"
@@ -13,74 +17,71 @@ function check_httpd_environment {
         LOG_PATH="/logs"
         export LOG_PATH
     fi
-    if [ ! -n "$SERVER_NAME" ]; then
-        SERVER_NAME="localhost"
-        export SERVER_NAME
-    fi
 }
 
-function displayApacheInformation {
+function displayNodejsInformation {
     displayInformation $1 
     echo $1 "app path  : $APP_PATH"
     echo $1 "log path  : $LOG_PATH"
     echo $1 "data path : $DATA_PATH"
-    echo $1 "httpd     : $(httpd -v | head -1)" 
+    echo $1 "node      : $(node -v | head -1)" 
+    echo $1 "npm       : $(npm -v | head -1)" 
 }
 
-function apachePreDeploy {
+function nodejsPreDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
     echo "| "
-    displayApacheInformation "| "
+    displayNodejsInformation "| "
     echo "+====================================================="
-    echo "Create log directory $LOG_PATH"
-    touch $LOG_PATH/access.log
-    chown 1001:0 -R $LOG_PATH
-    chmod g=u -R $LOG_PATH
 }
 
-function apachePostDeploy {
+function nodejsPostDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
     echo "| "
-    displayApacheInformation "| "
+    displayNodejsInformation "| "
     echo "+====================================================="
 }
 
-function apachePostBuild {
+function nodejsPostBuild {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-BUILD HOOK"
     echo "| "
-    displayApacheInformation "| "
+    displayNodejsInformation "| "
     echo "+====================================================="
 }
 
-function apacheAssemble {
+function nodejsAssemble {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running ASSEMBLE"
     echo "| "
-    displayApacheInformation "| "
+    displayNodejsInformation "| "
     echo "+====================================================="
-    echo "Fixing perm on $APP_PATH"
+    echo "Fixing perm on ~/.config"
+    echo "Fixing perm on /tmp/src"
     chown 1001:0 -R /tmp/src
     chmod g=u -R /tmp/src
     echo "Copy source from /tmp/src > $APP_PATH"
     cp -R /tmp/src/* $APP_PATH/
-#    rm -rf /tmp/src
+    rm -rf /tmp/src
+    echo "Build modules in $APP_PATH"
+    cd $APP_PATH
+    npm install -production
+    cd -
 }
 
-function apacheRun {
+function nodejsRun {
     echo "+====================================================="
     echo "| Container $HOSTNAME is RUNNING"
     echo "| "
-    displayApacheInformation "| "
+    displayNodejsInformation "| "
     echo "+====================================================="
-    start_service_httpd
+    start_service_nodejs
 }
 
-function stop_httpd_handler {
-    killall httpd
-    rm -rf /run/httpd/*
+function stop_nodejs_handler {
+    killall node
     echo "+====================================================="
     echo "| Container $HOSTNAME is now STOPPED"
     echo "+====================================================="
@@ -88,34 +89,13 @@ function stop_httpd_handler {
 }
 
 
-# Start the httpd server as a deamon and execute it inside 
+# Start the nodejs server as a deamon and execute it inside 
 # the running shell
-function start_service_httpd {
-    trap 'kill ${!}; stop_httpd_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
-    rm -rf /run/httpd/* /tmp/httpd*
-    exec /usr/sbin/httpd -D FOREGROUND > $LOG_PATH/access.log &
-    while true
-    do
-        tail -f $LOG_PATH/access.log & wait ${!}
-    done
-}
-
-
-
-# set env var $2 (val $3) in file $1
-function setEnvironmentVariableInFile {
-    if [ -z "$3" ]; then
-            echo "Environment variable '$2' not set."
-            return
+function start_service_nodejs {
+    cd $APP_PATH
+    trap 'kill ${!}; stop_nodejs_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
+    if [ ! -d "$APP_PATH/node_modules" ]; then
+        npm install -production
     fi
-    echo "SetEnv $2 $3" >> $1
-}
-
-
-function setSys2HttpEnvironmentVariable {
-    echo "adding environement to $1"
-    echo "" >> $1
-    for _curVar in `env | awk -F = '{print $1}'`;do
-        setEnvironmentVariableInFile $1 ${_curVar} ${!_curVar}
-    done
+    exec node $APP_MAIN 
 }
