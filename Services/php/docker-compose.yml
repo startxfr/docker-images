@@ -4,16 +4,7 @@ server:
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 5
-  restart: "on-failure:2"
-  privileged: true
   ports:
-    - "9213:80"
-    - "9214:443"
-  environment:
-    CONTAINER_TYPE: "service"
-    CONTAINER_SERVICE: "php"
-    CONTAINER_INSTANCE: "fc27-service-php"
-    SERVER_NAME: "localhost"
+    - "9213:8080"
   volumes:
-    - "/tmp/container-fc27/logs/php:/logs"
     - "/tmp/container-fc27/php:/data"

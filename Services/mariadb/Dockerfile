@@ -2,7 +2,7 @@ FROM startx/fedora:27
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="27" \
+ENV SX_VERSION="fc27" \
     SX_TYPE="service" \
     SX_SERVICE="mariadb" \
     SX_ID="startx/sv-mariadb" \
@@ -55,9 +55,7 @@ WORKDIR $LOADSQL_PATH
 EXPOSE 3306
 
 VOLUME $DATA_PATH
-VOLUME $LOG_PATH
 
 ONBUILD COPY ./*.sql $LOADSQL_PATH/
-ONBUILD RUN chgrp -R 0 $LOADSQL_PATH && chmod -R g=u $LOADSQL_PATH
 
 CMD [ "/bin/sx-mariadb" , "start" ]
