@@ -2,7 +2,7 @@ FROM startx/centos:7
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="7" \
+ENV SX_VERSION="centos7" \
     SX_TYPE="service" \
     SX_SERVICE="apache" \
     SX_ID="startx/sv-apache" \
@@ -44,10 +44,8 @@ RUN yum -y install httpd && yum clean all && \
     chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /run/httpd /bin/sx*.sh /bin/sx-apache && \
     chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /run/httpd /bin/sx*.sh /bin/sx-apache && \
     chmod -R ugo+rwx $LOG_PATH
-COPY ./ $APP_PATH
-RUN rm -rf $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib && \
-    chgrp -R 0 $APP_PATH && \
-    chmod -R g=u $APP_PATH
+COPY ./index.html $APP_PATH
+RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH
 
 USER 1001
 
@@ -55,11 +53,6 @@ WORKDIR $APP_PATH
 
 EXPOSE 8080
 
-VOLUME $APP_PATH
-VOLUME $LOG_PATH
 VOLUME $DATA_PATH
-
-ONBUILD COPY ./ $APP_PATH
-ONBUILD RUN rm -rf $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib && chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH
 
 CMD [ "/bin/sx-apache" , "start" ]

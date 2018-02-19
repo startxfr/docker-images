@@ -2,21 +2,21 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-php",
+        "name": "startx-sv-nodejs",
         "annotations": {
-            "openshift.io/display-name": "Startx Http Server (Centos)",
-            "description": "Http server for simple web application running under Fedora",
-            "iconClass": "icon-php",
-            "tags": "startx,os,centos,apache,httpd,php",
-            "openshift.io/long-description": "This template provides an apache + php httpd webserver in a centos container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/centos7/README.md.",
+            "openshift.io/display-name": "Startx NodeJS micro-server (fedora)",
+            "description": "NodeJS micro-server for micro-service application running under Fedora",
+            "iconClass": "icon-nodejs",
+            "tags": "startx,os,fedora,nodejs,httpd",
+            "openshift.io/long-description": "This template provides an nodejs micro-server in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
-            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/centos7/README.md",
+            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
     "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
     "labels": {
-        "template": "startx-sv-php"
+        "template": "startx-sv-nodejs"
     },
     "objects": [
         {
@@ -25,13 +25,13 @@
             "metadata": {
                 "name": "${APP_NAME}",
                 "annotations": {
-                    "openshift.io/display-name": "Startx WebServer"
+                    "openshift.io/display-name": "Startx NodeJS"
                 },
                 "labels": {
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-php"
+                    "template": "startx-sv-nodejs"
                 }
             },
             "spec": {
@@ -39,17 +39,17 @@
                     {
                         "name": "centos7",
                         "annotations": {
-                            "openshift.io/display-name": "Startx WebServer (centos 7)",
-                            "description": "Http server for simple web application running under CentOS 7",
-                            "iconClass": "icon-php",
-                            "tags": "builder,startx,centos,apache,httpd,php",
+                            "openshift.io/display-name": "Startx NodeJS (centos 7)",
+                            "description": "NodeJS micro-server for micro-service application running under CentOS 7",
+                            "iconClass": "icon-nodejs",
+                            "tags": "builder,startx,fedora,nodejs,httpd",
                             "supports": "http",
                             "version": "7",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-php.git"
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-nodejs.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-php:centos7"
+                            "name": "startx/sv-nodejs:centos7"
                         }
                     }
                 ]
@@ -66,7 +66,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-php"
+                    "template": "startx-sv-nodejs"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -85,7 +85,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-php",
+                                    "/bin/sx-nodejs",
                                     "pre-deploy"
                                 ],
                                 "containerName": "${APP_NAME}"
@@ -95,7 +95,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-php",
+                                    "/bin/sx-nodejs",
                                     "post-deploy"
                                 ],
                                 "containerName": "${APP_NAME}"
@@ -135,7 +135,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-sv-php",
+                            "template": "startx-sv-nodejs",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -146,9 +146,9 @@
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
-                                "image": "startx/sv-php@sha256:fdeea7651d752e09fd9d6e760e85ef7667f7e443c9712d0e5f051c105e66bf05",
+                                "image": "startx/sv-nodejs@sha256:fdeea7651d752e09fd9d6e760e85ef7667f7e443c9712d0e5f051c105e66bf05",
                                 "command": [
-                                    "/bin/sx-php"
+                                    "/bin/sx-nodejs"
                                 ],
                                 "args": [
                                     "run"
@@ -157,7 +157,7 @@
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-php",
+                                            "/bin/sx-nodejs",
                                             "health"
                                         ]
                                     },
@@ -170,7 +170,7 @@
                                 "readinessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-php",
+                                            "/bin/sx-nodejs",
                                             "health"
                                         ]
                                     },
@@ -204,7 +204,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-php"
+                    "template": "startx-sv-nodejs"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -241,7 +241,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-php"
+                    "template": "startx-sv-nodejs"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"

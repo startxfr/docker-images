@@ -2,7 +2,7 @@ FROM startx/sv-apache:centos7
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="7" \
+ENV SX_VERSION="centos7" \
     SX_TYPE="service" \
     SX_SERVICE="php" \
     SX_ID="startx/sv-php" \
@@ -53,11 +53,6 @@ WORKDIR $APP_PATH
 
 EXPOSE 8080
 
-VOLUME $APP_PATH
-VOLUME $LOG_PATH
 VOLUME $DATA_PATH
-
-ONBUILD COPY ./ $APP_PATH
-ONBUILD RUN rm -rf $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib $APP_PATH/*.ini && chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH
 
 CMD [ "/bin/sx-php" , "start" ]

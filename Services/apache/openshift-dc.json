@@ -44,7 +44,7 @@
                             "iconClass": "icon-apache",
                             "tags": "builder,startx,centos,apache,httpd",
                             "supports": "http",
-                            "version": "rawhide",
+                            "version": "7",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-apache.git"
                         },
                         "from": {
