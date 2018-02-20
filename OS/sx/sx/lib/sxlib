@@ -110,14 +110,14 @@ function genericRun {
                 exec /tmp/.sx/run
             else
                 echo "Start default daemon (source code run is script not executable)"
-                genericDaemon
+                startDaemon
             fi 
         else
             echo "Start default daemon (no source code run script)"
-            genericDaemon
+            startDaemon
         fi 
     else
-        genericDaemon
+        startDaemon
     fi 
 }
 
@@ -222,13 +222,27 @@ exit 0;
 }
 
 #######################################
-# Display daemon
+# start daemon
 #######################################
-function genericDaemon {
+function startDaemon {
     while true; do
         echo "$HOSTNAME is alive and running $SX_ID:$SX_VERSION"
         sleep 10
     done
+}
+
+#######################################
+# Display daemon
+#######################################
+function genericDaemon {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is RUNNING"
+    if [ `isVerbose` == "true" ]; then
+        echo "| "
+        displayInformation "| "
+    fi 
+    echo "+====================================================="
+    startDaemon
 }
 
 function testAndRunSourceCodeScript {
