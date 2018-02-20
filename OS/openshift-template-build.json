@@ -143,6 +143,9 @@
                         "type": "ConfigChange"
                     }
                 ],
+                "postCommit": {
+                    "script": "/bin/sx info"
+                },
                 "replicas": 1,
                 "test": false,
                 "selector": {
