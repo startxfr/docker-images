@@ -35,8 +35,8 @@ RUN dnf -y install pwgen tar psmisc procps findutils iputils net-tools wget logr
     dnf clean all && \
     mkdir /var/lib/sx && \
     chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib && \
-    mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/s2i/bin /s2i && \
+    mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     chgrp -R 0 /bin/sx /bin/sx* /s2i /var/lib/sx /tmp && \
