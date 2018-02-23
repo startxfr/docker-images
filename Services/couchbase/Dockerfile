@@ -11,8 +11,8 @@ ENV SX_VERSION="latest" \
     CB_PATH=/opt/couchbase \
     DATA_PATH=$CB_PATH/var \
     CB_VERSION=5.1.0 \
-    CB_RELEASE_URL=http://packages.couchbase.com/releases/$CB_VERSION \
-    CB_PACKAGE=couchbase-server-enterprise_$CB_VERSION-centos7.x86_64.rpm \
+    CB_RELEASE_URL=http://packages.couchbase.com/releases/5.1.0 \
+    CB_PACKAGE=couchbase-server-enterprise_5.1.0-centos7.x86_64.rpm \
     PATH=$PATH:/opt/couchbase/bin:/opt/couchbase/bin/tools:/opt/couchbase/bin/install
 
 LABEL name="$SX_ID" \
@@ -25,8 +25,8 @@ LABEL name="$SX_ID" \
       io.k8s.display-name="$SX_ID" \
       io.openshift.tags="startx,os,fedora,database,couchbase" \
       io.openshift.non-scalable="false" \
-      io.openshift.min-memory="400Mi" \
-      io.openshift.min-cpu="2000m" \
+      io.openshift.min-memory="1Gi" \
+      io.openshift.min-cpu="8000m" \
       io.openshift.expose-services="8091:couchbase" \
       io.openshift.s2i.destination="/tmp" \
       io.openshift.s2i.scripts-url="image:///s2i" \
@@ -46,9 +46,9 @@ RUN dnf -y install python-httplib2 openssl && \
     rm -rf /tmp/sx /tmp/s2i && \
     touch $DATA_PATH/.keep && \
     chown -R couchbase:couchbase $DATA_PATH  && \
-    chgrp -R 0 $CB_PATH /bin/sx-* /s2i /var/lib/sx-* && \
-    chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx-* && \
-    chmod -R g=u $CB_PATH /bin/sx-* /s2i /var/lib/sx-*
+    chgrp -R 0 $CB_PATH /bin/sx-* /s2i /var/lib/sx* && \
+    chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* && \
+    chmod -R g=u $CB_PATH /bin/sx-* /s2i /var/lib/sx*
 
 USER 1001
 

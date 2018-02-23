@@ -24,7 +24,7 @@ LABEL name="$SX_ID" \
       io.openshift.tags="startx,os,fedora,database,mariadb" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="400Mi" \
-      io.openshift.min-cpu="2000m" \
+      io.openshift.min-cpu="3000m" \
       io.openshift.expose-services="3306:mysql" \
       io.openshift.s2i.destination="/tmp" \
       io.openshift.s2i.scripts-url="image:///s2i" \
@@ -42,9 +42,9 @@ RUN dnf -y install mariadb-tokudb-engine mariadb-connect-engine mariadb-rocksdb-
     rm -rf /tmp/sx /tmp/s2i && \
     touch $DATA_PATH/.keep && \
     chown -R mysql:mysql $LOG_PATH $DATA_PATH $LOADSQL_PATH && \
-    chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i /var/lib/sx-* /var/lib/mysql && \
-    chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx-* /var/lib/mysql && \
-    chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i /var/lib/sx-* /var/lib/mysql && \
+    chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i /var/lib/sx* /var/lib/mysql && \
+    chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* /var/lib/mysql && \
+    chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i /var/lib/sx* /var/lib/mysql && \
     chmod ug+r $MY_CONF
 
 USER 1001

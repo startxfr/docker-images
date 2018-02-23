@@ -1,0 +1,94 @@
+#!/bin/bash
+
+set_listen_addresses() {
+	sedEscapedValue="$(echo "$1" | sed 's/[\/&]/\\&/g')"
+	sed -ri "s/^#?(listen_addresses\s*=\s*)\S+/\1'$sedEscapedValue'/" "$POSTGRESQL_CONF"
+}
+
+
+function check_postgres_environment {
+    if [ ! -v DATA_PATH ]; then
+        DATA_PATH="/data"
+        export DATA_PATH
+    fi
+    if [ ! -v LOG_PATH ]; then
+        LOG_PATH="/logs"
+        export LOG_PATH
+    fi
+}
+
+function postgresInformation {
+    displayInformation $1
+    echo $1 "version   : $SX_VERSION"
+    echo $1 "engine    : $(postgres -V | head -1)"
+    echo $1 "sql path  : $LOADSQL_PATH"
+    echo $1 "log path  : $LOG_PATH"
+    echo $1 "data path : $DATA_PATH"
+}
+
+function displayPostgresRunInformation {
+    postgresInformation $1
+    echo $1 "admin     : root:$MYSQL_ROOT_PASSWORD"
+    echo $1 "user      : $MYSQL_USER:$MYSQL_PASSWORD"
+    echo $1 "database  : $MYSQL_DATABASE"
+}
+
+function postgresPreDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    echo "| "
+    postgresInformation "| "
+    echo "+====================================================="
+}
+
+function postgresPostDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    echo "| "
+    postgresInformation "| "
+    echo "+====================================================="
+}
+
+function postgresPostBuild {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-BUILD HOOK"
+    echo "| "
+    postgresInformation "| "
+    echo "+====================================================="
+}
+
+function postgresAssemble {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running ASSEMBLE"
+    echo "| "
+    postgresInformation "| "
+    echo "+====================================================="
+    echo "Fixing perm on /tmp/src"
+    chown 1001:0 -R /tmp/src
+    chmod g=u -R /tmp/src
+    init_service_postgres
+}
+
+function postgresRun {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is RUNNING"
+    echo "| "
+    displayPostgresRunInformation "| "
+    echo "+====================================================="
+    start_service_postgres
+}
+
+function stop_postgres_handler {
+    postgres -c "pg_ctl -D $DATA_PATH -w stop "
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is now STOPPED"
+    echo "+====================================================="
+    exit 143; # 128 + 15 -- SIGTERM
+}
+
+# Start the postgres server as a deamon and execute it inside 
+# the running shell
+function start_service_postgres {
+    trap 'kill ${!}; stop_postgres_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
+    exec postgres -c "pg_ctl -D $DATA_PATH -w start "
+}
