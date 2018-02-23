@@ -63,7 +63,6 @@ function couchbaseAssemble {
     echo "Copy sql scripts from /tmp/src > $LOADSQL_PATH"
     cp -R /tmp/src/*.sql $LOADSQL_PATH/
     rm -rf /tmp/src
-    init_service_couchbase
 }
 
 function couchbaseRun {
@@ -86,10 +85,7 @@ function stop_couchbase_handler {
 # Start the couchbase server as a deamon and execute it inside 
 # the running shell
 function startCouchbaseService {
-
-
     exec 2>&1
-
     cd /opt/couchbase
     mkdir -p var/lib/couchbase \
              var/lib/couchbase/config \
@@ -97,17 +93,9 @@ function startCouchbaseService {
              var/lib/couchbase/stats \
              var/lib/couchbase/logs \
              var/lib/moxi
-
     chown -R couchbase:couchbase var
-
-
-
+    chgrp -R 0 var
+    chmod -R g=u var
     trap 'kill ${!}; stop_couchbase_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
     exec /opt/couchbase/bin/couchbase-server -- -kernel global_enable_tracing false -noinput
-}
-
-# Init the couchbase server
-function init_service_couchbase {
-    begin_config
-    end_config
 }

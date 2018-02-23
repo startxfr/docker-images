@@ -39,13 +39,18 @@ RUN dnf -y install python-httplib2 openssl && \
     wget $CB_RELEASE_URL/$CB_PACKAGE && \
     rpm --install $CB_PACKAGE && \
     groupadd -g 1001 couchbase && useradd couchbase -u 1001 -g couchbase -M && \
-    mkdir -p $DATA_PATH && \
+    mkdir -p $DATA_PATH /opt/couchbase/var/lib/couchbase \
+        /opt/couchbase/var/lib/couchbase/config \
+        /opt/couchbase/var/lib/couchbase/data \
+        /opt/couchbase/var/lib/couchbase/stats \
+        /opt/couchbase/var/lib/couchbase/logs \
+        /opt/couchbase/var/lib/moxi && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     touch $DATA_PATH/.keep && \
-    chown -R couchbase:couchbase $DATA_PATH  && \
+    chown -R couchbase:couchbase $DATA_PATH /opt/couchbase/var && \
     chgrp -R 0 $CB_PATH /bin/sx-* /s2i /var/lib/sx* && \
     chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* && \
     chmod -R g=u $CB_PATH /bin/sx-* /s2i /var/lib/sx*

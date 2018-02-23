@@ -8,8 +8,8 @@ ENV SX_VERSION="latest" \
     SX_ID="startx/fedora" \
     SX_NAME="Startx OS base image (fedora rawhide)" \
     SX_SUMMARY="Startx OS base image based on fedora rawhide" \
-    SX_VERBOSE="true" \
-    SX_DEBUG="true" \
+    SX_VERBOSE=true \
+    SX_DEBUG=true \
     APP_PATH="/tmp"
 
 LABEL name="$SX_ID" \

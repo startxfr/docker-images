@@ -1,0 +1,19 @@
+#!/bin/bash
+source /var/lib/sx/sxlib
+source /var/lib/sx/sxlib-ooconv
+
+check_ooconv_environment
+# Dispatch input arguments
+case $1 in
+    assemble)               ooconvAssemble $@ ;;
+    post-build)             ooconvPostBuild $@ ;;
+    pre-deploy)             ooconvPreDeploy $@ ;;
+    post-deploy)            ooconvPostDeploy $@ ;;
+    run)                    ooconvRun $@ ;;
+    health)                 genericHealth $@ ;;
+    info)                   ooconvInformation $@ ;;
+    usage|help|--help)      genericUsage $@ ;;
+    usageS2i)               genericUsageS2I $@ ;;
+    version|--version)      genericVersion $@ ;;
+    *)                      genericWelcome $@ ;;
+esac
