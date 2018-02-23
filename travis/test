@@ -5,20 +5,23 @@ TEST_NAME=${NAMESPACE}_$2
 echo "========> BUILD Container image $IMAGE_TAG"
 cd $1/
 docker build --squash -t $IMAGE_TAG .
-cd -
 if [[ $? = "0" ]]; then
-    echo "!! Could not build container. Test failed"
-    exit 1;
-else
+    cd -
     echo "========> Builded container image $IMAGE_TAG"
+else
+    cd -
+    echo "========> !! Could not build container image $IMAGE_TAG"
+    exit 1;
 fi
 echo "========> TEST Container instance $TEST_NAME based on image $IMAGE_TAG"
-docker run -d --name $TEST_NAME $IMAGE_TAG
+RESULT=$(docker run -d --name $TEST_NAME $IMAGE_TAG)
+echo ""
 if [[ $? = "0" ]]; then
     echo "========> Container instance $TEST_NAME STARTED"
     docker stop $TEST_NAME
     exit 0;
 else
-    echo "!! Could not start container. Test failed"
+    echo $RESULT
+    echo "!! Could not start container instance $TEST_NAME"
     exit 1;
 fi

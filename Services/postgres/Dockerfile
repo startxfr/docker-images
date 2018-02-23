@@ -36,6 +36,7 @@ RUN dnf -y install postgresql postgresql-libs postgresql-server \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \
     rm -rf /tmp/sx /tmp/s2i && \
+    mkdir -p $DATA_PATH $LOG_PATH && \
     touch $DATA_PATH/.keep && \
     chown -R postgres:postgres $LOG_PATH $DATA_PATH && \
     chgrp -R 0 $DATA_PATH $LOG_PATH /bin/sx-* /s2i /var/lib/sx* /var/lib/mysql && \
