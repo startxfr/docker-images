@@ -71,7 +71,7 @@ function apacheAssemble {
     chmod g=u -R /tmp/src
     echo "Copy source from /tmp/src > $APP_PATH"
     cp -R /tmp/src/* $APP_PATH/
-#    rm -rf /tmp/src
+    rm -rf /tmp/src
 }
 
 # function executed on container startup
