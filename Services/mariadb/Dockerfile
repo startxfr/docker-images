@@ -30,31 +30,6 @@ LABEL name="$SX_ID" \
       io.openshift.s2i.scripts-url="image:///s2i" \
       fr.startx.component="$SX_ID:$SX_VERSION"
 
-
-USER root
-COPY sx /tmp/
-RUN dnf -y install memcached && dnf clean all && \
-    mv /tmp/s2i/bin/* /s2i/ && \
-    mv /tmp/sx/bin/* /bin/ && \
-    mv /tmp/sx/lib/* /var/lib/sx/ && \
-    rm -rf /tmp/sx /tmp/s2i && \
-    mkdir -p $LOG_PATH && \
-    chgrp -R 0 $LOG_PATH /bin/sx-* /s2i /var/lib/sx-* /var/lib/mysql && \
-    chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx-* /var/lib/mysql && \
-    chmod -R g=u $LOG_PATH /bin/sx-* /s2i /var/lib/sx-* /var/lib/mysql && \
-    chmod -R ugo+rwx $LOG_PATH
-
-USER 1001
-
-WORKDIR $APP_PATH
-
-EXPOSE 11211
-
-CMD [ "/bin/sx-memcache" , "start" ]
-
-
-
-
 USER root
 COPY my.cnf $MY_CONF
 COPY sx /tmp/
