@@ -1,0 +1,19 @@
+#!/bin/bash
+source /var/lib/sx/sxlib
+source /var/lib/sx/sxlib-php
+
+check_httpd_environment
+# Dispatch input arguments
+case $1 in
+    assemble)               phpAssemble $@ ;;
+    post-build)             phpPostBuild $@ ;;
+    pre-deploy)             phpPreDeploy $@ ;;
+    post-deploy)            phpPostDeploy $@ ;;
+    run)                    phpRun $@ ;;
+    health)                 genericHealth $@ ;;
+    info)                   phpInformation $@ ;;
+    usage|help|--help)      genericUsage $@ ;;
+    usageS2i)               genericUsageS2I $@ ;;
+    version|--version)      genericVersion $@ ;;
+    *)                      genericWelcome $@ ;;
+esac

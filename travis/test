@@ -1,12 +1,9 @@
 #!/bin/bash
-export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo ${TRAVIS_BRANCH:1} ; fi`
 
-function dockerBuild {
-    cd $1/
-    docker build -f Dockerfile --squash -t $2:$3 .
-    cd -
-}
-
-echo "========> BUILD & PUBLISH $2:$3 Container (public)"
-dockerBuild $1 $2 $3
+echo "========> BUILD Container $2:$3"
+cd $1/
+docker build --squash -t $2:$3 .
+cd -
+echo "========> TEST Container $2:$3"
+docker run $2:$3
 exit 0;
