@@ -30,23 +30,47 @@ LABEL name="$SX_ID" \
       io.openshift.s2i.scripts-url="image:///s2i" \
       fr.startx.component="$SX_ID:$SX_VERSION"
 
+
+USER root
+COPY sx /tmp/
+RUN dnf -y install memcached && dnf clean all && \
+    mv /tmp/s2i/bin/* /s2i/ && \
+    mv /tmp/sx/bin/* /bin/ && \
+    mv /tmp/sx/lib/* /var/lib/sx/ && \
+    rm -rf /tmp/sx /tmp/s2i && \
+    mkdir -p $LOG_PATH && \
+    chgrp -R 0 $LOG_PATH /bin/sx-* /s2i /var/lib/sx-* /var/lib/mysql && \
+    chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx-* /var/lib/mysql && \
+    chmod -R g=u $LOG_PATH /bin/sx-* /s2i /var/lib/sx-* /var/lib/mysql && \
+    chmod -R ugo+rwx $LOG_PATH
+
+USER 1001
+
+WORKDIR $APP_PATH
+
+EXPOSE 11211
+
+CMD [ "/bin/sx-memcache" , "start" ]
+
+
+
+
 USER root
 COPY my.cnf $MY_CONF
-COPY lib/* /bin/
-COPY .s2i/bin/* /s2i/
+COPY sx /tmp/
 RUN dnf -y install mariadb-tokudb-engine mariadb-connect-engine mariadb-rocksdb-engine mariadb-oqgraph-engine mariadb-connector-c mariadb-connector-odbc mariadb-server-utils mariadb-java-client mariadb-backup mariadb-common mariadb-config mariadb-errmsg mariadb-gssapi-server mariadb-cracklib-password-check mariadb && \
     dnf clean all && \
-    mkdir -p $LOADSQL_PATH && \
-    chmod -R 775 /bin/sx* /s2i && \
-    mv /bin/sx.sh /bin/sx-mariadb && \
-    chgrp -R 0 /bin/sx*.sh /bin/sx-mariadb /var/lib/mysql && \
-    chmod -R g=u /bin/sx*.sh /bin/sx-mariadb /var/lib/mysql && \
-    chmod ug+r $MY_CONF && \
-    mkdir -p $DATA_PATH $LOG_PATH && \
+    mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH && \
+    mv /tmp/s2i/bin/* /s2i/ && \
+    mv /tmp/sx/bin/* /bin/ && \
+    mv /tmp/sx/lib/* /var/lib/sx/ && \
+    rm -rf /tmp/sx /tmp/s2i && \
     touch $DATA_PATH/.keep && \
     chown -R mysql:mysql $LOG_PATH $DATA_PATH $LOADSQL_PATH && \
-    chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH && \
-    chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH
+    chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i /var/lib/sx-* /var/lib/mysql && \
+    chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx-* /var/lib/mysql && \
+    chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i /var/lib/sx-* /var/lib/mysql && \
+    chmod ug+r $MY_CONF
 
 USER 1001
 
@@ -55,7 +79,5 @@ WORKDIR $LOADSQL_PATH
 EXPOSE 3306
 
 VOLUME $DATA_PATH
-
-ONBUILD COPY ./*.sql $LOADSQL_PATH/
 
 CMD [ "/bin/sx-mariadb" , "start" ]
