@@ -10,10 +10,16 @@ services:
 before_install:
 - "./travis/prepare-env"
 script:
-- "./travis/start-container os fedora"
-- "./travis/start-container sv"
-- "./travis/test-container  os fedora"
-- "./travis/test-container  sv"
+- "./travis/test    OS                 startx/fedora        latest"
+- "./travis/test    Services/apache    startx/sv-apache     latest"
+- "./travis/test    Services/couchbase startx/sv-couchbase  latest"
+- "./travis/test    Services/mariadb   startx/sv-mariadb    latest"
+- "./travis/test    Services/memcache  startx/sv-memcache   latest"
+- "./travis/test    Services/mongo     startx/sv-mongo      latest"
+- "./travis/test    Services/nodejs    startx/sv-nodejs     latest"
+- "./travis/test    Services/ooconv    startx/sv-ooconv     latest"
+- "./travis/test    Services/php       startx/sv-php        latest"
+- "./travis/test    Services/postgres  startx/sv-postgres   latest"
 after_success:
 - "./travis/publish OS                 startx/fedora        latest"
 - "./travis/publish Services/apache    startx/sv-apache     latest"
