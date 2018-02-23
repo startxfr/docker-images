@@ -75,7 +75,7 @@ function postgresRun {
     echo "| "
     displayPostgresRunInformation "| "
     echo "+====================================================="
-    start_service_postgres
+    startPostgresService
 }
 
 function stop_postgres_handler {
@@ -88,7 +88,7 @@ function stop_postgres_handler {
 
 # Start the postgres server as a deamon and execute it inside 
 # the running shell
-function start_service_postgres {
+function startPostgresService {
     trap 'kill ${!}; stop_postgres_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
     exec postgres -c "pg_ctl -D $DATA_PATH -w start "
 }

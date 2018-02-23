@@ -72,7 +72,7 @@ function mysqlRun {
     echo "| "
     displayMysqlRunInformation "| "
     echo "+====================================================="
-    start_service_mariadb
+    startMariadbService
 }
 
 # Begin configuration before starting daemonized process
@@ -261,7 +261,7 @@ function stop_mariadb_handler {
 
 # Start the mariadb server as a deamon and execute it inside 
 # the running shell
-function start_service_mariadb {
+function startMariadbService {
     trap 'kill ${!}; stop_mariadb_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
     exec mysqld_safe &
     while true

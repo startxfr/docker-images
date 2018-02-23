@@ -1,9 +1,12 @@
 #!/bin/bash
 
 echo "========> BUILD Container $2:$3"
+IMAGE_TAG=${NAMESPACE}/$2:$3
+TEST_NAME=${NAMESPACE}_$2
 cd $1/
-docker build --squash -t $2:$3 .
+docker build --squash -t $IMAGE_TAG .
 cd -
 echo "========> TEST Container $2:$3"
-docker run $2:$3
+docker run $IMAGE_TAG --name $TEST_NAME
+docker ps $TEST_NAME
 exit 0;

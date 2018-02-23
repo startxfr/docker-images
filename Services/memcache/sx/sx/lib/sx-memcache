@@ -66,7 +66,7 @@ function memcacheRun {
     echo "| "
     displayMemcacheRunInformation "| "
     echo "+====================================================="
-    start_service_memcache
+    startMemcacheService
 }
 
 function stop_memcache_handler {
@@ -79,7 +79,7 @@ function stop_memcache_handler {
 
 # Start the memcache server as a deamon and execute it inside 
 # the running shell
-function start_service_memcache {
+function startMemcacheService {
     trap 'kill ${!}; stop_memcache_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
     exec memcached -u daemon -v
 }
