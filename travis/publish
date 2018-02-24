@@ -1,8 +1,8 @@
 #!/bin/bash
 
 echo "========> PUBLISH Container image $NAMESPACE/$2:$3"
-testName="istested_$2"
-if [ "${!testName}" = true ] ; then
+if [ -f /tmp/istested_$2 ] ; then
+    rm -f /tmp/istested_$2
     docker push $NAMESPACE/$2
     echo "========> PUBLISHED Container image $NAMESPACE/$2:$3"
 else
