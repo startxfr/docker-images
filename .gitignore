@@ -1,7 +1,1 @@
 /nbproject
-OS/s2i
-Services/apache/s2i
-Services/mariadb/s2i
-Services/php/s2i
-Services/memcache/s2i
-Services/nodejs/s2i

@@ -38,14 +38,14 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "base",
                         "annotations": {
                             "openshift.io/display-name": "Startx WebServer (Fedora rawhide)",
                             "description": "Http server for simple web application running under Fedora rawhide",
                             "iconClass": "icon-apache",
                             "tags": "builder,startx,fedora,apache,httpd",
                             "supports": "http",
-                            "version": "rawhide",
+                            "version": "latest",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-apache.git"
                         },
                         "from": {
@@ -79,7 +79,7 @@
                     "rollingParams": {
                         "updatePeriodSeconds": 1,
                         "intervalSeconds": 1,
-                        "timeoutSeconds": 60,
+                        "timeoutSeconds": 20,
                         "maxUnavailable": "25%",
                         "maxSurge": "25%",
                         "pre": {
@@ -88,6 +88,16 @@
                                 "command": [
                                     "/bin/sx-apache",
                                     "pre-deploy"
+                                ],
+                                "env": [
+                                    {
+                                        "name": "SX_VERBOSE",
+                                        "value": "true"
+                                    },
+                                    {
+                                        "name": "SX_DEBUG",
+                                        "value": "true"
+                                    }
                                 ],
                                 "containerName": "${APP_NAME}"
                             }
@@ -98,6 +108,16 @@
                                 "command": [
                                     "/bin/sx-apache",
                                     "post-deploy"
+                                ],
+                                "env": [
+                                    {
+                                        "name": "SX_VERBOSE",
+                                        "value": "true"
+                                    },
+                                    {
+                                        "name": "SX_DEBUG",
+                                        "value": "true"
+                                    }
                                 ],
                                 "containerName": "${APP_NAME}"
                             }
@@ -151,6 +171,12 @@
                             {
                                 "name": "${APP_NAME}",
                                 "image": "startx/sv-apache@sha256:fdeea7651d752e09fd9d6e760e85ef7667f7e443c9712d0e5f051c105e66bf05",
+                                "env": [
+                                    {
+                                        "name": "SX_VERBOSE",
+                                        "value": "true"
+                                    }
+                                ],
                                 "command": [
                                     "/bin/sx-apache"
                                 ],
@@ -165,8 +191,8 @@
                                             "health"
                                         ]
                                     },
-                                    "initialDelaySeconds": 5,
-                                    "timeoutSeconds": 2,
+                                    "initialDelaySeconds": 4,
+                                    "timeoutSeconds": 1,
                                     "periodSeconds": 10,
                                     "successThreshold": 1,
                                     "failureThreshold": 3
@@ -178,8 +204,8 @@
                                             "health"
                                         ]
                                     },
-                                    "initialDelaySeconds": 2,
-                                    "timeoutSeconds": 2,
+                                    "initialDelaySeconds": 4,
+                                    "timeoutSeconds": 1,
                                     "periodSeconds": 10,
                                     "successThreshold": 1,
                                     "failureThreshold": 3
@@ -187,7 +213,11 @@
                                 "terminationMessagePath": "/dev/termination-log",
                                 "imagePullPolicy": "Always"
                             }
-                        ]
+                        ],
+                        "restartPolicy": "Always",
+                        "terminationGracePeriodSeconds": 30,
+                        "dnsPolicy": "ClusterFirst",
+                        "securityContext": {}
                     }
                 }
             },
@@ -199,7 +229,7 @@
             }
         },
         {
-            "kind": "Route",
+            "kind": "BuildConfig",
             "apiVersion": "v1",
             "metadata": {
                 "name": "${APP_NAME}",
@@ -215,59 +245,66 @@
                 }
             },
             "spec": {
-                "to": {
-                    "kind": "Service",
-                    "name": "${APP_NAME}",
-                    "weight": 100
-                }
-            },
-            "status": {
-                "ingress": [
+                "triggers": [
                     {
-                        "routerName": "router",
-                        "conditions": [
+                        "type": "GitHub",
+                        "github": {
+                            "secret": "${WEBHOOK_TOKEN}_${APP_NAME}"
+                        }
+                    },
+                    {
+                        "type": "Generic",
+                        "generic": {
+                            "secret": "${WEBHOOK_TOKEN}_${APP_NAME}"
+                        }
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChange": {}
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ],
+                "runPolicy": "SerialLatestOnly",
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "${SOURCE_GIT}",
+                        "ref": "${SOURCE_BRANCH}"
+                    }
+                },
+                "strategy": {
+                    "type": "Source",
+                    "sourceStrategy": {
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "name": "${APP_NAME}:base"
+                        },
+                        "env": [
                             {
-                                "type": "Admitted",
-                                "status": "True"
+                                "name": "SX_VERBOSE",
+                                "value": "true"
                             }
                         ]
                     }
-                ]
-            }
-        },
-        {
-            "kind": "Service",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APP_NAME}",
-                "creationTimestamp": null,
-                "labels": {
-                    "app": "${APP_NAME}",
-                    "type": "${APP_TYPE}",
-                    "provider": "startx",
-                    "template": "startx-sv-apache"
                 },
-                "annotations": {
-                    "openshift.io/generated-by": "STARTX"
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "${APP_NAME}:latest"
+                    }
+                },
+                "resources": {},
+                "postCommit": {
+                    "command": [
+                        "/bin/sx-apache",
+                        "post-build"
+                    ]
                 }
             },
-            "spec": {
-                "ports": [
-                    {
-                        "protocol": "TCP",
-                        "port": 8080,
-                        "targetPort": 8080
-                    }
-                ],
-                "selector": {
-                    "app": "${APP_NAME}",
-                    "deploymentconfig": "${APP_NAME}"
-                },
-                "type": "ClusterIP",
-                "sessionAffinity": "None"
-            },
             "status": {
-                "loadBalancer": {}
+                "lastVersion": 0
             }
         }
     ],
@@ -276,14 +313,36 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "www",
+            "value": "startx-os",
             "required": true
         },
         {
             "name": "APP_TYPE",
             "displayName": "Application type",
             "description": "The type of the created application",
-            "value": "webserver"
+            "value": "os"
+        },
+        {
+            "name": "SOURCE_GIT",
+            "displayName": "Source repository",
+            "description": "URL to the source code to use during build process",
+            "value": "https://github.com/startxfr/docker-images-example-bash.git",
+            "required": true
+        },
+        {
+            "name": "SOURCE_BRANCH",
+            "displayName": "Source branch",
+            "description": "Name of the default branch",
+            "value": "master",
+            "required": true
+        },
+        {
+            "name": "WEBHOOK_TOKEN",
+            "displayName": "Webhook token",
+            "description": "Secret token to use for webhook to github or generic",
+            "generate": "expression",
+            "from": "[a-zA-Z0-9]{24}",
+            "required": true
         }
     ]
 }
