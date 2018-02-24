@@ -356,6 +356,28 @@
             "value": "database"
         },
         {
+            "name": "SOURCE_GIT",
+            "displayName": "Source repository",
+            "description": "URL to the source code to use during build process",
+            "value": "https://github.com/startxfr/docker-images-example-mariadb.git",
+            "required": true
+        },
+        {
+            "name": "SOURCE_BRANCH",
+            "displayName": "Source branch",
+            "description": "Name of the default branch",
+            "value": "master",
+            "required": true
+        },
+        {
+            "name": "WEBHOOK_TOKEN",
+            "displayName": "Webhook token",
+            "description": "Secret token to use for webhook to github or generic",
+            "generate": "expression",
+            "from": "[a-zA-Z0-9]{24}",
+            "required": true
+        },
+        {
             "name": "MEMCACHE_PASSWORD",
             "displayName": "Memcache password",
             "description": "Password of the default user",
