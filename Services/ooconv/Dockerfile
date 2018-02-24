@@ -39,7 +39,8 @@ RUN dnf -y install unoconv libreoffice-writer libreoffice-calc pdfmod ghostscrip
     touch $DATA_PATH/.keep && \
     chgrp -R 0 $DATA_PATH /bin/sx-* /s2i /var/lib/sx* && \
     chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* && \
-    chmod -R g=u $DATA_PATH /bin/sx-* /s2i /var/lib/sx*
+    chmod -R g=u $DATA_PATH /bin/sx-* /s2i /var/lib/sx* && \
+    chmod -R ugo+x /bin/sx*
 
 USER 1001
 

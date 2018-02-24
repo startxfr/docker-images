@@ -42,6 +42,7 @@ RUN dnf -y install postgresql postgresql-libs postgresql-server \
     chgrp -R 0 $DATA_PATH $LOG_PATH /bin/sx-* /s2i /var/lib/sx* /var/lib/mysql && \
     chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* /var/lib/mysql && \
     chmod -R g=u $DATA_PATH $LOG_PATH /bin/sx-* /s2i /var/lib/sx* /var/lib/mysql && \
+    chmod -R ugo+x /bin/sx* && \
     chmod ug+r $MY_CONF
 
 USER 5432

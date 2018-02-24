@@ -44,7 +44,8 @@ RUN dnf -y install php php-cli php-pear \
     chmod ug+r $HTTPDCONF && \
     chgrp -R 0 /bin/sx* /s2i && \
     chown -R 1001:0 /bin/sx* /s2i && \
-    chmod -R g=u /bin/sx* /s2i
+    chmod -R g=u /bin/sx* /s2i && \
+    chmod -R ugo+x /bin/sx*
 COPY ./index.php $APP_PATH
 RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH
 

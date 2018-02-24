@@ -11,7 +11,8 @@ ENV SX_VERSION="latest" \
     CB_PATH=/opt/couchbase \
     DATA_PATH=$CB_PATH/var \
     CB_VERSION=5.1.0 \
-    CB_RELEASE_URL=http://packages.couchbase.com/releases/couchbase-release/couchbase-release-1.0-0-x86_64.rpm \
+    CB_RELEASE_URL=https://packages.couchbase.com/releases/5.1.0/couchbase-server-enterprise-5.1.0-centos7.x86_64.rpm \
+    CB_PACKAGE=couchbase-server-enterprise-5.1.0-centos7.x86_64.rpm
     PATH=$PATH:/opt/couchbase/bin:/opt/couchbase/bin/tools:/opt/couchbase/bin/install
 
 LABEL name="$SX_ID" \
@@ -33,10 +34,10 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN wget $CB_RELEASE_URL && \
-    rpm --install couchbase-release-1.0-0-x86_64.rpm && \
-    dnf -y install couchbase-server && \
+RUN dnf -y install python-httplib2 openssl && \
     dnf clean all && \
+    wget $CB_RELEASE_URL/$CB_PACKAGE && \
+-    rpm --install $CB_PACKAGE && \
     groupadd -g 1001 couchbase && useradd couchbase -u 1001 -g couchbase -M && \
     mkdir -p $DATA_PATH /opt/couchbase/var/lib/couchbase \
         /opt/couchbase/var/lib/couchbase/config \
@@ -52,7 +53,8 @@ RUN wget $CB_RELEASE_URL && \
     chown -R couchbase:couchbase $DATA_PATH /opt/couchbase/var && \
     chgrp -R 0 $CB_PATH /bin/sx-* /s2i /var/lib/sx* && \
     chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* && \
-    chmod -R g=u $CB_PATH /bin/sx-* /s2i /var/lib/sx*
+    chmod -R g=u $CB_PATH /bin/sx-* /s2i /var/lib/sx* && \
+    chmod -R ugo+x /bin/sx*
 
 USER 1001
 

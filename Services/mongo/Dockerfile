@@ -42,7 +42,8 @@ RUN dnf -y install mongodb mongodb-server  && \
     chown -R mongodb:mongodb $DATA_PATH $LOG_PATH && \
     chgrp -R 0 $DATA_PATH $LOG_PATH /bin/sx-* /s2i /var/lib/sx* && \
     chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* && \
-    chmod -R g=u $DATA_PATH $LOG_PATH /bin/sx-* /s2i /var/lib/sx*
+    chmod -R g=u $DATA_PATH $LOG_PATH /bin/sx-* /s2i /var/lib/sx* && \
+    chmod -R ugo+x /bin/sx*
 
 USER 1001
 

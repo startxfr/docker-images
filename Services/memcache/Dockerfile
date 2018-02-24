@@ -38,6 +38,7 @@ RUN dnf -y install memcached && dnf clean all && \
     chgrp -R 0 $LOG_PATH /bin/sx-* /s2i /var/lib/sx* && \
     chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* && \
     chmod -R g=u $LOG_PATH /bin/sx-* /s2i /var/lib/sx* && \
+    chmod -R ugo+x /bin/sx* && \
     chmod -R ugo+rwx $LOG_PATH
 
 USER 1001

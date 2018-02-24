@@ -43,7 +43,8 @@ RUN dnf -y install nodejs npm python make gcc && dnf clean all && \
     chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /.config /.npm && \
     chown -R 1001:0 /bin/sx* /s2i && \
     chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /.config /.npm && \
-    chmod -R ugo+rwx $LOG_PATH
+    chmod -R ugo+rwx $LOG_PATH && \
+    chmod -R ugo+x /bin/sx*
 COPY ./ $APP_PATH
 RUN rm -rf $APP_PATH/Dockerfile $APP_PATH/openshift-* $APP_PATH/docker-* $APP_PATH/sx && \
     chgrp -R 0 $APP_PATH && \
