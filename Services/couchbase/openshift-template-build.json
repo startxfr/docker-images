@@ -70,9 +70,8 @@
                 }
             },
             "stringData": {
-                "MYSQL_ROOT_PASSWORD": "${MYSQL_ROOT_PASSWORD}",
-                "MYSQL_USER": "${MYSQL_USER}",
-                "MYSQL_PASSWORD": "${MYSQL_PASSWORD}"
+                "COUCHBASE_PASSWORD": "${COUCHBASE_PASSWORD}",
+                "COUCHBASE_USER": "${COUCHBASE_USER}"
             }
         },
         {
@@ -204,35 +203,26 @@
                                 ],
                                 "env": [
                                     {
-                                        "name": "MYSQL_ROOT_PASSWORD",
+                                        "name": "COUCHBASE_PASSWORD",
                                         "valueFrom": {
                                             "secretKeyRef": {
                                                 "name": "${APP_NAME}",
-                                                "key": "MYSQL_ROOT_PASSWORD"
+                                                "key": "COUCHBASE_PASSWORD"
                                             }
                                         }
                                     },
                                     {
-                                        "name": "MYSQL_USER",
+                                        "name": "COUCHBASE_USER",
                                         "valueFrom": {
                                             "secretKeyRef": {
                                                 "name": "${APP_NAME}",
-                                                "key": "MYSQL_USER"
+                                                "key": "COUCHBASE_USER"
                                             }
                                         }
                                     },
                                     {
-                                        "name": "MYSQL_PASSWORD",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}",
-                                                "key": "MYSQL_PASSWORD"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "MYSQL_DATABASE",
-                                        "value": "${MYSQL_DATABASE}"
+                                        "name": "COUCHBASE_BUCKETS",
+                                        "value": "${COUCHBASE_BUCKETS}"
                                     }
                                 ],
                                 "resources": {},
@@ -432,32 +422,24 @@
             "required": true
         },
         {
-            "name": "MYSQL_ROOT_PASSWORD",
-            "displayName": "Mysql root password",
-            "description": "The mysql root password to use. Generated if not provided",
-            "from": "[A-Z0-9]{16}",
-            "generate": "expression"
-        },
-        {
-            "name": "MYSQL_USER",
-            "displayName": "Mysql user",
+            "name": "COUCHBASE_USER",
+            "displayName": "Couchbase user",
             "description": "Default user to create",
             "value": "demo",
             "from": "[A-Z0-9]{8}",
             "generate": "expression"
         },
         {
-            "name": "MYSQL_PASSWORD",
-            "displayName": "Mysql password",
-            "description": "Password of the default user",
-            "value": "demo",
+            "name": "COUCHBASE_PASSWORD",
+            "displayName": "Couchbase root password",
+            "description": "The mysql root password to use. Generated if not provided",
             "from": "[A-Z0-9]{16}",
             "generate": "expression"
         },
         {
-            "name": "MYSQL_DATABASE",
-            "displayName": "Mysql database",
-            "description": "name of the default database to create"
+            "name": "COUCHBASE_BUCKETS",
+            "displayName": "Couchbase bucket",
+            "description": "list of the default's bucket to create"
         }
     ]
 }
