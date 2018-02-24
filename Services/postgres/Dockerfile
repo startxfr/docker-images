@@ -39,11 +39,10 @@ RUN dnf -y install postgresql postgresql-libs postgresql-server \
     mkdir -p $DATA_PATH $LOG_PATH && \
     touch $DATA_PATH/.keep && \
     chown -R postgres:postgres $LOG_PATH $DATA_PATH && \
-    chgrp -R 0 $DATA_PATH $LOG_PATH /bin/sx-* /s2i /var/lib/sx* /var/lib/mysql && \
-    chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* /var/lib/mysql && \
-    chmod -R g=u $DATA_PATH $LOG_PATH /bin/sx-* /s2i /var/lib/sx* /var/lib/mysql && \
-    chmod -R ugo+x /bin/sx* && \
-    chmod ug+r $MY_CONF
+    chgrp -R 0 $DATA_PATH $LOG_PATH /bin/sx-* /s2i /var/lib/sx* && \
+    chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* && \
+    chmod -R g=u $DATA_PATH $LOG_PATH /bin/sx-* /s2i /var/lib/sx* && \
+    chmod -R ugo+x /bin/sx*
 
 USER 5432
 

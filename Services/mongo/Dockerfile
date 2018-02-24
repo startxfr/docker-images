@@ -32,7 +32,7 @@ USER root
 COPY sx /tmp/
 RUN dnf -y install mongodb mongodb-server  && \
     dnf clean all  && \
-    groupadd -g 1001 mongodb && useradd mongodb -u 1001 -g mongodb -M && \
+    usermod -a -G 0 mongodb && \
     mkdir -p $DATA_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
