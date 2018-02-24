@@ -38,7 +38,7 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "base",
                         "annotations": {
                             "openshift.io/display-name": "Startx Mariadb Database (Fedora rawhide)",
                             "description": "MariaDB server for simple SQL database running under Fedora rawhide",
@@ -98,7 +98,7 @@
                     "rollingParams": {
                         "updatePeriodSeconds": 1,
                         "intervalSeconds": 1,
-                        "timeoutSeconds": 120,
+                        "timeoutSeconds": 20,
                         "maxUnavailable": "25%",
                         "maxSurge": "25%",
                         "pre": {
@@ -107,6 +107,16 @@
                                 "command": [
                                     "/bin/sx-mariadb",
                                     "pre-deploy"
+                                ],
+                                "env": [
+                                    {
+                                        "name": "SX_VERBOSE",
+                                        "value": "true"
+                                    },
+                                    {
+                                        "name": "SX_DEBUG",
+                                        "value": "true"
+                                    }
                                 ],
                                 "containerName": "${APP_NAME}"
                             }
@@ -117,6 +127,16 @@
                                 "command": [
                                     "/bin/sx-mariadb",
                                     "post-deploy"
+                                ],
+                                "env": [
+                                    {
+                                        "name": "SX_VERBOSE",
+                                        "value": "true"
+                                    },
+                                    {
+                                        "name": "SX_DEBUG",
+                                        "value": "true"
+                                    }
                                 ],
                                 "containerName": "${APP_NAME}"
                             }
@@ -142,6 +162,9 @@
                         "type": "ConfigChange"
                     }
                 ],
+                "postCommit": {
+                    "script": "/bin/sx-mariadb info"
+                },
                 "replicas": 1,
                 "test": false,
                 "selector": {
@@ -167,44 +190,17 @@
                             {
                                 "name": "${APP_NAME}",
                                 "image": "startx/sv-mariadb@sha256:fdeea7651d752e09fd9d6e760e85ef7667f7e443c9712d0e5f051c105e66bf05",
+                                "env": [
+                                    {
+                                        "name": "SX_VERBOSE",
+                                        "value": "true"
+                                    }
+                                ],
                                 "command": [
                                     "/bin/sx-mariadb"
                                 ],
                                 "args": [
                                     "run"
-                                ],
-                                "env": [
-                                    {
-                                        "name": "MYSQL_ROOT_PASSWORD",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}",
-                                                "key": "MYSQL_ROOT_PASSWORD"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "MYSQL_USER",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}",
-                                                "key": "MYSQL_USER"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "MYSQL_PASSWORD",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}",
-                                                "key": "MYSQL_PASSWORD"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "MYSQL_DATABASE",
-                                        "value": "${MYSQL_DATABASE}"
-                                    }
                                 ],
                                 "resources": {},
                                 "livenessProbe": {
@@ -214,8 +210,8 @@
                                             "health"
                                         ]
                                     },
-                                    "initialDelaySeconds": 5,
-                                    "timeoutSeconds": 2,
+                                    "initialDelaySeconds": 4,
+                                    "timeoutSeconds": 1,
                                     "periodSeconds": 10,
                                     "successThreshold": 1,
                                     "failureThreshold": 3
@@ -227,8 +223,8 @@
                                             "health"
                                         ]
                                     },
-                                    "initialDelaySeconds": 2,
-                                    "timeoutSeconds": 2,
+                                    "initialDelaySeconds": 4,
+                                    "timeoutSeconds": 1,
                                     "periodSeconds": 10,
                                     "successThreshold": 1,
                                     "failureThreshold": 3
@@ -236,7 +232,11 @@
                                 "terminationMessagePath": "/dev/termination-log",
                                 "imagePullPolicy": "Always"
                             }
-                        ]
+                        ],
+                        "restartPolicy": "Always",
+                        "terminationGracePeriodSeconds": 30,
+                        "dnsPolicy": "ClusterFirst",
+                        "securityContext": {}
                     }
                 }
             },
@@ -248,7 +248,7 @@
             }
         },
         {
-            "kind": "Service",
+            "kind": "BuildConfig",
             "apiVersion": "v1",
             "metadata": {
                 "name": "${APP_NAME}",
@@ -264,22 +264,66 @@
                 }
             },
             "spec": {
-                "ports": [
+                "triggers": [
                     {
-                        "protocol": "TCP",
-                        "port": 3306,
-                        "targetPort": 3306
+                        "type": "GitHub",
+                        "github": {
+                            "secret": "${WEBHOOK_TOKEN}_${APP_NAME}"
+                        }
+                    },
+                    {
+                        "type": "Generic",
+                        "generic": {
+                            "secret": "${WEBHOOK_TOKEN}_${APP_NAME}"
+                        }
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChange": {}
+                    },
+                    {
+                        "type": "ConfigChange"
                     }
                 ],
-                "selector": {
-                    "app": "${APP_NAME}",
-                    "deploymentconfig": "${APP_NAME}"
+                "runPolicy": "SerialLatestOnly",
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "${SOURCE_GIT}",
+                        "ref": "${SOURCE_BRANCH}"
+                    }
                 },
-                "type": "ClusterIP",
-                "sessionAffinity": "None"
+                "strategy": {
+                    "type": "Source",
+                    "sourceStrategy": {
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "name": "${APP_NAME}:base"
+                        },
+                        "env": [
+                            {
+                                "name": "SX_VERBOSE",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "${APP_NAME}:latest"
+                    }
+                },
+                "resources": {},
+                "postCommit": {
+                    "command": [
+                        "/bin/sx-mariadb",
+                        "post-build"
+                    ]
+                }
             },
             "status": {
-                "loadBalancer": {}
+                "lastVersion": 0
             }
         }
     ],
@@ -288,42 +332,36 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "mariadb",
+            "value": "startx-os",
             "required": true
         },
         {
             "name": "APP_TYPE",
             "displayName": "Application type",
             "description": "The type of the created application",
-            "value": "database"
+            "value": "os"
         },
         {
-            "name": "MYSQL_ROOT_PASSWORD",
-            "displayName": "Mysql root password",
-            "description": "The mysql root password to use. Generated if not provided",
-            "from": "[A-Z0-9]{16}",
-            "generate": "expression"
+            "name": "SOURCE_GIT",
+            "displayName": "Source repository",
+            "description": "URL to the source code to use during build process",
+            "value": "https://github.com/startxfr/docker-images-example-bash.git",
+            "required": true
         },
         {
-            "name": "MYSQL_USER",
-            "displayName": "Mysql user",
-            "description": "Default user to create",
-            "value": "demo",
-            "from": "[A-Z0-9]{8}",
-            "generate": "expression"
+            "name": "SOURCE_BRANCH",
+            "displayName": "Source branch",
+            "description": "Name of the default branch",
+            "value": "master",
+            "required": true
         },
         {
-            "name": "MYSQL_PASSWORD",
-            "displayName": "Mysql password",
-            "description": "Password of the default user",
-            "value": "demo",
-            "from": "[A-Z0-9]{16}",
-            "generate": "expression"
-        },
-        {
-            "name": "MYSQL_DATABASE",
-            "displayName": "Mysql database",
-            "description": "name of the default database to create"
+            "name": "WEBHOOK_TOKEN",
+            "displayName": "Webhook token",
+            "description": "Secret token to use for webhook to github or generic",
+            "generate": "expression",
+            "from": "[a-zA-Z0-9]{24}",
+            "required": true
         }
     ]
 }
