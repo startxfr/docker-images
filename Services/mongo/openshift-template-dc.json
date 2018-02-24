@@ -2,13 +2,13 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-apache",
+        "name": "startx-sv-couchbase",
         "annotations": {
-            "openshift.io/display-name": "Startx Http Server (fedora)",
-            "description": "Http server for simple web application running under Fedora",
-            "iconClass": "icon-apache",
-            "tags": "startx,os,fedora,apache,httpd",
-            "openshift.io/long-description": "This template provides an apache httpd webserver in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/display-name": "Startx MongoDB server (fedora)",
+            "description": "MongoDB server for NoSQL database running under Fedora",
+            "iconClass": "icon-couchbase",
+            "tags": "startx,os,fedora,couchbase,database",
+            "openshift.io/long-description": "This template provides an couchbase Database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -16,7 +16,7 @@
     },
     "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
     "labels": {
-        "template": "startx-sv-apache"
+        "template": "startx-sv-couchbase"
     },
     "objects": [
         {
@@ -25,35 +25,53 @@
             "metadata": {
                 "name": "${APP_NAME}",
                 "annotations": {
-                    "openshift.io/display-name": "Startx WebServer",
+                    "openshift.io/display-name": "Startx MongoDB Database",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-apache"
+                    "template": "startx-sv-couchbase"
                 }
             },
             "spec": {
                 "tags": [
                     {
-                        "name": "base",
+                        "name": "latest",
                         "annotations": {
-                            "openshift.io/display-name": "Startx WebServer (Fedora rawhide)",
-                            "description": "Http server for simple web application running under Fedora rawhide",
-                            "iconClass": "icon-apache",
-                            "tags": "builder,startx,fedora,apache,httpd",
-                            "supports": "http",
-                            "version": "latest",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-apache.git"
+                            "openshift.io/display-name": "Startx MongoDB Database (Fedora rawhide)",
+                            "description": "MongoDB server for NoSQL database running under Fedora rawhide",
+                            "iconClass": "icon-couchbase",
+                            "tags": "builder,startx,fedora,couchbase,database",
+                            "supports": "db",
+                            "version": "rawhide",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-couchbase.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-apache:latest"
+                            "name": "startx/sv-couchbase:latest"
                         }
                     }
                 ]
+            }
+        },
+        {
+            "kind": "Secret",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx",
+                    "template": "startx-sv-couchbase"
+                }
+            },
+            "stringData": {
+                "MONGO_PASSWORD": "${MONGO_PASSWORD}",
+                "MONGO_USER": "${MONGO_USER}"
             }
         },
         {
@@ -67,7 +85,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-apache"
+                    "template": "startx-sv-couchbase"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -79,25 +97,15 @@
                     "rollingParams": {
                         "updatePeriodSeconds": 1,
                         "intervalSeconds": 1,
-                        "timeoutSeconds": 20,
+                        "timeoutSeconds": 120,
                         "maxUnavailable": "25%",
                         "maxSurge": "25%",
                         "pre": {
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-apache",
+                                    "/bin/sx-couchbase",
                                     "pre-deploy"
-                                ],
-                                "env": [
-                                    {
-                                        "name": "SX_VERBOSE",
-                                        "value": "true"
-                                    },
-                                    {
-                                        "name": "SX_DEBUG",
-                                        "value": "true"
-                                    }
                                 ],
                                 "containerName": "${APP_NAME}"
                             }
@@ -106,18 +114,8 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-apache",
+                                    "/bin/sx-couchbase",
                                     "post-deploy"
-                                ],
-                                "env": [
-                                    {
-                                        "name": "SX_VERBOSE",
-                                        "value": "true"
-                                    },
-                                    {
-                                        "name": "SX_DEBUG",
-                                        "value": "true"
-                                    }
                                 ],
                                 "containerName": "${APP_NAME}"
                             }
@@ -143,9 +141,6 @@
                         "type": "ConfigChange"
                     }
                 ],
-                "postCommit": {
-                    "script": "/bin/sx-apache info"
-                },
                 "replicas": 1,
                 "test": false,
                 "selector": {
@@ -159,7 +154,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-sv-apache",
+                            "template": "startx-sv-couchbase",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -170,29 +165,47 @@
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
-                                "image": "startx/sv-apache@sha256:fdeea7651d752e09fd9d6e760e85ef7667f7e443c9712d0e5f051c105e66bf05",
-                                "env": [
-                                    {
-                                        "name": "SX_VERBOSE",
-                                        "value": "true"
-                                    }
-                                ],
+                                "image": "startx/sv-couchbase@sha256:fdeea7651d752e09fd9d6e760e85ef7667f7e443c9712d0e5f051c105e66bf05",
                                 "command": [
-                                    "/bin/sx-apache"
+                                    "/bin/sx-couchbase"
                                 ],
                                 "args": [
                                     "run"
+                                ],
+                                "env": [
+                                    {
+                                        "name": "MONGO_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "name": "${APP_NAME}",
+                                                "key": "MONGO_PASSWORD"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MONGO_USER",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "name": "${APP_NAME}",
+                                                "key": "MONGO_USER"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MONGO_STORES",
+                                        "value": "${MONGO_STORES}"
+                                    }
                                 ],
                                 "resources": {},
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-apache",
+                                            "/bin/sx-couchbase",
                                             "health"
                                         ]
                                     },
-                                    "initialDelaySeconds": 4,
-                                    "timeoutSeconds": 1,
+                                    "initialDelaySeconds": 5,
+                                    "timeoutSeconds": 2,
                                     "periodSeconds": 10,
                                     "successThreshold": 1,
                                     "failureThreshold": 3
@@ -200,12 +213,12 @@
                                 "readinessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-apache",
+                                            "/bin/sx-couchbase",
                                             "health"
                                         ]
                                     },
-                                    "initialDelaySeconds": 4,
-                                    "timeoutSeconds": 1,
+                                    "initialDelaySeconds": 2,
+                                    "timeoutSeconds": 2,
                                     "periodSeconds": 10,
                                     "successThreshold": 1,
                                     "failureThreshold": 3
@@ -213,11 +226,7 @@
                                 "terminationMessagePath": "/dev/termination-log",
                                 "imagePullPolicy": "Always"
                             }
-                        ],
-                        "restartPolicy": "Always",
-                        "terminationGracePeriodSeconds": 30,
-                        "dnsPolicy": "ClusterFirst",
-                        "securityContext": {}
+                        ]
                     }
                 }
             },
@@ -229,7 +238,7 @@
             }
         },
         {
-            "kind": "BuildConfig",
+            "kind": "Service",
             "apiVersion": "v1",
             "metadata": {
                 "name": "${APP_NAME}",
@@ -238,73 +247,29 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-apache"
+                    "template": "startx-sv-couchbase"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
                 }
             },
             "spec": {
-                "triggers": [
+                "ports": [
                     {
-                        "type": "GitHub",
-                        "github": {
-                            "secret": "${WEBHOOK_TOKEN}_${APP_NAME}"
-                        }
-                    },
-                    {
-                        "type": "Generic",
-                        "generic": {
-                            "secret": "${WEBHOOK_TOKEN}_${APP_NAME}"
-                        }
-                    },
-                    {
-                        "type": "ImageChange",
-                        "imageChange": {}
-                    },
-                    {
-                        "type": "ConfigChange"
+                        "protocol": "TCP",
+                        "port": 3306,
+                        "targetPort": 3306
                     }
                 ],
-                "runPolicy": "SerialLatestOnly",
-                "source": {
-                    "type": "Git",
-                    "git": {
-                        "uri": "${SOURCE_GIT}",
-                        "ref": "${SOURCE_BRANCH}"
-                    }
+                "selector": {
+                    "app": "${APP_NAME}",
+                    "deploymentconfig": "${APP_NAME}"
                 },
-                "strategy": {
-                    "type": "Source",
-                    "sourceStrategy": {
-                        "from": {
-                            "kind": "ImageStreamTag",
-                            "name": "${APP_NAME}:base"
-                        },
-                        "env": [
-                            {
-                                "name": "SX_VERBOSE",
-                                "value": "true"
-                            }
-                        ]
-                    }
-                },
-                "output": {
-                    "to": {
-                        "kind": "ImageStreamTag",
-                        "name": "${APP_NAME}:latest"
-                    }
-                },
-                "resources": {},
-                "postCommit": {
-                    "command": [
-                        "/bin/sx-apache",
-                        "post-build"
-                    ]
-                }
+                "type": "ClusterIP",
+                "sessionAffinity": "None"
             },
             "status": {
-                "lastVersion": 0
+                "loadBalancer": {}
             }
         }
     ],
@@ -313,36 +278,34 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "apache",
+            "value": "couchbase",
             "required": true
         },
         {
             "name": "APP_TYPE",
             "displayName": "Application type",
             "description": "The type of the created application",
-            "value": "httpds"
+            "value": "database"
         },
         {
-            "name": "SOURCE_GIT",
-            "displayName": "Source repository",
-            "description": "URL to the source code to use during build process",
-            "value": "https://github.com/startxfr/docker-images-example-apache.git",
-            "required": true
+            "name": "MONGO_USER",
+            "displayName": "MongoDB user",
+            "description": "Default user to create",
+            "value": "demo",
+            "from": "[A-Z0-9]{8}",
+            "generate": "expression"
         },
         {
-            "name": "SOURCE_BRANCH",
-            "displayName": "Source branch",
-            "description": "Name of the default branch",
-            "value": "master",
-            "required": true
+            "name": "MONGO_PASSWORD",
+            "displayName": "MongoDB root password",
+            "description": "The mysql root password to use. Generated if not provided",
+            "from": "[A-Z0-9]{16}",
+            "generate": "expression"
         },
         {
-            "name": "WEBHOOK_TOKEN",
-            "displayName": "Webhook token",
-            "description": "Secret token to use for webhook to github or generic",
-            "generate": "expression",
-            "from": "[a-zA-Z0-9]{24}",
-            "required": true
+            "name": "MONGO_STORES",
+            "displayName": "MongoDB store",
+            "description": "list of the default's store to create"
         }
     ]
 }

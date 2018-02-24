@@ -400,20 +400,20 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "startx-os",
+            "value": "mariadb",
             "required": true
         },
         {
             "name": "APP_TYPE",
             "displayName": "Application type",
             "description": "The type of the created application",
-            "value": "os"
+            "value": "database"
         },
         {
             "name": "SOURCE_GIT",
             "displayName": "Source repository",
             "description": "URL to the source code to use during build process",
-            "value": "https://github.com/startxfr/docker-images-example-bash.git",
+            "value": "https://github.com/startxfr/docker-images-example-mariadb.git",
             "required": true
         },
         {

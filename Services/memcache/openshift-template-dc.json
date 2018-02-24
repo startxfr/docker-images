@@ -267,7 +267,7 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "memcached",
+            "value": "memcache",
             "required": true
         },
         {
