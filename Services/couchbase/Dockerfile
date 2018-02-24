@@ -12,7 +12,7 @@ ENV SX_VERSION="latest" \
     DATA_PATH=$CB_PATH/var \
     CB_VERSION=5.1.0 \
     CB_RELEASE_URL=https://packages.couchbase.com/releases/5.1.0/couchbase-server-enterprise-5.1.0-centos7.x86_64.rpm \
-    CB_PACKAGE=couchbase-server-enterprise-5.1.0-centos7.x86_64.rpm
+    CB_PACKAGE=couchbase-server-enterprise-5.1.0-centos7.x86_64.rpm \
     PATH=$PATH:/opt/couchbase/bin:/opt/couchbase/bin/tools:/opt/couchbase/bin/install
 
 LABEL name="$SX_ID" \
