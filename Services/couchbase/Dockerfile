@@ -11,8 +11,7 @@ ENV SX_VERSION="latest" \
     CB_PATH=/opt/couchbase \
     DATA_PATH=$CB_PATH/var \
     CB_VERSION=5.1.0 \
-    CB_RELEASE_URL=http://packages.couchbase.com/releases/5.1.0 \
-    CB_PACKAGE=couchbase-server-enterprise_5.1.0-centos7.x86_64.rpm \
+    CB_RELEASE_URL=http://packages.couchbase.com/releases/couchbase-release/couchbase-release-1.0-0-x86_64.rpm \
     PATH=$PATH:/opt/couchbase/bin:/opt/couchbase/bin/tools:/opt/couchbase/bin/install
 
 LABEL name="$SX_ID" \
@@ -34,10 +33,10 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf -y install python-httplib2 openssl && \
+RUN wget $CB_RELEASE_URL && \
+    rpm --install couchbase-release-1.0-0-x86_64.rpm && \
+    dnf -y install couchbase-server && \
     dnf clean all && \
-    wget $CB_RELEASE_URL/$CB_PACKAGE && \
-    rpm --install $CB_PACKAGE && \
     groupadd -g 1001 couchbase && useradd couchbase -u 1001 -g couchbase -M && \
     mkdir -p $DATA_PATH /opt/couchbase/var/lib/couchbase \
         /opt/couchbase/var/lib/couchbase/config \
