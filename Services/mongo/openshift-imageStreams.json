@@ -19,7 +19,7 @@
                         "annotations": {
                             "openshift.io/display-name": "S2I MongoDB Database (Fedora 26)",
                             "description": "MongoDB server builder for NoSQL database running under Fedora 26",
-                            "iconClass": "icon-mongo",
+                            "iconClass": "icon-mongodb",
                             "tags": "builder,startx,fedora,mongo,database",
                             "supports": "db",
                             "version": "fc26",
@@ -35,7 +35,7 @@
                         "annotations": {
                             "openshift.io/display-name": "S2I MongoDB Database (Fedora 27)",
                             "description": "MongoDB server builder for NoSQL database running under Fedora 27",
-                            "iconClass": "icon-mongo",
+                            "iconClass": "icon-mongodb",
                             "tags": "builder,startx,fedora,mongo,database",
                             "supports": "db",
                             "version": "fc27",
@@ -51,7 +51,7 @@
                         "annotations": {
                             "openshift.io/display-name": "S2I MongoDB Database (Fedora rawhide)",
                             "description": "MongoDB server builder for NoSQL database running under Fedora rawhide",
-                            "iconClass": "icon-mongo",
+                            "iconClass": "icon-mongodb",
                             "tags": "builder,startx,fedora,mongo,database",
                             "supports": "db",
                             "version": "rawhide",
@@ -67,7 +67,7 @@
                         "annotations": {
                             "openshift.io/display-name": "S2I MongoDB Database (Centos 7)",
                             "description": "MongoDB server builder for NoSQL database running under Centos 7",
-                            "iconClass": "icon-mongo",
+                            "iconClass": "icon-mongodb",
                             "tags": "builder,startx,centos,mongo,database",
                             "supports": "db",
                             "version": "7",
