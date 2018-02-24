@@ -1,5 +1,11 @@
 #!/bin/bash
 
-echo "========> PUBLISH Container $2:$3"
-docker push $NAMESPACE/$2
+echo "========> PUBLISH Container image $NAMESPACE/$2:$3"
+testName="istested_$2"
+if [ "${!testName}" = true ] ; then
+    docker push $NAMESPACE/$2
+    echo "========> PUBLISHED Container image $NAMESPACE/$2:$3"
+else
+    echo "========> PUBLISHING Container image $NAMESPACE/$2:$3 skipped because test failed"
+fi
 exit 0;

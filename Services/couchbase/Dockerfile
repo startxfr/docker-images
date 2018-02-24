@@ -27,7 +27,7 @@ LABEL name="$SX_ID" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="1Gi" \
       io.openshift.min-cpu="8000m" \
-      io.openshift.expose-services="8091:couchbase" \
+      io.openshift.expose-services="8091:console,8092:xdcr,8093:query,8094:fts,11207:scd-ssl,11210:scd-moxy,11211:data,18091:console-ssl,18092:xdcr-ssl,18093:query-ssl,18094:fts-ssl" \
       io.openshift.s2i.destination="/tmp" \
       io.openshift.s2i.scripts-url="image:///s2i" \
       fr.startx.component="$SX_ID:$SX_VERSION"
@@ -37,8 +37,9 @@ COPY sx /tmp/
 RUN dnf -y install python-httplib2 openssl && \
     dnf clean all && \
     wget $CB_RELEASE_URL/$CB_PACKAGE && \
--    rpm --install $CB_PACKAGE && \
-    groupadd -g 1001 couchbase && useradd couchbase -u 1001 -g couchbase -M && \
+    rpm --install $CB_PACKAGE && \
+    usermod -a -G 0 couchbase && \
+    mkdir -p /var/lib/sx /s2i && \
     mkdir -p $DATA_PATH /opt/couchbase/var/lib/couchbase \
         /opt/couchbase/var/lib/couchbase/config \
         /opt/couchbase/var/lib/couchbase/data \

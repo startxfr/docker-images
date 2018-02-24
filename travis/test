@@ -24,6 +24,7 @@ if [[ $? = "0" ]]; then
         echo $RESULT
     fi
     echo "========> Container instance $TEST_NAME STARTED"
+    export istested_$2=true
     docker ps
     exit 0;
 else
