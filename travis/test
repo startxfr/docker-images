@@ -19,13 +19,12 @@ else
 fi
 echo "========> TEST Container instance $TEST_NAME based on image $IMAGE_TAG"
 RESULT=$(docker run -d --name $TEST_NAME $IMAGE_TAG)
-echo ""
 if [[ $? = "0" ]]; then
     if [ "$DEBUG" = true ] ; then
         echo $RESULT
     fi
     echo "========> Container instance $TEST_NAME STARTED"
-    docker stop $TEST_NAME
+    docker ps
     exit 0;
 else
     echo $RESULT
