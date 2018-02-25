@@ -1,0 +1,34 @@
+#!/bin/bash
+
+IMAGE_TAG=${NAMESPACE}/$2:$3
+TEST_NAME=${NAMESPACE}_$2
+echo "========> BUILD Container image $IMAGE_TAG"
+cd $1/
+RESULT=$(docker build --squash -t $IMAGE_TAG .)
+if [[ $? = "0" ]]; then
+    cd -
+    if [ "$DEBUG" = true ] ; then
+        echo $RESULT
+    fi
+    echo "========> Builded container image $IMAGE_TAG"
+else
+    cd -
+    echo $RESULT
+    echo "========> !! Could not build container image $IMAGE_TAG"
+    exit 0;
+fi
+echo "========> TEST Container instance $TEST_NAME based on image $IMAGE_TAG"
+RESULT=$(docker run -d --name $TEST_NAME $IMAGE_TAG)
+if [[ $? = "0" ]]; then
+    if [ "$DEBUG" = true ] ; then
+        echo $RESULT
+    fi
+    echo "========> Container instance $TEST_NAME STARTED"
+    touch /tmp/istested_$2
+    docker ps
+    exit 0;
+else
+    echo $RESULT
+    echo "!! Could not start container instance $TEST_NAME"
+    exit 0;
+fi

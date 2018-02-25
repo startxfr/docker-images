@@ -1,0 +1,19 @@
+#!/bin/bash
+source /var/lib/sx/sx
+source /var/lib/sx/sx-memcache
+
+check_memcache_environment
+# Dispatch input arguments
+case $1 in
+    assemble)               memcacheAssemble $@ ;;
+    post-build)             memcachePostBuild $@ ;;
+    pre-deploy)             memcachePreDeploy $@ ;;
+    post-deploy)            memcachePostDeploy $@ ;;
+    run)                    memcacheRun $@ ;;
+    health)                 genericHealth $@ ;;
+    info)                   memcacheInformation $@ ;;
+    usage|help|--help)      genericUsage $@ ;;
+    usageS2i)               genericUsageS2I $@ ;;
+    version|--version)      genericVersion $@ ;;
+    *)                      genericWelcome $@ ;;
+esac

@@ -1,0 +1,19 @@
+#!/bin/bash
+source /var/lib/sx/sx
+source /var/lib/sx/sx-couchbase
+
+check_couchbase_environment
+# Dispatch input arguments
+case $1 in
+    assemble)               couchbaseAssemble $@ ;;
+    post-build)             couchbasePostBuild $@ ;;
+    pre-deploy)             couchbasePreDeploy $@ ;;
+    post-deploy)            couchbasePostDeploy $@ ;;
+    run)                    couchbaseRun $@ ;;
+    health)                 genericHealth $@ ;;
+    info)                   couchbaseInformation $@ ;;
+    usage|help|--help)      genericUsage $@ ;;
+    usageS2i)               genericUsageS2I $@ ;;
+    version|--version)      genericVersion $@ ;;
+    *)                      genericWelcome $@ ;;
+esac

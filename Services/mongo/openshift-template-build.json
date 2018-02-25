@@ -1,0 +1,477 @@
+{
+    "kind": "Template",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "startx-sv-mongo",
+        "annotations": {
+            "openshift.io/display-name": "Startx MongoDB server (centos)",
+            "description": "MongoDB server for NoSQL database running under Centos",
+            "iconClass": "icon-mongodb",
+            "tags": "startx,os,centos,mongo,database",
+            "openshift.io/long-description": "This template provides an mongo Database in a centos container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/provider-display-name": "STARTX",
+            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
+            "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
+        }
+    },
+    "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
+    "labels": {
+        "template": "startx-sv-mongo"
+    },
+    "objects": [
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "startx-sv-mongo",
+                "annotations": {
+                    "openshift.io/display-name": "Startx MongoDB Database",
+                    "openshift.io/generated-by": "STARTX"
+                },
+                "labels": {
+                    "base-image": "startx-sv-mongo",
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx"
+                }
+            },
+            "spec": {
+                "tags": [
+                    {
+                        "name": "latest",
+                        "annotations": {
+                            "openshift.io/display-name": "Startx MongoDB Database (Centos 7)",
+                            "description": "MongoDB server for simple SQL database running under Centos 7",
+                            "iconClass": "icon-mongodb",
+                            "tags": "builder,startx,centos,mongo,database",
+                            "supports": "db",
+                            "version": "7",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mongo.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-mongo:latest"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "annotations": {
+                    "openshift.io/display-name": "Application ${APP_NAME}",
+                    "openshift.io/generated-by": "STARTX"
+                },
+                "labels": {
+                    "base-image": "startx-sv-mongo",
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx"
+                }
+            },
+            "spec": {
+                "tags": [
+                    {
+                        "name": "latest",
+                        "annotations": {
+                            "openshift.io/display-name": "Application ${APP_NAME}",
+                            "description": "Base image for the application ${APP_NAME}",
+                            "iconClass": "icon-mongodb",
+                            "tags": "startx,centos,mongo,database,application,${APP_NAME}",
+                            "supports": "db",
+                            "version": "7"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "Secret",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx",
+                    "template": "startx-sv-mongo"
+                }
+            },
+            "stringData": {
+                "MONGO_PASSWORD": "${MONGO_PASSWORD}",
+                "MONGO_USER": "${MONGO_USER}"
+            }
+        },
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "generation": 2,
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx",
+                    "template": "startx-sv-mongo"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "STARTX"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Rolling",
+                    "rollingParams": {
+                        "updatePeriodSeconds": 1,
+                        "intervalSeconds": 1,
+                        "timeoutSeconds": 120,
+                        "maxUnavailable": "25%",
+                        "maxSurge": "25%",
+                        "pre": {
+                            "failurePolicy": "Abort",
+                            "execNewPod": {
+                                "command": [
+                                    "/bin/sx-mongo",
+                                    "pre-deploy"
+                                ],
+                                "env": [
+                                    {
+                                        "name": "SX_VERBOSE",
+                                        "value": "true"
+                                    },
+                                    {
+                                        "name": "SX_DEBUG",
+                                        "value": "true"
+                                    }
+                                ],
+                                "containerName": "${APP_NAME}"
+                            }
+                        },
+                        "post": {
+                            "failurePolicy": "Abort",
+                            "execNewPod": {
+                                "command": [
+                                    "/bin/sx-mongo",
+                                    "post-deploy"
+                                ],
+                                "env": [
+                                    {
+                                        "name": "SX_VERBOSE",
+                                        "value": "true"
+                                    },
+                                    {
+                                        "name": "SX_DEBUG",
+                                        "value": "true"
+                                    }
+                                ],
+                                "containerName": "${APP_NAME}"
+                            }
+                        }
+                    },
+                    "resources": {}
+                },
+                "triggers": [
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "${APP_NAME}"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "${APP_NAME}:latest"
+                            }
+                        }
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ],
+                "postCommit": {
+                    "script": "/bin/sx-mongo info"
+                },
+                "replicas": 1,
+                "test": false,
+                "selector": {
+                    "app": "${APP_NAME}",
+                    "deploymentconfig": "${APP_NAME}"
+                },
+                "template": {
+                    "metadata": {
+                        "creationTimestamp": null,
+                        "labels": {
+                            "app": "${APP_NAME}",
+                            "type": "${APP_TYPE}",
+                            "provider": "startx",
+                            "template": "startx-sv-mongo",
+                            "deploymentconfig": "${APP_NAME}"
+                        },
+                        "annotations": {
+                            "openshift.io/generated-by": "STARTX"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "name": "${APP_NAME}",
+                                "image": "startx/sv-mongo@sha256:fdeea7651d752e09fd9d6e760e85ef7667f7e443c9712d0e5f051c105e66bf05",
+                                "env": [
+                                    {
+                                        "name": "SX_VERBOSE",
+                                        "value": "true"
+                                    }
+                                ],
+                                "command": [
+                                    "/bin/sx-mongo"
+                                ],
+                                "args": [
+                                    "run"
+                                ],
+                                "env": [
+                                    {
+                                        "name": "MONGO_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "name": "${APP_NAME}",
+                                                "key": "MONGO_PASSWORD"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MONGO_USER",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "name": "${APP_NAME}",
+                                                "key": "MONGO_USER"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MONGO_STORES",
+                                        "value": "${MONGO_STORES}"
+                                    }
+                                ],
+                                "resources": {},
+                                "livenessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/bin/sx-mongo",
+                                            "health"
+                                        ]
+                                    },
+                                    "initialDelaySeconds": 5,
+                                    "timeoutSeconds": 2,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "failureThreshold": 3
+                                },
+                                "readinessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/bin/sx-mongo",
+                                            "health"
+                                        ]
+                                    },
+                                    "initialDelaySeconds": 2,
+                                    "timeoutSeconds": 2,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "failureThreshold": 3
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "imagePullPolicy": "Always"
+                            }
+                        ],
+                        "restartPolicy": "Always",
+                        "terminationGracePeriodSeconds": 30,
+                        "dnsPolicy": "ClusterFirst",
+                        "securityContext": {}
+                    }
+                }
+            },
+            "status": {
+                "observedGeneration": 2,
+                "replicas": 1,
+                "updatedReplicas": 1,
+                "availableReplicas": 1
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx",
+                    "template": "startx-sv-mongo"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "STARTX"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "protocol": "TCP",
+                        "port": 3306,
+                        "targetPort": 3306
+                    }
+                ],
+                "selector": {
+                    "app": "${APP_NAME}",
+                    "deploymentconfig": "${APP_NAME}"
+                },
+                "type": "ClusterIP",
+                "sessionAffinity": "None"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx",
+                    "template": "startx-sv-mongo"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "STARTX"
+                }
+            },
+            "spec": {
+                "triggers": [
+                    {
+                        "type": "GitHub",
+                        "github": {
+                            "secret": "${WEBHOOK_TOKEN}_${APP_NAME}"
+                        }
+                    },
+                    {
+                        "type": "Generic",
+                        "generic": {
+                            "secret": "${WEBHOOK_TOKEN}_${APP_NAME}"
+                        }
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChange": {}
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ],
+                "runPolicy": "SerialLatestOnly",
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "${SOURCE_GIT}",
+                        "ref": "${SOURCE_BRANCH}"
+                    }
+                },
+                "strategy": {
+                    "type": "Source",
+                    "sourceStrategy": {
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "name": "startx-sv-mongo:latest"
+                        },
+                        "env": [
+                            {
+                                "name": "SX_VERBOSE",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "${APP_NAME}:latest"
+                    }
+                },
+                "resources": {},
+                "postCommit": {
+                    "command": [
+                        "/bin/sx-mongo",
+                        "post-build"
+                    ]
+                }
+            },
+            "status": {
+                "lastVersion": 0
+            }
+        }
+    ],
+    "parameters": [
+        {
+            "name": "APP_NAME",
+            "displayName": "Application name",
+            "description": "The name of the created application",
+            "value": "mongo",
+            "required": true
+        },
+        {
+            "name": "APP_TYPE",
+            "displayName": "Application type",
+            "description": "The type of the created application",
+            "value": "database"
+        },
+        {
+            "name": "SOURCE_GIT",
+            "displayName": "Source repository",
+            "description": "URL to the source code to use during build process",
+            "value": "https://github.com/startxfr/docker-images-example-mongo.git",
+            "required": true
+        },
+        {
+            "name": "SOURCE_BRANCH",
+            "displayName": "Source branch",
+            "description": "Name of the default branch",
+            "value": "master",
+            "required": true
+        },
+        {
+            "name": "WEBHOOK_TOKEN",
+            "displayName": "Webhook token",
+            "description": "Secret token to use for webhook to github or generic",
+            "generate": "expression",
+            "from": "[a-zA-Z0-9]{24}",
+            "required": true
+        },
+        {
+            "name": "MONGO_USER",
+            "displayName": "MongoDB user",
+            "description": "Default user to create",
+            "value": "demo",
+            "from": "[A-Z0-9]{8}",
+            "generate": "expression"
+        },
+        {
+            "name": "MONGO_PASSWORD",
+            "displayName": "MongoDB root password",
+            "description": "The mysql root password to use. Generated if not provided",
+            "from": "[A-Z0-9]{16}",
+            "generate": "expression"
+        },
+        {
+            "name": "MONGO_STORES",
+            "displayName": "MongoDB store",
+            "description": "list of the default's store to create"
+        }
+    ]
+}
