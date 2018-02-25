@@ -4,11 +4,11 @@
     "metadata": {
         "name": "startx-sv-mariadb",
         "annotations": {
-            "openshift.io/display-name": "Startx MariaDB server (fedora)",
-            "description": "MariaDB server for simple SQL database running under Fedora",
-            "iconClass": "icon-mariadb",
-            "tags": "startx,os,fedora,mariadb,database",
-            "openshift.io/long-description": "This template provides an mariadb db Mariadb Database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/display-name": "Startx Memcached Database (fedora)",
+            "description": "Memcached Database for simple SQL database running under Fedora",
+            "iconClass": "icon-memcached",
+            "tags": "startx,fedora,memcached,database",
+            "openshift.io/long-description": "This template provides an memcache Database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
