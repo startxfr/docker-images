@@ -31,8 +31,8 @@ LABEL name="$SX_ID" \
 USER root
 
 COPY sx /tmp/
-RUN dnf -y install pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip hostname && \
-    dnf clean all && \
+RUN yum -y install pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip hostname && \
+    yum clean all && \
     mkdir -p /var/lib/sx && \
     chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib && \
     mv /tmp/s2i/bin /s2i && \

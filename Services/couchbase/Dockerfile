@@ -34,8 +34,8 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf -y install python-httplib2 openssl && \
-    dnf clean all && \
+RUN yum -y install python-httplib2 openssl && \
+    yum clean all && \
     wget $CB_RELEASE_URL/$CB_PACKAGE && \
     rpm --install $CB_PACKAGE && \
     usermod -a -G 0 couchbase && \

@@ -30,12 +30,12 @@ USER root
 COPY httpd.conf $HTTPDCONF
 COPY php.ini /etc/php.d/sx.ini
 COPY sx /tmp/
-RUN dnf -y install php php-cli php-pear \
+RUN yum -y install php php-cli php-pear \
         php-gd php-mcrypt php-mysqlnd php-soap \
         php-pdo php-process php-common php-mbstring \
         php-bcmath php-php-gettext php-tcpdf \
         php-tcpdf-dejavu-sans-fonts php-tidy && \
-    dnf clean all && \
+    yum clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \

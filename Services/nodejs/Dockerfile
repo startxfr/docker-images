@@ -33,7 +33,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf -y install nodejs npm python make gcc && dnf clean all && \
+RUN yum -y install nodejs npm python make gcc && yum clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \

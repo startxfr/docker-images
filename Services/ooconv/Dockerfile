@@ -29,8 +29,8 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf -y install unoconv libreoffice-writer libreoffice-calc pdfmod ghostscript && \
-    dnf clean all && \
+RUN yum -y install unoconv libreoffice-writer libreoffice-calc pdfmod ghostscript && \
+    yum clean all && \
     mkdir -p $DATA_PATH /.cache && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
