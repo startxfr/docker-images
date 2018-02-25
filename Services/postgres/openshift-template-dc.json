@@ -299,14 +299,14 @@
         },
         {
             "name": "PGSQL_ROOT_PASSWORD",
-            "displayName": "Mysql root password",
-            "description": "The mysql root password to use. Generated if not provided",
+            "displayName": "Postgresql root password",
+            "description": "The postgresql root password to use. Generated if not provided",
             "from": "[A-Z0-9]{16}",
             "generate": "expression"
         },
         {
             "name": "PGSQL_USER",
-            "displayName": "Mysql user",
+            "displayName": "Postgresql user",
             "description": "Default user to create",
             "value": "demo",
             "from": "[A-Z0-9]{8}",
@@ -314,7 +314,7 @@
         },
         {
             "name": "PGSQL_PASSWORD",
-            "displayName": "Mysql password",
+            "displayName": "Postgresql password",
             "description": "Password of the default user",
             "value": "demo",
             "from": "[A-Z0-9]{16}",
@@ -322,7 +322,7 @@
         },
         {
             "name": "PGSQL_DATABASE",
-            "displayName": "Mysql database",
+            "displayName": "Postgresql database",
             "description": "name of the default database to create"
         }
     ]
