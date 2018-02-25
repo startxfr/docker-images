@@ -1,0 +1,14 @@
+#!/bin/bash -e
+#
+# S2I run script
+# The 'run' script is the entrypoint of your application
+#
+# For more information refer to the documentation:
+#  https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
+#
+
+if [[ -r /tmp/run ]]; then
+    exec /bin/sx-mariadb run
+else
+    exec /bin/sx-mariadb $@
+fi 

@@ -1,0 +1,19 @@
+#!/bin/bash
+source /var/lib/sx/sx
+source /var/lib/sx/sx-postgres
+
+check_postgres_environment
+# Dispatch input arguments
+case $1 in
+    assemble)               postgresAssemble $@ ;;
+    post-build)             postgresPostBuild $@ ;;
+    pre-deploy)             postgresPreDeploy $@ ;;
+    post-deploy)            postgresPostDeploy $@ ;;
+    run)                    postgresRun $@ ;;
+    health)                 genericHealth $@ ;;
+    info)                   postgresInformation $@ ;;
+    usage|help|--help)      genericUsage $@ ;;
+    usageS2i)               genericUsageS2I $@ ;;
+    version|--version)      genericVersion $@ ;;
+    *)                      genericWelcome $@ ;;
+esac

@@ -1,0 +1,237 @@
+#!/bin/bash
+
+# get and store the operating system name
+OS=`cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g'`
+
+# use xterm and set current PID
+export TERM=xterm
+pid=0
+
+# function executed when pre-deploy hook is called
+function genericPreDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    if [ "$SX_VERBOSE" = true ] ; then
+        echo "| "
+        displayInformation "| "
+    fi 
+    echo "+====================================================="
+    testAndRunSourceCodeScript "pre-deploy" 
+}
+
+# function executed when post-deploy hook is called
+function genericPostDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    if [ "$SX_VERBOSE" = true ] ; then
+        echo "| "
+        displayInformation "| "
+    fi 
+    echo "+====================================================="
+    testAndRunSourceCodeScript "post-deploy" 
+}
+
+# function executed when pre-build hook is called
+function genericPostBuild {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-BUILD HOOK"
+    if [ "$SX_VERBOSE" = true ] ; then
+        echo "| "
+        displayInformation "| "
+    fi 
+    echo "+====================================================="
+    testAndRunSourceCodeScript "post-build" 
+}
+
+# function executed when assemble hook is called
+function genericAssemble {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running ASSEMBLE"
+    if [ "$SX_VERBOSE" = true ] ; then
+        echo "| "
+        displayInformation "| "
+    fi 
+    echo "+====================================================="
+    if [ "$SX_VERBOSE" = true ] ; then
+        echo "Fixing perm on /tmp/src"
+    fi 
+    chown 1001:0 -R /tmp/src
+    chmod g=u -R /tmp/src
+    if [ "$SX_VERBOSE" = true ] ; then
+        echo "Copy source from $APP_PATH/src > $APP_PATH"
+    fi 
+    cp -R /tmp/src/* $APP_PATH/
+    if [[ -r /tmp/src/.sx ]]; then
+        chown 1001:0 -R /tmp/src/.sx
+        chmod g=u -R /tmp/src/.sx
+        chmod ug+x -R /tmp/src/.sx/*
+        mv /tmp/src/.sx $APP_PATH/.sx
+    fi 
+    if [ "$SX_VERBOSE" = true ] ; then
+        echo "Remove source temp $APP_PATH/src"
+    fi 
+    rm -rf /tmp/src
+    testAndRunSourceCodeScript "assemble" 
+}
+
+# function executed on container startup
+function genericRun {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is RUNNING"
+    if [ "$SX_VERBOSE" = true ] ; then
+        echo "| "
+        displayInformation "| "
+    fi 
+    echo "+====================================================="
+    if [[ -r $APP_PATH/.sx ]]; then
+        if [ "$SX_VERBOSE" = true ] ; then
+            echo "Found source code CI/CD scripts in .sx/"
+        fi 
+        if [[ -r $APP_PATH/.sx/run ]]; then
+            if [ "$SX_VERBOSE" = true ] ; then
+                echo "Found source code run script"
+            fi 
+            if [[ -x $APP_PATH/.sx/run ]]; then
+                echo "Execute source code run script"
+                exec $APP_PATH/.sx/run
+            else
+                echo "Start default daemon (source code run is script not executable)"
+                startDaemon
+            fi 
+        else
+            echo "Start default daemon (no source code run script)"
+            startDaemon
+        fi 
+    else
+        startDaemon
+    fi 
+}
+
+# Display general usage
+function genericUsage {
+cat <<EOF
+Basic OS container to execute arbitrary commands
+
+Usage:
+  docker run $SX_ID /bin/sx [command]
+
+- General Commands:
+  assemble         execute for building output image when using s2i 
+  post-build       execute after building image
+  pre-deploy       execute before the deployment begins (openshift).
+  post-deploy      execute after the deployment strategy completes (openshift).
+  run              execute the service on container startup
+  health           return the service health
+  usage            this message
+  help             display information about this tools
+  info             give information about the running container
+  version          give the version of the running container
+  daemon           execute the container as a daemon (keep alive)
+
+EOF
+exit 0;
+}
+
+# Display S2I usage
+function genericUsageS2I {
+cat <<EOF
+Startx builder container to use with s2i or openshift
+
+Usage:
+  s2i $SX_ID <code_repo_url> ≤image_name>
+
+Code repository must have a `run` script who will be executed on container startup
+
+EOF
+exit 0;
+}
+
+# Display general welcome message
+function genericWelcome {
+cat <<EOF
+Welcome to the $SX_ID base image. If you see this message, you have
+probably run this container without arguments. See usage for more informations.
+
+docker run $SX_ID /bin/sx usage
+
+EOF
+exit 0;
+}
+
+# Display information
+function displayInformation {
+echo $1 "type      : $SX_TYPE"
+echo $1 "service   : $SX_SERVICE"
+echo $1 "image     : $SX_ID:$SX_VERSION"
+echo $1 "name      : $SX_NAME"
+echo $1 "OS        : $OS"
+echo $1 "container : $HOSTNAME"
+}
+
+# Display information
+function genericAllInformation {
+displayInformation
+if [ "$SX_DEBUG" = true ] ; then
+    env
+fi 
+}
+
+# Display version
+function genericVersion {
+echo $SXDBTOOLS_VERSION
+exit 0;
+}
+
+# Display health
+function genericHealth {
+echo "OK"
+exit 0;
+}
+
+# start daemon
+function startDaemon {
+    while true; do
+        echo "$HOSTNAME is alive and running $SX_ID:$SX_VERSION"
+        sleep 10
+    done
+}
+
+# Display daemon
+function genericDaemon {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is RUNNING"
+    if [ "$SX_VERBOSE" = true ] ; then
+        echo "| "
+        displayInformation "| "
+    fi 
+    echo "+====================================================="
+    startDaemon
+}
+
+# test if a source code script of the given type exist a could be run
+function testAndRunSourceCodeScript {
+    if [[ -r $APP_PATH/.sx ]]; then
+        if [ "$SX_VERBOSE" = true ] ; then
+            echo "Found source code CI/CD scripts in .sx/"
+        fi 
+        if [[ -r $APP_PATH/.sx/$1 ]]; then
+            if [ "$SX_VERBOSE" = true ] ; then
+                echo "Found source code $1 script"
+            fi 
+            if [[ -x $APP_PATH/.sx/$1 ]]; then
+                echo "Execute source code $1 script"
+                . $APP_PATH/.sx/$1
+            else
+                echo "WARN: source code $1 script is not executable"
+            fi 
+        else
+            if [ "$SX_VERBOSE" = true ] ; then
+                echo "No source code $1 script"
+            fi 
+        fi 
+    else
+        if [ "$SX_VERBOSE" = true ] ; then
+            echo "no source code .sx directory"
+        fi 
+    fi 
+}

@@ -1,13 +1,11 @@
 #!/bin/bash
-export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo ${TRAVIS_BRANCH:1} ; fi`
 
-function dockerPublish {
-    cd $1/
-    docker build -f Dockerfile --squash -t $2:$3 .
-    docker push $2
-    cd -
-}
-
-echo "========> BUILD & PUBLISH $2:$3 Container (public)"
-dockerPublish $1 $2 $3
+echo "========> PUBLISH Container image $NAMESPACE/$2:$3"
+if [ -f /tmp/istested_$2 ] ; then
+    rm -f /tmp/istested_$2
+    docker push $NAMESPACE/$2
+    echo "========> PUBLISHED Container image $NAMESPACE/$2:$3"
+else
+    echo "========> PUBLISHING Container image $NAMESPACE/$2:$3 skipped because test failed"
+fi
 exit 0;
