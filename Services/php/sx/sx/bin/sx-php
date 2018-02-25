@@ -1,6 +1,6 @@
 #!/bin/bash
 source /var/lib/sx/sxlib
-source /var/lib/sx/sxlib-php
+source /var/lib/sx/sx-php
 
 check_httpd_environment
 # Dispatch input arguments

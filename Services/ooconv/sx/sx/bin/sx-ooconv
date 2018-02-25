@@ -1,6 +1,6 @@
 #!/bin/bash
 source /var/lib/sx/sxlib
-source /var/lib/sx/sxlib-ooconv
+source /var/lib/sx/sx-ooconv
 
 check_ooconv_environment
 # Dispatch input arguments

@@ -35,10 +35,6 @@ function apachePreDeploy {
     echo "| "
     apacheInformation "| "
     echo "+====================================================="
-    echo "Create log directory $LOG_PATH"
-    touch $LOG_PATH/access.log
-    chown 1001:0 -R $LOG_PATH
-    chmod g=u -R $LOG_PATH
 }
 
 # function executed when post-deploy hook is called

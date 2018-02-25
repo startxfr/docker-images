@@ -1,6 +1,6 @@
 #!/bin/bash
 source /var/lib/sx/sxlib
-source /var/lib/sx/sxlib-nodejs
+source /var/lib/sx/sx-nodejs
 
 check_nodejs_environment
 # Dispatch input arguments

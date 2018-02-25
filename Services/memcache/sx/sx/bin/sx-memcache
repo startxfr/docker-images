@@ -1,6 +1,6 @@
 #!/bin/bash
 source /var/lib/sx/sxlib
-source /var/lib/sx/sxlib-memcache
+source /var/lib/sx/sx-memcache
 
 check_memcache_environment
 # Dispatch input arguments

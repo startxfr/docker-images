@@ -1,6 +1,6 @@
 #!/bin/bash
 source /var/lib/sx/sxlib
-source /var/lib/sx/sxlib-postgres
+source /var/lib/sx/sx-postgres
 
 check_postgres_environment
 # Dispatch input arguments

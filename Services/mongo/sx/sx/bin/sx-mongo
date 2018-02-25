@@ -1,6 +1,6 @@
 #!/bin/bash
 source /var/lib/sx/sxlib
-source /var/lib/sx/sxlib-mongo
+source /var/lib/sx/sx-mongo
 
 check_mongo_environment
 # Dispatch input arguments

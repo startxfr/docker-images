@@ -1,6 +1,6 @@
 #!/bin/bash
 source /var/lib/sx/sxlib
-source /var/lib/sx/sxlib-mariadb
+source /var/lib/sx/sx-mariadb
 
 check_mariadb_environment
 # Dispatch input arguments

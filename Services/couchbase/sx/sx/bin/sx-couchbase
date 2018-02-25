@@ -1,6 +1,6 @@
 #!/bin/bash
 source /var/lib/sx/sxlib
-source /var/lib/sx/sxlib-couchbase
+source /var/lib/sx/sx-couchbase
 
 check_couchbase_environment
 # Dispatch input arguments

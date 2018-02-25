@@ -1,6 +1,6 @@
 #!/bin/bash
 source /var/lib/sx/sxlib
-source /var/lib/sx/sxlib-apache
+source /var/lib/sx/sx-apache
 
 check_apache_environment
 # Dispatch input arguments

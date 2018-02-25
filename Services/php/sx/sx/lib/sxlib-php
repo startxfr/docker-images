@@ -1,5 +1,5 @@
 #!/bin/bash
-source /var/lib/sx/sxlib-apache
+source /var/lib/sx/sx-apache
 
 # Display php information
 function phpInformation {
