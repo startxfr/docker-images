@@ -38,19 +38,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "fc26",
                         "annotations": {
-                            "openshift.io/display-name": "Startx PHP WebServer (Fedora rawhide)",
-                            "description": "PHP WebServer for dynamic web application running under Fedora rawhide",
+                            "openshift.io/display-name": "Startx PHP WebServer (Fedora 26)",
+                            "description": "PHP WebServer for dynamic web application running under Fedora 26",
                             "iconClass": "icon-php",
                             "tags": "builder,startx,fedora,apache,httpd,php",
                             "supports": "http",
-                            "version": "rawhide",
+                            "version": "fc26",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-php.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-php:latest"
+                            "name": "startx/sv-php:fc26"
                         }
                     }
                 ]
@@ -383,7 +383,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-php:latest"
+                            "name": "startx-sv-php:fc26"
                         },
                         "env": [
                             {

@@ -38,19 +38,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "fc26",
                         "annotations": {
-                            "openshift.io/display-name": "Startx LibreOffice converter (Fedora rawhide)",
-                            "description": "LibreOffice converter for document convertion running under Fedora rawhide",
+                            "openshift.io/display-name": "Startx LibreOffice converter (Fedora 26)",
+                            "description": "LibreOffice converter for document convertion running under Fedora 26",
                             "iconClass": "icon-aerogear",
                             "tags": "builder,startx,fedora,ooconv,libreoffice",
                             "supports": "http",
-                            "version": "rawhide",
+                            "version": "fc26",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-ooconv.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-ooconv:latest"
+                            "name": "startx/sv-ooconv:fc26"
                         }
                     }
                 ]

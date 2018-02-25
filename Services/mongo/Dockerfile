@@ -2,12 +2,12 @@ FROM startx/fedora:26
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="fc26" \
     SX_TYPE="service" \
     SX_SERVICE="mongo" \
     SX_ID="startx/sv-mongo" \
-    SX_NAME="Startx Couchbase service image (fedora rawhide)" \
-    SX_SUMMARY="Startx mongo service based on fedora rawhide" \
+    SX_NAME="Startx Mongodb service image (fedora 26)" \
+    SX_SUMMARY="Startx mongo service based on fedora 26" \
     LOG_PATH=/logs \
     DATA_PATH=/data
 

@@ -38,19 +38,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "fc26",
                         "annotations": {
-                            "openshift.io/display-name": "Startx WebServer (Fedora rawhide)",
-                            "description": "Http server for simple web application running under Fedora rawhide",
+                            "openshift.io/display-name": "Startx WebServer (Fedora 26)",
+                            "description": "Http server for simple web application running under Fedora 26",
                             "iconClass": "icon-apache",
                             "tags": "builder,startx,fedora,apache,httpd",
                             "supports": "http",
-                            "version": "latest",
+                            "version": "fc26",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-apache.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-apache:latest"
+                            "name": "startx/sv-apache:fc26"
                         }
                     }
                 ]
@@ -383,7 +383,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-apache:latest"
+                            "name": "startx-sv-apache:fc26"
                         },
                         "env": [
                             {

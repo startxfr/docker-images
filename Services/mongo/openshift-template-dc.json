@@ -38,19 +38,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "fc26",
                         "annotations": {
-                            "openshift.io/display-name": "Startx MongoDB Database (Fedora rawhide)",
-                            "description": "MongoDB server for NoSQL database running under Fedora rawhide",
+                            "openshift.io/display-name": "Startx MongoDB Database (Fedora 26)",
+                            "description": "MongoDB server for NoSQL database running under Fedora 26",
                             "iconClass": "icon-mongodb",
                             "tags": "builder,startx,fedora,couchbase,database",
                             "supports": "db",
-                            "version": "rawhide",
+                            "version": "fc26",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-couchbase.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-couchbase:latest"
+                            "name": "startx/sv-couchbase:fc26"
                         }
                     }
                 ]

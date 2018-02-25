@@ -37,19 +37,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "fc26",
                         "annotations": {
-                            "openshift.io/display-name": "Startx Memcached Database (Fedora rawhide)",
-                            "description": "Memcached server for caching database running under Fedora rawhide",
+                            "openshift.io/display-name": "Startx Memcached Database (Fedora 26)",
+                            "description": "Memcached server for caching database running under Fedora 26",
                             "iconClass": "icon-memcached",
                             "tags": "builder,startx,fedora,memcached,database",
                             "supports": "db",
-                            "version": "rawhide",
+                            "version": "fc26",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-memcache.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-memcache:latest"
+                            "name": "startx/sv-memcache:fc26"
                         }
                     }
                 ]
@@ -343,7 +343,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-memcache:latest"
+                            "name": "startx-sv-memcache:fc26"
                         },
                         "env": [
                             {

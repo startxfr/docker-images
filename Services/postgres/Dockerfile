@@ -2,12 +2,12 @@ FROM startx/fedora:26
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="fc26" \
     SX_TYPE="service" \
     SX_SERVICE="postgres" \
     SX_ID="startx/sv-postgres" \
-    SX_NAME="Startx Mariadb service image (fedora rawhide)" \
-    SX_SUMMARY="Startx postgres service based on fedora rawhide" \
+    SX_NAME="Startx PostGresQL service image (fedora 26)" \
+    SX_SUMMARY="Startx postgres service based on fedora 26" \
     DATA_PATH=/data \
     LOG_PATH=/logs
 

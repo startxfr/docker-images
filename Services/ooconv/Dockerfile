@@ -2,12 +2,12 @@ FROM startx/fedora:26
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="fc26" \
     SX_TYPE="service" \
     SX_SERVICE="ooconv" \
     SX_ID="startx/sv-ooconv" \
-    SX_NAME="Startx LibreOffice converter service image (fedora rawhide)" \
-    SX_SUMMARY="Startx unoconv service based on fedora rawhide" \
+    SX_NAME="Startx LibreOffice converter service image (fedora 26)" \
+    SX_SUMMARY="Startx unoconv service based on fedora 26" \
     DATA_PATH=/data
 
 LABEL name="$SX_ID" \

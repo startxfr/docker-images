@@ -38,19 +38,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "fc26",
                         "annotations": {
-                            "openshift.io/display-name": "Startx PostGresQL Database (Fedora rawhide)",
-                            "description": "PostGresQL server for simple SQL database running under Fedora rawhide",
+                            "openshift.io/display-name": "Startx PostGresQL Database (Fedora 26)",
+                            "description": "PostGresQL server for simple SQL database running under Fedora 26",
                             "iconClass": "icon-postgresql",
                             "tags": "builder,startx,fedora,postgres,database",
                             "supports": "db",
-                            "version": "rawhide",
+                            "version": "fc26",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-postgres.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-postgres:latest"
+                            "name": "startx/sv-postgres:fc26"
                         }
                     }
                 ]
@@ -398,7 +398,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-postgres:latest"
+                            "name": "startx-sv-postgres:fc26"
                         },
                         "env": [
                             {
