@@ -56,6 +56,37 @@
             }
         },
         {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "annotations": {
+                    "openshift.io/display-name": "Application ${APP_NAME}"
+                },
+                "labels": {
+                    "base-image": "startx-sv-memcache",
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx"
+                }
+            },
+            "spec": {
+                "tags": [
+                    {
+                        "name": "latest",
+                        "annotations": {
+                            "openshift.io/display-name": "Application ${APP_NAME}",
+                            "description": "Base image for the application ${APP_NAME}",
+                            "iconClass": "icon-memcached",
+                            "tags": "startx,fedora,memcached,database,application,${APP_NAME}",
+                            "supports": "db",
+                            "version": "rawhide"
+                        }
+                    }
+                ]
+            }
+        },
+        {
             "kind": "Secret",
             "apiVersion": "v1",
             "metadata": {

@@ -57,6 +57,38 @@
             }
         },
         {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "annotations": {
+                    "openshift.io/display-name": "Application ${APP_NAME}",
+                    "openshift.io/generated-by": "STARTX"
+                },
+                "labels": {
+                    "base-image": "startx-sv-postgres",
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx"
+                }
+            },
+            "spec": {
+                "tags": [
+                    {
+                        "name": "latest",
+                        "annotations": {
+                            "openshift.io/display-name": "Application ${APP_NAME}",
+                            "description": "Base image for the application ${APP_NAME}",
+                            "iconClass": "icon-postgresql",
+                            "tags": "startx,fedora,postgres,database,application,${APP_NAME}",
+                            "supports": "db",
+                            "version": "rawhide"
+                        }
+                    }
+                ]
+            }
+        },
+        {
             "kind": "Secret",
             "apiVersion": "v1",
             "metadata": {
