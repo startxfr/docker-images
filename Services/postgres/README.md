@@ -114,7 +114,7 @@ CMD ["/bin/run.sh"]
 
 ## Testing the service
 
-access to the running service with mysql terminal `psql -h localhost -p 5432 -U <POSTGRESQL_USER>`. Change port and hostname according to your current configuration
+access to the running service with postgresql terminal `psql -h localhost -p 5432 -U <POSTGRESQL_USER>`. Change port and hostname according to your current configuration
 
 ## For advanced users
 

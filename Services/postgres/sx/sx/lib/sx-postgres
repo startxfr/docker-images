@@ -28,9 +28,9 @@ function postgresInformation {
 
 function displayPostgresRunInformation {
     postgresInformation $1
-    echo $1 "admin     : root:$MYSQL_ROOT_PASSWORD"
-    echo $1 "user      : $MYSQL_USER:$MYSQL_PASSWORD"
-    echo $1 "database  : $MYSQL_DATABASE"
+    echo $1 "admin     : root:$PGSQL_ROOT_PASSWORD"
+    echo $1 "user      : $PGSQL_USER:$PGSQL_PASSWORD"
+    echo $1 "database  : $PGSQL_DATABASE"
 }
 
 function postgresPreDeploy {
