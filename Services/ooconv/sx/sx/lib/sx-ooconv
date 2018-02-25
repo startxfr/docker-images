@@ -10,8 +10,7 @@ function check_ooconv_environment {
 function ooconvInformation {
     displayInformation $1
     echo $1 "version   : $SX_VERSION"
-    echo $1 "engine    : $(ooconv -V | tail -1)"
-    echo $1 "connector : $(ooconv -V | head -1)"
+    echo $1 "unoconv   : $(unoconv --version | tail -1)"
     echo $1 "data path : $DATA_PATH"
 }
 
@@ -75,7 +74,11 @@ function stop_ooconv_handler {
 # the running shell
 function startOOconvService {
     trap 'kill ${!}; stop_ooconv_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
-    unoconv --listener -vvv | tee -a $STARTUPLOG
+    if [ "$SX_DEBUG" = true ] ; then
+        unoconv --listener -vvv
+    else
+        unoconv --listener
+    fi 
     killall unoconv soffice.bin 
     exec unoconv --listener
 }

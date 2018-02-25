@@ -31,15 +31,15 @@ USER root
 COPY sx /tmp/
 RUN dnf -y install unoconv libreoffice-writer libreoffice-calc pdfmod ghostscript && \
     dnf clean all && \
-    mkdir -p $DATA_PATH && \
+    mkdir -p $DATA_PATH /.cache && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     touch $DATA_PATH/.keep && \
-    chgrp -R 0 $DATA_PATH /bin/sx-* /s2i /var/lib/sx* && \
-    chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* && \
-    chmod -R g=u $DATA_PATH /bin/sx-* /s2i /var/lib/sx* && \
+    chgrp -R 0 $DATA_PATH /bin/sx-* /s2i /var/lib/sx* /.cache && \
+    chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* /.cache && \
+    chmod -R g=u $DATA_PATH /bin/sx-* /s2i /var/lib/sx* /.cache && \
     chmod -R ugo+x /bin/sx*
 
 USER 1001

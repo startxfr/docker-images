@@ -80,7 +80,7 @@ function postgresRun {
 }
 
 function stop_postgres_handler {
-    postgres -c "pg_ctl -D $DATA_PATH -w stop "
+    postgres -c "pg_ctl stop -D $DATA_PATH -w"
     echo "+====================================================="
     echo "| Container $HOSTNAME is now STOPPED"
     echo "+====================================================="
@@ -91,5 +91,5 @@ function stop_postgres_handler {
 # the running shell
 function startPostgresService {
     trap 'kill ${!}; stop_postgres_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
-    exec postgres -c "pg_ctl -D $DATA_PATH -w start "
+    exec postgres -c "pg_ctl start -D $DATA_PATH -w "
 }

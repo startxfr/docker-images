@@ -15,16 +15,14 @@ function couchbaseInformation {
     displayInformation $1
     echo $1 "version   : $SX_VERSION"
     echo $1 "engine    : $(couchbase-cli -V | head -1)"
-    echo $1 "sql path  : $LOADSQL_PATH"
     echo $1 "log path  : $LOG_PATH"
     echo $1 "data path : $DATA_PATH"
 }
 
 function displayCouchbaseRunInformation {
     couchbaseInformation $1
-    echo $1 "admin     : root:$MYSQL_ROOT_PASSWORD"
-    echo $1 "user      : $MYSQL_USER:$MYSQL_PASSWORD"
-    echo $1 "database  : $MYSQL_DATABASE"
+    echo $1 "admin     : $COUCHBASE_USER:$COUCHBASE_PASSWORD"
+    echo $1 "database  : $COUCHBASE_BUCKETS"
 }
 
 function couchbasePreDeploy {

@@ -24,7 +24,7 @@
                         "annotations": {
                             "openshift.io/display-name": "S2I LibreOffice converter (Fedora 26)",
                             "description": "LibreOffice converter builder for document convertion running under Fedora 26",
-                            "iconClass": "icon-ooconv",
+                            "iconClass": "icon-aerogear",
                             "tags": "builder,startx,fedora,ooconv,libreoffice",
                             "supports": "http",
                             "version": "fc26",
@@ -40,7 +40,7 @@
                         "annotations": {
                             "openshift.io/display-name": "S2I LibreOffice converter (Fedora 27)",
                             "description": "LibreOffice converter builder for document convertion running under Fedora 27",
-                            "iconClass": "icon-ooconv",
+                            "iconClass": "icon-aerogear",
                             "tags": "builder,startx,fedora,ooconv,libreoffice",
                             "supports": "http",
                             "version": "fc27",
@@ -56,7 +56,7 @@
                         "annotations": {
                             "openshift.io/display-name": "S2I LibreOffice converter (Fedora rawhide)",
                             "description": "LibreOffice converter builder for document convertion running under Fedora rawhide",
-                            "iconClass": "icon-ooconv",
+                            "iconClass": "icon-aerogear",
                             "tags": "builder,startx,fedora,ooconv,libreoffice",
                             "supports": "http",
                             "version": "rawhide",
@@ -72,7 +72,7 @@
                         "annotations": {
                             "openshift.io/display-name": "S2I LibreOffice converter (Centos 7)",
                             "description": "LibreOffice converter builder for document convertion running under Centos 7",
-                            "iconClass": "icon-ooconv",
+                            "iconClass": "icon-aerogear",
                             "tags": "builder,startx,centos,ooconv,libreoffice",
                             "supports": "http",
                             "version": "7",

@@ -6,7 +6,7 @@
         "annotations": {
             "openshift.io/display-name": "Startx LibreOffice converter (fedora)",
             "description": "LibreOffice converter for document convertion running under Fedora",
-            "iconClass": "icon-ooconv",
+            "iconClass": "icon-aerogear",
             "tags": "startx,os,fedora,ooconv,libreoffice",
             "openshift.io/long-description": "This template provides an ooconv libreoffice webserver in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
@@ -42,7 +42,7 @@
                         "annotations": {
                             "openshift.io/display-name": "Startx LibreOffice converter (Fedora rawhide)",
                             "description": "LibreOffice converter for document convertion running under Fedora rawhide",
-                            "iconClass": "icon-ooconv",
+                            "iconClass": "icon-aerogear",
                             "tags": "builder,startx,fedora,ooconv,libreoffice",
                             "supports": "http",
                             "version": "latest",
@@ -79,7 +79,7 @@
                         "annotations": {
                             "openshift.io/display-name": "Application ${APP_NAME}",
                             "description": "Base image for the application ${APP_NAME}",
-                            "iconClass": "icon-ooconv",
+                            "iconClass": "icon-aerogear",
                             "tags": "startx,fedora,ooconv,libreoffice,application,${APP_NAME}",
                             "supports": "http",
                             "version": "latest"
@@ -261,6 +261,41 @@
             }
         },
         {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx",
+                    "template": "startx-sv-ooconv"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "STARTX"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "protocol": "TCP",
+                        "port": 2002,
+                        "targetPort": 2002
+                    }
+                ],
+                "selector": {
+                    "app": "${APP_NAME}",
+                    "deploymentconfig": "${APP_NAME}"
+                },
+                "type": "ClusterIP",
+                "sessionAffinity": "None"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        },
+        {
             "kind": "BuildConfig",
             "apiVersion": "v1",
             "metadata": {
@@ -352,7 +387,7 @@
             "name": "APP_TYPE",
             "displayName": "Application type",
             "description": "The type of the created application",
-            "value": "libreoffices"
+            "value": "converter"
         },
         {
             "name": "SOURCE_GIT",

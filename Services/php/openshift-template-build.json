@@ -4,8 +4,8 @@
     "metadata": {
         "name": "startx-sv-php",
         "annotations": {
-            "openshift.io/display-name": "Startx Http Server (fedora)",
-            "description": "Http server for simple web application running under Fedora",
+            "openshift.io/display-name": "Startx PHP WebServer (fedora)",
+            "description": "PHP WebServer for dynamic web application running under Fedora",
             "iconClass": "icon-php",
             "tags": "startx,os,fedora,apache,httpd,php",
             "openshift.io/long-description": "This template provides an apache + php httpd webserver in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
@@ -25,7 +25,7 @@
             "metadata": {
                 "name": "startx-sv-php",
                 "annotations": {
-                    "openshift.io/display-name": "Startx WebServer",
+                    "openshift.io/display-name": "Startx PHP WebServer",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
@@ -40,8 +40,8 @@
                     {
                         "name": "latest",
                         "annotations": {
-                            "openshift.io/display-name": "Startx WebServer (Fedora rawhide)",
-                            "description": "Http server for simple web application running under Fedora rawhide",
+                            "openshift.io/display-name": "Startx PHP WebServer (Fedora rawhide)",
+                            "description": "PHP WebServer for dynamic web application running under Fedora rawhide",
                             "iconClass": "icon-php",
                             "tags": "builder,startx,fedora,apache,httpd,php",
                             "supports": "http",
@@ -258,6 +258,78 @@
                 "replicas": 1,
                 "updatedReplicas": 1,
                 "availableReplicas": 1
+            }
+        },
+        {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx",
+                    "template": "startx-sv-php"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "STARTX"
+                }
+            },
+            "spec": {
+                "to": {
+                    "kind": "Service",
+                    "name": "${APP_NAME}",
+                    "weight": 100
+                }
+            },
+            "status": {
+                "ingress": [
+                    {
+                        "routerName": "router",
+                        "conditions": [
+                            {
+                                "type": "Admitted",
+                                "status": "True"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx",
+                    "template": "startx-sv-php"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "STARTX"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "protocol": "TCP",
+                        "port": 8080,
+                        "targetPort": 8080
+                    }
+                ],
+                "selector": {
+                    "app": "${APP_NAME}",
+                    "deploymentconfig": "${APP_NAME}"
+                },
+                "type": "ClusterIP",
+                "sessionAffinity": "None"
+            },
+            "status": {
+                "loadBalancer": {}
             }
         },
         {
