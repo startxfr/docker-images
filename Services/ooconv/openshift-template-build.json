@@ -38,7 +38,7 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "base",
+                        "name": "latest",
                         "annotations": {
                             "openshift.io/display-name": "Startx LibreOffice converter (Fedora rawhide)",
                             "description": "LibreOffice converter for document convertion running under Fedora rawhide",
@@ -279,7 +279,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "${APP_NAME}:base"
+                            "name": "${APP_NAME}:latest"
                         },
                         "env": [
                             {

@@ -312,7 +312,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "${APP_NAME}:base"
+                            "name": "${APP_NAME}:latest"
                         },
                         "env": [
                             {

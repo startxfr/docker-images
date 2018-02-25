@@ -38,7 +38,7 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "base",
+                        "name": "latest",
                         "annotations": {
                             "openshift.io/display-name": "Startx MongoDB Database (Fedora rawhide)",
                             "description": "MongoDB server for simple SQL database running under Fedora rawhide",
@@ -356,7 +356,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "${APP_NAME}:base"
+                            "name": "${APP_NAME}:latest"
                         },
                         "env": [
                             {

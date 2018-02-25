@@ -38,7 +38,7 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "base",
+                        "name": "latest",
                         "annotations": {
                             "openshift.io/display-name": "Startx WebServer (Fedora rawhide)",
                             "description": "Http server for simple web application running under Fedora rawhide",
@@ -279,7 +279,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "${APP_NAME}:base"
+                            "name": "${APP_NAME}:latest"
                         },
                         "env": [
                             {

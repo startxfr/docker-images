@@ -38,7 +38,7 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "base",
+                        "name": "latest",
                         "annotations": {
                             "openshift.io/display-name": "Startx PostGresQL Database (Fedora rawhide)",
                             "description": "PostGresQL server for simple SQL database running under Fedora rawhide",
@@ -366,7 +366,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "${APP_NAME}:base"
+                            "name": "${APP_NAME}:latest"
                         },
                         "env": [
                             {

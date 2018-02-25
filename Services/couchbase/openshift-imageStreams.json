@@ -19,7 +19,7 @@
                         "annotations": {
                             "openshift.io/display-name": "S2I Couchbase Database (Fedora 26)",
                             "description": "Couchbase server builder for NoSQL database running under Fedora 26",
-                            "iconClass": "icon-couchbase",
+                            "iconClass": "icon-mysql-database",
                             "tags": "builder,startx,fedora,couchbase,database",
                             "supports": "db",
                             "version": "fc26",
@@ -35,7 +35,7 @@
                         "annotations": {
                             "openshift.io/display-name": "S2I Couchbase Database (Fedora 27)",
                             "description": "Couchbase server builder for NoSQL database running under Fedora 27",
-                            "iconClass": "icon-couchbase",
+                            "iconClass": "icon-mysql-database",
                             "tags": "builder,startx,fedora,couchbase,database",
                             "supports": "db",
                             "version": "fc27",
@@ -51,7 +51,7 @@
                         "annotations": {
                             "openshift.io/display-name": "S2I Couchbase Database (Fedora rawhide)",
                             "description": "Couchbase server builder for NoSQL database running under Fedora rawhide",
-                            "iconClass": "icon-couchbase",
+                            "iconClass": "icon-mysql-database",
                             "tags": "builder,startx,fedora,couchbase,database",
                             "supports": "db",
                             "version": "rawhide",
@@ -67,7 +67,7 @@
                         "annotations": {
                             "openshift.io/display-name": "S2I Couchbase Database (Centos 7)",
                             "description": "Couchbase server builder for NoSQL database running under Centos 7",
-                            "iconClass": "icon-couchbase",
+                            "iconClass": "icon-mysql-database",
                             "tags": "builder,startx,centos,couchbase,database",
                             "supports": "db",
                             "version": "7",

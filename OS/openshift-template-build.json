@@ -23,22 +23,22 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "${APP_NAME}",
+                "name": "startx-os",
                 "annotations": {
                     "openshift.io/display-name": "Startx Base OS (fedora)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
+                    "base-image": "startx-os",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
-                    "provider": "startx",
-                    "template": "startx-os-fedora"
+                    "provider": "startx"
                 }
             },
             "spec": {
                 "tags": [
                     {
-                        "name": "base",
+                        "name": "latest",
                         "annotations": {
                             "openshift.io/display-name": "Startx Fedora (latest)",
                             "description": "Minimal Fedora OS for bash operations",
@@ -279,7 +279,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "${APP_NAME}:base"
+                            "name": "startx-os:latest"
                         },
                         "env": [
                             {
