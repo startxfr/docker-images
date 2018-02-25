@@ -279,7 +279,7 @@
             "name": "APP_TYPE",
             "displayName": "Application type",
             "description": "The type of the created application",
-            "value": "webserver"
+            "value": "application"
         }
     ]
 }
