@@ -14,7 +14,7 @@ function check_couchbase_environment {
 function couchbaseInformation {
     displayInformation $1
     echo $1 "version   : $SX_VERSION"
-    echo $1 "engine    : $(couchbase-cli -V | head -1)"
+    echo $1 "engine    : v$CB_VERSION"
     echo $1 "log path  : $LOG_PATH"
     echo $1 "data path : $DATA_PATH"
 }

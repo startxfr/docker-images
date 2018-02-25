@@ -298,7 +298,7 @@
         {
             "name": "COUCHBASE_PASSWORD",
             "displayName": "Couchbase root password",
-            "description": "The mysql root password to use. Generated if not provided",
+            "description": "The couchbase admin password to use. Generated if not provided",
             "from": "[A-Z0-9]{16}",
             "generate": "expression"
         },
