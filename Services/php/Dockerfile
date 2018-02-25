@@ -28,24 +28,26 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY httpd.conf $HTTPDCONF
-COPY lib/* /bin/
-COPY .s2i/bin/* /s2i/
 COPY php.ini /etc/php.d/sx.ini
+COPY sx /tmp/
 RUN dnf -y install php php-cli php-pear \
         php-gd php-mcrypt php-mysqlnd php-soap \
         php-pdo php-process php-common php-mbstring \
         php-bcmath php-php-gettext php-tcpdf \
         php-tcpdf-dejavu-sans-fonts php-tidy && \
     dnf clean all && \
-    chmod -R 775 /bin/sx* /s2i && \
-    mv /bin/sx.sh /bin/sx-php && \
-    chgrp -R 0 /bin/sx*.sh /bin/sx-php && \
-    chmod -R g=u /bin/sx*.sh /bin/sx-php && \
-    chmod ug+r $HTTPDCONF
-COPY ./ $APP_PATH
-RUN rm -rf $APP_PATH/Dockerfile $APP_PATH/httpd.conf $APP_PATH/lib $APP_PATH/*.ini && \
-    chgrp -R 0 $APP_PATH && \
-    chmod -R g=u $APP_PATH
+    mv /tmp/s2i/bin/* /s2i/ && \
+    mv /tmp/sx/bin/* /bin/ && \
+    mv /tmp/sx/lib/* /var/lib/sx/ && \
+    rm -rf /tmp/sx /tmp/s2i && \
+    cat /etc/httpd/conf/httpd.conf | sed -e "s/Listen 80/#Listen 80/" > /etc/httpd/conf/httpd.conf && \
+    chmod ug+r $HTTPDCONF && \
+    chgrp -R 0 /bin/sx* /s2i && \
+    chown -R 1001:0 /bin/sx* /s2i && \
+    chmod -R g=u /bin/sx* /s2i && \
+    chmod -R ugo+x /bin/sx*
+COPY ./index.php $APP_PATH
+RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH
 
 USER 1001
 
