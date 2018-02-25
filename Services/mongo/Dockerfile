@@ -30,8 +30,11 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum -y install mongodb mongodb-server  && \
+RUN yum install -y centos-release-scl  && \
+    yum-config-manager --enable rhel-server-rhscl-7-rpms  && \
+    yum install -y  mongodb24  && \
     yum clean all  && \
+    scl enable mongodb24 bash  && \
     usermod -a -G 0 mongodb && \
     mkdir -p $DATA_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \
