@@ -20,22 +20,6 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc26",
-                        "annotations": {
-                            "openshift.io/display-name": "S2I Couchbase Database (Fedora 26)",
-                            "description": "Couchbase server builder for NoSQL database running under Fedora 26",
-                            "iconClass": "icon-mysql-database",
-                            "tags": "builder,startx,fedora,couchbase,database",
-                            "supports": "db",
-                            "version": "fc26",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-couchbase.git"
-                        },
-                        "from": {
-                            "kind": "DockerImage",
-                            "name": "startx/sv-couchbase:fc26"
-                        }
-                    },
-                    {
                         "name": "fc27",
                         "annotations": {
                             "openshift.io/display-name": "S2I Couchbase Database (Fedora 27)",
