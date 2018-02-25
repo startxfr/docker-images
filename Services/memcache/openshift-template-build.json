@@ -23,15 +23,15 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "${APP_NAME}",
+                "name": "startx-sv-memcache",
                 "annotations": {
                     "openshift.io/display-name": "Startx Memcached Database"
                 },
                 "labels": {
+                    "base-image": "startx-sv-memcache",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
-                    "provider": "startx",
-                    "template": "startx-sv-memcache"
+                    "provider": "startx"
                 }
             },
             "spec": {
@@ -312,7 +312,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "${APP_NAME}:latest"
+                            "name": "startx-sv-memcache:latest"
                         },
                         "env": [
                             {

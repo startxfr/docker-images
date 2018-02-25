@@ -9,7 +9,12 @@
             "metadata": {
                 "name": "startx-sv-ooconv",
                 "annotations": {
-                    "openshift.io/display-name": "Startx LibreOffice converter (S2I)"
+                    "openshift.io/display-name": "Startx LibreOffice converter (S2I)",
+                    "openshift.io/generated-by": "STARTX"
+                },
+                "labels": {
+                    "base-image": "startx-sv-ooconv",
+                    "provider": "startx"
                 }
             },
             "spec": {

@@ -9,7 +9,12 @@
             "metadata": {
                 "name": "startx-sv-nodejs",
                 "annotations": {
-                    "openshift.io/display-name": "Startx NodeJS micro-server (S2I)"
+                    "openshift.io/display-name": "Startx NodeJS micro-server (S2I)",
+                    "openshift.io/generated-by": "STARTX"
+                },
+                "labels": {
+                    "base-image": "startx-sv-nodejs",
+                    "provider": "startx"
                 }
             },
             "spec": {

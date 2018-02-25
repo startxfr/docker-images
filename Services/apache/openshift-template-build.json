@@ -23,16 +23,16 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "${APP_NAME}",
+                "name": "startx-sv-apache",
                 "annotations": {
                     "openshift.io/display-name": "Startx WebServer",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
+                    "base-image": "startx-sv-apache",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
-                    "provider": "startx",
-                    "template": "startx-sv-apache"
+                    "provider": "startx"
                 }
             },
             "spec": {
@@ -279,7 +279,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "${APP_NAME}:latest"
+                            "name": "startx-sv-apache:latest"
                         },
                         "env": [
                             {

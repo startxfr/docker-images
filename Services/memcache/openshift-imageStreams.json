@@ -9,7 +9,12 @@
             "metadata": {
                 "name": "startx-sv-memcache",
                 "annotations": {
-                    "openshift.io/display-name": "Startx Memcached Database (S2I)"
+                    "openshift.io/display-name": "Startx Memcached Database (S2I)",
+                    "openshift.io/generated-by": "STARTX"
+                },
+                "labels": {
+                    "base-image": "startx-sv-memcache",
+                    "provider": "startx"
                 }
             },
             "spec": {

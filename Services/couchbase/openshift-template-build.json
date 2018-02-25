@@ -23,16 +23,16 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "${APP_NAME}",
+                "name": "startx-sv-couchbase",
                 "annotations": {
                     "openshift.io/display-name": "Startx Couchbase Database",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
+                    "base-image": "startx-sv-couchbase",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
-                    "provider": "startx",
-                    "template": "startx-sv-couchbase"
+                    "provider": "startx"
                 }
             },
             "spec": {
@@ -356,7 +356,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "${APP_NAME}:latest"
+                            "name": "startx-sv-couchbase:latest"
                         },
                         "env": [
                             {
