@@ -37,7 +37,7 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc26",
+                        "name": "26",
                         "annotations": {
                             "openshift.io/display-name": "Startx Fedora (26)",
                             "description": "Minimal Fedora 26 OS for bash operations",
@@ -110,7 +110,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:fc26"
+                                "name": "${APP_NAME}:26"
                             }
                         }
                     },
