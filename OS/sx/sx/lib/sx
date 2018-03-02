@@ -7,14 +7,26 @@ OS=`cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/
 export TERM=xterm
 pid=0
 
+# echo if verbose if activated
+function echoVerbose {
+    if [ "$SX_VERBOSE" = true ] ; then
+        echo $1
+    fi 
+}
+
+# echo if debug if activated
+function echoDebug {
+    if [ "$SX_DEBUG" = true ] ; then
+        echo $1
+    fi 
+}
+
 # function executed when pre-deploy hook is called
 function genericPreDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
-    if [ "$SX_VERBOSE" = true ] ; then
-        echo "| "
-        displayInformation "| "
-    fi 
+    echoVerbose "| "
+    echoVerbose `displayInformation "| "`
     echo "+====================================================="
     testAndRunSourceCodeScript "pre-deploy" 
 }
@@ -23,10 +35,8 @@ function genericPreDeploy {
 function genericPostDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
-    if [ "$SX_VERBOSE" = true ] ; then
-        echo "| "
-        displayInformation "| "
-    fi 
+    echoVerbose "| "
+    echoVerbose `displayInformation "| "`
     echo "+====================================================="
     testAndRunSourceCodeScript "post-deploy" 
 }
@@ -35,10 +45,8 @@ function genericPostDeploy {
 function genericPostBuild {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-BUILD HOOK"
-    if [ "$SX_VERBOSE" = true ] ; then
-        echo "| "
-        displayInformation "| "
-    fi 
+    echoVerbose "| "
+    echoVerbose `displayInformation "| "`
     echo "+====================================================="
     testAndRunSourceCodeScript "post-build" 
 }
@@ -47,19 +55,13 @@ function genericPostBuild {
 function genericAssemble {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running ASSEMBLE"
-    if [ "$SX_VERBOSE" = true ] ; then
-        echo "| "
-        displayInformation "| "
-    fi 
+    echoVerbose "| "
+    echoVerbose `displayInformation "| "`
     echo "+====================================================="
-    if [ "$SX_VERBOSE" = true ] ; then
-        echo "Fixing perm on /tmp/src"
-    fi 
+    echoVerbose "Fixing perm on /tmp/src"
     chown 1001:0 -R /tmp/src
     chmod g=u -R /tmp/src
-    if [ "$SX_VERBOSE" = true ] ; then
-        echo "Copy source from $APP_PATH/src > $APP_PATH"
-    fi 
+    echoVerbose "Copy source from $APP_PATH/src > $APP_PATH"
     cp -R /tmp/src/* $APP_PATH/
     if [[ -r /tmp/src/.sx ]]; then
         chown 1001:0 -R /tmp/src/.sx
@@ -67,9 +69,7 @@ function genericAssemble {
         chmod ug+x -R /tmp/src/.sx/*
         mv /tmp/src/.sx $APP_PATH/.sx
     fi 
-    if [ "$SX_VERBOSE" = true ] ; then
-        echo "Remove source temp $APP_PATH/src"
-    fi 
+    echoVerbose "Remove source temp $APP_PATH/src"
     rm -rf /tmp/src
     testAndRunSourceCodeScript "assemble" 
 }
@@ -78,24 +78,16 @@ function genericAssemble {
 function genericRun {
     echo "+====================================================="
     echo "| Container $HOSTNAME is RUNNING"
-    if [ "$SX_VERBOSE" = true ] ; then
-        echo "| "
-        displayInformation "| "
-    fi 
+    echoVerbose "| "
+    echoVerbose `displayInformation "| "`
     echo "+====================================================="
     if [[ -x $APP_PATH/run ]]; then
-        if [ "$SX_VERBOSE" = true ] ; then
-            echo "Execute main source code run script"
-        fi 
+        echoVerbose "Execute main source code run script"
         exec $APP_PATH/run
     elif [[ -r $APP_PATH/.sx ]]; then
-        if [ "$SX_VERBOSE" = true ] ; then
-            echo "Found source code CI/CD scripts in .sx/"
-        fi 
+        echoVerbose "Found source code CI/CD scripts in .sx/"
         if [[ -r $APP_PATH/.sx/run ]]; then
-            if [ "$SX_VERBOSE" = true ] ; then
-                echo "Found source code sx run script"
-            fi 
+            echoVerbose "Found source code sx run script"
             if [[ -x $APP_PATH/.sx/run ]]; then
                 echo "Execute source code sx run script"
                 exec $APP_PATH/.sx/run
@@ -205,10 +197,8 @@ function startDaemon {
 function genericDaemon {
     echo "+====================================================="
     echo "| Container $HOSTNAME is RUNNING"
-    if [ "$SX_VERBOSE" = true ] ; then
-        echo "| "
-        displayInformation "| "
-    fi 
+    echoVerbose "| "
+    echoVerbose `displayInformation "| "`
     echo "+====================================================="
     startDaemon
 }
@@ -216,13 +206,9 @@ function genericDaemon {
 # test if a source code script of the given type exist a could be run
 function testAndRunSourceCodeScript {
     if [[ -r $APP_PATH/.sx ]]; then
-        if [ "$SX_VERBOSE" = true ] ; then
-            echo "Found source code CI/CD scripts in .sx/"
-        fi 
+        echoVerbose "Found source code CI/CD scripts in .sx/"
         if [[ -r $APP_PATH/.sx/$1 ]]; then
-            if [ "$SX_VERBOSE" = true ] ; then
-                echo "Found source code $1 script"
-            fi 
+            echoVerbose "Found source code $1 script"
             if [[ -x $APP_PATH/.sx/$1 ]]; then
                 echo "Execute source code $1 script"
                 . $APP_PATH/.sx/$1
@@ -230,13 +216,9 @@ function testAndRunSourceCodeScript {
                 echo "WARN: source code $1 script is not executable"
             fi 
         else
-            if [ "$SX_VERBOSE" = true ] ; then
-                echo "No source code $1 script"
-            fi 
+            echoVerbose "No source code $1 script"
         fi 
     else
-        if [ "$SX_VERBOSE" = true ] ; then
-            echo "no source code .sx directory"
-        fi 
+        echoVerbose "no source code .sx directory"
     fi 
 }
