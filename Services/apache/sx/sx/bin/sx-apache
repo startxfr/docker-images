@@ -5,7 +5,7 @@ source /var/lib/sx/sx-apache
 check_apache_environment
 # Dispatch input arguments
 case $1 in
-    assemble)               apacheAssemble $@ ;;
+    assemble|build)         apacheAssemble $@ ;;
     post-build)             apachePostBuild $@ ;;
     pre-deploy)             apachePreDeploy $@ ;;
     post-deploy)            apachePostDeploy $@ ;;

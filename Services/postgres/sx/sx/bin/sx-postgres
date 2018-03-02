@@ -5,7 +5,7 @@ source /var/lib/sx/sx-postgres
 check_postgres_environment
 # Dispatch input arguments
 case $1 in
-    assemble)               postgresAssemble $@ ;;
+    assemble|build)         postgresAssemble $@ ;;
     post-build)             postgresPostBuild $@ ;;
     pre-deploy)             postgresPreDeploy $@ ;;
     post-deploy)            postgresPostDeploy $@ ;;

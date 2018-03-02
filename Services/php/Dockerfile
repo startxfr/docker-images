@@ -40,14 +40,13 @@ RUN dnf -y install php php-cli php-pear \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \
     rm -rf /tmp/sx /tmp/s2i && \
-    cat /etc/httpd/conf/httpd.conf | sed -e "s/Listen 80/#Listen 80/" > /etc/httpd/conf/httpd.conf && \
     chmod ug+r $HTTPDCONF && \
     chgrp -R 0 /bin/sx* /s2i && \
     chown -R 1001:0 /bin/sx* /s2i && \
     chmod -R g=u /bin/sx* /s2i && \
     chmod -R ugo+x /bin/sx*
-COPY ./index.php $APP_PATH
-RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH
+COPY index.php $APP_PATH/index.php
+RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH && rm -rf $APP_PATH/index.html
 
 USER 1001
 

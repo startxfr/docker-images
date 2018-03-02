@@ -5,7 +5,7 @@ source /var/lib/sx/sx-memcache
 check_memcache_environment
 # Dispatch input arguments
 case $1 in
-    assemble)               memcacheAssemble $@ ;;
+    assemble|build)         memcacheAssemble $@ ;;
     post-build)             memcachePostBuild $@ ;;
     pre-deploy)             memcachePreDeploy $@ ;;
     post-deploy)            memcachePostDeploy $@ ;;

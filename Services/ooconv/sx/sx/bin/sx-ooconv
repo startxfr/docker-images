@@ -5,7 +5,7 @@ source /var/lib/sx/sx-ooconv
 check_ooconv_environment
 # Dispatch input arguments
 case $1 in
-    assemble)               ooconvAssemble $@ ;;
+    assemble|build)         ooconvAssemble $@ ;;
     post-build)             ooconvPostBuild $@ ;;
     pre-deploy)             ooconvPreDeploy $@ ;;
     post-deploy)            ooconvPostDeploy $@ ;;

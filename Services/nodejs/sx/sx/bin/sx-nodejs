@@ -5,7 +5,7 @@ source /var/lib/sx/sx-nodejs
 check_nodejs_environment
 # Dispatch input arguments
 case $1 in
-    assemble)               nodejsAssemble $@ ;;
+    assemble|build)         nodejsAssemble $@ ;;
     post-build)             nodejsPostBuild $@ ;;
     pre-deploy)             nodejsPreDeploy $@ ;;
     post-deploy)            nodejsPostDeploy $@ ;;

@@ -58,7 +58,7 @@ function mysqlAssemble {
     mysqlInformation "| "
     echo "+====================================================="
     echo "Fixing perm on /tmp/src"
-    chown 1001:0 -R /tmp/src
+    chown mysql:0 -R /tmp/src
     chmod g=u -R /tmp/src
     echo "Copy sql scripts from /tmp/src > $LOADSQL_PATH"
     cp -R /tmp/src/*.sql $LOADSQL_PATH/
@@ -73,6 +73,13 @@ function mysqlRun {
     displayMysqlRunInformation "| "
     echo "+====================================================="
     startMariadbService
+}
+
+
+# Init the mariadb server
+function init_service_mariadb {
+    begin_config
+    end_config
 }
 
 # Begin configuration before starting daemonized process
@@ -249,6 +256,7 @@ function config_importsql {
 # End configuration process just before starting daemon
 function end_config {
     echo "=> END MARIADB CONFIGURATION"
+    touch $DATA_PATH/.sxIsInit
 }
 
 function stop_mariadb_handler {
@@ -262,16 +270,8 @@ function stop_mariadb_handler {
 # Start the mariadb server as a deamon and execute it inside 
 # the running shell
 function startMariadbService {
-    trap 'kill ${!}; stop_mariadb_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
-    exec mysqld_safe &
-    while true
-    do
-      tail -f /dev/null & wait ${!}
-    done
-}
-
-# Init the mariadb server
-function init_service_mariadb {
-    begin_config
-    end_config
+    if [[ ! -f $DATA_PATH/.sxIsInit ]]; then
+        init_service_mariadb
+    fi
+    exec mysqld_safe
 }
