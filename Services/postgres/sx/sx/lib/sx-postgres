@@ -19,16 +19,16 @@ function check_postgres_environment {
 
 function postgresInformation {
     displayInformation $1
-    echo $1 "version   : $SX_VERSION"
-    echo $1 "engine    : $(postgres -V | head -1)"
-    echo $1 "sql path  : $LOADSQL_PATH"
-    echo $1 "log path  : $LOG_PATH"
-    echo $1 "data path : $DATA_PATH"
+    echoVerbose $1 "version   : $SX_VERSION"
+    echoVerbose $1 "engine    : $(postgres -V | head -1)"
+    echoVerbose $1 "sql path  : $LOADSQL_PATH"
+    echoVerbose $1 "log path  : $LOG_PATH"
+    echoVerbose $1 "data path : $DATA_PATH"
 }
 
 function displayPostgresRunInformation {
     postgresInformation $1
-    echo $1 "admin     : root:$PGSQL_ROOT_PASSWORD"
+    echoVerbose $1 "admin     : root:$PGSQL_ROOT_PASSWORD"
     echo $1 "user      : $PGSQL_USER:$PGSQL_PASSWORD"
     echo $1 "database  : $PGSQL_DATABASE"
 }
@@ -37,7 +37,7 @@ function postgresPreDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
     echoVerbose "| "
-    echoVerbose `postgresInformation "| "`
+    postgresInformation "| "
     echo "+====================================================="
 }
 
@@ -45,7 +45,7 @@ function postgresPostDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
     echoVerbose "| "
-    echoVerbose `postgresInformation "| "`
+    postgresInformation "| "
     echo "+====================================================="
 }
 
@@ -53,7 +53,7 @@ function postgresPostBuild {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-BUILD HOOK"
     echoVerbose "| "
-    echoVerbose `postgresInformation "| "`
+    postgresInformation "| "
     echo "+====================================================="
 }
 
@@ -61,7 +61,7 @@ function postgresAssemble {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running ASSEMBLE"
     echoVerbose "| "
-    echoVerbose `postgresInformation "| "`
+    postgresInformation "| "
     echo "+====================================================="
     echo "Remove unused /tmp/src"
     rm -rf /tmp/src/.git
@@ -74,7 +74,7 @@ function postgresRun {
     echo "+====================================================="
     echo "| Container $HOSTNAME is RUNNING"
     echoVerbose "| "
-    echoVerbose `postgresInformation "| "`
+    postgresInformation "| "
     echo "+====================================================="
     startPostgresService
 }
@@ -84,7 +84,7 @@ function stop_postgres_handler {
     echo "+====================================================="
     echo "| Container $HOSTNAME is now STOPPED"
     echoVerbose "| "
-    echoVerbose `postgresInformation "| "`
+    postgresInformation "| "
     echo "+====================================================="
     exit 143; # 128 + 15 -- SIGTERM
 }

@@ -13,16 +13,16 @@ function check_mariadb_environment {
 
 function mysqlInformation {
     displayInformation $1
-    echo $1 "version   : $SX_VERSION"
-    echo $1 "engine    : $(mysql -V | head -1)"
-    echo $1 "sql path  : $LOADSQL_PATH"
-    echo $1 "log path  : $LOG_PATH"
-    echo $1 "data path : $DATA_PATH"
+    echoVerbose $1 "version   : $SX_VERSION"
+    echoVerbose $1 "engine    : $(mysql -V | head -1)"
+    echoVerbose $1 "sql path  : $LOADSQL_PATH"
+    echoVerbose $1 "log path  : $LOG_PATH"
+    echoVerbose $1 "data path : $DATA_PATH"
 }
 
 function displayMysqlRunInformation {
     mysqlInformation $1
-    echo $1 "admin     : root:$MYSQL_ROOT_PASSWORD"
+    echoVerbose $1 "admin     : root:$MYSQL_ROOT_PASSWORD"
     echo $1 "user      : $MYSQL_USER:$MYSQL_PASSWORD"
     echo $1 "database  : $MYSQL_DATABASE"
 }
@@ -31,7 +31,7 @@ function mysqlPreDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
     echoVerbose "| "
-    echoVerbose `mysqlInformation "| "`
+    mysqlInformation "| "
     echo "+====================================================="
 }
 
@@ -39,7 +39,7 @@ function mysqlPostDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
     echoVerbose "| "
-    echoVerbose `mysqlInformation "| "`
+    mysqlInformation "| "
     echo "+====================================================="
 }
 
@@ -47,7 +47,7 @@ function mysqlPostBuild {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-BUILD HOOK"
     echoVerbose "| "
-    echoVerbose `mysqlInformation "| "`
+    mysqlInformation "| "
     echo "+====================================================="
 }
 
@@ -55,7 +55,7 @@ function mysqlAssemble {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running ASSEMBLE"
     echoVerbose "| "
-    echoVerbose `mysqlInformation "| "`
+    mysqlInformation "| "
     echo "+====================================================="
     echo "Fixing perm on /tmp/src"
     chown mysql:0 -R /tmp/src
@@ -70,7 +70,7 @@ function mysqlRun {
     echo "+====================================================="
     echo "| Container $HOSTNAME is RUNNING"
     echoVerbose "| "
-    echoVerbose `mysqlInformation "| "`
+    mysqlInformation "| "
     echo "+====================================================="
     startMariadbService
 }
@@ -264,7 +264,7 @@ function stop_mariadb_handler {
     echo "+====================================================="
     echo "| Container $HOSTNAME is now STOPPED"
     echoVerbose "| "
-    echoVerbose `mysqlInformation "| "`
+    mysqlInformation "| "
     echo "+====================================================="
     exit 143; # 128 + 15 -- SIGTERM
 }

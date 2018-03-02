@@ -4,7 +4,7 @@ source /var/lib/sx/sx-apache
 # Display php information
 function phpInformation {
     apacheInformation $1 
-    echo $1 "php       : $(php --version | head -1)" 
+    echoVerbose $1 "php       : $(php --version | head -1)" 
 }
 
 # function executed when pre-deploy hook is called
@@ -12,7 +12,7 @@ function phpPreDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
     echoVerbose "| "
-    echoVerbose `phpInformation "| "`
+    phpInformation "| "
     echo "+====================================================="
     echo "Create log directory $LOG_PATH"
     touch $LOG_PATH/access.log
@@ -23,7 +23,7 @@ function phpPostDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
     echoVerbose "| "
-    echoVerbose `phpInformation "| "`
+    phpInformation "| "
     echo "+====================================================="
 }
 
@@ -32,7 +32,7 @@ function phpPostBuild {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-BUILD HOOK"
     echoVerbose "| "
-    echoVerbose `phpInformation "| "`
+    phpInformation "| "
     echo "+====================================================="
 }
 
@@ -41,7 +41,7 @@ function phpAssemble {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running ASSEMBLE"
     echoVerbose "| "
-    echoVerbose `phpInformation "| "`
+    phpInformation "| "
     echo "+====================================================="
     echo "Fixing perm on /tmp/src"
     chown 1001:0 -R /tmp/src
@@ -56,7 +56,7 @@ function phpRun {
     echo "+====================================================="
     echo "| Container $HOSTNAME is RUNNING"
     echoVerbose "| "
-    echoVerbose `phpInformation "| "`
+    phpInformation "| "
     echo "+====================================================="
     startApacheService
 }
