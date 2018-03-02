@@ -167,10 +167,8 @@ echo $1 "container : $HOSTNAME"
 
 # Display information
 function genericAllInformation {
-displayInformation
-if [ "$SX_DEBUG" = true ] ; then
-    env
-fi 
+    displayInformation
+    echoDebug env
 }
 
 # Display version

@@ -30,32 +30,32 @@ function displayMysqlRunInformation {
 function mysqlPreDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
-    echo "| "
-    mysqlInformation "| "
+    echoVerbose "| "
+    echoVerbose `mysqlInformation "| "`
     echo "+====================================================="
 }
 
 function mysqlPostDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
-    echo "| "
-    mysqlInformation "| "
+    echoVerbose "| "
+    echoVerbose `mysqlInformation "| "`
     echo "+====================================================="
 }
 
 function mysqlPostBuild {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-BUILD HOOK"
-    echo "| "
-    mysqlInformation "| "
+    echoVerbose "| "
+    echoVerbose `mysqlInformation "| "`
     echo "+====================================================="
 }
 
 function mysqlAssemble {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running ASSEMBLE"
-    echo "| "
-    mysqlInformation "| "
+    echoVerbose "| "
+    echoVerbose `mysqlInformation "| "`
     echo "+====================================================="
     echo "Fixing perm on /tmp/src"
     chown mysql:0 -R /tmp/src
@@ -69,8 +69,8 @@ function mysqlAssemble {
 function mysqlRun {
     echo "+====================================================="
     echo "| Container $HOSTNAME is RUNNING"
-    echo "| "
-    displayMysqlRunInformation "| "
+    echoVerbose "| "
+    echoVerbose `mysqlInformation "| "`
     echo "+====================================================="
     startMariadbService
 }

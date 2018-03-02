@@ -36,32 +36,32 @@ function displayPostgresRunInformation {
 function postgresPreDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
-    echo "| "
-    postgresInformation "| "
+    echoVerbose "| "
+    echoVerbose `postgresInformation "| "`
     echo "+====================================================="
 }
 
 function postgresPostDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
-    echo "| "
-    postgresInformation "| "
+    echoVerbose "| "
+    echoVerbose `postgresInformation "| "`
     echo "+====================================================="
 }
 
 function postgresPostBuild {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-BUILD HOOK"
-    echo "| "
-    postgresInformation "| "
+    echoVerbose "| "
+    echoVerbose `postgresInformation "| "`
     echo "+====================================================="
 }
 
 function postgresAssemble {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running ASSEMBLE"
-    echo "| "
-    postgresInformation "| "
+    echoVerbose "| "
+    echoVerbose `postgresInformation "| "`
     echo "+====================================================="
     echo "Remove unused /tmp/src"
     rm -rf /tmp/src/.git
@@ -73,8 +73,8 @@ function postgresAssemble {
 function postgresRun {
     echo "+====================================================="
     echo "| Container $HOSTNAME is RUNNING"
-    echo "| "
-    displayPostgresRunInformation "| "
+    echoVerbose "| "
+    echoVerbose `postgresInformation "| "`
     echo "+====================================================="
     startPostgresService
 }

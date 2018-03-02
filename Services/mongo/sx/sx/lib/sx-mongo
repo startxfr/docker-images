@@ -29,32 +29,32 @@ function displayMongoRunInformation {
 function mongoPreDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
-    echo "| "
-    mongoInformation "| "
+    echoVerbose "| "
+    echoVerbose `mongoInformation "| "`
     echo "+====================================================="
 }
 
 function mongoPostDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
-    echo "| "
-    mongoInformation "| "
+    echoVerbose "| "
+    echoVerbose `mongoInformation "| "`
     echo "+====================================================="
 }
 
 function mongoPostBuild {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-BUILD HOOK"
-    echo "| "
-    mongoInformation "| "
+    echoVerbose "| "
+    echoVerbose `mongoInformation "| "`
     echo "+====================================================="
 }
 
 function mongoAssemble {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running ASSEMBLE"
-    echo "| "
-    mongoInformation "| "
+    echoVerbose "| "
+    echoVerbose `mongoInformation "| "`
     echo "+====================================================="
     echo "Fixing perm on /tmp/src"
     chown 1001:0 -R /tmp/src
@@ -64,8 +64,8 @@ function mongoAssemble {
 function mongoRun {
     echo "+====================================================="
     echo "| Container $HOSTNAME is RUNNING"
-    echo "| "
-    displayMongoRunInformation "| "
+    echoVerbose "| "
+    echoVerbose `mongoInformation "| "`
     echo "+====================================================="
     startMongoService
 }

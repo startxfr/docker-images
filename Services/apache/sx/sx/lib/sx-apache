@@ -32,8 +32,8 @@ function apacheInformation {
 function apachePreDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
-    echo "| "
-    apacheInformation "| "
+    echoVerbose "| "
+    echoVerbose `apacheInformation "| "`
     echo "+====================================================="
 }
 
@@ -41,8 +41,8 @@ function apachePreDeploy {
 function apachePostDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
-    echo "| "
-    apacheInformation "| "
+    echoVerbose "| "
+    echoVerbose `apacheInformation "| "`
     echo "+====================================================="
 }
 
@@ -50,8 +50,8 @@ function apachePostDeploy {
 function apachePostBuild {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-BUILD HOOK"
-    echo "| "
-    apacheInformation "| "
+    echoVerbose "| "
+    echoVerbose `apacheInformation "| "`
     echo "+====================================================="
 }
 
@@ -59,8 +59,8 @@ function apachePostBuild {
 function apacheAssemble {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running ASSEMBLE"
-    echo "| "
-    apacheInformation "| "
+    echoVerbose "| "
+    echoVerbose `apacheInformation "| "`
     echo "+====================================================="
     echo "Fixing perm on $APP_PATH"
     chown 1001:0 -R /tmp/src
@@ -74,8 +74,8 @@ function apacheAssemble {
 function apacheRun {
     echo "+====================================================="
     echo "| Container $HOSTNAME is RUNNING"
-    echo "| "
-    apacheInformation "| "
+    echoVerbose "| "
+    echoVerbose `apacheInformation "| "`
     echo "+====================================================="
     startApacheService
 }
