@@ -83,6 +83,8 @@ function stop_postgres_handler {
     postgres -c "pg_ctl stop -D $DATA_PATH -w"
     echo "+====================================================="
     echo "| Container $HOSTNAME is now STOPPED"
+    echoVerbose "| "
+    echoVerbose `postgresInformation "| "`
     echo "+====================================================="
     exit 143; # 128 + 15 -- SIGTERM
 }

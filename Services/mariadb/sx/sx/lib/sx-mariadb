@@ -263,6 +263,8 @@ function stop_mariadb_handler {
     mysqladmin -uroot shutdown
     echo "+====================================================="
     echo "| Container $HOSTNAME is now STOPPED"
+    echoVerbose "| "
+    echoVerbose `mysqlInformation "| "`
     echo "+====================================================="
     exit 143; # 128 + 15 -- SIGTERM
 }

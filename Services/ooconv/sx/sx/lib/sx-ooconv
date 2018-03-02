@@ -66,6 +66,8 @@ function stop_ooconv_handler {
     killall unoconv soffice.bin 
     echo "+====================================================="
     echo "| Container $HOSTNAME is now STOPPED"
+    echoVerbose "| "
+    echoVerbose `ooconvInformation "| "`
     echo "+====================================================="
     exit 143; # 128 + 15 -- SIGTERM
 }

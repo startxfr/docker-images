@@ -69,6 +69,8 @@ function stop_memcache_handler {
     killall memcached
     echo "+====================================================="
     echo "| Container $HOSTNAME is now STOPPED"
+    echoVerbose "| "
+    echoVerbose `memcacheInformation "| "`
     echo "+====================================================="
     exit 143; # 128 + 15 -- SIGTERM
 }

@@ -30,7 +30,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf -y install postgresql postgresql-libs postgresql-server \
+RUN dnf --nogpgcheck -y install postgresql postgresql-libs postgresql-server \
     && dnf clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \

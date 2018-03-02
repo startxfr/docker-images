@@ -73,6 +73,8 @@ function stop_couchbase_handler {
     couchbaseadmin -uroot shutdown
     echo "+====================================================="
     echo "| Container $HOSTNAME is now STOPPED"
+    echoVerbose "| "
+    echoVerbose `couchbaseInformation "| "`
     echo "+====================================================="
     exit 143; # 128 + 15 -- SIGTERM
 }

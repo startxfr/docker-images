@@ -30,7 +30,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf -y install mongodb mongodb-server  && \
+RUN dnf --nogpgcheck -y install mongodb mongodb-server  && \
     dnf clean all  && \
     usermod -a -G 0 mongodb && \
     mkdir -p $DATA_PATH && \

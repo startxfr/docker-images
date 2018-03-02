@@ -74,6 +74,8 @@ function stop_mongo_handler {
     killall /usr/bin/mongod
     echo "+====================================================="
     echo "| Container $HOSTNAME is now STOPPED"
+    echoVerbose "| "
+    echoVerbose `mongoInformation "| "`
     echo "+====================================================="
     exit 143; # 128 + 15 -- SIGTERM
 }

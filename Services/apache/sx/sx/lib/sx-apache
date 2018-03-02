@@ -86,6 +86,8 @@ function stopApacheHandler {
     rm -rf /run/httpd/*
     echo "+====================================================="
     echo "| Container $HOSTNAME is now STOPPED"
+    echoVerbose "| "
+    echoVerbose `apacheInformation "| "`
     echo "+====================================================="
     exit 143; # 128 + 15 -- SIGTERM
 }
