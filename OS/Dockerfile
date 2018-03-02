@@ -45,6 +45,6 @@ RUN dnf -y install pwgen tar psmisc procps findutils iputils net-tools wget logr
 
 USER 1001
 
-WORKDIR /tmp
+WORKDIR $APP_PATH
 
 CMD [ "/bin/sx" ]

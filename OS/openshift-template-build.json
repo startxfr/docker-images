@@ -213,7 +213,7 @@
                                     "/bin/sx"
                                 ],
                                 "args": [
-                                    "daemon"
+                                    "run"
                                 ],
                                 "resources": {},
                                 "livenessProbe": {
