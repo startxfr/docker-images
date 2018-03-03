@@ -2,7 +2,7 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-mariadb",
+        "name": "startx-sv-memcache",
         "annotations": {
             "openshift.io/display-name": "Startx Memcached Database (fedora)",
             "description": "Memcached Database for simple SQL database running under Fedora",
@@ -10,13 +10,13 @@
             "tags": "startx,fedora,memcached,database",
             "openshift.io/long-description": "This template provides an memcache Database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
-            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
+            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc27/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
     "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
     "labels": {
-        "template": "startx-sv-mariadb"
+        "template": "startx-sv-memcache"
     },
     "objects": [
         {
@@ -73,7 +73,7 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "fc27",
                         "annotations": {
                             "openshift.io/display-name": "Application ${APP_NAME}",
                             "description": "Base image for the application ${APP_NAME}",
@@ -162,7 +162,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:latest"
+                                "name": "${APP_NAME}:fc27"
                             }
                         }
                     },
@@ -302,7 +302,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mariadb"
+                    "template": "startx-sv-memcache"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -356,13 +356,13 @@
                 "output": {
                     "to": {
                         "kind": "ImageStreamTag",
-                        "name": "${APP_NAME}:latest"
+                        "name": "${APP_NAME}:fc27"
                     }
                 },
                 "resources": {},
                 "postCommit": {
                     "command": [
-                        "/bin/sx-mariadb",
+                        "/bin/sx-memcache",
                         "post-build"
                     ]
                 }
@@ -390,14 +390,14 @@
             "name": "SOURCE_GIT",
             "displayName": "Source repository",
             "description": "URL to the source code to use during build process",
-            "value": "https://github.com/startxfr/docker-images-example-mariadb.git",
+            "value": "https://github.com/startxfr/docker-images-example-memcache.git",
             "required": true
         },
         {
             "name": "SOURCE_BRANCH",
             "displayName": "Source branch",
             "description": "Name of the default branch",
-            "value": "master",
+            "value": "fc27",
             "required": true
         },
         {

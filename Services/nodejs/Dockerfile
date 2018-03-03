@@ -9,7 +9,7 @@ ENV SX_VERSION="fc27" \
     SX_NAME="Startx Nodejs service image (fedora 27)" \
     SX_SUMMARY="Startx nodejs service based on fedora 27" \
     HTTPDCONF=/etc/httpd/conf.d/app.conf \
-    LOG_PATH=/var/log/httpd \
+    LOG_PATH=/logs \
     APP_PATH=/app \
     DATA_PATH=/data \
     APP_MAIN=/app/app.js
@@ -33,17 +33,16 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf -y install nodejs npm python make gcc && dnf clean all && \
+RUN dnf --nogpgcheck -y install nodejs npm python make gcc && dnf clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \
     rm -rf /tmp/sx /tmp/s2i && \
-    mkdir -p $DATA_PATH $APP_PATH $LOG_PATH && \
-    touch /.config /.npm && \
+    mkdir -p $DATA_PATH $APP_PATH $LOG_PATH /.npm /.config  && \
     chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /.config /.npm && \
     chown -R 1001:0 /bin/sx* /s2i && \
     chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /.config /.npm && \
-    chmod -R ugo+rwx $LOG_PATH && \
+    chmod -R ugo+rwx $LOG_PATH /.config /.npm && \
     chmod -R ugo+x /bin/sx*
 COPY ./ $APP_PATH
 RUN rm -rf $APP_PATH/Dockerfile $APP_PATH/openshift-* $APP_PATH/docker-* $APP_PATH/sx && \

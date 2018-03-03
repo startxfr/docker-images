@@ -1,11 +1,10 @@
 #!/bin/bash
-source /var/lib/sx/sx
 source /var/lib/sx/sx-mongo
 
 check_mongo_environment
 # Dispatch input arguments
 case $1 in
-    assemble)               mongoAssemble $@ ;;
+    assemble|build)         mongoAssemble $@ ;;
     post-build)             mongoPostBuild $@ ;;
     pre-deploy)             mongoPreDeploy $@ ;;
     post-deploy)            mongoPostDeploy $@ ;;

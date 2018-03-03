@@ -10,7 +10,7 @@
             "tags": "startx,os,fedora,apache,httpd,php",
             "openshift.io/long-description": "This template provides an apache + php httpd webserver in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
-            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
+            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc27/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
@@ -75,7 +75,7 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "fc27",
                         "annotations": {
                             "openshift.io/display-name": "Application ${APP_NAME}",
                             "description": "Base image for the application ${APP_NAME}",
@@ -167,7 +167,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:latest"
+                                "name": "${APP_NAME}:fc27"
                             }
                         }
                     },
@@ -396,7 +396,7 @@
                 "output": {
                     "to": {
                         "kind": "ImageStreamTag",
-                        "name": "${APP_NAME}:latest"
+                        "name": "${APP_NAME}:fc27"
                     }
                 },
                 "resources": {},
@@ -417,7 +417,7 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "php",
+            "value": "www-php",
             "required": true
         },
         {
@@ -437,7 +437,7 @@
             "name": "SOURCE_BRANCH",
             "displayName": "Source branch",
             "description": "Name of the default branch",
-            "value": "master",
+            "value": "fc27",
             "required": true
         },
         {

@@ -34,7 +34,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf -y install python-httplib2 openssl && \
+RUN dnf --nogpgcheck -y install python-httplib2 openssl && \
     dnf clean all && \
     wget $CB_RELEASE_URL/$CB_PACKAGE && \
     rpm --install $CB_PACKAGE && \

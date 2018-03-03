@@ -33,7 +33,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY my.cnf $MY_CONF
 COPY sx /tmp/
-RUN dnf -y install mariadb-tokudb-engine mariadb-connect-engine mariadb-rocksdb-engine mariadb-oqgraph-engine mariadb-connector-c mariadb-connector-odbc mariadb-server-utils mariadb-java-client mariadb-backup mariadb-common mariadb-config mariadb-errmsg mariadb-gssapi-server mariadb-cracklib-password-check mariadb && \
+RUN dnf --nogpgcheck -y install mariadb-tokudb-engine mariadb-connect-engine mariadb-rocksdb-engine mariadb-oqgraph-engine mariadb-connector-c mariadb-connector-odbc mariadb-server-utils mariadb-java-client mariadb-backup mariadb-common mariadb-config mariadb-errmsg mariadb-gssapi-server mariadb-cracklib-password-check mariadb && \
     dnf clean all && \
     mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \
@@ -43,7 +43,7 @@ RUN dnf -y install mariadb-tokudb-engine mariadb-connect-engine mariadb-rocksdb-
     touch $DATA_PATH/.keep && \
     chown -R mysql:mysql $LOG_PATH $DATA_PATH $LOADSQL_PATH && \
     chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i /var/lib/sx* /var/lib/mysql && \
-    chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* /var/lib/mysql && \
+    chown -R 1001:0 /bin/sx-* /s2i $LOADSQL_PATH /var/lib/sx* /var/lib/mysql && \
     chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i /var/lib/sx* /var/lib/mysql && \
     chmod -R ugo+x /bin/sx* && \
     chmod ug+r $MY_CONF

@@ -29,7 +29,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf -y install unoconv libreoffice-writer libreoffice-calc pdfmod ghostscript && \
+RUN dnf --nogpgcheck -y install unoconv libreoffice-writer libreoffice-calc pdfmod ghostscript && \
     dnf clean all && \
     mkdir -p $DATA_PATH /.cache && \
     mv /tmp/s2i/bin/* /s2i/ && \
@@ -40,7 +40,8 @@ RUN dnf -y install unoconv libreoffice-writer libreoffice-calc pdfmod ghostscrip
     chgrp -R 0 $DATA_PATH /bin/sx-* /s2i /var/lib/sx* /.cache && \
     chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* /.cache && \
     chmod -R g=u $DATA_PATH /bin/sx-* /s2i /var/lib/sx* /.cache && \
-    chmod -R ugo+x /bin/sx*
+    chmod -R ugo+x /bin/sx* && \
+    chmod -R ugo+wx /.cache
 
 USER 1001
 
