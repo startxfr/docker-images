@@ -109,7 +109,7 @@ function startNodejsService {
     if [ ! -d "$APP_PATH/node_modules" ]; then
         npmInstallEnvironement
     fi
-    exec node $APP_MAIN 
+    exec npm start
 }
 
 # Start the httpd server as a deamon and execute it inside 
