@@ -6,7 +6,7 @@ ENV SX_VERSION="fc26" \
     SX_TYPE="service" \
     SX_SERVICE="postgres" \
     SX_ID="startx/sv-postgres" \
-    SX_NAME="Startx PostGresQL service image (fedora 26)" \
+    SX_NAME="Startx Postgres service image (fedora 26)" \
     SX_SUMMARY="Startx postgres service based on fedora 26" \
     DATA_PATH=/data \
     LOG_PATH=/logs
@@ -30,7 +30,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf -y install postgresql postgresql-libs postgresql-server \
+RUN dnf --nogpgcheck -y install postgresql postgresql-libs postgresql-server \
     && dnf clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \

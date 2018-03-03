@@ -4,7 +4,7 @@
 # The 'usage' script explay how to use the builder
 #
 # For more information refer to the documentation:
-#  https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
+#  https://github.com/openshift/source-to-image/blob/fc26/docs/builder_image.md
 #
 
 exec /bin/sx usageS2i

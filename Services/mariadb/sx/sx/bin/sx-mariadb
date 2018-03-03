@@ -1,11 +1,10 @@
 #!/bin/bash
-source /var/lib/sx/sx
 source /var/lib/sx/sx-mariadb
 
 check_mariadb_environment
 # Dispatch input arguments
 case $1 in
-    assemble)               mysqlAssemble $@ ;;
+    assemble|build)         mysqlAssemble $@ ;;
     post-build)             mysqlPostBuild $@ ;;
     pre-deploy)             mysqlPreDeploy $@ ;;
     post-deploy)            mysqlPostDeploy $@ ;;

@@ -1,4 +1,5 @@
 #!/bin/bash
+source /var/lib/sx/sx
 
 function check_memcache_environment {
     if [ ! -v LOG_PATH ]; then
@@ -9,14 +10,14 @@ function check_memcache_environment {
 
 function memcacheInformation {
     displayInformation $1
-    echo $1 "version   : $SX_VERSION"
-    echo $1 "memcache  : $(memcached -h | head -1)"
-    echo $1 "log path  : $LOG_PATH"
+    echoVerbose $1 "version   : $SX_VERSION"
+    echoVerbose $1 "memcache  : $(memcached -h | head -1)"
+    echoVerbose $1 "log path  : $LOG_PATH"
 }
 
 function displayMemcacheRunInformation {
     memcacheInformation $1
-    echo $1 "admin     : root:$MYSQL_ROOT_PASSWORD"
+    echoVerbose $1 "admin     : root:$MYSQL_ROOT_PASSWORD"
     echo $1 "user      : $MYSQL_USER:$MYSQL_PASSWORD"
     echo $1 "database  : $MYSQL_DATABASE"
 }
@@ -24,43 +25,49 @@ function displayMemcacheRunInformation {
 function memcachePreDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
-    echo "| "
+    echoVerbose "| "
     memcacheInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "pre-deploy" 
 }
 
 function memcachePostDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
-    echo "| "
+    echoVerbose "| "
     memcacheInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "post-deploy" 
 }
 
 function memcachePostBuild {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-BUILD HOOK"
-    echo "| "
+    echoVerbose "| "
     memcacheInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "post-build" 
 }
 
 function memcacheAssemble {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running ASSEMBLE"
-    echo "| "
+    echoVerbose "| "
     memcacheInformation "| "
     echo "+====================================================="
     echo "Fixing perm on /tmp/src"
     chown 1001:0 -R /tmp/src
     chmod g=u -R /tmp/src
+    echoVerbose "Remove source temp $APP_PATH/src"
+    rm -rf /tmp/src
+    testAndRunSourceCodeScript "assemble" 
 }
 
 function memcacheRun {
     echo "+====================================================="
     echo "| Container $HOSTNAME is RUNNING"
-    echo "| "
-    displayMemcacheRunInformation "| "
+    echoVerbose "| "
+    memcacheInformation "| "
     echo "+====================================================="
     startMemcacheService
 }
@@ -69,6 +76,8 @@ function stop_memcache_handler {
     killall memcached
     echo "+====================================================="
     echo "| Container $HOSTNAME is now STOPPED"
+    echoVerbose "| "
+    memcacheInformation "| "
     echo "+====================================================="
     exit 143; # 128 + 15 -- SIGTERM
 }

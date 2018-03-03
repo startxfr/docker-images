@@ -10,7 +10,7 @@
             "tags": "startx,os,fedora,nodejs,httpd",
             "openshift.io/long-description": "This template provides an nodejs micro-server in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
-            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
+            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc26/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
@@ -272,7 +272,7 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "www",
+            "value": "www-node",
             "required": true
         },
         {

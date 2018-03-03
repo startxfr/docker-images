@@ -10,7 +10,7 @@
             "tags": "startx,os,fedora",
             "openshift.io/long-description": "This template provides a fedora container with minimal tools and scripts. Ready to use in openshift with a simple deployement config, or as a s2i builder for bash applications. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
-            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
+            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc26/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
@@ -75,14 +75,14 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "fc26",
                         "annotations": {
                             "openshift.io/display-name": "Application ${APP_NAME}",
                             "description": "Base image for the application ${APP_NAME}",
                             "iconClass": "icon-beaker",
                             "tags": "startx,fedora,application,${APP_NAME}",
                             "supports": "fedora",
-                            "version": "latest"
+                            "version": "fc26"
                         }
                     }
                 ]
@@ -167,7 +167,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:latest"
+                                "name": "${APP_NAME}:fc26"
                             }
                         }
                     },
@@ -213,7 +213,7 @@
                                     "/bin/sx"
                                 ],
                                 "args": [
-                                    "daemon"
+                                    "run"
                                 ],
                                 "resources": {},
                                 "livenessProbe": {
@@ -324,7 +324,7 @@
                 "output": {
                     "to": {
                         "kind": "ImageStreamTag",
-                        "name": "${APP_NAME}:latest"
+                        "name": "${APP_NAME}:fc26"
                     }
                 },
                 "resources": {},
@@ -365,7 +365,7 @@
             "name": "SOURCE_BRANCH",
             "displayName": "Source branch",
             "description": "Name of the default branch",
-            "value": "master",
+            "value": "fc26",
             "required": true
         },
         {
