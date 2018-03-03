@@ -76,6 +76,7 @@ function nodejsAssemble {
     echoVerbose "Remove source temp $APP_PATH/src"
     rm -rf /tmp/src
     testAndRunSourceCodeScript "assemble" 
+    npmInstallEnvironement
 }
 
 # function executed on container startup
@@ -106,7 +107,18 @@ function startNodejsService {
     cd $APP_PATH
     trap 'kill ${!}; stop_nodejs_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
     if [ ! -d "$APP_PATH/node_modules" ]; then
-        npm install -production
+        npmInstallEnvironement
     fi
     exec node $APP_MAIN 
+}
+
+# Start the httpd server as a deamon and execute it inside 
+# the running shell
+function npmInstallEnvironement {
+    cd $APP_PATH
+    npm install -production
+    npm dedupe
+    npm cache verify
+    npm cache clean --force
+    cd -
 }
