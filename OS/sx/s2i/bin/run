@@ -7,7 +7,7 @@
 #  https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
 #
 
-if [[ -r /tmp/run ]]; then
+if [[ -x /tmp/run ]]; then
     exec /tmp/run $@
 else
     exec /bin/sx $@
