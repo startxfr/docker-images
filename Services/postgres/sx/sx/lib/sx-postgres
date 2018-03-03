@@ -93,6 +93,6 @@ function stop_postgres_handler {
 # the running shell
 function startPostgresService {
     trap 'kill ${!}; stop_postgres_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
-    postgres -c "pg_ctl -D $DATA_PATH -w start"
+    exec postgres -c "pg_ctl -D $DATA_PATH -w start"
     startDaemon
 }

@@ -34,7 +34,7 @@ RUN dnf --nogpgcheck -y install php php-cli php-pear \
         php-gd php-mcrypt php-mysqlnd php-soap \
         php-pdo php-process php-common php-mbstring \
         php-bcmath php-php-gettext php-tcpdf \
-        php-tcpdf-dejavu-sans-fonts php-tidy && \
+        php-tcpdf-dejavu-sans-fonts php-tidy php-fpm && \
     dnf clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \

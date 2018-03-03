@@ -58,7 +58,6 @@ function mysqlAssemble {
     mysqlInformation "| "
     echo "+====================================================="
     echo "Fixing perm on /tmp/src"
-    chown mysql:0 -R /tmp/src
     chmod g=u -R /tmp/src
     echo "Copy sql scripts from /tmp/src > $LOADSQL_PATH"
     cp -R /tmp/src/*.sql $LOADSQL_PATH/
@@ -143,11 +142,11 @@ function begin_config {
 
 function config_startserver {
     echo "start database for initial setup"
-    /usr/bin/mysqld_safe > /dev/null 2>&1 &
+    mysqld_safe &
     RET=1
     while [[ RET -ne 0 ]]; do
         echo "- waiting for database response"
-        sleep 1
+        sleep 2
         mysql -uroot -e "status" > /dev/null 2>&1
         RET=$?
     done
