@@ -1,4 +1,5 @@
 #!/bin/bash
+source /var/lib/sx/sx
 
 function check_memcache_environment {
     if [ ! -v LOG_PATH ]; then
@@ -27,6 +28,7 @@ function memcachePreDeploy {
     echoVerbose "| "
     memcacheInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "pre-deploy" 
 }
 
 function memcachePostDeploy {
@@ -35,6 +37,7 @@ function memcachePostDeploy {
     echoVerbose "| "
     memcacheInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "post-deploy" 
 }
 
 function memcachePostBuild {
@@ -43,6 +46,7 @@ function memcachePostBuild {
     echoVerbose "| "
     memcacheInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "post-build" 
 }
 
 function memcacheAssemble {
@@ -54,6 +58,9 @@ function memcacheAssemble {
     echo "Fixing perm on /tmp/src"
     chown 1001:0 -R /tmp/src
     chmod g=u -R /tmp/src
+    echoVerbose "Remove source temp $APP_PATH/src"
+    rm -rf /tmp/src
+    testAndRunSourceCodeScript "assemble" 
 }
 
 function memcacheRun {

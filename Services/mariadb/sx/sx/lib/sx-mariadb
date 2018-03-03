@@ -1,4 +1,5 @@
 #!/bin/bash
+source /var/lib/sx/sx
 
 function check_mariadb_environment {
     if [ ! -v DATA_PATH ]; then
@@ -33,6 +34,7 @@ function mysqlPreDeploy {
     echoVerbose "| "
     mysqlInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "pre-deploy" 
 }
 
 function mysqlPostDeploy {
@@ -41,6 +43,7 @@ function mysqlPostDeploy {
     echoVerbose "| "
     mysqlInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "post-deploy" 
 }
 
 function mysqlPostBuild {
@@ -49,6 +52,7 @@ function mysqlPostBuild {
     echoVerbose "| "
     mysqlInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "post-build" 
 }
 
 function mysqlAssemble {
@@ -61,7 +65,10 @@ function mysqlAssemble {
     chmod g=u -R /tmp/src
     echo "Copy sql scripts from /tmp/src > $LOADSQL_PATH"
     cp -R /tmp/src/*.sql $LOADSQL_PATH/
+    moveSourceCodeScripts /tmp/src $APP_PATH
+    echoVerbose "Remove source temp $APP_PATH/src"
     rm -rf /tmp/src
+    testAndRunSourceCodeScript "assemble" 
     init_service_mariadb
 }
 

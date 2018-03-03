@@ -1,4 +1,5 @@
 #!/bin/bash
+source /var/lib/sx/sx
 
 function check_mongo_environment {
     if [ ! -v APP_PATH ]; then
@@ -32,6 +33,7 @@ function mongoPreDeploy {
     echoVerbose "| "
     mongoInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "pre-deploy" 
 }
 
 function mongoPostDeploy {
@@ -40,6 +42,7 @@ function mongoPostDeploy {
     echoVerbose "| "
     mongoInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "post-deploy" 
 }
 
 function mongoPostBuild {
@@ -48,6 +51,7 @@ function mongoPostBuild {
     echoVerbose "| "
     mongoInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "post-build" 
 }
 
 function mongoAssemble {
@@ -59,6 +63,10 @@ function mongoAssemble {
     echo "Fixing perm on /tmp/src"
     chown 1001:0 -R /tmp/src
     chmod g=u -R /tmp/src
+    moveSourceCodeScripts /tmp/src $APP_PATH
+    echoVerbose "Remove source temp $APP_PATH/src"
+    rm -rf /tmp/src
+    testAndRunSourceCodeScript "assemble" 
 }
 
 function mongoRun {

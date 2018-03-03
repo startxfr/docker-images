@@ -1,4 +1,5 @@
 #!/bin/bash
+source /var/lib/sx/sx
 
 set_listen_addresses() {
 	sedEscapedValue="$(echo "$1" | sed 's/[\/&]/\\&/g')"
@@ -39,6 +40,7 @@ function postgresPreDeploy {
     echoVerbose "| "
     postgresInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "pre-deploy" 
 }
 
 function postgresPostDeploy {
@@ -47,6 +49,7 @@ function postgresPostDeploy {
     echoVerbose "| "
     postgresInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "post-deploy" 
 }
 
 function postgresPostBuild {
@@ -55,6 +58,7 @@ function postgresPostBuild {
     echoVerbose "| "
     postgresInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "post-build" 
 }
 
 function postgresAssemble {
@@ -68,6 +72,10 @@ function postgresAssemble {
     echo "Fixing perm on /tmp/src"
     chown 1001:0 -R /tmp/src
     chmod g=u -R /tmp/src
+    moveSourceCodeScripts /tmp/src $APP_PATH
+    echoVerbose "Remove source temp $APP_PATH/src"
+    rm -rf /tmp/src
+    testAndRunSourceCodeScript "assemble" 
 }
 
 function postgresRun {

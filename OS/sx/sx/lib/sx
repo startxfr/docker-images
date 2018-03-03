@@ -63,12 +63,7 @@ function genericAssemble {
     chmod g=u -R /tmp/src
     echoVerbose "Copy source from $APP_PATH/src > $APP_PATH"
     cp -R /tmp/src/* $APP_PATH/
-    if [[ -r /tmp/src/.sx ]]; then
-        chown 1001:0 -R /tmp/src/.sx
-        chmod g=u -R /tmp/src/.sx
-        chmod ug+x -R /tmp/src/.sx/*
-        mv /tmp/src/.sx $APP_PATH/.sx
-    fi 
+    moveSourceCodeScripts /tmp/src $APP_PATH
     echoVerbose "Remove source temp $APP_PATH/src"
     rm -rf /tmp/src
     testAndRunSourceCodeScript "assemble" 
@@ -219,4 +214,15 @@ function testAndRunSourceCodeScript {
     else
         echoVerbose "no source code .sx directory"
     fi 
+}
+
+
+function moveSourceCodeScripts {
+    if [[ -r $1/.sx ]]; then
+        echoVerbose "Copy source scripts from $APP_PATH/src > $APP_PATH"
+        chown 1001:0 -R $1/.sx
+        chmod g=u -R $1/.sx
+        chmod ug+x -R $1/.sx/*
+        mv $1/.sx $2/.sx
+    fi
 }

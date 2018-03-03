@@ -1,4 +1,5 @@
 #!/bin/bash
+source /var/lib/sx/sx
 
 function check_apache_environment {
     if [ ! -v APP_PATH ]; then
@@ -35,6 +36,7 @@ function apachePreDeploy {
     echoVerbose "| "
     apacheInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "pre-deploy" 
 }
 
 # function executed when post-deploy hook is called
@@ -44,6 +46,7 @@ function apachePostDeploy {
     echoVerbose "| "
     apacheInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "post-deploy" 
 }
 
 # function executed when pre-build hook is called
@@ -53,6 +56,7 @@ function apachePostBuild {
     echoVerbose "| "
     apacheInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "post-build" 
 }
 
 # function executed when assemble hook is called
@@ -67,7 +71,10 @@ function apacheAssemble {
     chmod g=u -R /tmp/src
     echo "Copy source from /tmp/src > $APP_PATH"
     cp -R /tmp/src/* $APP_PATH/
+    moveSourceCodeScripts /tmp/src $APP_PATH
+    echoVerbose "Remove source temp $APP_PATH/src"
     rm -rf /tmp/src
+    testAndRunSourceCodeScript "assemble" 
 }
 
 # function executed on container startup

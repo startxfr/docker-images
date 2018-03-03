@@ -1,4 +1,5 @@
 #!/bin/bash
+source /var/lib/sx/sx
 
 function check_nodejs_environment {
     if [ ! -v APP_PATH ]; then

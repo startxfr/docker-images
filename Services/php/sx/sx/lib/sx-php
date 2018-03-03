@@ -1,4 +1,5 @@
 #!/bin/bash
+source /var/lib/sx/sx
 source /var/lib/sx/sx-apache
 
 # Display php information
@@ -16,6 +17,7 @@ function phpPreDeploy {
     echo "+====================================================="
     echo "Create log directory $LOG_PATH"
     touch $LOG_PATH/access.log
+    testAndRunSourceCodeScript "pre-deploy" 
 }
 
 # function executed when post-deploy hook is called
@@ -25,6 +27,7 @@ function phpPostDeploy {
     echoVerbose "| "
     phpInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "post-deploy" 
 }
 
 # function executed when pre-build hook is called
@@ -34,6 +37,7 @@ function phpPostBuild {
     echoVerbose "| "
     phpInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "post-build" 
 }
 
 # function executed when assemble hook is called
@@ -48,7 +52,10 @@ function phpAssemble {
     chmod g=u -R /tmp/src
     echo "Copy source from /tmp/src > $APP_PATH"
     cp -R /tmp/src/* $APP_PATH/
+    moveSourceCodeScripts /tmp/src $APP_PATH
+    echoVerbose "Remove source temp $APP_PATH/src"
     rm -rf /tmp/src
+    testAndRunSourceCodeScript "assemble" 
 }
 
 # function executed on container startup

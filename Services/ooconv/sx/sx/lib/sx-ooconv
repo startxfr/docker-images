@@ -1,4 +1,5 @@
 #!/bin/bash
+source /var/lib/sx/sx
 
 function check_ooconv_environment {
     if [ ! -v DATA_PATH ]; then
@@ -24,6 +25,7 @@ function ooconvPreDeploy {
     echoVerbose "| "
     ooconvInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "pre-deploy" 
 }
 
 function ooconvPostDeploy {
@@ -32,6 +34,7 @@ function ooconvPostDeploy {
     echoVerbose "| "
     ooconvInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "post-deploy" 
 }
 
 function ooconvPostBuild {
@@ -40,6 +43,7 @@ function ooconvPostBuild {
     echoVerbose "| "
     ooconvInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "post-build" 
 }
 
 function ooconvAssemble {
@@ -51,6 +55,10 @@ function ooconvAssemble {
     echo "Fixing perm on /tmp/src"
     chown 1001:0 -R /tmp/src
     chmod g=u -R /tmp/src
+    moveSourceCodeScripts /tmp/src $APP_PATH
+    echoVerbose "Remove source temp $APP_PATH/src"
+    rm -rf /tmp/src
+    testAndRunSourceCodeScript "assemble" 
 }
 
 function ooconvRun {
