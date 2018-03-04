@@ -21,7 +21,7 @@
     "url": "https://github.com/startxfr/docker-images.git"
   },
   "scripts": {
-    "start": "app.js"
+    "start": "node app.js"
   },
   "main": "app.js"
 }
