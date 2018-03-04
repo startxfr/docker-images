@@ -227,7 +227,7 @@ function config_createdatabase {
 }
 
 function config_importsql {
-    if [[ -n "$LOADSQL_PATH" ]]; then
+    if [[ -n "$LOADSQL_PATH" || -n "$MYSQL_DATABASE" ]]; then
         echo "\$LOADSQL_PATH is defined and set to " $LOADSQL_PATH
         if [[ -d $LOADSQL_PATH ]]; then
             if [ "$(ls -A $LOADSQL_PATH/schema-*.sql 2> /dev/null)" ]; then
@@ -258,7 +258,7 @@ function config_importsql {
             echo "No sql scripts to load because $LOADSQL_PATH is not a directory"
         fi
     else
-        echo "No sql scripts to load because no sql script found in $LOADSQL_PATH"
+        echo "No sql scripts to load because no \$LOADSQL_PATH or \$MYSQL_DATABASE variables"
     fi
 }
 
