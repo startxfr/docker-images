@@ -10,5 +10,5 @@
 if [[ -x /tmp/run ]]; then
     exec /tmp/run $@
 else
-    exec /bin/sx-nodejs $@
+    exec /bin/sx-nodejs run
 fi 

@@ -10,5 +10,5 @@
 if [[ -x /tmp/run ]]; then
     exec /tmp/run $@
 else
-    exec /bin/sx-postgres $@
+    exec /bin/sx-postgres run
 fi 

@@ -10,5 +10,5 @@
 if [[ -x /tmp/run ]]; then
     exec /tmp/run $@
 else
-    exec /bin/sx-php $@
+    exec /bin/sx-php run
 fi 
