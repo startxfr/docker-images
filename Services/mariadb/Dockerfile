@@ -42,9 +42,9 @@ RUN dnf --nogpgcheck -y install mariadb-tokudb-engine mariadb-connect-engine mar
     rm -rf /tmp/sx /tmp/s2i && \
     touch $DATA_PATH/.keep && \
     chown -R mysql:mysql $LOG_PATH $DATA_PATH $LOADSQL_PATH && \
-    chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i /var/lib/sx* /var/lib/mysql && \
-    chown -R 1001:0 /bin/sx-* /s2i $LOADSQL_PATH /var/lib/sx* /var/lib/mysql && \
-    chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i /var/lib/sx* /var/lib/mysql && \
+    chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i /var/lib/sx* /var/lib/mysql /var/run/mariadb && \
+    chown -R 1001:0 /bin/sx-* /s2i $LOADSQL_PATH /var/lib/sx* && \
+    chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i /var/lib/sx* /var/lib/mysql /var/run/mariadb && \
     chmod -R ugo+x /bin/sx* && \
     chmod ug+r $MY_CONF
 
