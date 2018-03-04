@@ -34,10 +34,17 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf --nogpgcheck -y install python-httplib2 openssl && \
+RUN dnf --nogpgcheck -y install python-httplib2 openssl ncurses ncurses-libs ncurses-compat-libs && \
     dnf clean all && \
+    #echo 0 > /proc/sys/vm/swappiness && \
+    echo '' >> /etc/sysctl.conf && \
+    echo '#Set swappiness to 0 to avoid swapping' >> /etc/sysctl.conf && \
+    echo 'vm.swappiness = 0' >> /etc/sysctl.conf && \
+    #echo never > /sys/kernel/mm/transparent_hugepage/enabled && \
+    #echo never > /sys/kernel/mm/transparent_hugepage/defrag && \
     wget $CB_RELEASE_URL/$CB_PACKAGE && \
     rpm --install $CB_PACKAGE && \
+    rm -rf $CB_PACKAGE && \
     usermod -a -G 0 couchbase && \
     mkdir -p /var/lib/sx /s2i && \
     mkdir -p $DATA_PATH /opt/couchbase/var/lib/couchbase \
@@ -51,6 +58,7 @@ RUN dnf --nogpgcheck -y install python-httplib2 openssl && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     touch $DATA_PATH/.keep && \
+    chmod g=u / && \
     chown -R couchbase:couchbase $DATA_PATH /opt/couchbase/var && \
     chgrp -R 0 $CB_PATH /bin/sx-* /s2i /var/lib/sx* && \
     chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* && \
