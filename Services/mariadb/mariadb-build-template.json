@@ -522,7 +522,8 @@
         {
             "name": "MYSQL_DATABASE",
             "displayName": "Mysql database",
-            "description": "name of the default database to create"
+            "description": "name of the default database to create",
+            "value": "example"
         },
         {
             "name": "MEMORY_LIMIT",
