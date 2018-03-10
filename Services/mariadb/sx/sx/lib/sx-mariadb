@@ -90,7 +90,7 @@ function mysqlIsLive {
 
 # Display readyness status
 function mysqlIsReady {
-    genericIsReady
+    mysql -h 127.0.0.1 -u root -p$MYSQL_ROOT_PASSWORD -e 'SELECT 1'  || exit 1;
 }
 
 

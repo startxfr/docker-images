@@ -75,5 +75,5 @@ function phpIsLive {
 
 # Display readyness status
 function phpIsReady {
-    genericIsReady
+    apacheIsReady
 }
