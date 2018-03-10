@@ -202,7 +202,7 @@
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
-                                "image": "startx/sv-nodejs@sha256:fdeea7651d752e09fd9d6e760e85ef7667f7e443c9712d0e5f051c105e66bf05",
+                                "image": " ",
                                 "env": [
                                     {
                                         "name": "SX_VERBOSE",

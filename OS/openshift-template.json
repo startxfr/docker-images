@@ -145,7 +145,7 @@
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
-                                "image": "startx/fedora@sha256:7566c86d34616e3a4b597ff7c616aae6e15cb0fee0b04bd6f7fd3390b6dd8d3c",
+                                "image": " ",
                                 "command": [
                                     "/bin/sx"
                                 ],
