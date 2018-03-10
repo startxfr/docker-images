@@ -14,7 +14,7 @@
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
-    "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
+    "message": "Your service is deploying on your project environment.\n\nService type: ${APP_TYPE}\nService name: ${APP_NAME}",
     "labels": {
         "template": "startx-os-fedora"
     },
