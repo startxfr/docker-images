@@ -9,7 +9,8 @@ case $1 in
     pre-deploy)             mysqlPreDeploy $@ ;;
     post-deploy)            mysqlPostDeploy $@ ;;
     run)                    mysqlRun $@ ;;
-    health)                 genericHealth $@ ;;
+    isLive)                 genericIsLive $@ ;;
+    isReady)                genericIsReady $@ ;;
     info)                   mysqlInformation $@ ;;
     usage|help|--help)      genericUsage $@ ;;
     usageS2i)               genericUsageS2I $@ ;;

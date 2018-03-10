@@ -2,7 +2,7 @@
 
 # get and store the operating system name
 OS=`cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g'`
-SXLIB_VERSION="0.1.0"
+SXLIB_VERSION="0.1.1"
 
 # use xterm and set current PID
 export TERM=xterm
@@ -175,7 +175,13 @@ exit 0;
 }
 
 # Display health
-function genericHealth {
+function genericIsLive {
+echo "OK"
+exit 0;
+}
+
+# Display health
+function genericIsReady {
 echo "OK"
 exit 0;
 }

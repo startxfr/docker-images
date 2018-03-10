@@ -9,7 +9,8 @@ case $1 in
     pre-deploy)             phpPreDeploy $@ ;;
     post-deploy)            phpPostDeploy $@ ;;
     run)                    phpRun $@ ;;
-    health)                 genericHealth $@ ;;
+    isLive)                 genericIsLive $@ ;;
+    isReady)                genericIsReady $@ ;;
     info)                   phpInformation $@ ;;
     usage|help|--help)      genericUsage $@ ;;
     usageS2i)               genericUsageS2I $@ ;;

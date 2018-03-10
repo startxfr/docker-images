@@ -9,7 +9,8 @@ case $1 in
     pre-deploy)             postgresPreDeploy $@ ;;
     post-deploy)            postgresPostDeploy $@ ;;
     run)                    postgresRun $@ ;;
-    health)                 genericHealth $@ ;;
+    isLive)                 genericIsLive $@ ;;
+    isReady)                genericIsReady $@ ;;
     info)                   postgresInformation $@ ;;
     usage|help|--help)      genericUsage $@ ;;
     usageS2i)               genericUsageS2I $@ ;;
