@@ -66,6 +66,16 @@ function couchbaseAssemble {
         echoVerbose "Remove source temp $APP_PATH/src"
         rm -rf /tmp/src
     fi
+    if [[ ! -d $DATA_PATH/lib ]]; then
+        echo "Creating basic data structure in $DATA_PATH"
+        mkdir -p $DATA_PATH/lib/couchbase \
+        $DATA_PATH/lib/couchbase/config \
+        $DATA_PATH/lib/couchbase/data \
+        $DATA_PATH/lib/couchbase/stats \
+        $DATA_PATH/lib/couchbase/logs \
+        $DATA_PATH/lib/moxi
+        touch $DATA_PATH/.keep
+    fi
     testAndRunSourceCodeScript "assemble" 
 }
 
