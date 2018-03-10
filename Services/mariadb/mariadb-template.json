@@ -2,21 +2,21 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-postgres",
+        "name": "startx-sv-mariadb-template",
         "annotations": {
-            "openshift.io/display-name": "Startx PostGresQL server (fedora)",
-            "description": "PostGresQL server for simple SQL database running under Fedora",
-            "iconClass": "icon-postgresql",
-            "tags": "startx,os,fedora,postgres,database",
-            "openshift.io/long-description": "This template provides an postgres db PostGresQL Database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/display-name": "Startx MariaDB server (fedora)",
+            "description": "MariaDB server for simple SQL database running under Fedora",
+            "iconClass": "icon-mariadb",
+            "tags": "startx,os,fedora,mariadb,database",
+            "openshift.io/long-description": "This template provides an mariadb db Mariadb Database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/fc26/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc26/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
-    "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
+    "message": "Service ${APP_NAME} start to be deployed in your project. You can use openshift console to log into.\n\n       Username: ${MYSQL_USER}\n       Password: ${MYSQL_PASSWORD}\n  Database Name: ${MYSQL_DATABASE}\n Connection URL: mysql://${APP_NAME}:3306",
     "labels": {
-        "template": "startx-sv-postgres"
+        "template": "startx-sv-mariadb-template"
     },
     "objects": [
         {
@@ -25,14 +25,14 @@
             "metadata": {
                 "name": "${APP_NAME}",
                 "annotations": {
-                    "openshift.io/display-name": "Startx PostGresQL Database",
+                    "openshift.io/display-name": "Startx Mariadb Database",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-postgres"
+                    "template": "startx-sv-mariadb-template"
                 }
             },
             "spec": {
@@ -40,17 +40,17 @@
                     {
                         "name": "fc26",
                         "annotations": {
-                            "openshift.io/display-name": "Startx PostGresQL Database (Fedora 26)",
-                            "description": "PostGresQL server for simple SQL database running under Fedora 26",
-                            "iconClass": "icon-postgresql",
-                            "tags": "builder,startx,fedora,postgres,database",
+                            "openshift.io/display-name": "Startx Mariadb Database (Fedora 26)",
+                            "description": "MariaDB server for simple SQL database running under Fedora 26",
+                            "iconClass": "icon-mariadb",
+                            "tags": "builder,startx,fedora,mariadb,database",
                             "supports": "db",
-                            "version": "fc26",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-postgres.git"
+                            "version": "26",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-postgres:fc26"
+                            "name": "startx/sv-mariadb:fc26"
                         }
                     }
                 ]
@@ -66,13 +66,18 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-postgres"
+                    "template": "startx-sv-mariadb-template"
+                },
+                "annotations": {
+                    "template.openshift.io/expose-username": "{.data['MYSQL_USER']}",
+                    "template.openshift.io/expose-password": "{.data['MYSQL_PASSWORD']}",
+                    "template.openshift.io/expose-root_password": "{.data['MYSQL_PASSWORD']}"
                 }
             },
             "stringData": {
-                "PGSQL_ROOT_PASSWORD": "${PGSQL_ROOT_PASSWORD}",
-                "PGSQL_USER": "${PGSQL_USER}",
-                "PGSQL_PASSWORD": "${PGSQL_PASSWORD}"
+                "MYSQL_ROOT_PASSWORD": "${MYSQL_ROOT_PASSWORD}",
+                "MYSQL_USER": "${MYSQL_USER}",
+                "MYSQL_PASSWORD": "${MYSQL_PASSWORD}"
             }
         },
         {
@@ -86,10 +91,11 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-postgres"
+                    "template": "startx-sv-mariadb-template"
                 },
                 "annotations": {
-                    "openshift.io/generated-by": "STARTX"
+                    "openshift.io/generated-by": "STARTX",
+                    "template.alpha.openshift.io/wait-for-ready": "true"
                 }
             },
             "spec": {
@@ -105,7 +111,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-postgres",
+                                    "/bin/sx-mariadb",
                                     "pre-deploy"
                                 ],
                                 "containerName": "${APP_NAME}"
@@ -115,7 +121,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-postgres",
+                                    "/bin/sx-mariadb",
                                     "post-deploy"
                                 ],
                                 "containerName": "${APP_NAME}"
@@ -155,7 +161,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-sv-postgres",
+                            "template": "startx-sv-mariadb-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -166,52 +172,68 @@
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
-                                "image": "startx/sv-postgres@sha256:fdeea7651d752e09fd9d6e760e85ef7667f7e443c9712d0e5f051c105e66bf05",
+                                "image": " ",
                                 "command": [
-                                    "/bin/sx-postgres"
+                                    "/bin/sx-mariadb"
                                 ],
                                 "args": [
                                     "run"
                                 ],
-                                "env": [
+                                "ports": [
                                     {
-                                        "name": "PGSQL_ROOT_PASSWORD",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}",
-                                                "key": "PGSQL_ROOT_PASSWORD"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "PGSQL_USER",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}",
-                                                "key": "PGSQL_USER"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "PGSQL_PASSWORD",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}",
-                                                "key": "PGSQL_PASSWORD"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "PGSQL_DATABASE",
-                                        "value": "${PGSQL_DATABASE}"
+                                        "containerPort": 3306,
+                                        "protocol": "TCP"
                                     }
                                 ],
-                                "resources": {},
+                                "env": [
+                                    {
+                                        "name": "MYSQL_ROOT_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "name": "${APP_NAME}",
+                                                "key": "MYSQL_ROOT_PASSWORD"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MYSQL_USER",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "name": "${APP_NAME}",
+                                                "key": "MYSQL_USER"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MYSQL_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "name": "${APP_NAME}",
+                                                "key": "MYSQL_PASSWORD"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MYSQL_DATABASE",
+                                        "value": "${MYSQL_DATABASE}"
+                                    }
+                                ],
+                                "resources": {
+                                    "limits": {
+                                        "memory": "${MEMORY_LIMIT}"
+                                    }
+                                },
+                                "volumeMounts": [
+                                    {
+                                        "name": "${APP_NAME}-data",
+                                        "mountPath": "/data"
+                                    }
+                                ],
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-postgres",
-                                            "health"
+                                            "/bin/sx-mariadb",
+                                            "isLive"
                                         ]
                                     },
                                     "initialDelaySeconds": 5,
@@ -223,8 +245,8 @@
                                 "readinessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-postgres",
-                                            "health"
+                                            "/bin/sx-mariadb",
+                                            "isReady"
                                         ]
                                     },
                                     "initialDelaySeconds": 2,
@@ -236,7 +258,17 @@
                                 "terminationMessagePath": "/dev/termination-log",
                                 "imagePullPolicy": "Always"
                             }
-                        ]
+                        ],
+                        "volumes": [
+                            {
+                                "name": "${APP_NAME}-data",
+                                "emptyDir": {
+                                    "medium": ""
+                                }
+                            }
+                        ],
+                        "restartPolicy": "Always",
+                        "dnsPolicy": "ClusterFirst"
                     }
                 }
             },
@@ -257,18 +289,21 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-postgres"
+                    "template": "startx-sv-mariadb-template"
                 },
                 "annotations": {
-                    "openshift.io/generated-by": "STARTX"
+                    "openshift.io/generated-by": "STARTX",
+                    "template.openshift.io/expose-uri": "mysql://{.spec.clusterIP}:{.spec.ports[?(.name==\"mysql\")].port}"
                 }
             },
             "spec": {
                 "ports": [
                     {
+                        "name": "mysql",
                         "protocol": "TCP",
                         "port": 3306,
-                        "targetPort": 3306
+                        "targetPort": 3306,
+                        "nodePort": 0
                     }
                 ],
                 "selector": {
@@ -288,7 +323,7 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "postgres",
+            "value": "mariadb",
             "required": true
         },
         {
@@ -298,32 +333,39 @@
             "value": "database"
         },
         {
-            "name": "PGSQL_ROOT_PASSWORD",
-            "displayName": "Postgresql root password",
-            "description": "The postgresql root password to use. Generated if not provided",
+            "name": "MYSQL_ROOT_PASSWORD",
+            "displayName": "Mysql root password",
+            "description": "The mysql root password to use. Generated if not provided",
             "from": "[A-Z0-9]{16}",
             "generate": "expression"
         },
         {
-            "name": "PGSQL_USER",
-            "displayName": "Postgresql user",
+            "name": "MYSQL_USER",
+            "displayName": "Mysql user",
             "description": "Default user to create",
             "value": "demo",
             "from": "[A-Z0-9]{8}",
             "generate": "expression"
         },
         {
-            "name": "PGSQL_PASSWORD",
-            "displayName": "Postgresql password",
+            "name": "MYSQL_PASSWORD",
+            "displayName": "Mysql password",
             "description": "Password of the default user",
             "value": "demo",
             "from": "[A-Z0-9]{16}",
             "generate": "expression"
         },
         {
-            "name": "PGSQL_DATABASE",
-            "displayName": "Postgresql database",
+            "name": "MYSQL_DATABASE",
+            "displayName": "Mysql database",
             "description": "name of the default database to create"
+        },
+        {
+            "name": "MEMORY_LIMIT",
+            "displayName": "Memory Limit",
+            "description": "Maximum amount of memory the container can use.",
+            "value": "512Mi",
+            "required": true
         }
     ]
 }

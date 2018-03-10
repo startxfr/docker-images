@@ -2,13 +2,13 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-mariadb",
+        "name": "startx-sv-apache-template",
         "annotations": {
-            "openshift.io/display-name": "Startx MariaDB server (fedora)",
-            "description": "MariaDB server for simple SQL database running under Fedora",
-            "iconClass": "icon-mariadb",
-            "tags": "startx,os,fedora,mariadb,database",
-            "openshift.io/long-description": "This template provides an mariadb db Mariadb Database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/fc26/README.md.",
+            "openshift.io/display-name": "Startx Http Server (fedora)",
+            "description": "Http server for simple web application running under Fedora",
+            "iconClass": "icon-apache",
+            "tags": "startx,os,fedora,apache,httpd",
+            "openshift.io/long-description": "This template provides an apache httpd webserver in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc26/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -16,7 +16,7 @@
     },
     "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
     "labels": {
-        "template": "startx-sv-mariadb"
+        "template": "startx-sv-apache-template"
     },
     "objects": [
         {
@@ -25,14 +25,14 @@
             "metadata": {
                 "name": "${APP_NAME}",
                 "annotations": {
-                    "openshift.io/display-name": "Startx Mariadb Database",
+                    "openshift.io/display-name": "Startx WebServer",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mariadb"
+                    "template": "startx-sv-apache-template"
                 }
             },
             "spec": {
@@ -40,39 +40,20 @@
                     {
                         "name": "fc26",
                         "annotations": {
-                            "openshift.io/display-name": "Startx Mariadb Database (Fedora 26)",
-                            "description": "MariaDB server for simple SQL database running under Fedora 26",
-                            "iconClass": "icon-mariadb",
-                            "tags": "builder,startx,fedora,mariadb,database",
-                            "supports": "db",
+                            "openshift.io/display-name": "Startx WebServer (Fedora 26)",
+                            "description": "Http server for simple web application running under Fedora 26",
+                            "iconClass": "icon-apache",
+                            "tags": "builder,startx,fedora,apache,httpd",
+                            "supports": "http",
                             "version": "26",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-apache.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-mariadb:fc26"
+                            "name": "startx/sv-apache:fc26"
                         }
                     }
                 ]
-            }
-        },
-        {
-            "kind": "Secret",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APP_NAME}",
-                "creationTimestamp": null,
-                "labels": {
-                    "app": "${APP_NAME}",
-                    "type": "${APP_TYPE}",
-                    "provider": "startx",
-                    "template": "startx-sv-mariadb"
-                }
-            },
-            "stringData": {
-                "MYSQL_ROOT_PASSWORD": "${MYSQL_ROOT_PASSWORD}",
-                "MYSQL_USER": "${MYSQL_USER}",
-                "MYSQL_PASSWORD": "${MYSQL_PASSWORD}"
             }
         },
         {
@@ -86,7 +67,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mariadb"
+                    "template": "startx-sv-apache-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -98,14 +79,14 @@
                     "rollingParams": {
                         "updatePeriodSeconds": 1,
                         "intervalSeconds": 1,
-                        "timeoutSeconds": 120,
+                        "timeoutSeconds": 60,
                         "maxUnavailable": "25%",
                         "maxSurge": "25%",
                         "pre": {
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-mariadb",
+                                    "/bin/sx-apache",
                                     "pre-deploy"
                                 ],
                                 "containerName": "${APP_NAME}"
@@ -115,7 +96,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-mariadb",
+                                    "/bin/sx-apache",
                                     "post-deploy"
                                 ],
                                 "containerName": "${APP_NAME}"
@@ -142,6 +123,9 @@
                         "type": "ConfigChange"
                     }
                 ],
+                "postCommit": {
+                    "script": "/bin/sx-apache info"
+                },
                 "replicas": 1,
                 "test": false,
                 "selector": {
@@ -155,7 +139,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-sv-mariadb",
+                            "template": "startx-sv-apache-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -166,52 +150,19 @@
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
-                                "image": "startx/sv-mariadb@sha256:fdeea7651d752e09fd9d6e760e85ef7667f7e443c9712d0e5f051c105e66bf05",
+                                "image": " ",
                                 "command": [
-                                    "/bin/sx-mariadb"
+                                    "/bin/sx-apache"
                                 ],
                                 "args": [
                                     "run"
-                                ],
-                                "env": [
-                                    {
-                                        "name": "MYSQL_ROOT_PASSWORD",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}",
-                                                "key": "MYSQL_ROOT_PASSWORD"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "MYSQL_USER",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}",
-                                                "key": "MYSQL_USER"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "MYSQL_PASSWORD",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}",
-                                                "key": "MYSQL_PASSWORD"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "MYSQL_DATABASE",
-                                        "value": "${MYSQL_DATABASE}"
-                                    }
                                 ],
                                 "resources": {},
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-mariadb",
-                                            "health"
+                                            "/bin/sx-apache",
+                                            "isLive"
                                         ]
                                     },
                                     "initialDelaySeconds": 5,
@@ -223,8 +174,8 @@
                                 "readinessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-mariadb",
-                                            "health"
+                                            "/bin/sx-apache",
+                                            "isReady"
                                         ]
                                     },
                                     "initialDelaySeconds": 2,
@@ -248,6 +199,43 @@
             }
         },
         {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx",
+                    "template": "startx-sv-apache-template"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "STARTX"
+                }
+            },
+            "spec": {
+                "to": {
+                    "kind": "Service",
+                    "name": "${APP_NAME}",
+                    "weight": 100
+                }
+            },
+            "status": {
+                "ingress": [
+                    {
+                        "routerName": "router",
+                        "conditions": [
+                            {
+                                "type": "Admitted",
+                                "status": "True"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
             "kind": "Service",
             "apiVersion": "v1",
             "metadata": {
@@ -257,7 +245,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mariadb"
+                    "template": "startx-sv-apache-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -267,8 +255,8 @@
                 "ports": [
                     {
                         "protocol": "TCP",
-                        "port": 3306,
-                        "targetPort": 3306
+                        "port": 8080,
+                        "targetPort": 8080
                     }
                 ],
                 "selector": {
@@ -288,42 +276,14 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "mariadb",
+            "value": "www-static",
             "required": true
         },
         {
             "name": "APP_TYPE",
             "displayName": "Application type",
             "description": "The type of the created application",
-            "value": "database"
-        },
-        {
-            "name": "MYSQL_ROOT_PASSWORD",
-            "displayName": "Mysql root password",
-            "description": "The mysql root password to use. Generated if not provided",
-            "from": "[A-Z0-9]{16}",
-            "generate": "expression"
-        },
-        {
-            "name": "MYSQL_USER",
-            "displayName": "Mysql user",
-            "description": "Default user to create",
-            "value": "demo",
-            "from": "[A-Z0-9]{8}",
-            "generate": "expression"
-        },
-        {
-            "name": "MYSQL_PASSWORD",
-            "displayName": "Mysql password",
-            "description": "Password of the default user",
-            "value": "demo",
-            "from": "[A-Z0-9]{16}",
-            "generate": "expression"
-        },
-        {
-            "name": "MYSQL_DATABASE",
-            "displayName": "Mysql database",
-            "description": "name of the default database to create"
+            "value": "application"
         }
     ]
 }

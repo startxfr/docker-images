@@ -2,13 +2,13 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-nodejs",
+        "name": "startx-sv-memcache-template",
         "annotations": {
-            "openshift.io/display-name": "Startx NodeJS micro-server (fedora)",
-            "description": "NodeJS micro-server for micro-service application running under Fedora",
-            "iconClass": "icon-nodejs",
-            "tags": "startx,os,fedora,nodejs,httpd",
-            "openshift.io/long-description": "This template provides an nodejs micro-server in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/display-name": "Startx Memcached server (fedora)",
+            "description": "Memcached server for caching database running under Fedora",
+            "iconClass": "icon-memcached",
+            "tags": "startx,os,fedora,memcached,database",
+            "openshift.io/long-description": "This template provides an memcache database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building caching databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc26/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -16,7 +16,7 @@
     },
     "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
     "labels": {
-        "template": "startx-sv-nodejs"
+        "template": "startx-sv-memcache-template"
     },
     "objects": [
         {
@@ -25,13 +25,13 @@
             "metadata": {
                 "name": "${APP_NAME}",
                 "annotations": {
-                    "openshift.io/display-name": "Startx NodeJS"
+                    "openshift.io/display-name": "Startx Memcached Database"
                 },
                 "labels": {
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-nodejs"
+                    "template": "startx-sv-memcache-template"
                 }
             },
             "spec": {
@@ -39,20 +39,37 @@
                     {
                         "name": "fc26",
                         "annotations": {
-                            "openshift.io/display-name": "Startx NodeJS (Fedora 26)",
-                            "description": "NodeJS micro-server for micro-service application running under Fedora 26",
-                            "iconClass": "icon-nodejs",
-                            "tags": "builder,startx,fedora,nodejs,httpd",
-                            "supports": "http",
+                            "openshift.io/display-name": "Startx Memcached Database (Fedora 26)",
+                            "description": "Memcached server for caching database running under Fedora 26",
+                            "iconClass": "icon-memcached",
+                            "tags": "builder,startx,fedora,memcached,database",
+                            "supports": "db",
                             "version": "26",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-nodejs.git"
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-memcache.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-nodejs:fc26"
+                            "name": "startx/sv-memcache:fc26"
                         }
                     }
                 ]
+            }
+        },
+        {
+            "kind": "Secret",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx",
+                    "template": "startx-sv-memcache-template"
+                }
+            },
+            "stringData": {
+                "MEMCACHE_PASSWORD": "${MEMCACHE_PASSWORD}"
             }
         },
         {
@@ -66,7 +83,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-nodejs"
+                    "template": "startx-sv-memcache-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -78,14 +95,14 @@
                     "rollingParams": {
                         "updatePeriodSeconds": 1,
                         "intervalSeconds": 1,
-                        "timeoutSeconds": 60,
+                        "timeoutSeconds": 120,
                         "maxUnavailable": "25%",
                         "maxSurge": "25%",
                         "pre": {
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-nodejs",
+                                    "/bin/sx-memcache",
                                     "pre-deploy"
                                 ],
                                 "containerName": "${APP_NAME}"
@@ -95,7 +112,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-nodejs",
+                                    "/bin/sx-memcache",
                                     "post-deploy"
                                 ],
                                 "containerName": "${APP_NAME}"
@@ -135,7 +152,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-sv-nodejs",
+                            "template": "startx-sv-memcache-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -146,19 +163,34 @@
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
-                                "image": "startx/sv-nodejs@sha256:fdeea7651d752e09fd9d6e760e85ef7667f7e443c9712d0e5f051c105e66bf05",
+                                "image": " ",
                                 "command": [
-                                    "/bin/sx-nodejs"
+                                    "/bin/sx-memcache"
                                 ],
                                 "args": [
                                     "run"
+                                ],
+                                "env": [
+                                    {
+                                        "name": "MEMCACHE_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "name": "${APP_NAME}",
+                                                "key": "MEMCACHE_PASSWORD"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MEMCACHE_DATABASE",
+                                        "value": "${MEMCACHE_DATABASE}"
+                                    }
                                 ],
                                 "resources": {},
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-nodejs",
-                                            "health"
+                                            "/bin/sx-memcache",
+                                            "isLive"
                                         ]
                                     },
                                     "initialDelaySeconds": 5,
@@ -170,8 +202,8 @@
                                 "readinessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-nodejs",
-                                            "health"
+                                            "/bin/sx-memcache",
+                                            "isReady"
                                         ]
                                     },
                                     "initialDelaySeconds": 2,
@@ -195,43 +227,6 @@
             }
         },
         {
-            "kind": "Route",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APP_NAME}",
-                "creationTimestamp": null,
-                "labels": {
-                    "app": "${APP_NAME}",
-                    "type": "${APP_TYPE}",
-                    "provider": "startx",
-                    "template": "startx-sv-nodejs"
-                },
-                "annotations": {
-                    "openshift.io/generated-by": "STARTX"
-                }
-            },
-            "spec": {
-                "to": {
-                    "kind": "Service",
-                    "name": "${APP_NAME}",
-                    "weight": 100
-                }
-            },
-            "status": {
-                "ingress": [
-                    {
-                        "routerName": "router",
-                        "conditions": [
-                            {
-                                "type": "Admitted",
-                                "status": "True"
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        {
             "kind": "Service",
             "apiVersion": "v1",
             "metadata": {
@@ -241,7 +236,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-nodejs"
+                    "template": "startx-sv-memcache-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -251,8 +246,8 @@
                 "ports": [
                     {
                         "protocol": "TCP",
-                        "port": 8080,
-                        "targetPort": 8080
+                        "port": 3306,
+                        "targetPort": 3306
                     }
                 ],
                 "selector": {
@@ -272,14 +267,27 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "www-node",
+            "value": "memcache",
             "required": true
         },
         {
             "name": "APP_TYPE",
             "displayName": "Application type",
             "description": "The type of the created application",
-            "value": "application"
+            "value": "database"
+        },
+        {
+            "name": "MEMCACHE_PASSWORD",
+            "displayName": "Memcache password",
+            "description": "Password of the default user",
+            "value": "demo",
+            "from": "[A-Z0-9]{16}",
+            "generate": "expression"
+        },
+        {
+            "name": "MEMCACHE_DATABASE",
+            "displayName": "Memcache database",
+            "description": "name of the default database to create"
         }
     ]
 }

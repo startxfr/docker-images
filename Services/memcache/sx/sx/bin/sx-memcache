@@ -9,7 +9,8 @@ case $1 in
     pre-deploy)             memcachePreDeploy $@ ;;
     post-deploy)            memcachePostDeploy $@ ;;
     run)                    memcacheRun $@ ;;
-    health)                 genericHealth $@ ;;
+    isLive)                 memcacheIsLive $@ ;;
+    isReady)                memcacheIsReady $@ ;;
     info)                   memcacheInformation $@ ;;
     usage|help|--help)      genericUsage $@ ;;
     usageS2i)               genericUsageS2I $@ ;;

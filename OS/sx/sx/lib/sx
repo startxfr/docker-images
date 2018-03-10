@@ -2,6 +2,7 @@
 
 # get and store the operating system name
 OS=`cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g'`
+SXLIB_VERSION="0.1.2"
 
 # use xterm and set current PID
 export TERM=xterm
@@ -158,12 +159,13 @@ echoVerbose $1 "image     : $SX_ID:$SX_VERSION"
 echoVerbose $1 "name      : $SX_NAME"
 echoVerbose $1 "OS        : $OS"
 echoVerbose $1 "container : $HOSTNAME"
+echoVerbose $1 "sx-lib    : v$SXLIB_VERSION"
 }
 
 # Display information
 function genericAllInformation {
     displayInformation
-    echoDebug env
+    echoDebug `env`
 }
 
 # Display version
@@ -172,16 +174,26 @@ echo $SXDBTOOLS_VERSION
 exit 0;
 }
 
-# Display health
-function genericHealth {
+# Display liveness status
+function genericIsLive {
 echo "OK"
 exit 0;
+}
+
+# Display readyness status
+function genericIsReady {
+    echo "OK"
+    exit 0;
 }
 
 # start daemon
 function startDaemon {
     while true; do
-        echo "$HOSTNAME is alive and running $SX_ID:$SX_VERSION"
+        if [ "$SX_VERBOSE" = true ] ; then
+            echo "$HOSTNAME is alive and running $SX_ID:$SX_VERSION ($OS)"
+        else
+            echo "$HOSTNAME is alive"
+        fi 
         sleep 10
     done
 }

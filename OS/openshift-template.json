@@ -2,55 +2,54 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-php",
+        "name": "startx-os-fedora-template",
         "annotations": {
-            "openshift.io/display-name": "Startx Http Server (fedora)",
-            "description": "Http server for simple web application running under Fedora",
-            "iconClass": "icon-php",
-            "tags": "startx,os,fedora,apache,httpd,php",
-            "openshift.io/long-description": "This template provides an apache + php httpd webserver in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/fc26/README.md.",
+            "openshift.io/display-name": "Startx Base OS (fedora)",
+            "description": "Minimal Fedora OS container for bash operations",
+            "iconClass": "icon-beaker",
+            "tags": "startx,os,fedora",
+            "openshift.io/long-description": "This template provides a fedora container with minimal tools and scripts. Ready to use in openshift with a simple deployement config, or as a s2i builder for bash applications. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/fc26/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc26/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
-    "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
+    "message": "Your service is deploying on your project environment.\n\nService type: ${APP_TYPE}\nService name: ${APP_NAME}",
     "labels": {
-        "template": "startx-sv-php"
+        "template": "startx-os-fedora-template"
     },
     "objects": [
         {
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-php",
+                "name": "${APP_NAME}",
                 "annotations": {
-                    "openshift.io/display-name": "Startx WebServer",
-                    "openshift.io/generated-by": "STARTX"
+                    "openshift.io/display-name": "Startx Base OS (fedora)"
                 },
                 "labels": {
-                    "base-image": "startx-sv-php",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
-                    "provider": "startx"
+                    "provider": "startx",
+                    "template": "startx-os-fedora-template"
                 }
             },
             "spec": {
                 "tags": [
                     {
-                        "name": "fc26",
+                        "name": "26",
                         "annotations": {
-                            "openshift.io/display-name": "Startx WebServer (Fedora 26)",
-                            "description": "Http server for simple web application running under Fedora 26",
-                            "iconClass": "icon-php",
-                            "tags": "builder,startx,fedora,apache,httpd,php",
-                            "supports": "http",
+                            "openshift.io/display-name": "Startx Fedora (26)",
+                            "description": "Minimal Fedora 26 OS for bash operations",
+                            "iconClass": "icon-beaker",
+                            "tags": "builder,startx,fedora",
+                            "supports": "fedora",
                             "version": "26",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-php.git"
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-php:fc26"
+                            "name": "startx/fedora:26"
                         }
                     }
                 ]
@@ -67,7 +66,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-php"
+                    "template": "startx-os-fedora-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -75,18 +74,14 @@
             },
             "spec": {
                 "strategy": {
-                    "type": "Rolling",
-                    "rollingParams": {
-                        "updatePeriodSeconds": 1,
-                        "intervalSeconds": 1,
-                        "timeoutSeconds": 60,
-                        "maxUnavailable": "25%",
-                        "maxSurge": "25%",
+                    "type": "Recreate",
+                    "recreateParams": {
+                        "timeoutSeconds": 40,
                         "pre": {
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-php",
+                                    "/bin/sx",
                                     "pre-deploy"
                                 ],
                                 "containerName": "${APP_NAME}"
@@ -96,7 +91,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-php",
+                                    "/bin/sx",
                                     "post-deploy"
                                 ],
                                 "containerName": "${APP_NAME}"
@@ -115,7 +110,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:fc26"
+                                "name": "${APP_NAME}:26"
                             }
                         }
                     },
@@ -123,6 +118,9 @@
                         "type": "ConfigChange"
                     }
                 ],
+                "postCommit": {
+                    "script": "/bin/sx info"
+                },
                 "replicas": 1,
                 "test": false,
                 "selector": {
@@ -136,7 +134,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-sv-php",
+                            "template": "startx-os-fedora-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -147,9 +145,9 @@
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
-                                "image": "startx/sv-php@sha256:fdeea7651d752e09fd9d6e760e85ef7667f7e443c9712d0e5f051c105e66bf05",
+                                "image": " ",
                                 "command": [
-                                    "/bin/sx-php"
+                                    "/bin/sx"
                                 ],
                                 "args": [
                                     "run"
@@ -158,8 +156,8 @@
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-php",
-                                            "health"
+                                            "/bin/sx",
+                                            "isLive"
                                         ]
                                     },
                                     "initialDelaySeconds": 5,
@@ -171,8 +169,8 @@
                                 "readinessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-php",
-                                            "health"
+                                            "/bin/sx",
+                                            "isReady"
                                         ]
                                     },
                                     "initialDelaySeconds": 2,
@@ -184,7 +182,11 @@
                                 "terminationMessagePath": "/dev/termination-log",
                                 "imagePullPolicy": "Always"
                             }
-                        ]
+                        ],
+                        "restartPolicy": "Always",
+                        "terminationGracePeriodSeconds": 30,
+                        "dnsPolicy": "ClusterFirst",
+                        "securityContext": {}
                     }
                 }
             },
@@ -194,78 +196,6 @@
                 "updatedReplicas": 1,
                 "availableReplicas": 1
             }
-        },
-        {
-            "kind": "Route",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APP_NAME}",
-                "creationTimestamp": null,
-                "labels": {
-                    "app": "${APP_NAME}",
-                    "type": "${APP_TYPE}",
-                    "provider": "startx",
-                    "template": "startx-sv-php"
-                },
-                "annotations": {
-                    "openshift.io/generated-by": "STARTX"
-                }
-            },
-            "spec": {
-                "to": {
-                    "kind": "Service",
-                    "name": "${APP_NAME}",
-                    "weight": 100
-                }
-            },
-            "status": {
-                "ingress": [
-                    {
-                        "routerName": "router",
-                        "conditions": [
-                            {
-                                "type": "Admitted",
-                                "status": "True"
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        {
-            "kind": "Service",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APP_NAME}",
-                "creationTimestamp": null,
-                "labels": {
-                    "app": "${APP_NAME}",
-                    "type": "${APP_TYPE}",
-                    "provider": "startx",
-                    "template": "startx-sv-php"
-                },
-                "annotations": {
-                    "openshift.io/generated-by": "STARTX"
-                }
-            },
-            "spec": {
-                "ports": [
-                    {
-                        "protocol": "TCP",
-                        "port": 8080,
-                        "targetPort": 8080
-                    }
-                ],
-                "selector": {
-                    "app": "${APP_NAME}",
-                    "deploymentconfig": "${APP_NAME}"
-                },
-                "type": "ClusterIP",
-                "sessionAffinity": "None"
-            },
-            "status": {
-                "loadBalancer": {}
-            }
         }
     ],
     "parameters": [
@@ -273,14 +203,14 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "www-php",
+            "value": "fedora",
             "required": true
         },
         {
             "name": "APP_TYPE",
             "displayName": "Application type",
             "description": "The type of the created application",
-            "value": "application"
+            "value": "system"
         }
     ]
 }
