@@ -431,7 +431,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-mariadb-template:latest"
+                            "name": "startx-sv-mariadb:latest"
                         },
                         "env": [
                             {

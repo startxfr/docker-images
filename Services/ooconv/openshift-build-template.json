@@ -346,7 +346,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-ooconv-template:latest"
+                            "name": "startx-sv-ooconv:latest"
                         },
                         "env": [
                             {

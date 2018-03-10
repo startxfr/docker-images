@@ -388,7 +388,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-couchbase-template:latest"
+                            "name": "startx-sv-couchbase:latest"
                         },
                         "env": [
                             {

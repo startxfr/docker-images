@@ -398,7 +398,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-postgres-template:latest"
+                            "name": "startx-sv-postgres:latest"
                         },
                         "env": [
                             {

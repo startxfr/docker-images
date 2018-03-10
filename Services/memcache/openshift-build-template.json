@@ -343,7 +343,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-memcache-template:latest"
+                            "name": "startx-sv-memcache:latest"
                         },
                         "env": [
                             {

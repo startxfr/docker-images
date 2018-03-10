@@ -383,7 +383,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-php-template:latest"
+                            "name": "startx-sv-php:latest"
                         },
                         "env": [
                             {

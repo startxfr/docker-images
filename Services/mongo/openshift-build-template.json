@@ -388,7 +388,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-mongo-template:latest"
+                            "name": "startx-sv-mongo:latest"
                         },
                         "env": [
                             {
