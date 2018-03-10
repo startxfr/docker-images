@@ -8,7 +8,7 @@
             "description": "Couchbase server for NoSQL database running under Fedora",
             "iconClass": "icon-mysql-database",
             "tags": "startx,os,fedora,couchbase,database",
-            "openshift.io/long-description": "This template provides an couchbase db Couchbase Database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/long-description": "This template provides an couchbase Database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -23,16 +23,16 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-couchbase",
+                "name": "${APP_NAME}",
                 "annotations": {
                     "openshift.io/display-name": "Startx Couchbase Database",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-couchbase",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
-                    "provider": "startx"
+                    "provider": "startx",
+                    "template": "startx-sv-couchbase-template"
                 }
             },
             "spec": {
@@ -51,38 +51,6 @@
                         "from": {
                             "kind": "DockerImage",
                             "name": "startx/sv-couchbase:latest"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "kind": "ImageStream",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APP_NAME}",
-                "annotations": {
-                    "openshift.io/display-name": "Application ${APP_NAME}",
-                    "openshift.io/generated-by": "STARTX"
-                },
-                "labels": {
-                    "base-image": "startx-sv-couchbase",
-                    "app": "${APP_NAME}",
-                    "type": "${APP_TYPE}",
-                    "provider": "startx"
-                }
-            },
-            "spec": {
-                "tags": [
-                    {
-                        "name": "latest",
-                        "annotations": {
-                            "openshift.io/display-name": "Application ${APP_NAME}",
-                            "description": "Base image for the application ${APP_NAME}",
-                            "iconClass": "icon-mysql-database",
-                            "tags": "startx,fedora,couchbase,database,application,${APP_NAME}",
-                            "supports": "db",
-                            "version": "rawhide"
                         }
                     }
                 ]
@@ -139,16 +107,6 @@
                                     "/bin/sx-couchbase",
                                     "pre-deploy"
                                 ],
-                                "env": [
-                                    {
-                                        "name": "SX_VERBOSE",
-                                        "value": "true"
-                                    },
-                                    {
-                                        "name": "SX_DEBUG",
-                                        "value": "true"
-                                    }
-                                ],
                                 "containerName": "${APP_NAME}"
                             }
                         },
@@ -158,16 +116,6 @@
                                 "command": [
                                     "/bin/sx-couchbase",
                                     "post-deploy"
-                                ],
-                                "env": [
-                                    {
-                                        "name": "SX_VERBOSE",
-                                        "value": "true"
-                                    },
-                                    {
-                                        "name": "SX_DEBUG",
-                                        "value": "true"
-                                    }
                                 ],
                                 "containerName": "${APP_NAME}"
                             }
@@ -193,9 +141,6 @@
                         "type": "ConfigChange"
                     }
                 ],
-                "postCommit": {
-                    "script": "/bin/sx-couchbase info"
-                },
                 "replicas": 1,
                 "test": false,
                 "selector": {
@@ -221,12 +166,6 @@
                             {
                                 "name": "${APP_NAME}",
                                 "image": " ",
-                                "env": [
-                                    {
-                                        "name": "SX_VERBOSE",
-                                        "value": "true"
-                                    }
-                                ],
                                 "command": [
                                     "/bin/sx-couchbase"
                                 ],
@@ -257,7 +196,17 @@
                                         "value": "${COUCHBASE_BUCKETS}"
                                     }
                                 ],
-                                "resources": {},
+                                "resources": {
+                                    "limits": {
+                                        "memory": "${MEMORY_LIMIT}"
+                                    }
+                                },
+                                "volumeMounts": [
+                                    {
+                                        "name": "${APP_NAME}-data",
+                                        "mountPath": "/opt/couchbase/var"
+                                    }
+                                ],
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
@@ -286,6 +235,14 @@
                                 },
                                 "terminationMessagePath": "/dev/termination-log",
                                 "imagePullPolicy": "Always"
+                            }
+                        ],
+                        "volumes": [
+                            {
+                                "name": "${APP_NAME}-data",
+                                "emptyDir": {
+                                    "medium": ""
+                                }
                             }
                         ],
                         "restartPolicy": "Always",
@@ -336,85 +293,6 @@
             "status": {
                 "loadBalancer": {}
             }
-        },
-        {
-            "kind": "BuildConfig",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APP_NAME}",
-                "creationTimestamp": null,
-                "labels": {
-                    "app": "${APP_NAME}",
-                    "type": "${APP_TYPE}",
-                    "provider": "startx",
-                    "template": "startx-sv-couchbase-template"
-                },
-                "annotations": {
-                    "openshift.io/generated-by": "STARTX"
-                }
-            },
-            "spec": {
-                "triggers": [
-                    {
-                        "type": "GitHub",
-                        "github": {
-                            "secret": "${WEBHOOK_TOKEN}_${APP_NAME}"
-                        }
-                    },
-                    {
-                        "type": "Generic",
-                        "generic": {
-                            "secret": "${WEBHOOK_TOKEN}_${APP_NAME}"
-                        }
-                    },
-                    {
-                        "type": "ImageChange",
-                        "imageChange": {}
-                    },
-                    {
-                        "type": "ConfigChange"
-                    }
-                ],
-                "runPolicy": "SerialLatestOnly",
-                "source": {
-                    "type": "Git",
-                    "git": {
-                        "uri": "${SOURCE_GIT}",
-                        "ref": "${SOURCE_BRANCH}"
-                    }
-                },
-                "strategy": {
-                    "type": "Source",
-                    "sourceStrategy": {
-                        "from": {
-                            "kind": "ImageStreamTag",
-                            "name": "startx-sv-couchbase:latest"
-                        },
-                        "env": [
-                            {
-                                "name": "SX_VERBOSE",
-                                "value": "true"
-                            }
-                        ]
-                    }
-                },
-                "output": {
-                    "to": {
-                        "kind": "ImageStreamTag",
-                        "name": "${APP_NAME}:latest"
-                    }
-                },
-                "resources": {},
-                "postCommit": {
-                    "command": [
-                        "/bin/sx-couchbase",
-                        "post-build"
-                    ]
-                }
-            },
-            "status": {
-                "lastVersion": 0
-            }
         }
     ],
     "parameters": [
@@ -430,28 +308,6 @@
             "displayName": "Application type",
             "description": "The type of the created application",
             "value": "database"
-        },
-        {
-            "name": "SOURCE_GIT",
-            "displayName": "Source repository",
-            "description": "URL to the source code to use during build process",
-            "value": "https://github.com/startxfr/docker-images-example-couchbase.git",
-            "required": true
-        },
-        {
-            "name": "SOURCE_BRANCH",
-            "displayName": "Source branch",
-            "description": "Name of the default branch",
-            "value": "master",
-            "required": true
-        },
-        {
-            "name": "WEBHOOK_TOKEN",
-            "displayName": "Webhook token",
-            "description": "Secret token to use for webhook to github or generic",
-            "generate": "expression",
-            "from": "[a-zA-Z0-9]{24}",
-            "required": true
         },
         {
             "name": "COUCHBASE_USER",
@@ -472,6 +328,13 @@
             "name": "COUCHBASE_BUCKETS",
             "displayName": "Couchbase bucket",
             "description": "list of the default's bucket to create"
+        },
+        {
+            "name": "MEMORY_LIMIT",
+            "displayName": "Memory Limit",
+            "description": "Maximum amount of memory the container can use.",
+            "value": "512Mi",
+            "required": true
         }
     ]
 }
