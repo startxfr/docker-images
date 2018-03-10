@@ -159,7 +159,7 @@
                                     "exec": {
                                         "command": [
                                             "/bin/sx-php",
-                                            "health"
+                                            "isLive"
                                         ]
                                     },
                                     "initialDelaySeconds": 5,
@@ -172,7 +172,7 @@
                                     "exec": {
                                         "command": [
                                             "/bin/sx-php",
-                                            "health"
+                                            "isReady"
                                         ]
                                     },
                                     "initialDelaySeconds": 2,

@@ -162,7 +162,7 @@
                                     "exec": {
                                         "command": [
                                             "/bin/sx-apache",
-                                            "health"
+                                            "isLive"
                                         ]
                                     },
                                     "initialDelaySeconds": 5,
@@ -175,7 +175,7 @@
                                     "exec": {
                                         "command": [
                                             "/bin/sx-apache",
-                                            "health"
+                                            "isReady"
                                         ]
                                     },
                                     "initialDelaySeconds": 2,

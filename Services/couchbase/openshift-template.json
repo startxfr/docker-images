@@ -201,7 +201,7 @@
                                     "exec": {
                                         "command": [
                                             "/bin/sx-couchbase",
-                                            "health"
+                                            "isLive"
                                         ]
                                     },
                                     "initialDelaySeconds": 5,
@@ -214,7 +214,7 @@
                                     "exec": {
                                         "command": [
                                             "/bin/sx-couchbase",
-                                            "health"
+                                            "isReady"
                                         ]
                                     },
                                     "initialDelaySeconds": 2,

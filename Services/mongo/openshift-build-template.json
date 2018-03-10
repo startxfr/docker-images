@@ -262,7 +262,7 @@
                                     "exec": {
                                         "command": [
                                             "/bin/sx-mongo",
-                                            "health"
+                                            "isLive"
                                         ]
                                     },
                                     "initialDelaySeconds": 5,
@@ -275,7 +275,7 @@
                                     "exec": {
                                         "command": [
                                             "/bin/sx-mongo",
-                                            "health"
+                                            "isReady"
                                         ]
                                     },
                                     "initialDelaySeconds": 2,

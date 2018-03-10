@@ -220,7 +220,7 @@
                                     "exec": {
                                         "command": [
                                             "/bin/sx-ooconv",
-                                            "health"
+                                            "isLive"
                                         ]
                                     },
                                     "initialDelaySeconds": 4,
@@ -233,7 +233,7 @@
                                     "exec": {
                                         "command": [
                                             "/bin/sx-ooconv",
-                                            "health"
+                                            "isReady"
                                         ]
                                     },
                                     "initialDelaySeconds": 4,

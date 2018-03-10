@@ -256,7 +256,7 @@
                                     "exec": {
                                         "command": [
                                             "/bin/sx-mariadb",
-                                            "health"
+                                            "isLive"
                                         ]
                                     },
                                     "initialDelaySeconds": 5,
@@ -269,7 +269,7 @@
                                     "exec": {
                                         "command": [
                                             "/bin/sx-mariadb",
-                                            "health"
+                                            "isReady"
                                         ]
                                     },
                                     "initialDelaySeconds": 2,

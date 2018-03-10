@@ -157,7 +157,7 @@
                                     "exec": {
                                         "command": [
                                             "/bin/sx",
-                                            "health"
+                                            "isLive"
                                         ]
                                     },
                                     "initialDelaySeconds": 5,
@@ -170,7 +170,7 @@
                                     "exec": {
                                         "command": [
                                             "/bin/sx",
-                                            "health"
+                                            "isReady"
                                         ]
                                     },
                                     "initialDelaySeconds": 2,

@@ -221,7 +221,7 @@
                                     "exec": {
                                         "command": [
                                             "/bin/sx-memcache",
-                                            "health"
+                                            "isLive"
                                         ]
                                     },
                                     "initialDelaySeconds": 5,
@@ -234,7 +234,7 @@
                                     "exec": {
                                         "command": [
                                             "/bin/sx-memcache",
-                                            "health"
+                                            "isReady"
                                         ]
                                     },
                                     "initialDelaySeconds": 2,
