@@ -78,6 +78,16 @@ function couchbaseRun {
     startCouchbaseService
 }
 
+# Display liveness status
+function couchbaseIsLive {
+    genericIsLive
+}
+
+# Display readyness status
+function couchbaseIsReady {
+    genericIsReady
+}
+
 function stop_couchbase_handler {
     /opt/couchbase/bin/couchbase-server -k
     echo "+====================================================="

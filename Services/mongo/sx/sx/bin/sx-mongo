@@ -9,8 +9,8 @@ case $1 in
     pre-deploy)             mongoPreDeploy $@ ;;
     post-deploy)            mongoPostDeploy $@ ;;
     run)                    mongoRun $@ ;;
-    isLive)                 genericIsLive $@ ;;
-    isReady)                genericIsReady $@ ;;
+    isLive)                 mongoIsLive $@ ;;
+    isReady)                mongoIsReady $@ ;;
     info)                   mongoInformation $@ ;;
     usage|help|--help)      genericUsage $@ ;;
     usageS2i)               genericUsageS2I $@ ;;

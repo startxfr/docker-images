@@ -83,6 +83,16 @@ function mysqlRun {
     startMariadbService
 }
 
+# Display liveness status
+function mysqlIsLive {
+    genericIsLive
+}
+
+# Display readyness status
+function mysqlIsReady {
+    genericIsReady
+}
+
 
 # Init the mariadb server
 function init_service_mariadb {

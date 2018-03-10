@@ -9,8 +9,8 @@ case $1 in
     pre-deploy)             apachePreDeploy $@ ;;
     post-deploy)            apachePostDeploy $@ ;;
     run)                    apacheRun $@ ;;
-    isLive)                 genericIsLive $@ ;;
-    isReady)                genericIsReady $@ ;;
+    isLive)                 apacheIsLive $@ ;;
+    isReady)                apacheIsReady $@ ;;
     info)                   apacheInformation $@ ;;
     usage|help|--help)      genericUsage $@ ;;
     usageS2i)               genericUsageS2I $@ ;;

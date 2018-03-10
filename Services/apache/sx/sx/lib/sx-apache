@@ -87,6 +87,16 @@ function apacheRun {
     startApacheService
 }
 
+# Display liveness status
+function apacheIsLive {
+    genericIsLive
+}
+
+# Display readyness status
+function apacheIsReady {
+    genericIsReady
+}
+
 # function executed on apahce service stop
 function stopApacheHandler {
     killall httpd

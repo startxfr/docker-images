@@ -79,6 +79,16 @@ function mongoRun {
     startMongoService
 }
 
+# Display liveness status
+function mongoIsLive {
+    genericIsLive
+}
+
+# Display readyness status
+function mongoIsReady {
+    genericIsReady
+}
+
 function stop_mongo_handler {
     killall /usr/bin/mongod
     echo "+====================================================="

@@ -67,3 +67,13 @@ function phpRun {
     echo "+====================================================="
     startApacheService
 }
+
+# Display liveness status
+function phpIsLive {
+    genericIsLive
+}
+
+# Display readyness status
+function phpIsReady {
+    genericIsReady
+}

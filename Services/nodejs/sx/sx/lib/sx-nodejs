@@ -89,6 +89,16 @@ function nodejsRun {
     startNodejsService
 }
 
+# Display liveness status
+function nodejsIsLive {
+    genericIsLive
+}
+
+# Display readyness status
+function nodejsIsReady {
+    genericIsReady
+}
+
 
 # function executed on apahce service stop
 function stop_nodejs_handler {

@@ -86,6 +86,16 @@ function postgresRun {
     startPostgresService
 }
 
+# Display liveness status
+function postgresIsLive {
+    genericIsLive
+}
+
+# Display readyness status
+function postgresIsReady {
+    genericIsReady
+}
+
 function stop_postgres_handler {
     postgres -c "pg_ctl stop -D $DATA_PATH -w"
     echo "+====================================================="

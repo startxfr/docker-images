@@ -174,16 +174,16 @@ echo $SXDBTOOLS_VERSION
 exit 0;
 }
 
-# Display health
+# Display liveness status
 function genericIsLive {
 echo "OK"
 exit 0;
 }
 
-# Display health
+# Display readyness status
 function genericIsReady {
-echo "OK"
-exit 0;
+    echo "OK"
+    exit 0;
 }
 
 # start daemon

@@ -74,6 +74,16 @@ function memcacheRun {
     startMemcacheService
 }
 
+# Display liveness status
+function memcacheIsLive {
+    genericIsLive
+}
+
+# Display readyness status
+function memcacheIsReady {
+    genericIsReady
+}
+
 function stop_memcache_handler {
     killall memcached
     echo "+====================================================="

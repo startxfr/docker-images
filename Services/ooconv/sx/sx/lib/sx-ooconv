@@ -71,6 +71,16 @@ function ooconvRun {
     startOOconvService
 }
 
+# Display liveness status
+function ooconvIsLive {
+    genericIsLive
+}
+
+# Display readyness status
+function ooconvIsReady {
+    genericIsReady
+}
+
 function stop_ooconv_handler {
     killall unoconv soffice.bin 
     echo "+====================================================="

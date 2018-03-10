@@ -9,8 +9,8 @@ case $1 in
     pre-deploy)             ooconvPreDeploy $@ ;;
     post-deploy)            ooconvPostDeploy $@ ;;
     run)                    ooconvRun $@ ;;
-    isLive)                 genericIsLive $@ ;;
-    isReady)                genericIsReady $@ ;;
+    isLive)                 ooconvIsLive $@ ;;
+    isReady)                ooconvIsReady $@ ;;
     info)                   ooconvInformation $@ ;;
     usage|help|--help)      genericUsage $@ ;;
     usageS2i)               genericUsageS2I $@ ;;
