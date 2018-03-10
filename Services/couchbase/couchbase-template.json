@@ -196,6 +196,52 @@
                                         "value": "${COUCHBASE_BUCKETS}"
                                     }
                                 ],
+                                "ports": [
+                                    {
+                                        "containerPort": 8091,
+                                        "protocol": "TCP"
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 8092
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 8093
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 8094
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 11207
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 11210
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 11211
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 18091
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 18092
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 18093
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 18094
+                                    }
+                                ],
                                 "resources": {
                                     "limits": {
                                         "memory": "${MEMORY_LIMIT}"
@@ -278,9 +324,70 @@
             "spec": {
                 "ports": [
                     {
+                        "name": "cluster-webapi",
                         "protocol": "TCP",
-                        "port": 3306,
-                        "targetPort": 3306
+                        "port": 8091,
+                        "targetPort": 8091
+                    },
+                    {
+                        "name": "cluster-viewxdcr",
+                        "protocol": "TCP",
+                        "port": 8092,
+                        "targetPort": 8092
+                    },
+                    {
+                        "name": "cluster-query",
+                        "protocol": "TCP",
+                        "port": 8093,
+                        "targetPort": 8093
+                    },
+                    {
+                        "name": "cluster-fts",
+                        "protocol": "TCP",
+                        "port": 8094,
+                        "targetPort": 8094
+                    },
+                    {
+                        "name": "data-moxi-ssl",
+                        "protocol": "TCP",
+                        "port": 11207,
+                        "targetPort": 11207
+                    },
+                    {
+                        "name": "data-moxi",
+                        "protocol": "TCP",
+                        "port": 11210,
+                        "targetPort": 11210
+                    },
+                    {
+                        "name": "data-legacy",
+                        "protocol": "TCP",
+                        "port": 11211,
+                        "targetPort": 11211
+                    },
+                    {
+                        "name": "cluster-webapi-ssl",
+                        "protocol": "TCP",
+                        "port": 18091,
+                        "targetPort": 18091
+                    },
+                    {
+                        "name": "cluster-viewxdcr-ssl",
+                        "protocol": "TCP",
+                        "port": 18092,
+                        "targetPort": 18092
+                    },
+                    {
+                        "name": "cluster-query-ssl",
+                        "protocol": "TCP",
+                        "port": 18093,
+                        "targetPort": 18093
+                    },
+                    {
+                        "name": "cluster-fts-ssl",
+                        "protocol": "TCP",
+                        "port": 18094,
+                        "targetPort": 18094
                     }
                 ],
                 "selector": {
