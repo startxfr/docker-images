@@ -2,13 +2,13 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-mongo",
+        "name": "startx-sv-couchbase-template",
         "annotations": {
-            "openshift.io/display-name": "Startx MongoDB server (fedora)",
-            "description": "MongoDB server for NoSQL database running under Fedora",
-            "iconClass": "icon-mongodb",
-            "tags": "startx,os,fedora,mongo,database",
-            "openshift.io/long-description": "This template provides an mongo Database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/display-name": "Startx Couchbase server (fedora)",
+            "description": "Couchbase server for NoSQL database running under Fedora",
+            "iconClass": "icon-mysql-database",
+            "tags": "startx,os,fedora,couchbase,database",
+            "openshift.io/long-description": "This template provides an couchbase db Couchbase Database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -16,20 +16,20 @@
     },
     "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
     "labels": {
-        "template": "startx-sv-mongo"
+        "template": "startx-sv-couchbase-template"
     },
     "objects": [
         {
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-mongo",
+                "name": "startx-sv-couchbase-template",
                 "annotations": {
-                    "openshift.io/display-name": "Startx MongoDB Database",
+                    "openshift.io/display-name": "Startx Couchbase Database",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-mongo",
+                    "base-image": "startx-sv-couchbase-template",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx"
@@ -40,17 +40,17 @@
                     {
                         "name": "latest",
                         "annotations": {
-                            "openshift.io/display-name": "Startx MongoDB Database (Fedora rawhide)",
-                            "description": "MongoDB server for simple SQL database running under Fedora rawhide",
-                            "iconClass": "icon-mongodb",
-                            "tags": "builder,startx,fedora,mongo,database",
+                            "openshift.io/display-name": "Startx Couchbase Database (Fedora rawhide)",
+                            "description": "Couchbase server for NoSQL database running under Fedora rawhide",
+                            "iconClass": "icon-mysql-database",
+                            "tags": "builder,startx,fedora,couchbase,database",
                             "supports": "db",
                             "version": "rawhide",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mongo.git"
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-couchbase.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-mongo:latest"
+                            "name": "startx/sv-couchbase:latest"
                         }
                     }
                 ]
@@ -66,7 +66,7 @@
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-mongo",
+                    "base-image": "startx-sv-couchbase-template",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx"
@@ -79,8 +79,8 @@
                         "annotations": {
                             "openshift.io/display-name": "Application ${APP_NAME}",
                             "description": "Base image for the application ${APP_NAME}",
-                            "iconClass": "icon-mongodb",
-                            "tags": "startx,fedora,mongo,database,application,${APP_NAME}",
+                            "iconClass": "icon-mysql-database",
+                            "tags": "startx,fedora,couchbase,database,application,${APP_NAME}",
                             "supports": "db",
                             "version": "rawhide"
                         }
@@ -98,12 +98,12 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mongo"
+                    "template": "startx-sv-couchbase-template"
                 }
             },
             "stringData": {
-                "MONGO_PASSWORD": "${MONGO_PASSWORD}",
-                "MONGO_USER": "${MONGO_USER}"
+                "COUCHBASE_PASSWORD": "${COUCHBASE_PASSWORD}",
+                "COUCHBASE_USER": "${COUCHBASE_USER}"
             }
         },
         {
@@ -117,7 +117,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mongo"
+                    "template": "startx-sv-couchbase-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -136,7 +136,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-mongo",
+                                    "/bin/sx-couchbase",
                                     "pre-deploy"
                                 ],
                                 "env": [
@@ -156,7 +156,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-mongo",
+                                    "/bin/sx-couchbase",
                                     "post-deploy"
                                 ],
                                 "env": [
@@ -194,7 +194,7 @@
                     }
                 ],
                 "postCommit": {
-                    "script": "/bin/sx-mongo info"
+                    "script": "/bin/sx-couchbase info"
                 },
                 "replicas": 1,
                 "test": false,
@@ -209,7 +209,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-sv-mongo",
+                            "template": "startx-sv-couchbase-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -220,7 +220,7 @@
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
-                                "image": "startx/sv-mongo@sha256:fdeea7651d752e09fd9d6e760e85ef7667f7e443c9712d0e5f051c105e66bf05",
+                                "image": "startx/sv-couchbase@sha256:fdeea7651d752e09fd9d6e760e85ef7667f7e443c9712d0e5f051c105e66bf05",
                                 "env": [
                                     {
                                         "name": "SX_VERBOSE",
@@ -228,40 +228,40 @@
                                     }
                                 ],
                                 "command": [
-                                    "/bin/sx-mongo"
+                                    "/bin/sx-couchbase"
                                 ],
                                 "args": [
                                     "run"
                                 ],
                                 "env": [
                                     {
-                                        "name": "MONGO_PASSWORD",
+                                        "name": "COUCHBASE_PASSWORD",
                                         "valueFrom": {
                                             "secretKeyRef": {
                                                 "name": "${APP_NAME}",
-                                                "key": "MONGO_PASSWORD"
+                                                "key": "COUCHBASE_PASSWORD"
                                             }
                                         }
                                     },
                                     {
-                                        "name": "MONGO_USER",
+                                        "name": "COUCHBASE_USER",
                                         "valueFrom": {
                                             "secretKeyRef": {
                                                 "name": "${APP_NAME}",
-                                                "key": "MONGO_USER"
+                                                "key": "COUCHBASE_USER"
                                             }
                                         }
                                     },
                                     {
-                                        "name": "MONGO_STORES",
-                                        "value": "${MONGO_STORES}"
+                                        "name": "COUCHBASE_BUCKETS",
+                                        "value": "${COUCHBASE_BUCKETS}"
                                     }
                                 ],
                                 "resources": {},
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-mongo",
+                                            "/bin/sx-couchbase",
                                             "health"
                                         ]
                                     },
@@ -274,7 +274,7 @@
                                 "readinessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-mongo",
+                                            "/bin/sx-couchbase",
                                             "health"
                                         ]
                                     },
@@ -312,7 +312,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mongo"
+                    "template": "startx-sv-couchbase-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -347,7 +347,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mongo"
+                    "template": "startx-sv-couchbase-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -388,7 +388,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-mongo:latest"
+                            "name": "startx-sv-couchbase-template:latest"
                         },
                         "env": [
                             {
@@ -407,7 +407,7 @@
                 "resources": {},
                 "postCommit": {
                     "command": [
-                        "/bin/sx-mongo",
+                        "/bin/sx-couchbase",
                         "post-build"
                     ]
                 }
@@ -422,7 +422,7 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "mongo",
+            "value": "couchbase",
             "required": true
         },
         {
@@ -435,7 +435,7 @@
             "name": "SOURCE_GIT",
             "displayName": "Source repository",
             "description": "URL to the source code to use during build process",
-            "value": "https://github.com/startxfr/docker-images-example-mongo.git",
+            "value": "https://github.com/startxfr/docker-images-example-couchbase.git",
             "required": true
         },
         {
@@ -454,24 +454,24 @@
             "required": true
         },
         {
-            "name": "MONGO_USER",
-            "displayName": "MongoDB user",
+            "name": "COUCHBASE_USER",
+            "displayName": "Couchbase user",
             "description": "Default user to create",
             "value": "demo",
             "from": "[A-Z0-9]{8}",
             "generate": "expression"
         },
         {
-            "name": "MONGO_PASSWORD",
-            "displayName": "MongoDB root password",
-            "description": "The mysql root password to use. Generated if not provided",
+            "name": "COUCHBASE_PASSWORD",
+            "displayName": "Couchbase root password",
+            "description": "The couchbase admin password to use. Generated if not provided",
             "from": "[A-Z0-9]{16}",
             "generate": "expression"
         },
         {
-            "name": "MONGO_STORES",
-            "displayName": "MongoDB store",
-            "description": "list of the default's store to create"
+            "name": "COUCHBASE_BUCKETS",
+            "displayName": "Couchbase bucket",
+            "description": "list of the default's bucket to create"
         }
     ]
 }
