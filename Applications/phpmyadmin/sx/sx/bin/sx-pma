@@ -1,0 +1,19 @@
+#!/bin/bash
+source /var/lib/sx/sx-pma
+
+check_apache_environment
+# Dispatch input arguments
+case $1 in
+    assemble|build)         pmaAssemble $@ ;;
+    post-build)             pmaPostBuild $@ ;;
+    pre-deploy)             pmaPreDeploy $@ ;;
+    post-deploy)            pmaPostDeploy $@ ;;
+    run)                    pmaRun $@ ;;
+    isLive)                 pmaIsLive $@ ;;
+    isReady)                pmaIsReady $@ ;;
+    info)                   pmaInformation $@ ;;
+    usage|help|--help)      genericUsage $@ ;;
+    usageS2i)               genericUsageS2I $@ ;;
+    version|--version)      genericVersion $@ ;;
+    *)                      genericWelcome $@ ;;
+esac

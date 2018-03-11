@@ -4,11 +4,7 @@ Simple container used to deliver static http content include all apache's module
 Run [apache httpd daemon](https://httpd.apache.org/) under a container 
 based on [startx/centos:7 container](https://hub.docker.com/r/startx/centos)
 
-Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
-or **[other apache flavours](https://github.com/startxfr/docker-images/Services/apache/#available-flavours)**
-
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-apache/) | [Sources](https://github.com/startxfr/docker-images/tree/centos7/Services/apache)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-apache/) | [Sources](https://github.com/startxfr/docker-images/tree/master/Services/apache)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------------------------|-----------------------------------------------|
 
 ## Available flavours
@@ -119,12 +115,12 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-0. Switch to the flavour branch with `git branch centos7`
-1. Jump into the container directory with `cd Services/apache`
-2. Build the container using `docker build -t sv-apache-centos7 .`
-3. Run this container 
-  1. Interactively with `docker run -p 8080:8080 -v /logs -it sv-apache-centos7`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -p 8080:8080 -v /logs -d sv-apache-centos7`
+1. Switch to the flavour branch with `git branch centos7`
+2. Jump into the container directory with `cd Services/apache`
+3. Build the container using `docker build -t sv-apache-centos7 .`
+4. Run this container 
+  1. Interactively with `docker run -p 80:80 -v /logs -it sv-apache-centos7`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 80:80 -v /logs -d sv-apache-centos7`
 
 
 ### Build & run a container using `docker-compose`

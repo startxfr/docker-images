@@ -4,14 +4,19 @@ Simple container used to deliver document-oriented database
 Run [mongodb daemon](https://www.mongodb.org/) under a container 
 based on [startx/centos:7 container](https://hub.docker.com/r/startx/centos)
 
-Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
-or **[other mongo flavours](https://github.com/startxfr/docker-images/Services/mongo/#available-flavours)**
-
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-mongo/) | [Sources](https://github.com/startxfr/docker-images/tree/centos7/Services/mongo)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-mongo/) | [Sources](https://github.com/startxfr/docker-images/tree/master/Services/mongo)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|---------------------------------------------------------------------------------|-----------------------------------------------|
 
 ## Available flavours
+
+* `:latest` : Fedora core 23 + MongoDB 3.0.7 
+* `:fc27` : Fedora core 27 + MongoDB 3.0.7  
+* `:fc26` : Fedora core 26 + MongoDB 3.0.7  
+* `:fc23` : Fedora core 23 + MongoDB 3.0.7  
+* `:fc22` : Fedora core 22 + MongoDB 
+* `:fc21` : Fedora core 21 + MongoDB 
+* `:centos7` : CentOS 7 + MongoDB 
+* `:centos7` : Centos 7 + MongoDB 
 
 ## Running from dockerhub registry
 
@@ -121,8 +126,8 @@ You must have a working environment with the source code of this repository. Rea
 2. Jump into the container directory with `cd Services/mongo`
 3. Build the container using `docker build -t sv-mongo .`
 4. Run this container 
-  1. Interactively with `docker run -p 27017:27017 -v /logs -it sv-mongo`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -p 27017:27017 -v /logs -d sv-mongo`
+  1. Interactively with `docker run -p 27017:27017 -v /logs -it sv-mongo-centos7`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 27017:27017 -v /logs -d sv-mongo-centos7`
 
 
 ### Build & run a container using `docker-compose`

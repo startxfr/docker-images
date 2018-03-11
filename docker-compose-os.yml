@@ -1,4 +1,4 @@
-centos:
+centos7:
   extends:
     file: OS/docker-compose.yml
-    service: centos
+    service: centos7

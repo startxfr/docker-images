@@ -2,7 +2,7 @@ FROM startx/centos:7
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="centos7" \
     SX_TYPE="service" \
     SX_SERVICE="ooconv" \
     SX_ID="startx/sv-ooconv" \
@@ -29,7 +29,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum -y install unoconv libreoffice-writer libreoffice-calc pdfmod ghostscript && \
+RUN yum --nogpgcheck -y install unoconv libreoffice-writer libreoffice-calc pdfmod ghostscript && \
     yum clean all && \
     mkdir -p $DATA_PATH /.cache && \
     mv /tmp/s2i/bin/* /s2i/ && \
@@ -40,7 +40,8 @@ RUN yum -y install unoconv libreoffice-writer libreoffice-calc pdfmod ghostscrip
     chgrp -R 0 $DATA_PATH /bin/sx-* /s2i /var/lib/sx* /.cache && \
     chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* /.cache && \
     chmod -R g=u $DATA_PATH /bin/sx-* /s2i /var/lib/sx* /.cache && \
-    chmod -R ugo+x /bin/sx*
+    chmod -R ugo+x /bin/sx* && \
+    chmod -R ugo+wx /.cache
 
 USER 1001
 

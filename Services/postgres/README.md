@@ -4,14 +4,19 @@ Simple container used to deliver highly reliable and configurable transactional 
 Run [postgres daemon](http://www.postgresql.org/) under a container 
 based on [startx/centos:7 container](https://hub.docker.com/r/startx/centos)
 
-Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
-or **[other postgres flavours](https://github.com/startxfr/docker-images/Services/postgres/#available-flavours)**
-
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-postgres/) | [Sources](https://github.com/startxfr/docker-images/tree/centos7/Services/postgres)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-postgres/) | [Sources](https://github.com/startxfr/docker-images/tree/master/Services/postgres)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------|-----------------------------------------------|
 
 ## Available flavours
+
+* `:latest` : Fedora core 23 + PostgreSQL 9.4.5 
+* `:fc27` : Fedora core 27 + PostgreSQL 9.4.5  
+* `:fc26` : Fedora core 26 + PostgreSQL 9.4.5  
+* `:fc23` : Fedora core 23 + PostgreSQL 9.4.5  
+* `:fc22` : Fedora core 22 + PostgreSQL 
+* `:fc21` : Fedora core 21 + PostgreSQL 
+* `:centos7` : CentOS 7 + PostgreSQL 
+* `:centos7` : Centos 7 + PostgreSQL 
 
 ## Running from dockerhub registry
 
@@ -132,8 +137,8 @@ You must have a working environment with the source code of this repository. Rea
 2. Jump into the container directory with `cd Services/postgres`
 3. Build the container using `docker build -t sv-postgres .`
 4. Run this container 
-  1. Interactively with `docker run -p 5432:5432 -v /logs -it sv-postgres`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -p 5432:5432 -v /logs -d sv-postgres`
+  1. Interactively with `docker run -p 5432:5432 -v /logs -it sv-postgres-centos7`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 5432:5432 -v /logs -d sv-postgres-centos7`
 
 
 ### Build & run a container using `docker-compose`

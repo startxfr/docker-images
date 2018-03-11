@@ -2,13 +2,13 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-postgres",
+        "name": "startx-sv-nodejs-template",
         "annotations": {
-            "openshift.io/display-name": "Startx PostGresQL server (centos)",
-            "description": "PostGresQL server for simple SQL database running under Centos",
-            "iconClass": "icon-postgresql",
-            "tags": "startx,os,centos,postgres,database",
-            "openshift.io/long-description": "This template provides an postgres db PostGresQL Database in a centos container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/display-name": "Startx NodeJS micro-server (centos)",
+            "description": "NodeJS micro-server for micro-service application running under Centos",
+            "iconClass": "icon-nodejs",
+            "tags": "startx,os,centos,nodejs,httpd",
+            "openshift.io/long-description": "This template provides an nodejs micro-server in a centos container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -16,7 +16,7 @@
     },
     "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
     "labels": {
-        "template": "startx-sv-postgres"
+        "template": "startx-sv-nodejs-template"
     },
     "objects": [
         {
@@ -25,54 +25,34 @@
             "metadata": {
                 "name": "${APP_NAME}",
                 "annotations": {
-                    "openshift.io/display-name": "Startx PostGresQL Database",
-                    "openshift.io/generated-by": "STARTX"
+                    "openshift.io/display-name": "Startx NodeJS"
                 },
                 "labels": {
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-postgres"
+                    "template": "startx-sv-nodejs-template"
                 }
             },
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "centos7",
                         "annotations": {
-                            "openshift.io/display-name": "Startx PostGresQL Database (Centos 7)",
-                            "description": "PostGresQL server for simple SQL database running under Centos 7",
-                            "iconClass": "icon-postgresql",
-                            "tags": "builder,startx,centos,postgres,database",
-                            "supports": "db",
+                            "openshift.io/display-name": "Startx NodeJS (Centos 7)",
+                            "description": "NodeJS micro-server for micro-service application running under Centos 7",
+                            "iconClass": "icon-nodejs",
+                            "tags": "builder,startx,centos,nodejs,httpd",
+                            "supports": "http",
                             "version": "7",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-postgres.git"
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-nodejs.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-postgres:latest"
+                            "name": "startx/sv-nodejs:centos7"
                         }
                     }
                 ]
-            }
-        },
-        {
-            "kind": "Secret",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APP_NAME}",
-                "creationTimestamp": null,
-                "labels": {
-                    "app": "${APP_NAME}",
-                    "type": "${APP_TYPE}",
-                    "provider": "startx",
-                    "template": "startx-sv-postgres"
-                }
-            },
-            "stringData": {
-                "PGSQL_ROOT_PASSWORD": "${PGSQL_ROOT_PASSWORD}",
-                "PGSQL_USER": "${PGSQL_USER}",
-                "PGSQL_PASSWORD": "${PGSQL_PASSWORD}"
             }
         },
         {
@@ -86,7 +66,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-postgres"
+                    "template": "startx-sv-nodejs-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -98,14 +78,14 @@
                     "rollingParams": {
                         "updatePeriodSeconds": 1,
                         "intervalSeconds": 1,
-                        "timeoutSeconds": 120,
+                        "timeoutSeconds": 60,
                         "maxUnavailable": "25%",
                         "maxSurge": "25%",
                         "pre": {
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-postgres",
+                                    "/bin/sx-nodejs",
                                     "pre-deploy"
                                 ],
                                 "containerName": "${APP_NAME}"
@@ -115,7 +95,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-postgres",
+                                    "/bin/sx-nodejs",
                                     "post-deploy"
                                 ],
                                 "containerName": "${APP_NAME}"
@@ -134,7 +114,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:latest"
+                                "name": "${APP_NAME}:centos7"
                             }
                         }
                     },
@@ -155,7 +135,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-sv-postgres",
+                            "template": "startx-sv-nodejs-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -166,52 +146,19 @@
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
-                                "image": "startx/sv-postgres@sha256:fdeea7651d752e09fd9d6e760e85ef7667f7e443c9712d0e5f051c105e66bf05",
+                                "image": " ",
                                 "command": [
-                                    "/bin/sx-postgres"
+                                    "/bin/sx-nodejs"
                                 ],
                                 "args": [
                                     "run"
-                                ],
-                                "env": [
-                                    {
-                                        "name": "PGSQL_ROOT_PASSWORD",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}",
-                                                "key": "PGSQL_ROOT_PASSWORD"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "PGSQL_USER",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}",
-                                                "key": "PGSQL_USER"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "PGSQL_PASSWORD",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}",
-                                                "key": "PGSQL_PASSWORD"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "PGSQL_DATABASE",
-                                        "value": "${PGSQL_DATABASE}"
-                                    }
                                 ],
                                 "resources": {},
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-postgres",
-                                            "health"
+                                            "/bin/sx-nodejs",
+                                            "isLive"
                                         ]
                                     },
                                     "initialDelaySeconds": 5,
@@ -223,8 +170,8 @@
                                 "readinessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-postgres",
-                                            "health"
+                                            "/bin/sx-nodejs",
+                                            "isReady"
                                         ]
                                     },
                                     "initialDelaySeconds": 2,
@@ -248,6 +195,43 @@
             }
         },
         {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx",
+                    "template": "startx-sv-nodejs-template"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "STARTX"
+                }
+            },
+            "spec": {
+                "to": {
+                    "kind": "Service",
+                    "name": "${APP_NAME}",
+                    "weight": 100
+                }
+            },
+            "status": {
+                "ingress": [
+                    {
+                        "routerName": "router",
+                        "conditions": [
+                            {
+                                "type": "Admitted",
+                                "status": "True"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
             "kind": "Service",
             "apiVersion": "v1",
             "metadata": {
@@ -257,7 +241,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-postgres"
+                    "template": "startx-sv-nodejs-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -267,8 +251,8 @@
                 "ports": [
                     {
                         "protocol": "TCP",
-                        "port": 3306,
-                        "targetPort": 3306
+                        "port": 8080,
+                        "targetPort": 8080
                     }
                 ],
                 "selector": {
@@ -288,42 +272,14 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "postgres",
+            "value": "www-node",
             "required": true
         },
         {
             "name": "APP_TYPE",
             "displayName": "Application type",
             "description": "The type of the created application",
-            "value": "database"
-        },
-        {
-            "name": "PGSQL_ROOT_PASSWORD",
-            "displayName": "Postgresql root password",
-            "description": "The postgresql root password to use. Generated if not provided",
-            "from": "[A-Z0-9]{16}",
-            "generate": "expression"
-        },
-        {
-            "name": "PGSQL_USER",
-            "displayName": "Postgresql user",
-            "description": "Default user to create",
-            "value": "demo",
-            "from": "[A-Z0-9]{8}",
-            "generate": "expression"
-        },
-        {
-            "name": "PGSQL_PASSWORD",
-            "displayName": "Postgresql password",
-            "description": "Password of the default user",
-            "value": "demo",
-            "from": "[A-Z0-9]{16}",
-            "generate": "expression"
-        },
-        {
-            "name": "PGSQL_DATABASE",
-            "displayName": "Postgresql database",
-            "description": "name of the default database to create"
+            "value": "application"
         }
     ]
 }

@@ -4,14 +4,19 @@ Simple container used to deliver distributed memory object caching system
 Run [memcached daemon](https://www.memcached.org/) under a container 
 based on [startx/centos:7 container](https://hub.docker.com/r/startx/centos)
 
-Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
-or **[other memcache flavours](https://github.com/startxfr/docker-images/Services/memcache/#available-flavours)**
-
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-memcache/) | [Sources](https://github.com/startxfr/docker-images/tree/centos7/Services/memcache)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-memcache/) | [Sources](https://github.com/startxfr/docker-images/tree/master/Services/memcache)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|------------------------------------------------------------------------------------|-----------------------------------------------|
 
 ## Available flavours
+
+* `:latest` : Fedora core 23 + memcached 1.4.17 
+* `:fc27` : Fedora core 27 + memcached 1.4.17
+* `:fc26` : Fedora core 26 + memcached 1.4.17
+* `:fc23` : Fedora core 23 + memcached 1.4.17
+* `:fc22` : Fedora core 22 + memcached 
+* `:fc21` : Fedora core 21 + memcached 
+* `:centos7` : CentOS 7 + memcached
+* `:centos7` : Centos 7 + memcached 
 
 ## Running from dockerhub registry
 
@@ -104,8 +109,8 @@ You must have a working environment with the source code of this repository. Rea
 2. Jump into the container directory with `cd Services/memcache`
 3. Build the container using `docker build -t sv-memcache .`
 4. Run this container 
-  1. Interactively with `docker run -p 11211:11211 -v /logs -it sv-memcache`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -p 11211:11211 -v /logs -d sv-memcache`
+  1. Interactively with `docker run -p 11211:11211 -v /logs -it sv-memcache-centos7`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 11211:11211 -v /logs -d sv-memcache-centos7`
 
 
 ### Build & run a container using `docker-compose`

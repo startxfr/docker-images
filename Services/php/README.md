@@ -4,14 +4,19 @@ Simple container used to deliver dynamic http content using apache associated wi
 Run [PHP engine](https://www.php.net) under a container 
 based on [startx/centos:7 container](https://hub.docker.com/r/startx/centos)
 
-Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
-or **[other apache + php flavours](https://github.com/startxfr/docker-images/Services/php/#available-flavours)**
-
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-php/) | [Sources](https://github.com/startxfr/docker-images/tree/centos7/Services/php)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-php/) | [Sources](https://github.com/startxfr/docker-images/tree/master/Services/php)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------|-------------------------------------------------------------------------------|-----------------------------------------------|
 
 ## Available flavours
+
+* `:latest` : Fedora core 23 + Apache 2.4.17 + PHP 5.6.16
+* `:fc27` : Fedora core 27 + Apache 2.4.17 + PHP 5.6.16
+* `:fc26` : Fedora core 26 + Apache 2.4.17 + PHP 5.6.16
+* `:fc23` : Fedora core 23 + Apache 2.4.17 + PHP 5.6.16
+* `:fc22` : Fedora core 22 + Apache + PHP 
+* `:fc21` : Fedora core 21 + Apache + PHP 
+* `:centos7` : CentOS 7 + Apache + PHP 
+* `:centos7` : Centos 7 + Apache + PHP 
 
 ## Running from dockerhub registry
 
@@ -124,8 +129,8 @@ You must have a working environment with the source code of this repository. Rea
 2. Jump into the container directory with `cd Services/php`
 3. Build the container using `docker build -t sv-php .`
 4. Run this container 
-  1. Interactively with `docker run -p 80:80 -v /logs -it sv-php`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -p 80:80 -v /logs -d sv-php`
+  1. Interactively with `docker run -p 80:80 -v /logs -it sv-php-centos7`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 80:80 -v /logs -d sv-php-centos7`
 
 
 ### Build & run a container using `docker-compose`

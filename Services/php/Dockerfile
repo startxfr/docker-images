@@ -6,8 +6,8 @@ ENV SX_VERSION="centos7" \
     SX_TYPE="service" \
     SX_SERVICE="php" \
     SX_ID="startx/sv-php" \
-    SX_NAME="Startx Apache-PHP service image (CentOS 7)" \
-    SX_SUMMARY="Startx apache-php service based on CentOS 7"
+    SX_NAME="Startx Apache-PHP service image (centos 7)" \
+    SX_SUMMARY="Startx apache-php service based on centos 7"
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -30,24 +30,23 @@ USER root
 COPY httpd.conf $HTTPDCONF
 COPY php.ini /etc/php.d/sx.ini
 COPY sx /tmp/
-RUN yum -y install php php-cli php-pear \
+RUN yum --nogpgcheck -y install php php-cli php-pear \
         php-gd php-mcrypt php-mysqlnd php-soap \
         php-pdo php-process php-common php-mbstring \
         php-bcmath php-php-gettext php-tcpdf \
-        php-tcpdf-dejavu-sans-fonts php-tidy && \
+        php-tcpdf-dejavu-sans-fonts php-tidy php-fpm && \
     yum clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \
     rm -rf /tmp/sx /tmp/s2i && \
-    cat /etc/httpd/conf/httpd.conf | sed -e "s/Listen 80/#Listen 80/" > /etc/httpd/conf/httpd.conf && \
     chmod ug+r $HTTPDCONF && \
     chgrp -R 0 /bin/sx* /s2i && \
     chown -R 1001:0 /bin/sx* /s2i && \
     chmod -R g=u /bin/sx* /s2i && \
     chmod -R ugo+x /bin/sx*
-COPY ./index.php $APP_PATH
-RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH
+COPY index.php $APP_PATH/index.php
+RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH && rm -rf $APP_PATH/index.html
 
 USER 1001
 

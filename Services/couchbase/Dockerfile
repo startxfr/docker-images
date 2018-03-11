@@ -2,7 +2,7 @@ FROM startx/centos:7
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="centos7" \
     SX_TYPE="service" \
     SX_SERVICE="couchbase" \
     SX_ID="startx/sv-couchbase" \
@@ -34,24 +34,32 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum -y install python-httplib2 openssl && \
+RUN yum --nogpgcheck -y install python-httplib2 openssl ncurses ncurses-libs ncurses-compat-libs && \
     yum clean all && \
+    #echo 0 > /proc/sys/vm/swappiness && \
+    echo '' >> /etc/sysctl.conf && \
+    echo '#Set swappiness to 0 to avoid swapping' >> /etc/sysctl.conf && \
+    echo 'vm.swappiness = 0' >> /etc/sysctl.conf && \
+    #echo never > /sys/kernel/mm/transparent_hugepage/enabled && \
+    #echo never > /sys/kernel/mm/transparent_hugepage/defrag && \
     wget $CB_RELEASE_URL/$CB_PACKAGE && \
     rpm --install $CB_PACKAGE && \
+    rm -rf $CB_PACKAGE && \
     usermod -a -G 0 couchbase && \
     mkdir -p /var/lib/sx /s2i && \
-    mkdir -p $DATA_PATH /opt/couchbase/var/lib/couchbase \
-        /opt/couchbase/var/lib/couchbase/config \
-        /opt/couchbase/var/lib/couchbase/data \
-        /opt/couchbase/var/lib/couchbase/stats \
-        /opt/couchbase/var/lib/couchbase/logs \
-        /opt/couchbase/var/lib/moxi && \
+    mkdir -p $DATA_PATH/lib/couchbase \
+        $DATA_PATH/lib/couchbase/config \
+        $DATA_PATH/lib/couchbase/data \
+        $DATA_PATH/lib/couchbase/stats \
+        $DATA_PATH/lib/couchbase/logs \
+        $DATA_PATH/lib/moxi && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     touch $DATA_PATH/.keep && \
-    chown -R couchbase:couchbase $DATA_PATH /opt/couchbase/var && \
+    chmod g=u / && \
+    chown -R couchbase:couchbase $DATA_PATH && \
     chgrp -R 0 $CB_PATH /bin/sx-* /s2i /var/lib/sx* && \
     chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* && \
     chmod -R g=u $CB_PATH /bin/sx-* /s2i /var/lib/sx* && \

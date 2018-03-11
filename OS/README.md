@@ -3,19 +3,16 @@
 Simple container used for all startx based services and applications published in [Dockerhub registry](https://github.com/startxfr/docker-images). 
 This container contain updated core OS rpm (kernel, libs,...) as well as usefull tools like pwgen, tar, zip, psmisc, procps, coreutils, findutils, wget
 
-please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
-or [other OS distributions and flavours](https://github.com/startxfr/docker-images/OS#container-flavours)
-
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/centos) | [Sources](https://github.com/startxfr/docker-images/tree/centos7/OS/)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/centos) | [Sources](https://github.com/startxfr/docker-images/tree/master/OS/)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|----------------------------------------------------------------------|-----------------------------------------------|
 
 ## Container flavours
 
-| Version    | Docker Hub repository                                                   | Openshift                                   | CentOS distribution                         |
+| Version    | Docker Hub repository                                                   | Openshift                                   | Centos distribution                         |
 |------------|-------------------------------------------------------------------------|---------------------------------------------|---------------------------------------------|
-| latest     | [`startx/centos:latest`](https://hub.docker.com/r/startx/centos)        | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-is.json) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-dc.json)   | Centos 7  (kernel 3.10 + GNU 3.10  ) 
-| 7          | [`startx/centos:7`](https://hub.docker.com/r/startx/centos)             | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-is.json) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-dc.json)   | Centos 7  (kernel 4.2 + GNU 3.10  )
-| 6          | [`startx/centos:6`](https://hub.docker.com/r/startx/centos)             | **N/A**                                                                                                                                                                                                          | Centos 6  (kernel 3.16 + GNU 3.6  ) 
+| latest     | [`startx/centos:latest`](https://hub.docker.com/r/startx/centos)        | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-is.json) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-dc.json)        | Centos 7.4 (kernel 3.10.0-693  )        |
+| 7          | [`startx/centos:7`](https://hub.docker.com/r/startx/centos)             | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-is.json) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-dc.json)        | Centos 7 (kernel 3.10.0-514  )        |
+| 6          | [`startx/centos:6`](https://hub.docker.com/r/startx/centos)             | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/centos6/OS/openshift-is.json) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/centos6/OS/openshift-dc.json)        | Centos 6 (kernel 2.6.32-696  )        |
 
 ## Running this image
 
@@ -24,7 +21,7 @@ or [other OS distributions and flavours](https://github.com/startxfr/docker-imag
 * with `docker` you can run `docker run -it --name="centos7" startx/centos:7` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```yaml
-centos:
+centos7:
   image: startx/centos:7
   container_name: "os-centos7"
 ```

@@ -6,8 +6,8 @@ ENV SX_VERSION="centos7" \
     SX_TYPE="service" \
     SX_SERVICE="mariadb" \
     SX_ID="startx/sv-mariadb" \
-    SX_NAME="Startx Mariadb service image (CentOS 7)" \
-    SX_SUMMARY="Startx mariadb service based on CentOS 7" \
+    SX_NAME="Startx Mariadb service image (centos 7)" \
+    SX_SUMMARY="Startx mariadb service based on centos 7" \
     MY_CONF=/etc/my.cnf \
     DATA_PATH=/data \
     LOG_PATH=/logs \
@@ -33,7 +33,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY my.cnf $MY_CONF
 COPY sx /tmp/
-RUN yum -y install mariadb-tokudb-engine mariadb-connect-engine mariadb-rocksdb-engine mariadb-oqgraph-engine mariadb-connector-c mariadb-connector-odbc mariadb-server-utils mariadb-java-client mariadb-backup mariadb-common mariadb-config mariadb-errmsg mariadb-gssapi-server mariadb-cracklib-password-check mariadb && \
+RUN yum --nogpgcheck -y install mariadb-tokudb-engine mariadb-connect-engine mariadb-rocksdb-engine mariadb-oqgraph-engine mariadb-connector-c mariadb-connector-odbc mariadb-server-utils mariadb-java-client mariadb-backup mariadb-common mariadb-config mariadb-errmsg mariadb-gssapi-server mariadb-cracklib-password-check mariadb && \
     yum clean all && \
     mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \
@@ -42,9 +42,9 @@ RUN yum -y install mariadb-tokudb-engine mariadb-connect-engine mariadb-rocksdb-
     rm -rf /tmp/sx /tmp/s2i && \
     touch $DATA_PATH/.keep && \
     chown -R mysql:mysql $LOG_PATH $DATA_PATH $LOADSQL_PATH && \
-    chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i /var/lib/sx* /var/lib/mysql && \
-    chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* /var/lib/mysql && \
-    chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i /var/lib/sx* /var/lib/mysql && \
+    chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i /var/lib/sx* /var/lib/mysql /var/run/mariadb && \
+    chown -R 1001:0 /bin/sx-* /s2i $LOADSQL_PATH /var/lib/sx* && \
+    chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i /var/lib/sx* /var/lib/mysql /var/run/mariadb && \
     chmod -R ugo+x /bin/sx* && \
     chmod ug+r $MY_CONF
 

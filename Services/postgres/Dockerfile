@@ -2,11 +2,11 @@ FROM startx/centos:7
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="centos7" \
     SX_TYPE="service" \
     SX_SERVICE="postgres" \
     SX_ID="startx/sv-postgres" \
-    SX_NAME="Startx Mariadb service image (centos 7)" \
+    SX_NAME="Startx Postgres service image (centos 7)" \
     SX_SUMMARY="Startx postgres service based on centos 7" \
     DATA_PATH=/data \
     LOG_PATH=/logs
@@ -30,7 +30,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum -y install postgresql postgresql-libs postgresql-server \
+RUN yum --nogpgcheck -y install postgresql postgresql-libs postgresql-server \
     && yum clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \

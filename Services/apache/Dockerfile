@@ -6,8 +6,8 @@ ENV SX_VERSION="centos7" \
     SX_TYPE="service" \
     SX_SERVICE="apache" \
     SX_ID="startx/sv-apache" \
-    SX_NAME="Startx Apache service image (CentOS 7)" \
-    SX_SUMMARY="Startx apache service based on CentOS 7" \
+    SX_NAME="Startx Apache service image (centos 7)" \
+    SX_SUMMARY="Startx apache service based on centos 7" \
     HTTPDCONF=/etc/httpd/conf.d/app.conf \
     LOG_PATH=/var/log/httpd \
     APP_PATH=/app \
@@ -33,7 +33,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY httpd.conf $HTTPDCONF
 COPY sx /tmp/
-RUN yum -y install httpd && yum clean all && \
+RUN yum --nogpgcheck -y install httpd && yum clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \
@@ -47,7 +47,7 @@ RUN yum -y install httpd && yum clean all && \
     chmod ug+r $HTTPDCONF && \
     chmod -R ugo+x /bin/sx* && \
     chmod -R ugo+rwx $LOG_PATH
-COPY index.html $APP_PATH
+COPY index.html $APP_PATH/index.html
 RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH
 
 USER 1001

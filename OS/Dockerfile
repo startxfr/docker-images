@@ -1,4 +1,4 @@
-FROM centos:centos7
+FROM centos:7
 
 MAINTAINER Startx <dev@startx.fr>
 
@@ -6,8 +6,8 @@ ENV SX_VERSION="7" \
     SX_TYPE="OS" \
     SX_SERVICE="centos" \
     SX_ID="startx/centos" \
-    SX_NAME="Startx OS base image (CentOS 7)" \
-    SX_SUMMARY="Startx OS base image based on CentOS 7" \
+    SX_NAME="Startx OS base image (centos 7)" \
+    SX_SUMMARY="Startx OS base image based on centos 7" \
     SX_VERBOSE=true \
     SX_DEBUG=true \
     APP_PATH="/tmp"
@@ -31,7 +31,7 @@ LABEL name="$SX_ID" \
 USER root
 
 COPY sx /tmp/
-RUN yum -y install pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip hostname && \
+RUN yum --nogpgcheck -y install pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip hostname && \
     yum clean all && \
     mkdir -p /var/lib/sx && \
     chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib && \
@@ -45,6 +45,6 @@ RUN yum -y install pwgen tar psmisc procps findutils iputils net-tools wget logr
 
 USER 1001
 
-WORKDIR /tmp
+WORKDIR $APP_PATH
 
 CMD [ "/bin/sx" ]

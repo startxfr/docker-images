@@ -1,6 +1,6 @@
 # STARTX Docker-Images Applications based on CentOS 7
 
-This directory host various Open Source applications into docker containers based on [startx/centos:7 container](https://hub.docker.com/r/startx/centos)
+This directory host various Open Source applications into docker containers based on [startx/centos:7 container](https://hub.docker.com/r/startx/fedora)
 
 You can use it to instanciate new container from the dockerhub public registry 
 or as a parent container in your own container's. 
@@ -16,8 +16,8 @@ your project and start using stable or experimental applications in your applica
 
 ## Available applications
 
-| Service         | Docker Hub repository                                                             | Doc
-|-----------------|-----------------------------------------------------------------------------------|--------------------------------
+| Service         | Docker Hub repository                                                          | Doc
+|-----------------|--------------------------------------------------------------------------------|--------------------------------
 | PhpMyAdmin      | [`startx/app-pma:centos7`](https://hub.docker.com/r/startx/app-pma)               | [manual](pma/README.md)
 | RockMongo       | [`startx/app-rockmongo:centos7`](https://hub.docker.com/r/startx/app-rockmongo)   | [manual](rockmongo/README.md)
 

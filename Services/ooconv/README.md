@@ -4,14 +4,19 @@ Simple container used to document convertion and manipulation tools
 Run [libreoffice](https://www.libreoffice.org/) as a daemon using [dagwieers unoconv](https://github.com/dagwieers/unoconv) under a container 
 based on [startx/centos:7 container](https://hub.docker.com/r/startx/centos)
 
-Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
-or **[other ooconv flavours](https://github.com/startxfr/docker-images/Services/ooconv/#available-flavours)**
-
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-ooconv/) | [Sources](https://github.com/startxfr/docker-images/tree/centos7/Services/ooconv)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-ooconv/) | [Sources](https://github.com/startxfr/docker-images/tree/master/Services/ooconv)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------------------------|-----------------------------------------------|
 
 ## Available flavours
+
+* `:latest` : Fedora core 23 + unoconv 0.7 + LibreOffice 5.0.3.2
+* `:fc27` : Fedora core 27 + unoconv 0.7 + LibreOffice 5.0.3.2
+* `:fc26` : Fedora core 26 + unoconv 0.7 + LibreOffice 5.0.3.2
+* `:fc23` : Fedora core 23 + unoconv 0.7 + LibreOffice 5.0.3.2
+* `:fc22` : Fedora core 22 + unoconv 
+* `:fc21` : Fedora core 21 + unoconv 
+* `:centos7` : CentOS 7 + unoconv 
+* `:centos7` : Centos 7 + unoconv 
 
 ## Running from dockerhub registry
 
@@ -99,11 +104,12 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-1. Jump into the container directory with `cd Services/ooconv`
-2. Build the container using `docker build -t sv-ooconv .`
-3. Run this container 
-  1. Interactively with `docker run -p 2002:2002 -v /logs -it sv-ooconv`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -p 2002:2002 -v /logs -d sv-ooconv`
+1. Switch to the flavour branch with `git branch centos7`
+2. Jump into the container directory with `cd Services/ooconv`
+3. Build the container using `docker build -t sv-ooconv .`
+4. Run this container 
+  1. Interactively with `docker run -p 2002:2002 -v /logs -it sv-ooconv-centos7`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 2002:2002 -v /logs -d sv-ooconv-centos7`
 
 
 ### Build & run a container using `docker-compose`

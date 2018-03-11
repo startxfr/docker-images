@@ -1,7 +1,7 @@
 {
   "name": "startx-nodejs-server",
   "version": "0.0.1",
-  "description": "docker template for nodejs app running under centos linux)",
+  "description": "docker template for nodejs app running under centos linux",
   "author": "startx",
   "license": "BSD",
   "bugs": {
@@ -19,6 +19,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/startxfr/docker-images.git"
+  },
+  "scripts": {
+    "start": "node app.js"
   },
   "main": "app.js"
 }

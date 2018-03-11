@@ -5,14 +5,19 @@ Run [nodejs main app.js](https://www.nodejs.org/) under a container
 based on [startx/centos:7 container](https://hub.docker.com/r/startx/centos). 
 Could use various network protocol (like http, websocket, smtp, telnet) according to the content of the running app.
 
-Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
-or **[other nodejs flavours](https://github.com/startxfr/docker-images/Services/nodejs/#available-flavours)**
-
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-nodejs/) | [Sources](https://github.com/startxfr/docker-images/tree/centos7/Services/nodejs)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-nodejs/) | [Sources](https://github.com/startxfr/docker-images/tree/master/Services/nodejs)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------------------------|-----------------------------------------------|
 
 ## Available flavours
+
+* `:latest` : Fedora core 23 + NodeJS v0.10.36
+* `:fc27` : Fedora core 27 + NodeJS v0.10.36
+* `:fc26` : Fedora core 26 + NodeJS v0.10.36
+* `:fc23` : Fedora core 23 + NodeJS v0.10.36
+* `:fc22` : Fedora core 22 + NodeJS 
+* `:fc21` : Fedora core 21 + NodeJS 
+* `:centos7` : CentOS 7 + NodeJS 
+* `:centos7` : Centos 7 + NodeJS 
 
 ## Running from dockerhub registry
 
@@ -123,8 +128,8 @@ You must have a working environment with the source code of this repository. Rea
 2. Jump into the container directory with `cd Services/nodejs`
 3. Build the container using `docker build -t sv-nodejs .`
 4. Run this container 
-  1. Interactively with `docker run -p 8000:8000 -v /logs -it sv-nodejs`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -p 8000:8000 -v /logs -d sv-nodejs`
+  1. Interactively with `docker run -p 8080:8080 -v /logs -it sv-nodejs-centos7`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 8080:8080 -v /logs -d sv-nodejs-centos7`
 
 
 ### Build & run a container using `docker-compose`

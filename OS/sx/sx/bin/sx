@@ -3,12 +3,13 @@ source /var/lib/sx/sx
 
 # Dispatch input arguments
 case $1 in
-    assemble)               genericAssemble $@ ;;
+    assemble|build)         genericAssemble $@ ;;
     post-build)             genericPostBuild $@ ;;
     pre-deploy)             genericPreDeploy $@ ;;
     post-deploy)            genericPostDeploy $@ ;;
     run)                    genericRun $@ ;;
-    health)                 genericHealth $@ ;;
+    isLive)                 genericIsLive $@ ;;
+    isReady)                genericIsReady $@ ;;
     usage|help|--help)      genericUsage $@ ;;
     usageS2i)               genericUsageS2I $@ ;;
     info|--info)            genericAllInformation $@ ;;

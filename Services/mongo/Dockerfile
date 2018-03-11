@@ -2,7 +2,7 @@ FROM startx/centos:7
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="centos7" \
     SX_TYPE="service" \
     SX_SERVICE="mongo" \
     SX_ID="startx/sv-mongo" \
@@ -30,9 +30,9 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum install -y centos-release-scl  && \
+RUN yum --nogpgcheck -y install centos-release-scl  && \
     yum-config-manager --enable rhel-server-rhscl-7-rpms  && \
-    yum install -y  mongodb24  && \
+    yum --nogpgcheck -y install  mongodb24  && \
     yum clean all  && \
     scl enable mongodb24 bash  && \
     usermod -a -G 0 mongodb && \

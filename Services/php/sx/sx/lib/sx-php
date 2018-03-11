@@ -1,62 +1,79 @@
 #!/bin/bash
+source /var/lib/sx/sx
 source /var/lib/sx/sx-apache
 
 # Display php information
 function phpInformation {
     apacheInformation $1 
-    echo $1 "php       : $(php --version | head -1)" 
+    echoVerbose $1 "php       : $(php --version | head -1)" 
 }
 
 # function executed when pre-deploy hook is called
 function phpPreDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
-    echo "| "
+    echoVerbose "| "
     phpInformation "| "
     echo "+====================================================="
     echo "Create log directory $LOG_PATH"
     touch $LOG_PATH/access.log
+    testAndRunSourceCodeScript "pre-deploy" 
 }
 
 # function executed when post-deploy hook is called
 function phpPostDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
-    echo "| "
+    echoVerbose "| "
     phpInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "post-deploy" 
 }
 
 # function executed when pre-build hook is called
 function phpPostBuild {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-BUILD HOOK"
-    echo "| "
+    echoVerbose "| "
     phpInformation "| "
     echo "+====================================================="
+    testAndRunSourceCodeScript "post-build" 
 }
 
 # function executed when assemble hook is called
 function phpAssemble {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running ASSEMBLE"
-    echo "| "
+    echoVerbose "| "
     phpInformation "| "
     echo "+====================================================="
-    echo "Fixing perm on /tmp/src"
-    chown 1001:0 -R /tmp/src
-    chmod g=u -R /tmp/src
-    echo "Copy source from /tmp/src > $APP_PATH"
-    cp -R /tmp/src/* $APP_PATH/
-    rm -rf /tmp/src
+    if [[ -d /tmp/src ]]; then
+        echo "Fixing perm on /tmp/src"
+        chmod g=u -R /tmp/src
+        cp -R /tmp/src/* $APP_PATH/
+        moveSourceCodeScripts /tmp/src $APP_PATH
+        echoVerbose "Remove source temp $APP_PATH/src"
+        rm -rf /tmp/src
+    fi
+    testAndRunSourceCodeScript "assemble" 
 }
 
 # function executed on container startup
 function phpRun {
     echo "+====================================================="
     echo "| Container $HOSTNAME is RUNNING"
-    echo "| "
+    echoVerbose "| "
     phpInformation "| "
     echo "+====================================================="
     startApacheService
+}
+
+# Display liveness status
+function phpIsLive {
+    genericIsLive
+}
+
+# Display readyness status
+function phpIsReady {
+    apacheIsReady
 }

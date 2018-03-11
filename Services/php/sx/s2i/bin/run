@@ -7,8 +7,8 @@
 #  https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
 #
 
-if [[ -r /tmp/run ]]; then
-    exec /bin/sx-php run
+if [[ -x /tmp/run ]]; then
+    exec /tmp/run $@
 else
-    exec /bin/sx-php $@
+    exec /bin/sx-php run
 fi 

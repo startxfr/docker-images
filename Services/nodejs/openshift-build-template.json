@@ -2,13 +2,13 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-mariadb",
+        "name": "startx-sv-nodejs-template",
         "annotations": {
-            "openshift.io/display-name": "Startx MariaDB server (centos)",
-            "description": "MariaDB server for simple SQL database running under Centos",
-            "iconClass": "icon-mariadb",
-            "tags": "startx,os,centos,mariadb,database",
-            "openshift.io/long-description": "This template provides an mariadb db Mariadb Database in a centos container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/display-name": "Startx NodeJS micro-server (centos)",
+            "description": "NodeJS micro-server for micro-service application running under Centos",
+            "iconClass": "icon-nodejs",
+            "tags": "startx,os,centos,nodejs,httpd",
+            "openshift.io/long-description": "This template provides an nodejs micro-server in a centos container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -16,20 +16,20 @@
     },
     "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
     "labels": {
-        "template": "startx-sv-mariadb"
+        "template": "startx-sv-nodejs-template"
     },
     "objects": [
         {
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-mariadb",
+                "name": "startx-sv-nodejs",
                 "annotations": {
-                    "openshift.io/display-name": "Startx Mariadb Database",
+                    "openshift.io/display-name": "Startx NodeJS",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-mariadb",
+                    "base-image": "startx-sv-nodejs",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx"
@@ -38,19 +38,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "centos7",
                         "annotations": {
-                            "openshift.io/display-name": "Startx Mariadb Database (Centos 7)",
-                            "description": "MariaDB server for simple SQL database running under Centos 7",
-                            "iconClass": "icon-mariadb",
-                            "tags": "builder,startx,centos,mariadb,database",
-                            "supports": "db",
+                            "openshift.io/display-name": "Startx NodeJS (Centos 7)",
+                            "description": "NodeJS micro-server for micro-service application running under Centos 7",
+                            "iconClass": "icon-nodejs",
+                            "tags": "builder,startx,centos,nodejs,httpd",
+                            "supports": "http",
                             "version": "7",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-nodejs.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-mariadb:latest"
+                            "name": "startx/sv-nodejs:centos7"
                         }
                     }
                 ]
@@ -66,7 +66,7 @@
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-mariadb",
+                    "base-image": "startx-sv-nodejs",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx"
@@ -79,32 +79,13 @@
                         "annotations": {
                             "openshift.io/display-name": "Application ${APP_NAME}",
                             "description": "Base image for the application ${APP_NAME}",
-                            "iconClass": "icon-mariadb",
-                            "tags": "startx,centos,mariadb,database,application,${APP_NAME}",
-                            "supports": "db",
+                            "iconClass": "icon-nodejs",
+                            "tags": "startx,centos,nodejs,httpd,application,${APP_NAME}",
+                            "supports": "http",
                             "version": "7"
                         }
                     }
                 ]
-            }
-        },
-        {
-            "kind": "Secret",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APP_NAME}",
-                "creationTimestamp": null,
-                "labels": {
-                    "app": "${APP_NAME}",
-                    "type": "${APP_TYPE}",
-                    "provider": "startx",
-                    "template": "startx-sv-mariadb"
-                }
-            },
-            "stringData": {
-                "MYSQL_ROOT_PASSWORD": "${MYSQL_ROOT_PASSWORD}",
-                "MYSQL_USER": "${MYSQL_USER}",
-                "MYSQL_PASSWORD": "${MYSQL_PASSWORD}"
             }
         },
         {
@@ -118,7 +99,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mariadb"
+                    "template": "startx-sv-nodejs-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -130,14 +111,14 @@
                     "rollingParams": {
                         "updatePeriodSeconds": 1,
                         "intervalSeconds": 1,
-                        "timeoutSeconds": 120,
+                        "timeoutSeconds": 20,
                         "maxUnavailable": "25%",
                         "maxSurge": "25%",
                         "pre": {
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-mariadb",
+                                    "/bin/sx-nodejs",
                                     "pre-deploy"
                                 ],
                                 "env": [
@@ -157,7 +138,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-mariadb",
+                                    "/bin/sx-nodejs",
                                     "post-deploy"
                                 ],
                                 "env": [
@@ -195,7 +176,7 @@
                     }
                 ],
                 "postCommit": {
-                    "script": "/bin/sx-mariadb info"
+                    "script": "/bin/sx-nodejs info"
                 },
                 "replicas": 1,
                 "test": false,
@@ -210,7 +191,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-sv-mariadb",
+                            "template": "startx-sv-nodejs-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -221,7 +202,7 @@
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
-                                "image": "startx/sv-mariadb@sha256:fdeea7651d752e09fd9d6e760e85ef7667f7e443c9712d0e5f051c105e66bf05",
+                                "image": " ",
                                 "env": [
                                     {
                                         "name": "SX_VERBOSE",
@@ -229,54 +210,21 @@
                                     }
                                 ],
                                 "command": [
-                                    "/bin/sx-mariadb"
+                                    "/bin/sx-nodejs"
                                 ],
                                 "args": [
                                     "run"
-                                ],
-                                "env": [
-                                    {
-                                        "name": "MYSQL_ROOT_PASSWORD",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}",
-                                                "key": "MYSQL_ROOT_PASSWORD"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "MYSQL_USER",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}",
-                                                "key": "MYSQL_USER"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "MYSQL_PASSWORD",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}",
-                                                "key": "MYSQL_PASSWORD"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "MYSQL_DATABASE",
-                                        "value": "${MYSQL_DATABASE}"
-                                    }
                                 ],
                                 "resources": {},
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-mariadb",
-                                            "health"
+                                            "/bin/sx-nodejs",
+                                            "isLive"
                                         ]
                                     },
-                                    "initialDelaySeconds": 5,
-                                    "timeoutSeconds": 2,
+                                    "initialDelaySeconds": 4,
+                                    "timeoutSeconds": 1,
                                     "periodSeconds": 10,
                                     "successThreshold": 1,
                                     "failureThreshold": 3
@@ -284,12 +232,12 @@
                                 "readinessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-mariadb",
-                                            "health"
+                                            "/bin/sx-nodejs",
+                                            "isReady"
                                         ]
                                     },
-                                    "initialDelaySeconds": 2,
-                                    "timeoutSeconds": 2,
+                                    "initialDelaySeconds": 4,
+                                    "timeoutSeconds": 1,
                                     "periodSeconds": 10,
                                     "successThreshold": 1,
                                     "failureThreshold": 3
@@ -313,6 +261,43 @@
             }
         },
         {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx",
+                    "template": "startx-sv-nodejs-template"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "STARTX"
+                }
+            },
+            "spec": {
+                "to": {
+                    "kind": "Service",
+                    "name": "${APP_NAME}",
+                    "weight": 100
+                }
+            },
+            "status": {
+                "ingress": [
+                    {
+                        "routerName": "router",
+                        "conditions": [
+                            {
+                                "type": "Admitted",
+                                "status": "True"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
             "kind": "Service",
             "apiVersion": "v1",
             "metadata": {
@@ -322,7 +307,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mariadb"
+                    "template": "startx-sv-nodejs-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -332,8 +317,8 @@
                 "ports": [
                     {
                         "protocol": "TCP",
-                        "port": 3306,
-                        "targetPort": 3306
+                        "port": 8080,
+                        "targetPort": 8080
                     }
                 ],
                 "selector": {
@@ -357,7 +342,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mariadb"
+                    "template": "startx-sv-nodejs-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -398,7 +383,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-mariadb:latest"
+                            "name": "startx-sv-nodejs:centos7"
                         },
                         "env": [
                             {
@@ -417,7 +402,7 @@
                 "resources": {},
                 "postCommit": {
                     "command": [
-                        "/bin/sx-mariadb",
+                        "/bin/sx-nodejs",
                         "post-build"
                     ]
                 }
@@ -432,20 +417,20 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "mariadb",
+            "value": "www-node",
             "required": true
         },
         {
             "name": "APP_TYPE",
             "displayName": "Application type",
             "description": "The type of the created application",
-            "value": "database"
+            "value": "application"
         },
         {
             "name": "SOURCE_GIT",
             "displayName": "Source repository",
             "description": "URL to the source code to use during build process",
-            "value": "https://github.com/startxfr/docker-images-example-mariadb.git",
+            "value": "https://github.com/startxfr/docker-images-example-nodejs.git",
             "required": true
         },
         {
@@ -462,34 +447,6 @@
             "generate": "expression",
             "from": "[a-zA-Z0-9]{24}",
             "required": true
-        },
-        {
-            "name": "MYSQL_ROOT_PASSWORD",
-            "displayName": "Mysql root password",
-            "description": "The mysql root password to use. Generated if not provided",
-            "from": "[A-Z0-9]{16}",
-            "generate": "expression"
-        },
-        {
-            "name": "MYSQL_USER",
-            "displayName": "Mysql user",
-            "description": "Default user to create",
-            "value": "demo",
-            "from": "[A-Z0-9]{8}",
-            "generate": "expression"
-        },
-        {
-            "name": "MYSQL_PASSWORD",
-            "displayName": "Mysql password",
-            "description": "Password of the default user",
-            "value": "demo",
-            "from": "[A-Z0-9]{16}",
-            "generate": "expression"
-        },
-        {
-            "name": "MYSQL_DATABASE",
-            "displayName": "Mysql database",
-            "description": "name of the default database to create"
         }
     ]
 }
