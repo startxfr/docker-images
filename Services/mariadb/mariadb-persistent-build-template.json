@@ -38,19 +38,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "fc27",
                         "annotations": {
-                            "openshift.io/display-name": "Startx Mariadb Database (Fedora rawhide)",
-                            "description": "MariaDB server for simple SQL database running under Fedora rawhide",
+                            "openshift.io/display-name": "S2I Mariadb Database (Fedora 27)",
+                            "description": "MariaDB server builder for simple SQL database running under Fedora 27",
                             "iconClass": "icon-mariadb",
                             "tags": "builder,startx,fedora,mariadb,database",
                             "supports": "db",
-                            "version": "rawhide",
+                            "version": "fc27",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-mariadb:latest"
+                            "name": "startx/sv-mariadb:fc27"
                         }
                     }
                 ]
@@ -454,7 +454,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-mariadb:latest"
+                            "name": "startx-sv-mariadb:fc27"
                         },
                         "env": [
                             {
