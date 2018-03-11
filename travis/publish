@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "========> PUBLISH Container image $NAMESPACE/$2:$3"
+if [ -f /tmp/istested_$2 ] ; then
+    rm -f /tmp/istested_$2
+    docker push $NAMESPACE/$2
+    echo "========> PUBLISHED Container image $NAMESPACE/$2:$3"
+else
+    echo "========> PUBLISHING Container image $NAMESPACE/$2:$3 skipped because test failed"
+fi
+exit 0;

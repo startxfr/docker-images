@@ -1,0 +1,143 @@
+#!/bin/bash
+source /var/lib/sx/sx
+
+function check_apache_environment {
+    if [ ! -v APP_PATH ]; then
+        APP_PATH="/app"
+        export APP_PATH
+    fi
+    if [ ! -v DATA_PATH ]; then
+        DATA_PATH="/data"
+        export DATA_PATH
+    fi
+    if [ ! -v LOG_PATH ]; then
+        LOG_PATH="/logs"
+        export LOG_PATH
+    fi
+    if [ ! -n "$SERVER_NAME" ]; then
+        SERVER_NAME="localhost"
+        export SERVER_NAME
+    fi
+}
+
+# Display apache information
+function apacheInformation {
+    displayInformation $1 
+    echoVerbose $1 "app path  : $APP_PATH"
+    echoVerbose $1 "log path  : $LOG_PATH"
+    echoVerbose $1 "data path : $DATA_PATH"
+    echoVerbose $1 "httpd     : $(httpd -v | head -1)" 
+}
+
+# function executed when pre-deploy hook is called
+function apachePreDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    echoVerbose "| "
+    apacheInformation "| "
+    echo "+====================================================="
+    testAndRunSourceCodeScript "pre-deploy" 
+}
+
+# function executed when post-deploy hook is called
+function apachePostDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    echoVerbose "| "
+    apacheInformation "| "
+    echo "+====================================================="
+    testAndRunSourceCodeScript "post-deploy" 
+}
+
+# function executed when pre-build hook is called
+function apachePostBuild {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-BUILD HOOK"
+    echoVerbose "| "
+    apacheInformation "| "
+    echo "+====================================================="
+    testAndRunSourceCodeScript "post-build" 
+}
+
+# function executed when assemble hook is called
+function apacheAssemble {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running ASSEMBLE"
+    echoVerbose "| "
+    apacheInformation "| "
+    echo "+====================================================="
+    if [[ -d /tmp/src ]]; then
+        echo "Fixing perm on /tmp/src"
+        chmod g=u -R /tmp/src
+        cp -R /tmp/src/* $APP_PATH/
+        moveSourceCodeScripts /tmp/src $APP_PATH
+        echoVerbose "Remove source temp $APP_PATH/src"
+        rm -rf /tmp/src
+    fi
+    testAndRunSourceCodeScript "assemble" 
+}
+
+# function executed on container startup
+function apacheRun {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is RUNNING"
+    echoVerbose "| "
+    apacheInformation "| "
+    echo "+====================================================="
+    startApacheService
+}
+
+# Display liveness status
+function apacheIsLive {
+    genericIsLive
+}
+
+# Display readyness status
+function apacheIsReady {
+    R=`curl -sL -w "%{http_code}\\n" "http://localhost/" -o /dev/null`
+    if [ "$R" = "200" ]; then
+        exit 0;
+    fi;
+    exit 1;
+}
+
+# function executed on apahce service stop
+function stopApacheHandler {
+    killall httpd
+    rm -rf /run/httpd/*
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is now STOPPED"
+    echoVerbose "| "
+    apacheInformation "| "
+    echo "+====================================================="
+    exit 143; # 128 + 15 -- SIGTERM
+}
+
+# Start the httpd server as a deamon and execute it inside 
+# the running shell
+function startApacheService {
+    trap 'kill ${!}; stopApacheHandler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
+    rm -rf /run/httpd/* /tmp/httpd*
+    exec /usr/sbin/httpd -D FOREGROUND > $LOG_PATH/access.log &
+    while true
+    do
+        tail -f $LOG_PATH/access.log & wait ${!}
+    done
+}
+
+# set env var $2 (val $3) in file $1
+function setEnvironmentVariableInFile {
+    if [ -z "$3" ]; then
+            echo "Environment variable '$2' not set."
+            return
+    fi
+    echo "SetEnv $2 $3" >> $1
+}
+
+function setSys2HttpEnvironmentVariable {
+    echo "adding environement to $1"
+    echo "" >> $1
+    for _curVar in `env | awk -F = '{print $1}'`;do
+        setEnvironmentVariableInFile $1 ${_curVar} ${!_curVar}
+    done
+}

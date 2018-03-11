@@ -1,0 +1,113 @@
+#!/bin/bash
+source /var/lib/sx/sx
+
+function check_mongo_environment {
+    if [ ! -v APP_PATH ]; then
+        APP_PATH="/data"
+        export APP_PATH
+    fi
+    if [ ! -v LOG_PATH ]; then
+        LOG_PATH="/logs"
+        export LOG_PATH
+    fi
+}
+
+function mongoInformation {
+    displayInformation $1
+    echoVerbose $1 "version   : $SX_VERSION"
+    echoVerbose $1 "engine    : $(mongo --version | head -1)" 
+    echoVerbose $1 "log path  : $LOG_PATH"
+    echoVerbose $1 "data path : $DATA_PATH"
+}
+
+function displayMongoRunInformation {
+    mongoInformation $1
+    echoVerbose $1 "admin     : root:$MYSQL_ROOT_PASSWORD"
+    echo $1 "user      : $MYSQL_USER:$MYSQL_PASSWORD"
+    echo $1 "database  : $MYSQL_DATABASE"
+}
+
+function mongoPreDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    echoVerbose "| "
+    mongoInformation "| "
+    echo "+====================================================="
+    testAndRunSourceCodeScript "pre-deploy" 
+}
+
+function mongoPostDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    echoVerbose "| "
+    mongoInformation "| "
+    echo "+====================================================="
+    testAndRunSourceCodeScript "post-deploy" 
+}
+
+function mongoPostBuild {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-BUILD HOOK"
+    echoVerbose "| "
+    mongoInformation "| "
+    echo "+====================================================="
+    testAndRunSourceCodeScript "post-build" 
+}
+
+function mongoAssemble {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running ASSEMBLE"
+    echoVerbose "| "
+    mongoInformation "| "
+    echo "+====================================================="
+    if [[ -d /tmp/src ]]; then
+        echo "Fixing perm on /tmp/src"
+        chmod g=u -R /tmp/src
+        moveSourceCodeScripts /tmp/src $APP_PATH
+        echoVerbose "Remove source temp $APP_PATH/src"
+        rm -rf /tmp/src
+    fi
+    testAndRunSourceCodeScript "assemble" 
+}
+
+function mongoRun {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is RUNNING"
+    echoVerbose "| "
+    mongoInformation "| "
+    echo "+====================================================="
+    startMongoService
+}
+
+# Display liveness status
+function mongoIsLive {
+    genericIsLive
+}
+
+# Display readyness status
+function mongoIsReady {
+    genericIsReady
+}
+
+function stop_mongo_handler {
+    killall /usr/bin/mongod
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is now STOPPED"
+    echoVerbose "| "
+    mongoInformation "| "
+    echo "+====================================================="
+    exit 143; # 128 + 15 -- SIGTERM
+}
+
+# Start the mongo server as a deamon and execute it inside 
+# the running shell
+function startMongoService {
+    trap 'kill ${!}; stop_mongo_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
+    su mongodb
+    /usr/bin/mongod --logappend --logpath $LOG_PATH/mongodb.log --dbpath $DATA_PATH --journal --fork
+    exec tail -f /dev/null &
+    while true
+    do
+      tail -f /dev/null & wait ${!}
+    done
+}

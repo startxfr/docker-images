@@ -4,12 +4,19 @@ Simple container used to deliver static http content include all apache's module
 Run [apache httpd daemon](https://httpd.apache.org/) under a container 
 based on [startx/centos:6 container](https://hub.docker.com/r/startx/fedora)
 
-Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
-or **[other apache flavours](https://github.com/startxfr/docker-images/Services/apache/#available-flavours)**
-
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos6)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-apache/) | [Sources](https://github.com/startxfr/docker-images/Services/apache)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos6)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-apache/) | [Sources](https://github.com/startxfr/docker-images/tree/master/Services/apache)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------------------------|-----------------------------------------------|
+
+## Available flavours
+
+* `:latest` : Fedora core 23 + Apache 2.4.17
+* `:fc27` : Fedora core 27 + Apache 2.4.17
+* `:fc26` : Fedora core 26 + Apache 2.4.17
+* `:fc23` : Fedora core 23 + Apache 2.4.17
+* `:fc22` : Fedora core 22 + Apache 
+* `:fc21` : Fedora core 21 + Apache 
+* `:centos7` : CentOS 7 + Apache 
+* `:centos6` : Centos 6 + Apache 
 
 ## Running from dockerhub registry
 
@@ -39,7 +46,7 @@ service:
   environment:
     CONTAINER_INSTANCE: "centos6-service-apache"
   ports:
-    - "1000:80"
+    - "1000:8080"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
@@ -49,7 +56,7 @@ service:
   environment:
     CONTAINER_INSTANCE: "centos6-service-apache"
   expose:
-    - "80"
+    - "8080"
 ```
 * sample docker-compose.yml using data container
 ```
@@ -92,8 +99,7 @@ CMD ["/bin/run.sh"]
 
 | Port  | Description                                                              |
 |-------|--------------------------------------------------------------------------|
-| 80    | standard httpd network port used for non encrypted http traffic
-| 443   | SSL enabeled http port used for encrypted traffic (certificate not actually implemented)
+| 8080  | standard httpd network port used for non encrypted http traffic
 
 ## Exposed volumes
 
@@ -104,7 +110,7 @@ CMD ["/bin/run.sh"]
 
 ## Testing the service
 
-access to the running webserver with your favorites browser `firefox http://localhost:80`. Change port and hostname according to your current configuration
+access to the running webserver with your favorites browser `firefox http://localhost:8080`. Change port and hostname according to your current configuration
 
 ## For advanced users
 

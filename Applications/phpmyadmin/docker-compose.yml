@@ -4,16 +4,7 @@ application:
   mem_limit: 500m
   memswap_limit: 500m
   cpu_shares: 2
-  restart: "on-failure:2"
-  privileged: true
   ports:
-    - "9215:80"
-    - "9216:443"
-  environment:
-    CONTAINER_TYPE: "application"
-    CONTAINER_SERVICE: "phpmyadmin"
-    CONTAINER_INSTANCE: "centos6-application-phpmyadmin"
-    SERVER_NAME: "localhost"
+    - "9215:8080"
   volumes:
-    - "/tmp/container-centos6/logs/phpmyadmin:/logs"
     - "/tmp/container-centos6/phpmyadmin:/data"

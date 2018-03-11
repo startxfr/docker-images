@@ -1,0 +1,115 @@
+#!/bin/bash
+source /var/lib/sx/sx
+
+set_listen_addresses() {
+	sedEscapedValue="$(echo "$1" | sed 's/[\/&]/\\&/g')"
+	sed -ri "s/^#?(listen_addresses\s*=\s*)\S+/\1'$sedEscapedValue'/" "$POSTGRESQL_CONF"
+}
+
+
+function check_postgres_environment {
+    if [ ! -v DATA_PATH ]; then
+        DATA_PATH="/data"
+        export DATA_PATH
+    fi
+    if [ ! -v LOG_PATH ]; then
+        LOG_PATH="/logs"
+        export LOG_PATH
+    fi
+}
+
+function postgresInformation {
+    displayInformation $1
+    echoVerbose $1 "version   : $SX_VERSION"
+    echoVerbose $1 "engine    : $(postgres -V | head -1)"
+    echoVerbose $1 "sql path  : $LOADSQL_PATH"
+    echoVerbose $1 "log path  : $LOG_PATH"
+    echoVerbose $1 "data path : $DATA_PATH"
+}
+
+function displayPostgresRunInformation {
+    postgresInformation $1
+    echoVerbose $1 "admin     : root:$PGSQL_ROOT_PASSWORD"
+    echo $1 "user      : $PGSQL_USER:$PGSQL_PASSWORD"
+    echo $1 "database  : $PGSQL_DATABASE"
+}
+
+function postgresPreDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    echoVerbose "| "
+    postgresInformation "| "
+    echo "+====================================================="
+    testAndRunSourceCodeScript "pre-deploy" 
+}
+
+function postgresPostDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    echoVerbose "| "
+    postgresInformation "| "
+    echo "+====================================================="
+    testAndRunSourceCodeScript "post-deploy" 
+}
+
+function postgresPostBuild {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-BUILD HOOK"
+    echoVerbose "| "
+    postgresInformation "| "
+    echo "+====================================================="
+    testAndRunSourceCodeScript "post-build" 
+}
+
+function postgresAssemble {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running ASSEMBLE"
+    echoVerbose "| "
+    postgresInformation "| "
+    echo "+====================================================="
+    if [[ -d /tmp/src ]]; then
+        echo "Fixing perm on /tmp/src"
+        chmod g=u -R /tmp/src
+        moveSourceCodeScripts /tmp/src $APP_PATH
+        echoVerbose "Remove source temp $APP_PATH/src"
+        rm -rf /tmp/src
+    fi
+    testAndRunSourceCodeScript "assemble" 
+}
+
+function postgresRun {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is RUNNING"
+    echoVerbose "| "
+    postgresInformation "| "
+    echo "+====================================================="
+    startPostgresService
+}
+
+# Display liveness status
+function postgresIsLive {
+    genericIsLive
+}
+
+# Display readyness status
+function postgresIsReady {
+    genericIsReady
+}
+
+function stop_postgres_handler {
+    postgres -c "pg_ctl stop -D $DATA_PATH -w"
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is now STOPPED"
+    echoVerbose "| "
+    postgresInformation "| "
+    echo "+====================================================="
+    exit 143; # 128 + 15 -- SIGTERM
+}
+
+# Start the postgres server as a deamon and execute it inside 
+# the running shell
+function startPostgresService {
+    trap 'kill ${!}; stop_postgres_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
+    exec postgres -c "pg_ctl -D $DATA_PATH -w start"
+    startDaemon
+}

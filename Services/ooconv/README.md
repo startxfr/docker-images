@@ -4,12 +4,19 @@ Simple container used to document convertion and manipulation tools
 Run [libreoffice](https://www.libreoffice.org/) as a daemon using [dagwieers unoconv](https://github.com/dagwieers/unoconv) under a container 
 based on [startx/centos:6 container](https://hub.docker.com/r/startx/fedora)
 
-Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
-or **[other ooconv flavours](https://github.com/startxfr/docker-images/Services/ooconv/#available-flavours)**
-
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos6)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-ooconv/) | [Sources](https://github.com/startxfr/docker-images/Services/ooconv)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos6)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-ooconv/) | [Sources](https://github.com/startxfr/docker-images/tree/master/Services/ooconv)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------------------------|-----------------------------------------------|
+
+## Available flavours
+
+* `:latest` : Fedora core 23 + unoconv 0.7 + LibreOffice 5.0.3.2
+* `:fc27` : Fedora core 27 + unoconv 0.7 + LibreOffice 5.0.3.2
+* `:fc26` : Fedora core 26 + unoconv 0.7 + LibreOffice 5.0.3.2
+* `:fc23` : Fedora core 23 + unoconv 0.7 + LibreOffice 5.0.3.2
+* `:fc22` : Fedora core 22 + unoconv 
+* `:fc21` : Fedora core 21 + unoconv 
+* `:centos7` : CentOS 7 + unoconv 
+* `:centos6` : Centos 6 + unoconv 
 
 ## Running from dockerhub registry
 

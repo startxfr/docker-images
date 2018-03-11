@@ -1,0 +1,105 @@
+#!/bin/bash
+source /var/lib/sx/sx
+
+function check_ooconv_environment {
+    if [ ! -v DATA_PATH ]; then
+        DATA_PATH="/data"
+        export DATA_PATH
+    fi
+}
+
+function ooconvInformation {
+    displayInformation $1
+    echoVerbose $1 "version   : $SX_VERSION"
+    echoVerbose $1 "unoconv   : $(unoconv --version | tail -1)"
+    echoVerbose $1 "data path : $DATA_PATH"
+}
+
+function displayOOconvRunInformation {
+    ooconvInformation $1
+}
+
+function ooconvPreDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    echoVerbose "| "
+    ooconvInformation "| "
+    echo "+====================================================="
+    testAndRunSourceCodeScript "pre-deploy" 
+}
+
+function ooconvPostDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    echoVerbose "| "
+    ooconvInformation "| "
+    echo "+====================================================="
+    testAndRunSourceCodeScript "post-deploy" 
+}
+
+function ooconvPostBuild {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-BUILD HOOK"
+    echoVerbose "| "
+    ooconvInformation "| "
+    echo "+====================================================="
+    testAndRunSourceCodeScript "post-build" 
+}
+
+function ooconvAssemble {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running ASSEMBLE"
+    echoVerbose "| "
+    ooconvInformation "| "
+    echo "+====================================================="
+    if [[ -d /tmp/src ]]; then
+        echo "Fixing perm on /tmp/src"
+        chmod g=u -R /tmp/src
+        moveSourceCodeScripts /tmp/src $APP_PATH
+        echoVerbose "Remove source temp $APP_PATH/src"
+        rm -rf /tmp/src
+    fi
+    testAndRunSourceCodeScript "assemble" 
+}
+
+function ooconvRun {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is RUNNING"
+    echoVerbose "| "
+    ooconvInformation "| "
+    echo "+====================================================="
+    startOOconvService
+}
+
+# Display liveness status
+function ooconvIsLive {
+    genericIsLive
+}
+
+# Display readyness status
+function ooconvIsReady {
+    genericIsReady
+}
+
+function stop_ooconv_handler {
+    killall unoconv soffice.bin 
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is now STOPPED"
+    echoVerbose "| "
+    ooconvInformation "| "
+    echo "+====================================================="
+    exit 143; # 128 + 15 -- SIGTERM
+}
+
+# Start the ooconv server as a deamon and execute it inside 
+# the running shell
+function startOOconvService {
+    trap 'kill ${!}; stop_ooconv_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
+    if [ "$SX_DEBUG" = true ] ; then
+        unoconv --listener -vvv
+    else
+        unoconv --listener
+    fi 
+    killall unoconv soffice.bin 
+    exec unoconv --listener
+}

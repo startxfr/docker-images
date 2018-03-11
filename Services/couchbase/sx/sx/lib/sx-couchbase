@@ -1,0 +1,129 @@
+#!/bin/bash
+source /var/lib/sx/sx
+
+function check_couchbase_environment {
+    if [ ! -v DATA_PATH ]; then
+        DATA_PATH="/data"
+        export DATA_PATH
+    fi
+    if [ ! -v LOG_PATH ]; then
+        LOG_PATH="/logs"
+        export LOG_PATH
+    fi
+}
+
+function couchbaseInformation {
+    displayInformation $1
+    echoVerbose $1 "version   : $SX_VERSION"
+    echoVerbose $1 "engine    : v$CB_VERSION"
+    echoVerbose $1 "log path  : $LOG_PATH"
+    echoVerbose $1 "data path : $DATA_PATH"
+}
+
+function displayCouchbaseRunInformation {
+    couchbaseInformation $1
+    echoVerbose $1 "admin     : $COUCHBASE_USER:$COUCHBASE_PASSWORD"
+    echo $1 "database  : $COUCHBASE_BUCKETS"
+}
+
+function couchbasePreDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    echoVerbose "| "
+    couchbaseInformation "| "
+    echo "+====================================================="
+    testAndRunSourceCodeScript "pre-deploy" 
+}
+
+function couchbasePostDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    echoVerbose "| "
+    couchbaseInformation "| "
+    echo "+====================================================="
+    testAndRunSourceCodeScript "post-deploy" 
+}
+
+function couchbasePostBuild {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-BUILD HOOK"
+    echoVerbose "| "
+    couchbaseInformation "| "
+    echo "+====================================================="
+    testAndRunSourceCodeScript "post-build" 
+}
+
+function couchbaseAssemble {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running ASSEMBLE"
+    echoVerbose "| "
+    couchbaseInformation "| "
+    echo "+====================================================="
+    if [[ -d /tmp/src ]]; then
+        echo "Fixing perm on /tmp/src"
+        chmod g=u -R /tmp/src
+        moveSourceCodeScripts /tmp/src $APP_PATH
+        echoVerbose "Remove source temp $APP_PATH/src"
+        rm -rf /tmp/src
+    fi
+    if [[ ! -d $DATA_PATH/lib ]]; then
+        echo "Creating basic data structure in $DATA_PATH"
+        mkdir -p $DATA_PATH/lib/couchbase \
+        $DATA_PATH/lib/couchbase/config \
+        $DATA_PATH/lib/couchbase/data \
+        $DATA_PATH/lib/couchbase/stats \
+        $DATA_PATH/lib/couchbase/logs \
+        $DATA_PATH/lib/moxi
+        touch $DATA_PATH/.keep
+    fi
+    testAndRunSourceCodeScript "assemble" 
+}
+
+function couchbaseRun {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is RUNNING"
+    echoVerbose "| "
+    couchbaseInformation "| "
+    echo "+====================================================="
+    startCouchbaseService
+}
+
+# Display liveness status
+function couchbaseIsLive {
+    genericIsLive
+}
+
+# Display readyness status
+function couchbaseIsReady {
+    genericIsReady
+}
+
+function stop_couchbase_handler {
+    /opt/couchbase/bin/couchbase-server -k
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is now STOPPED"
+    echoVerbose "| "
+    couchbaseInformation "| "
+    echo "+====================================================="
+    exit 143; # 128 + 15 -- SIGTERM
+}
+
+# Start the couchbase server as a deamon and execute it inside 
+# the running shell
+function startCouchbaseService {
+    exec 2>&1
+    cd $DATA_PATH
+    if [[ ! -d $DATA_PATH/lib/couchbase ]]; then
+        mkdir -p $DATA_PATH/lib/couchbase \
+                 $DATA_PATH/lib/couchbase/config \
+                 $DATA_PATH/lib/couchbase/data \
+                 $DATA_PATH/lib/couchbase/stats \
+                 $DATA_PATH/lib/couchbase/logs \
+                 $DATA_PATH/lib/moxi
+    fi
+    chown -R couchbase $DATA_PATH
+    chgrp -R 0 $DATA_PATH
+    chmod -R g=u $DATA_PATH
+    trap 'stop_couchbase_handler;' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
+    exec /opt/couchbase/bin/couchbase-server -- -kernel global_enable_tracing false -noinput
+}

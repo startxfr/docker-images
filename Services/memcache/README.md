@@ -4,12 +4,19 @@ Simple container used to deliver distributed memory object caching system
 Run [memcached daemon](https://www.memcached.org/) under a container 
 based on [startx/centos:6 container](https://hub.docker.com/r/startx/fedora)
 
-Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
-or **[other memcache flavours](https://github.com/startxfr/docker-images/Services/memcache/#available-flavours)**
-
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos6)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-memcache/) | [Sources](https://github.com/startxfr/docker-images/Services/memcache)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos6)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-memcache/) | [Sources](https://github.com/startxfr/docker-images/tree/master/Services/memcache)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|------------------------------------------------------------------------------------|-----------------------------------------------|
+
+## Available flavours
+
+* `:latest` : Fedora core 23 + memcached 1.4.17 
+* `:fc27` : Fedora core 27 + memcached 1.4.17
+* `:fc26` : Fedora core 26 + memcached 1.4.17
+* `:fc23` : Fedora core 23 + memcached 1.4.17
+* `:fc22` : Fedora core 22 + memcached 
+* `:fc21` : Fedora core 21 + memcached 
+* `:centos7` : CentOS 7 + memcached
+* `:centos6` : Centos 6 + memcached 
 
 ## Running from dockerhub registry
 

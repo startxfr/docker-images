@@ -1,0 +1,19 @@
+#!/bin/bash
+source /var/lib/sx/sx-php
+
+check_apache_environment
+# Dispatch input arguments
+case $1 in
+    assemble|build)         phpAssemble $@ ;;
+    post-build)             phpPostBuild $@ ;;
+    pre-deploy)             phpPreDeploy $@ ;;
+    post-deploy)            phpPostDeploy $@ ;;
+    run)                    phpRun $@ ;;
+    isLive)                 phpIsLive $@ ;;
+    isReady)                phpIsReady $@ ;;
+    info)                   phpInformation $@ ;;
+    usage|help|--help)      genericUsage $@ ;;
+    usageS2i)               genericUsageS2I $@ ;;
+    version|--version)      genericVersion $@ ;;
+    *)                      genericWelcome $@ ;;
+esac

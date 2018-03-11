@@ -1,10 +1,1 @@
-language: python
-python:
-  - "3.4"
-
-services:
-  - docker
-
-# command to run tests
-script: ./run-tests.sh
-
+travis/travis.yml

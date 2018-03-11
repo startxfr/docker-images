@@ -1,0 +1,78 @@
+#!/bin/bash
+source /var/lib/sx/sx
+source /var/lib/sx/sx-php
+
+# Display pma information
+function pmaInformation {
+    phpInformation $1 
+}
+
+# function executed when pre-deploy hook is called
+function pmaPreDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    echoVerbose "| "
+    pmaInformation "| "
+    echo "+====================================================="
+    echo "Create log directory $LOG_PATH"
+    touch $LOG_PATH/access.log
+    testAndRunSourceCodeScript "pre-deploy" 
+}
+
+# function executed when post-deploy hook is called
+function pmaPostDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    echoVerbose "| "
+    pmaInformation "| "
+    echo "+====================================================="
+    testAndRunSourceCodeScript "post-deploy" 
+}
+
+# function executed when pre-build hook is called
+function pmaPostBuild {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-BUILD HOOK"
+    echoVerbose "| "
+    pmaInformation "| "
+    echo "+====================================================="
+    testAndRunSourceCodeScript "post-build" 
+}
+
+# function executed when assemble hook is called
+function pmaAssemble {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running ASSEMBLE"
+    echoVerbose "| "
+    pmaInformation "| "
+    echo "+====================================================="
+    if [[ -d /tmp/src ]]; then
+        echo "Fixing perm on /tmp/src"
+        chmod g=u -R /tmp/src
+        cp -R /tmp/src/* $APP_PATH/
+        moveSourceCodeScripts /tmp/src $APP_PATH
+        echoVerbose "Remove source temp $APP_PATH/src"
+        rm -rf /tmp/src
+    fi
+    testAndRunSourceCodeScript "assemble" 
+}
+
+# function executed on container startup
+function pmaRun {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is RUNNING"
+    echoVerbose "| "
+    pmaInformation "| "
+    echo "+====================================================="
+    startApacheService
+}
+
+# Display liveness status
+function pmaIsLive {
+    genericIsLive
+}
+
+# Display readyness status
+function pmaIsReady {
+    apacheIsReady
+}

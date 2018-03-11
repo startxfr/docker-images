@@ -1,0 +1,10 @@
+#!/bin/bash -e
+#
+# S2I assemble script for the 'sx-dbtools' image.
+# The 'assemble' script builds your application source ready to run.
+#
+# For more information refer to the documentation:
+#  https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
+#
+
+/bin/sx-mariadb assemble

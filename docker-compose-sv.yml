@@ -1,44 +1,44 @@
-centos6-service-apache:
+apache:
   extends:
     file: Services/apache/docker-compose.yml
     service: server
 
-centos6-service-php:
+php:
   extends:
     file: Services/php/docker-compose.yml
     service: server
 
-centos6-service-nodejs:
+nodejs:
   extends:
     file: Services/nodejs/docker-compose.yml
     service: server
 
-centos6-service-mariadb:
+mariadb:
   extends:
     file: Services/mariadb/docker-compose.yml
     service: server
 
-centos6-service-postgres:
+postgres:
   extends:
     file: Services/postgres/docker-compose.yml
     service: server
 
-centos6-service-mongo:
+mongo:
   extends:
     file: Services/mongo/docker-compose.yml
     service: server
 
-centos6-service-ooconv:
+ooconv:
   extends:
     file: Services/ooconv/docker-compose.yml
     service: server
 
-centos6-service-memcache:
+memcache:
   extends:
     file: Services/memcache/docker-compose.yml
     service: server
     
-centos6-service-couchbase:
+couchbase:
   extends:
     file: Services/couchbase/docker-compose.yml
     service: server

@@ -4,12 +4,19 @@ Simple container used to deliver dynamic http content using apache associated wi
 Run [PHP engine](https://www.php.net) under a container 
 based on [startx/centos:6 container](https://hub.docker.com/r/startx/fedora)
 
-Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
-or **[other apache + php flavours](https://github.com/startxfr/docker-images/Services/php/#available-flavours)**
-
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos6)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-php/) | [Sources](https://github.com/startxfr/docker-images/Services/php)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos6)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-php/) | [Sources](https://github.com/startxfr/docker-images/tree/master/Services/php)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------|-------------------------------------------------------------------------------|-----------------------------------------------|
+
+## Available flavours
+
+* `:latest` : Fedora core 23 + Apache 2.4.17 + PHP 5.6.16
+* `:fc27` : Fedora core 27 + Apache 2.4.17 + PHP 5.6.16
+* `:fc26` : Fedora core 26 + Apache 2.4.17 + PHP 5.6.16
+* `:fc23` : Fedora core 23 + Apache 2.4.17 + PHP 5.6.16
+* `:fc22` : Fedora core 22 + Apache + PHP 
+* `:fc21` : Fedora core 21 + Apache + PHP 
+* `:centos7` : CentOS 7 + Apache + PHP 
+* `:centos6` : Centos 6 + Apache + PHP 
 
 ## Running from dockerhub registry
 

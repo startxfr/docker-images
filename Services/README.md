@@ -16,18 +16,17 @@ your project and start using stable or experimental applications in your applica
 
 ## Available services
 
-| Service       | Docker Hub repository                                                | Doc
-|---------------|----------------------------------------------------------------------|-----------------------------
-| Apache        | [`startx/sv-apache`](https://hub.docker.com/r/startx/sv-apache)      | [manual](apache/README.md)
-| MariaDB       | [`startx/sv-mariadb`](https://hub.docker.com/r/startx/sv-mariadb)    | [manual](mariadb/README.md)
-| Memcache      | [`startx/sv-memcache`](https://hub.docker.com/r/startx/sv-memcache)  | [manual](memcache/README.md) 
-| MongoDB       | [`startx/sv-mongo`](https://hub.docker.com/r/startx/sv-mongo)        | [manual](mongo/README.md)
-| nodejs        | [`startx/sv-nodejs`](https://hub.docker.com/r/startx/sv-nodejs)      | [manual](nodejs/README.md)
-| ooconv        | [`startx/sv-ooconv`](https://hub.docker.com/r/startx/sv-ooconv)      | [manual](ooconv/README.md)
-| php           | [`startx/sv-php`](https://hub.docker.com/r/startx/sv-php)            | [manual](php/README.md)
-| postgreSQL    | [`startx/sv-postgres`](https://hub.docker.com/r/startx/sv-postgres)  | [manual](postgres/README.md)
-| Couchbase     | [`startx/sv-couchbase`](https://hub.docker.com/r/startx/sv-couchbase)| [manual](couchbase/README.md)
-
+| Service       | Docker Hub repository                                                | Fedora flavours                               | CentOS flavours | Doc
+|---------------|----------------------------------------------------------------------|-----------------------------------------------|-----------------|--------------------------------
+| Apache        | [`startx/sv-apache`](https://hub.docker.com/r/startx/sv-apache)      | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` | `:6` `:7`       | [manual](apache/README.md)
+| MariaDB       | [`startx/sv-mariadb`](https://hub.docker.com/r/startx/sv-mariadb)    | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` | `:6` `:7`       | [manual](mariadb/README.md)
+| Memcache      | [`startx/sv-memcache`](https://hub.docker.com/r/startx/sv-memcache)  | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` | `:6` `:7`       | [manual](memcache/README.md)
+| MongoDB       | [`startx/sv-mongo`](https://hub.docker.com/r/startx/sv-mongo)        | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` | `:6` `:7`       | [manual](mongo/README.md)
+| nodejs        | [`startx/sv-nodejs`](https://hub.docker.com/r/startx/sv-nodejs)      | `:latest` `:21` `:22` `:23` `:26` `:27`       | `:6` `:7`       | [manual](nodejs/README.md)
+| ooconv        | [`startx/sv-ooconv`](https://hub.docker.com/r/startx/sv-ooconv)      | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` | `:6` `:7`       | [manual](ooconv/README.md)
+| php           | [`startx/sv-php`](https://hub.docker.com/r/startx/sv-php)            | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` | `:6` `:7`       | [manual](php/README.md)
+| postgreSQL    | [`startx/sv-postgres`](https://hub.docker.com/r/startx/sv-postgres)  | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` | `:6` `:7`       | [manual](postgres/README.md)
+| Couchbase     | [`startx/sv-couchbase`](https://hub.docker.com/r/startx/sv-couchbase)|                                               | `:latest` `:7`  | [manual](couchbase/README.md)
 
 ## Running from dockerhub registry
 

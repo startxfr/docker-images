@@ -1,0 +1,19 @@
+#!/bin/bash
+source /var/lib/sx/sx-mongo
+
+check_mongo_environment
+# Dispatch input arguments
+case $1 in
+    assemble|build)         mongoAssemble $@ ;;
+    post-build)             mongoPostBuild $@ ;;
+    pre-deploy)             mongoPreDeploy $@ ;;
+    post-deploy)            mongoPostDeploy $@ ;;
+    run)                    mongoRun $@ ;;
+    isLive)                 mongoIsLive $@ ;;
+    isReady)                mongoIsReady $@ ;;
+    info)                   mongoInformation $@ ;;
+    usage|help|--help)      genericUsage $@ ;;
+    usageS2i)               genericUsageS2I $@ ;;
+    version|--version)      genericVersion $@ ;;
+    *)                      genericWelcome $@ ;;
+esac

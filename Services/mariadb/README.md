@@ -4,12 +4,19 @@ Simple container used to deliver simple and easy to use transactional database u
 Run [mariadb daemon](https://mariadb.org/) under a container 
 based on [startx/centos:6 container](https://hub.docker.com/r/startx/fedora)
 
-Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
-or **[other mariadb flavours](https://github.com/startxfr/docker-images/Services/mariadb/#available-flavours)**
-
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos6)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-mariadb/) | [Sources](https://github.com/startxfr/docker-images/Services/mariadb)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos6)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-mariadb/) | [Sources](https://github.com/startxfr/docker-images/tree/master/Services/mariadb)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------|-----------------------------------------------|
+
+## Available flavours
+
+* `:latest` : Fedora core 23 + MariaDB 10.0.21 (compat mysql  15.1)
+* `:fc27` : Fedora core 27 + MariaDB 10.0.21 (compat mysql  15.1)
+* `:fc26` : Fedora core 26 + MariaDB 10.0.21 (compat mysql  15.1)
+* `:fc23` : Fedora core 23 + MariaDB 10.0.21 (compat mysql  15.1)
+* `:fc22` : Fedora core 22 + MariaDB 
+* `:fc21` : Fedora core 21 + MariaDB 
+* `:centos7` : CentOS 7 + MariaDB 
+* `:centos6` : Centos 6 + MariaDB 
 
 ## Running from dockerhub registry
 

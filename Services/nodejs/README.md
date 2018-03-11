@@ -5,12 +5,19 @@ Run [nodejs main app.js](https://www.nodejs.org/) under a container
 based on [startx/centos:6 container](https://hub.docker.com/r/startx/fedora). 
 Could use various network protocol (like http, websocket, smtp, telnet) according to the content of the running app.
 
-Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
-or **[other nodejs flavours](https://github.com/startxfr/docker-images/Services/nodejs/#available-flavours)**
-
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos6)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-nodejs/) | [Sources](https://github.com/startxfr/docker-images/Services/nodejs)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos6)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-nodejs/) | [Sources](https://github.com/startxfr/docker-images/tree/master/Services/nodejs)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------------------------|-----------------------------------------------|
+
+## Available flavours
+
+* `:latest` : Fedora core 23 + NodeJS v0.10.36
+* `:fc27` : Fedora core 27 + NodeJS v0.10.36
+* `:fc26` : Fedora core 26 + NodeJS v0.10.36
+* `:fc23` : Fedora core 23 + NodeJS v0.10.36
+* `:fc22` : Fedora core 22 + NodeJS 
+* `:fc21` : Fedora core 21 + NodeJS 
+* `:centos7` : CentOS 7 + NodeJS 
+* `:centos6` : Centos 6 + NodeJS 
 
 ## Running from dockerhub registry
 

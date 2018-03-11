@@ -1,0 +1,134 @@
+#!/bin/bash
+source /var/lib/sx/sx
+
+function check_nodejs_environment {
+    if [ ! -v APP_PATH ]; then
+        APP_PATH="/app"
+        export APP_PATH
+    fi
+    if [ ! -v APP_MAIN ]; then
+        APP_MAIN="app.js"
+        export APP_MAIN
+    fi
+    if [ ! -v DATA_PATH ]; then
+        DATA_PATH="/data"
+        export DATA_PATH
+    fi
+    if [ ! -v LOG_PATH ]; then
+        LOG_PATH="/logs"
+        export LOG_PATH
+    fi
+}
+
+# Display nodejs information
+function nodejsInformation {
+    displayInformation $1 
+    echoVerbose $1 "app path  : $APP_PATH"
+    echoVerbose $1 "log path  : $LOG_PATH"
+    echoVerbose $1 "data path : $DATA_PATH"
+    echoVerbose $1 "node      : $(node -v | head -1)" 
+    echoVerbose $1 "npm       : $(npm -v | head -1)" 
+}
+
+# function executed when pre-deploy hook is called
+function nodejsPreDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    echoVerbose "| "
+    nodejsInformation "| "
+    echo "+====================================================="
+    testAndRunSourceCodeScript "pre-deploy" 
+}
+
+# function executed when post-deploy hook is called
+function nodejsPostDeploy {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    echoVerbose "| "
+    nodejsInformation "| "
+    echo "+====================================================="
+    testAndRunSourceCodeScript "post-deploy" 
+}
+
+# function executed when pre-build hook is called
+function nodejsPostBuild {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running POST-BUILD HOOK"
+    echoVerbose "| "
+    nodejsInformation "| "
+    echo "+====================================================="
+    testAndRunSourceCodeScript "post-build" 
+}
+
+# function executed when assemble hook is called
+function nodejsAssemble {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is running ASSEMBLE"
+    echoVerbose "| "
+    nodejsInformation "| "
+    echo "+====================================================="
+    if [[ -d /tmp/src ]]; then
+        echo "Fixing perm on /tmp/src"
+        chmod g=u -R /tmp/src
+        cp -R /tmp/src/* $APP_PATH/
+        moveSourceCodeScripts /tmp/src $APP_PATH
+        echoVerbose "Remove source temp $APP_PATH/src"
+        rm -rf /tmp/src
+    fi
+    testAndRunSourceCodeScript "assemble" 
+    npmInstallEnvironement
+}
+
+# function executed on container startup
+function nodejsRun {
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is RUNNING"
+    echoVerbose "| "
+    nodejsInformation "| "
+    echo "+====================================================="
+    startNodejsService
+}
+
+# Display liveness status
+function nodejsIsLive {
+    genericIsLive
+}
+
+# Display readyness status
+function nodejsIsReady {
+    genericIsReady
+}
+
+
+# function executed on apahce service stop
+function stop_nodejs_handler {
+    killall node
+    echo "+====================================================="
+    echo "| Container $HOSTNAME is now STOPPED"
+    echoVerbose "| "
+    nodejsInformation "| "
+    echo "+====================================================="
+    exit 143; # 128 + 15 -- SIGTERM
+}
+
+# Start the httpd server as a deamon and execute it inside 
+# the running shell
+function startNodejsService {
+    cd $APP_PATH
+    trap 'kill ${!}; stop_nodejs_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
+    if [ ! -d "$APP_PATH/node_modules" ]; then
+        npmInstallEnvironement
+    fi
+    exec npm start
+}
+
+# Start the httpd server as a deamon and execute it inside 
+# the running shell
+function npmInstallEnvironement {
+    cd $APP_PATH
+    npm install -production
+    npm dedupe
+    npm cache verify
+    npm cache clean --force
+    cd -
+}

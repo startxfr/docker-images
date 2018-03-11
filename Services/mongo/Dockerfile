@@ -1,22 +1,56 @@
 FROM startx/centos:6
-MAINTAINER Christophe LARUE <dev@startx.fr>
+
+MAINTAINER Startx <dev@startx.fr>
+
+ENV SX_VERSION="latest" \
+    SX_TYPE="service" \
+    SX_SERVICE="mongo" \
+    SX_ID="startx/sv-mongo" \
+    SX_NAME="Startx MongoDB service image (fedora rawhide)" \
+    SX_SUMMARY="Startx mongo service based on fedora rawhide" \
+    LOG_PATH=/logs \
+    DATA_PATH=/data
+
+LABEL name="$SX_ID" \
+      summary="$SX_SUMMARY" \
+      description="$SX_SUMMARY. Use for executing database based on mongo or as container mainstream image for your database backend containers." \
+      version="$SX_VERSION" \
+      release="1" \
+      maintainer="Startx <dev@startx.fr>" \
+      io.k8s.description="$SX_SUMMARY" \
+      io.k8s.display-name="$SX_ID" \
+      io.openshift.tags="startx,os,fedora,database,mongo" \
+      io.openshift.non-scalable="false" \
+      io.openshift.min-memory="1Gi" \
+      io.openshift.min-cpu="8000m" \
+      io.openshift.expose-services="27017:mongodb" \
+      io.openshift.s2i.destination="/tmp" \
+      io.openshift.s2i.scripts-url="image:///s2i" \
+      fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
-RUN yum -y install epel-release && \
-    wget ftp://mirror.switch.ch/pool/4/mirror/centos/7.1.1503/cloud/x86_64/openstack-liberty/common/libunwind-1.1-3.el7.x86_64.rpm && \
-    rpm -ivh libunwind-1.1-3.el7.x86_64.rpm  && \
-    yum -y install mongodb mongodb-server libmongo-client rsyslog-mongodb  && \
-    yum clean all 
-ENV STARTUPLOG=/logs/startup.log \
-    LOG_PATH=/logs  \
-    DATA_PATH=/data
-COPY *.sh /bin/
-RUN chmod 775 /bin/run.sh && \
+COPY sx /tmp/
+RUN dnf --nogpgcheck -y install mongodb mongodb-server  && \
+    dnf clean all  && \
+    usermod -a -G 0 mongodb && \
     mkdir -p $DATA_PATH && \
-    mkdir -p $LOG_PATH && \
-    touch $STARTUPLOG
-RUN chown -R mongodb:mongodb $DATA_PATH $LOG_PATH
+    mv /tmp/s2i/bin/* /s2i/ && \
+    mv /tmp/sx/bin/* /bin/ && \
+    mv /tmp/sx/lib/* /var/lib/sx/ && \
+    rm -rf /tmp/sx /tmp/s2i && \
+    mkdir -p $DATA_PATH $LOG_PATH && \
+    chown -R mongodb:mongodb $DATA_PATH $LOG_PATH && \
+    chgrp -R 0 $DATA_PATH $LOG_PATH /bin/sx-* /s2i /var/lib/sx* && \
+    chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* && \
+    chmod -R g=u $DATA_PATH $LOG_PATH /bin/sx-* /s2i /var/lib/sx* && \
+    chmod -R ugo+x /bin/sx*
+
+USER 1001
+
+WORKDIR $DATA_PATH
 
 EXPOSE 27017 28017
+
 VOLUME $DATA_PATH
-CMD [ "/bin/run.sh" ]
+
+CMD [ "/bin/sx-mongo" , "start" ]

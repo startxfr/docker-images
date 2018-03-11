@@ -1,0 +1,447 @@
+{
+    "kind": "Template",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "startx-sv-couchbase-template",
+        "annotations": {
+            "openshift.io/display-name": "Startx Couchbase server (fedora)",
+            "description": "Couchbase server for NoSQL database running under Fedora",
+            "iconClass": "icon-mysql-database",
+            "tags": "startx,os,fedora,couchbase,database",
+            "openshift.io/long-description": "This template provides an couchbase Database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/provider-display-name": "STARTX",
+            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
+            "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
+        }
+    },
+    "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
+    "labels": {
+        "template": "startx-sv-couchbase-template"
+    },
+    "objects": [
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "annotations": {
+                    "openshift.io/display-name": "Startx Couchbase Database",
+                    "openshift.io/generated-by": "STARTX"
+                },
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx",
+                    "template": "startx-sv-couchbase-template"
+                }
+            },
+            "spec": {
+                "tags": [
+                    {
+                        "name": "latest",
+                        "annotations": {
+                            "openshift.io/display-name": "Startx Couchbase Database (Fedora rawhide)",
+                            "description": "Couchbase server for NoSQL database running under Fedora rawhide",
+                            "iconClass": "icon-mysql-database",
+                            "tags": "builder,startx,fedora,couchbase,database",
+                            "supports": "db",
+                            "version": "rawhide",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-couchbase.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-couchbase:latest"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "Secret",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx",
+                    "template": "startx-sv-couchbase-template"
+                }
+            },
+            "stringData": {
+                "COUCHBASE_PASSWORD": "${COUCHBASE_PASSWORD}",
+                "COUCHBASE_USER": "${COUCHBASE_USER}"
+            }
+        },
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "generation": 2,
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx",
+                    "template": "startx-sv-couchbase-template"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "STARTX"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Rolling",
+                    "rollingParams": {
+                        "updatePeriodSeconds": 1,
+                        "intervalSeconds": 1,
+                        "timeoutSeconds": 120,
+                        "maxUnavailable": "25%",
+                        "maxSurge": "25%",
+                        "pre": {
+                            "failurePolicy": "Abort",
+                            "execNewPod": {
+                                "command": [
+                                    "/bin/sx-couchbase",
+                                    "pre-deploy"
+                                ],
+                                "containerName": "${APP_NAME}"
+                            }
+                        },
+                        "post": {
+                            "failurePolicy": "Abort",
+                            "execNewPod": {
+                                "command": [
+                                    "/bin/sx-couchbase",
+                                    "post-deploy"
+                                ],
+                                "containerName": "${APP_NAME}"
+                            }
+                        }
+                    },
+                    "resources": {}
+                },
+                "triggers": [
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "${APP_NAME}"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "${APP_NAME}:latest"
+                            }
+                        }
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ],
+                "replicas": 1,
+                "test": false,
+                "selector": {
+                    "app": "${APP_NAME}",
+                    "deploymentconfig": "${APP_NAME}"
+                },
+                "template": {
+                    "metadata": {
+                        "creationTimestamp": null,
+                        "labels": {
+                            "app": "${APP_NAME}",
+                            "type": "${APP_TYPE}",
+                            "provider": "startx",
+                            "template": "startx-sv-couchbase-template",
+                            "deploymentconfig": "${APP_NAME}"
+                        },
+                        "annotations": {
+                            "openshift.io/generated-by": "STARTX"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "name": "${APP_NAME}",
+                                "image": " ",
+                                "command": [
+                                    "/bin/sx-couchbase"
+                                ],
+                                "args": [
+                                    "run"
+                                ],
+                                "env": [
+                                    {
+                                        "name": "COUCHBASE_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "name": "${APP_NAME}",
+                                                "key": "COUCHBASE_PASSWORD"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "COUCHBASE_USER",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "name": "${APP_NAME}",
+                                                "key": "COUCHBASE_USER"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "COUCHBASE_BUCKETS",
+                                        "value": "${COUCHBASE_BUCKETS}"
+                                    }
+                                ],
+                                "ports": [
+                                    {
+                                        "containerPort": 8091,
+                                        "protocol": "TCP"
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 8092
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 8093
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 8094
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 11207
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 11210
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 11211
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 18091
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 18092
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 18093
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 18094
+                                    }
+                                ],
+                                "resources": {
+                                    "limits": {
+                                        "memory": "${MEMORY_LIMIT}"
+                                    }
+                                },
+                                "volumeMounts": [
+                                    {
+                                        "name": "${APP_NAME}-data",
+                                        "mountPath": "/opt/couchbase/var"
+                                    }
+                                ],
+                                "livenessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/bin/sx-couchbase",
+                                            "isLive"
+                                        ]
+                                    },
+                                    "initialDelaySeconds": 5,
+                                    "timeoutSeconds": 2,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "failureThreshold": 3
+                                },
+                                "readinessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/bin/sx-couchbase",
+                                            "isReady"
+                                        ]
+                                    },
+                                    "initialDelaySeconds": 2,
+                                    "timeoutSeconds": 2,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "failureThreshold": 3
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "imagePullPolicy": "Always"
+                            }
+                        ],
+                        "volumes": [
+                            {
+                                "name": "${APP_NAME}-data",
+                                "emptyDir": {
+                                    "medium": ""
+                                }
+                            }
+                        ],
+                        "restartPolicy": "Always",
+                        "terminationGracePeriodSeconds": 30,
+                        "dnsPolicy": "ClusterFirst",
+                        "securityContext": {}
+                    }
+                }
+            },
+            "status": {
+                "observedGeneration": 2,
+                "replicas": 1,
+                "updatedReplicas": 1,
+                "availableReplicas": 1
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx",
+                    "template": "startx-sv-couchbase-template"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "STARTX"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "cluster-webapi",
+                        "protocol": "TCP",
+                        "port": 8091,
+                        "targetPort": 8091
+                    },
+                    {
+                        "name": "cluster-viewxdcr",
+                        "protocol": "TCP",
+                        "port": 8092,
+                        "targetPort": 8092
+                    },
+                    {
+                        "name": "cluster-query",
+                        "protocol": "TCP",
+                        "port": 8093,
+                        "targetPort": 8093
+                    },
+                    {
+                        "name": "cluster-fts",
+                        "protocol": "TCP",
+                        "port": 8094,
+                        "targetPort": 8094
+                    },
+                    {
+                        "name": "data-moxi-ssl",
+                        "protocol": "TCP",
+                        "port": 11207,
+                        "targetPort": 11207
+                    },
+                    {
+                        "name": "data-moxi",
+                        "protocol": "TCP",
+                        "port": 11210,
+                        "targetPort": 11210
+                    },
+                    {
+                        "name": "data-legacy",
+                        "protocol": "TCP",
+                        "port": 11211,
+                        "targetPort": 11211
+                    },
+                    {
+                        "name": "cluster-webapi-ssl",
+                        "protocol": "TCP",
+                        "port": 18091,
+                        "targetPort": 18091
+                    },
+                    {
+                        "name": "cluster-viewxdcr-ssl",
+                        "protocol": "TCP",
+                        "port": 18092,
+                        "targetPort": 18092
+                    },
+                    {
+                        "name": "cluster-query-ssl",
+                        "protocol": "TCP",
+                        "port": 18093,
+                        "targetPort": 18093
+                    },
+                    {
+                        "name": "cluster-fts-ssl",
+                        "protocol": "TCP",
+                        "port": 18094,
+                        "targetPort": 18094
+                    }
+                ],
+                "selector": {
+                    "app": "${APP_NAME}",
+                    "deploymentconfig": "${APP_NAME}"
+                },
+                "type": "ClusterIP",
+                "sessionAffinity": "None"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        }
+    ],
+    "parameters": [
+        {
+            "name": "APP_NAME",
+            "displayName": "Application name",
+            "description": "The name of the created application",
+            "value": "couchbase",
+            "required": true
+        },
+        {
+            "name": "APP_TYPE",
+            "displayName": "Application type",
+            "description": "The type of the created application",
+            "value": "database"
+        },
+        {
+            "name": "COUCHBASE_USER",
+            "displayName": "Couchbase user",
+            "description": "Default user to create",
+            "value": "demo",
+            "from": "[A-Z0-9]{8}",
+            "generate": "expression"
+        },
+        {
+            "name": "COUCHBASE_PASSWORD",
+            "displayName": "Couchbase root password",
+            "description": "The couchbase admin password to use. Generated if not provided",
+            "from": "[A-Z0-9]{16}",
+            "generate": "expression"
+        },
+        {
+            "name": "COUCHBASE_BUCKETS",
+            "displayName": "Couchbase bucket",
+            "description": "list of the default's bucket to create"
+        },
+        {
+            "name": "MEMORY_LIMIT",
+            "displayName": "Memory Limit",
+            "description": "Maximum amount of memory the container can use.",
+            "value": "512Mi",
+            "required": true
+        }
+    ]
+}

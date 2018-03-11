@@ -4,12 +4,19 @@ Simple container used to deliver document-oriented database
 Run [mongodb daemon](https://www.mongodb.org/) under a container 
 based on [startx/centos:6 container](https://hub.docker.com/r/startx/fedora)
 
-Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
-or **[other mongo flavours](https://github.com/startxfr/docker-images/Services/mongo/#available-flavours)**
-
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos6)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-mongo/) | [Sources](https://github.com/startxfr/docker-images/Services/mongo)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos6)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-mongo/) | [Sources](https://github.com/startxfr/docker-images/tree/master/Services/mongo)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|---------------------------------------------------------------------------------|-----------------------------------------------|
+
+## Available flavours
+
+* `:latest` : Fedora core 23 + MongoDB 3.0.7 
+* `:fc27` : Fedora core 27 + MongoDB 3.0.7  
+* `:fc26` : Fedora core 26 + MongoDB 3.0.7  
+* `:fc23` : Fedora core 23 + MongoDB 3.0.7  
+* `:fc22` : Fedora core 22 + MongoDB 
+* `:fc21` : Fedora core 21 + MongoDB 
+* `:centos7` : CentOS 7 + MongoDB 
+* `:centos6` : Centos 6 + MongoDB 
 
 ## Running from dockerhub registry
 

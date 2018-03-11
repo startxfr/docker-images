@@ -1,15 +1,50 @@
 FROM startx/centos:6
-MAINTAINER Christophe LARUE <dev@startx.fr>
+
+MAINTAINER Startx <dev@startx.fr>
+
+ENV SX_VERSION="latest" \
+    SX_TYPE="service" \
+    SX_SERVICE="memcache" \
+    SX_ID="startx/sv-memcache" \
+    SX_NAME="Startx Memcached service image (fedora rawhide)" \
+    SX_SUMMARY="Startx Memcached service based on fedora rawhide" \
+    LOG_PATH=/var/log/httpd
+
+LABEL name="$SX_ID" \
+      summary="$SX_SUMMARY" \
+      description="$SX_SUMMARY. Use for executing database based on memcached or as container mainstream image for your database backend containers." \
+      version="$SX_VERSION" \
+      release="1" \
+      maintainer="Startx <dev@startx.fr>" \
+      io.k8s.description="$SX_SUMMARY" \
+      io.k8s.display-name="$SX_ID" \
+      io.openshift.tags="startx,os,fedora,memcached,database" \
+      io.openshift.non-scalable="false" \
+      io.openshift.min-memory="600Mi" \
+      io.openshift.min-cpu="1500m" \
+      io.openshift.expose-services="11211:memcached" \
+      io.openshift.s2i.destination="/tmp" \
+      io.openshift.s2i.scripts-url="image:///s2i" \
+      fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
-RUN yum -y install memcached && \
-    yum clean all 
-ENV STARTUPLOG=/logs/startup.log \
-    LOG_PATH=/logs
-COPY *.sh /bin/
-RUN chmod 775 /bin/run.sh && \
+COPY sx /tmp/
+RUN dnf --nogpgcheck -y install memcached && dnf clean all && \
+    mv /tmp/s2i/bin/* /s2i/ && \
+    mv /tmp/sx/bin/* /bin/ && \
+    mv /tmp/sx/lib/* /var/lib/sx/ && \
+    rm -rf /tmp/sx /tmp/s2i && \
     mkdir -p $LOG_PATH && \
-    touch $STARTUPLOG
+    chgrp -R 0 $LOG_PATH /bin/sx-* /s2i /var/lib/sx* && \
+    chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* && \
+    chmod -R g=u $LOG_PATH /bin/sx-* /s2i /var/lib/sx* && \
+    chmod -R ugo+x /bin/sx* && \
+    chmod -R ugo+rwx $LOG_PATH
+
+USER 1001
+
+WORKDIR $APP_PATH
 
 EXPOSE 11211
-CMD [ "/bin/run.sh" ]
+
+CMD [ "/bin/sx-memcache" , "start" ]

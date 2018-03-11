@@ -1,0 +1,19 @@
+#!/bin/bash
+source /var/lib/sx/sx-nodejs
+
+check_nodejs_environment
+# Dispatch input arguments
+case $1 in
+    assemble|build)         nodejsAssemble $@ ;;
+    post-build)             nodejsPostBuild $@ ;;
+    pre-deploy)             nodejsPreDeploy $@ ;;
+    post-deploy)            nodejsPostDeploy $@ ;;
+    run)                    nodejsRun $@ ;;
+    isLive)                 nodejsIsLive $@ ;;
+    isReady)                nodejsIsReady $@ ;;
+    info)                   nodejsInformation $@ ;;
+    usage|help|--help)      genericUsage $@ ;;
+    usageS2i)               genericUsageS2I $@ ;;
+    version|--version)      genericVersion $@ ;;
+    *)                      genericWelcome $@ ;;
+esac
