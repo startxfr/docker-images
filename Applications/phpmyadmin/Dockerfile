@@ -27,11 +27,11 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 RUN cd $APP_PATH && \
-    wget -q https://files.phpmyadmin.net/phpMyAdmin/4.5.2/phpMyAdmin-4.5.2-all-languages.zip && \
-    unzip phpMyAdmin-4.5.2-all-languages.zip && \
-    rm -f phpMyAdmin-4.5.2-all-languages.zip && \
-    mv phpMyAdmin-4.5.2-all-languages/* ./  && \
-    rm -rf phpMyAdmin-4.5.2-all-languages  && \
+    wget -q https://files.phpmyadmin.net/phpMyAdmin/4.7.7/phpMyAdmin-4.7.7-all-languages.zip && \
+    unzip phpMyAdmin-4.7.7-all-languages.zip && \
+    rm -f phpMyAdmin-4.7.7-all-languages.zip && \
+    mv phpMyAdmin-4.7.7-all-languages/* ./  && \
+    rm -rf phpMyAdmin-4.7.7-all-languages  && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \
     chgrp -R 0 /bin/sx* && \
