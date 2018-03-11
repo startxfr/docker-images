@@ -2,34 +2,34 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-nodejs-template",
+        "name": "startx-app-phpmyadmin-template",
         "annotations": {
-            "openshift.io/display-name": "Startx NodeJS micro-server (fedora)",
-            "description": "NodeJS micro-server for micro-service application running under Fedora",
-            "iconClass": "icon-nodejs",
-            "tags": "startx,os,fedora,nodejs,httpd",
-            "openshift.io/long-description": "This template provides an nodejs micro-server in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/display-name": "Startx Http Server (fedora)",
+            "description": "Http server for simple web application running under Fedora",
+            "iconClass": "icon-php",
+            "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
+            "openshift.io/long-description": "This template provides an apache + php httpd webserver in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
-            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc26/README.md",
+            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
     "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
     "labels": {
-        "template": "startx-sv-nodejs-template"
+        "template": "startx-app-phpmyadmin-template"
     },
     "objects": [
         {
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-nodejs",
+                "name": "startx-app-phpmyadmin",
                 "annotations": {
-                    "openshift.io/display-name": "Startx NodeJS",
+                    "openshift.io/display-name": "Startx PhpMyAdmin web-console",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-nodejs",
+                    "base-image": "startx-app-phpmyadmin",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx"
@@ -40,49 +40,17 @@
                     {
                         "name": "fc26",
                         "annotations": {
-                            "openshift.io/display-name": "Startx NodeJS (Fedora 26)",
-                            "description": "NodeJS micro-server for micro-service application running under Fedora 26",
-                            "iconClass": "icon-nodejs",
-                            "tags": "builder,startx,fedora,nodejs,httpd",
+                            "openshift.io/display-name": "PhpMyAdmin web-console (Fedora 26)",
+                            "description": "PhpMyAdmin web-console for mariadb running under Fedora 26",
+                            "iconClass": "icon-php",
+                            "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "fc26",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-nodejs.git"
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-nodejs:fc26"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "kind": "ImageStream",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APP_NAME}",
-                "annotations": {
-                    "openshift.io/display-name": "Application ${APP_NAME}",
-                    "openshift.io/generated-by": "STARTX"
-                },
-                "labels": {
-                    "base-image": "startx-sv-nodejs",
-                    "app": "${APP_NAME}",
-                    "type": "${APP_TYPE}",
-                    "provider": "startx"
-                }
-            },
-            "spec": {
-                "tags": [
-                    {
-                        "name": "fc26",
-                        "annotations": {
-                            "openshift.io/display-name": "Application ${APP_NAME}",
-                            "description": "Base image for the application ${APP_NAME}",
-                            "iconClass": "icon-nodejs",
-                            "tags": "startx,fedora,nodejs,httpd,application,${APP_NAME}",
-                            "supports": "http",
-                            "version": "rawhide"
+                            "name": "startx/app-phpmyadmin:fc26"
                         }
                     }
                 ]
@@ -99,7 +67,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-nodejs-template"
+                    "template": "startx-app-phpmyadmin-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -111,25 +79,15 @@
                     "rollingParams": {
                         "updatePeriodSeconds": 1,
                         "intervalSeconds": 1,
-                        "timeoutSeconds": 20,
+                        "timeoutSeconds": 60,
                         "maxUnavailable": "25%",
                         "maxSurge": "25%",
                         "pre": {
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-nodejs",
+                                    "/bin/sx-pma",
                                     "pre-deploy"
-                                ],
-                                "env": [
-                                    {
-                                        "name": "SX_VERBOSE",
-                                        "value": "true"
-                                    },
-                                    {
-                                        "name": "SX_DEBUG",
-                                        "value": "true"
-                                    }
                                 ],
                                 "containerName": "${APP_NAME}"
                             }
@@ -138,18 +96,8 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-nodejs",
+                                    "/bin/sx-pma",
                                     "post-deploy"
-                                ],
-                                "env": [
-                                    {
-                                        "name": "SX_VERBOSE",
-                                        "value": "true"
-                                    },
-                                    {
-                                        "name": "SX_DEBUG",
-                                        "value": "true"
-                                    }
                                 ],
                                 "containerName": "${APP_NAME}"
                             }
@@ -167,7 +115,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:fc26"
+                                "name": "startx-app-phpmyadmin:fc26"
                             }
                         }
                     },
@@ -175,9 +123,6 @@
                         "type": "ConfigChange"
                     }
                 ],
-                "postCommit": {
-                    "script": "/bin/sx-nodejs info"
-                },
                 "replicas": 1,
                 "test": false,
                 "selector": {
@@ -191,7 +136,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-sv-nodejs-template",
+                            "template": "startx-app-phpmyadmin-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -202,29 +147,39 @@
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
-                                "image": " ",
-                                "env": [
-                                    {
-                                        "name": "SX_VERBOSE",
-                                        "value": "true"
-                                    }
-                                ],
+                                "image": "startx-app-phpmyadmin:fc26",
                                 "command": [
-                                    "/bin/sx-nodejs"
+                                    "/bin/sx-pma"
                                 ],
                                 "args": [
                                     "run"
                                 ],
-                                "resources": {},
+                                "ports": [
+                                    {
+                                        "containerPort": 8080,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "env": [
+                                    {
+                                        "name": "SX_VERBOSE",
+                                        "value": "true"
+                                    },
+                                    {
+                                        "name": "SX_DEBUG",
+                                        "value": "true"
+                                    }
+                                ],
+                                "resources": { },
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-nodejs",
+                                            "/bin/sx-pma",
                                             "isLive"
                                         ]
                                     },
-                                    "initialDelaySeconds": 4,
-                                    "timeoutSeconds": 1,
+                                    "initialDelaySeconds": 5,
+                                    "timeoutSeconds": 2,
                                     "periodSeconds": 10,
                                     "successThreshold": 1,
                                     "failureThreshold": 3
@@ -232,12 +187,12 @@
                                 "readinessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-nodejs",
+                                            "/bin/sx-pma",
                                             "isReady"
                                         ]
                                     },
-                                    "initialDelaySeconds": 4,
-                                    "timeoutSeconds": 1,
+                                    "initialDelaySeconds": 2,
+                                    "timeoutSeconds": 2,
                                     "periodSeconds": 10,
                                     "successThreshold": 1,
                                     "failureThreshold": 3
@@ -245,11 +200,7 @@
                                 "terminationMessagePath": "/dev/termination-log",
                                 "imagePullPolicy": "Always"
                             }
-                        ],
-                        "restartPolicy": "Always",
-                        "terminationGracePeriodSeconds": 30,
-                        "dnsPolicy": "ClusterFirst",
-                        "securityContext": {}
+                        ]
                     }
                 }
             },
@@ -270,7 +221,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-nodejs-template"
+                    "template": "startx-app-phpmyadmin-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -307,7 +258,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-nodejs-template"
+                    "template": "startx-app-phpmyadmin-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -331,85 +282,6 @@
             "status": {
                 "loadBalancer": {}
             }
-        },
-        {
-            "kind": "BuildConfig",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APP_NAME}",
-                "creationTimestamp": null,
-                "labels": {
-                    "app": "${APP_NAME}",
-                    "type": "${APP_TYPE}",
-                    "provider": "startx",
-                    "template": "startx-sv-nodejs-template"
-                },
-                "annotations": {
-                    "openshift.io/generated-by": "STARTX"
-                }
-            },
-            "spec": {
-                "triggers": [
-                    {
-                        "type": "GitHub",
-                        "github": {
-                            "secret": "${WEBHOOK_TOKEN}_${APP_NAME}"
-                        }
-                    },
-                    {
-                        "type": "Generic",
-                        "generic": {
-                            "secret": "${WEBHOOK_TOKEN}_${APP_NAME}"
-                        }
-                    },
-                    {
-                        "type": "ImageChange",
-                        "imageChange": {}
-                    },
-                    {
-                        "type": "ConfigChange"
-                    }
-                ],
-                "runPolicy": "SerialLatestOnly",
-                "source": {
-                    "type": "Git",
-                    "git": {
-                        "uri": "${SOURCE_GIT}",
-                        "ref": "${SOURCE_BRANCH}"
-                    }
-                },
-                "strategy": {
-                    "type": "Source",
-                    "sourceStrategy": {
-                        "from": {
-                            "kind": "ImageStreamTag",
-                            "name": "startx-sv-nodejs:fc26"
-                        },
-                        "env": [
-                            {
-                                "name": "SX_VERBOSE",
-                                "value": "true"
-                            }
-                        ]
-                    }
-                },
-                "output": {
-                    "to": {
-                        "kind": "ImageStreamTag",
-                        "name": "${APP_NAME}:fc26"
-                    }
-                },
-                "resources": {},
-                "postCommit": {
-                    "command": [
-                        "/bin/sx-nodejs",
-                        "post-build"
-                    ]
-                }
-            },
-            "status": {
-                "lastVersion": 0
-            }
         }
     ],
     "parameters": [
@@ -417,7 +289,7 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "www-node",
+            "value": "pma",
             "required": true
         },
         {
@@ -425,28 +297,6 @@
             "displayName": "Application type",
             "description": "The type of the created application",
             "value": "application"
-        },
-        {
-            "name": "SOURCE_GIT",
-            "displayName": "Source repository",
-            "description": "URL to the source code to use during build process",
-            "value": "https://github.com/startxfr/docker-images-example-nodejs.git",
-            "required": true
-        },
-        {
-            "name": "SOURCE_BRANCH",
-            "displayName": "Source branch",
-            "description": "Name of the default branch",
-            "value": "fc26",
-            "required": true
-        },
-        {
-            "name": "WEBHOOK_TOKEN",
-            "displayName": "Webhook token",
-            "description": "Secret token to use for webhook to github or generic",
-            "generate": "expression",
-            "from": "[a-zA-Z0-9]{24}",
-            "required": true
         }
     ]
 }
