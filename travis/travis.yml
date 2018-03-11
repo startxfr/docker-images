@@ -21,6 +21,7 @@ script:
 - "./travis/test    Services/ooconv    sv-ooconv     fc27"
 - "./travis/test    Services/php       sv-php        fc27"
 - "./travis/test    Services/postgres  sv-postgres   fc27"
+- "./travis/test    Applications/phpmyadmin  app-phpmyadmin   fc27"
 after_success:
 - "./travis/publish OS                 fedora        27"
 - "./travis/publish Services/apache    sv-apache     fc27"
@@ -32,3 +33,4 @@ after_success:
 - "./travis/publish Services/ooconv    sv-ooconv     fc27"
 - "./travis/publish Services/php       sv-php        fc27"
 - "./travis/publish Services/postgres  sv-postgres   fc27"
+- "./travis/publish Applications/phpmyadmin  app-phpmyadmin   fc27"

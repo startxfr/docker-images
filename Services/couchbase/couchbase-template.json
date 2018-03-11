@@ -2,13 +2,13 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-mongo",
+        "name": "startx-sv-couchbase-template",
         "annotations": {
-            "openshift.io/display-name": "Startx MongoDB server (fedora)",
-            "description": "MongoDB server for NoSQL database running under Fedora",
-            "iconClass": "icon-mongodb",
-            "tags": "startx,os,fedora,mongo,database",
-            "openshift.io/long-description": "This template provides an mongo Database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/display-name": "Startx Couchbase server (fedora)",
+            "description": "Couchbase server for NoSQL database running under Fedora",
+            "iconClass": "icon-mysql-database",
+            "tags": "startx,os,fedora,couchbase,database",
+            "openshift.io/long-description": "This template provides an couchbase Database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc27/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -16,23 +16,23 @@
     },
     "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
     "labels": {
-        "template": "startx-sv-mongo"
+        "template": "startx-sv-couchbase-template"
     },
     "objects": [
         {
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-mongo",
+                "name": "${APP_NAME}",
                 "annotations": {
-                    "openshift.io/display-name": "Startx MongoDB Database",
+                    "openshift.io/display-name": "Startx Couchbase Database",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-mongo",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
-                    "provider": "startx"
+                    "provider": "startx",
+                    "template": "startx-sv-couchbase-template"
                 }
             },
             "spec": {
@@ -40,49 +40,17 @@
                     {
                         "name": "fc27",
                         "annotations": {
-                            "openshift.io/display-name": "Startx MongoDB Database (Fedora 27)",
-                            "description": "MongoDB server for simple SQL database running under Fedora 27",
-                            "iconClass": "icon-mongodb",
-                            "tags": "builder,startx,fedora,mongo,database",
+                            "openshift.io/display-name": "Startx Couchbase Database (Fedora 27)",
+                            "description": "Couchbase server for NoSQL database running under Fedora 27",
+                            "iconClass": "icon-mysql-database",
+                            "tags": "builder,startx,fedora,couchbase,database",
                             "supports": "db",
                             "version": "fc27",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mongo.git"
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-couchbase.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-mongo:fc27"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "kind": "ImageStream",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APP_NAME}",
-                "annotations": {
-                    "openshift.io/display-name": "Application ${APP_NAME}",
-                    "openshift.io/generated-by": "STARTX"
-                },
-                "labels": {
-                    "base-image": "startx-sv-mongo",
-                    "app": "${APP_NAME}",
-                    "type": "${APP_TYPE}",
-                    "provider": "startx"
-                }
-            },
-            "spec": {
-                "tags": [
-                    {
-                        "name": "fc27",
-                        "annotations": {
-                            "openshift.io/display-name": "Application ${APP_NAME}",
-                            "description": "Base image for the application ${APP_NAME}",
-                            "iconClass": "icon-mongodb",
-                            "tags": "startx,fedora,mongo,database,application,${APP_NAME}",
-                            "supports": "db",
-                            "version": "rawhide"
+                            "name": "startx/sv-couchbase:fc27"
                         }
                     }
                 ]
@@ -98,12 +66,12 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mongo"
+                    "template": "startx-sv-couchbase-template"
                 }
             },
             "stringData": {
-                "MONGO_PASSWORD": "${MONGO_PASSWORD}",
-                "MONGO_USER": "${MONGO_USER}"
+                "COUCHBASE_PASSWORD": "${COUCHBASE_PASSWORD}",
+                "COUCHBASE_USER": "${COUCHBASE_USER}"
             }
         },
         {
@@ -117,7 +85,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mongo"
+                    "template": "startx-sv-couchbase-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -136,18 +104,8 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-mongo",
+                                    "/bin/sx-couchbase",
                                     "pre-deploy"
-                                ],
-                                "env": [
-                                    {
-                                        "name": "SX_VERBOSE",
-                                        "value": "true"
-                                    },
-                                    {
-                                        "name": "SX_DEBUG",
-                                        "value": "true"
-                                    }
                                 ],
                                 "containerName": "${APP_NAME}"
                             }
@@ -156,18 +114,8 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-mongo",
+                                    "/bin/sx-couchbase",
                                     "post-deploy"
-                                ],
-                                "env": [
-                                    {
-                                        "name": "SX_VERBOSE",
-                                        "value": "true"
-                                    },
-                                    {
-                                        "name": "SX_DEBUG",
-                                        "value": "true"
-                                    }
                                 ],
                                 "containerName": "${APP_NAME}"
                             }
@@ -193,9 +141,6 @@
                         "type": "ConfigChange"
                     }
                 ],
-                "postCommit": {
-                    "script": "/bin/sx-mongo info"
-                },
                 "replicas": 1,
                 "test": false,
                 "selector": {
@@ -209,7 +154,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-sv-mongo",
+                            "template": "startx-sv-couchbase-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -220,49 +165,99 @@
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
-                                "image": "startx/sv-mongo@sha256:fdeea7651d752e09fd9d6e760e85ef7667f7e443c9712d0e5f051c105e66bf05",
-                                "env": [
-                                    {
-                                        "name": "SX_VERBOSE",
-                                        "value": "true"
-                                    }
-                                ],
+                                "image": " ",
                                 "command": [
-                                    "/bin/sx-mongo"
+                                    "/bin/sx-couchbase"
                                 ],
                                 "args": [
                                     "run"
                                 ],
                                 "env": [
                                     {
-                                        "name": "MONGO_PASSWORD",
+                                        "name": "COUCHBASE_PASSWORD",
                                         "valueFrom": {
                                             "secretKeyRef": {
                                                 "name": "${APP_NAME}",
-                                                "key": "MONGO_PASSWORD"
+                                                "key": "COUCHBASE_PASSWORD"
                                             }
                                         }
                                     },
                                     {
-                                        "name": "MONGO_USER",
+                                        "name": "COUCHBASE_USER",
                                         "valueFrom": {
                                             "secretKeyRef": {
                                                 "name": "${APP_NAME}",
-                                                "key": "MONGO_USER"
+                                                "key": "COUCHBASE_USER"
                                             }
                                         }
                                     },
                                     {
-                                        "name": "MONGO_STORES",
-                                        "value": "${MONGO_STORES}"
+                                        "name": "COUCHBASE_BUCKETS",
+                                        "value": "${COUCHBASE_BUCKETS}"
                                     }
                                 ],
-                                "resources": {},
+                                "ports": [
+                                    {
+                                        "containerPort": 8091,
+                                        "protocol": "TCP"
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 8092
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 8093
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 8094
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 11207
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 11210
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 11211
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 18091
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 18092
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 18093
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 18094
+                                    }
+                                ],
+                                "resources": {
+                                    "limits": {
+                                        "memory": "${MEMORY_LIMIT}"
+                                    }
+                                },
+                                "volumeMounts": [
+                                    {
+                                        "name": "${APP_NAME}-data",
+                                        "mountPath": "/opt/couchbase/var"
+                                    }
+                                ],
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-mongo",
-                                            "health"
+                                            "/bin/sx-couchbase",
+                                            "isLive"
                                         ]
                                     },
                                     "initialDelaySeconds": 5,
@@ -274,8 +269,8 @@
                                 "readinessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-mongo",
-                                            "health"
+                                            "/bin/sx-couchbase",
+                                            "isReady"
                                         ]
                                     },
                                     "initialDelaySeconds": 2,
@@ -286,6 +281,14 @@
                                 },
                                 "terminationMessagePath": "/dev/termination-log",
                                 "imagePullPolicy": "Always"
+                            }
+                        ],
+                        "volumes": [
+                            {
+                                "name": "${APP_NAME}-data",
+                                "emptyDir": {
+                                    "medium": ""
+                                }
                             }
                         ],
                         "restartPolicy": "Always",
@@ -312,7 +315,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mongo"
+                    "template": "startx-sv-couchbase-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -321,9 +324,70 @@
             "spec": {
                 "ports": [
                     {
+                        "name": "cluster-webapi",
                         "protocol": "TCP",
-                        "port": 3306,
-                        "targetPort": 3306
+                        "port": 8091,
+                        "targetPort": 8091
+                    },
+                    {
+                        "name": "cluster-viewxdcr",
+                        "protocol": "TCP",
+                        "port": 8092,
+                        "targetPort": 8092
+                    },
+                    {
+                        "name": "cluster-query",
+                        "protocol": "TCP",
+                        "port": 8093,
+                        "targetPort": 8093
+                    },
+                    {
+                        "name": "cluster-fts",
+                        "protocol": "TCP",
+                        "port": 8094,
+                        "targetPort": 8094
+                    },
+                    {
+                        "name": "data-moxi-ssl",
+                        "protocol": "TCP",
+                        "port": 11207,
+                        "targetPort": 11207
+                    },
+                    {
+                        "name": "data-moxi",
+                        "protocol": "TCP",
+                        "port": 11210,
+                        "targetPort": 11210
+                    },
+                    {
+                        "name": "data-legacy",
+                        "protocol": "TCP",
+                        "port": 11211,
+                        "targetPort": 11211
+                    },
+                    {
+                        "name": "cluster-webapi-ssl",
+                        "protocol": "TCP",
+                        "port": 18091,
+                        "targetPort": 18091
+                    },
+                    {
+                        "name": "cluster-viewxdcr-ssl",
+                        "protocol": "TCP",
+                        "port": 18092,
+                        "targetPort": 18092
+                    },
+                    {
+                        "name": "cluster-query-ssl",
+                        "protocol": "TCP",
+                        "port": 18093,
+                        "targetPort": 18093
+                    },
+                    {
+                        "name": "cluster-fts-ssl",
+                        "protocol": "TCP",
+                        "port": 18094,
+                        "targetPort": 18094
                     }
                 ],
                 "selector": {
@@ -336,85 +400,6 @@
             "status": {
                 "loadBalancer": {}
             }
-        },
-        {
-            "kind": "BuildConfig",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APP_NAME}",
-                "creationTimestamp": null,
-                "labels": {
-                    "app": "${APP_NAME}",
-                    "type": "${APP_TYPE}",
-                    "provider": "startx",
-                    "template": "startx-sv-mongo"
-                },
-                "annotations": {
-                    "openshift.io/generated-by": "STARTX"
-                }
-            },
-            "spec": {
-                "triggers": [
-                    {
-                        "type": "GitHub",
-                        "github": {
-                            "secret": "${WEBHOOK_TOKEN}_${APP_NAME}"
-                        }
-                    },
-                    {
-                        "type": "Generic",
-                        "generic": {
-                            "secret": "${WEBHOOK_TOKEN}_${APP_NAME}"
-                        }
-                    },
-                    {
-                        "type": "ImageChange",
-                        "imageChange": {}
-                    },
-                    {
-                        "type": "ConfigChange"
-                    }
-                ],
-                "runPolicy": "SerialLatestOnly",
-                "source": {
-                    "type": "Git",
-                    "git": {
-                        "uri": "${SOURCE_GIT}",
-                        "ref": "${SOURCE_BRANCH}"
-                    }
-                },
-                "strategy": {
-                    "type": "Source",
-                    "sourceStrategy": {
-                        "from": {
-                            "kind": "ImageStreamTag",
-                            "name": "startx-sv-mongo:fc27"
-                        },
-                        "env": [
-                            {
-                                "name": "SX_VERBOSE",
-                                "value": "true"
-                            }
-                        ]
-                    }
-                },
-                "output": {
-                    "to": {
-                        "kind": "ImageStreamTag",
-                        "name": "${APP_NAME}:fc27"
-                    }
-                },
-                "resources": {},
-                "postCommit": {
-                    "command": [
-                        "/bin/sx-mongo",
-                        "post-build"
-                    ]
-                }
-            },
-            "status": {
-                "lastVersion": 0
-            }
         }
     ],
     "parameters": [
@@ -422,7 +407,7 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "mongo",
+            "value": "couchbase",
             "required": true
         },
         {
@@ -432,46 +417,31 @@
             "value": "database"
         },
         {
-            "name": "SOURCE_GIT",
-            "displayName": "Source repository",
-            "description": "URL to the source code to use during build process",
-            "value": "https://github.com/startxfr/docker-images-example-mongo.git",
-            "required": true
-        },
-        {
-            "name": "SOURCE_BRANCH",
-            "displayName": "Source branch",
-            "description": "Name of the default branch",
-            "value": "fc27",
-            "required": true
-        },
-        {
-            "name": "WEBHOOK_TOKEN",
-            "displayName": "Webhook token",
-            "description": "Secret token to use for webhook to github or generic",
-            "generate": "expression",
-            "from": "[a-zA-Z0-9]{24}",
-            "required": true
-        },
-        {
-            "name": "MONGO_USER",
-            "displayName": "MongoDB user",
+            "name": "COUCHBASE_USER",
+            "displayName": "Couchbase user",
             "description": "Default user to create",
             "value": "demo",
             "from": "[A-Z0-9]{8}",
             "generate": "expression"
         },
         {
-            "name": "MONGO_PASSWORD",
-            "displayName": "MongoDB root password",
-            "description": "The mysql root password to use. Generated if not provided",
+            "name": "COUCHBASE_PASSWORD",
+            "displayName": "Couchbase root password",
+            "description": "The couchbase admin password to use. Generated if not provided",
             "from": "[A-Z0-9]{16}",
             "generate": "expression"
         },
         {
-            "name": "MONGO_STORES",
-            "displayName": "MongoDB store",
-            "description": "list of the default's store to create"
+            "name": "COUCHBASE_BUCKETS",
+            "displayName": "Couchbase bucket",
+            "description": "list of the default's bucket to create"
+        },
+        {
+            "name": "MEMORY_LIMIT",
+            "displayName": "Memory Limit",
+            "description": "Maximum amount of memory the container can use.",
+            "value": "512Mi",
+            "required": true
         }
     ]
 }

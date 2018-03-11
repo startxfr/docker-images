@@ -9,7 +9,8 @@ case $1 in
     pre-deploy)             nodejsPreDeploy $@ ;;
     post-deploy)            nodejsPostDeploy $@ ;;
     run)                    nodejsRun $@ ;;
-    health)                 genericHealth $@ ;;
+    isLive)                 nodejsIsLive $@ ;;
+    isReady)                nodejsIsReady $@ ;;
     info)                   nodejsInformation $@ ;;
     usage|help|--help)      genericUsage $@ ;;
     usageS2i)               genericUsageS2I $@ ;;

@@ -20,5 +20,8 @@
     "type": "git",
     "url": "https://github.com/startxfr/docker-images.git"
   },
+  "scripts": {
+    "start": "node app.js"
+  },
   "main": "app.js"
 }

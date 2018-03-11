@@ -8,13 +8,13 @@
             "description": "Minimal Fedora OS container for bash operations",
             "iconClass": "icon-beaker",
             "tags": "startx,os,fedora",
-            "openshift.io/long-description": "This template provides a fedora container with minimal tools and scripts. Ready to use in openshift with a simple deployement config, or as a s2i builder for bash applications. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/long-description": "This template provides a fedora container with minimal tools and scripts. Ready to use in openshift with a simple deployement config, or as a s2i builder for bash applications. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/fc27/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc27/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
-    "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
+    "message": "Your service is deploying on your project environment.\n\nService type: ${APP_TYPE}\nService name: ${APP_NAME}",
     "labels": {
         "template": "startx-os-fedora-template"
     },
@@ -23,16 +23,15 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-os",
+                "name": "${APP_NAME}",
                 "annotations": {
-                    "openshift.io/display-name": "Startx Base OS (fedora)",
-                    "openshift.io/generated-by": "STARTX"
+                    "openshift.io/display-name": "Startx Base OS (fedora)"
                 },
                 "labels": {
-                    "base-image": "startx-os",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
-                    "provider": "startx"
+                    "provider": "startx",
+                    "template": "startx-os-fedora-template"
                 }
             },
             "spec": {
@@ -41,7 +40,7 @@
                         "name": "27",
                         "annotations": {
                             "openshift.io/display-name": "Startx Fedora (27)",
-                            "description": "Minimal Fedora OS for bash operations",
+                            "description": "Minimal Fedora 27 OS for bash operations",
                             "iconClass": "icon-beaker",
                             "tags": "builder,startx,fedora",
                             "supports": "fedora",
@@ -51,38 +50,6 @@
                         "from": {
                             "kind": "DockerImage",
                             "name": "startx/fedora:27"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "kind": "ImageStream",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APP_NAME}",
-                "annotations": {
-                    "openshift.io/display-name": "Application ${APP_NAME}",
-                    "openshift.io/generated-by": "STARTX"
-                },
-                "labels": {
-                    "base-image": "startx-os",
-                    "app": "${APP_NAME}",
-                    "type": "${APP_TYPE}",
-                    "provider": "startx"
-                }
-            },
-            "spec": {
-                "tags": [
-                    {
-                        "name": "fc27",
-                        "annotations": {
-                            "openshift.io/display-name": "Application ${APP_NAME}",
-                            "description": "Base image for the application ${APP_NAME}",
-                            "iconClass": "icon-beaker",
-                            "tags": "startx,fedora,application,${APP_NAME}",
-                            "supports": "fedora",
-                            "version": "fc27"
                         }
                     }
                 ]
@@ -107,29 +74,15 @@
             },
             "spec": {
                 "strategy": {
-                    "type": "Rolling",
-                    "rollingParams": {
-                        "updatePeriodSeconds": 1,
-                        "intervalSeconds": 1,
-                        "timeoutSeconds": 20,
-                        "maxUnavailable": "25%",
-                        "maxSurge": "25%",
+                    "type": "Recreate",
+                    "recreateParams": {
+                        "timeoutSeconds": 40,
                         "pre": {
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
                                     "/bin/sx",
                                     "pre-deploy"
-                                ],
-                                "env": [
-                                    {
-                                        "name": "SX_VERBOSE",
-                                        "value": "true"
-                                    },
-                                    {
-                                        "name": "SX_DEBUG",
-                                        "value": "true"
-                                    }
                                 ],
                                 "containerName": "${APP_NAME}"
                             }
@@ -140,16 +93,6 @@
                                 "command": [
                                     "/bin/sx",
                                     "post-deploy"
-                                ],
-                                "env": [
-                                    {
-                                        "name": "SX_VERBOSE",
-                                        "value": "true"
-                                    },
-                                    {
-                                        "name": "SX_DEBUG",
-                                        "value": "true"
-                                    }
                                 ],
                                 "containerName": "${APP_NAME}"
                             }
@@ -167,7 +110,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:fc27"
+                                "name": "${APP_NAME}:27"
                             }
                         }
                     },
@@ -203,12 +146,6 @@
                             {
                                 "name": "${APP_NAME}",
                                 "image": " ",
-                                "env": [
-                                    {
-                                        "name": "SX_VERBOSE",
-                                        "value": "true"
-                                    }
-                                ],
                                 "command": [
                                     "/bin/sx"
                                 ],
@@ -223,8 +160,8 @@
                                             "isLive"
                                         ]
                                     },
-                                    "initialDelaySeconds": 4,
-                                    "timeoutSeconds": 1,
+                                    "initialDelaySeconds": 5,
+                                    "timeoutSeconds": 2,
                                     "periodSeconds": 10,
                                     "successThreshold": 1,
                                     "failureThreshold": 3
@@ -236,8 +173,8 @@
                                             "isReady"
                                         ]
                                     },
-                                    "initialDelaySeconds": 4,
-                                    "timeoutSeconds": 1,
+                                    "initialDelaySeconds": 2,
+                                    "timeoutSeconds": 2,
                                     "periodSeconds": 10,
                                     "successThreshold": 1,
                                     "failureThreshold": 3
@@ -259,85 +196,6 @@
                 "updatedReplicas": 1,
                 "availableReplicas": 1
             }
-        },
-        {
-            "kind": "BuildConfig",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APP_NAME}",
-                "creationTimestamp": null,
-                "labels": {
-                    "app": "${APP_NAME}",
-                    "type": "${APP_TYPE}",
-                    "provider": "startx",
-                    "template": "startx-os-fedora-template"
-                },
-                "annotations": {
-                    "openshift.io/generated-by": "STARTX"
-                }
-            },
-            "spec": {
-                "triggers": [
-                    {
-                        "type": "GitHub",
-                        "github": {
-                            "secret": "${WEBHOOK_TOKEN}_${APP_NAME}"
-                        }
-                    },
-                    {
-                        "type": "Generic",
-                        "generic": {
-                            "secret": "${WEBHOOK_TOKEN}_${APP_NAME}"
-                        }
-                    },
-                    {
-                        "type": "ImageChange",
-                        "imageChange": {}
-                    },
-                    {
-                        "type": "ConfigChange"
-                    }
-                ],
-                "runPolicy": "SerialLatestOnly",
-                "source": {
-                    "type": "Git",
-                    "git": {
-                        "uri": "${SOURCE_GIT}",
-                        "ref": "${SOURCE_BRANCH}"
-                    }
-                },
-                "strategy": {
-                    "type": "Source",
-                    "sourceStrategy": {
-                        "from": {
-                            "kind": "ImageStreamTag",
-                            "name": "startx-os:27"
-                        },
-                        "env": [
-                            {
-                                "name": "SX_VERBOSE",
-                                "value": "true"
-                            }
-                        ]
-                    }
-                },
-                "output": {
-                    "to": {
-                        "kind": "ImageStreamTag",
-                        "name": "${APP_NAME}:fc27"
-                    }
-                },
-                "resources": {},
-                "postCommit": {
-                    "command": [
-                        "/bin/sx",
-                        "post-build"
-                    ]
-                }
-            },
-            "status": {
-                "lastVersion": 0
-            }
         }
     ],
     "parameters": [
@@ -353,28 +211,6 @@
             "displayName": "Application type",
             "description": "The type of the created application",
             "value": "system"
-        },
-        {
-            "name": "SOURCE_GIT",
-            "displayName": "Source repository",
-            "description": "URL to the source code to use during build process",
-            "value": "https://github.com/startxfr/docker-images-example-bash.git",
-            "required": true
-        },
-        {
-            "name": "SOURCE_BRANCH",
-            "displayName": "Source branch",
-            "description": "Name of the default branch",
-            "value": "fc27",
-            "required": true
-        },
-        {
-            "name": "WEBHOOK_TOKEN",
-            "displayName": "Webhook token",
-            "description": "Secret token to use for webhook to github or generic",
-            "generate": "expression",
-            "from": "[a-zA-Z0-9]{24}",
-            "required": true
         }
     ]
 }

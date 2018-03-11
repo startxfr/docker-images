@@ -2,13 +2,13 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-postgres",
+        "name": "startx-sv-mongo-template",
         "annotations": {
-            "openshift.io/display-name": "Startx PostGresQL server (fedora)",
-            "description": "PostGresQL server for simple SQL database running under Fedora",
-            "iconClass": "icon-postgresql",
-            "tags": "startx,os,fedora,postgres,database",
-            "openshift.io/long-description": "This template provides an postgres db PostGresQL Database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/display-name": "Startx MongoDB server (fedora)",
+            "description": "MongoDB server for NoSQL database running under Fedora",
+            "iconClass": "icon-mongodb",
+            "tags": "startx,os,fedora,mongo,database",
+            "openshift.io/long-description": "This template provides an mongo Database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc27/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -16,7 +16,7 @@
     },
     "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
     "labels": {
-        "template": "startx-sv-postgres"
+        "template": "startx-sv-mongo-template"
     },
     "objects": [
         {
@@ -25,14 +25,14 @@
             "metadata": {
                 "name": "${APP_NAME}",
                 "annotations": {
-                    "openshift.io/display-name": "Startx PostGresQL Database",
+                    "openshift.io/display-name": "Startx MongoDB Database",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-postgres"
+                    "template": "startx-sv-mongo-template"
                 }
             },
             "spec": {
@@ -40,17 +40,17 @@
                     {
                         "name": "fc27",
                         "annotations": {
-                            "openshift.io/display-name": "Startx PostGresQL Database (Fedora 27)",
-                            "description": "PostGresQL server for simple SQL database running under Fedora 27",
-                            "iconClass": "icon-postgresql",
-                            "tags": "builder,startx,fedora,postgres,database",
+                            "openshift.io/display-name": "Startx MongoDB Database (Fedora 27)",
+                            "description": "MongoDB server for NoSQL database running under Fedora 27",
+                            "iconClass": "icon-mongodb",
+                            "tags": "builder,startx,fedora,mongo,database",
                             "supports": "db",
                             "version": "fc27",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-postgres.git"
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mongo.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-postgres:fc27"
+                            "name": "startx/sv-mongo:fc27"
                         }
                     }
                 ]
@@ -66,13 +66,12 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-postgres"
+                    "template": "startx-sv-mongo-template"
                 }
             },
             "stringData": {
-                "PGSQL_ROOT_PASSWORD": "${PGSQL_ROOT_PASSWORD}",
-                "PGSQL_USER": "${PGSQL_USER}",
-                "PGSQL_PASSWORD": "${PGSQL_PASSWORD}"
+                "MONGO_PASSWORD": "${MONGO_PASSWORD}",
+                "MONGO_USER": "${MONGO_USER}"
             }
         },
         {
@@ -86,7 +85,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-postgres"
+                    "template": "startx-sv-mongo-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -105,7 +104,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-postgres",
+                                    "/bin/sx-mongo",
                                     "pre-deploy"
                                 ],
                                 "containerName": "${APP_NAME}"
@@ -115,7 +114,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-postgres",
+                                    "/bin/sx-mongo",
                                     "post-deploy"
                                 ],
                                 "containerName": "${APP_NAME}"
@@ -155,7 +154,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-sv-postgres",
+                            "template": "startx-sv-mongo-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -166,52 +165,43 @@
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
-                                "image": "startx/sv-postgres@sha256:fdeea7651d752e09fd9d6e760e85ef7667f7e443c9712d0e5f051c105e66bf05",
+                                "image": " ",
                                 "command": [
-                                    "/bin/sx-postgres"
+                                    "/bin/sx-mongo"
                                 ],
                                 "args": [
                                     "run"
                                 ],
                                 "env": [
                                     {
-                                        "name": "PGSQL_ROOT_PASSWORD",
+                                        "name": "MONGO_PASSWORD",
                                         "valueFrom": {
                                             "secretKeyRef": {
                                                 "name": "${APP_NAME}",
-                                                "key": "PGSQL_ROOT_PASSWORD"
+                                                "key": "MONGO_PASSWORD"
                                             }
                                         }
                                     },
                                     {
-                                        "name": "PGSQL_USER",
+                                        "name": "MONGO_USER",
                                         "valueFrom": {
                                             "secretKeyRef": {
                                                 "name": "${APP_NAME}",
-                                                "key": "PGSQL_USER"
+                                                "key": "MONGO_USER"
                                             }
                                         }
                                     },
                                     {
-                                        "name": "PGSQL_PASSWORD",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}",
-                                                "key": "PGSQL_PASSWORD"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "PGSQL_DATABASE",
-                                        "value": "${PGSQL_DATABASE}"
+                                        "name": "MONGO_STORES",
+                                        "value": "${MONGO_STORES}"
                                     }
                                 ],
                                 "resources": {},
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-postgres",
-                                            "health"
+                                            "/bin/sx-mongo",
+                                            "isLive"
                                         ]
                                     },
                                     "initialDelaySeconds": 5,
@@ -223,8 +213,8 @@
                                 "readinessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-postgres",
-                                            "health"
+                                            "/bin/sx-mongo",
+                                            "isReady"
                                         ]
                                     },
                                     "initialDelaySeconds": 2,
@@ -257,7 +247,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-postgres"
+                    "template": "startx-sv-mongo-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -288,7 +278,7 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "postgres",
+            "value": "mongo",
             "required": true
         },
         {
@@ -298,32 +288,24 @@
             "value": "database"
         },
         {
-            "name": "PGSQL_ROOT_PASSWORD",
-            "displayName": "Postgresql root password",
-            "description": "The postgresql root password to use. Generated if not provided",
-            "from": "[A-Z0-9]{16}",
-            "generate": "expression"
-        },
-        {
-            "name": "PGSQL_USER",
-            "displayName": "Postgresql user",
+            "name": "MONGO_USER",
+            "displayName": "MongoDB user",
             "description": "Default user to create",
             "value": "demo",
             "from": "[A-Z0-9]{8}",
             "generate": "expression"
         },
         {
-            "name": "PGSQL_PASSWORD",
-            "displayName": "Postgresql password",
-            "description": "Password of the default user",
-            "value": "demo",
+            "name": "MONGO_PASSWORD",
+            "displayName": "MongoDB root password",
+            "description": "The mysql root password to use. Generated if not provided",
             "from": "[A-Z0-9]{16}",
             "generate": "expression"
         },
         {
-            "name": "PGSQL_DATABASE",
-            "displayName": "Postgresql database",
-            "description": "name of the default database to create"
+            "name": "MONGO_STORES",
+            "displayName": "MongoDB store",
+            "description": "list of the default's store to create"
         }
     ]
 }

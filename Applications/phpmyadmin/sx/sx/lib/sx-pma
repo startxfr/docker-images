@@ -1,63 +1,55 @@
 #!/bin/bash
 source /var/lib/sx/sx
+source /var/lib/sx/sx-php
 
-function check_memcache_environment {
-    if [ ! -v LOG_PATH ]; then
-        LOG_PATH="/logs"
-        export LOG_PATH
-    fi
+# Display pma information
+function pmaInformation {
+    phpInformation $1 
 }
 
-function memcacheInformation {
-    displayInformation $1
-    echoVerbose $1 "version   : $SX_VERSION"
-    echoVerbose $1 "memcache  : $(memcached -h | head -1)"
-    echoVerbose $1 "log path  : $LOG_PATH"
-}
-
-function displayMemcacheRunInformation {
-    memcacheInformation $1
-    echoVerbose $1 "admin     : root:$MYSQL_ROOT_PASSWORD"
-    echo $1 "user      : $MYSQL_USER:$MYSQL_PASSWORD"
-    echo $1 "database  : $MYSQL_DATABASE"
-}
-
-function memcachePreDeploy {
+# function executed when pre-deploy hook is called
+function pmaPreDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
     echoVerbose "| "
-    memcacheInformation "| "
+    pmaInformation "| "
     echo "+====================================================="
+    echo "Create log directory $LOG_PATH"
+    touch $LOG_PATH/access.log
     testAndRunSourceCodeScript "pre-deploy" 
 }
 
-function memcachePostDeploy {
+# function executed when post-deploy hook is called
+function pmaPostDeploy {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
     echoVerbose "| "
-    memcacheInformation "| "
+    pmaInformation "| "
     echo "+====================================================="
     testAndRunSourceCodeScript "post-deploy" 
 }
 
-function memcachePostBuild {
+# function executed when pre-build hook is called
+function pmaPostBuild {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running POST-BUILD HOOK"
     echoVerbose "| "
-    memcacheInformation "| "
+    pmaInformation "| "
     echo "+====================================================="
     testAndRunSourceCodeScript "post-build" 
 }
 
-function memcacheAssemble {
+# function executed when assemble hook is called
+function pmaAssemble {
     echo "+====================================================="
     echo "| Container $HOSTNAME is running ASSEMBLE"
     echoVerbose "| "
-    memcacheInformation "| "
+    pmaInformation "| "
     echo "+====================================================="
     if [[ -d /tmp/src ]]; then
         echo "Fixing perm on /tmp/src"
         chmod g=u -R /tmp/src
+        cp -R /tmp/src/* $APP_PATH/
         moveSourceCodeScripts /tmp/src $APP_PATH
         echoVerbose "Remove source temp $APP_PATH/src"
         rm -rf /tmp/src
@@ -65,38 +57,22 @@ function memcacheAssemble {
     testAndRunSourceCodeScript "assemble" 
 }
 
-function memcacheRun {
+# function executed on container startup
+function pmaRun {
     echo "+====================================================="
     echo "| Container $HOSTNAME is RUNNING"
     echoVerbose "| "
-    memcacheInformation "| "
+    pmaInformation "| "
     echo "+====================================================="
-    startMemcacheService
+    startApacheService
 }
 
 # Display liveness status
-function memcacheIsLive {
+function pmaIsLive {
     genericIsLive
 }
 
 # Display readyness status
-function memcacheIsReady {
-    genericIsReady
-}
-
-function stop_memcache_handler {
-    killall memcached
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is now STOPPED"
-    echoVerbose "| "
-    memcacheInformation "| "
-    echo "+====================================================="
-    exit 143; # 128 + 15 -- SIGTERM
-}
-
-# Start the memcache server as a deamon and execute it inside 
-# the running shell
-function startMemcacheService {
-    trap 'kill ${!}; stop_memcache_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
-    exec memcached -u daemon -v
+function pmaIsReady {
+    apacheIsReady
 }

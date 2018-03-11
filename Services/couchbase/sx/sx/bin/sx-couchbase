@@ -9,7 +9,8 @@ case $1 in
     pre-deploy)             couchbasePreDeploy $@ ;;
     post-deploy)            couchbasePostDeploy $@ ;;
     run)                    couchbaseRun $@ ;;
-    health)                 genericHealth $@ ;;
+    isLive)                 couchbaseIsLive $@ ;;
+    isReady)                couchbaseIsReady $@ ;;
     info)                   couchbaseInformation $@ ;;
     usage|help|--help)      genericUsage $@ ;;
     usageS2i)               genericUsageS2I $@ ;;

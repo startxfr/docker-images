@@ -2,13 +2,13 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-memcache",
+        "name": "startx-sv-php-template",
         "annotations": {
-            "openshift.io/display-name": "Startx Memcached server (fedora)",
-            "description": "Memcached server for caching database running under Fedora",
-            "iconClass": "icon-memcached",
-            "tags": "startx,os,fedora,memcached,database",
-            "openshift.io/long-description": "This template provides an memcache database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building caching databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/display-name": "Startx Http Server (fedora)",
+            "description": "Http server for simple web application running under Fedora",
+            "iconClass": "icon-php",
+            "tags": "startx,os,fedora,apache,httpd,php",
+            "openshift.io/long-description": "This template provides an apache + php httpd webserver in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/fc27/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc27/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -16,22 +16,23 @@
     },
     "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
     "labels": {
-        "template": "startx-sv-memcache"
+        "template": "startx-sv-php-template"
     },
     "objects": [
         {
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "${APP_NAME}",
+                "name": "startx-sv-php-template",
                 "annotations": {
-                    "openshift.io/display-name": "Startx Memcached Database"
+                    "openshift.io/display-name": "Startx WebServer",
+                    "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
+                    "base-image": "startx-sv-php-template",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
-                    "provider": "startx",
-                    "template": "startx-sv-memcache"
+                    "provider": "startx"
                 }
             },
             "spec": {
@@ -39,37 +40,20 @@
                     {
                         "name": "fc27",
                         "annotations": {
-                            "openshift.io/display-name": "Startx Memcached Database (Fedora 27)",
-                            "description": "Memcached server for caching database running under Fedora 27",
-                            "iconClass": "icon-memcached",
-                            "tags": "builder,startx,fedora,memcached,database",
-                            "supports": "db",
+                            "openshift.io/display-name": "Startx WebServer (Fedora 27)",
+                            "description": "Http server for simple web application running under Fedora 27",
+                            "iconClass": "icon-php",
+                            "tags": "builder,startx,fedora,apache,httpd,php",
+                            "supports": "http",
                             "version": "27",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-memcache.git"
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-php.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-memcache:fc27"
+                            "name": "startx/sv-php:fc27"
                         }
                     }
                 ]
-            }
-        },
-        {
-            "kind": "Secret",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APP_NAME}",
-                "creationTimestamp": null,
-                "labels": {
-                    "app": "${APP_NAME}",
-                    "type": "${APP_TYPE}",
-                    "provider": "startx",
-                    "template": "startx-sv-memcache"
-                }
-            },
-            "stringData": {
-                "MEMCACHE_PASSWORD": "${MEMCACHE_PASSWORD}"
             }
         },
         {
@@ -83,7 +67,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-memcache"
+                    "template": "startx-sv-php-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -95,14 +79,14 @@
                     "rollingParams": {
                         "updatePeriodSeconds": 1,
                         "intervalSeconds": 1,
-                        "timeoutSeconds": 120,
+                        "timeoutSeconds": 60,
                         "maxUnavailable": "25%",
                         "maxSurge": "25%",
                         "pre": {
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-memcache",
+                                    "/bin/sx-php",
                                     "pre-deploy"
                                 ],
                                 "containerName": "${APP_NAME}"
@@ -112,7 +96,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-memcache",
+                                    "/bin/sx-php",
                                     "post-deploy"
                                 ],
                                 "containerName": "${APP_NAME}"
@@ -152,7 +136,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-sv-memcache",
+                            "template": "startx-sv-php-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -163,34 +147,19 @@
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
-                                "image": "startx/sv-memcache@sha256:fdeea7651d752e09fd9d6e760e85ef7667f7e443c9712d0e5f051c105e66bf05",
+                                "image": " ",
                                 "command": [
-                                    "/bin/sx-memcache"
+                                    "/bin/sx-php"
                                 ],
                                 "args": [
                                     "run"
-                                ],
-                                "env": [
-                                    {
-                                        "name": "MEMCACHE_PASSWORD",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}",
-                                                "key": "MEMCACHE_PASSWORD"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "MEMCACHE_DATABASE",
-                                        "value": "${MEMCACHE_DATABASE}"
-                                    }
                                 ],
                                 "resources": {},
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-memcache",
-                                            "health"
+                                            "/bin/sx-php",
+                                            "isLive"
                                         ]
                                     },
                                     "initialDelaySeconds": 5,
@@ -202,8 +171,8 @@
                                 "readinessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-memcache",
-                                            "health"
+                                            "/bin/sx-php",
+                                            "isReady"
                                         ]
                                     },
                                     "initialDelaySeconds": 2,
@@ -227,6 +196,43 @@
             }
         },
         {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx",
+                    "template": "startx-sv-php-template"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "STARTX"
+                }
+            },
+            "spec": {
+                "to": {
+                    "kind": "Service",
+                    "name": "${APP_NAME}",
+                    "weight": 100
+                }
+            },
+            "status": {
+                "ingress": [
+                    {
+                        "routerName": "router",
+                        "conditions": [
+                            {
+                                "type": "Admitted",
+                                "status": "True"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
             "kind": "Service",
             "apiVersion": "v1",
             "metadata": {
@@ -236,7 +242,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-memcache"
+                    "template": "startx-sv-php-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -246,8 +252,8 @@
                 "ports": [
                     {
                         "protocol": "TCP",
-                        "port": 3306,
-                        "targetPort": 3306
+                        "port": 8080,
+                        "targetPort": 8080
                     }
                 ],
                 "selector": {
@@ -267,27 +273,14 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "memcache",
+            "value": "www-php",
             "required": true
         },
         {
             "name": "APP_TYPE",
             "displayName": "Application type",
             "description": "The type of the created application",
-            "value": "database"
-        },
-        {
-            "name": "MEMCACHE_PASSWORD",
-            "displayName": "Memcache password",
-            "description": "Password of the default user",
-            "value": "demo",
-            "from": "[A-Z0-9]{16}",
-            "generate": "expression"
-        },
-        {
-            "name": "MEMCACHE_DATABASE",
-            "displayName": "Memcache database",
-            "description": "name of the default database to create"
+            "value": "application"
         }
     ]
 }

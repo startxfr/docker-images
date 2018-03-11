@@ -47,7 +47,7 @@ RUN dnf --nogpgcheck -y install httpd && dnf clean all && \
     chmod ug+r $HTTPDCONF && \
     chmod -R ugo+x /bin/sx* && \
     chmod -R ugo+rwx $LOG_PATH
-COPY index.html $APP_PATH
+COPY index.html $APP_PATH/index.html
 RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH
 
 USER 1001

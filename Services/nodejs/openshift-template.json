@@ -2,13 +2,13 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-os-fedora",
+        "name": "startx-sv-nodejs-template",
         "annotations": {
-            "openshift.io/display-name": "Startx Base OS (fedora)",
-            "description": "Minimal Fedora OS container for bash operations",
-            "iconClass": "icon-beaker",
-            "tags": "startx,os,fedora",
-            "openshift.io/long-description": "This template provides a fedora container with minimal tools and scripts. Ready to use in openshift with a simple deployement config, or as a s2i builder for bash applications. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/fc27/README.md.",
+            "openshift.io/display-name": "Startx NodeJS micro-server (fedora)",
+            "description": "NodeJS micro-server for micro-service application running under Fedora",
+            "iconClass": "icon-nodejs",
+            "tags": "startx,os,fedora,nodejs,httpd",
+            "openshift.io/long-description": "This template provides an nodejs micro-server in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc27/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -16,7 +16,7 @@
     },
     "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
     "labels": {
-        "template": "startx-os-fedora"
+        "template": "startx-sv-nodejs-template"
     },
     "objects": [
         {
@@ -25,31 +25,31 @@
             "metadata": {
                 "name": "${APP_NAME}",
                 "annotations": {
-                    "openshift.io/display-name": "Startx Base OS (fedora)"
+                    "openshift.io/display-name": "Startx NodeJS"
                 },
                 "labels": {
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-os-fedora"
+                    "template": "startx-sv-nodejs-template"
                 }
             },
             "spec": {
                 "tags": [
                     {
-                        "name": "27",
+                        "name": "fc27",
                         "annotations": {
-                            "openshift.io/display-name": "Startx Fedora (27)",
-                            "description": "Minimal Fedora 27 OS for bash operations",
-                            "iconClass": "icon-beaker",
-                            "tags": "builder,startx,fedora",
-                            "supports": "fedora",
+                            "openshift.io/display-name": "Startx NodeJS (Fedora 27)",
+                            "description": "NodeJS micro-server for micro-service application running under Fedora 27",
+                            "iconClass": "icon-nodejs",
+                            "tags": "builder,startx,fedora,nodejs,httpd",
+                            "supports": "http",
                             "version": "27",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-nodejs.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/fedora:27"
+                            "name": "startx/sv-nodejs:fc27"
                         }
                     }
                 ]
@@ -66,7 +66,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-os-fedora"
+                    "template": "startx-sv-nodejs-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -74,14 +74,18 @@
             },
             "spec": {
                 "strategy": {
-                    "type": "Recreate",
-                    "recreateParams": {
-                        "timeoutSeconds": 40,
+                    "type": "Rolling",
+                    "rollingParams": {
+                        "updatePeriodSeconds": 1,
+                        "intervalSeconds": 1,
+                        "timeoutSeconds": 60,
+                        "maxUnavailable": "25%",
+                        "maxSurge": "25%",
                         "pre": {
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx",
+                                    "/bin/sx-nodejs",
                                     "pre-deploy"
                                 ],
                                 "containerName": "${APP_NAME}"
@@ -91,7 +95,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx",
+                                    "/bin/sx-nodejs",
                                     "post-deploy"
                                 ],
                                 "containerName": "${APP_NAME}"
@@ -110,7 +114,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:27"
+                                "name": "${APP_NAME}:fc27"
                             }
                         }
                     },
@@ -118,9 +122,6 @@
                         "type": "ConfigChange"
                     }
                 ],
-                "postCommit": {
-                    "script": "/bin/sx info"
-                },
                 "replicas": 1,
                 "test": false,
                 "selector": {
@@ -134,7 +135,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-os-fedora",
+                            "template": "startx-sv-nodejs-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -145,9 +146,9 @@
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
-                                "image": "startx/fedora@sha256:7566c86d34616e3a4b597ff7c616aae6e15cb0fee0b04bd6f7fd3390b6dd8d3c",
+                                "image": " ",
                                 "command": [
-                                    "/bin/sx"
+                                    "/bin/sx-nodejs"
                                 ],
                                 "args": [
                                     "run"
@@ -156,8 +157,8 @@
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx",
-                                            "health"
+                                            "/bin/sx-nodejs",
+                                            "isLive"
                                         ]
                                     },
                                     "initialDelaySeconds": 5,
@@ -169,8 +170,8 @@
                                 "readinessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx",
-                                            "health"
+                                            "/bin/sx-nodejs",
+                                            "isReady"
                                         ]
                                     },
                                     "initialDelaySeconds": 2,
@@ -182,11 +183,7 @@
                                 "terminationMessagePath": "/dev/termination-log",
                                 "imagePullPolicy": "Always"
                             }
-                        ],
-                        "restartPolicy": "Always",
-                        "terminationGracePeriodSeconds": 30,
-                        "dnsPolicy": "ClusterFirst",
-                        "securityContext": {}
+                        ]
                     }
                 }
             },
@@ -196,6 +193,78 @@
                 "updatedReplicas": 1,
                 "availableReplicas": 1
             }
+        },
+        {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx",
+                    "template": "startx-sv-nodejs-template"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "STARTX"
+                }
+            },
+            "spec": {
+                "to": {
+                    "kind": "Service",
+                    "name": "${APP_NAME}",
+                    "weight": 100
+                }
+            },
+            "status": {
+                "ingress": [
+                    {
+                        "routerName": "router",
+                        "conditions": [
+                            {
+                                "type": "Admitted",
+                                "status": "True"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx",
+                    "template": "startx-sv-nodejs-template"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "STARTX"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "protocol": "TCP",
+                        "port": 8080,
+                        "targetPort": 8080
+                    }
+                ],
+                "selector": {
+                    "app": "${APP_NAME}",
+                    "deploymentconfig": "${APP_NAME}"
+                },
+                "type": "ClusterIP",
+                "sessionAffinity": "None"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
         }
     ],
     "parameters": [
@@ -203,14 +272,14 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "fedora",
+            "value": "www-node",
             "required": true
         },
         {
             "name": "APP_TYPE",
             "displayName": "Application type",
             "description": "The type of the created application",
-            "value": "system"
+            "value": "application"
         }
     ]
 }

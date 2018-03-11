@@ -7,8 +7,8 @@
 #  https://github.com/openshift/source-to-image/blob/fc27/docs/builder_image.md
 #
 
-if [[ -r /tmp/run ]]; then
-    exec /bin/sx-couchbase run
+if [[ -x /tmp/run ]]; then
+    exec /tmp/run $@
 else
-    exec /bin/sx-couchbase $@
+    exec /bin/sx-couchbase run
 fi 
