@@ -36,19 +36,19 @@
                         }
                     },
                     {
-                        "name": "fc27",
+                        "name": "fc28",
                         "annotations": {
                             "openshift.io/display-name": "S2I WebServer (Fedora 27)",
                             "description": "Http server builder for simple web application running under Fedora 27",
                             "iconClass": "icon-apache",
                             "tags": "builder,startx,fedora,apache,httpd",
                             "supports": "http",
-                            "version": "fc27",
+                            "version": "fc28",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-apache.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-apache:fc27"
+                            "name": "startx/sv-apache:fc28"
                         }
                     },
                     {
@@ -103,19 +103,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc27",
+                        "name": "fc28",
                         "annotations": {
                             "openshift.io/display-name": "S2I Couchbase Database (Fedora 27)",
                             "description": "Couchbase server builder for NoSQL database running under Fedora 27",
                             "iconClass": "icon-mysql-database",
                             "tags": "builder,startx,fedora,couchbase,database",
                             "supports": "db",
-                            "version": "fc27",
+                            "version": "fc28",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-couchbase.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-couchbase:fc27"
+                            "name": "startx/sv-couchbase:fc28"
                         }
                     },
                     {
@@ -186,19 +186,19 @@
                         }
                     },
                     {
-                        "name": "fc27",
+                        "name": "fc28",
                         "annotations": {
                             "openshift.io/display-name": "S2I Mariadb Database (Fedora 27)",
                             "description": "MariaDB server builder for simple SQL database running under Fedora 27",
                             "iconClass": "icon-mariadb",
                             "tags": "builder,startx,fedora,mariadb,database",
                             "supports": "db",
-                            "version": "fc27",
+                            "version": "fc28",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-mariadb:fc27"
+                            "name": "startx/sv-mariadb:fc28"
                         }
                     },
                     {
@@ -269,19 +269,19 @@
                         }
                     },
                     {
-                        "name": "fc27",
+                        "name": "fc28",
                         "annotations": {
                             "openshift.io/display-name": "S2I Memcached Database (Fedora 27)",
                             "description": "Memcached server builder for caching database running under Fedora 27",
                             "iconClass": "icon-memcached",
                             "tags": "builder,startx,fedora,memcached,database",
                             "supports": "db",
-                            "version": "fc27",
+                            "version": "fc28",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-memcache.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-memcache:fc27"
+                            "name": "startx/sv-memcache:fc28"
                         }
                     },
                     {
@@ -352,19 +352,19 @@
                         }
                     },
                     {
-                        "name": "fc27",
+                        "name": "fc28",
                         "annotations": {
                             "openshift.io/display-name": "S2I MongoDB Database (Fedora 27)",
                             "description": "MongoDB server builder for NoSQL database running under Fedora 27",
                             "iconClass": "icon-mongodb",
                             "tags": "builder,startx,fedora,mongo,database",
                             "supports": "db",
-                            "version": "fc27",
+                            "version": "fc28",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-mongo.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-mongo:fc27"
+                            "name": "startx/sv-mongo:fc28"
                         }
                     },
                     {
@@ -435,19 +435,19 @@
                         }
                     },
                     {
-                        "name": "fc27",
+                        "name": "fc28",
                         "annotations": {
                             "openshift.io/display-name": "S2I NodeJS (Fedora 27)",
                             "description": "NodeJS micro-server builder for micro-service application running under Fedora 27",
                             "iconClass": "icon-nodejs",
                             "tags": "builder,startx,fedora,nodejs,httpd",
                             "supports": "http",
-                            "version": "fc27",
+                            "version": "fc28",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-nodejs.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-nodejs:fc27"
+                            "name": "startx/sv-nodejs:fc28"
                         }
                     },
                     {
@@ -518,19 +518,19 @@
                         }
                     },
                     {
-                        "name": "fc27",
+                        "name": "fc28",
                         "annotations": {
                             "openshift.io/display-name": "S2I LibreOffice converter (Fedora 27)",
                             "description": "LibreOffice converter builder for document convertion running under Fedora 27",
                             "iconClass": "icon-ooconv",
                             "tags": "builder,startx,fedora,ooconv,libreoffice",
                             "supports": "http",
-                            "version": "fc27",
+                            "version": "fc28",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-ooconv.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-ooconv:fc27"
+                            "name": "startx/sv-ooconv:fc28"
                         }
                     },
                     {
@@ -601,19 +601,19 @@
                         }
                     },
                     {
-                        "name": "fc27",
+                        "name": "fc28",
                         "annotations": {
                             "openshift.io/display-name": "S2I PHP WebServer (Fedora 27)",
                             "description": "Http server builder for dynamic web application running under Fedora 27",
                             "iconClass": "icon-php",
                             "tags": "builder,startx,fedora,apache,httpd,php",
                             "supports": "http",
-                            "version": "fc27",
+                            "version": "fc28",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-php.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-php:fc27"
+                            "name": "startx/sv-php:fc28"
                         }
                     },
                     {
@@ -684,19 +684,19 @@
                         }
                     },
                     {
-                        "name": "fc27",
+                        "name": "fc28",
                         "annotations": {
                             "openshift.io/display-name": "S2I PostGresQL Database (Fedora 27)",
                             "description": "PostGresQL server builder for simple SQL database running under Fedora 27",
                             "iconClass": "icon-postgresql",
                             "tags": "builder,startx,fedora,postgres,database",
                             "supports": "db",
-                            "version": "fc27",
+                            "version": "fc28",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-postgres.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-postgres:fc27"
+                            "name": "startx/sv-postgres:fc28"
                         }
                     },
                     {
