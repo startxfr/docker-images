@@ -1,10 +1,10 @@
 server:
   build: ./
-  container_name: "fc27-service-php"
+  container_name: "fc28-service-php"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 5
   ports:
     - "9213:8080"
   volumes:
-    - "/tmp/container-fc27/php:/data"
+    - "/tmp/container-fc28/php:/data"

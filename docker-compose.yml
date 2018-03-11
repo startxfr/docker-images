@@ -3,51 +3,51 @@ fedora27:
     file: OS/docker-compose.yml
     service: fedora27
 
-fc27-service-apache:
+fc28-service-apache:
   extends:
     file: Services/apache/docker-compose.yml
     service: server
 
-fc27-service-php:
+fc28-service-php:
   extends:
     file: Services/php/docker-compose.yml
     service: server
 
-fc27-service-nodejs:
+fc28-service-nodejs:
   extends:
     file: Services/nodejs/docker-compose.yml
     service: server
 
-fc27-service-mariadb:
+fc28-service-mariadb:
   extends:
     file: Services/mariadb/docker-compose.yml
     service: server
 
-fc27-service-postgres:
+fc28-service-postgres:
   extends:
     file: Services/postgres/docker-compose.yml
     service: server
 
-fc27-service-mongo:
+fc28-service-mongo:
   extends:
     file: Services/mongo/docker-compose.yml
     service: server
 
-fc27-service-ooconv:
+fc28-service-ooconv:
   extends:
     file: Services/ooconv/docker-compose.yml
     service: server
 
-fc27-service-memcache:
+fc28-service-memcache:
   extends:
     file: Services/memcache/docker-compose.yml
     service: server
 
-fc27-app-pma:
+fc28-app-pma:
   extends:
     file: Applications/phpmyadmin/docker-compose.yml
     service: application
 
-#fc27-app-rockmongo:
+#fc28-app-rockmongo:
 #  build: Applications/rockmongo/
 #  container_name: "application-rockmongo"

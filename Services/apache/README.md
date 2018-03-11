@@ -8,27 +8,27 @@ Each container is provided with various underlying OS version based on CentOS or
 Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
 or **[other apache flavours](https://github.com/startxfr/docker-images/Services/apache/#available-flavours)**
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc27)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-apache/) | [Sources](https://github.com/startxfr/docker-images/tree/fc27/Services/apache)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc28)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-apache/) | [Sources](https://github.com/startxfr/docker-images/tree/fc28/Services/apache)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------------------------|-----------------------------------------------|
 
 ## Available flavours
 
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="fc27-service-apache" startx/sv-apache:fc27` from any docker host
+* with `docker` you can run `docker run -it --name="fc28-service-apache" startx/sv-apache:fc28` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-apache:fc27
-  container_name: "fc27-service-apache"
+  image: startx/sv-apache:fc28
+  container_name: "fc28-service-apache"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "apache"
-    CONTAINER_INSTANCE: "fc27-service-apache"
+    CONTAINER_INSTANCE: "fc28-service-apache"
     SERVER_NAME: "localhost"
   volumes:
-    - "/tmp/container-fc27/logs/apache:/logs"
-    - "/tmp/container-fc27/apache:/data"
+    - "/tmp/container-fc28/logs/apache:/logs"
+    - "/tmp/container-fc28/apache:/data"
 ```
 
 ## Docker-compose in various situations
@@ -36,20 +36,20 @@ service:
 * sample docker-compose.yml linked to host port 1000
 ```
 service:
-  image: startx/sv-apache:fc27
-  container_name: "fc27-service-apache"
+  image: startx/sv-apache:fc28
+  container_name: "fc28-service-apache"
   environment:
-    CONTAINER_INSTANCE: "fc27-service-apache"
+    CONTAINER_INSTANCE: "fc28-service-apache"
   ports:
     - "1000:8080"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
 service:
-  image: startx/sv-apache:fc27
-  container_name: "fc27-service-apache"
+  image: startx/sv-apache:fc28
+  container_name: "fc28-service-apache"
   environment:
-    CONTAINER_INSTANCE: "fc27-service-apache"
+    CONTAINER_INSTANCE: "fc28-service-apache"
   expose:
     - "8080"
 ```
@@ -57,14 +57,14 @@ service:
 ```
 data:
   image: startx/fedora:27
-  container_name: "fc27-service-apache-data"
+  container_name: "fc28-service-apache-data"
   environment:
-    CONTAINER_INSTANCE: "fc27-service-apache-data"
+    CONTAINER_INSTANCE: "fc28-service-apache-data"
 service:
-  image: startx/sv-apache:fc27
-  container_name: "fc27-service-apache"
+  image: startx/sv-apache:fc28
+  container_name: "fc28-service-apache"
   environment:
-    CONTAINER_INSTANCE: "fc27-service-apache"
+    CONTAINER_INSTANCE: "fc28-service-apache"
   volume_from:
     - data:rw
 ```
@@ -73,7 +73,7 @@ service:
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
  ```
-FROM startx/sv-apache:fc27
+FROM startx/sv-apache:fc28
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```
@@ -119,17 +119,17 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-0. Switch to the flavour branch with `git branch fc27`
+0. Switch to the flavour branch with `git branch fc28`
 1. Jump into the container directory with `cd Services/apache`
-2. Build the container using `docker build -t sv-apache-fc27 .`
+2. Build the container using `docker build -t sv-apache-fc28 .`
 3. Run this container 
-  1. Interactively with `docker run -p 8080:8080 -v /logs -it sv-apache-fc27`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -p 8080:8080 -v /logs -d sv-apache-fc27`
+  1. Interactively with `docker run -p 8080:8080 -v /logs -it sv-apache-fc28`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 8080:8080 -v /logs -d sv-apache-fc28`
 
 
 ### Build & run a container using `docker-compose`
 
-1. Switch to the flavour branch with `git branch fc27`
+1. Switch to the flavour branch with `git branch fc28`
 2. Jump into the container directory with `cd Services/apache`
 3. Run this container 
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container

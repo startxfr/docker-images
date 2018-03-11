@@ -1,8 +1,8 @@
-FROM startx/sv-php:fc27
+FROM startx/sv-php:fc28
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="fc27" \
+ENV SX_VERSION="fc28" \
     SX_TYPE="application" \
     SX_SERVICE="phpmyadmin" \
     SX_ID="startx/app-phpmyadmin" \

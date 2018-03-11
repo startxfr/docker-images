@@ -38,19 +38,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc27",
+                        "name": "fc28",
                         "annotations": {
                             "openshift.io/display-name": "PhpMyAdmin web-console (Fedora 27)",
                             "description": "PhpMyAdmin web-console for mariadb running under Fedora 27",
                             "iconClass": "icon-php",
                             "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
-                            "version": "fc27",
+                            "version": "fc28",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/app-phpmyadmin:fc27"
+                            "name": "startx/app-phpmyadmin:fc28"
                         }
                     }
                 ]
@@ -115,7 +115,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "startx-app-phpmyadmin:fc27"
+                                "name": "startx-app-phpmyadmin:fc28"
                             }
                         }
                     },
@@ -147,7 +147,7 @@
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
-                                "image": "startx-app-phpmyadmin:fc27",
+                                "image": "startx-app-phpmyadmin:fc28",
                                 "command": [
                                     "/bin/sx-pma"
                                 ],

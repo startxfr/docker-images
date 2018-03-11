@@ -1,6 +1,6 @@
 server:
   build: ./
-  container_name: "fc27-service-apache"
+  container_name: "fc28-service-apache"
   mem_limit: 200m
   memswap_limit: 300m
   cpu_shares: 2

@@ -11,20 +11,20 @@ or [other applications flavours](https://github.com/startxfr/docker-images/Appli
 Please **read each container manual** for more information on how you can use it in 
 your project and start using stable or experimental applications in your applications
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc27)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx) | [Sources](https://github.com/startxfr/docker-images/)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc28)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx) | [Sources](https://github.com/startxfr/docker-images/)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------|
 
 ## Available applications
 
 | Service         | Docker Hub repository                                                          | Doc
 |-----------------|--------------------------------------------------------------------------------|--------------------------------
-| PhpMyAdmin      | [`startx/app-pma:fc27`](https://hub.docker.com/r/startx/app-pma)               | [manual](pma/README.md)
-| RockMongo       | [`startx/app-rockmongo:fc27`](https://hub.docker.com/r/startx/app-rockmongo)   | [manual](rockmongo/README.md)
+| PhpMyAdmin      | [`startx/app-pma:fc28`](https://hub.docker.com/r/startx/app-pma)               | [manual](pma/README.md)
+| RockMongo       | [`startx/app-rockmongo:fc28`](https://hub.docker.com/r/startx/app-rockmongo)   | [manual](rockmongo/README.md)
 
 
 ## Running from dockerhub registry
 
 | Applications        | Command                                                                   |
 |---------------------|---------------------------------------------------------------------------|
-| **PhpMyAdmin**      | `docker run -d -p 80:80 --name="fc27-pma" startx/app-pma:fc27`            | 
-| **RockMongo**       | `docker run -d -p 80:80 --name="fc27-rockmongo" startx/app-rockmongo:fc27`| 
+| **PhpMyAdmin**      | `docker run -d -p 80:80 --name="fc28-pma" startx/app-pma:fc28`            | 
+| **RockMongo**       | `docker run -d -p 80:80 --name="fc28-rockmongo" startx/app-rockmongo:fc28`| 

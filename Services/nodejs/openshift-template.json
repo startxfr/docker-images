@@ -10,7 +10,7 @@
             "tags": "startx,os,fedora,nodejs,httpd",
             "openshift.io/long-description": "This template provides an nodejs micro-server in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
-            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc27/README.md",
+            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc28/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
@@ -37,7 +37,7 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc27",
+                        "name": "fc28",
                         "annotations": {
                             "openshift.io/display-name": "Startx NodeJS (Fedora 27)",
                             "description": "NodeJS micro-server for micro-service application running under Fedora 27",
@@ -49,7 +49,7 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-nodejs:fc27"
+                            "name": "startx/sv-nodejs:fc28"
                         }
                     }
                 ]
@@ -114,7 +114,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:fc27"
+                                "name": "${APP_NAME}:fc28"
                             }
                         }
                     },

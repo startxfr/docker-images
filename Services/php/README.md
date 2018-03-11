@@ -8,7 +8,7 @@ Each container is provided with various underlying OS version based on CentOS or
 Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
 or **[other apache + php flavours](https://github.com/startxfr/docker-images/Services/php/#available-flavours)**
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc27)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-php/) | [Sources](https://github.com/startxfr/docker-images/tree/fc27/Services/php)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc28)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-php/) | [Sources](https://github.com/startxfr/docker-images/tree/fc28/Services/php)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------|-------------------------------------------------------------------------------|-----------------------------------------------|
 
 ## Available flavours
@@ -19,16 +19,16 @@ or **[other apache + php flavours](https://github.com/startxfr/docker-images/Ser
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-php:fc27
-  container_name: "service-php-fc27"
+  image: startx/sv-php:fc28
+  container_name: "service-php-fc28"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "php"
-    CONTAINER_INSTANCE: "service-php-fc27"
+    CONTAINER_INSTANCE: "service-php-fc28"
     SERVER_NAME: "localhost"
   volumes:
-    - "/tmp/container-fc27/logs/php:/logs"
-    - "/tmp/container-fc27/php:/data"
+    - "/tmp/container-fc28/logs/php:/logs"
+    - "/tmp/container-fc28/php:/data"
 ```
 
 ## Docker-compose in various situations
@@ -36,35 +36,35 @@ service:
 * sample docker-compose.yml linked to host port 1000
 ```
 service:
-  image: startx/sv-php:fc27
-  container_name: "service-php-fc27"
+  image: startx/sv-php:fc28
+  container_name: "service-php-fc28"
   environment:
-    CONTAINER_INSTANCE: "service-php-fc27"
+    CONTAINER_INSTANCE: "service-php-fc28"
   ports:
     - "1000:80"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
 service:
-  image: startx/sv-php:fc27
-  container_name: "service-php-fc27"
+  image: startx/sv-php:fc28
+  container_name: "service-php-fc28"
   environment:
-    CONTAINER_INSTANCE: "service-php-fc27"
+    CONTAINER_INSTANCE: "service-php-fc28"
   expose:
     - "80"
 ```
 * sample docker-compose.yml using data container
 ```
 data:
-  image: startx/fedora:fc27
-  container_name: "service-php-data-fc27"
+  image: startx/fedora:fc28
+  container_name: "service-php-data-fc28"
   environment:
-    CONTAINER_INSTANCE: "service-php-data-fc27"
+    CONTAINER_INSTANCE: "service-php-data-fc28"
 service:
-  image: startx/sv-php:fc27
-  container_name: "service-php-fc27"
+  image: startx/sv-php:fc28
+  container_name: "service-php-fc28"
   environment:
-    CONTAINER_INSTANCE: "service-php-fc27"
+    CONTAINER_INSTANCE: "service-php-fc28"
   volume_from:
     - data:rw
 ```
@@ -73,7 +73,7 @@ service:
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
  ```
-FROM startx/sv-php:fc27
+FROM startx/sv-php:fc28
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```
@@ -120,7 +120,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-1. Switch to the flavour branch with `git branch fc27`
+1. Switch to the flavour branch with `git branch fc28`
 2. Jump into the container directory with `cd Services/php`
 3. Build the container using `docker build -t sv-php .`
 4. Run this container 
@@ -130,7 +130,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker-compose`
 
-1. Switch to the flavour branch with `git branch fc27`
+1. Switch to the flavour branch with `git branch fc28`
 2. Jump into the container directory with `cd Services/php`
 3. Run this container 
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
