@@ -52,6 +52,22 @@
                         }
                     },
                     {
+                        "name": "fc28",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I PHP WebServer (Fedora 28)",
+                            "description": "Http server builder for dynamic web application running under Fedora 28",
+                            "iconClass": "icon-php",
+                            "tags": "builder,startx,fedora,apache,httpd,php",
+                            "supports": "http",
+                            "version": "fc28",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-php.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-php:fc28"
+                        }
+                    },
+                    {
                         "name": "latest",
                         "annotations": {
                             "openshift.io/display-name": "S2I PHP WebServer (Fedora rawhide)",
