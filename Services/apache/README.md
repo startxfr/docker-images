@@ -2,7 +2,7 @@
 
 Simple container used to deliver static http content include all apache's modules but no external languages engines (like php). For dynamic content, you should use our [sv-php service container](https://hub.docker.com/r/startx/sv-php)
 Run [apache httpd daemon](https://httpd.apache.org/) under a container 
-based on [startx/centos:6 container](https://hub.docker.com/r/startx/fedora)
+based on [startx/centos:6 container](https://hub.docker.com/r/startx/centos)
 
 | [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos6)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-apache/) | [Sources](https://github.com/startxfr/docker-images/tree/master/Services/apache)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------------------------|-----------------------------------------------|

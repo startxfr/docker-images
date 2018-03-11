@@ -2,12 +2,12 @@ FROM startx/centos:6
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="centos6" \
     SX_TYPE="service" \
     SX_SERVICE="couchbase" \
     SX_ID="startx/sv-couchbase" \
-    SX_NAME="Startx Couchbase service image (fedora rawhide)" \
-    SX_SUMMARY="Startx couchbase service based on fedora rawhide" \
+    SX_NAME="Startx Couchbase service image (centos 6)" \
+    SX_SUMMARY="Startx couchbase service based on centos 6" \
     CB_PATH=/opt/couchbase \
     DATA_PATH=$CB_PATH/var \
     CB_VERSION=5.1.0 \
@@ -23,7 +23,7 @@ LABEL name="$SX_ID" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,fedora,database,couchbase" \
+      io.openshift.tags="startx,os,centos,database,couchbase" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="1Gi" \
       io.openshift.min-cpu="8000m" \
@@ -34,8 +34,8 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf --nogpgcheck -y install python-httplib2 openssl ncurses ncurses-libs ncurses-compat-libs && \
-    dnf clean all && \
+RUN yum --nogpgcheck -y install python-httplib2 openssl ncurses ncurses-libs ncurses-compat-libs && \
+    yum clean all && \
     #echo 0 > /proc/sys/vm/swappiness && \
     echo '' >> /etc/sysctl.conf && \
     echo '#Set swappiness to 0 to avoid swapping' >> /etc/sysctl.conf && \

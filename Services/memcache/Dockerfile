@@ -2,12 +2,12 @@ FROM startx/centos:6
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="centos6" \
     SX_TYPE="service" \
     SX_SERVICE="memcache" \
     SX_ID="startx/sv-memcache" \
-    SX_NAME="Startx Memcached service image (fedora rawhide)" \
-    SX_SUMMARY="Startx Memcached service based on fedora rawhide" \
+    SX_NAME="Startx Memcached service image (centos 6)" \
+    SX_SUMMARY="Startx Memcached service based on centos 6" \
     LOG_PATH=/var/log/httpd
 
 LABEL name="$SX_ID" \
@@ -18,7 +18,7 @@ LABEL name="$SX_ID" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,fedora,memcached,database" \
+      io.openshift.tags="startx,os,centos,memcached,database" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="600Mi" \
       io.openshift.min-cpu="1500m" \
@@ -29,7 +29,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf --nogpgcheck -y install memcached && dnf clean all && \
+RUN yum --nogpgcheck -y install memcached && yum clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \

@@ -4,11 +4,11 @@
     "metadata": {
         "name": "startx-sv-mongo-template",
         "annotations": {
-            "openshift.io/display-name": "Startx MongoDB server (fedora)",
-            "description": "MongoDB server for NoSQL database running under Fedora",
+            "openshift.io/display-name": "Startx MongoDB server (centos)",
+            "description": "MongoDB server for NoSQL database running under Centos",
             "iconClass": "icon-mongodb",
-            "tags": "startx,os,fedora,mongo,database",
-            "openshift.io/long-description": "This template provides an mongo Database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "tags": "startx,os,centos,mongo,database",
+            "openshift.io/long-description": "This template provides an mongo Database in a centos container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -38,19 +38,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "centos6",
                         "annotations": {
-                            "openshift.io/display-name": "Startx MongoDB Database (Fedora rawhide)",
-                            "description": "MongoDB server for simple SQL database running under Fedora rawhide",
+                            "openshift.io/display-name": "Startx MongoDB Database (Centos 6)",
+                            "description": "MongoDB server for simple SQL database running under Centos 6",
                             "iconClass": "icon-mongodb",
-                            "tags": "builder,startx,fedora,mongo,database",
+                            "tags": "builder,startx,centos,mongo,database",
                             "supports": "db",
                             "version": "rawhide",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-mongo.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-mongo:latest"
+                            "name": "startx/sv-mongo:centos6"
                         }
                     }
                 ]
@@ -80,7 +80,7 @@
                             "openshift.io/display-name": "Application ${APP_NAME}",
                             "description": "Base image for the application ${APP_NAME}",
                             "iconClass": "icon-mongodb",
-                            "tags": "startx,fedora,mongo,database,application,${APP_NAME}",
+                            "tags": "startx,centos,mongo,database,application,${APP_NAME}",
                             "supports": "db",
                             "version": "rawhide"
                         }
@@ -388,7 +388,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-mongo:latest"
+                            "name": "startx-sv-mongo:centos6"
                         },
                         "env": [
                             {

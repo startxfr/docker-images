@@ -25,7 +25,7 @@
                             "openshift.io/display-name": "S2I Startx Fedora 26",
                             "description": "Minimal Fedora 26 OS builder for bash operations",
                             "iconClass": "icon-beaker",
-                            "tags": "builder,startx,fedora",
+                            "tags": "builder,startx,centos",
                             "supports": "fedora",
                             "version": "fc26",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
@@ -41,7 +41,7 @@
                             "openshift.io/display-name": "S2I Startx Fedora 27",
                             "description": "Minimal Fedora 27 OS builder for bash operations",
                             "iconClass": "icon-beaker",
-                            "tags": "builder,startx,fedora",
+                            "tags": "builder,startx,centos",
                             "supports": "fedora",
                             "version": "fc27",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
@@ -57,7 +57,7 @@
                             "openshift.io/display-name": "S2I Startx Fedora 28",
                             "description": "Minimal Fedora 28 OS builder for bash operations",
                             "iconClass": "icon-beaker",
-                            "tags": "builder,startx,fedora",
+                            "tags": "builder,startx,centos",
                             "supports": "fedora",
                             "version": "fc28",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
@@ -73,7 +73,7 @@
                             "openshift.io/display-name": "S2I Startx Fedora (rawhide)",
                             "description": "Minimal Fedora 27 OS builder for bash operations",
                             "iconClass": "icon-beaker",
-                            "tags": "builder,startx,fedora",
+                            "tags": "builder,startx,centos",
                             "supports": "fedora",
                             "version": "rawhide",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
@@ -89,7 +89,7 @@
                             "openshift.io/display-name": "S2I Startx Fedora (latest)",
                             "description": "Minimal Fedora OS builder for bash operations",
                             "iconClass": "icon-beaker",
-                            "tags": "builder,startx,fedora",
+                            "tags": "builder,startx,centos",
                             "supports": "fedora",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
                         },

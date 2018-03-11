@@ -2,12 +2,12 @@ FROM centos:6
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="6" \
     SX_TYPE="OS" \
-    SX_SERVICE="fedora" \
-    SX_ID="startx/fedora" \
-    SX_NAME="Startx OS base image (fedora rawhide)" \
-    SX_SUMMARY="Startx OS base image based on fedora rawhide" \
+    SX_SERVICE="centos" \
+    SX_ID="startx/centos" \
+    SX_NAME="Startx OS base image (centos 6)" \
+    SX_SUMMARY="Startx OS base image based on centos 6" \
     SX_VERBOSE=true \
     SX_DEBUG=true \
     APP_PATH="/tmp"
@@ -20,7 +20,7 @@ LABEL name="$SX_ID" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,fedora" \
+      io.openshift.tags="startx,os,centos" \
       io.openshift.non-scalable="true" \
       io.openshift.min-memory="100Mi" \
       io.openshift.min-cpu="500m" \

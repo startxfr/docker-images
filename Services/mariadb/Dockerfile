@@ -2,12 +2,12 @@ FROM startx/centos:6
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="centos6" \
     SX_TYPE="service" \
     SX_SERVICE="mariadb" \
     SX_ID="startx/sv-mariadb" \
-    SX_NAME="Startx Mariadb service image (fedora rawhide)" \
-    SX_SUMMARY="Startx mariadb service based on fedora rawhide" \
+    SX_NAME="Startx Mariadb service image (centos 6)" \
+    SX_SUMMARY="Startx mariadb service based on centos 6" \
     MY_CONF=/etc/my.cnf \
     DATA_PATH=/data \
     LOG_PATH=/logs \
@@ -21,7 +21,7 @@ LABEL name="$SX_ID" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,fedora,database,mariadb" \
+      io.openshift.tags="startx,os,centos,database,mariadb" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="400Mi" \
       io.openshift.min-cpu="3000m" \
@@ -33,8 +33,8 @@ LABEL name="$SX_ID" \
 USER root
 COPY my.cnf $MY_CONF
 COPY sx /tmp/
-RUN dnf --nogpgcheck -y install mariadb-tokudb-engine mariadb-connect-engine mariadb-rocksdb-engine mariadb-oqgraph-engine mariadb-connector-c mariadb-connector-odbc mariadb-server-utils mariadb-java-client mariadb-backup mariadb-common mariadb-config mariadb-errmsg mariadb-gssapi-server mariadb-cracklib-password-check mariadb && \
-    dnf clean all && \
+RUN yum --nogpgcheck -y install mariadb-tokudb-engine mariadb-connect-engine mariadb-rocksdb-engine mariadb-oqgraph-engine mariadb-connector-c mariadb-connector-odbc mariadb-server-utils mariadb-java-client mariadb-backup mariadb-common mariadb-config mariadb-errmsg mariadb-gssapi-server mariadb-cracklib-password-check mariadb && \
+    yum clean all && \
     mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \

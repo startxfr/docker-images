@@ -2,7 +2,7 @@
 
 Simple container used to deliver simple and easy to use transactional database using mysql like database provided by [mariadb open-source project](https://mariadb.org/).
 Run [mariadb daemon](https://mariadb.org/) under a container 
-based on [startx/centos:6 container](https://hub.docker.com/r/startx/fedora)
+based on [startx/centos:6 container](https://hub.docker.com/r/startx/centos)
 
 | [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos6)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-mariadb/) | [Sources](https://github.com/startxfr/docker-images/tree/master/Services/mariadb)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------|-----------------------------------------------|

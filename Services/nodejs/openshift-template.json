@@ -4,11 +4,11 @@
     "metadata": {
         "name": "startx-sv-nodejs-template",
         "annotations": {
-            "openshift.io/display-name": "Startx NodeJS micro-server (fedora)",
-            "description": "NodeJS micro-server for micro-service application running under Fedora",
+            "openshift.io/display-name": "Startx NodeJS micro-server (centos)",
+            "description": "NodeJS micro-server for micro-service application running under Centos",
             "iconClass": "icon-nodejs",
-            "tags": "startx,os,fedora,nodejs,httpd",
-            "openshift.io/long-description": "This template provides an nodejs micro-server in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "tags": "startx,os,centos,nodejs,httpd",
+            "openshift.io/long-description": "This template provides an nodejs micro-server in a centos container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -37,19 +37,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "centos6",
                         "annotations": {
-                            "openshift.io/display-name": "Startx NodeJS (Fedora rawhide)",
-                            "description": "NodeJS micro-server for micro-service application running under Fedora rawhide",
+                            "openshift.io/display-name": "Startx NodeJS (Centos 6)",
+                            "description": "NodeJS micro-server for micro-service application running under Centos 6",
                             "iconClass": "icon-nodejs",
-                            "tags": "builder,startx,fedora,nodejs,httpd",
+                            "tags": "builder,startx,centos,nodejs,httpd",
                             "supports": "http",
                             "version": "rawhide",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-nodejs.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-nodejs:latest"
+                            "name": "startx/sv-nodejs:centos6"
                         }
                     }
                 ]
@@ -114,7 +114,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:latest"
+                                "name": "${APP_NAME}:centos6"
                             }
                         }
                     },

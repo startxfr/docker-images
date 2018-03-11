@@ -2,12 +2,12 @@ FROM startx/sv-php:centos6
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="centos6" \
     SX_TYPE="application" \
     SX_SERVICE="phpmyadmin" \
     SX_ID="startx/app-phpmyadmin" \
-    SX_NAME="Startx PhpMyAdmin service image (fedora rawhide)" \
-    SX_SUMMARY="Startx phpmyadmin service based on fedora rawhide"
+    SX_NAME="Startx PhpMyAdmin service image (centos 6)" \
+    SX_SUMMARY="Startx phpmyadmin service based on centos 6"
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -17,7 +17,7 @@ LABEL name="$SX_ID" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,fedora,apache,httpd,php,phpmyadmin,mysql,mariadb" \
+      io.openshift.tags="startx,os,centos,apache,httpd,php,phpmyadmin,mysql,mariadb" \
       io.openshift.non-scalable="true" \
       io.openshift.min-memory="300Mi" \
       io.openshift.min-cpu="2000m" \

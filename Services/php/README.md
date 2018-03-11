@@ -2,7 +2,7 @@
 
 Simple container used to deliver dynamic http content using apache associated with PHP engine
 Run [PHP engine](https://www.php.net) under a container 
-based on [startx/centos:6 container](https://hub.docker.com/r/startx/fedora)
+based on [startx/centos:6 container](https://hub.docker.com/r/startx/centos)
 
 | [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos6)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-php/) | [Sources](https://github.com/startxfr/docker-images/tree/master/Services/php)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------|-------------------------------------------------------------------------------|-----------------------------------------------|

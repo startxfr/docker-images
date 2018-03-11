@@ -8,7 +8,7 @@ This container contain updated core OS rpm (kernel, libs,...) as well as usefull
 
 ## Container flavours
 
-| Version    | Docker Hub repository                                                   | Openshift                                   | Fedora distribution                         |
+| Version    | Docker Hub repository                                                   | Openshift                                   | Centos distribution                         |
 |------------|-------------------------------------------------------------------------|---------------------------------------------|---------------------------------------------|
 | latest     | [`startx/centos:latest`](https://hub.docker.com/r/startx/centos)        | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-is.json) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-dc.json)        | Centos 7.4 (kernel 3.10.0-693  )        |
 | 7          | [`startx/centos:7`](https://hub.docker.com/r/startx/centos)             | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-is.json) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-dc.json)        | Centos 7 (kernel 3.10.0-514  )        |
@@ -50,8 +50,8 @@ CMD ["/bin/sx"]
 |---------------------------|----------|-----------------|--------------------------------------------------------------------------|
 | SX_VERSION                | `string` | `latest`        | container version
 | SX_TYPE                   | `string` | `OS`            | Container family (os, service, application). could be enhanced 
-| SX_SERVICE                | `string` | `fedora`        | Define the type of service or application provided
-| SX_ID                     | `auto`   | `startx/fedora` | Container ID coresponding to the image repository 
+| SX_SERVICE                | `string` | `centos`        | Define the type of service or application provided
+| SX_ID                     | `auto`   | `startx/centos` | Container ID coresponding to the image repository 
 | SX_NAME                   | `auto`   | `yes`           | Container name
 | SX_SUMMARY                | `auto`   | `yes`           | Container purpose description
 
@@ -70,10 +70,10 @@ You must have a working environment with the source code of this repository. Rea
 
 1. Switch to the flavour branch with `git branch centos6`
 2. Jump into the container directory with `cd OS`
-3. Build the container using `docker build -t fedora .`
+3. Build the container using `docker build -t centos .`
 4. Run this container 
-  1. Interactively with `docker run -it fedora`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -d fedora`
+  1. Interactively with `docker run -it centos`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -d centos`
 
 
 ### Build & run a container using `docker-compose`

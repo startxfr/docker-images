@@ -4,10 +4,10 @@
     "metadata": {
         "name": "startx-app-phpmyadmin-template",
         "annotations": {
-            "openshift.io/display-name": "Startx Http Server (fedora)",
-            "description": "Http server for simple web application running under Fedora",
+            "openshift.io/display-name": "Startx Http Server (centos)",
+            "description": "Http server for simple web application running under Centos",
             "iconClass": "icon-php",
-            "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
+            "tags": "startx,centos,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
             "openshift.io/long-description": "This template provides an apache + php httpd webserver in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
@@ -38,19 +38,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "centos6",
                         "annotations": {
-                            "openshift.io/display-name": "PhpMyAdmin web-console (Fedora rawhide)",
-                            "description": "PhpMyAdmin web-console for mariadb running under Fedora rawhide",
+                            "openshift.io/display-name": "PhpMyAdmin web-console (Centos 6)",
+                            "description": "PhpMyAdmin web-console for mariadb running under Centos 6",
                             "iconClass": "icon-php",
-                            "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
+                            "tags": "startx,centos,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "rawhide",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/app-phpmyadmin:latest"
+                            "name": "startx/app-phpmyadmin:centos6"
                         }
                     }
                 ]
@@ -115,7 +115,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "startx-app-phpmyadmin:latest"
+                                "name": "startx-app-phpmyadmin:centos6"
                             }
                         }
                     },
@@ -147,7 +147,7 @@
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
-                                "image": "startx-app-phpmyadmin:latest",
+                                "image": "startx-app-phpmyadmin:centos6",
                                 "command": [
                                     "/bin/sx-pma"
                                 ],

@@ -35,9 +35,9 @@ your project and start using stable or experimental services in your application
 
 ## Images flavours
 
-- `latest` based on fedora rawhide [see detail](https://github.com/startxfr/docker-images/tree/master)
+- `latest` based on centos 6 [see detail](https://github.com/startxfr/docker-images/tree/master)
 - `fc27` based on fedora core 27 [see detail](https://github.com/startxfr/docker-images/tree/fc27)
-- `fc27` based on fedora core 26 [see detail](https://github.com/startxfr/docker-images/tree/fc26)
+- `fc26` based on fedora core 26 [see detail](https://github.com/startxfr/docker-images/tree/fc26)
 - `centos7` based on Centos 7 [see detail](https://github.com/startxfr/docker-images/tree/centos7)
 - `centos6` based on Centos 6 [see detail](https://github.com/startxfr/docker-images/tree/centos6)
 
@@ -56,7 +56,7 @@ This section is usefull if you want :
 1. **Install docker and docker-compose on you environment** 
   1. Check if you have a running docker daemon using `docker --version` If not try to run it using `sudo docker --daemon`. If docker is not installed, follow [docker installation guidelines](https://docs.docker.com/v1.8/installation/)
   2. Check if you have docker-compose installed using `docker-compose --version`. If docker-compose is not installed, follow [docker-compose installation guidelines](https://docs.docker.com/compose/install/)
-  3. Check if you have git installed using `git --version`. If git is not installed, execute `sudo dnf install -y git`
+  3. Check if you have git installed using `git --version`. If git is not installed, execute `sudo yum install -y git`
 2. **Copy repository source locally**
   1. Setup a working directory with `mkdir startx-docker-images; cd startx-docker-images;`
   2. Clone source repository with `git clone https://github.com/startxfr/docker-images.git .`

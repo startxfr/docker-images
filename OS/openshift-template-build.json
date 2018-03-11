@@ -2,13 +2,13 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-os-fedora-template",
+        "name": "startx-os-centos-template",
         "annotations": {
-            "openshift.io/display-name": "Startx Base OS (fedora)",
-            "description": "Minimal Fedora OS container for bash operations",
+            "openshift.io/display-name": "Startx Base OS (centos)",
+            "description": "Minimal Centos OS container for bash operations",
             "iconClass": "icon-beaker",
-            "tags": "startx,os,fedora",
-            "openshift.io/long-description": "This template provides a fedora container with minimal tools and scripts. Ready to use in openshift with a simple deployement config, or as a s2i builder for bash applications. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "tags": "startx,os,centos",
+            "openshift.io/long-description": "This template provides a centos container with minimal tools and scripts. Ready to use in openshift with a simple deployement config, or as a s2i builder for bash applications. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -16,7 +16,7 @@
     },
     "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
     "labels": {
-        "template": "startx-os-fedora-template"
+        "template": "startx-os-centos-template"
     },
     "objects": [
         {
@@ -25,7 +25,7 @@
             "metadata": {
                 "name": "startx-os",
                 "annotations": {
-                    "openshift.io/display-name": "Startx Base OS (fedora)",
+                    "openshift.io/display-name": "Startx Base OS (centos)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
@@ -38,19 +38,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "6",
                         "annotations": {
-                            "openshift.io/display-name": "Startx Fedora (latest)",
-                            "description": "Minimal Fedora OS for bash operations",
+                            "openshift.io/display-name": "Startx Centos (6)",
+                            "description": "Minimal Centos OS for bash operations",
                             "iconClass": "icon-beaker",
-                            "tags": "builder,startx,fedora",
-                            "supports": "fedora",
-                            "version": "latest",
+                            "tags": "builder,startx,centos",
+                            "supports": "centos",
+                            "version": "6",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/fedora:latest"
+                            "name": "startx/centos:6"
                         }
                     }
                 ]
@@ -80,8 +80,8 @@
                             "openshift.io/display-name": "Application ${APP_NAME}",
                             "description": "Base image for the application ${APP_NAME}",
                             "iconClass": "icon-beaker",
-                            "tags": "startx,fedora,application,${APP_NAME}",
-                            "supports": "fedora",
+                            "tags": "startx,centos,application,${APP_NAME}",
+                            "supports": "centos",
                             "version": "latest"
                         }
                     }
@@ -99,7 +99,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-os-fedora-template"
+                    "template": "startx-os-centos-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -191,7 +191,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-os-fedora-template",
+                            "template": "startx-os-centos-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -270,7 +270,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-os-fedora-template"
+                    "template": "startx-os-centos-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -311,7 +311,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-os:latest"
+                            "name": "startx-os:6"
                         },
                         "env": [
                             {
@@ -345,7 +345,7 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "fedora",
+            "value": "centos",
             "required": true
         },
         {

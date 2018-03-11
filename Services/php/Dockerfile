@@ -2,12 +2,12 @@ FROM startx/sv-apache:centos6
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="centos6" \
     SX_TYPE="service" \
     SX_SERVICE="php" \
     SX_ID="startx/sv-php" \
-    SX_NAME="Startx Apache-PHP service image (fedora rawhide)" \
-    SX_SUMMARY="Startx apache-php service based on fedora rawhide"
+    SX_NAME="Startx Apache-PHP service image (centos 6)" \
+    SX_SUMMARY="Startx apache-php service based on centos 6"
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -17,7 +17,7 @@ LABEL name="$SX_ID" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,fedora,apache,httpd,php" \
+      io.openshift.tags="startx,os,centos,apache,httpd,php" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="300Mi" \
       io.openshift.min-cpu="2000m" \
@@ -30,12 +30,12 @@ USER root
 COPY httpd.conf $HTTPDCONF
 COPY php.ini /etc/php.d/sx.ini
 COPY sx /tmp/
-RUN dnf --nogpgcheck -y install php php-cli php-pear \
+RUN yum --nogpgcheck -y install php php-cli php-pear \
         php-gd php-mcrypt php-mysqlnd php-soap \
         php-pdo php-process php-common php-mbstring \
         php-bcmath php-php-gettext php-tcpdf \
         php-tcpdf-dejavu-sans-fonts php-tidy php-fpm && \
-    dnf clean all && \
+    yum clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \

@@ -2,12 +2,12 @@ FROM startx/centos:6
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="centos6" \
     SX_TYPE="service" \
     SX_SERVICE="ooconv" \
     SX_ID="startx/sv-ooconv" \
-    SX_NAME="Startx LibreOffice converter service image (fedora rawhide)" \
-    SX_SUMMARY="Startx unoconv service based on fedora rawhide" \
+    SX_NAME="Startx LibreOffice converter service image (centos 6)" \
+    SX_SUMMARY="Startx unoconv service based on centos 6" \
     DATA_PATH=/data
 
 LABEL name="$SX_ID" \
@@ -18,7 +18,7 @@ LABEL name="$SX_ID" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,fedora,document,libreoffice" \
+      io.openshift.tags="startx,os,centos,document,libreoffice" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="1500Mi" \
       io.openshift.min-cpu="8000m" \
@@ -29,8 +29,8 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf --nogpgcheck -y install unoconv libreoffice-writer libreoffice-calc pdfmod ghostscript && \
-    dnf clean all && \
+RUN yum --nogpgcheck -y install unoconv libreoffice-writer libreoffice-calc pdfmod ghostscript && \
+    yum clean all && \
     mkdir -p $DATA_PATH /.cache && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \

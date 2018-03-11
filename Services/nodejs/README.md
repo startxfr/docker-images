@@ -2,7 +2,7 @@
 
 Simple container used to run server side executed javascript content. include all nodejs and npm dependency.
 Run [nodejs main app.js](https://www.nodejs.org/) under a container 
-based on [startx/centos:6 container](https://hub.docker.com/r/startx/fedora). 
+based on [startx/centos:6 container](https://hub.docker.com/r/startx/centos). 
 Could use various network protocol (like http, websocket, smtp, telnet) according to the content of the running app.
 
 | [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos6)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-nodejs/) | [Sources](https://github.com/startxfr/docker-images/tree/master/Services/nodejs)             | [STARTX Profile](https://github.com/startxfr) | 

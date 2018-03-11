@@ -4,11 +4,11 @@
     "metadata": {
         "name": "startx-sv-php-template",
         "annotations": {
-            "openshift.io/display-name": "Startx PHP WebServer (fedora)",
-            "description": "PHP WebServer for dynamic web application running under Fedora",
+            "openshift.io/display-name": "Startx PHP WebServer (centos)",
+            "description": "PHP WebServer for dynamic web application running under Centos",
             "iconClass": "icon-php",
-            "tags": "startx,os,fedora,apache,httpd,php",
-            "openshift.io/long-description": "This template provides an apache + php httpd webserver in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "tags": "startx,os,centos,apache,httpd,php",
+            "openshift.io/long-description": "This template provides an apache + php httpd webserver in a centos container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -38,19 +38,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "centos6",
                         "annotations": {
-                            "openshift.io/display-name": "Startx PHP WebServer (Fedora rawhide)",
-                            "description": "PHP WebServer for dynamic web application running under Fedora rawhide",
+                            "openshift.io/display-name": "Startx PHP WebServer (Centos 6)",
+                            "description": "PHP WebServer for dynamic web application running under Centos 6",
                             "iconClass": "icon-php",
-                            "tags": "builder,startx,fedora,apache,httpd,php",
+                            "tags": "builder,startx,centos,apache,httpd,php",
                             "supports": "http",
                             "version": "rawhide",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-php.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-php:latest"
+                            "name": "startx/sv-php:centos6"
                         }
                     }
                 ]
@@ -80,7 +80,7 @@
                             "openshift.io/display-name": "Application ${APP_NAME}",
                             "description": "Base image for the application ${APP_NAME}",
                             "iconClass": "icon-php",
-                            "tags": "startx,fedora,apache,httpd,php,application,${APP_NAME}",
+                            "tags": "startx,centos,apache,httpd,php,application,${APP_NAME}",
                             "supports": "http",
                             "version": "rawhide"
                         }
@@ -383,7 +383,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-php:latest"
+                            "name": "startx-sv-php:centos6"
                         },
                         "env": [
                             {

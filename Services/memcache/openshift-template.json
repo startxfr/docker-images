@@ -4,11 +4,11 @@
     "metadata": {
         "name": "startx-sv-memcache-template",
         "annotations": {
-            "openshift.io/display-name": "Startx Memcached server (fedora)",
-            "description": "Memcached server for caching database running under Fedora",
+            "openshift.io/display-name": "Startx Memcached server (centos)",
+            "description": "Memcached server for caching database running under Centos",
             "iconClass": "icon-memcached",
-            "tags": "startx,os,fedora,memcached,database",
-            "openshift.io/long-description": "This template provides an memcache database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building caching databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "tags": "startx,os,centos,memcached,database",
+            "openshift.io/long-description": "This template provides an memcache database in a centos container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building caching databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -37,19 +37,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "centos6",
                         "annotations": {
-                            "openshift.io/display-name": "Startx Memcached Database (Fedora rawhide)",
-                            "description": "Memcached server for caching database running under Fedora rawhide",
+                            "openshift.io/display-name": "Startx Memcached Database (Centos 6)",
+                            "description": "Memcached server for caching database running under Centos 6",
                             "iconClass": "icon-memcached",
-                            "tags": "builder,startx,fedora,memcached,database",
+                            "tags": "builder,startx,centos,memcached,database",
                             "supports": "db",
                             "version": "rawhide",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-memcache.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-memcache:latest"
+                            "name": "startx/sv-memcache:centos6"
                         }
                     }
                 ]
@@ -131,7 +131,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:latest"
+                                "name": "${APP_NAME}:centos6"
                             }
                         }
                     },

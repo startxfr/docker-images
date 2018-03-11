@@ -2,12 +2,12 @@ FROM startx/centos:6
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="centos6" \
     SX_TYPE="service" \
     SX_SERVICE="postgres" \
     SX_ID="startx/sv-postgres" \
-    SX_NAME="Startx Postgres service image (fedora rawhide)" \
-    SX_SUMMARY="Startx postgres service based on fedora rawhide" \
+    SX_NAME="Startx Postgres service image (centos 6)" \
+    SX_SUMMARY="Startx postgres service based on centos 6" \
     DATA_PATH=/data \
     LOG_PATH=/logs
 
@@ -19,7 +19,7 @@ LABEL name="$SX_ID" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,fedora,database,postgresql" \
+      io.openshift.tags="startx,os,centos,database,postgresql" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="1Gi" \
       io.openshift.min-cpu="8000m" \
@@ -30,8 +30,8 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf --nogpgcheck -y install postgresql postgresql-libs postgresql-server \
-    && dnf clean all && \
+RUN yum --nogpgcheck -y install postgresql postgresql-libs postgresql-server \
+    && yum clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \
