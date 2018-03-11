@@ -23,13 +23,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-app-phpmyadmin-template",
+                "name": "startx-app-phpmyadmin",
                 "annotations": {
                     "openshift.io/display-name": "Startx PhpMyAdmin web-console",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-app-phpmyadmin-template",
+                    "base-image": "startx-app-phpmyadmin",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx"
@@ -115,7 +115,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:latest"
+                                "name": "startx-app-phpmyadmin:latest"
                             }
                         }
                     },
@@ -147,14 +147,30 @@
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
-                                "image": " ",
+                                "image": "startx-app-phpmyadmin:latest",
                                 "command": [
                                     "/bin/sx-pma"
                                 ],
                                 "args": [
                                     "run"
                                 ],
-                                "resources": {},
+                                "ports": [
+                                    {
+                                        "containerPort": 8080,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "env": [
+                                    {
+                                        "name": "SX_VERBOSE",
+                                        "value": "true"
+                                    },
+                                    {
+                                        "name": "SX_DEBUG",
+                                        "value": "true"
+                                    }
+                                ],
+                                "resources": { },
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
@@ -273,7 +289,7 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "www-php",
+            "value": "pma",
             "required": true
         },
         {

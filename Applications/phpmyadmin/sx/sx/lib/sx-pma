@@ -1,6 +1,5 @@
 #!/bin/bash
 source /var/lib/sx/sx
-source /var/lib/sx/sx-apache
 source /var/lib/sx/sx-php
 
 # Display pma information
