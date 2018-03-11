@@ -8,7 +8,6 @@ ENV SX_VERSION="latest" \
     SX_ID="startx/sv-nodejs" \
     SX_NAME="Startx Nodejs service image (fedora rawhide)" \
     SX_SUMMARY="Startx nodejs service based on fedora rawhide" \
-    HTTPDCONF=/etc/httpd/conf.d/app.conf \
     LOG_PATH=/logs \
     APP_PATH=/app \
     DATA_PATH=/data \
