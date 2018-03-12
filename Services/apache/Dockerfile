@@ -8,7 +8,7 @@ ENV SX_VERSION="centos6" \
     SX_ID="startx/sv-apache" \
     SX_NAME="Startx Apache service image (centos 6)" \
     SX_SUMMARY="Startx apache service based on centos 6" \
-    HTTPDCONF=/etc/httpd/conf.d/app.conf \
+    HTTPDCONF=/etc/httpd/conf/httpd.conf \
     LOG_PATH=/var/log/httpd \
     APP_PATH=/app \
     DATA_PATH=/data
@@ -33,17 +33,16 @@ LABEL name="$SX_ID" \
 USER root
 COPY httpd.conf $HTTPDCONF
 COPY sx /tmp/
-RUN yum --nogpgcheck -y install httpd && yum clean all && \
+RUN yum --nogpgcheck -y install httpd  && yum clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \
     rm -rf /tmp/sx /tmp/s2i && \
-    cat /etc/httpd/conf/httpd.conf | sed -e "s/Listen 80/#Listen 80/" > /etc/httpd/conf/httpd.conf && \
     rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf && \
     mkdir -p $DATA_PATH $APP_PATH $LOG_PATH && \
-    chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /run/httpd /bin/sx* /s2i /var/lib/sx /tmp && \
+    chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /var/lib/sx /tmp && \
     chown -R 1001:0 /bin/sx* /s2i /var/lib/sx /tmp && \
-    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /run/httpd /bin/sx* /s2i /var/lib/sx /tmp && \
+    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /var/lib/sx /tmp && \
     chmod ug+r $HTTPDCONF && \
     chmod -R ugo+x /bin/sx* && \
     chmod -R ugo+rwx $LOG_PATH

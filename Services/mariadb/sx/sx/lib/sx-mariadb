@@ -172,7 +172,7 @@ function config_stopserver {
 
 
 function config_createadmin {
-    PASS=${MYSQL_ROOT_PASSWORD:-$(pwgen -s 12 1)}
+    PASS=${MYSQL_ROOT_PASSWORD:rootpwd}
     _word=$( [ ${MYSQL_ROOT_PASSWORD} ] && echo "preset" || echo "random" )
     echo "Creating MariaDB admin user with ${_word} password"
     mysql -uroot -e "CREATE USER 'root'@'%' IDENTIFIED BY '$PASS'"
