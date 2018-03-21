@@ -58,4 +58,4 @@ EXPOSE 8080
 
 VOLUME $DATA_PATH
 
-CMD [ "/bin/sx-apache" , "start" ]
+CMD [ "/bin/sx-apache" , "run" ]

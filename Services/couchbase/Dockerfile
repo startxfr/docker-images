@@ -73,4 +73,4 @@ EXPOSE 8091 8092 8093 8094 11207 11210 11211 18091 18092 18093 18094
 
 VOLUME $DATA_PATH
 
-CMD [ "/bin/sx-couchbase" , "start" ]
+CMD [ "/bin/sx-couchbase" , "run" ]
