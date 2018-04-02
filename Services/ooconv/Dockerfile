@@ -1,4 +1,4 @@
-FROM startx/fedora:27
+FROM startx/fedora:28
 
 MAINTAINER Startx <dev@startx.fr>
 
@@ -6,8 +6,8 @@ ENV SX_VERSION="fc28" \
     SX_TYPE="service" \
     SX_SERVICE="ooconv" \
     SX_ID="startx/sv-ooconv" \
-    SX_NAME="Startx LibreOffice converter service image (fedora 27)" \
-    SX_SUMMARY="Startx unoconv service based on fedora 27" \
+    SX_NAME="Startx LibreOffice converter service image (fedora 28)" \
+    SX_SUMMARY="Startx unoconv service based on fedora 28" \
     DATA_PATH=/data
 
 LABEL name="$SX_ID" \

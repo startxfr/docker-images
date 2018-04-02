@@ -1,8 +1,8 @@
-# Docker OS Images : MARIADB on Fedora 27
+# Docker OS Images : MARIADB on Fedora 28
 
 Simple container used to deliver simple and easy to use transactional database using mysql like database provided by [mariadb open-source project](https://mariadb.org/).
 Run [mariadb daemon](https://mariadb.org/) under a container 
-based on [startx/fedora:27 container](https://hub.docker.com/r/startx/fedora)
+based on [startx/fedora:28 container](https://hub.docker.com/r/startx/fedora)
 
 Each container is provided with various underlying OS version based on CentOS or 
 Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
@@ -61,7 +61,7 @@ service:
 * sample docker-compose.yml using data container
 ```
 data:
-  image: startx/fedora:27
+  image: startx/fedora:28
   container_name: "fc28-service-mariadb-data"
   environment:
     CONTAINER_INSTANCE: "fc28-service-mariadb-data"
@@ -78,7 +78,7 @@ service:
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
  ```
-FROM startx/sv-mariadb:27
+FROM startx/sv-mariadb:28
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```

@@ -1,4 +1,4 @@
-FROM startx/fedora:27
+FROM startx/fedora:28
 
 MAINTAINER Startx <dev@startx.fr>
 
@@ -6,8 +6,8 @@ ENV SX_VERSION="fc28" \
     SX_TYPE="service" \
     SX_SERVICE="postgres" \
     SX_ID="startx/sv-postgres" \
-    SX_NAME="Startx Postgres service image (fedora 27)" \
-    SX_SUMMARY="Startx postgres service based on fedora 27" \
+    SX_NAME="Startx Postgres service image (fedora 28)" \
+    SX_SUMMARY="Startx postgres service based on fedora 28" \
     DATA_PATH=/data \
     LOG_PATH=/logs
 

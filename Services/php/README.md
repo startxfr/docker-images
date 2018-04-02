@@ -1,8 +1,8 @@
-# Docker OS Images : APACHE + PHP on Fedora 27
+# Docker OS Images : APACHE + PHP on Fedora 28
 
 Simple container used to deliver dynamic http content using apache associated with PHP engine
 Run [PHP engine](https://www.php.net) under a container 
-based on [startx/fedora:27 container](https://hub.docker.com/r/startx/fedora)
+based on [startx/fedora:28 container](https://hub.docker.com/r/startx/fedora)
 
 Each container is provided with various underlying OS version based on CentOS or 
 Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)

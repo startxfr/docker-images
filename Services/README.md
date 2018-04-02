@@ -1,6 +1,6 @@
-# STARTX Docker-Images Services based on Fedora 27
+# STARTX Docker-Images Services based on Fedora 28
 
-This directory host various Open Source services into docker containers based on [startx/fedora:27 container](https://hub.docker.com/r/startx/fedora)
+This directory host various Open Source services into docker containers based on [startx/fedora:28 container](https://hub.docker.com/r/startx/fedora)
 
 You can use it to instanciate new container from the dockerhub public registry 
 or as a parent container in your own container's. 

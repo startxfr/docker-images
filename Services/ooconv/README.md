@@ -1,8 +1,8 @@
-# Docker OS Images : OOCONV on Fedora 27
+# Docker OS Images : OOCONV on Fedora 28
 
 Simple container used to document convertion and manipulation tools
 Run [libreoffice](https://www.libreoffice.org/) as a daemon using [dagwieers unoconv](https://github.com/dagwieers/unoconv) under a container 
-based on [startx/fedora:27 container](https://hub.docker.com/r/startx/fedora)
+based on [startx/fedora:28 container](https://hub.docker.com/r/startx/fedora)
 
 Each container is provided with various underlying OS version based on CentOS or 
 Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)

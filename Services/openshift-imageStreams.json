@@ -38,8 +38,8 @@
                     {
                         "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "S2I WebServer (Fedora 27)",
-                            "description": "Http server builder for simple web application running under Fedora 27",
+                            "openshift.io/display-name": "S2I WebServer (Fedora 28)",
+                            "description": "Http server builder for simple web application running under Fedora 28",
                             "iconClass": "icon-apache",
                             "tags": "builder,startx,fedora,apache,httpd",
                             "supports": "http",
@@ -105,8 +105,8 @@
                     {
                         "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "S2I Couchbase Database (Fedora 27)",
-                            "description": "Couchbase server builder for NoSQL database running under Fedora 27",
+                            "openshift.io/display-name": "S2I Couchbase Database (Fedora 28)",
+                            "description": "Couchbase server builder for NoSQL database running under Fedora 28",
                             "iconClass": "icon-mysql-database",
                             "tags": "builder,startx,fedora,couchbase,database",
                             "supports": "db",
@@ -188,8 +188,8 @@
                     {
                         "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "S2I Mariadb Database (Fedora 27)",
-                            "description": "MariaDB server builder for simple SQL database running under Fedora 27",
+                            "openshift.io/display-name": "S2I Mariadb Database (Fedora 28)",
+                            "description": "MariaDB server builder for simple SQL database running under Fedora 28",
                             "iconClass": "icon-mariadb",
                             "tags": "builder,startx,fedora,mariadb,database",
                             "supports": "db",
@@ -271,8 +271,8 @@
                     {
                         "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "S2I Memcached Database (Fedora 27)",
-                            "description": "Memcached server builder for caching database running under Fedora 27",
+                            "openshift.io/display-name": "S2I Memcached Database (Fedora 28)",
+                            "description": "Memcached server builder for caching database running under Fedora 28",
                             "iconClass": "icon-memcached",
                             "tags": "builder,startx,fedora,memcached,database",
                             "supports": "db",
@@ -354,8 +354,8 @@
                     {
                         "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "S2I MongoDB Database (Fedora 27)",
-                            "description": "MongoDB server builder for NoSQL database running under Fedora 27",
+                            "openshift.io/display-name": "S2I MongoDB Database (Fedora 28)",
+                            "description": "MongoDB server builder for NoSQL database running under Fedora 28",
                             "iconClass": "icon-mongodb",
                             "tags": "builder,startx,fedora,mongo,database",
                             "supports": "db",
@@ -437,8 +437,8 @@
                     {
                         "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "S2I NodeJS (Fedora 27)",
-                            "description": "NodeJS micro-server builder for micro-service application running under Fedora 27",
+                            "openshift.io/display-name": "S2I NodeJS (Fedora 28)",
+                            "description": "NodeJS micro-server builder for micro-service application running under Fedora 28",
                             "iconClass": "icon-nodejs",
                             "tags": "builder,startx,fedora,nodejs,httpd",
                             "supports": "http",
@@ -520,8 +520,8 @@
                     {
                         "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "S2I LibreOffice converter (Fedora 27)",
-                            "description": "LibreOffice converter builder for document convertion running under Fedora 27",
+                            "openshift.io/display-name": "S2I LibreOffice converter (Fedora 28)",
+                            "description": "LibreOffice converter builder for document convertion running under Fedora 28",
                             "iconClass": "icon-ooconv",
                             "tags": "builder,startx,fedora,ooconv,libreoffice",
                             "supports": "http",
@@ -603,8 +603,8 @@
                     {
                         "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "S2I PHP WebServer (Fedora 27)",
-                            "description": "Http server builder for dynamic web application running under Fedora 27",
+                            "openshift.io/display-name": "S2I PHP WebServer (Fedora 28)",
+                            "description": "Http server builder for dynamic web application running under Fedora 28",
                             "iconClass": "icon-php",
                             "tags": "builder,startx,fedora,apache,httpd,php",
                             "supports": "http",
@@ -686,8 +686,8 @@
                     {
                         "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "S2I PostGresQL Database (Fedora 27)",
-                            "description": "PostGresQL server builder for simple SQL database running under Fedora 27",
+                            "openshift.io/display-name": "S2I PostGresQL Database (Fedora 28)",
+                            "description": "PostGresQL server builder for simple SQL database running under Fedora 28",
                             "iconClass": "icon-postgresql",
                             "tags": "builder,startx,fedora,postgres,database",
                             "supports": "db",

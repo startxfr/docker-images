@@ -40,8 +40,8 @@
                     {
                         "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "Startx Couchbase Database (Fedora 27)",
-                            "description": "Couchbase server for NoSQL database running under Fedora 27",
+                            "openshift.io/display-name": "Startx Couchbase Database (Fedora 28)",
+                            "description": "Couchbase server for NoSQL database running under Fedora 28",
                             "iconClass": "icon-mysql-database",
                             "tags": "builder,startx,fedora,couchbase,database",
                             "supports": "db",

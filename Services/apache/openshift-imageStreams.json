@@ -36,19 +36,19 @@
                         }
                     },
                     {
-                        "name": "fc27",
+                        "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "S2I WebServer (Fedora 27)",
-                            "description": "Http server builder for simple web application running under Fedora 27",
+                            "openshift.io/display-name": "S2I WebServer (Fedora 28)",
+                            "description": "Http server builder for simple web application running under Fedora 28",
                             "iconClass": "icon-apache",
                             "tags": "builder,startx,fedora,apache,httpd",
                             "supports": "http",
-                            "version": "fc27",
+                            "version": "fc28",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-apache.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-apache:fc27"
+                            "name": "startx/sv-apache:fc28"
                         }
                     },
                     {

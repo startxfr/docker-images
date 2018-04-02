@@ -36,19 +36,19 @@
                         }
                     },
                     {
-                        "name": "fc27",
+                        "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "S2I NodeJS (Fedora 27)",
-                            "description": "NodeJS micro-server builder for micro-service application running under Fedora 27",
+                            "openshift.io/display-name": "S2I NodeJS (Fedora 28)",
+                            "description": "NodeJS micro-server builder for micro-service application running under Fedora 28",
                             "iconClass": "icon-nodejs",
                             "tags": "builder,startx,fedora,nodejs,httpd",
                             "supports": "http",
-                            "version": "fc27",
+                            "version": "fc28",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-nodejs.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-nodejs:fc27"
+                            "name": "startx/sv-nodejs:fc28"
                         }
                     },
                     {

@@ -1,4 +1,4 @@
-# Docker OS Images : FEDORA 27
+# Docker OS Images : FEDORA 28
 
 Simple container used for all startx based services and applications published in [Dockerhub registry](https://github.com/startxfr/docker-images). 
 This container contain updated core OS rpm (kernel, libs,...) as well as usefull tools like pwgen, tar, zip, psmisc, procps, coreutils, findutils, wget
@@ -10,27 +10,27 @@ This container contain updated core OS rpm (kernel, libs,...) as well as usefull
 
 ### Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="fedora27" startx/fedora:27` from any docker host
+* with `docker` you can run `docker run -it --name="fedora28" startx/fedora:28` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```yaml
 fedora:
-  image: startx/fedora:27
-  container_name: "os-fedora27"
+  image: startx/fedora:28
+  container_name: "os-fedora28"
 ```
 
 ### Using this image as S2I builder
 
 You can use this image as an s2i builder image. 
  ```bash
-s2i build https://github.com/startxfr/docker-images-example-bash startx/fedora:27 test-fedora27
-docker run --rm -i -t test-fedora27
+s2i build https://github.com/startxfr/docker-images-example-bash startx/fedora:28 test-fedora28
+docker run --rm -i -t test-fedora28
 ```
 
 ### Using this image as base container
 
 You can use this Dockerfile template to start a new personalized container based on this container
  ```
-FROM startx/fedora:27
+FROM startx/fedora:28
 #... your container specifications
 CMD ["/bin/sx"]
 ```
@@ -40,7 +40,7 @@ CMD ["/bin/sx"]
 
 | Variable                  | Type     | Default         | Description                                                              |
 |---------------------------|----------|-----------------|--------------------------------------------------------------------------|
-| SX_VERSION                | `string` | `27`        | container version
+| SX_VERSION                | `string` | `28`        | container version
 | SX_TYPE                   | `string` | `OS`            | Container family (os, service, application). could be enhanced 
 | SX_SERVICE                | `string` | `fedora`        | Define the type of service or application provided
 | SX_ID                     | `auto`   | `startx/fedora` | Container ID coresponding to the image repository 

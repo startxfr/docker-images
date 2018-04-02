@@ -40,8 +40,8 @@
                     {
                         "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "Startx MongoDB Database (Fedora 27)",
-                            "description": "MongoDB server for simple SQL database running under Fedora 27",
+                            "openshift.io/display-name": "Startx MongoDB Database (Fedora 28)",
+                            "description": "MongoDB server for simple SQL database running under Fedora 28",
                             "iconClass": "icon-mongodb",
                             "tags": "builder,startx,fedora,mongo,database",
                             "supports": "db",

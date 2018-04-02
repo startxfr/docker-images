@@ -1,8 +1,8 @@
-# Docker OS Images : NODEJS on Fedora 27
+# Docker OS Images : NODEJS on Fedora 28
 
 Simple container used to run server side executed javascript content. include all nodejs and npm dependency.
 Run [nodejs main app.js](https://www.nodejs.org/) under a container 
-based on [startx/fedora:27 container](https://hub.docker.com/r/startx/fedora). 
+based on [startx/fedora:28 container](https://hub.docker.com/r/startx/fedora). 
 Could use various network protocol (like http, websocket, smtp, telnet) according to the content of the running app.
 
 Each container is provided with various underlying OS version based on CentOS or 

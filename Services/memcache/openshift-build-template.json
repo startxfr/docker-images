@@ -39,8 +39,8 @@
                     {
                         "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "Startx Memcached Database (Fedora 27)",
-                            "description": "Memcached server for caching database running under Fedora 27",
+                            "openshift.io/display-name": "Startx Memcached Database (Fedora 28)",
+                            "description": "Memcached server for caching database running under Fedora 28",
                             "iconClass": "icon-memcached",
                             "tags": "builder,startx,fedora,memcached,database",
                             "supports": "db",

@@ -40,12 +40,12 @@
                     {
                         "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "Startx WebServer (Fedora 27)",
-                            "description": "Http server for simple web application running under Fedora 27",
+                            "openshift.io/display-name": "Startx WebServer (Fedora 28)",
+                            "description": "Http server for simple web application running under Fedora 28",
                             "iconClass": "icon-apache",
                             "tags": "builder,startx,fedora,apache,httpd",
                             "supports": "http",
-                            "version": "27",
+                            "version": "28",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-apache.git"
                         },
                         "from": {

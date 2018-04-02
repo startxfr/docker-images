@@ -40,8 +40,8 @@
                     {
                         "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "Startx PHP WebServer (Fedora 27)",
-                            "description": "PHP WebServer for dynamic web application running under Fedora 27",
+                            "openshift.io/display-name": "Startx PHP WebServer (Fedora 28)",
+                            "description": "PHP WebServer for dynamic web application running under Fedora 28",
                             "iconClass": "icon-php",
                             "tags": "builder,startx,fedora,apache,httpd,php",
                             "supports": "http",

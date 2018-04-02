@@ -1,4 +1,4 @@
-FROM startx/fedora:27
+FROM startx/fedora:28
 
 MAINTAINER Startx <dev@startx.fr>
 
@@ -6,8 +6,8 @@ ENV SX_VERSION="fc28" \
     SX_TYPE="service" \
     SX_SERVICE="couchbase" \
     SX_ID="startx/sv-couchbase" \
-    SX_NAME="Startx Couchbase service image (fedora 27)" \
-    SX_SUMMARY="Startx couchbase service based on fedora 27" \
+    SX_NAME="Startx Couchbase service image (fedora 28)" \
+    SX_SUMMARY="Startx couchbase service based on fedora 28" \
     CB_PATH=/opt/couchbase \
     DATA_PATH=/opt/couchbase/var \
     CB_VERSION=5.5.0-beta \

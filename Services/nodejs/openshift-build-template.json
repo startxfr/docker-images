@@ -40,8 +40,8 @@
                     {
                         "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "Startx NodeJS (Fedora 27)",
-                            "description": "NodeJS micro-server for micro-service application running under Fedora 27",
+                            "openshift.io/display-name": "Startx NodeJS (Fedora 28)",
+                            "description": "NodeJS micro-server for micro-service application running under Fedora 28",
                             "iconClass": "icon-nodejs",
                             "tags": "builder,startx,fedora,nodejs,httpd",
                             "supports": "http",

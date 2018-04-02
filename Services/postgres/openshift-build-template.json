@@ -40,8 +40,8 @@
                     {
                         "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "Startx PostGresQL Database (Fedora 27)",
-                            "description": "PostGresQL server for simple SQL database running under Fedora 27",
+                            "openshift.io/display-name": "Startx PostGresQL Database (Fedora 28)",
+                            "description": "PostGresQL server for simple SQL database running under Fedora 28",
                             "iconClass": "icon-postgresql",
                             "tags": "builder,startx,fedora,postgres,database",
                             "supports": "db",

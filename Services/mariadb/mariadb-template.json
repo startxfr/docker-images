@@ -40,12 +40,12 @@
                     {
                         "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "Startx Mariadb Database (Fedora 27)",
-                            "description": "MariaDB server for simple SQL database running under Fedora 27",
+                            "openshift.io/display-name": "Startx Mariadb Database (Fedora 28)",
+                            "description": "MariaDB server for simple SQL database running under Fedora 28",
                             "iconClass": "icon-mariadb",
                             "tags": "builder,startx,fedora,mariadb,database",
                             "supports": "db",
-                            "version": "27",
+                            "version": "28",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
                         },
                         "from": {

@@ -11,7 +11,7 @@ services:
 before_install:
 - "./travis/prepare-env"
 script:
-- "./travis/test    OS                 fedora        27"
+- "./travis/test    OS                 fedora        28"
 - "./travis/test    Services/apache    sv-apache     fc28"
 - "./travis/test    Services/couchbase sv-couchbase  fc28"
 - "./travis/test    Services/mariadb   sv-mariadb    fc28"
@@ -23,7 +23,7 @@ script:
 - "./travis/test    Services/postgres  sv-postgres   fc28"
 - "./travis/test    Applications/phpmyadmin  app-phpmyadmin   fc28"
 after_success:
-- "./travis/publish OS                 fedora        27"
+- "./travis/publish OS                 fedora        28"
 - "./travis/publish Services/apache    sv-apache     fc28"
 - "./travis/publish Services/couchbase sv-couchbase  fc28"
 - "./travis/publish Services/mariadb   sv-mariadb    fc28"

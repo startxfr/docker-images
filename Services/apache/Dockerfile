@@ -1,4 +1,4 @@
-FROM startx/fedora:27
+FROM startx/fedora:28
 
 MAINTAINER Startx <dev@startx.fr>
 
@@ -6,8 +6,8 @@ ENV SX_VERSION="fc28" \
     SX_TYPE="service" \
     SX_SERVICE="apache" \
     SX_ID="startx/sv-apache" \
-    SX_NAME="Startx Apache service image (fedora 27)" \
-    SX_SUMMARY="Startx apache service based on fedora 27" \
+    SX_NAME="Startx Apache service image (fedora 28)" \
+    SX_SUMMARY="Startx apache service based on fedora 28" \
     HTTPDCONF=/etc/httpd/conf.d/app.conf \
     LOG_PATH=/var/log/httpd \
     APP_PATH=/app \

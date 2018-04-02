@@ -40,8 +40,8 @@
                     {
                         "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "Startx LibreOffice converter (Fedora 27)",
-                            "description": "LibreOffice converter for document convertion running under Fedora 27",
+                            "openshift.io/display-name": "Startx LibreOffice converter (Fedora 28)",
+                            "description": "LibreOffice converter for document convertion running under Fedora 28",
                             "iconClass": "icon-aerogear",
                             "tags": "builder,startx,fedora,ooconv,libreoffice",
                             "supports": "http",

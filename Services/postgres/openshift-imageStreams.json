@@ -36,19 +36,19 @@
                         }
                     },
                     {
-                        "name": "fc27",
+                        "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "S2I PostGresQL Database (Fedora 27)",
-                            "description": "PostGresQL server builder for simple SQL database running under Fedora 27",
+                            "openshift.io/display-name": "S2I PostGresQL Database (Fedora 28)",
+                            "description": "PostGresQL server builder for simple SQL database running under Fedora 28",
                             "iconClass": "icon-postgresql",
                             "tags": "builder,startx,fedora,postgres,database",
                             "supports": "db",
-                            "version": "fc27",
+                            "version": "fc28",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-postgres.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-postgres:fc27"
+                            "name": "startx/sv-postgres:fc28"
                         }
                     },
                     {
