@@ -9,10 +9,10 @@ ENV SX_VERSION="centos7" \
     SX_NAME="Startx Couchbase service image (centos 7)" \
     SX_SUMMARY="Startx couchbase service based on centos 7" \
     CB_PATH=/opt/couchbase \
-    DATA_PATH=$CB_PATH/var \
-    CB_VERSION=5.1.0 \
-    CB_RELEASE_URL=https://packages.couchbase.com/releases/5.1.0 \
-    CB_PACKAGE=couchbase-server-enterprise-5.1.0-centos7.x86_64.rpm \
+    DATA_PATH=/opt/couchbase/var \
+    CB_VERSION=5.5.0-beta \
+    CB_RELEASE_URL=https://packages.couchbase.com/releases/5.5.0-Mar \
+    CB_PACKAGE=couchbase-server-enterprise-5.5.0-Mar-centos7.x86_64.rpm \
     PATH=$PATH:/opt/couchbase/bin:/opt/couchbase/bin/tools:/opt/couchbase/bin/install
 
 LABEL name="$SX_ID" \
@@ -73,4 +73,4 @@ EXPOSE 8091 8092 8093 8094 11207 11210 11211 18091 18092 18093 18094
 
 VOLUME $DATA_PATH
 
-CMD [ "/bin/sx-couchbase" , "start" ]
+CMD [ "/bin/sx-couchbase" , "run" ]

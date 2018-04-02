@@ -47,4 +47,4 @@ WORKDIR $APP_PATH
 
 EXPOSE 11211
 
-CMD [ "/bin/sx-memcache" , "start" ]
+CMD [ "/bin/sx-memcache" , "run" ]
