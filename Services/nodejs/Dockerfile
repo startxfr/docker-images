@@ -56,4 +56,4 @@ EXPOSE 8080
 
 VOLUME $DATA_PATH
 
-CMD [ "/bin/sx-nodejs" , "start" ]
+CMD [ "/bin/sx-nodejs" , "run" ]

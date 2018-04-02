@@ -1,7 +1,7 @@
 # STARTX Docker-Images Repository based on Fedora 27 [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc28)](https://travis-ci.org/startxfr/docker-images)
 
 This project is a collection of application or services containers ready to execute 
-or embed your application as part of a building process.
+or embed your application as part of a building process.  
 
 Each container is provided with various underlying OS version based on CentOS or 
 Fedora Linux distribution. Kumbernetes and Openshift friendly, they can all be used as a s2i builder

@@ -53,4 +53,4 @@ EXPOSE 27017 28017
 
 VOLUME $DATA_PATH
 
-CMD [ "/bin/sx-mongo" , "start" ]
+CMD [ "/bin/sx-mongo" , "run" ]

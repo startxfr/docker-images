@@ -9,8 +9,8 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-* `:latest` : Centos 7 + Couchbase Server 4.1.0
-* `:centos7` : Centos 7 + Couchbase Server 4.1.0
+* `:latest` : Fedora rawhide + Couchbase Server 5.5.0-Mar (beta)
+* `:centos7` : Centos 7 + Couchbase Server 5.5.0-Mar
 
 ## Running from dockerhub registry
 
