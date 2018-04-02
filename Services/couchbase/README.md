@@ -9,6 +9,9 @@ based on [startx/centos:6 container](https://hub.docker.com/r/startx/centos)
 
 ## Available flavours
 
+* `:latest` : Fedora rawhide + Couchbase Server 5.5.0-Mar (beta)
+* `:centos7` : Centos 7 + Couchbase Server 5.5.0-Mar
+
 ## Running from dockerhub registry
 
 * with `docker` you can run `docker run -it --name="service-couchbase" startx/sv-couchbase` from any docker host

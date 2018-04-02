@@ -86,6 +86,9 @@ function nodejsRun {
     echoVerbose "| "
     nodejsInformation "| "
     echo "+====================================================="
+    if [ ! -d "$APP_PATH/node_modules" ]; then
+        npmInstallEnvironement
+    fi
     startNodejsService
 }
 

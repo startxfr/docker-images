@@ -51,4 +51,4 @@ EXPOSE 2002
 
 VOLUME $DATA_PATH
 
-CMD [ "/bin/sx-ooconv" , "start" ]
+CMD [ "/bin/sx-ooconv" , "run" ]
