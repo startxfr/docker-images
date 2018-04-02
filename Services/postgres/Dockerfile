@@ -52,4 +52,4 @@ EXPOSE 5432
 
 VOLUME $DATA_PATH
 
-CMD [ "/bin/sx-postgres" , "start" ]
+CMD [ "/bin/sx-postgres" , "run" ]
