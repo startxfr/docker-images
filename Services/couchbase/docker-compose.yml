@@ -7,7 +7,10 @@ server:
   restart: "on-failure:2"
   privileged: true
   ports:
-    - "9271:11211"
+    - "8091-8094"
+    - "11207"
+    - "11210-11211"
+    - "18091-18094"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "couchbase"
