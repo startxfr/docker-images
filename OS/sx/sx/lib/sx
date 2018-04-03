@@ -2,7 +2,7 @@
 
 # get and store the operating system name
 OS=`cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g'`
-SXLIB_VERSION="0.1.4"
+SXLIB_VERSION="0.1.5"
 
 # use xterm and set current PID
 export TERM=xterm
