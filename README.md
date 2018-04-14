@@ -1,7 +1,7 @@
 # STARTX Docker-Images Repository based on Fedora 26 [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc26)](https://travis-ci.org/startxfr/docker-images)
 
 This project is a collection of application or services containers ready to execute 
-or embed your application as part of a building process.
+or embed your application as part of a building process.  
 
 Each container is provided with various underlying OS version based on CentOS or 
 Fedora Linux distribution. Kumbernetes and Openshift friendly, they can all be used as a s2i builder
@@ -37,8 +37,9 @@ your project and start using stable or experimental services in your application
 ## Images flavours
 
 - `latest` based on fedora rawhide [see detail](https://github.com/startxfr/docker-images/tree/master)
+- `fc28` based on fedora core 28 [see detail](https://github.com/startxfr/docker-images/tree/fc28)
 - `fc27` based on fedora core 27 [see detail](https://github.com/startxfr/docker-images/tree/fc27)
-- `fc27` based on fedora core 26 [see detail](https://github.com/startxfr/docker-images/tree/fc26)
+- `fc26` based on fedora core 26 [see detail](https://github.com/startxfr/docker-images/tree/fc26)
 - `centos7` based on Centos 7 [see detail](https://github.com/startxfr/docker-images/tree/centos7)
 - `centos6` based on Centos 6 [see detail](https://github.com/startxfr/docker-images/tree/centos6)
 

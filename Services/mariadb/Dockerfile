@@ -56,4 +56,4 @@ EXPOSE 3306
 
 VOLUME $DATA_PATH
 
-CMD [ "/bin/sx-mariadb" , "start" ]
+CMD [ "/bin/sx-mariadb" , "run" ]
