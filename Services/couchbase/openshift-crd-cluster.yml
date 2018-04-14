@@ -1,0 +1,43 @@
+apiVersion: couchbase.database.couchbase.com/v1beta1
+kind: CouchbaseCluster
+metadata:
+  name: couchbase-node
+spec:
+  baseImage: couchbase/server
+  version: 5.5.0-Mar
+  authSecret: couchbase-auth
+  exposeAdminConsole: true
+  cluster:
+    dataServiceMemoryQuota: 1024
+    indexServiceMemoryQuota: 256
+    searchServiceMemoryQuota: 256
+    indexStorageSetting: memory_optimized
+    autoFailoverTimeout: 20
+  buckets:
+    - name: default
+      type: couchbase
+      memoryQuota: 256
+      replicas: 1
+      ioPriority: high
+      evictionPolicy: fullEviction
+      conflictResolution: seqno
+      enableFlush: true
+      enableIndexReplica: false
+    - name: demo
+      type: ephemeral
+      memoryQuota: 256
+      replicas: 1
+      ioPriority: high
+      conflictResolution: seqno
+      enableFlush: true
+      enableIndexReplica: false
+  servers:
+    - size: 4
+      name: all_services
+      services:
+        - data
+        - index
+        - query
+        - search
+      dataPath: /opt/couchbase/var/lib/couchbase/data
+      indexPath: /opt/couchbase/var/lib/couchbase/data
