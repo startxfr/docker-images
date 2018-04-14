@@ -1,0 +1,25 @@
+#!/bin/bash
+if [ "$1" == "" ]; then
+        echo "please pass the project-name as first argument";
+        exit;
+fi
+echo "== Authentificate as admin"
+oc login -u system:admin
+echo "== Switch to project $1"
+oc new-project $1
+oc project $1
+echo "== Set authorization to deploy pod"
+oc adm policy add-cluster-role-to-user cluster-admin -z default -n $1
+echo "== Authorization root access for couchbase containers"
+oc adm policy add-scc-to-user anyuid system:serviceaccount:$1:default
+echo "== Create operator and secret objects"
+oc process -f openshift-build-couchbase.json
+echo "wait operator to start running"
+sleep 4
+oc create -f openshift-crd-cluster.yml
+echo "wait cluster to be deployed"
+sleep 20
+oc describe cbc couchbase-cluster
+echo "Admin port for external service"
+oc describe cbc couchbase-cluster |  grep "Admin Console Port:"
+echo "use oc edit -f openshift-crd-cluster.yml to change cluster beahaviour"
