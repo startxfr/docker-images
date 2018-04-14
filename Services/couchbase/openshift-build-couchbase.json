@@ -1,0 +1,461 @@
+{
+    "kind": "Template",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "sxapi-demo-openshift-couchbase-template",
+        "annotations": {
+            "openshift.io/display-name": "SXAPI Demo Couchbase (Ephemeral)",
+            "description": "Template for deploying a full Couchbase cluster using operator in an openshift PaaS",
+            "iconClass": "icon-database",
+            "tags": "startx,demo,couchbase",
+            "openshift.io/provider-display-name": "STARTX",
+            "openshift.io/documentation-url": "https://github.com/startxfr/sxapi-demo-openshift-couchbase/blob/master/README.md",
+            "openshift.io/support-url": "https://github.com/startxfr/sxapi-demo-openshift-couchbase/issues/new"
+        }
+    },
+    "message": "Your couchbase demo stack started to be deployed in your project. You can use openshift console to observe deployment.",
+    "labels": {
+        "template": "sxapi-demo-openshift-couchbase-template"
+    },
+    "objects": [
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "couchbase-operator",
+                "annotations": {
+                    "openshift.io/display-name": "Couchbase operator",
+                    "openshift.io/generated-by": "STARTX"
+                },
+                "labels": {
+                    "base-image": "couchbase-operator",
+                    "type": "backend",
+                    "provider": "startx",
+                    "template": "sxapi-demo-openshift-couchbase-template"
+                }
+            },
+            "spec": {
+                "tags": [
+                    {
+                        "name": "latest",
+                        "annotations": {
+                            "openshift.io/display-name": "Couchbase operator (beta)",
+                            "description": "Couchbase operator beta image relying on Kubernetes 1.7 or Openshift 3.7",
+                            "iconClass": "icon-couchbase",
+                            "version": "beta",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-couchbase.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "couchbase/k8s-operator:beta"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "Secret",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "couchbase-auth",
+                "labels": {
+                    "type": "backend",
+                    "provider": "startx",
+                    "template": "sxapi-demo-openshift-couchbase-template"
+                }
+            },
+            "stringData": {
+                "username": "${COUCHBASE_USER}",
+                "password": "${COUCHBASE_PASSWORD}"
+            }
+        },
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "couchbase-operator",
+                "generation": 2,
+                "labels": {
+                    "type": "backend",
+                    "provider": "startx",
+                    "template": "sxapi-demo-openshift-couchbase-template"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "STARTX"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Rolling",
+                    "rollingParams": {
+                        "updatePeriodSeconds": 1,
+                        "intervalSeconds": 1,
+                        "timeoutSeconds": 50,
+                        "maxUnavailable": "25%",
+                        "maxSurge": "25%"
+                    },
+                    "resources": {}
+                },
+                "triggers": [
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "couchbase-operator"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "couchbase-operator:latest"
+                            }
+                        }
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ],
+                "replicas": 1,
+                "selector": {
+                    "app": "couchbase-operator",
+                    "deploymentconfig": "couchbase-operator"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "name": "couchbase-operator",
+                            "app": "couchbase-operator",
+                            "type": "backend",
+                            "provider": "startx",
+                            "template": "sxapi-demo-openshift-couchbase-template",
+                            "deploymentconfig": "couchbase-operator"
+                        },
+                        "annotations": {
+                            "openshift.io/generated-by": "STARTX"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "name": "couchbase-operator",
+                                "image": " ",
+                                "env": [
+                                    {
+                                        "name": "MY_POD_NAMESPACE",
+                                        "valueFrom": {
+                                            "fieldRef": {
+                                                "fieldPath": "metadata.namespace"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MY_POD_NAME",
+                                        "valueFrom": {
+                                            "fieldRef": {
+                                                "fieldPath": "metadata.name"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "ports": [
+                                    {
+                                        "containerPort": 8080,
+                                        "name": "readiness-port"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "httpGet": {
+                                        "path": "/readyz",
+                                        "port": "readiness-port"
+                                    },
+                                    "initialDelaySeconds": 3,
+                                    "timeoutSeconds": 2,
+                                    "periodSeconds": 3,
+                                    "successThreshold": 1,
+                                    "failureThreshold": 19
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {
+                "observedGeneration": 2,
+                "replicas": 1,
+                "updatedReplicas": 1,
+                "availableReplicas": 1
+            }
+        },
+        {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "couchbase-admin",
+                "labels": {
+                    "app": "couchbase",
+                    "couchbase_cluster": "couchbase-node",
+                    "type": "backend",
+                    "provider": "startx",
+                    "template": "sxapi-demo-openshift-couchbase-template"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "STARTX"
+                }
+            },
+            "spec": {
+                "to": {
+                    "kind": "Service",
+                    "name": "couchbase-node-ui",
+                    "weight": 100
+                },
+                "port": {
+                    "targetPort": "cb-admin"
+                }
+            },
+            "status": {
+                "ingress": [
+                    {
+                        "routerName": "router",
+                        "conditions": [
+                            {
+                                "type": "Admitted",
+                                "status": "True"
+                            }
+                        ],
+                        "wildcardPolicy": "None"
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "couchbase.database.couchbase.com/v1beta1",
+            "kind": "CouchbaseCluster",
+            "metadata": {
+                "clusterName": "couchbase-cluster",
+                "generation": 0,
+                "name": "couchbase-node"
+            },
+            "spec": {
+                "authSecret": "couchbase-auth",
+                "baseImage": "couchbase/server",
+                "buckets": [
+                    {
+                        "conflictResolution": "seqno",
+                        "enableFlush": true,
+                        "enableIndexReplica": false,
+                        "evictionPolicy": "fullEviction",
+                        "ioPriority": "high",
+                        "memoryQuota": 256,
+                        "name": "default",
+                        "replicas": 1,
+                        "type": "couchbase"
+                    },
+                    {
+                        "conflictResolution": "seqno",
+                        "enableFlush": true,
+                        "enableIndexReplica": false,
+                        "ioPriority": "high",
+                        "memoryQuota": 256,
+                        "name": "demo",
+                        "replicas": 1,
+                        "type": "ephemeral"
+                    }
+                ],
+                "cluster": {
+                    "autoFailoverTimeout": 30,
+                    "dataServiceMemoryQuota": 1024,
+                    "indexServiceMemoryQuota": 256,
+                    "indexStorageSetting": "memory_optimized",
+                    "searchServiceMemoryQuota": 256
+                },
+                "exposeAdminConsole": true,
+                "servers": [
+                    {
+                        "dataPath": "/opt/couchbase/var/lib/couchbase/data",
+                        "indexPath": "/opt/couchbase/var/lib/couchbase/data",
+                        "name": "all_services",
+                        "services": [
+                            "data",
+                            "index",
+                            "query",
+                            "search"
+                        ],
+                        "size": 4
+                    }
+                ],
+                "version": "5.5.0-Mar"
+            }
+        },
+        {
+            "kind": "Job",
+            "apiVersion": "batch/v1",
+            "metadata": {
+                "name": "couchbase-workload",
+                "labels": {
+                    "job-name": "couchbase-workload"
+                }
+            },
+            "spec": {
+                "parallelism": 1,
+                "completions": 1,
+                "backoffLimit": 6,
+                "selector": {
+                    "matchLabels": {
+                        "job-name": "couchbase-workload"
+                    }
+                },
+                "template": {
+                    "metadata": {
+                        "name": "couchbase-workload",
+                        "creationTimestamp": null,
+                        "labels": {
+                            "job-name": "couchbase-workload"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "name": "couchbase-workload",
+                                "image": "couchbase/server:5.5.0-Mar",
+                                "command": [
+                                    "sleep",
+                                    "60;",
+                                    "cbworkloadgen",
+                                    "-n",
+                                    "$COUCHBASE_NODE_UI_SERVICE_HOST:$COUCHBASE_NODE_UI_SERVICE_PORT_CB_ADMIN",
+                                    "-u",
+                                    "Administrator",
+                                    "-p",
+                                    "Administrator123",
+                                    "-r",
+                                    ".9",
+                                    "-i",
+                                    "1000000",
+                                    "-b",
+                                    "default"
+                                ],
+                                "resources": {},
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "imagePullPolicy": "Always"
+                            }
+                        ],
+                        "restartPolicy": "OnFailure",
+                        "terminationGracePeriodSeconds": 30,
+                        "dnsPolicy": "ClusterFirst",
+                        "securityContext": {},
+                        "schedulerName": "default-scheduler"
+                    }
+                }
+            }
+        },
+        {
+            "kind": "Job",
+            "apiVersion": "batch/v1",
+            "metadata": {
+                "name": "couchbase-workload",
+                "labels": {
+                    "job-name": "couchbase-workload"
+                }
+            },
+            "spec": {
+                "parallelism": 1,
+                "completions": 1,
+                "backoffLimit": 6,
+                "selector": {
+                    "matchLabels": {
+                        "job-name": "couchbase-workload"
+                    }
+                },
+                "template": {
+                    "metadata": {
+                        "name": "couchbase-workload",
+                        "creationTimestamp": null,
+                        "labels": {
+                            "job-name": "couchbase-workload"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "name": "couchbase-workload",
+                                "image": "perl",
+                                "command": [
+                                    "perl",
+                                    "-Mbignum=bpi",
+                                    "-wle",
+                                    "print bpi(2000)"
+                                ],
+                                "resources": {},
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "imagePullPolicy": "Always"
+                            }
+                        ],
+                        "restartPolicy": "OnFailure",
+                        "terminationGracePeriodSeconds": 30,
+                        "dnsPolicy": "ClusterFirst",
+                        "securityContext": {},
+                        "schedulerName": "default-scheduler"
+                    }
+                }
+            }
+        }
+
+    ],
+    "parameters": [
+        {
+            "name": "SOURCE_BRANCH",
+            "displayName": "Application source-code branch",
+            "description": "Name of the branch to use for building this application (dev, master, test, prod)",
+            "value": "dev",
+            "required": true
+        },
+        {
+            "name": "BASE_IMAGE_TAG",
+            "displayName": "Base image tag",
+            "description": "Base image flavour to use for buidling this application (latest, fc27, fc28, centos6, centos7)",
+            "value": "latest",
+            "required": true
+        },
+        {
+            "name": "DEMO_API",
+            "displayName": "API fqdn",
+            "description": "Domain name of the API endpoint to use in this frontend (api-xxxxx.apps.startx.fr were xxxxx is your project namespace)",
+            "value": "api-dev-demo.apps.startx.fr",
+            "required": true
+        },
+        {
+            "name": "WEBHOOK_TOKEN",
+            "displayName": "Webhook token",
+            "description": "Secret token to use in github, gitlab or other to hook build action when code change",
+            "generate": "expression",
+            "from": "[a-zA-Z0-9]{24}",
+            "required": true
+        },
+        {
+            "name": "COUCHBASE_USER",
+            "displayName": "Couchbase application user",
+            "description": "Database user to create",
+            "value": "Administrator",
+            "from": "[A-Z0-9]{8}",
+            "generate": "expression",
+            "required": true
+        },
+        {
+            "name": "COUCHBASE_PASSWORD",
+            "displayName": "Couchbase password",
+            "description": "Database password of the application user",
+            "value": "Administrator123",
+            "from": "[A-Z0-9]{16}",
+            "generate": "expression",
+            "required": true
+        },
+        {
+            "name": "COUCHBASE_BUCKET",
+            "displayName": "Couchbase bucket",
+            "description": "name of the default bucket to create",
+            "value": "demo",
+            "required": true
+        }
+    ]
+}
