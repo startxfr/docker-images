@@ -8,7 +8,7 @@ case $1 in
     post-build)             mysqlPostBuild $@ ;;
     pre-deploy)             mysqlPreDeploy $@ ;;
     post-deploy)            mysqlPostDeploy $@ ;;
-    run)                    mysqlRun $@ ;;
+    run|start)              mysqlRun $@ ;;
     isLive)                 mysqlIsLive $@ ;;
     isReady)                mysqlIsReady $@ ;;
     info)                   mysqlInformation $@ ;;

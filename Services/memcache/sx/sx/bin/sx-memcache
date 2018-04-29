@@ -8,7 +8,7 @@ case $1 in
     post-build)             memcachePostBuild $@ ;;
     pre-deploy)             memcachePreDeploy $@ ;;
     post-deploy)            memcachePostDeploy $@ ;;
-    run)                    memcacheRun $@ ;;
+    run|start)              memcacheRun $@ ;;
     isLive)                 memcacheIsLive $@ ;;
     isReady)                memcacheIsReady $@ ;;
     info)                   memcacheInformation $@ ;;
