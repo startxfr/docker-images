@@ -8,7 +8,7 @@ case $1 in
     post-build)             pmaPostBuild $@ ;;
     pre-deploy)             pmaPreDeploy $@ ;;
     post-deploy)            pmaPostDeploy $@ ;;
-    run)                    pmaRun $@ ;;
+    run|start)              pmaRun $@ ;;
     isLive)                 pmaIsLive $@ ;;
     isReady)                pmaIsReady $@ ;;
     info)                   pmaInformation $@ ;;
