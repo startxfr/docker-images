@@ -1,13 +1,13 @@
-FROM startx/fedora:28
+FROM startx/alpine:3.7
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="fc28" \
+ENV SX_VERSION="alpine3" \
     SX_TYPE="service" \
     SX_SERVICE="mongo" \
     SX_ID="startx/sv-mongo" \
-    SX_NAME="Startx MongoDB service image (fedora 28)" \
-    SX_SUMMARY="Startx mongo service based on fedora 28" \
+    SX_NAME="Startx MongoDB service image (alpine 3.7)" \
+    SX_SUMMARY="Startx mongo service based on alpine 3.7" \
     LOG_PATH=/logs \
     DATA_PATH=/data
 
@@ -19,7 +19,7 @@ LABEL name="$SX_ID" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,fedora,database,mongo" \
+      io.openshift.tags="startx,os,alpine,database,mongo" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="1Gi" \
       io.openshift.min-cpu="8000m" \

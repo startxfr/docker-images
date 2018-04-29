@@ -4,11 +4,11 @@
     "metadata": {
         "name": "startx-app-phpmyadmin-template",
         "annotations": {
-            "openshift.io/display-name": "Startx Http Server (fedora)",
-            "description": "Http server for simple web application running under Fedora",
+            "openshift.io/display-name": "Startx Http Server (alpine)",
+            "description": "Http server for simple web application running under Alpine",
             "iconClass": "icon-php",
-            "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
-            "openshift.io/long-description": "This template provides an apache + php httpd webserver in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "tags": "startx,alpine,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
+            "openshift.io/long-description": "This template provides an apache + php httpd webserver in a alpine container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -38,19 +38,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc28",
+                        "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "PhpMyAdmin web-console (Fedora 28)",
-                            "description": "PhpMyAdmin web-console for mariadb running under Fedora 28",
+                            "openshift.io/display-name": "PhpMyAdmin web-console (alpine 3.7)",
+                            "description": "PhpMyAdmin web-console for mariadb running under alpine 3.7",
                             "iconClass": "icon-php",
-                            "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
+                            "tags": "startx,alpine,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
-                            "version": "fc28",
+                            "version": "alpine3",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/app-phpmyadmin:fc28"
+                            "name": "startx/app-phpmyadmin:alpine3"
                         }
                     }
                 ]
@@ -115,7 +115,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "startx-app-phpmyadmin:fc28"
+                                "name": "startx-app-phpmyadmin:alpine3"
                             }
                         }
                     },
@@ -147,7 +147,7 @@
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
-                                "image": "startx-app-phpmyadmin:fc28",
+                                "image": "startx-app-phpmyadmin:alpine3",
                                 "command": [
                                     "/bin/sx-pma"
                                 ],

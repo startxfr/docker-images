@@ -1,13 +1,13 @@
-FROM startx/fedora:28
+FROM startx/alpine:3.7
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="fc28" \
+ENV SX_VERSION="alpine3" \
     SX_TYPE="service" \
     SX_SERVICE="nodejs" \
     SX_ID="startx/sv-nodejs" \
-    SX_NAME="Startx Nodejs service image (fedora 28)" \
-    SX_SUMMARY="Startx nodejs service based on fedora 28" \
+    SX_NAME="Startx Nodejs service image (alpine 3.7)" \
+    SX_SUMMARY="Startx nodejs service based on alpine 3.7" \
     LOG_PATH=/logs \
     APP_PATH=/app \
     DATA_PATH=/data \
@@ -21,7 +21,7 @@ LABEL name="$SX_ID" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,fedora,nodejs,httpd" \
+      io.openshift.tags="startx,os,alpine,nodejs,httpd" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="200Mi" \
       io.openshift.min-cpu="1000m" \

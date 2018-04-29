@@ -2,21 +2,21 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-os-fedora-template",
+        "name": "startx-os-alpine-template",
         "annotations": {
-            "openshift.io/display-name": "Startx Base OS (fedora)",
-            "description": "Minimal Fedora OS container for bash operations",
+            "openshift.io/display-name": "Startx Base OS (alpine)",
+            "description": "Minimal Alpine OS container for bash operations",
             "iconClass": "icon-beaker",
-            "tags": "startx,os,fedora",
-            "openshift.io/long-description": "This template provides a fedora container with minimal tools and scripts. Ready to use in openshift with a simple deployement config, or as a s2i builder for bash applications. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/fc28/README.md.",
+            "tags": "startx,os,alpine",
+            "openshift.io/long-description": "This template provides a alpine container with minimal tools and scripts. Ready to use in openshift with a simple deployement config, or as a s2i builder for bash applications. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/alpine3/README.md.",
             "openshift.io/provider-display-name": "STARTX",
-            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc28/README.md",
+            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/alpine3/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
     "message": "Your service is deploying on your project environment.\n\nService type: ${APP_TYPE}\nService name: ${APP_NAME}",
     "labels": {
-        "template": "startx-os-fedora-template"
+        "template": "startx-os-alpine-template"
     },
     "objects": [
         {
@@ -25,13 +25,13 @@
             "metadata": {
                 "name": "${APP_NAME}",
                 "annotations": {
-                    "openshift.io/display-name": "Startx Base OS (fedora)"
+                    "openshift.io/display-name": "Startx Base OS (alpine)"
                 },
                 "labels": {
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-os-fedora-template"
+                    "template": "startx-os-alpine-template"
                 }
             },
             "spec": {
@@ -39,17 +39,17 @@
                     {
                         "name": "28",
                         "annotations": {
-                            "openshift.io/display-name": "Startx Fedora (28)",
-                            "description": "Minimal Fedora 28 OS for bash operations",
+                            "openshift.io/display-name": "Startx Alpine (28)",
+                            "description": "Minimal alpine 3.7 OS for bash operations",
                             "iconClass": "icon-beaker",
-                            "tags": "builder,startx,fedora",
-                            "supports": "fedora",
+                            "tags": "builder,startx,alpine",
+                            "supports": "alpine",
                             "version": "28",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/fedora:28"
+                            "name": "startx/alpine:3.7"
                         }
                     }
                 ]
@@ -66,7 +66,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-os-fedora-template"
+                    "template": "startx-os-alpine-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -134,7 +134,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-os-fedora-template",
+                            "template": "startx-os-alpine-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -203,7 +203,7 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "fedora",
+            "value": "alpine",
             "required": true
         },
         {

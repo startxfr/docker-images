@@ -1,39 +1,39 @@
-# Docker OS Images : MARIADB on Fedora 28
+# Docker OS Images : MARIADB on alpine 3.7
 
 Simple container used to deliver simple and easy to use transactional database using mysql like database provided by [mariadb open-source project](https://mariadb.org/).
 Run [mariadb daemon](https://mariadb.org/) under a container 
-based on [startx/fedora:28 container](https://hub.docker.com/r/startx/fedora)
+based on [startx/alpine:3.7 container](https://hub.docker.com/r/startx/alpine)
 
 Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
+Alpine Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
 or **[other mariadb flavours](https://github.com/startxfr/docker-images/Services/mariadb/#available-flavours)**
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc28)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-mariadb/) | [Sources](https://github.com/startxfr/docker-images/tree/fc28/Services/mariadb)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=alpine3)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-mariadb/) | [Sources](https://github.com/startxfr/docker-images/tree/alpine3/Services/mariadb)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------|-----------------------------------------------|
 
 ## Available flavours
 
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="fc28-service-mariadb" startx/sv-mariadb:fc28` from any docker host
+* with `docker` you can run `docker run -it --name="alpine3-service-mariadb" startx/sv-mariadb:alpine3` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-mariadb:fc28
-  container_name: "fc28-service-mariadb"
+  image: startx/sv-mariadb:alpine3
+  container_name: "alpine3-service-mariadb"
   ports:
     - "3306:3306"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mariadb"
-    CONTAINER_INSTANCE: "fc28-service-mariadb"
+    CONTAINER_INSTANCE: "alpine3-service-mariadb"
     MYSQL_ROOT_PASSWORD: "rootpassword"
     MYSQL_USER: "user-test"
     MYSQL_PASSWORD: "pwd-test"
     MYSQL_DATABASE: "db_test"
   volumes:
-    - "/tmp/container-fc28/logs/mariadb:/logs"
-    - "/tmp/container-fc28/mariadb:/data"
+    - "/tmp/container-alpine3/logs/mariadb:/logs"
+    - "/tmp/container-alpine3/mariadb:/data"
 ```
 
 ## Docker-compose in various situations
@@ -41,35 +41,35 @@ service:
 * sample docker-compose.yml linked to host port 1000
 ```
 service:
-  image: startx/sv-mariadb:fc28
-  container_name: "fc28-service-mariadb"
+  image: startx/sv-mariadb:alpine3
+  container_name: "alpine3-service-mariadb"
   environment:
-    CONTAINER_INSTANCE: "fc28-service-mariadb"
+    CONTAINER_INSTANCE: "alpine3-service-mariadb"
   ports:
     - "1001:3306"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
 service:
-  image: startx/sv-mariadb:fc28
-  container_name: "fc28-service-mariadb"
+  image: startx/sv-mariadb:alpine3
+  container_name: "alpine3-service-mariadb"
   environment:
-    CONTAINER_INSTANCE: "fc28-service-mariadb"
+    CONTAINER_INSTANCE: "alpine3-service-mariadb"
   expose:
     - "3306"
 ```
 * sample docker-compose.yml using data container
 ```
 data:
-  image: startx/fedora:28
-  container_name: "fc28-service-mariadb-data"
+  image: startx/alpine:3.7
+  container_name: "alpine3-service-mariadb-data"
   environment:
-    CONTAINER_INSTANCE: "fc28-service-mariadb-data"
+    CONTAINER_INSTANCE: "alpine3-service-mariadb-data"
 service:
-  image: startx/sv-mariadb:fc28
-  container_name: "fc28-service-mariadb"
+  image: startx/sv-mariadb:alpine3
+  container_name: "alpine3-service-mariadb"
   environment:
-    CONTAINER_INSTANCE: "fc28-service-mariadb"
+    CONTAINER_INSTANCE: "alpine3-service-mariadb"
   volume_from:
     - data:rw
 ```
@@ -128,7 +128,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-1. Switch to the flavour branch with `git branch fc28`
+1. Switch to the flavour branch with `git branch alpine3`
 2. Jump into the container directory with `cd Services/mariadb`
 3. Build the container using `docker build -t sv-mariadb .`
 4. Run this container 
@@ -138,7 +138,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker-compose`
 
-1. Switch to the flavour branch with `git branch fc28`
+1. Switch to the flavour branch with `git branch alpine3`
 2. Jump into the container directory with `cd Services/mariadb`
 3. Run this container 
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container

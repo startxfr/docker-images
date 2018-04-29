@@ -2,14 +2,14 @@
 
 Simple container used to deliver distributed and low latency document oriented database
 Run [couchbase daemon](https://www.couchbase.org/) under a container 
-based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
+based on [startx/alpine container](https://hub.docker.com/r/startx/alpine)
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc28)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-couchbase/) | [Sources](https://github.com/startxfr/docker-images/tree/fc28/Services/couchbase)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=alpine3)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-couchbase/) | [Sources](https://github.com/startxfr/docker-images/tree/alpine3/Services/couchbase)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|------------------------------------------------------------------------------------|-----------------------------------------------|
 
 ## Available flavours
 
-* `:latest` : Fedora rawhide + Couchbase Server 5.5.0-Mar (beta)
+* `:latest` : Alpine rawhide + Couchbase Server 5.5.0-Mar (beta)
 * `:centos7` : Centos 7 + Couchbase Server 5.5.0-Mar
 
 ## Running from dockerhub registry

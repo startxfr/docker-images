@@ -1,13 +1,13 @@
-FROM fedora:28
+FROM alpine:3.7
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="fc28" \
+ENV SX_VERSION="alpine3" \
     SX_TYPE="OS" \
-    SX_SERVICE="fedora" \
-    SX_ID="startx/fedora" \
-    SX_NAME="Startx OS base image (fedora 28)" \
-    SX_SUMMARY="Startx OS base image based on fedora 28" \
+    SX_SERVICE="alpine" \
+    SX_ID="startx/alpine" \
+    SX_NAME="Startx OS base image (alpine 3.7)" \
+    SX_SUMMARY="Startx OS base image based on alpine 3.7" \
     SX_VERBOSE=true \
     SX_DEBUG=true \
     APP_PATH="/tmp"
@@ -20,7 +20,7 @@ LABEL name="$SX_ID" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,fedora" \
+      io.openshift.tags="startx,os,alpine" \
       io.openshift.non-scalable="true" \
       io.openshift.min-memory="100Mi" \
       io.openshift.min-cpu="500m" \

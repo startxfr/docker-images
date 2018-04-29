@@ -20,60 +20,60 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc26",
+                        "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "S2I PHP WebServer (Fedora 26)",
-                            "description": "Http server builder for dynamic web application running under Fedora 26",
+                            "openshift.io/display-name": "S2I PHP WebServer (alpine 3.7)",
+                            "description": "Http server builder for dynamic web application running under alpine 3.7",
                             "iconClass": "icon-php",
-                            "tags": "builder,startx,fedora,apache,httpd,php",
+                            "tags": "builder,startx,alpine,apache,httpd,php",
                             "supports": "http",
-                            "version": "fc26",
+                            "version": "alpine3",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-php.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-php:fc26"
+                            "name": "startx/sv-php:alpine3"
                         }
                     },
                     {
-                        "name": "fc28",
+                        "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "S2I PHP WebServer (Fedora 28)",
-                            "description": "Http server builder for dynamic web application running under Fedora 28",
+                            "openshift.io/display-name": "S2I PHP WebServer (alpine 3.7)",
+                            "description": "Http server builder for dynamic web application running under alpine 3.7",
                             "iconClass": "icon-php",
-                            "tags": "builder,startx,fedora,apache,httpd,php",
+                            "tags": "builder,startx,alpine,apache,httpd,php",
                             "supports": "http",
-                            "version": "fc28",
+                            "version": "alpine3",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-php.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-php:fc28"
+                            "name": "startx/sv-php:alpine3"
                         }
                     },
                     {
-                        "name": "fc28",
+                        "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "S2I PHP WebServer (Fedora 28)",
-                            "description": "Http server builder for dynamic web application running under Fedora 28",
+                            "openshift.io/display-name": "S2I PHP WebServer (alpine 3.7)",
+                            "description": "Http server builder for dynamic web application running under alpine 3.7",
                             "iconClass": "icon-php",
-                            "tags": "builder,startx,fedora,apache,httpd,php",
+                            "tags": "builder,startx,alpine,apache,httpd,php",
                             "supports": "http",
-                            "version": "fc28",
+                            "version": "alpine3",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-php.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-php:fc28"
+                            "name": "startx/sv-php:alpine3"
                         }
                     },
                     {
                         "name": "latest",
                         "annotations": {
-                            "openshift.io/display-name": "S2I PHP WebServer (Fedora rawhide)",
-                            "description": "Http server builder for dynamic web application running under Fedora rawhide",
+                            "openshift.io/display-name": "S2I PHP WebServer (Alpine rawhide)",
+                            "description": "Http server builder for dynamic web application running under Alpine rawhide",
                             "iconClass": "icon-php",
-                            "tags": "builder,startx,fedora,apache,httpd,php",
+                            "tags": "builder,startx,alpine,apache,httpd,php",
                             "supports": "http",
                             "version": "rawhide",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-php.git"

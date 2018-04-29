@@ -1,13 +1,13 @@
-FROM startx/fedora:28
+FROM startx/alpine:3.7
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="fc28" \
+ENV SX_VERSION="alpine3" \
     SX_TYPE="service" \
     SX_SERVICE="ooconv" \
     SX_ID="startx/sv-ooconv" \
-    SX_NAME="Startx LibreOffice converter service image (fedora 28)" \
-    SX_SUMMARY="Startx unoconv service based on fedora 28" \
+    SX_NAME="Startx LibreOffice converter service image (alpine 3.7)" \
+    SX_SUMMARY="Startx unoconv service based on alpine 3.7" \
     DATA_PATH=/data
 
 LABEL name="$SX_ID" \
@@ -18,7 +18,7 @@ LABEL name="$SX_ID" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,fedora,document,libreoffice" \
+      io.openshift.tags="startx,os,alpine,document,libreoffice" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="1500Mi" \
       io.openshift.min-cpu="8000m" \

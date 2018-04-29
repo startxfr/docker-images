@@ -1,13 +1,13 @@
-FROM startx/fedora:28
+FROM startx/alpine:3.7
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="fc28" \
+ENV SX_VERSION="alpine3" \
     SX_TYPE="service" \
     SX_SERVICE="couchbase" \
     SX_ID="startx/sv-couchbase" \
-    SX_NAME="Startx Couchbase service image (fedora 28)" \
-    SX_SUMMARY="Startx couchbase service based on fedora 28" \
+    SX_NAME="Startx Couchbase service image (alpine 3.7)" \
+    SX_SUMMARY="Startx couchbase service based on alpine 3.7" \
     CB_PATH=/opt/couchbase \
     DATA_PATH=/opt/couchbase/var \
     CB_VERSION=5.5.0-beta \
@@ -23,7 +23,7 @@ LABEL name="$SX_ID" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,fedora,database,couchbase" \
+      io.openshift.tags="startx,os,alpine,database,couchbase" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="1Gi" \
       io.openshift.min-cpu="8000m" \

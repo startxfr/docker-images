@@ -1,53 +1,53 @@
-fedora28:
+alpine28:
   extends:
     file: OS/docker-compose.yml
-    service: fedora28
+    service: alpine28
 
-fc28-service-apache:
+alpine3-service-apache:
   extends:
     file: Services/apache/docker-compose.yml
     service: server
 
-fc28-service-php:
+alpine3-service-php:
   extends:
     file: Services/php/docker-compose.yml
     service: server
 
-fc28-service-nodejs:
+alpine3-service-nodejs:
   extends:
     file: Services/nodejs/docker-compose.yml
     service: server
 
-fc28-service-mariadb:
+alpine3-service-mariadb:
   extends:
     file: Services/mariadb/docker-compose.yml
     service: server
 
-fc28-service-postgres:
+alpine3-service-postgres:
   extends:
     file: Services/postgres/docker-compose.yml
     service: server
 
-fc28-service-mongo:
+alpine3-service-mongo:
   extends:
     file: Services/mongo/docker-compose.yml
     service: server
 
-fc28-service-ooconv:
+alpine3-service-ooconv:
   extends:
     file: Services/ooconv/docker-compose.yml
     service: server
 
-fc28-service-memcache:
+alpine3-service-memcache:
   extends:
     file: Services/memcache/docker-compose.yml
     service: server
 
-fc28-app-pma:
+alpine3-app-pma:
   extends:
     file: Applications/phpmyadmin/docker-compose.yml
     service: application
 
-#fc28-app-rockmongo:
+#alpine3-app-rockmongo:
 #  build: Applications/rockmongo/
 #  container_name: "application-rockmongo"

@@ -1,10 +1,10 @@
 application:
   build: ./
-  container_name: "fc28-application-phpmyadmin"
+  container_name: "alpine3-application-phpmyadmin"
   mem_limit: 500m
   memswap_limit: 500m
   cpu_shares: 2
   ports:
     - "9215:8080"
   volumes:
-    - "/tmp/container-fc28/phpmyadmin:/data"
+    - "/tmp/container-alpine3/phpmyadmin:/data"

@@ -1,13 +1,13 @@
-FROM startx/fedora:28
+FROM startx/alpine:3.7
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="fc28" \
+ENV SX_VERSION="alpine3" \
     SX_TYPE="service" \
     SX_SERVICE="memcache" \
     SX_ID="startx/sv-memcache" \
-    SX_NAME="Startx Memcached service image (fedora 28)" \
-    SX_SUMMARY="Startx Memcached service based on fedora 28" \
+    SX_NAME="Startx Memcached service image (alpine 3.7)" \
+    SX_SUMMARY="Startx Memcached service based on alpine 3.7" \
     LOG_PATH=/var/log/httpd
 
 LABEL name="$SX_ID" \
@@ -18,7 +18,7 @@ LABEL name="$SX_ID" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,fedora,memcached,database" \
+      io.openshift.tags="startx,os,alpine,memcached,database" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="600Mi" \
       io.openshift.min-cpu="1500m" \

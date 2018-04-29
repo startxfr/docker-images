@@ -1,34 +1,34 @@
-# Docker OS Images : APACHE on Fedora 28
+# Docker OS Images : APACHE on alpine 3.7
 
 Simple container used to deliver static http content include all apache's modules but no external languages engines (like php). For dynamic content, you should use our [sv-php service container](https://hub.docker.com/r/startx/sv-php)
 Run [apache httpd daemon](https://httpd.apache.org/) under a container 
-based on [startx/fedora:28 container](https://hub.docker.com/r/startx/fedora)
+based on [startx/alpine:3.7 container](https://hub.docker.com/r/startx/alpine)
 
 Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
+Alpine Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
 or **[other apache flavours](https://github.com/startxfr/docker-images/Services/apache/#available-flavours)**
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc28)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-apache/) | [Sources](https://github.com/startxfr/docker-images/tree/fc28/Services/apache)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=alpine3)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-apache/) | [Sources](https://github.com/startxfr/docker-images/tree/alpine3/Services/apache)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------------------------|-----------------------------------------------|
 
 ## Available flavours
 
 ## Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="fc28-service-apache" startx/sv-apache:fc28` from any docker host
+* with `docker` you can run `docker run -it --name="alpine3-service-apache" startx/sv-apache:alpine3` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-apache:fc28
-  container_name: "fc28-service-apache"
+  image: startx/sv-apache:alpine3
+  container_name: "alpine3-service-apache"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "apache"
-    CONTAINER_INSTANCE: "fc28-service-apache"
+    CONTAINER_INSTANCE: "alpine3-service-apache"
     SERVER_NAME: "localhost"
   volumes:
-    - "/tmp/container-fc28/logs/apache:/logs"
-    - "/tmp/container-fc28/apache:/data"
+    - "/tmp/container-alpine3/logs/apache:/logs"
+    - "/tmp/container-alpine3/apache:/data"
 ```
 
 ## Docker-compose in various situations
@@ -36,35 +36,35 @@ service:
 * sample docker-compose.yml linked to host port 1000
 ```
 service:
-  image: startx/sv-apache:fc28
-  container_name: "fc28-service-apache"
+  image: startx/sv-apache:alpine3
+  container_name: "alpine3-service-apache"
   environment:
-    CONTAINER_INSTANCE: "fc28-service-apache"
+    CONTAINER_INSTANCE: "alpine3-service-apache"
   ports:
     - "1000:8080"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
 service:
-  image: startx/sv-apache:fc28
-  container_name: "fc28-service-apache"
+  image: startx/sv-apache:alpine3
+  container_name: "alpine3-service-apache"
   environment:
-    CONTAINER_INSTANCE: "fc28-service-apache"
+    CONTAINER_INSTANCE: "alpine3-service-apache"
   expose:
     - "8080"
 ```
 * sample docker-compose.yml using data container
 ```
 data:
-  image: startx/fedora:28
-  container_name: "fc28-service-apache-data"
+  image: startx/alpine:3.7
+  container_name: "alpine3-service-apache-data"
   environment:
-    CONTAINER_INSTANCE: "fc28-service-apache-data"
+    CONTAINER_INSTANCE: "alpine3-service-apache-data"
 service:
-  image: startx/sv-apache:fc28
-  container_name: "fc28-service-apache"
+  image: startx/sv-apache:alpine3
+  container_name: "alpine3-service-apache"
   environment:
-    CONTAINER_INSTANCE: "fc28-service-apache"
+    CONTAINER_INSTANCE: "alpine3-service-apache"
   volume_from:
     - data:rw
 ```
@@ -73,7 +73,7 @@ service:
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
  ```
-FROM startx/sv-apache:fc28
+FROM startx/sv-apache:alpine3
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```
@@ -119,17 +119,17 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-0. Switch to the flavour branch with `git branch fc28`
+0. Switch to the flavour branch with `git branch alpine3`
 1. Jump into the container directory with `cd Services/apache`
-2. Build the container using `docker build -t sv-apache-fc28 .`
+2. Build the container using `docker build -t sv-apache-alpine3 .`
 3. Run this container 
-  1. Interactively with `docker run -p 8080:8080 -v /logs -it sv-apache-fc28`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -p 8080:8080 -v /logs -d sv-apache-fc28`
+  1. Interactively with `docker run -p 8080:8080 -v /logs -it sv-apache-alpine3`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 8080:8080 -v /logs -d sv-apache-alpine3`
 
 
 ### Build & run a container using `docker-compose`
 
-1. Switch to the flavour branch with `git branch fc28`
+1. Switch to the flavour branch with `git branch alpine3`
 2. Jump into the container directory with `cd Services/apache`
 3. Run this container 
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container

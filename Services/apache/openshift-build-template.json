@@ -4,13 +4,13 @@
     "metadata": {
         "name": "startx-sv-apache-template",
         "annotations": {
-            "openshift.io/display-name": "Startx Http Server (fedora)",
-            "description": "Http server for simple web application running under Fedora",
+            "openshift.io/display-name": "Startx Http Server (alpine)",
+            "description": "Http server for simple web application running under Alpine",
             "iconClass": "icon-apache",
-            "tags": "startx,os,fedora,apache,httpd",
-            "openshift.io/long-description": "This template provides an apache httpd webserver in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "tags": "startx,os,alpine,apache,httpd",
+            "openshift.io/long-description": "This template provides an apache httpd webserver in a alpine container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
-            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc28/README.md",
+            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/alpine3/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
@@ -38,19 +38,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc28",
+                        "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "Startx WebServer (Fedora 28)",
-                            "description": "Http server for simple web application running under Fedora 28",
+                            "openshift.io/display-name": "Startx WebServer (alpine 3.7)",
+                            "description": "Http server for simple web application running under alpine 3.7",
                             "iconClass": "icon-apache",
-                            "tags": "builder,startx,fedora,apache,httpd",
+                            "tags": "builder,startx,alpine,apache,httpd",
                             "supports": "http",
-                            "version": "fc28",
+                            "version": "alpine3",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-apache.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-apache:fc28"
+                            "name": "startx/sv-apache:alpine3"
                         }
                     }
                 ]
@@ -75,14 +75,14 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc28",
+                        "name": "alpine3",
                         "annotations": {
                             "openshift.io/display-name": "Application ${APP_NAME}",
                             "description": "Base image for the application ${APP_NAME}",
                             "iconClass": "icon-apache",
-                            "tags": "startx,fedora,apache,httpd,application,${APP_NAME}",
+                            "tags": "startx,alpine,apache,httpd,application,${APP_NAME}",
                             "supports": "http",
-                            "version": "fc28"
+                            "version": "alpine3"
                         }
                     }
                 ]
@@ -167,7 +167,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:fc28"
+                                "name": "${APP_NAME}:alpine3"
                             }
                         }
                     },
@@ -383,7 +383,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-apache:fc28"
+                            "name": "startx-sv-apache:alpine3"
                         },
                         "env": [
                             {
@@ -396,7 +396,7 @@
                 "output": {
                     "to": {
                         "kind": "ImageStreamTag",
-                        "name": "${APP_NAME}:fc28"
+                        "name": "${APP_NAME}:alpine3"
                     }
                 },
                 "resources": {},
@@ -437,7 +437,7 @@
             "name": "SOURCE_BRANCH",
             "displayName": "Source branch",
             "description": "Name of the default branch",
-            "value": "fc28",
+            "value": "alpine3",
             "required": true
         },
         {

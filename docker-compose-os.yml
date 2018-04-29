@@ -1,4 +1,4 @@
-fedora28:
+alpine28:
   extends:
     file: OS/docker-compose.yml
-    service: fedora28
+    service: alpine28

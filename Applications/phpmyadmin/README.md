@@ -1,6 +1,6 @@
 # STARTX Application docker-images : PHPMyAdmin
 
-Container running phpMyAdmin under a fedora server.
+Container running phpMyAdmin under a alpine server.
 
 ## Running from docker registry
 
@@ -35,7 +35,7 @@ access to the container itself
 	docker exec -it pma bash
 
 ## Related Resources
-* [Sources files](https://github.com/startxfr/docker-images/tree/fc28/Applications/phpmyadmin)
+* [Sources files](https://github.com/startxfr/docker-images/tree/alpine3/Applications/phpmyadmin)
 * [Github STARTX profile](https://github.com/startxfr/docker-images)
 * [Docker registry for this container](https://registry.hub.docker.com/u/startx/app-phpmyadmin/)
-* [Docker registry for Fedora](https://registry.hub.docker.com/u/fedora/)
+* [Docker registry for Alpine](https://registry.hub.docker.com/u/alpine/)

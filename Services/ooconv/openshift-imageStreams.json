@@ -20,60 +20,60 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc26",
+                        "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "S2I LibreOffice converter (Fedora 26)",
-                            "description": "LibreOffice converter builder for document convertion running under Fedora 26",
+                            "openshift.io/display-name": "S2I LibreOffice converter (alpine 3.7)",
+                            "description": "LibreOffice converter builder for document convertion running under alpine 3.7",
                             "iconClass": "icon-aerogear",
-                            "tags": "builder,startx,fedora,ooconv,libreoffice",
+                            "tags": "builder,startx,alpine,ooconv,libreoffice",
                             "supports": "http",
-                            "version": "fc26",
+                            "version": "alpine3",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-ooconv.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-ooconv:fc26"
+                            "name": "startx/sv-ooconv:alpine3"
                         }
                     },
                     {
-                        "name": "fc28",
+                        "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "S2I LibreOffice converter (Fedora 28)",
-                            "description": "LibreOffice converter builder for document convertion running under Fedora 28",
+                            "openshift.io/display-name": "S2I LibreOffice converter (alpine 3.7)",
+                            "description": "LibreOffice converter builder for document convertion running under alpine 3.7",
                             "iconClass": "icon-aerogear",
-                            "tags": "builder,startx,fedora,ooconv,libreoffice",
+                            "tags": "builder,startx,alpine,ooconv,libreoffice",
                             "supports": "http",
-                            "version": "fc28",
+                            "version": "alpine3",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-ooconv.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-ooconv:fc28"
+                            "name": "startx/sv-ooconv:alpine3"
                         }
                     },
                     {
-                        "name": "fc28",
+                        "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "S2I LibreOffice converter (Fedora 28)",
-                            "description": "LibreOffice converter builder for document convertion running under Fedora 28",
+                            "openshift.io/display-name": "S2I LibreOffice converter (alpine 3.7)",
+                            "description": "LibreOffice converter builder for document convertion running under alpine 3.7",
                             "iconClass": "icon-aerogear",
-                            "tags": "builder,startx,fedora,ooconv,libreoffice",
+                            "tags": "builder,startx,alpine,ooconv,libreoffice",
                             "supports": "http",
-                            "version": "fc28",
+                            "version": "alpine3",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-ooconv.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-ooconv:fc28"
+                            "name": "startx/sv-ooconv:alpine3"
                         }
                     },
                     {
                         "name": "latest",
                         "annotations": {
-                            "openshift.io/display-name": "S2I LibreOffice converter (Fedora rawhide)",
-                            "description": "LibreOffice converter builder for document convertion running under Fedora rawhide",
+                            "openshift.io/display-name": "S2I LibreOffice converter (Alpine rawhide)",
+                            "description": "LibreOffice converter builder for document convertion running under Alpine rawhide",
                             "iconClass": "icon-aerogear",
-                            "tags": "builder,startx,fedora,ooconv,libreoffice",
+                            "tags": "builder,startx,alpine,ooconv,libreoffice",
                             "supports": "http",
                             "version": "rawhide",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-ooconv.git"

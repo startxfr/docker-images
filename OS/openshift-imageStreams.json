@@ -20,6 +20,22 @@
             "spec": {
                 "tags": [
                     {
+                        "name": "alpine3",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I Startx Alpine 3",
+                            "description": "Minimal Alpine 3 OS builder for bash operations",
+                            "iconClass": "icon-beaker",
+                            "tags": "builder,startx,alpine",
+                            "supports": "alpine",
+                            "version": "alpine3",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/alpine:3"
+                        }
+                    },
+                    {
                         "name": "fc26",
                         "annotations": {
                             "openshift.io/display-name": "S2I Startx Fedora 26",
@@ -36,19 +52,19 @@
                         }
                     },
                     {
-                        "name": "fc28",
+                        "name": "fc27",
                         "annotations": {
-                            "openshift.io/display-name": "S2I Startx Fedora 28",
-                            "description": "Minimal Fedora 28 OS builder for bash operations",
+                            "openshift.io/display-name": "S2I Startx Fedora 27",
+                            "description": "Minimal Fedora 27 OS builder for bash operations",
                             "iconClass": "icon-beaker",
                             "tags": "builder,startx,fedora",
                             "supports": "fedora",
-                            "version": "fc28",
+                            "version": "fc27",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/fedora:28"
+                            "name": "startx/fedora:27"
                         }
                     },
                     {

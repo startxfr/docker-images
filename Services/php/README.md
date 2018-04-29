@@ -1,14 +1,14 @@
-# Docker OS Images : APACHE + PHP on Fedora 28
+# Docker OS Images : APACHE + PHP on alpine 3.7
 
 Simple container used to deliver dynamic http content using apache associated with PHP engine
 Run [PHP engine](https://www.php.net) under a container 
-based on [startx/fedora:28 container](https://hub.docker.com/r/startx/fedora)
+based on [startx/alpine:3.7 container](https://hub.docker.com/r/startx/alpine)
 
 Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
+Alpine Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
 or **[other apache + php flavours](https://github.com/startxfr/docker-images/Services/php/#available-flavours)**
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc28)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-php/) | [Sources](https://github.com/startxfr/docker-images/tree/fc28/Services/php)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=alpine3)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-php/) | [Sources](https://github.com/startxfr/docker-images/tree/alpine3/Services/php)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------|-------------------------------------------------------------------------------|-----------------------------------------------|
 
 ## Available flavours
@@ -19,16 +19,16 @@ or **[other apache + php flavours](https://github.com/startxfr/docker-images/Ser
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-php:fc28
-  container_name: "service-php-fc28"
+  image: startx/sv-php:alpine3
+  container_name: "service-php-alpine3"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "php"
-    CONTAINER_INSTANCE: "service-php-fc28"
+    CONTAINER_INSTANCE: "service-php-alpine3"
     SERVER_NAME: "localhost"
   volumes:
-    - "/tmp/container-fc28/logs/php:/logs"
-    - "/tmp/container-fc28/php:/data"
+    - "/tmp/container-alpine3/logs/php:/logs"
+    - "/tmp/container-alpine3/php:/data"
 ```
 
 ## Docker-compose in various situations
@@ -36,35 +36,35 @@ service:
 * sample docker-compose.yml linked to host port 1000
 ```
 service:
-  image: startx/sv-php:fc28
-  container_name: "service-php-fc28"
+  image: startx/sv-php:alpine3
+  container_name: "service-php-alpine3"
   environment:
-    CONTAINER_INSTANCE: "service-php-fc28"
+    CONTAINER_INSTANCE: "service-php-alpine3"
   ports:
     - "1000:80"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
 service:
-  image: startx/sv-php:fc28
-  container_name: "service-php-fc28"
+  image: startx/sv-php:alpine3
+  container_name: "service-php-alpine3"
   environment:
-    CONTAINER_INSTANCE: "service-php-fc28"
+    CONTAINER_INSTANCE: "service-php-alpine3"
   expose:
     - "80"
 ```
 * sample docker-compose.yml using data container
 ```
 data:
-  image: startx/fedora:fc28
-  container_name: "service-php-data-fc28"
+  image: startx/alpine:alpine3
+  container_name: "service-php-data-alpine3"
   environment:
-    CONTAINER_INSTANCE: "service-php-data-fc28"
+    CONTAINER_INSTANCE: "service-php-data-alpine3"
 service:
-  image: startx/sv-php:fc28
-  container_name: "service-php-fc28"
+  image: startx/sv-php:alpine3
+  container_name: "service-php-alpine3"
   environment:
-    CONTAINER_INSTANCE: "service-php-fc28"
+    CONTAINER_INSTANCE: "service-php-alpine3"
   volume_from:
     - data:rw
 ```
@@ -73,7 +73,7 @@ service:
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
  ```
-FROM startx/sv-php:fc28
+FROM startx/sv-php:alpine3
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```
@@ -120,7 +120,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-1. Switch to the flavour branch with `git branch fc28`
+1. Switch to the flavour branch with `git branch alpine3`
 2. Jump into the container directory with `cd Services/php`
 3. Build the container using `docker build -t sv-php .`
 4. Run this container 
@@ -130,7 +130,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker-compose`
 
-1. Switch to the flavour branch with `git branch fc28`
+1. Switch to the flavour branch with `git branch alpine3`
 2. Jump into the container directory with `cd Services/php`
 3. Run this container 
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container

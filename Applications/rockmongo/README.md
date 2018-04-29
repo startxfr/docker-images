@@ -1,6 +1,6 @@
 # STARTX Application docker-images : Rockmongo
 
-Container running rockmongo under a fedora server.
+Container running rockmongo under a alpine server.
 
 ## Running from docker registry
 
@@ -35,9 +35,9 @@ access to the container itself
 	docker exec -it rockmongo bash
 
 ## Related Resources
-* [Sources files](https://github.com/startxfr/docker-images/tree/fc28/Applications/rockmongo)
+* [Sources files](https://github.com/startxfr/docker-images/tree/alpine3/Applications/rockmongo)
 * [Github STARTX profile](https://github.com/startxfr/docker-images)
 * [Docker registry for this container](https://registry.hub.docker.com/u/startx/app-rockmongo/)
-* [Docker registry for Fedora](https://registry.hub.docker.com/u/fedora/)
+* [Docker registry for Alpine](https://registry.hub.docker.com/u/alpine/)
 
 

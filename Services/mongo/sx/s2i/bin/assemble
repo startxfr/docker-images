@@ -4,7 +4,7 @@
 # The 'assemble' script builds your application source ready to run.
 #
 # For more information refer to the documentation:
-#  https://github.com/openshift/source-to-image/blob/fc28/docs/builder_image.md
+#  https://github.com/openshift/source-to-image/blob/alpine3/docs/builder_image.md
 #
 
 /bin/sx-mongo assemble

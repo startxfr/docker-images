@@ -4,13 +4,13 @@
     "metadata": {
         "name": "startx-sv-mariadb-template",
         "annotations": {
-            "openshift.io/display-name": "Startx MariaDB server (fedora)",
-            "description": "MariaDB server for simple SQL database running under Fedora",
+            "openshift.io/display-name": "Startx MariaDB server (alpine)",
+            "description": "MariaDB server for simple SQL database running under Alpine",
             "iconClass": "icon-mariadb",
-            "tags": "startx,os,fedora,mariadb,database",
-            "openshift.io/long-description": "This template provides an mariadb db Mariadb Database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "tags": "startx,os,alpine,mariadb,database",
+            "openshift.io/long-description": "This template provides an mariadb db Mariadb Database in a alpine container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
-            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc28/README.md",
+            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/alpine3/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
@@ -38,19 +38,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc28",
+                        "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "Startx Mariadb Database (Fedora 28)",
-                            "description": "MariaDB server for simple SQL database running under Fedora 28",
+                            "openshift.io/display-name": "Startx Mariadb Database (alpine 3.7)",
+                            "description": "MariaDB server for simple SQL database running under alpine 3.7",
                             "iconClass": "icon-mariadb",
-                            "tags": "builder,startx,fedora,mariadb,database",
+                            "tags": "builder,startx,alpine,mariadb,database",
                             "supports": "db",
-                            "version": "fc28",
+                            "version": "alpine3",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-mariadb:fc28"
+                            "name": "startx/sv-mariadb:alpine3"
                         }
                     }
                 ]
@@ -75,12 +75,12 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc28",
+                        "name": "alpine3",
                         "annotations": {
                             "openshift.io/display-name": "Application ${APP_NAME}",
                             "description": "Base image for the application ${APP_NAME}",
                             "iconClass": "icon-mariadb",
-                            "tags": "startx,fedora,mariadb,database,application,${APP_NAME}",
+                            "tags": "startx,alpine,mariadb,database,application,${APP_NAME}",
                             "supports": "db",
                             "version": "rawhide"
                         }
@@ -192,7 +192,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:fc28"
+                                "name": "${APP_NAME}:alpine3"
                             }
                         }
                     },
@@ -431,7 +431,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-mariadb:fc28"
+                            "name": "startx-sv-mariadb:alpine3"
                         },
                         "env": [
                             {
@@ -444,7 +444,7 @@
                 "output": {
                     "to": {
                         "kind": "ImageStreamTag",
-                        "name": "${APP_NAME}:fc28"
+                        "name": "${APP_NAME}:alpine3"
                     }
                 },
                 "resources": {},
@@ -485,7 +485,7 @@
             "name": "SOURCE_BRANCH",
             "displayName": "Source branch",
             "description": "Name of the default branch",
-            "value": "fc28",
+            "value": "alpine3",
             "required": true
         },
         {

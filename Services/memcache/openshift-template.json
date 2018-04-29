@@ -4,13 +4,13 @@
     "metadata": {
         "name": "startx-sv-memcache-template",
         "annotations": {
-            "openshift.io/display-name": "Startx Memcached server (fedora)",
-            "description": "Memcached server for caching database running under Fedora",
+            "openshift.io/display-name": "Startx Memcached server (alpine)",
+            "description": "Memcached server for caching database running under Alpine",
             "iconClass": "icon-memcached",
-            "tags": "startx,os,fedora,memcached,database",
-            "openshift.io/long-description": "This template provides an memcache database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building caching databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "tags": "startx,os,alpine,memcached,database",
+            "openshift.io/long-description": "This template provides an memcache database in a alpine container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building caching databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
-            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc28/README.md",
+            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/alpine3/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
@@ -37,19 +37,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc28",
+                        "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "Startx Memcached Database (Fedora 28)",
-                            "description": "Memcached server for caching database running under Fedora 28",
+                            "openshift.io/display-name": "Startx Memcached Database (alpine 3.7)",
+                            "description": "Memcached server for caching database running under alpine 3.7",
                             "iconClass": "icon-memcached",
-                            "tags": "builder,startx,fedora,memcached,database",
+                            "tags": "builder,startx,alpine,memcached,database",
                             "supports": "db",
                             "version": "28",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-memcache.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-memcache:fc28"
+                            "name": "startx/sv-memcache:alpine3"
                         }
                     }
                 ]
@@ -131,7 +131,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:fc28"
+                                "name": "${APP_NAME}:alpine3"
                             }
                         }
                     },

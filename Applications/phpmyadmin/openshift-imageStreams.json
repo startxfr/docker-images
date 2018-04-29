@@ -20,60 +20,60 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc26",
+                        "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "PhpMyAdmin web-console (Fedora 26)",
-                            "description": "PhpMyAdmin web-console for mariadb running under Fedora 26",
+                            "openshift.io/display-name": "PhpMyAdmin web-console (alpine 3.7)",
+                            "description": "PhpMyAdmin web-console for mariadb running under alpine 3.7",
                             "iconClass": "icon-php",
-                            "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
+                            "tags": "startx,alpine,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
-                            "version": "fc26",
+                            "version": "alpine3",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/app-phpmyadmin:fc26"
+                            "name": "startx/app-phpmyadmin:alpine3"
                         }
                     },
                     {
-                        "name": "fc28",
+                        "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "PhpMyAdmin web-console (Fedora 28)",
-                            "description": "PhpMyAdmin web-console for mariadb running under Fedora 28",
+                            "openshift.io/display-name": "PhpMyAdmin web-console (alpine 3.7)",
+                            "description": "PhpMyAdmin web-console for mariadb running under alpine 3.7",
                             "iconClass": "icon-php",
-                            "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
+                            "tags": "startx,alpine,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
-                            "version": "fc28",
+                            "version": "alpine3",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/app-phpmyadmin:fc28"
+                            "name": "startx/app-phpmyadmin:alpine3"
                         }
                     },
                     {
-                        "name": "fc28",
+                        "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "PhpMyAdmin web-console (Fedora 28)",
-                            "description": "PhpMyAdmin web-console for mariadb running under Fedora 28",
+                            "openshift.io/display-name": "PhpMyAdmin web-console (alpine 3.7)",
+                            "description": "PhpMyAdmin web-console for mariadb running under alpine 3.7",
                             "iconClass": "icon-php",
-                            "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
+                            "tags": "startx,alpine,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
-                            "version": "fc28",
+                            "version": "alpine3",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/app-phpmyadmin:fc28"
+                            "name": "startx/app-phpmyadmin:alpine3"
                         }
                     },
                     {
                         "name": "latest",
                         "annotations": {
-                            "openshift.io/display-name": "PhpMyAdmin web-console (Fedora rawhide)",
-                            "description": "PhpMyAdmin web-console for mariadb running under Fedora rawhide",
+                            "openshift.io/display-name": "PhpMyAdmin web-console (Alpine rawhide)",
+                            "description": "PhpMyAdmin web-console for mariadb running under Alpine rawhide",
                             "iconClass": "icon-php",
-                            "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
+                            "tags": "startx,alpine,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "rawhide",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
@@ -89,7 +89,7 @@
                             "openshift.io/display-name": "PhpMyAdmin web-console (Centos 7)",
                             "description": "PhpMyAdmin web-console for mariadb running under Centos 7",
                             "iconClass": "icon-php",
-                            "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
+                            "tags": "startx,alpine,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "7",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"

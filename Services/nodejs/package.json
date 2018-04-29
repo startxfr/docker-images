@@ -1,7 +1,7 @@
 {
   "name": "startx-nodejs-server",
   "version": "0.0.1",
-  "description": "docker template for nodejs app running under fedora linux",
+  "description": "docker template for nodejs app running under alpine linux",
   "author": "startx",
   "license": "BSD",
   "bugs": {

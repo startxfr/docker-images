@@ -1,15 +1,15 @@
-# Docker OS Images : NODEJS on Fedora 28
+# Docker OS Images : NODEJS on alpine 3.7
 
 Simple container used to run server side executed javascript content. include all nodejs and npm dependency.
 Run [nodejs main app.js](https://www.nodejs.org/) under a container 
-based on [startx/fedora:28 container](https://hub.docker.com/r/startx/fedora). 
+based on [startx/alpine:3.7 container](https://hub.docker.com/r/startx/alpine). 
 Could use various network protocol (like http, websocket, smtp, telnet) according to the content of the running app.
 
 Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
+Alpine Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
 or **[other nodejs flavours](https://github.com/startxfr/docker-images/Services/nodejs/#available-flavours)**
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc28)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-nodejs/) | [Sources](https://github.com/startxfr/docker-images/tree/fc28/Services/nodejs)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=alpine3)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-nodejs/) | [Sources](https://github.com/startxfr/docker-images/tree/alpine3/Services/nodejs)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------------------------|-----------------------------------------------|
 
 ## Available flavours
@@ -20,15 +20,15 @@ or **[other nodejs flavours](https://github.com/startxfr/docker-images/Services/
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```
 service:
-  image: startx/sv-nodejs:fc28
-  container_name: "service-nodejs-fc28"
+  image: startx/sv-nodejs:alpine3
+  container_name: "service-nodejs-alpine3"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "nodejs"
-    CONTAINER_INSTANCE: "service-nodejs-fc28"
+    CONTAINER_INSTANCE: "service-nodejs-alpine3"
   volumes:
-    - "/tmp/container-fc28/logs/nodejs:/logs"
-    - "/tmp/container-fc28/nodejs:/data"
+    - "/tmp/container-alpine3/logs/nodejs:/logs"
+    - "/tmp/container-alpine3/nodejs:/data"
 ```
 
 ## Docker-compose in various situations
@@ -36,35 +36,35 @@ service:
 * sample docker-compose.yml linked to host port 1000
 ```
 service:
-  image: startx/sv-nodejs:fc28
-  container_name: "service-nodejs-fc28"
+  image: startx/sv-nodejs:alpine3
+  container_name: "service-nodejs-alpine3"
   environment:
-    CONTAINER_INSTANCE: "service-nodejs-fc28"
+    CONTAINER_INSTANCE: "service-nodejs-alpine3"
   ports:
     - "1000:8080"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```
 service:
-  image: startx/sv-nodejs:fc28
-  container_name: "service-nodejs-fc28"
+  image: startx/sv-nodejs:alpine3
+  container_name: "service-nodejs-alpine3"
   environment:
-    CONTAINER_INSTANCE: "service-nodejs-fc28"
+    CONTAINER_INSTANCE: "service-nodejs-alpine3"
   expose:
     - "8080"
 ```
 * sample docker-compose.yml using data container
 ```
 data:
-  image: startx/fedora:fc28
-  container_name: "service-nodejs-data-fc28"
+  image: startx/alpine:alpine3
+  container_name: "service-nodejs-data-alpine3"
   environment:
-    CONTAINER_INSTANCE: "service-nodejs-data-fc28"
+    CONTAINER_INSTANCE: "service-nodejs-data-alpine3"
 service:
-  image: startx/sv-nodejs:fc28
-  container_name: "service-nodejs-fc28"
+  image: startx/sv-nodejs:alpine3
+  container_name: "service-nodejs-alpine3"
   environment:
-    CONTAINER_INSTANCE: "service-nodejs-fc28"
+    CONTAINER_INSTANCE: "service-nodejs-alpine3"
   volume_from:
     - data:rw
 ```
@@ -73,7 +73,7 @@ service:
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
  ```
-FROM startx/sv-nodejs:fc28
+FROM startx/sv-nodejs:alpine3
 #... your container specifications
 CMD ["/bin/run.sh"]
 ```
@@ -119,7 +119,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-1. Switch to the flavour branch with `git branch fc28`
+1. Switch to the flavour branch with `git branch alpine3`
 2. Jump into the container directory with `cd Services/nodejs`
 3. Build the container using `docker build -t sv-nodejs .`
 4. Run this container 
@@ -129,7 +129,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker-compose`
 
-1. Switch to the flavour branch with `git branch fc28`
+1. Switch to the flavour branch with `git branch alpine3`
 2. Jump into the container directory with `cd Services/nodejs`
 3. Run this container 
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
