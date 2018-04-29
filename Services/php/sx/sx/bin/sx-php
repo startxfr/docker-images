@@ -8,7 +8,7 @@ case $1 in
     post-build)             phpPostBuild $@ ;;
     pre-deploy)             phpPreDeploy $@ ;;
     post-deploy)            phpPostDeploy $@ ;;
-    run)                    phpRun $@ ;;
+    run|start)              phpRun $@ ;;
     isLive)                 phpIsLive $@ ;;
     isReady)                phpIsReady $@ ;;
     info)                   phpInformation $@ ;;

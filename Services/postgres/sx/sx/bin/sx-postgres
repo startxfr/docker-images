@@ -8,7 +8,7 @@ case $1 in
     post-build)             postgresPostBuild $@ ;;
     pre-deploy)             postgresPreDeploy $@ ;;
     post-deploy)            postgresPostDeploy $@ ;;
-    run)                    postgresRun $@ ;;
+    run|start)              postgresRun $@ ;;
     isLive)                 postgresIsLive $@ ;;
     isReady)                postgresIsReady $@ ;;
     info)                   postgresInformation $@ ;;
