@@ -8,7 +8,7 @@ case $1 in
     post-build)             apachePostBuild $@ ;;
     pre-deploy)             apachePreDeploy $@ ;;
     post-deploy)            apachePostDeploy $@ ;;
-    run)                    apacheRun $@ ;;
+    run|start)              apacheRun $@ ;;
     isLive)                 apacheIsLive $@ ;;
     isReady)                apacheIsReady $@ ;;
     info)                   apacheInformation $@ ;;

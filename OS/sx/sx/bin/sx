@@ -7,7 +7,7 @@ case $1 in
     post-build)             genericPostBuild $@ ;;
     pre-deploy)             genericPreDeploy $@ ;;
     post-deploy)            genericPostDeploy $@ ;;
-    run)                    genericRun $@ ;;
+    run|start)              genericRun $@ ;;
     isLive)                 genericIsLive $@ ;;
     isReady)                genericIsReady $@ ;;
     usage|help|--help)      genericUsage $@ ;;
