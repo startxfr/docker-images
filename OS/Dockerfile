@@ -31,7 +31,7 @@ LABEL name="$SX_ID" \
 USER root
 
 COPY sx /tmp/
-RUN apk --no-cache add bash pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip && \
+RUN apk --no-cache add bash pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip usermod && \
     mkdir -p /var/lib/sx && \
     chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib && \
     mv /tmp/s2i/bin /s2i && \

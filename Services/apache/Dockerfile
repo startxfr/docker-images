@@ -8,7 +8,7 @@ ENV SX_VERSION="alpine3" \
     SX_ID="startx/sv-apache" \
     SX_NAME="Startx Apache service image (alpine 3.7)" \
     SX_SUMMARY="Startx apache service based on alpine 3.7" \
-    HTTPDCONF=/etc/httpd/conf.d/app.conf \
+    HTTPDCONF=/etc/apache2/app.conf \
     LOG_PATH=/var/log/httpd \
     APP_PATH=/app \
     DATA_PATH=/data
@@ -38,8 +38,7 @@ RUN apk --no-cache add apache2 curl ca-certificates openssl tzdata openntpd && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \
     rm -rf /tmp/sx /tmp/s2i && \
-    cat /etc/httpd/conf/httpd.conf | sed -e "s/Listen 80/#Listen 80/" > /etc/httpd/conf/httpd.conf && \
-    rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf && \
+    cat /etc/apache2/httpd.conf | sed -e "s/Listen 80/#Listen 80/" > /etc/apache2/httpd.conf && \
     mkdir -p $DATA_PATH $APP_PATH $LOG_PATH && \
     chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /run/httpd /bin/sx* /s2i /var/lib/sx /tmp && \
     chown -R 1001:0 /bin/sx* /s2i /var/lib/sx /tmp && \
