@@ -45,7 +45,7 @@
                             "iconClass": "icon-apache",
                             "tags": "builder,startx,alpine,apache,httpd",
                             "supports": "http",
-                            "version": "28",
+                            "version": "3.7",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-apache.git"
                         },
                         "from": {

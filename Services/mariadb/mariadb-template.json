@@ -45,7 +45,7 @@
                             "iconClass": "icon-mariadb",
                             "tags": "builder,startx,alpine,mariadb,database",
                             "supports": "db",
-                            "version": "28",
+                            "version": "3.7",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
                         },
                         "from": {

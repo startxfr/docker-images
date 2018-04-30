@@ -45,7 +45,7 @@
                             "iconClass": "icon-php",
                             "tags": "builder,startx,alpine,apache,httpd,php",
                             "supports": "http",
-                            "version": "28",
+                            "version": "3.7",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-php.git"
                         },
                         "from": {

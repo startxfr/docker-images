@@ -44,7 +44,7 @@
                             "iconClass": "icon-nodejs",
                             "tags": "builder,startx,alpine,nodejs,httpd",
                             "supports": "http",
-                            "version": "28",
+                            "version": "3.7",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-nodejs.git"
                         },
                         "from": {

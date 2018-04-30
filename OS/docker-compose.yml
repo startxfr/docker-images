@@ -1,6 +1,6 @@
-alpine28:
+alpine3:
   build: ./
-  container_name: "os-alpine28"
+  container_name: "os-alpine3"
   mem_limit: 100m
   memswap_limit: 200m
   cpu_shares: 2

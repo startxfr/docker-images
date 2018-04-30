@@ -1,7 +1,7 @@
-alpine28:
+alpine3:
   extends:
     file: OS/docker-compose.yml
-    service: alpine28
+    service: alpine3
 
 alpine3-service-apache:
   extends:

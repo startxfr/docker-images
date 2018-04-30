@@ -37,14 +37,14 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "28",
+                        "name": "3",
                         "annotations": {
-                            "openshift.io/display-name": "Startx Alpine (28)",
+                            "openshift.io/display-name": "Startx Alpine (3.7)",
                             "description": "Minimal alpine 3.7 OS for bash operations",
                             "iconClass": "icon-beaker",
                             "tags": "builder,startx,alpine",
                             "supports": "alpine",
-                            "version": "28",
+                            "version": "3.7",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
                         },
                         "from": {
@@ -110,7 +110,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:28"
+                                "name": "${APP_NAME}:3"
                             }
                         }
                     },

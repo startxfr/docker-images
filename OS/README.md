@@ -1,4 +1,4 @@
-# Docker OS Images : FEDORA 28
+# Docker OS Images : ALPINE 3.7
 
 Simple container used for all startx based services and applications published in [Dockerhub registry](https://github.com/startxfr/docker-images). 
 This container contain updated core OS rpm (kernel, libs,...) as well as usefull tools like pwgen, tar, zip, psmisc, procps, coreutils, findutils, wget
@@ -10,20 +10,20 @@ This container contain updated core OS rpm (kernel, libs,...) as well as usefull
 
 ### Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="alpine28" startx/alpine:3` from any docker host
+* with `docker` you can run `docker run -it --name="alpine3" startx/alpine:3` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```yaml
 alpine:
   image: startx/alpine:3
-  container_name: "os-alpine28"
+  container_name: "os-alpine3"
 ```
 
 ### Using this image as S2I builder
 
 You can use this image as an s2i builder image. 
  ```bash
-s2i build https://github.com/startxfr/docker-images-example-bash startx/alpine:3 test-alpine28
-docker run --rm -i -t test-alpine28
+s2i build https://github.com/startxfr/docker-images-example-bash startx/alpine:3 test-alpine3
+docker run --rm -i -t test-alpine3
 ```
 
 ### Using this image as base container
@@ -40,7 +40,7 @@ CMD ["/bin/sx"]
 
 | Variable                  | Type     | Default         | Description                                                              |
 |---------------------------|----------|-----------------|--------------------------------------------------------------------------|
-| SX_VERSION                | `string` | `28`        | container version
+| SX_VERSION                | `string` | `3.7`           | container version
 | SX_TYPE                   | `string` | `OS`            | Container family (os, service, application). could be enhanced 
 | SX_SERVICE                | `string` | `alpine`        | Define the type of service or application provided
 | SX_ID                     | `auto`   | `startx/alpine` | Container ID coresponding to the image repository 

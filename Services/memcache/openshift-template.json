@@ -44,7 +44,7 @@
                             "iconClass": "icon-memcached",
                             "tags": "builder,startx,alpine,memcached,database",
                             "supports": "db",
-                            "version": "28",
+                            "version": "3.7",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-memcache.git"
                         },
                         "from": {
