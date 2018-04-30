@@ -2,7 +2,7 @@
 
 Simple container used to deliver simple and easy to use transactional database using mysql like database provided by [mariadb open-source project](https://mariadb.org/).
 Run [mariadb daemon](https://mariadb.org/) under a container 
-based on [startx/alpine:3.7 container](https://hub.docker.com/r/startx/alpine)
+based on [startx/alpine:3 container](https://hub.docker.com/r/startx/alpine)
 
 Each container is provided with various underlying OS version based on CentOS or 
 Alpine Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
@@ -61,7 +61,7 @@ service:
 * sample docker-compose.yml using data container
 ```
 data:
-  image: startx/alpine:3.7
+  image: startx/alpine:3
   container_name: "alpine3-service-mariadb-data"
   environment:
     CONTAINER_INSTANCE: "alpine3-service-mariadb-data"

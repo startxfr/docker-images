@@ -1,4 +1,4 @@
-FROM startx/alpine:3.7
+FROM startx/alpine:3
 
 MAINTAINER Startx <dev@startx.fr>
 
@@ -29,8 +29,13 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf --nogpgcheck -y install unoconv libreoffice-writer libreoffice-calc pdfmod ghostscript && \
-    dnf clean all && \
+RUN apk --no-cache add mc curl util-linux libreoffice-common libreoffice-writer \
+    ttf-droid-nonlatin ttf-droid ttf-dejavu ttf-freefont ttf-liberation \
+    && curl -Ls https://raw.githubusercontent.com/dagwieers/unoconv/master/unoconv -o /usr/local/bin/unoconv \
+    && chmod +x /usr/local/bin/unoconv \
+    && ln -s /usr/bin/python3 /usr/bin/python \
+    && apk del curl \
+    && rm -rf /var/cache/apk/* && \
     mkdir -p $DATA_PATH /.cache && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \

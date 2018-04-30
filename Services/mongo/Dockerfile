@@ -1,4 +1,4 @@
-FROM startx/alpine:3.7
+FROM startx/alpine:3
 
 MAINTAINER Startx <dev@startx.fr>
 
@@ -30,8 +30,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf --nogpgcheck -y install mongodb mongodb-server  && \
-    dnf clean all  && \
+RUN apk --no-cache add mongodb && \
     usermod -a -G 0 mongodb && \
     mkdir -p $DATA_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \

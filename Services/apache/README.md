@@ -2,7 +2,7 @@
 
 Simple container used to deliver static http content include all apache's modules but no external languages engines (like php). For dynamic content, you should use our [sv-php service container](https://hub.docker.com/r/startx/sv-php)
 Run [apache httpd daemon](https://httpd.apache.org/) under a container 
-based on [startx/alpine:3.7 container](https://hub.docker.com/r/startx/alpine)
+based on [startx/alpine:3 container](https://hub.docker.com/r/startx/alpine)
 
 Each container is provided with various underlying OS version based on CentOS or 
 Alpine Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
@@ -56,7 +56,7 @@ service:
 * sample docker-compose.yml using data container
 ```
 data:
-  image: startx/alpine:3.7
+  image: startx/alpine:3
   container_name: "alpine3-service-apache-data"
   environment:
     CONTAINER_INSTANCE: "alpine3-service-apache-data"

@@ -10,11 +10,11 @@ This container contain updated core OS rpm (kernel, libs,...) as well as usefull
 
 ### Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="alpine28" startx/alpine:3.7` from any docker host
+* with `docker` you can run `docker run -it --name="alpine28" startx/alpine:3` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```yaml
 alpine:
-  image: startx/alpine:3.7
+  image: startx/alpine:3
   container_name: "os-alpine28"
 ```
 
@@ -22,7 +22,7 @@ alpine:
 
 You can use this image as an s2i builder image. 
  ```bash
-s2i build https://github.com/startxfr/docker-images-example-bash startx/alpine:3.7 test-alpine28
+s2i build https://github.com/startxfr/docker-images-example-bash startx/alpine:3 test-alpine28
 docker run --rm -i -t test-alpine28
 ```
 
@@ -30,7 +30,7 @@ docker run --rm -i -t test-alpine28
 
 You can use this Dockerfile template to start a new personalized container based on this container
  ```
-FROM startx/alpine:3.7
+FROM startx/alpine:3
 #... your container specifications
 CMD ["/bin/sx"]
 ```

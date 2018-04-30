@@ -50,7 +50,7 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/alpine:3.7"
+                            "name": "startx/alpine:3"
                         }
                     }
                 ]

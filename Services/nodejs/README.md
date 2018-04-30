@@ -2,7 +2,7 @@
 
 Simple container used to run server side executed javascript content. include all nodejs and npm dependency.
 Run [nodejs main app.js](https://www.nodejs.org/) under a container 
-based on [startx/alpine:3.7 container](https://hub.docker.com/r/startx/alpine). 
+based on [startx/alpine:3 container](https://hub.docker.com/r/startx/alpine). 
 Could use various network protocol (like http, websocket, smtp, telnet) according to the content of the running app.
 
 Each container is provided with various underlying OS version based on CentOS or 

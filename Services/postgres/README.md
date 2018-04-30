@@ -2,7 +2,7 @@
 
 Simple container used to deliver highly reliable and configurable transactional database service using postgresql opensource project.
 Run [postgres daemon](http://www.postgresql.org/) under a container 
-based on [startx/alpine:3.7 container](https://hub.docker.com/r/startx/alpine)
+based on [startx/alpine:3 container](https://hub.docker.com/r/startx/alpine)
 
 Each container is provided with various underlying OS version based on CentOS or 
 Alpine Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)

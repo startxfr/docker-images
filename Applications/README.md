@@ -1,6 +1,6 @@
 # STARTX Docker-Images Applications based on alpine 3.7
 
-This directory host various Open Source applications into docker containers based on [startx/alpine:3.7 container](https://hub.docker.com/r/startx/alpine)
+This directory host various Open Source applications into docker containers based on [startx/alpine:3 container](https://hub.docker.com/r/startx/alpine)
 
 You can use it to instanciate new container from the dockerhub public registry 
 or as a parent container in your own container's. 

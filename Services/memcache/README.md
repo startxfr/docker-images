@@ -2,7 +2,7 @@
 
 Simple container used to deliver distributed memory object caching system
 Run [memcached daemon](https://www.memcached.org/) under a container 
-based on [startx/alpine:3.7 container](https://hub.docker.com/r/startx/alpine)
+based on [startx/alpine:3 container](https://hub.docker.com/r/startx/alpine)
 
 Each container is provided with various underlying OS version based on CentOS or 
 Alpine Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)

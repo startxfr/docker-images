@@ -1,4 +1,4 @@
-FROM startx/alpine:3.7
+FROM startx/alpine:3
 
 MAINTAINER Startx <dev@startx.fr>
 
@@ -29,7 +29,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf --nogpgcheck -y install memcached && dnf clean all && \
+RUN apk --no-cache add memcached && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \

@@ -1,4 +1,4 @@
-FROM startx/alpine:3.7
+FROM startx/alpine:3
 
 MAINTAINER Startx <dev@startx.fr>
 
@@ -34,8 +34,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf --nogpgcheck -y install python-httplib2 openssl ncurses ncurses-libs ncurses-compat-libs && \
-    dnf clean all && \
+RUN apk --no-cache add py-httplib2 openssl ncurses ncurses-libs && \
     #echo 0 > /proc/sys/vm/swappiness && \
     echo '' >> /etc/sysctl.conf && \
     echo '#Set swappiness to 0 to avoid swapping' >> /etc/sysctl.conf && \
