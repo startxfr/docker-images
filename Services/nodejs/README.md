@@ -18,6 +18,7 @@ Could use various network protocol (like http, websocket, smtp, telnet) accordin
 * `:fc21` : Fedora core 21 + NodeJS 
 * `:centos7` : CentOS 7 + NodeJS 
 * `:centos6` : Centos 6 + NodeJS 
+* `:alpine3` : Alpine 3.7 + NodeJS 8.11.1
 
 ## Running from dockerhub registry
 

@@ -17,6 +17,7 @@ based on [startx/sv-apache container](https://hub.docker.com/r/startx/sv-apache)
 * `:fc21` : Fedora core 21 + Apache + PHP 
 * `:centos7` : CentOS 7 + Apache + PHP 
 * `:centos6` : Centos 6 + Apache + PHP 
+* `:alpine3` : Alpine 3.7 + Apache 2.4.33 + PHP 7.2.5
 
 ## Running from dockerhub registry
 
