@@ -13,6 +13,16 @@ or **[other mongo flavours](https://github.com/startxfr/docker-images/Services/m
 
 ## Available flavours
 
+* `:latest` : Fedora core 23 + MongoDB 3.0.7 
+* `:fc27` : Fedora core 27 + MongoDB 3.0.7  
+* `:fc26` : Fedora core 26 + MongoDB 3.0.7  
+* `:fc23` : Fedora core 23 + MongoDB 3.0.7  
+* `:fc22` : Fedora core 22 + MongoDB 
+* `:fc21` : Fedora core 21 + MongoDB 
+* `:centos7` : CentOS 7 + MongoDB 
+* `:centos6` : Centos 6 + MongoDB 
+* `:alpine3` : Alpine 3.7 + MongoDB 3.6.4
+
 ## Running from dockerhub registry
 
 * with `docker` you can run `docker run -it --name="service-mongo" startx/sv-mongo` from any docker host

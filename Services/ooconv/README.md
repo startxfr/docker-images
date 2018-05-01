@@ -13,6 +13,16 @@ or **[other ooconv flavours](https://github.com/startxfr/docker-images/Services/
 
 ## Available flavours
 
+* `:latest` : Fedora core 23 + unoconv 0.7 + LibreOffice 5.0.3.2
+* `:fc27` : Fedora core 27 + unoconv 0.7 + LibreOffice 5.0.3.2
+* `:fc26` : Fedora core 26 + unoconv 0.7 + LibreOffice 5.0.3.2
+* `:fc23` : Fedora core 23 + unoconv 0.7 + LibreOffice 5.0.3.2
+* `:fc22` : Fedora core 22 + unoconv 
+* `:fc21` : Fedora core 21 + unoconv 
+* `:centos7` : CentOS 7 + unoconv 
+* `:centos6` : Centos 6 + unoconv 
+* `:alpine3` : Alpine 3.7 + unoconv 0.8 + LibreOffice 5.4.5.1
+
 ## Running from dockerhub registry
 
 * with `docker` you can run `docker run -it --name="service-ooconv" startx/sv-ooconv` from any docker host
