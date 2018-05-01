@@ -13,6 +13,16 @@ or **[other apache flavours](https://github.com/startxfr/docker-images/Services/
 
 ## Available flavours
 
+* `:latest` : Fedora core 23 + Apache 2.4.17
+* `:fc27` : Fedora core 27 + Apache 2.4.17
+* `:fc26` : Fedora core 26 + Apache 2.4.17
+* `:fc23` : Fedora core 23 + Apache 2.4.17
+* `:fc22` : Fedora core 22 + Apache 
+* `:fc21` : Fedora core 21 + Apache 
+* `:centos7` : CentOS 7 + Apache 
+* `:centos6` : Centos 6 + Apache 
+* `:alpine3` : Alpine 3.7 + Apache 2.4.33
+
 ## Running from dockerhub registry
 
 * with `docker` you can run `docker run -it --name="fc27-service-apache" startx/sv-apache:fc27` from any docker host

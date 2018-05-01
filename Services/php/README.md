@@ -13,6 +13,16 @@ or **[other apache + php flavours](https://github.com/startxfr/docker-images/Ser
 
 ## Available flavours
 
+* `:latest` : Fedora core 23 + Apache 2.4.17 + PHP 5.6.16
+* `:fc27` : Fedora core 27 + Apache 2.4.17 + PHP 5.6.16
+* `:fc26` : Fedora core 26 + Apache 2.4.17 + PHP 5.6.16
+* `:fc23` : Fedora core 23 + Apache 2.4.17 + PHP 5.6.16
+* `:fc22` : Fedora core 22 + Apache + PHP 
+* `:fc21` : Fedora core 21 + Apache + PHP 
+* `:centos7` : CentOS 7 + Apache + PHP 
+* `:centos6` : Centos 6 + Apache + PHP 
+* `:alpine3` : Alpine 3.7 + Apache 2.4.33 + PHP 7.2.5
+
 ## Running from dockerhub registry
 
 * with `docker` you can run `docker run -it --name="service-php" startx/sv-php` from any docker host
