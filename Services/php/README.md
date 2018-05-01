@@ -9,14 +9,8 @@ based on [startx/centos:7 container](https://hub.docker.com/r/startx/centos)
 
 ## Available flavours
 
-* `:latest` : Fedora core 23 + Apache 2.4.17 + PHP 5.6.16
-* `:fc27` : Fedora core 27 + Apache 2.4.17 + PHP 5.6.16
-* `:fc26` : Fedora core 26 + Apache 2.4.17 + PHP 5.6.16
-* `:fc23` : Fedora core 23 + Apache 2.4.17 + PHP 5.6.16
-* `:fc22` : Fedora core 22 + Apache + PHP 
-* `:fc21` : Fedora core 21 + Apache + PHP 
-* `:centos7` : CentOS 7 + Apache + PHP 
 * `:centos7` : Centos 7 + Apache + PHP 
+* `:centos6` : Centos 6 + Apache + PHP 
 
 ## Running from dockerhub registry
 

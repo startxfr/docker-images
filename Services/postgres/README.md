@@ -9,14 +9,8 @@ based on [startx/centos:7 container](https://hub.docker.com/r/startx/centos)
 
 ## Available flavours
 
-* `:latest` : Fedora core 23 + PostgreSQL 9.4.5 
-* `:fc27` : Fedora core 27 + PostgreSQL 9.4.5  
-* `:fc26` : Fedora core 26 + PostgreSQL 9.4.5  
-* `:fc23` : Fedora core 23 + PostgreSQL 9.4.5  
-* `:fc22` : Fedora core 22 + PostgreSQL 
-* `:fc21` : Fedora core 21 + PostgreSQL 
-* `:centos7` : CentOS 7 + PostgreSQL 
 * `:centos7` : Centos 7 + PostgreSQL 
+* `:centos6` : Centos 6 + PostgreSQL 
 
 ## Running from dockerhub registry
 

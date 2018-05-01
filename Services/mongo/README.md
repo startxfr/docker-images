@@ -9,14 +9,8 @@ based on [startx/centos:7 container](https://hub.docker.com/r/startx/centos)
 
 ## Available flavours
 
-* `:latest` : Fedora core 23 + MongoDB 3.0.7 
-* `:fc27` : Fedora core 27 + MongoDB 3.0.7  
-* `:fc26` : Fedora core 26 + MongoDB 3.0.7  
-* `:fc23` : Fedora core 23 + MongoDB 3.0.7  
-* `:fc22` : Fedora core 22 + MongoDB 
-* `:fc21` : Fedora core 21 + MongoDB 
-* `:centos7` : CentOS 7 + MongoDB 
 * `:centos7` : Centos 7 + MongoDB 
+* `:centos6` : Centos 6 + MongoDB 
 
 ## Running from dockerhub registry
 

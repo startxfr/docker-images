@@ -9,14 +9,8 @@ based on [startx/centos:7 container](https://hub.docker.com/r/startx/centos)
 
 ## Available flavours
 
-* `:latest` : Fedora core 23 + memcached 1.4.17 
-* `:fc27` : Fedora core 27 + memcached 1.4.17
-* `:fc26` : Fedora core 26 + memcached 1.4.17
-* `:fc23` : Fedora core 23 + memcached 1.4.17
-* `:fc22` : Fedora core 22 + memcached 
-* `:fc21` : Fedora core 21 + memcached 
-* `:centos7` : CentOS 7 + memcached
 * `:centos7` : Centos 7 + memcached 
+* `:centos6` : Centos 6 + memcached 
 
 ## Running from dockerhub registry
 

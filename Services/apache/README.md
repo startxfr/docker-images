@@ -9,6 +9,9 @@ based on [startx/centos:7 container](https://hub.docker.com/r/startx/centos)
 
 ## Available flavours
 
+* `:centos7` : CentOS 7 + Apache 
+* `:centos6` : Centos 6 + Apache 
+
 ## Running from dockerhub registry
 
 * with `docker` you can run `docker run -it --name="service-apache-centos7" startx/sv-apache:centos7` from any docker host
