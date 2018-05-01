@@ -14,6 +14,16 @@ or **[other nodejs flavours](https://github.com/startxfr/docker-images/Services/
 
 ## Available flavours
 
+* `:latest` : Fedora core 23 + NodeJS v0.10.36
+* `:fc27` : Fedora core 27 + NodeJS v0.10.36
+* `:fc26` : Fedora core 26 + NodeJS v0.10.36
+* `:fc23` : Fedora core 23 + NodeJS v0.10.36
+* `:fc22` : Fedora core 22 + NodeJS 
+* `:fc21` : Fedora core 21 + NodeJS 
+* `:centos7` : CentOS 7 + NodeJS 
+* `:centos6` : Centos 6 + NodeJS 
+* `:alpine3` : Alpine 3.7 + NodeJS 8.11.1
+
 ## Running from dockerhub registry
 
 * with `docker` you can run `docker run -it --name="service-nodejs" startx/sv-nodejs` from any docker host

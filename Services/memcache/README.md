@@ -13,6 +13,16 @@ or **[other memcache flavours](https://github.com/startxfr/docker-images/Service
 
 ## Available flavours
 
+* `:latest` : Fedora core 23 + memcached 1.4.17 
+* `:fc27` : Fedora core 27 + memcached 1.4.17
+* `:fc26` : Fedora core 26 + memcached 1.4.17
+* `:fc23` : Fedora core 23 + memcached 1.4.17
+* `:fc22` : Fedora core 22 + memcached 
+* `:fc21` : Fedora core 21 + memcached 
+* `:centos7` : CentOS 7 + memcached
+* `:centos6` : Centos 6 + memcached 
+* `:alpine3` : Alpine 3.7 + memcached 1.5.7 
+
 ## Running from dockerhub registry
 
 * with `docker` you can run `docker run -it --name="service-memcache-fc28" startx/sv-memcache:fc28` from any docker host

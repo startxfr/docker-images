@@ -42,6 +42,7 @@ your project and start using stable or experimental services in your application
 - `fc26` based on fedora core 26 [see detail](https://github.com/startxfr/docker-images/tree/fc26)
 - `centos7` based on Centos 7 [see detail](https://github.com/startxfr/docker-images/tree/centos7)
 - `centos6` based on Centos 6 [see detail](https://github.com/startxfr/docker-images/tree/centos6)
+- `alpine3` based on Alpine 3.7 [see detail](https://github.com/startxfr/docker-images/tree/alpine3)
 
 
 ## For advanced users

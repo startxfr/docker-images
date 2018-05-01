@@ -13,6 +13,16 @@ or **[other mariadb flavours](https://github.com/startxfr/docker-images/Services
 
 ## Available flavours
 
+* `:latest` : Fedora core 23 + MariaDB 10.0.21 (compat mysql  15.1)
+* `:fc27` : Fedora core 27 + MariaDB 10.0.21 (compat mysql  15.1)
+* `:fc26` : Fedora core 26 + MariaDB 10.0.21 (compat mysql  15.1)
+* `:fc23` : Fedora core 23 + MariaDB 10.0.21 (compat mysql  15.1)
+* `:fc22` : Fedora core 22 + MariaDB 
+* `:fc21` : Fedora core 21 + MariaDB 
+* `:centos7` : CentOS 7 + MariaDB 
+* `:centos6` : Centos 6 + MariaDB
+* `:alpine3` : Alpine 3.7 + MariaDB 10.2.14
+
 ## Running from dockerhub registry
 
 * with `docker` you can run `docker run -it --name="fc28-service-mariadb" startx/sv-mariadb:fc28` from any docker host

@@ -13,6 +13,16 @@ or **[other postgres flavours](https://github.com/startxfr/docker-images/Service
 
 ## Available flavours
 
+* `:latest` : Fedora core 23 + PostgreSQL 9.4.5 
+* `:fc27` : Fedora core 27 + PostgreSQL 9.4.5  
+* `:fc26` : Fedora core 26 + PostgreSQL 9.4.5  
+* `:fc23` : Fedora core 23 + PostgreSQL 9.4.5  
+* `:fc22` : Fedora core 22 + PostgreSQL 
+* `:fc21` : Fedora core 21 + PostgreSQL 
+* `:centos7` : CentOS 7 + PostgreSQL 
+* `:centos6` : Centos 6 + PostgreSQL 
+* `:alpine3` : Alpine 3.7 + PostgreSQL 10.3
+
 ## Running from dockerhub registry
 
 * with `docker` you can run `docker run -it --name="service-postgres" startx/sv-postgres` from any docker host
