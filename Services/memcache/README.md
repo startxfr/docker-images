@@ -17,6 +17,7 @@ based on [startx/centos:6 container](https://hub.docker.com/r/startx/centos)
 * `:fc21` : Fedora core 21 + memcached 
 * `:centos7` : CentOS 7 + memcached
 * `:centos6` : Centos 6 + memcached 
+* `:alpine3` : Alpine 3.7 + memcached 1.5.7 
 
 ## Running from dockerhub registry
 

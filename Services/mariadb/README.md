@@ -16,7 +16,8 @@ based on [startx/centos:6 container](https://hub.docker.com/r/startx/centos)
 * `:fc22` : Fedora core 22 + MariaDB 
 * `:fc21` : Fedora core 21 + MariaDB 
 * `:centos7` : CentOS 7 + MariaDB 
-* `:centos6` : Centos 6 + MariaDB 
+* `:centos6` : Centos 6 + MariaDB
+* `:alpine3` : Alpine 3.7 + MariaDB 10.2.14
 
 ## Running from dockerhub registry
 

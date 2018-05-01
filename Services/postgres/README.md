@@ -17,6 +17,7 @@ based on [startx/centos:6 container](https://hub.docker.com/r/startx/centos)
 * `:fc21` : Fedora core 21 + PostgreSQL 
 * `:centos7` : CentOS 7 + PostgreSQL 
 * `:centos6` : Centos 6 + PostgreSQL 
+* `:alpine3` : Alpine 3.7 + PostgreSQL 10.3
 
 ## Running from dockerhub registry
 
