@@ -3,6 +3,8 @@
 # get and store the operating system name
 OS=`cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g'`
 SXLIB_VERSION="0.1.8"
+S2I_DEST=/tmp/src
+MYS2I_DEST=/tmp/mys2i
 
 # use xterm and set current PID
 export TERM=xterm
@@ -85,14 +87,13 @@ function genericAssemble {
     displayInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    echoVerbose "Fixing perm on /tmp/src"
-    chown 1001:0 -R /tmp/src
-    chmod g=u -R /tmp/src
-    echoVerbose "Copy source from $APP_PATH/src > $APP_PATH"
-    cp -R /tmp/src/* $APP_PATH/
-    moveSourceCodeScripts /tmp/src $APP_PATH
-    echoVerbose "Remove source temp $APP_PATH/src"
-    rm -rf /tmp/src
+    echoVerbose "Fixing perm on $S2I_DEST"
+    # /tmp is s2i source code destination defined in Dockerfile
+    if [[ -r $S2I_DEST ]]; then
+      chown 1001:0 -R $S2I_DEST
+      chmod g=u -R $S2I_DEST
+      moveSourceCode $S2I_DEST $APP_PATH
+    fi;
     testAndRunSourceCodeScript "assemble" 
 }
 
@@ -252,13 +253,26 @@ function genericDaemon {
 
 # test if a source code script of the given type exist a could be run
 function testAndRunSourceCodeScript {
-    if [[ -r $APP_PATH/.sx ]]; then
+    projectScriptDir=""
+    if [[ -r $APP_PATH/sx ]]; then
+        echoVerbose "Found source code CI/CD scripts in sx/"
+        projectScriptDir=sx
+    elif [[ -r $APP_PATH/s2i ]]; then
+        echoVerbose "Found source code CI/CD scripts in s2i/"
+        projectScriptDir=s2i
+    elif [[ -r $APP_PATH/.sx ]]; then
         echoVerbose "Found source code CI/CD scripts in .sx/"
-        if [[ -r $APP_PATH/.sx/$1 ]]; then
-            echoVerbose "Found source code $1 script"
-            if [[ -x $APP_PATH/.sx/$1 ]]; then
+        projectScriptDir=.sx
+    elif [[ -r $APP_PATH/.s2i ]]; then
+        echoVerbose "Found source code CI/CD scripts in .s2i/"
+        projectScriptDir=.s2i
+    fi 
+    if [[ "$projectScriptDir" != ""]]; then
+        if [[ -r $APP_PATH/$projectScriptDir/$1 ]]; then
+            echoVerbose "Found source code $1 script in project $projectScriptDir/ directory"
+            if [[ -x $APP_PATH/$projectScriptDir/$1 ]]; then
                 echo "Execute source code $1 script"
-                . $APP_PATH/.sx/$1
+                . $APP_PATH/$projectScriptDir/$1
             else
                 echo "WARN: source code $1 script is not executable"
             fi 
@@ -271,12 +285,34 @@ function testAndRunSourceCodeScript {
 }
 
 
-function moveSourceCodeScripts {
-    if [[ -r $1/.sx ]]; then
-        echoVerbose "Copy source scripts from $APP_PATH/src > $APP_PATH"
-        chown 1001:0 -R $1/.sx
-        chmod g=u -R $1/.sx
-        chmod ug+x -R $1/.sx/*
-        mv $1/.sx $2/.sx
-    fi
+function moveSourceCode {
+    echoVerbose "Copy source from $S2I_DEST > $APP_PATH"
+    cp -R $1/* $2/
+    projectScriptDir=""
+    if [[ -r $1/sx ]]; then
+        echoVerbose "Found source code CI/CD scripts in sx/"
+        projectScriptDir=sx
+    elif [[ -r $1/s2i ]]; then
+        echoVerbose "Found source code CI/CD scripts in s2i/"
+        projectScriptDir=s2i
+    elif [[ -r $1/.sx ]]; then
+        echoVerbose "Found source code CI/CD scripts in .sx/"
+        projectScriptDir=.sx
+    elif [[ -r $1/.s2i ]]; then
+        echoVerbose "Found source code CI/CD scripts in .s2i/"
+        projectScriptDir=.s2i
+    fi 
+    if [[ "$projectScriptDir" != ""]]; then
+        echoVerbose "source code CI/CD directory $projectScriptDir found"
+        echoVerbose "Move source code scripts in $MYS2I_DEST"
+        mv $1/$projectScriptDir $MYS2I_DEST
+        echoVerbose "Fixing source code scripts perms"
+        chown 1001:0 -R $MYS2I_DEST
+        chmod g=u -R $MYS2I_DEST
+        chmod ug+x -R $MYS2I_DEST/*
+    else
+        echoVerbose "no source code CI/CD directory found"
+    fi 
+    echoVerbose "Remove source temp $S2I_DEST"
+    rm -rf $S2I_DEST
 }

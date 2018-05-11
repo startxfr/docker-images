@@ -10,7 +10,7 @@ ENV SX_VERSION="latest" \
     SX_SUMMARY="Startx OS base image based on fedora rawhide" \
     SX_VERBOSE=false \
     SX_DEBUG=false \
-    APP_PATH="/tmp"
+    APP_PATH="/app"
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -39,9 +39,9 @@ RUN dnf --nogpgcheck -y install pwgen tar psmisc procps findutils iputils net-to
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \
     rm -rf /tmp/sx /tmp/s2i && \
-    chgrp -R 0 /bin/sx /bin/sx* /s2i /var/lib/sx /tmp && \
-    chown -R 1001:0 /bin/sx /bin/sx* /s2i /var/lib/sx /tmp && \
-    chmod -R g=u /bin/sx /bin/sx* /s2i /var/lib/sx /tmp
+    chgrp -R 0 /bin/sx /bin/sx* /s2i /var/lib/sx /tmp $APP_PATH && \
+    chown -R 1001:0 /bin/sx /bin/sx* /s2i /var/lib/sx /tmp $APP_PATH && \
+    chmod -R g=u /bin/sx /bin/sx* /s2i /var/lib/sx /tmp $APP_PATH
 
 USER 1001
 

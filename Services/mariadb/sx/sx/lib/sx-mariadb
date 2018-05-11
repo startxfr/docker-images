@@ -61,14 +61,12 @@ function mysqlAssemble {
     echoVerbose "| "
     mysqlInformation "| "
     echo "+====================================================="
-    if [[ -d /tmp/src ]]; then
-        echo "Fixing perm on /tmp/src"
-        chmod g=u -R /tmp/src
-        echo "Copy sql scripts from /tmp/src > $LOADSQL_PATH"
-        cp -R /tmp/src/*.sql $LOADSQL_PATH/
-        moveSourceCodeScripts /tmp/src $APP_PATH
-        echoVerbose "Remove source temp $APP_PATH/src"
-        rm -rf /tmp/src
+    if [[ -d $S2I_DEST ]]; then
+        echo "Fixing perm on $S2I_DEST"
+        chmod g=u -R $S2I_DEST
+        echo "Copy sql scripts from $S2I_DEST > $LOADSQL_PATH"
+        cp -R $S2I_DEST/*.sql $LOADSQL_PATH/
+        moveSourceCode $S2I_DEST $APP_PATH
     fi
     testAndRunSourceCodeScript "assemble" 
     init_service_mariadb

@@ -60,12 +60,10 @@ function mongoAssemble {
     echoVerbose "| "
     mongoInformation "| "
     echo "+====================================================="
-    if [[ -d /tmp/src ]]; then
-        echo "Fixing perm on /tmp/src"
-        chmod g=u -R /tmp/src
-        moveSourceCodeScripts /tmp/src $APP_PATH
-        echoVerbose "Remove source temp $APP_PATH/src"
-        rm -rf /tmp/src
+    if [[ -d $S2I_DEST ]]; then
+        echo "Fixing perm on $S2I_DEST"
+        chmod g=u -R $S2I_DEST
+        moveSourceCode $S2I_DEST $APP_PATH
     fi
     testAndRunSourceCodeScript "assemble" 
 }
