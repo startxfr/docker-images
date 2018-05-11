@@ -10,17 +10,17 @@ pid=0
 
 # return if verbose is activated
 function isVerbose {
-    if [ "$SX_VERBOSE" = true || "$SX_VERBOSE" = "true" ] ; then
-        return true
+    if [[ "$SX_VERBOSE" = true || "$SX_VERBOSE" = "true" ]] ; then
+        return 1
     else
-        return false
+        return 0
     fi 
 }
 
 # echo if verbose if activated
 function echoVerbose {
     isVerbose
-    if [ $? = true ] ; then
+    if [ "$?" -eq 1 ] ; then
         echo $1 $2 $3 $4
     fi 
 }
@@ -28,7 +28,7 @@ function echoVerbose {
 # echo if verbose if not activated
 function echoNotVerbose {
     isVerbose
-    if [ $? = false ] ; then
+    if [ "$?" -eq 0 ] ; then
         echo $1 $2 $3 $4
     fi 
 }
