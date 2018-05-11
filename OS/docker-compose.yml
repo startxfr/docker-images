@@ -5,3 +5,5 @@ fedora:
   memswap_limit: 200m
   cpu_shares: 2
   command: ["/bin/sx", "usage"]
+  environment:
+    - SX_VERBOSE=true

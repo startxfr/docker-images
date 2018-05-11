@@ -10,7 +10,7 @@ pid=0
 
 # return if verbose is activated
 function isVerbose {
-    if [ "$SX_VERBOSE" = true ] ; then
+    if [ "$SX_VERBOSE" = true || "$SX_VERBOSE" = "true" ] ; then
         return true
     else
         return false
@@ -33,7 +33,7 @@ function echoNotVerbose {
 
 # echo if debug if activated
 function echoDebug {
-    if [ "$SX_DEBUG" = true ] ; then
+    if [ "$SX_DEBUG" = true || "$SX_DEBUG" = "true" ] ; then
         echo $1 $2 $3 $4
     fi 
 }
@@ -123,7 +123,11 @@ function genericRun {
 
 # Display general usage
 function genericUsage {
+echoVerbose "+====================================================="
+displayInformation "| "
+echoVerbose "+====================================================="
 cat <<EOF
+
 Basic OS container to execute arbitrary commands
 
 Usage:
@@ -148,7 +152,11 @@ exit 0;
 
 # Display S2I usage
 function genericUsageS2I {
+echoVerbose "+====================================================="
+displayInformation "| "
+echoVerbose "+====================================================="
 cat <<EOF
+
 Startx builder container to use with s2i or openshift
 
 Usage:
@@ -162,7 +170,11 @@ exit 0;
 
 # Display general welcome message
 function genericWelcome {
+echoVerbose "+====================================================="
+displayInformation "| "
+echoVerbose "+====================================================="
 cat <<EOF
+
 Welcome to the $SX_ID base image. If you see this message, you have
 probably run this container without arguments. See usage for more informations.
 
