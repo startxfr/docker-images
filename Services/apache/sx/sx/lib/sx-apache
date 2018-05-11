@@ -32,7 +32,7 @@ function apacheInformation {
 # function executed when pre-deploy hook is called
 function apachePreDeploy {
     echo "+====================================================="
-    echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    echo "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
     echoVerbose "| "
     apacheInformation "| "
     echo "+====================================================="
@@ -42,7 +42,7 @@ function apachePreDeploy {
 # function executed when post-deploy hook is called
 function apachePostDeploy {
     echo "+====================================================="
-    echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    echo "| Container $HOSTNAME  running POST-DEPLOY HOOK"
     echoVerbose "| "
     apacheInformation "| "
     echo "+====================================================="
@@ -52,7 +52,7 @@ function apachePostDeploy {
 # function executed when pre-build hook is called
 function apachePostBuild {
     echo "+====================================================="
-    echo "| Container $HOSTNAME is running POST-BUILD HOOK"
+    echo "| Container $HOSTNAME  running POST-BUILD HOOK"
     echoVerbose "| "
     apacheInformation "| "
     echo "+====================================================="
@@ -62,7 +62,7 @@ function apachePostBuild {
 # function executed when assemble hook is called
 function apacheAssemble {
     echo "+====================================================="
-    echo "| Container $HOSTNAME is running ASSEMBLE"
+    echo "| Container $HOSTNAME  running ASSEMBLE"
     echoVerbose "| "
     apacheInformation "| "
     echo "+====================================================="

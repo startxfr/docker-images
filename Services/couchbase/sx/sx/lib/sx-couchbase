@@ -28,7 +28,7 @@ function displayCouchbaseRunInformation {
 
 function couchbasePreDeploy {
     echo "+====================================================="
-    echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    echo "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
     echoVerbose "| "
     couchbaseInformation "| "
     echo "+====================================================="
@@ -37,7 +37,7 @@ function couchbasePreDeploy {
 
 function couchbasePostDeploy {
     echo "+====================================================="
-    echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    echo "| Container $HOSTNAME  running POST-DEPLOY HOOK"
     echoVerbose "| "
     couchbaseInformation "| "
     echo "+====================================================="
@@ -46,7 +46,7 @@ function couchbasePostDeploy {
 
 function couchbasePostBuild {
     echo "+====================================================="
-    echo "| Container $HOSTNAME is running POST-BUILD HOOK"
+    echo "| Container $HOSTNAME  running POST-BUILD HOOK"
     echoVerbose "| "
     couchbaseInformation "| "
     echo "+====================================================="
@@ -55,7 +55,7 @@ function couchbasePostBuild {
 
 function couchbaseAssemble {
     echo "+====================================================="
-    echo "| Container $HOSTNAME is running ASSEMBLE"
+    echo "| Container $HOSTNAME  running ASSEMBLE"
     echoVerbose "| "
     couchbaseInformation "| "
     echo "+====================================================="

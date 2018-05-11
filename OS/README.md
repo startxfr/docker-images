@@ -39,6 +39,24 @@ s2i build https://github.com/startxfr/docker-images-example-bash startx/fedora t
 docker run --rm -i -t test-fedora
 ```
 
+### Using this image as Openshift Build image
+
+You can use this public image as a base image in your openshift build strategy. You can first import
+our [openshift image stream](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.json)
+and automatically add them in your service catalog. You can also test our [deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template.json)
+or our [build and deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.json)
+
+```bash
+# import image streams
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.json
+# import deploy template and start a sample application
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template.json
+oc process startx-os-fedora-template | oc create -f -
+# import build and deploy template and start a sample application
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.json
+oc process startx-os-fedora-build-template | oc create -f -
+```
+
 ### Using this image as base container
 
 You can use this Dockerfile template to start a new personalized container based on this container
@@ -47,7 +65,6 @@ FROM startx/fedora:latest
 #... your container specifications
 CMD ["/bin/sx"]
 ```
-
 
 ## Environment variable
 

@@ -2,7 +2,7 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-couchbase-template",
+        "name": "startx-sv-couchbase-build-template",
         "annotations": {
             "openshift.io/display-name": "Startx Couchbase server (fedora)",
             "description": "Couchbase server for NoSQL database running under Fedora",
@@ -16,7 +16,7 @@
     },
     "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
     "labels": {
-        "template": "startx-sv-couchbase-template"
+        "template": "startx-sv-couchbase-build-template"
     },
     "objects": [
         {
@@ -98,7 +98,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-couchbase-template"
+                    "template": "startx-sv-couchbase-build-template"
                 }
             },
             "stringData": {
@@ -117,7 +117,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-couchbase-template"
+                    "template": "startx-sv-couchbase-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -209,7 +209,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-sv-couchbase-template",
+                            "template": "startx-sv-couchbase-build-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -376,7 +376,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-couchbase-template"
+                    "template": "startx-sv-couchbase-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -472,7 +472,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-couchbase-template"
+                    "template": "startx-sv-couchbase-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"

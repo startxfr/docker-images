@@ -36,7 +36,7 @@ function displayPostgresRunInformation {
 
 function postgresPreDeploy {
     echo "+====================================================="
-    echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    echo "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
     echoVerbose "| "
     postgresInformation "| "
     echo "+====================================================="
@@ -45,7 +45,7 @@ function postgresPreDeploy {
 
 function postgresPostDeploy {
     echo "+====================================================="
-    echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    echo "| Container $HOSTNAME  running POST-DEPLOY HOOK"
     echoVerbose "| "
     postgresInformation "| "
     echo "+====================================================="
@@ -54,7 +54,7 @@ function postgresPostDeploy {
 
 function postgresPostBuild {
     echo "+====================================================="
-    echo "| Container $HOSTNAME is running POST-BUILD HOOK"
+    echo "| Container $HOSTNAME  running POST-BUILD HOOK"
     echoVerbose "| "
     postgresInformation "| "
     echo "+====================================================="
@@ -63,7 +63,7 @@ function postgresPostBuild {
 
 function postgresAssemble {
     echo "+====================================================="
-    echo "| Container $HOSTNAME is running ASSEMBLE"
+    echo "| Container $HOSTNAME  running ASSEMBLE"
     echoVerbose "| "
     postgresInformation "| "
     echo "+====================================================="

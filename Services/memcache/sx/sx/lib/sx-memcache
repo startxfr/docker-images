@@ -24,7 +24,7 @@ function displayMemcacheRunInformation {
 
 function memcachePreDeploy {
     echo "+====================================================="
-    echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    echo "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
     echoVerbose "| "
     memcacheInformation "| "
     echo "+====================================================="
@@ -33,7 +33,7 @@ function memcachePreDeploy {
 
 function memcachePostDeploy {
     echo "+====================================================="
-    echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    echo "| Container $HOSTNAME  running POST-DEPLOY HOOK"
     echoVerbose "| "
     memcacheInformation "| "
     echo "+====================================================="
@@ -42,7 +42,7 @@ function memcachePostDeploy {
 
 function memcachePostBuild {
     echo "+====================================================="
-    echo "| Container $HOSTNAME is running POST-BUILD HOOK"
+    echo "| Container $HOSTNAME  running POST-BUILD HOOK"
     echoVerbose "| "
     memcacheInformation "| "
     echo "+====================================================="
@@ -51,7 +51,7 @@ function memcachePostBuild {
 
 function memcacheAssemble {
     echo "+====================================================="
-    echo "| Container $HOSTNAME is running ASSEMBLE"
+    echo "| Container $HOSTNAME  running ASSEMBLE"
     echoVerbose "| "
     memcacheInformation "| "
     echo "+====================================================="

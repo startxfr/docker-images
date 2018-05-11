@@ -2,7 +2,7 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-nodejs-template",
+        "name": "startx-sv-nodejs-build-template",
         "annotations": {
             "openshift.io/display-name": "Startx NodeJS micro-server (fedora)",
             "description": "NodeJS micro-server for micro-service application running under Fedora",
@@ -16,7 +16,7 @@
     },
     "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
     "labels": {
-        "template": "startx-sv-nodejs-template"
+        "template": "startx-sv-nodejs-build-template"
     },
     "objects": [
         {
@@ -99,7 +99,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-nodejs-template"
+                    "template": "startx-sv-nodejs-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -191,7 +191,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-sv-nodejs-template",
+                            "template": "startx-sv-nodejs-build-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -270,7 +270,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-nodejs-template"
+                    "template": "startx-sv-nodejs-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -307,7 +307,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-nodejs-template"
+                    "template": "startx-sv-nodejs-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -342,7 +342,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-nodejs-template"
+                    "template": "startx-sv-nodejs-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"

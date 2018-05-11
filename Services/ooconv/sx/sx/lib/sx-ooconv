@@ -21,7 +21,7 @@ function displayOOconvRunInformation {
 
 function ooconvPreDeploy {
     echo "+====================================================="
-    echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    echo "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
     echoVerbose "| "
     ooconvInformation "| "
     echo "+====================================================="
@@ -30,7 +30,7 @@ function ooconvPreDeploy {
 
 function ooconvPostDeploy {
     echo "+====================================================="
-    echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    echo "| Container $HOSTNAME  running POST-DEPLOY HOOK"
     echoVerbose "| "
     ooconvInformation "| "
     echo "+====================================================="
@@ -39,7 +39,7 @@ function ooconvPostDeploy {
 
 function ooconvPostBuild {
     echo "+====================================================="
-    echo "| Container $HOSTNAME is running POST-BUILD HOOK"
+    echo "| Container $HOSTNAME  running POST-BUILD HOOK"
     echoVerbose "| "
     ooconvInformation "| "
     echo "+====================================================="
@@ -48,7 +48,7 @@ function ooconvPostBuild {
 
 function ooconvAssemble {
     echo "+====================================================="
-    echo "| Container $HOSTNAME is running ASSEMBLE"
+    echo "| Container $HOSTNAME  running ASSEMBLE"
     echoVerbose "| "
     ooconvInformation "| "
     echo "+====================================================="
