@@ -10,11 +10,9 @@ pid=0
 
 # return if verbose is activated
 function isVerbose {
-    if [[ "$SX_VERBOSE" = true || "$SX_VERBOSE" = "true" ]] ; then
-        echo "verbose"
+    if [[ "$SX_VERBOSE" == true || "$SX_VERBOSE" == "true" ]] ; then
         return 1
     else
-        echo "not verbose"
         return 0
     fi 
 }
@@ -23,7 +21,7 @@ function isVerbose {
 function echoVerbose {
     isVerbose
     if [ "$?" -eq 1 ] ; then
-        echo $1 $2 $3 $4
+        echo "$@"
     fi 
 }
 
@@ -31,14 +29,14 @@ function echoVerbose {
 function echoNotVerbose {
     isVerbose
     if [ "$?" -eq 0 ] ; then
-        echo $1 $2 $3 $4
+        echo "$@"
     fi 
 }
 
 # echo if debug if activated
 function echoDebug {
-    if [[ "$SX_DEBUG" = true || "$SX_DEBUG" = "true" ]] ; then
-        echo $1 $2 $3 $4
+    if [[ "$SX_DEBUG" == true || "$SX_DEBUG" == "true" ]] ; then
+        echo "$@"
     fi 
 }
 
@@ -49,6 +47,7 @@ function genericPreDeploy {
     echoNotVerbose "container $HOSTNAME is running PRE-DEPLOY HOOK"
     echoVerbose "| "
     displayInformation "| "
+    echoDebug `env`
     echoVerbose "+====================================================="
     testAndRunSourceCodeScript "pre-deploy" 
 }
@@ -60,6 +59,7 @@ function genericPostDeploy {
     echoNotVerbose "container $HOSTNAME is running POST-DEPLOY HOOK"
     echoVerbose "| "
     displayInformation "| "
+    echoDebug `env`
     echoVerbose "+====================================================="
     testAndRunSourceCodeScript "post-deploy" 
 }
@@ -71,6 +71,7 @@ function genericPostBuild {
     echoNotVerbose "container $HOSTNAME is running POST-BUILD HOOK"
     echoVerbose "| "
     displayInformation "| "
+    echoDebug `env`
     echoVerbose "+====================================================="
     testAndRunSourceCodeScript "post-build" 
 }
@@ -82,6 +83,7 @@ function genericAssemble {
     echoNotVerbose "container $HOSTNAME is running ASSEMBLE"
     echoVerbose "| "
     displayInformation "| "
+    echoDebug `env`
     echoVerbose "+====================================================="
     echoVerbose "Fixing perm on /tmp/src"
     chown 1001:0 -R /tmp/src
@@ -101,6 +103,7 @@ function genericRun {
     echoNotVerbose "container $HOSTNAME is RUNNING"
     echoVerbose "| "
     displayInformation "| "
+    echoDebug `env`
     echoVerbose "+====================================================="
     if [[ -x $APP_PATH/run ]]; then
         echoVerbose "Execute main source code run script"
@@ -129,6 +132,7 @@ function genericRun {
 function genericUsage {
 echoVerbose "+====================================================="
 displayInformation "| "
+echoDebug `env`
 echoVerbose "+====================================================="
 cat <<EOF
 
@@ -158,6 +162,7 @@ exit 0;
 function genericUsageS2I {
 echoVerbose "+====================================================="
 displayInformation "| "
+echoDebug `env`
 echoVerbose "+====================================================="
 cat <<EOF
 
@@ -176,6 +181,7 @@ exit 0;
 function genericWelcome {
 echoVerbose "+====================================================="
 displayInformation "| "
+echoDebug `env`
 echoVerbose "+====================================================="
 cat <<EOF
 
