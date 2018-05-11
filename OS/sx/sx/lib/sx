@@ -284,7 +284,9 @@ function moveSourceCode {
       echoVerbose "Found source code CI/CD scripts in .s2i/"
       projectScriptDir=.s2i
   fi 
-  if [[ "$projectScriptDir" != ""]]; then
+  if [[ "$projectScriptDir" == ""]]; then
+      echoVerbose "no source code CI/CD directory found"
+  else
       echoVerbose "source code CI/CD directory $projectScriptDir found"
       echoVerbose "Move source code scripts in $MYS2I_DEST"
       mv $1/$projectScriptDir $MYS2I_DEST
@@ -292,8 +294,6 @@ function moveSourceCode {
       chown 1001:0 -R $MYS2I_DEST
       chmod g=u -R $MYS2I_DEST
       chmod ug+x -R $MYS2I_DEST/*
-  else
-      echoVerbose "no source code CI/CD directory found"
   fi 
   echoVerbose "Remove source temp $S2I_DEST"
   rm -rf $S2I_DEST
