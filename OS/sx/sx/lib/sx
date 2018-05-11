@@ -11,8 +11,10 @@ pid=0
 # return if verbose is activated
 function isVerbose {
     if [[ "$SX_VERBOSE" = true || "$SX_VERBOSE" = "true" ]] ; then
+        echo "verbose"
         return 1
     else
+        echo "not verbose"
         return 0
     fi 
 }
@@ -35,7 +37,7 @@ function echoNotVerbose {
 
 # echo if debug if activated
 function echoDebug {
-    if [ "$SX_DEBUG" = true || "$SX_DEBUG" = "true" ] ; then
+    if [[ "$SX_DEBUG" = true || "$SX_DEBUG" = "true" ]] ; then
         echo $1 $2 $3 $4
     fi 
 }
