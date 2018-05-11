@@ -2,15 +2,31 @@
 
 # get and store the operating system name
 OS=`cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g'`
-SXLIB_VERSION="0.1.7"
+SXLIB_VERSION="0.1.8"
 
 # use xterm and set current PID
 export TERM=xterm
 pid=0
 
+# return if verbose is activated
+function isVerbose {
+    if [ "$SX_VERBOSE" = true ] ; then
+        return true
+    else
+        return false
+    fi 
+}
+
 # echo if verbose if activated
 function echoVerbose {
-    if [ "$SX_VERBOSE" = true ] ; then
+    if [ isVerbose = true ] ; then
+        echo $1 $2 $3 $4
+    fi 
+}
+
+# echo if verbose if not activated
+function echoNotVerbose {
+    if [ isVerbose = false ] ; then
         echo $1 $2 $3 $4
     fi 
 }
@@ -24,41 +40,45 @@ function echoDebug {
 
 # function executed when pre-deploy hook is called
 function genericPreDeploy {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    echoNotVerbose "container $HOSTNAME is running PRE-DEPLOY HOOK"
     echoVerbose "| "
     displayInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     testAndRunSourceCodeScript "pre-deploy" 
 }
 
 # function executed when post-deploy hook is called
 function genericPostDeploy {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    echoNotVerbose "container $HOSTNAME is running POST-DEPLOY HOOK"
     echoVerbose "| "
     displayInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     testAndRunSourceCodeScript "post-deploy" 
 }
 
 # function executed when pre-build hook is called
 function genericPostBuild {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is running POST-BUILD HOOK"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME is running POST-BUILD HOOK"
+    echoNotVerbose "container $HOSTNAME is running POST-BUILD HOOK"
     echoVerbose "| "
     displayInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     testAndRunSourceCodeScript "post-build" 
 }
 
 # function executed when assemble hook is called
 function genericAssemble {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is running ASSEMBLE"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME is running ASSEMBLE"
+    echoNotVerbose "container $HOSTNAME is running ASSEMBLE"
     echoVerbose "| "
     displayInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     echoVerbose "Fixing perm on /tmp/src"
     chown 1001:0 -R /tmp/src
     chmod g=u -R /tmp/src
@@ -72,11 +92,12 @@ function genericAssemble {
 
 # function executed on container startup
 function genericRun {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is RUNNING"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME is RUNNING"
+    echoNotVerbose "container $HOSTNAME is RUNNING"
     echoVerbose "| "
     displayInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     if [[ -x $APP_PATH/run ]]; then
         echoVerbose "Execute main source code run script"
         exec $APP_PATH/run
@@ -85,7 +106,7 @@ function genericRun {
         if [[ -r $APP_PATH/.sx/run ]]; then
             echoVerbose "Found source code sx run script"
             if [[ -x $APP_PATH/.sx/run ]]; then
-                echo "Execute source code sx run script"
+                echoVerbose "Execute source code sx run script"
                 exec $APP_PATH/.sx/run
             else
                 echo "Start default daemon (source code sx run is script not executable)"
@@ -160,6 +181,8 @@ echoVerbose $1 "name      : $SX_NAME"
 echoVerbose $1 "OS        : $OS"
 echoVerbose $1 "container : $HOSTNAME"
 echoVerbose $1 "sx-lib    : v$SXLIB_VERSION"
+echoNotVerbose "running on $OS (sxlib v$SXLIB_VERSION)"
+echoNotVerbose "based on $SX_ID:$SX_VERSION"
 }
 
 # Display information
@@ -189,22 +212,19 @@ function genericIsReady {
 # start daemon
 function startDaemon {
     while true; do
-        if [ "$SX_VERBOSE" = true ] ; then
-            echo "$HOSTNAME is alive and running $SX_ID:$SX_VERSION ($OS)"
-        else
-            echo "$HOSTNAME is alive"
-        fi 
+        echoVerbose "$HOSTNAME is alive and running $SX_ID:$SX_VERSION ($OS)"
+        echoNotVerbose "$HOSTNAME is alive"
         sleep 10
     done
 }
 
 # Display daemon
 function genericDaemon {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is RUNNING"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME is RUNNING"
     echoVerbose "| "
     displayInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     startDaemon
 }
 
