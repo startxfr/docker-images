@@ -19,14 +19,16 @@ function isVerbose {
 
 # echo if verbose if activated
 function echoVerbose {
-    if [ isVerbose = true ] ; then
+    isVerbose
+    if [ $? = true ] ; then
         echo $1 $2 $3 $4
     fi 
 }
 
 # echo if verbose if not activated
 function echoNotVerbose {
-    if [ isVerbose = false ] ; then
+    isVerbose
+    if [ $? = false ] ; then
         echo $1 $2 $3 $4
     fi 
 }
