@@ -11,6 +11,7 @@ ENV SX_VERSION="latest" \
     SX_VERBOSE=false \
     SX_DEBUG=false \
     APP_PATH="/app"
+    SX_S2IDIR="/tmp"
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -24,7 +25,7 @@ LABEL name="$SX_ID" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="100Mi" \
       io.openshift.min-cpu="500m" \
-      io.openshift.s2i.destination="/tmp" \
+      io.openshift.s2i.destination="$SX_S2IDIR" \
       io.openshift.s2i.scripts-url="image:///s2i" \
       fr.startx.component="$SX_ID:$SX_VERSION"
 
