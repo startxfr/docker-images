@@ -10,7 +10,7 @@ ENV SX_VERSION="latest" \
     SX_SUMMARY="Startx OS base image based on fedora rawhide" \
     SX_VERBOSE=false \
     SX_DEBUG=false \
-    APP_PATH="/app"
+    APP_PATH="/app" \
     SX_S2IDIR="/tmp"
 
 LABEL name="$SX_ID" \
