@@ -106,25 +106,10 @@ function genericRun {
     displayInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    if [[ -x $APP_PATH/run ]]; then
-        echoVerbose "Execute main source code run script"
-        exec $APP_PATH/run
-    elif [[ -r $APP_PATH/.sx ]]; then
-        echoVerbose "Found source code CI/CD scripts in .sx/"
-        if [[ -r $APP_PATH/.sx/run ]]; then
-            echoVerbose "Found source code sx run script"
-            if [[ -x $APP_PATH/.sx/run ]]; then
-                echoVerbose "Execute source code sx run script"
-                exec $APP_PATH/.sx/run
-            else
-                echo "Start default daemon (source code sx run is script not executable)"
-                startDaemon
-            fi 
-        else
-            echo "Start default daemon (no source code run script)"
-            startDaemon
-        fi 
+    if [[ -x $MYS2I_DEST/run ]]; then
+        testAndRunSourceCodeScript "run" 
     else
+        echo "Start default daemon (no source code run script)"
         startDaemon
     fi 
 }
