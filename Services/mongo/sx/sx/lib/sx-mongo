@@ -103,8 +103,7 @@ function stop_mongo_handler {
 # the running shell
 function startMongoService {
     trap 'kill ${!}; stop_mongo_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
-    su mongodb
-    /usr/bin/mongod --logappend --logpath $LOG_PATH/mongodb.log --dbpath $DATA_PATH --journal --fork
+    /usr/bin/mongod --logappend --logpath $LOG_PATH/mongodb.log --dbpath $DATA_PATH --journal
     exec tail -f /dev/null &
     while true
     do
