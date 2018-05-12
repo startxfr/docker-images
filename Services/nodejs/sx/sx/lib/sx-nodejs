@@ -32,60 +32,58 @@ function nodejsInformation {
 
 # function executed when pre-deploy hook is called
 function nodejsPreDeploy {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
     echoVerbose "| "
     nodejsInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     testAndRunSourceCodeScript "pre-deploy" 
 }
 
 # function executed when post-deploy hook is called
 function nodejsPostDeploy {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running POST-DEPLOY HOOK"
     echoVerbose "| "
     nodejsInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     testAndRunSourceCodeScript "post-deploy" 
 }
 
 # function executed when pre-build hook is called
 function nodejsPostBuild {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is running POST-BUILD HOOK"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running POST-BUILD HOOK"
     echoVerbose "| "
     nodejsInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     testAndRunSourceCodeScript "post-build" 
 }
 
 # function executed when assemble hook is called
 function nodejsAssemble {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is running ASSEMBLE"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running ASSEMBLE"
     echoVerbose "| "
     nodejsInformation "| "
-    echo "+====================================================="
-    if [[ -d /tmp/src ]]; then
-        echo "Fixing perm on /tmp/src"
-        chmod g=u -R /tmp/src
-        cp -R /tmp/src/* $APP_PATH/
-        moveSourceCodeScripts /tmp/src $APP_PATH
-        echoVerbose "Remove source temp $APP_PATH/src"
-        rm -rf /tmp/src
-    fi
+    echoVerbose "+====================================================="
+    if [[ -d $S2I_DEST ]]; then
+      echoVerbose "Fixing perm on $S2I_DEST"
+      chown 1001:0 -R $S2I_DEST
+      chmod g=u -R $S2I_DEST
+      moveSourceCode $S2I_DEST $APP_PATH
+    fi;
     testAndRunSourceCodeScript "assemble" 
     npmInstallEnvironement
 }
 
 # function executed on container startup
 function nodejsRun {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is RUNNING"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME is RUNNING"
     echoVerbose "| "
     nodejsInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     if [ ! -d "$APP_PATH/node_modules" ]; then
         npmInstallEnvironement
     fi
@@ -106,11 +104,12 @@ function nodejsIsReady {
 # function executed on apahce service stop
 function stop_nodejs_handler {
     killall node
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is now STOPPED"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME is now STOPPED"
+    echoNotVerbose "container is now stopped"
     echoVerbose "| "
     nodejsInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     exit 143; # 128 + 15 -- SIGTERM
 }
 

@@ -5,16 +5,12 @@ Run [nodejs main app.js](https://www.nodejs.org/) under a container
 based on [startx/fedora:27 container](https://hub.docker.com/r/startx/fedora). 
 Could use various network protocol (like http, websocket, smtp, telnet) according to the content of the running app.
 
-Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
-or **[other nodejs flavours](https://github.com/startxfr/docker-images/Services/nodejs/#available-flavours)**
-
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc27)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-nodejs/) | [Sources](https://github.com/startxfr/docker-images/tree/fc27/Services/nodejs)             | [STARTX Profile](https://github.com/startxfr) | 
-|-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------------------------|-----------------------------------------------|
+[![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-nodejs.svg)](https://hub.docker.com/r/startx/sv-nodejs) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc27)](https://travis-ci.org/startxfr/docker-images) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/fc27/Services/nodejs/) [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
 
 ## Available flavours
 
-* `:latest` : Fedora core 23 + NodeJS v0.10.36
+* `:latest` : Fedora core 29 + NodeJS v0.10.36
+* `:fc28` : Fedora core 28 + NodeJS v0.10.36
 * `:fc27` : Fedora core 27 + NodeJS v0.10.36
 * `:fc26` : Fedora core 26 + NodeJS v0.10.36
 * `:fc23` : Fedora core 23 + NodeJS v0.10.36
@@ -28,74 +24,89 @@ or **[other nodejs flavours](https://github.com/startxfr/docker-images/Services/
 
 * with `docker` you can run `docker run -it --name="service-nodejs" startx/sv-nodejs` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
-```
+```YAML
 service:
   image: startx/sv-nodejs:fc27
-  container_name: "service-nodejs-fc27"
-  environment:
-    CONTAINER_TYPE: "service"
-    CONTAINER_SERVICE: "nodejs"
-    CONTAINER_INSTANCE: "service-nodejs-fc27"
+  container_name: "fc27-service-nodejs"
   volumes:
     - "/tmp/container-fc27/logs/nodejs:/logs"
     - "/tmp/container-fc27/nodejs:/data"
 ```
 
+### Using this image as Openshift Build image
+
+You can use this public image as a base image in your openshift build strategy. You can first import
+our [openshift image stream](https://raw.githubusercontent.com/startxfr/docker-images/fc27/Services/nodejs/openshift-imageStreams.json)
+and automatically add them in your service catalog. You can also test our [deploy template](https://raw.githubusercontent.com/startxfr/docker-images/fc27/Services/nodejs/openshift-template.json)
+or our [build and deploy template](https://raw.githubusercontent.com/startxfr/docker-images/fc27/Services/nodejs/openshift-template-build.json)
+
+```bash
+# import image streams
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/fc27/Services/nodejs/openshift-imageStreams.json
+# import deploy template and start a sample application
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/fc27/Services/nodejs/openshift-template.json
+oc process startx-sv-nodejs-template | oc create -f -
+# import build and deploy template and start a sample application
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/fc27/Services/nodejs/openshift-template-build.json
+oc process startx-sv-nodejs-build-template | oc create -f -
+```
+
+### Using this image as S2I builder
+
+You can use this image as an s2i builder image. 
+```bash
+s2i build https://github.com/startxfr/docker-images-example-nodejs startx/sv-nodejs test-nodejs
+docker run --rm -i -t test-nodejs
+```
+
 ## Docker-compose in various situations
 
 * sample docker-compose.yml linked to host port 1000
-```
+```YAML
 service:
   image: startx/sv-nodejs:fc27
   container_name: "service-nodejs-fc27"
-  environment:
-    CONTAINER_INSTANCE: "service-nodejs-fc27"
   ports:
     - "1000:8080"
 ```
 * sample docker-compose.yml with port exposed only to linked services
-```
+```YAML
 service:
   image: startx/sv-nodejs:fc27
   container_name: "service-nodejs-fc27"
-  environment:
-    CONTAINER_INSTANCE: "service-nodejs-fc27"
   expose:
     - "8080"
 ```
 * sample docker-compose.yml using data container
-```
+```YAML
 data:
-  image: startx/fedora:fc27
+  image: startx/fedora:27
   container_name: "service-nodejs-data-fc27"
-  environment:
-    CONTAINER_INSTANCE: "service-nodejs-data-fc27"
 service:
   image: startx/sv-nodejs:fc27
   container_name: "service-nodejs-fc27"
-  environment:
-    CONTAINER_INSTANCE: "service-nodejs-fc27"
   volume_from:
     - data:rw
 ```
 
-## Using this image in your own container
+### Using this image as base container
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
- ```
+```Dockerfile
 FROM startx/sv-nodejs:fc27
 #... your container specifications
-CMD ["/bin/run.sh"]
+CMD ["/bin/sx", "run"]
 ```
 
 ## Environment variable
 
+This container is based on [startx fedora container](https://hub.docker.com/r/startx/fedora) who came with 
+some [additional environment variable](https://github.com/startxfr/docker-images/tree/fc27/OS#environment-variable)
+
 | Variable                  | Type     | Mandatory | Description                                                              |
 |---------------------------|----------|-----------|--------------------------------------------------------------------------|
+| <i>base image environement</i> |          |           | [see environment list](https://github.com/startxfr/docker-images/tree/fc27/OS#environment-variable)
 | APP_MAIN                  | `string` | `yes`     | Path to the application entrypoint. default is /data/nodejs/app.js
-| CONTAINER_INSTANCE        | `string` | `yes`     | Container name. Should be uning to get fine grained log and application reporting
-| CONTAINER_TYPE            | `string` | `no`      | Container family (os, service, application. could be enhanced 
-| CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
 | LOG_PATH                  | `auto`   | `auto`    | default set to /logs and used as a volume mountpoint
 | APP_PATH                  | `auto`   | `auto`    | default set to /data and used as a volume mountpoint
 | TMP_APP_PATH              | `auto`   | `auto`    | default set to /tmp/nodejs and used to hold app content and copy to $APP_PATH on startup (if $APP_PATH is empty)

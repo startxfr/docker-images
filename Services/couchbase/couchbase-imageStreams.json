@@ -20,19 +20,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc27",
+                        "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "S2I Couchbase Database (Fedora 27)",
-                            "description": "Couchbase server builder for NoSQL database running under Fedora 27",
+                            "openshift.io/display-name": "S2I Couchbase Database (Fedora 28)",
+                            "description": "Couchbase server builder for NoSQL database running under Fedora 28",
                             "iconClass": "icon-mysql-database",
                             "tags": "builder,startx,fedora,couchbase,database",
                             "supports": "db",
-                            "version": "fc27",
+                            "version": "fc28",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-couchbase.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-couchbase:fc27"
+                            "name": "startx/sv-couchbase:fc28"
                         }
                     },
                     {
@@ -81,6 +81,38 @@
                         "from": {
                             "kind": "DockerImage",
                             "name": "startx/sv-couchbase:centos7"
+                        }
+                    },
+                    {
+                        "name": "centos6",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I Couchbase Database (Centos 6)",
+                            "description": "Couchbase server builder for NoSQL database running under Centos 6",
+                            "iconClass": "icon-mysql-database",
+                            "tags": "builder,startx,centos,couchbase,database",
+                            "supports": "db",
+                            "version": "6",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-couchbase.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-couchbase:centos6"
+                        }
+                    },
+                    {
+                        "name": "alpine3",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I Couchbase Database (Alpine 3)",
+                            "description": "Couchbase server builder for NoSQL database running under Alpine 3",
+                            "iconClass": "icon-mysql-database",
+                            "tags": "builder,startx,alpine,couchbase,database",
+                            "supports": "db",
+                            "version": "3",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-couchbase.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-couchbase:alpine3"
                         }
                     }
                 ]

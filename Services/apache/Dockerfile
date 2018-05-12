@@ -38,8 +38,8 @@ RUN dnf --nogpgcheck -y install httpd && dnf clean all && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \
     rm -rf /tmp/sx /tmp/s2i && \
-    cat /etc/httpd/conf/httpd.conf | sed -e "s/Listen 80/#Listen 80/" > /etc/httpd/conf/httpd.conf && \
-    rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf && \
+    sed -i "s/Listen 80/#Listen 80/" /etc/httpd/conf/httpd.conf && \
+    rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf /run/httpd/httpd.pid && \
     mkdir -p $DATA_PATH $APP_PATH $LOG_PATH && \
     chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /run/httpd /bin/sx* /s2i /var/lib/sx /tmp && \
     chown -R 1001:0 /bin/sx* /s2i /var/lib/sx /tmp && \

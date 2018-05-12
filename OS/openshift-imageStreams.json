@@ -36,19 +36,19 @@
                         }
                     },
                     {
-                        "name": "fc27",
+                        "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "S2I Startx Fedora 27",
-                            "description": "Minimal Fedora 27 OS builder for bash operations",
+                            "openshift.io/display-name": "S2I Startx Fedora 28",
+                            "description": "Minimal Fedora 28 OS builder for bash operations",
                             "iconClass": "icon-beaker",
                             "tags": "builder,startx,fedora",
                             "supports": "fedora",
-                            "version": "fc27",
+                            "version": "fc28",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/fedora:27"
+                            "name": "startx/fedora:28"
                         }
                     },
                     {
@@ -71,7 +71,7 @@
                         "name": "rawhide",
                         "annotations": {
                             "openshift.io/display-name": "S2I Startx Fedora (rawhide)",
-                            "description": "Minimal Fedora 27 OS builder for bash operations",
+                            "description": "Minimal Fedora 28 OS builder for bash operations",
                             "iconClass": "icon-beaker",
                             "tags": "builder,startx,fedora",
                             "supports": "fedora",
@@ -112,6 +112,38 @@
                         "from": {
                             "kind": "DockerImage",
                             "name": "startx/centos:7"
+                        }
+                    },
+                    {
+                        "name": "centos6",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I Startx CentOS 6",
+                            "description": "Minimal CentOS 6 OS builder for bash operations",
+                            "iconClass": "icon-beaker",
+                            "tags": "builder,startx,centos",
+                            "supports": "centos",
+                            "version": "6",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/centos:6"
+                        }
+                    },
+                    {
+                        "name": "alpine3",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I Startx Alpine 3",
+                            "description": "Minimal Alpine 3 OS builder for bash operations",
+                            "iconClass": "icon-beaker",
+                            "tags": "builder,startx,alpine",
+                            "supports": "alpine",
+                            "version": "3",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/alpine:3"
                         }
                     }
                 ]

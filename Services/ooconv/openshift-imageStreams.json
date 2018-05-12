@@ -36,19 +36,19 @@
                         }
                     },
                     {
-                        "name": "fc27",
+                        "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "S2I LibreOffice converter (Fedora 27)",
-                            "description": "LibreOffice converter builder for document convertion running under Fedora 27",
+                            "openshift.io/display-name": "S2I LibreOffice converter (Fedora 28)",
+                            "description": "LibreOffice converter builder for document convertion running under Fedora 28",
                             "iconClass": "icon-aerogear",
                             "tags": "builder,startx,fedora,ooconv,libreoffice",
                             "supports": "http",
-                            "version": "fc27",
+                            "version": "fc28",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-ooconv.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-ooconv:fc27"
+                            "name": "startx/sv-ooconv:fc28"
                         }
                     },
                     {
@@ -97,6 +97,38 @@
                         "from": {
                             "kind": "DockerImage",
                             "name": "startx/sv-ooconv:centos7"
+                        }
+                    },
+                    {
+                        "name": "centos6",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I LibreOffice converter (Centos 6)",
+                            "description": "LibreOffice converter builder for document convertion running under Centos 6",
+                            "iconClass": "icon-aerogear",
+                            "tags": "builder,startx,centos,ooconv,libreoffice",
+                            "supports": "http",
+                            "version": "6",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-ooconv.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-ooconv:centos6"
+                        }
+                    },
+                    {
+                        "name": "alpine3",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I LibreOffice converter (Alpine 3)",
+                            "description": "LibreOffice converter builder for document convertion running under Alpine 3",
+                            "iconClass": "icon-aerogear",
+                            "tags": "builder,startx,alpine,ooconv,libreoffice",
+                            "supports": "http",
+                            "version": "3",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-ooconv.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-ooconv:alpine3"
                         }
                     }
                 ]

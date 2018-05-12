@@ -11,7 +11,7 @@ case $1 in
     run|start)              nodejsRun $@ ;;
     isLive)                 nodejsIsLive $@ ;;
     isReady)                nodejsIsReady $@ ;;
-    info)                   nodejsInformation $@ ;;
+    info|--info)            nodejsInformation $@ ;;
     usage|help|--help)      genericUsage $@ ;;
     usageS2i)               genericUsageS2I $@ ;;
     version|--version)      genericVersion $@ ;;

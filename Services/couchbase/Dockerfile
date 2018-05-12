@@ -38,6 +38,8 @@ RUN dnf --nogpgcheck -y install python-httplib2 openssl ncurses ncurses-libs ncu
     dnf clean all && \
     #echo 0 > /proc/sys/vm/swappiness && \
     echo '' >> /etc/sysctl.conf && \
+    echo 'couchbase              soft    nofile                  90000' >> /etc/security/limits.conf && \
+    echo 'couchbase              hard    nofile                  unlimited' >> /etc/security/limits.conf && \
     echo '#Set swappiness to 0 to avoid swapping' >> /etc/sysctl.conf && \
     echo 'vm.swappiness = 0' >> /etc/sysctl.conf && \
     #echo never > /sys/kernel/mm/transparent_hugepage/enabled && \

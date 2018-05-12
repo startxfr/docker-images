@@ -1,4 +1,4 @@
-server:
+mariadb:
   build: ./
   container_name: "fc27-service-mariadb"
   mem_limit: 1g
