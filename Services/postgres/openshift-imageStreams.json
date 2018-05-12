@@ -98,6 +98,38 @@
                             "kind": "DockerImage",
                             "name": "startx/sv-postgres:centos7"
                         }
+                    },
+                    {
+                        "name": "centos6",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I PostGresQL Database (Centos 6)",
+                            "description": "PostGresQL server builder for simple SQL database running under Centos 6",
+                            "iconClass": "icon-postgresql",
+                            "tags": "builder,startx,centos,postgres,database",
+                            "supports": "db",
+                            "version": "6",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-postgres.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-postgres:centos6"
+                        }
+                    },
+                    {
+                        "name": "alpine3",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I PostGresQL Database (Alpine 3)",
+                            "description": "PostGresQL server builder for simple SQL database running under Alpine 3",
+                            "iconClass": "icon-postgresql",
+                            "tags": "builder,startx,alpine,postgres,database",
+                            "supports": "db",
+                            "version": "3",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-postgres.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-postgres:alpine3"
+                        }
                     }
                 ]
             }
