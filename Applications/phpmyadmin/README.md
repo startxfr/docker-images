@@ -1,3 +1,5 @@
+<img align="right" height="50" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true">
+
 # STARTX Application docker-images : PHPMyAdmin
 
 Container running phpMyAdmin under a alpine server.

@@ -1,3 +1,5 @@
+<img align="right" height="50" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true">
+HEAD
 # Docker OS Images : MONGO on alpine 3.7
 
 Simple container used to deliver document-oriented database
