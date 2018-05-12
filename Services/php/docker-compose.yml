@@ -1,4 +1,4 @@
-server:
+php:
   build: ./
   container_name: "service-php"
   mem_limit: 1g

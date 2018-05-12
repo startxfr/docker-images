@@ -1,4 +1,4 @@
-server:
+apache:
   build: ./
   container_name: "service-apache"
   mem_limit: 200m

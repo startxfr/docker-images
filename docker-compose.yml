@@ -3,51 +3,52 @@ fedora:
     file: OS/docker-compose.yml
     service: fedora
 
-fedora_sv_apache:
+fedora-sv-apache:
   extends:
     file: Services/apache/docker-compose.yml
-    service: server
+    service: apache
 
-fedora_sv_php:
+fedora-sv-php:
   extends:
     file: Services/php/docker-compose.yml
-    service: server
+    service: php
 
-fedora_sv_nodejs:
+fedora-sv-nodejs:
   extends:
     file: Services/nodejs/docker-compose.yml
-    service: server
+    service: nodejs
 
-fedora_sv_mariadb:
+fedora-sv-mariadb:
   extends:
     file: Services/mariadb/docker-compose.yml
-    service: server
+    service: mariadb
 
-fedora_sv_postgres:
+fedora-sv-postgres:
   extends:
     file: Services/postgres/docker-compose.yml
-    service: server
+    service: postgres
 
-fedora_sv_mongo:
+fedora-sv-mongo:
   extends:
     file: Services/mongo/docker-compose.yml
-    service: server
+    service: mongo
 
-fedora_sv_ooconv:
+fedora-sv-ooconv:
   extends:
     file: Services/ooconv/docker-compose.yml
-    service: server
+    service: ooconv
 
-fedora_sv_memcache:
+fedora-sv-memcache:
   extends:
     file: Services/memcache/docker-compose.yml
-    service: server
+    service: memcache
 
-fedora_app_pma:
+fedora-app-pma:
   extends:
     file: Applications/phpmyadmin/docker-compose.yml
-    service: application
+    service: phpmyadmin
 
-#fedora_app_rockmongo:
-#  build: Applications/rockmongo/
-#  container_name: "application-rockmongo"
+#fedora-app-rockmongo:
+#  extends:
+#    file: Applications/rockmongo/docker-compose.yml
+#    service: rockmongo
