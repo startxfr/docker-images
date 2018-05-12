@@ -45,7 +45,7 @@
                             "iconClass": "icon-postgresql",
                             "tags": "builder,startx,centos,postgres,database",
                             "supports": "db",
-                            "version": "rawhide",
+                            "version": "6",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-postgres.git"
                         },
                         "from": {

@@ -44,7 +44,7 @@
                             "iconClass": "icon-memcached",
                             "tags": "builder,startx,centos,memcached,database",
                             "supports": "db",
-                            "version": "rawhide",
+                            "version": "6",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-memcache.git"
                         },
                         "from": {

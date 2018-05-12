@@ -45,7 +45,7 @@
                             "iconClass": "icon-aerogear",
                             "tags": "builder,startx,centos,ooconv,libreoffice",
                             "supports": "http",
-                            "version": "rawhide",
+                            "version": "6",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-ooconv.git"
                         },
                         "from": {

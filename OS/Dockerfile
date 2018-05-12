@@ -8,9 +8,10 @@ ENV SX_VERSION="6" \
     SX_ID="startx/centos" \
     SX_NAME="Startx OS base image (centos 6)" \
     SX_SUMMARY="Startx OS base image based on centos 6" \
-    SX_VERBOSE=true \
-    SX_DEBUG=true \
-    APP_PATH="/tmp"
+    SX_VERBOSE=false \
+    SX_DEBUG=false \
+    APP_PATH="/app" \
+    SX_S2IDIR="/tmp"
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -24,7 +25,7 @@ LABEL name="$SX_ID" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="100Mi" \
       io.openshift.min-cpu="500m" \
-      io.openshift.s2i.destination="/tmp" \
+      io.openshift.s2i.destination="$SX_S2IDIR" \
       io.openshift.s2i.scripts-url="image:///s2i" \
       fr.startx.component="$SX_ID:$SX_VERSION"
 
@@ -33,15 +34,15 @@ USER root
 COPY sx /tmp/
 RUN yum --nogpgcheck -y install pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip hostname && \
     yum clean all && \
-    mkdir -p /var/lib/sx && \
+    mkdir -p /var/lib/sx $APP_PATH && \
     chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib && \
     mv /tmp/s2i/bin /s2i && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \
     rm -rf /tmp/sx /tmp/s2i && \
-    chgrp -R 0 /bin/sx /bin/sx* /s2i /var/lib/sx /tmp && \
-    chown -R 1001:0 /bin/sx /bin/sx* /s2i /var/lib/sx /tmp && \
-    chmod -R g=u /bin/sx /bin/sx* /s2i /var/lib/sx /tmp
+    chgrp -R 0 /bin/sx /bin/sx* /s2i /var/lib/sx /tmp $APP_PATH && \
+    chown -R 1001:0 /bin/sx /bin/sx* /s2i /var/lib/sx /tmp $APP_PATH && \
+    chmod -R g=u /bin/sx /bin/sx* /s2i /var/lib/sx /tmp $APP_PATH
 
 USER 1001
 

@@ -44,7 +44,7 @@
                             "iconClass": "icon-nodejs",
                             "tags": "builder,startx,centos,nodejs,httpd",
                             "supports": "http",
-                            "version": "rawhide",
+                            "version": "6",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-nodejs.git"
                         },
                         "from": {

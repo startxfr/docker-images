@@ -1,44 +1,44 @@
-apache:
+sv-apache:
   extends:
     file: Services/apache/docker-compose.yml
-    service: server
+    service: apache
 
-php:
+sv-php:
   extends:
     file: Services/php/docker-compose.yml
-    service: server
+    service: php
 
-nodejs:
+sv-nodejs:
   extends:
     file: Services/nodejs/docker-compose.yml
-    service: server
+    service: nodejs
 
-mariadb:
+sv-mariadb:
   extends:
     file: Services/mariadb/docker-compose.yml
-    service: server
+    service: mariadb
 
-postgres:
+sv-postgres:
   extends:
     file: Services/postgres/docker-compose.yml
-    service: server
+    service: postgres
 
-mongo:
+sv-mongo:
   extends:
     file: Services/mongo/docker-compose.yml
-    service: server
+    service: mongo
 
-ooconv:
+sv-ooconv:
   extends:
     file: Services/ooconv/docker-compose.yml
-    service: server
+    service: ooconv
 
-memcache:
+sv-memcache:
   extends:
     file: Services/memcache/docker-compose.yml
-    service: server
+    service: memcache
     
 couchbase:
   extends:
     file: Services/couchbase/docker-compose.yml
-    service: server
+    service: couchbase

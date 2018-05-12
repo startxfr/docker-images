@@ -12,7 +12,7 @@ ENV SX_VERSION="centos6" \
     DATA_PATH=/opt/couchbase/var \
     CB_VERSION=5.5.0-beta \
     CB_RELEASE_URL=https://packages.couchbase.com/releases/5.5.0-Mar \
-    CB_PACKAGE=couchbase-server-enterprise-5.5.0-Mar-centos7.x86_64.rpm \
+    CB_PACKAGE=couchbase-server-enterprise-5.5.0-Mar-centos6.x86_64.rpm \
     PATH=$PATH:/opt/couchbase/bin:/opt/couchbase/bin/tools:/opt/couchbase/bin/install
 
 LABEL name="$SX_ID" \
@@ -38,6 +38,8 @@ RUN yum --nogpgcheck -y install python-httplib2 openssl ncurses ncurses-libs ncu
     yum clean all && \
     #echo 0 > /proc/sys/vm/swappiness && \
     echo '' >> /etc/sysctl.conf && \
+    echo 'couchbase              soft    nofile                  90000' >> /etc/security/limits.conf && \
+    echo 'couchbase              hard    nofile                  unlimited' >> /etc/security/limits.conf && \
     echo '#Set swappiness to 0 to avoid swapping' >> /etc/sysctl.conf && \
     echo 'vm.swappiness = 0' >> /etc/sysctl.conf && \
     #echo never > /sys/kernel/mm/transparent_hugepage/enabled && \

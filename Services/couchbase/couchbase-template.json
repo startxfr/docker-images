@@ -45,7 +45,7 @@
                             "iconClass": "icon-mysql-database",
                             "tags": "builder,startx,centos,couchbase,database",
                             "supports": "db",
-                            "version": "rawhide",
+                            "version": "6",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-couchbase.git"
                         },
                         "from": {

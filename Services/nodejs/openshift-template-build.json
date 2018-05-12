@@ -2,13 +2,13 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-php-template",
+        "name": "startx-sv-nodejs-build-template",
         "annotations": {
-            "openshift.io/display-name": "Startx PHP WebServer (centos)",
-            "description": "PHP WebServer for dynamic web application running under Centos",
-            "iconClass": "icon-php",
-            "tags": "startx,os,centos,apache,httpd,php",
-            "openshift.io/long-description": "This template provides an apache + php httpd webserver in a centos container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/display-name": "Startx NodeJS micro-server (centos)",
+            "description": "NodeJS micro-server for micro-service application running under Centos",
+            "iconClass": "icon-nodejs",
+            "tags": "startx,os,centos,nodejs,httpd",
+            "openshift.io/long-description": "This template provides an nodejs micro-server in a centos container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -16,20 +16,20 @@
     },
     "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
     "labels": {
-        "template": "startx-sv-php-template"
+        "template": "startx-sv-nodejs-build-template"
     },
     "objects": [
         {
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-php",
+                "name": "startx-sv-nodejs",
                 "annotations": {
-                    "openshift.io/display-name": "Startx PHP WebServer",
+                    "openshift.io/display-name": "Startx NodeJS",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-php",
+                    "base-image": "startx-sv-nodejs",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx"
@@ -40,17 +40,17 @@
                     {
                         "name": "centos6",
                         "annotations": {
-                            "openshift.io/display-name": "Startx PHP WebServer (Centos 6)",
-                            "description": "PHP WebServer for dynamic web application running under Centos 6",
-                            "iconClass": "icon-php",
-                            "tags": "builder,startx,centos,apache,httpd,php",
+                            "openshift.io/display-name": "Startx NodeJS (Centos 6)",
+                            "description": "NodeJS micro-server for micro-service application running under Centos 6",
+                            "iconClass": "icon-nodejs",
+                            "tags": "builder,startx,centos,nodejs,httpd",
                             "supports": "http",
-                            "version": "rawhide",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-php.git"
+                            "version": "6",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-nodejs.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-php:centos6"
+                            "name": "startx/sv-nodejs:centos6"
                         }
                     }
                 ]
@@ -66,7 +66,7 @@
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-php",
+                    "base-image": "startx-sv-nodejs",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx"
@@ -79,10 +79,10 @@
                         "annotations": {
                             "openshift.io/display-name": "Application ${APP_NAME}",
                             "description": "Base image for the application ${APP_NAME}",
-                            "iconClass": "icon-php",
-                            "tags": "startx,centos,apache,httpd,php,application,${APP_NAME}",
+                            "iconClass": "icon-nodejs",
+                            "tags": "startx,centos,nodejs,httpd,application,${APP_NAME}",
                             "supports": "http",
-                            "version": "rawhide"
+                            "version": "6"
                         }
                     }
                 ]
@@ -99,7 +99,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-php-template"
+                    "template": "startx-sv-nodejs-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -118,7 +118,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-php",
+                                    "/bin/sx-nodejs",
                                     "pre-deploy"
                                 ],
                                 "env": [
@@ -138,7 +138,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-php",
+                                    "/bin/sx-nodejs",
                                     "post-deploy"
                                 ],
                                 "env": [
@@ -176,7 +176,7 @@
                     }
                 ],
                 "postCommit": {
-                    "script": "/bin/sx-php info"
+                    "script": "/bin/sx-nodejs info"
                 },
                 "replicas": 1,
                 "test": false,
@@ -191,7 +191,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-sv-php-template",
+                            "template": "startx-sv-nodejs-build-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -210,7 +210,7 @@
                                     }
                                 ],
                                 "command": [
-                                    "/bin/sx-php"
+                                    "/bin/sx-nodejs"
                                 ],
                                 "args": [
                                     "run"
@@ -219,7 +219,7 @@
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-php",
+                                            "/bin/sx-nodejs",
                                             "isLive"
                                         ]
                                     },
@@ -232,7 +232,7 @@
                                 "readinessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-php",
+                                            "/bin/sx-nodejs",
                                             "isReady"
                                         ]
                                     },
@@ -270,7 +270,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-php-template"
+                    "template": "startx-sv-nodejs-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -307,7 +307,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-php-template"
+                    "template": "startx-sv-nodejs-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -342,7 +342,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-php-template"
+                    "template": "startx-sv-nodejs-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -383,7 +383,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-php:centos6"
+                            "name": "startx-sv-nodejs:centos6"
                         },
                         "env": [
                             {
@@ -402,7 +402,7 @@
                 "resources": {},
                 "postCommit": {
                     "command": [
-                        "/bin/sx-php",
+                        "/bin/sx-nodejs",
                         "post-build"
                     ]
                 }
@@ -417,7 +417,7 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "www-php",
+            "value": "www-node",
             "required": true
         },
         {
@@ -430,7 +430,7 @@
             "name": "SOURCE_GIT",
             "displayName": "Source repository",
             "description": "URL to the source code to use during build process",
-            "value": "https://github.com/startxfr/docker-images-example-php.git",
+            "value": "https://github.com/startxfr/docker-images-example-nodejs.git",
             "required": true
         },
         {

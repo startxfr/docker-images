@@ -10,7 +10,7 @@
             "tags": "startx,os,centos,apache,httpd,php",
             "openshift.io/long-description": "This template provides an apache + php httpd webserver in a centos container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
-            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
+            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/centos6/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
@@ -45,7 +45,7 @@
                             "iconClass": "icon-php",
                             "tags": "builder,startx,centos,apache,httpd,php",
                             "supports": "http",
-                            "version": "rawhide",
+                            "version": "6",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-php.git"
                         },
                         "from": {

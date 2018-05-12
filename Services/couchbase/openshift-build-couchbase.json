@@ -2,7 +2,7 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "sxapi-demo-openshift-couchbase-template",
+        "name": "sxapi-demo-openshift-couchbase-build-template",
         "annotations": {
             "openshift.io/display-name": "SXAPI Demo Couchbase (Ephemeral)",
             "description": "Template for deploying a full Couchbase cluster using operator in an openshift PaaS",
@@ -15,7 +15,7 @@
     },
     "message": "Your couchbase demo stack started to be deployed in your project. You can use openshift console to observe deployment.",
     "labels": {
-        "template": "sxapi-demo-openshift-couchbase-template"
+        "template": "sxapi-demo-openshift-couchbase-build-template"
     },
     "objects": [
         {
@@ -31,7 +31,7 @@
                     "base-image": "couchbase-operator",
                     "type": "backend",
                     "provider": "startx",
-                    "template": "sxapi-demo-openshift-couchbase-template"
+                    "template": "sxapi-demo-openshift-couchbase-build-template"
                 }
             },
             "spec": {
@@ -61,7 +61,7 @@
                 "labels": {
                     "type": "backend",
                     "provider": "startx",
-                    "template": "sxapi-demo-openshift-couchbase-template"
+                    "template": "sxapi-demo-openshift-couchbase-build-template"
                 }
             },
             "stringData": {
@@ -78,7 +78,7 @@
                 "labels": {
                     "type": "backend",
                     "provider": "startx",
-                    "template": "sxapi-demo-openshift-couchbase-template"
+                    "template": "sxapi-demo-openshift-couchbase-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -126,7 +126,7 @@
                             "app": "couchbase-operator",
                             "type": "backend",
                             "provider": "startx",
-                            "template": "sxapi-demo-openshift-couchbase-template",
+                            "template": "sxapi-demo-openshift-couchbase-build-template",
                             "deploymentconfig": "couchbase-operator"
                         },
                         "annotations": {
@@ -195,7 +195,7 @@
                     "couchbase_cluster": "couchbase-node",
                     "type": "backend",
                     "provider": "startx",
-                    "template": "sxapi-demo-openshift-couchbase-template"
+                    "template": "sxapi-demo-openshift-couchbase-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -413,7 +413,7 @@
         {
             "name": "BASE_IMAGE_TAG",
             "displayName": "Base image tag",
-            "description": "Base image flavour to use for buidling this application (latest, fc27, fc28, centos6, centos7)",
+            "description": "Base image flavour to use for buidling this application (latest, fc27, fc28, centos6, centos6)",
             "value": "latest",
             "required": true
         },

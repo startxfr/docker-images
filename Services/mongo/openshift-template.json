@@ -45,7 +45,7 @@
                             "iconClass": "icon-mongodb",
                             "tags": "builder,startx,centos,mongo,database",
                             "supports": "db",
-                            "version": "rawhide",
+                            "version": "6",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-mongo.git"
                         },
                         "from": {

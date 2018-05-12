@@ -3,56 +3,57 @@ centos6:
     file: OS/docker-compose.yml
     service: centos6
 
-centos6-service-apache:
+centos6-sv-apache:
   extends:
     file: Services/apache/docker-compose.yml
-    service: server
+    service: apache
 
-centos6-service-php:
+centos6-sv-php:
   extends:
     file: Services/php/docker-compose.yml
-    service: server
+    service: php
 
-centos6-service-nodejs:
+centos6-sv-nodejs:
   extends:
     file: Services/nodejs/docker-compose.yml
-    service: server
+    service: nodejs
 
-centos6-service-mariadb:
+centos6-sv-mariadb:
   extends:
     file: Services/mariadb/docker-compose.yml
-    service: server
+    service: mariadb
 
-centos6-service-postgres:
+centos6-sv-postgres:
   extends:
     file: Services/postgres/docker-compose.yml
-    service: server
+    service: postgres
 
-centos6-service-mongo:
+centos6-sv-mongo:
   extends:
     file: Services/mongo/docker-compose.yml
-    service: server
+    service: mongo
 
-centos6-service-ooconv:
+centos6-sv-ooconv:
   extends:
     file: Services/ooconv/docker-compose.yml
-    service: server
+    service: ooconv
 
-centos6-service-memcache:
+centos6-sv-memcache:
   extends:
     file: Services/memcache/docker-compose.yml
-    service: server
+    service: memcache
     
-centos6_couchbase:
+centos6-sv-couchbase:
   extends:
     file: Services/couchbase/docker-compose.yml
-    service: server
+    service: couchbase
 
-centos6-application-pma:
+centos6-app-pma:
   extends:
     file: Applications/phpmyadmin/docker-compose.yml
-    service: application
+    service: phpmyadmin
 
-#centos6-application-rockmongo:
-#  build: Applications/rockmongo/
-#  container_name: "application-rockmongo"
+#centos6-app-rockmongo:
+#  extends:
+#    file: Applications/rockmongo/docker-compose.yml
+#    service: rockmongo

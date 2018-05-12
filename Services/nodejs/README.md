@@ -5,93 +5,107 @@ Run [nodejs main app.js](https://www.nodejs.org/) under a container
 based on [startx/centos:6 container](https://hub.docker.com/r/startx/centos). 
 Could use various network protocol (like http, websocket, smtp, telnet) according to the content of the running app.
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos6)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-nodejs/) | [Sources](https://github.com/startxfr/docker-images/tree/master/Services/nodejs)             | [STARTX Profile](https://github.com/startxfr) | 
-|-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------------------------|-----------------------------------------------|
+[![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-nodejs.svg)](https://hub.docker.com/r/startx/sv-nodejs) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/nodejs/) [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
 
 ## Available flavours
 
-* `:latest` : Fedora core 23 + NodeJS v0.10.36
+* `:latest` : Fedora core 29 + NodeJS v0.10.36
+* `:fc28` : Fedora core 28 + NodeJS v0.10.36
 * `:fc27` : Fedora core 27 + NodeJS v0.10.36
 * `:fc26` : Fedora core 26 + NodeJS v0.10.36
 * `:fc23` : Fedora core 23 + NodeJS v0.10.36
 * `:fc22` : Fedora core 22 + NodeJS 
 * `:fc21` : Fedora core 21 + NodeJS 
-* `:centos7` : CentOS 7 + NodeJS 
+* `:centos6` : CentOS 6 + NodeJS 
 * `:centos6` : Centos 6 + NodeJS 
-* `:alpine3` : Alpine 3.7 + NodeJS 8.11.1
 
 ## Running from dockerhub registry
 
 * with `docker` you can run `docker run -it --name="service-nodejs" startx/sv-nodejs` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
-```
+```YAML
 service:
   image: startx/sv-nodejs:centos6
-  container_name: "centos6-service-nodejs"
-  environment:
-    CONTAINER_TYPE: "service"
-    CONTAINER_SERVICE: "nodejs"
-    CONTAINER_INSTANCE: "centos6-service-nodejs"
+  container_name: "service-nodejs-centos6"
   volumes:
     - "/tmp/container-centos6/logs/nodejs:/logs"
     - "/tmp/container-centos6/nodejs:/data"
 ```
 
+### Using this image as Openshift Build image
+
+You can use this public image as a base image in your openshift build strategy. You can first import
+our [openshift image stream](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/nodejs/openshift-imageStreams.json)
+and automatically add them in your service catalog. You can also test our [deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/nodejs/openshift-template.json)
+or our [build and deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/nodejs/openshift-template-build.json)
+
+```bash
+# import image streams
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/nodejs/openshift-imageStreams.json
+# import deploy template and start a sample application
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/nodejs/openshift-template.json
+oc process startx-sv-nodejs-template | oc create -f -
+# import build and deploy template and start a sample application
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/nodejs/openshift-template-build.json
+oc process startx-sv-nodejs-build-template | oc create -f -
+```
+
+### Using this image as S2I builder
+
+You can use this image as an s2i builder image. 
+```bash
+s2i build https://github.com/startxfr/docker-images-example-nodejs startx/sv-nodejs test-nodejs
+docker run --rm -i -t test-nodejs
+```
+
 ## Docker-compose in various situations
 
 * sample docker-compose.yml linked to host port 1000
-```
+```YAML
 service:
   image: startx/sv-nodejs:centos6
-  container_name: "centos6-service-nodejs"
-  environment:
-    CONTAINER_INSTANCE: "centos6-service-nodejs"
+  container_name: "service-nodejs-centos6"
   ports:
     - "1000:8080"
 ```
 * sample docker-compose.yml with port exposed only to linked services
-```
+```YAML
 service:
   image: startx/sv-nodejs:centos6
-  container_name: "centos6-service-nodejs"
-  environment:
-    CONTAINER_INSTANCE: "centos6-service-nodejs"
+  container_name: "service-nodejs-centos6"
   expose:
     - "8080"
 ```
 * sample docker-compose.yml using data container
-```
+```YAML
 data:
   image: startx/centos:6
-  container_name: "centos6-service-nodejs-data"
-  environment:
-    CONTAINER_INSTANCE: "centos6-service-nodejs-data"
+  container_name: "service-nodejs-data-centos6"
 service:
   image: startx/sv-nodejs:centos6
-  container_name: "centos6-service-nodejs"
-  environment:
-    CONTAINER_INSTANCE: "centos6-service-nodejs"
+  container_name: "service-nodejs-centos6"
   volume_from:
     - data:rw
 ```
 
-## Using this image in your own container
+### Using this image as base container
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
- ```
+```Dockerfile
 FROM startx/sv-nodejs:centos6
 #... your container specifications
-CMD ["/bin/run.sh"]
+CMD ["/bin/sx", "run"]
 ```
 
 ## Environment variable
 
+This container is based on [startx centos container](https://hub.docker.com/r/startx/centos) who came with 
+some [additional environment variable](https://github.com/startxfr/docker-images/tree/master/OS#environment-variable)
+
 | Variable                  | Type     | Mandatory | Description                                                              |
 |---------------------------|----------|-----------|--------------------------------------------------------------------------|
+| <i>base image environement</i> |          |           | [see environment list](https://github.com/startxfr/docker-images/tree/master/OS#environment-variable)
 | APP_MAIN                  | `string` | `yes`     | Path to the application entrypoint. default is /data/nodejs/app.js
-| CONTAINER_INSTANCE        | `string` | `yes`     | Container name. Should be uning to get fine grained log and application reporting
-| CONTAINER_TYPE            | `string` | `no`      | Container family (os, service, application. could be enhanced 
-| CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
 | LOG_PATH                  | `auto`   | `auto`    | default set to /logs and used as a volume mountpoint
 | APP_PATH                  | `auto`   | `auto`    | default set to /data and used as a volume mountpoint
 | TMP_APP_PATH              | `auto`   | `auto`    | default set to /tmp/nodejs and used to hold app content and copy to $APP_PATH on startup (if $APP_PATH is empty)

@@ -11,6 +11,7 @@ services:
 before_install:
 - "./travis/prepare-env"
 script:
+- "./travis/test    OS                 centos        latest"
 - "./travis/test    OS                 centos        6"
 - "./travis/test    Services/apache    sv-apache     centos6"
 - "./travis/test    Services/couchbase sv-couchbase  centos6"
@@ -23,6 +24,7 @@ script:
 - "./travis/test    Services/postgres  sv-postgres   centos6"
 - "./travis/test    Applications/phpmyadmin  app-phpmyadmin   centos6"
 after_success:
+- "./travis/publish OS                 centos        latest"
 - "./travis/publish OS                 centos        6"
 - "./travis/publish Services/apache    sv-apache     centos6"
 - "./travis/publish Services/couchbase sv-couchbase  centos6"

@@ -1,4 +1,4 @@
-server:
+ooconv:
   build: ./
   container_name: "centos6-service-ooconv"
   mem_limit: 2g
