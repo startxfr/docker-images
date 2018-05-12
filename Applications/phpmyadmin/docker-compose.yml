@@ -1,4 +1,4 @@
-application:
+phpmyadmin:
   build: ./
   container_name: "alpine3-application-phpmyadmin"
   mem_limit: 500m

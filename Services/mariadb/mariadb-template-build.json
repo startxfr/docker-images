@@ -2,34 +2,34 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-mongo-template",
+        "name": "startx-sv-mariadb-build-template",
         "annotations": {
-            "openshift.io/display-name": "Startx MongoDB server (alpine)",
-            "description": "MongoDB server for NoSQL database running under Alpine",
-            "iconClass": "icon-mongodb",
-            "tags": "startx,os,alpine,mongo,database",
-            "openshift.io/long-description": "This template provides an mongo Database in a alpine container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/display-name": "Startx MariaDB server (alpine)",
+            "description": "MariaDB server for simple SQL database running under Alpine",
+            "iconClass": "icon-mariadb",
+            "tags": "startx,os,alpine,mariadb,database",
+            "openshift.io/long-description": "This template provides an mariadb db Mariadb Database in a alpine container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/alpine3/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
-    "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
+    "message": "Service ${APP_NAME} start to be deployed in your project. You can use openshift console to log into.\n\n       Username: ${MYSQL_USER}\n       Password: ${MYSQL_PASSWORD}\n  Database Name: ${MYSQL_DATABASE}\n Connection URL: mysql://${APP_NAME}:3306",
     "labels": {
-        "template": "startx-sv-mongo-template"
+        "template": "startx-sv-mariadb-build-template"
     },
     "objects": [
         {
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-mongo",
+                "name": "startx-sv-mariadb",
                 "annotations": {
-                    "openshift.io/display-name": "Startx MongoDB Database",
+                    "openshift.io/display-name": "Startx Mariadb Database",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-mongo",
+                    "base-image": "startx-sv-mariadb",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx"
@@ -40,17 +40,17 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "Startx MongoDB Database (alpine 3.7)",
-                            "description": "MongoDB server for simple SQL database running under alpine 3.7",
-                            "iconClass": "icon-mongodb",
-                            "tags": "builder,startx,alpine,mongo,database",
+                            "openshift.io/display-name": "Startx Mariadb Database (alpine 3.7)",
+                            "description": "MariaDB server for simple SQL database running under alpine 3.7",
+                            "iconClass": "icon-mariadb",
+                            "tags": "builder,startx,alpine,mariadb,database",
                             "supports": "db",
                             "version": "alpine3",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mongo.git"
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-mongo:alpine3"
+                            "name": "startx/sv-mariadb:alpine3"
                         }
                     }
                 ]
@@ -66,7 +66,7 @@
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-mongo",
+                    "base-image": "startx-sv-mariadb",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx"
@@ -79,8 +79,8 @@
                         "annotations": {
                             "openshift.io/display-name": "Application ${APP_NAME}",
                             "description": "Base image for the application ${APP_NAME}",
-                            "iconClass": "icon-mongodb",
-                            "tags": "startx,alpine,mongo,database,application,${APP_NAME}",
+                            "iconClass": "icon-mariadb",
+                            "tags": "startx,alpine,mariadb,database,application,${APP_NAME}",
                             "supports": "db",
                             "version": "rawhide"
                         }
@@ -98,12 +98,18 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mongo-template"
+                    "template": "startx-sv-mariadb-build-template"
+                },
+                "annotations": {
+                    "template.openshift.io/expose-username": "{.data['MYSQL_USER']}",
+                    "template.openshift.io/expose-password": "{.data['MYSQL_PASSWORD']}",
+                    "template.openshift.io/expose-root_password": "{.data['MYSQL_PASSWORD']}"
                 }
             },
             "stringData": {
-                "MONGO_PASSWORD": "${MONGO_PASSWORD}",
-                "MONGO_USER": "${MONGO_USER}"
+                "MYSQL_ROOT_PASSWORD": "${MYSQL_ROOT_PASSWORD}",
+                "MYSQL_USER": "${MYSQL_USER}",
+                "MYSQL_PASSWORD": "${MYSQL_PASSWORD}"
             }
         },
         {
@@ -117,10 +123,11 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mongo-template"
+                    "template": "startx-sv-mariadb-build-template"
                 },
                 "annotations": {
-                    "openshift.io/generated-by": "STARTX"
+                    "openshift.io/generated-by": "STARTX",
+                    "template.alpha.openshift.io/wait-for-ready": "true"
                 }
             },
             "spec": {
@@ -136,7 +143,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-mongo",
+                                    "/bin/sx-mariadb",
                                     "pre-deploy"
                                 ],
                                 "env": [
@@ -156,7 +163,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-mongo",
+                                    "/bin/sx-mariadb",
                                     "post-deploy"
                                 ],
                                 "env": [
@@ -194,7 +201,7 @@
                     }
                 ],
                 "postCommit": {
-                    "script": "/bin/sx-mongo info"
+                    "script": "/bin/sx-mariadb info"
                 },
                 "replicas": 1,
                 "test": false,
@@ -209,7 +216,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-sv-mongo-template",
+                            "template": "startx-sv-mariadb-build-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -228,40 +235,65 @@
                                     }
                                 ],
                                 "command": [
-                                    "/bin/sx-mongo"
+                                    "/bin/sx-mariadb"
                                 ],
                                 "args": [
                                     "run"
                                 ],
-                                "env": [
+                                "ports": [
                                     {
-                                        "name": "MONGO_PASSWORD",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}",
-                                                "key": "MONGO_PASSWORD"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "MONGO_USER",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}",
-                                                "key": "MONGO_USER"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "MONGO_STORES",
-                                        "value": "${MONGO_STORES}"
+                                        "containerPort": 3306,
+                                        "protocol": "TCP"
                                     }
                                 ],
-                                "resources": {},
+                                "env": [
+                                    {
+                                        "name": "MYSQL_ROOT_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "name": "${APP_NAME}",
+                                                "key": "MYSQL_ROOT_PASSWORD"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MYSQL_USER",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "name": "${APP_NAME}",
+                                                "key": "MYSQL_USER"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MYSQL_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "name": "${APP_NAME}",
+                                                "key": "MYSQL_PASSWORD"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MYSQL_DATABASE",
+                                        "value": "${MYSQL_DATABASE}"
+                                    }
+                                ],
+                                "resources": {
+                                    "limits": {
+                                        "memory": "${MEMORY_LIMIT}"
+                                    }
+                                },
+                                "volumeMounts": [
+                                    {
+                                        "name": "${APP_NAME}-data",
+                                        "mountPath": "/data"
+                                    }
+                                ],
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-mongo",
+                                            "/bin/sx-mariadb",
                                             "isLive"
                                         ]
                                     },
@@ -274,7 +306,7 @@
                                 "readinessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-mongo",
+                                            "/bin/sx-mariadb",
                                             "isReady"
                                         ]
                                     },
@@ -286,6 +318,14 @@
                                 },
                                 "terminationMessagePath": "/dev/termination-log",
                                 "imagePullPolicy": "Always"
+                            }
+                        ],
+                        "volumes": [
+                            {
+                                "name": "${APP_NAME}-data",
+                                "emptyDir": {
+                                    "medium": ""
+                                }
                             }
                         ],
                         "restartPolicy": "Always",
@@ -312,18 +352,21 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mongo-template"
+                    "template": "startx-sv-mariadb-build-template"
                 },
                 "annotations": {
-                    "openshift.io/generated-by": "STARTX"
+                    "openshift.io/generated-by": "STARTX",
+                    "template.openshift.io/expose-uri": "mysql://{.spec.clusterIP}:{.spec.ports[?(.name==\"mysql\")].port}"
                 }
             },
             "spec": {
                 "ports": [
                     {
+                        "name": "mysql",
                         "protocol": "TCP",
                         "port": 3306,
-                        "targetPort": 3306
+                        "targetPort": 3306,
+                        "nodePort": 0
                     }
                 ],
                 "selector": {
@@ -347,7 +390,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mongo-template"
+                    "template": "startx-sv-mariadb-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -388,7 +431,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-mongo:alpine3"
+                            "name": "startx-sv-mariadb:alpine3"
                         },
                         "env": [
                             {
@@ -407,7 +450,7 @@
                 "resources": {},
                 "postCommit": {
                     "command": [
-                        "/bin/sx-mongo",
+                        "/bin/sx-mariadb",
                         "post-build"
                     ]
                 }
@@ -422,7 +465,7 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "mongo",
+            "value": "mariadb",
             "required": true
         },
         {
@@ -435,7 +478,7 @@
             "name": "SOURCE_GIT",
             "displayName": "Source repository",
             "description": "URL to the source code to use during build process",
-            "value": "https://github.com/startxfr/docker-images-example-mongo.git",
+            "value": "https://github.com/startxfr/docker-images-example-mariadb.git",
             "required": true
         },
         {
@@ -454,24 +497,40 @@
             "required": true
         },
         {
-            "name": "MONGO_USER",
-            "displayName": "MongoDB user",
+            "name": "MYSQL_ROOT_PASSWORD",
+            "displayName": "Mysql root password",
+            "description": "The mysql root password to use. Generated if not provided",
+            "from": "[A-Z0-9]{16}",
+            "generate": "expression"
+        },
+        {
+            "name": "MYSQL_USER",
+            "displayName": "Mysql user",
             "description": "Default user to create",
             "value": "demo",
             "from": "[A-Z0-9]{8}",
             "generate": "expression"
         },
         {
-            "name": "MONGO_PASSWORD",
-            "displayName": "MongoDB root password",
-            "description": "The mysql root password to use. Generated if not provided",
+            "name": "MYSQL_PASSWORD",
+            "displayName": "Mysql password",
+            "description": "Password of the default user",
+            "value": "demo",
             "from": "[A-Z0-9]{16}",
             "generate": "expression"
         },
         {
-            "name": "MONGO_STORES",
-            "displayName": "MongoDB store",
-            "description": "list of the default's store to create"
+            "name": "MYSQL_DATABASE",
+            "displayName": "Mysql database",
+            "description": "name of the default database to create",
+            "value": "example"
+        },
+        {
+            "name": "MEMORY_LIMIT",
+            "displayName": "Memory Limit",
+            "description": "Maximum amount of memory the container can use.",
+            "value": "512Mi",
+            "required": true
         }
     ]
 }

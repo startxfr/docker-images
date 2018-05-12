@@ -3,51 +3,52 @@ alpine3:
     file: OS/docker-compose.yml
     service: alpine3
 
-alpine3-service-apache:
+alpine3-sv-apache:
   extends:
     file: Services/apache/docker-compose.yml
-    service: server
+    service: apache
 
-alpine3-service-php:
+alpine3-sv-php:
   extends:
     file: Services/php/docker-compose.yml
-    service: server
+    service: php
 
-alpine3-service-nodejs:
+alpine3-sv-nodejs:
   extends:
     file: Services/nodejs/docker-compose.yml
-    service: server
+    service: nodejs
 
-alpine3-service-mariadb:
+alpine3-sv-mariadb:
   extends:
     file: Services/mariadb/docker-compose.yml
-    service: server
+    service: mariadb
 
-alpine3-service-postgres:
+alpine3-sv-postgres:
   extends:
     file: Services/postgres/docker-compose.yml
-    service: server
+    service: postgres
 
-alpine3-service-mongo:
+alpine3-sv-mongo:
   extends:
     file: Services/mongo/docker-compose.yml
-    service: server
+    service: mongo
 
-alpine3-service-ooconv:
+alpine3-sv-ooconv:
   extends:
     file: Services/ooconv/docker-compose.yml
-    service: server
+    service: ooconv
 
-alpine3-service-memcache:
+alpine3-sv-memcache:
   extends:
     file: Services/memcache/docker-compose.yml
-    service: server
+    service: memcache
 
 alpine3-app-pma:
   extends:
     file: Applications/phpmyadmin/docker-compose.yml
-    service: application
+    service: phpmyadmin
 
 #alpine3-app-rockmongo:
-#  build: Applications/rockmongo/
-#  container_name: "application-rockmongo"
+#  extends:
+#    file: Applications/rockmongo/docker-compose.yml
+#    service: rockmongo

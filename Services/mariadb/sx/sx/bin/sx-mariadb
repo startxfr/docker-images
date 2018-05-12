@@ -11,7 +11,7 @@ case $1 in
     run|start)              mysqlRun $@ ;;
     isLive)                 mysqlIsLive $@ ;;
     isReady)                mysqlIsReady $@ ;;
-    info)                   mysqlInformation $@ ;;
+    info|--info)            mysqlInformation $@ ;;
     usage|help|--help)      genericUsage $@ ;;
     usageS2i)               genericUsageS2I $@ ;;
     version|--version)      genericVersion $@ ;;

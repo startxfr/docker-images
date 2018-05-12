@@ -38,7 +38,8 @@ RUN apk --no-cache add apache2 curl ca-certificates openssl tzdata openntpd && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \
     rm -rf /tmp/sx /tmp/s2i && \
-    cat /etc/apache2/httpd.conf | sed -e "s/Listen 80/#Listen 80/" > /etc/apache2/httpd.conf && \
+    sed -i "s/Listen 80/#Listen 80/" /etc/apache2/httpd.conf && \
+    rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf /run/httpd/httpd.pid && \
     mkdir -p $DATA_PATH $APP_PATH $LOG_PATH && \
     chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /var/lib/sx /tmp && \
     chown -R 1001:0 /bin/sx* /s2i /var/lib/sx /tmp && \

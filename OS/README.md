@@ -3,21 +3,13 @@
 Simple container used for all startx based services and applications published in [Dockerhub registry](https://github.com/startxfr/docker-images). 
 This container contain updated core OS rpm (kernel, libs,...) as well as usefull tools like pwgen, tar, zip, psmisc, procps, coreutils, findutils, wget
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=alpine3)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/alpine) | [Sources](https://github.com/startxfr/docker-images/tree/alpine3/OS/)             | [STARTX Profile](https://github.com/startxfr) | 
-|-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|----------------------------------------------------------------------|-----------------------------------------------|
+[![Dockerhub Registry](https://img.shields.io/docker/build/startx/alpine.svg)](https://hub.docker.com/r/startx/alpine) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=alpine)](https://travis-ci.org/startxfr/docker-images) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/alpine/OS/) [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
 
 ## Container flavours
 
-| Version    | Docker Hub repository                                                   | Openshift                                   | Fedora distribution                         |
-|------------|-------------------------------------------------------------------------|---------------------------------------------|---------------------------------------------|
-| latest     | [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora)        | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-is.json) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-dc.json)        | Fedora 28 (kernel 4.14 + GNU 2.23  )        |
-| 28         | [`startx/fedora:28`](https://hub.docker.com/r/startx/fedora)            | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/fc27/OS/openshift-is.json) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/fc27/OS/openshift-dc.json)        | Fedora 27 (kernel 4.11 + GNU 2.21  )        |
-| 27         | [`startx/fedora:27`](https://hub.docker.com/r/startx/fedora)            | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/fc27/OS/openshift-is.json) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/fc27/OS/openshift-dc.json)        | Fedora 27 (kernel 4.11 + GNU 2.21  )        |
-| 26         | [`startx/fedora:26`](https://hub.docker.com/r/startx/fedora)            | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/fc26/OS/openshift-is.json) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/fc26/OS/openshift-dc.json)        | Fedora 26 (kernel 4.09 + GNU 2.20  )        |
-| 23         | [`startx/fedora:23`](https://hub.docker.com/r/startx/fedora)            | **N/A**                                                                                                                                                                                                             | Fedora 23 (kernel 4.2 + GNU 3.18  )         |
-| 22         | [`startx/fedora:22`](https://hub.docker.com/r/startx/fedora)            | **N/A**                                                                                                                                                                                                             | Fedora 22 (kernel 4.0 + GNU 3.16  )         |
-| 21         | [`startx/fedora:21`](https://hub.docker.com/r/startx/fedora)            | **N/A**                                                                                                                                                                                                             | Fedora 21 (kernel 3.16 + GNU 3.14  )        |
-| 20         | [`startx/fedora:20`](https://hub.docker.com/r/startx/fedora)            | **N/A**                                                                                                                                                                                                             | Fedora 20 (kernel 3.11 + GNU 3.10  )        |
+| Version    | Docker Hub repository                                             | Openshift                                   | Alpine distribution                         |
+|------------|-------------------------------------------------------------------|---------------------------------------------|---------------------------------------------|
+| alpine     | [`startx/alpine:latest`](https://hub.docker.com/r/startx/alpine)  | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/alpine/OS/openshift-imageStreams.json) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/alpine/OS/openshift-template.json)        | Alpine 3 (kernel 4.14 + GNU 2.23  )        |
 
 ## Running this image
 
@@ -31,6 +23,24 @@ alpine:
   container_name: "os-alpine3"
 ```
 
+### Using this image as Openshift Build image
+
+You can use this public image as a base image in your openshift build strategy. You can first import
+our [openshift image stream](https://raw.githubusercontent.com/startxfr/docker-images/alpine/OS/openshift-imageStreams.json)
+and automatically add them in your service catalog. You can also test our [deploy template](https://raw.githubusercontent.com/startxfr/docker-images/alpine/OS/openshift-template.json)
+or our [build and deploy template](https://raw.githubusercontent.com/startxfr/docker-images/alpine/OS/openshift-template-build.json)
+
+```bash
+# import image streams
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/alpine/OS/openshift-imageStreams.json
+# import deploy template and start a sample application
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/alpine/OS/openshift-template.json
+oc process startx-os-alpine-template | oc create -f -
+# import build and deploy template and start a sample application
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/alpine/OS/openshift-template-build.json
+oc process startx-os-alpine-build-template | oc create -f -
+```
+
 ### Using this image as S2I builder
 
 You can use this image as an s2i builder image. 
@@ -41,13 +51,12 @@ docker run --rm -i -t test-alpine3
 
 ### Using this image as base container
 
-You can use this Dockerfile template to start a new personalized container based on this container
- ```
+You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
+```Dockerfile
 FROM startx/alpine:3
 #... your container specifications
 CMD ["/bin/sx"]
 ```
-
 
 ## Environment variable
 
@@ -59,7 +68,8 @@ CMD ["/bin/sx"]
 | SX_ID                     | `auto`   | `startx/alpine` | Container ID coresponding to the image repository 
 | SX_NAME                   | `auto`   | `yes`           | Container name
 | SX_SUMMARY                | `auto`   | `yes`           | Container purpose description
-
+| SX_VERBOSE                | `bool`   | `no`            | Display information about the execution
+| SX_DEBUG                  | `bool`   | `no`            | Display debug informations during execution
 
 ## For advanced users
 

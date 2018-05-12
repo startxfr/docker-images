@@ -4,70 +4,89 @@ Simple container used to deliver distributed and low latency document oriented d
 Run [couchbase daemon](https://www.couchbase.org/) under a container 
 based on [startx/alpine container](https://hub.docker.com/r/startx/alpine)
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=alpine3)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-couchbase/) | [Sources](https://github.com/startxfr/docker-images/tree/alpine3/Services/couchbase)             | [STARTX Profile](https://github.com/startxfr) | 
-|-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|------------------------------------------------------------------------------------|-----------------------------------------------|
+[![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-couchbase.svg)](https://hub.docker.com/r/startx/sv-couchbase) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=alpine)](https://travis-ci.org/startxfr/docker-images) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/alpine/Services/couchbase/) [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
 
 ## Available flavours
 
-* `:latest` : Alpine rawhide + Couchbase Server 5.5.0-Mar (beta)
-* `:centos7` : Centos 7 + Couchbase Server 5.5.0-Mar
+* `:alpine3` : Alpine 3 + Couchbase Server 5.5.0-Mar (beta)
+* `:fc28` : Fedora 28 + Couchbase Server 5.5.0-Mar (beta)
+* `:centos7` : Centos 7 + Couchbase Server 5.5.0-Mar (beta)
 
 ## Running from dockerhub registry
 
 * with `docker` you can run `docker run -it --name="service-couchbase" startx/sv-couchbase` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
-```
+```YAML
 service:
-  image: startx/sv-couchbase:latest
-  container_name: "service-couchbase"
-  environment:
-    CONTAINER_TYPE: "service"
-    CONTAINER_SERVICE: "couchbase"
-    CONTAINER_INSTANCE: "service-couchbase"
+  image: startx/sv-couchbase:alpine3
+  container_name: "service-couchbase-alpine3"
   volumes:
     - "/tmp/container/logs/couchbase:/logs"
     - "/tmp/container/couchbase:/data"
 ```
 
+### Using this image as Openshift Build image
+
+You can use this public image as a base image in your openshift build strategy. You can first import
+our [openshift image stream](https://raw.githubusercontent.com/startxfr/docker-images/alpine/Services/couchbase/openshift-imageStreams.json)
+and automatically add them in your service catalog. You can also test our [deploy template](https://raw.githubusercontent.com/startxfr/docker-images/alpine/Services/couchbase/openshift-template.json)
+or our [build and deploy template](https://raw.githubusercontent.com/startxfr/docker-images/alpine/Services/couchbase/openshift-template-build.json)
+
+```bash
+# import image streams
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/alpine/Services/couchbase/openshift-imageStreams.json
+# import deploy template and start a sample application
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/alpine/Services/couchbase/openshift-template.json
+oc process startx-sv-couchbase-template | oc create -f -
+# import build and deploy template and start a sample application
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/alpine/Services/couchbase/openshift-template-build.json
+oc process startx-sv-couchbase-build-template | oc create -f -
+```
+
+### Using this image as S2I builder
+
+You can use this image as an s2i builder image. 
+```bash
+s2i build https://github.com/startxfr/docker-images-example-couchbase startx/sv-couchbase test-couchbase
+docker run --rm -i -t test-couchbase
+```
+
 ## Docker-compose in various situations
 
 * sample docker-compose.yml linked to host port 1000
-```
+```YAML
 service:
-  image: startx/sv-couchbase:latest
-  container_name: "service-couchbase"
-  environment:
-    CONTAINER_INSTANCE: "service-couchbase"
+  image: startx/sv-couchbase:alpine3
+  container_name: "service-couchbase-alpine3"
   ports:
     - "1000:11211"
 ```
 * sample docker-compose.yml with port exposed only to linked services
-```
+```YAML
 service:
-  image: startx/sv-couchbase:latest
-  container_name: "service-couchbase"
-  environment:
-    CONTAINER_INSTANCE: "service-couchbase"
+  image: startx/sv-couchbase:alpine3
+  container_name: "service-couchbase-alpine3"
   expose:
     - "11211"
 ```
 
-## Using this image in your own container
+### Using this image as base container
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
- ```
-FROM startx/sv-couchbase:latest
+```Dockerfile
+FROM startx/sv-couchbase:alpine3
 #... your container specifications
-CMD ["/bin/run.sh"]
+CMD ["/bin/sx", "run"]
 ```
 
 ## Environment variable
 
+This container is based on [startx alpine container](https://hub.docker.com/r/startx/alpine) who came with 
+some [additional environment variable](https://github.com/startxfr/docker-images/tree/alpine/OS#environment-variable)
+
 | Variable                  | Type     | Mandatory | Description                                                              |
 |---------------------------|----------|-----------|--------------------------------------------------------------------------|
-| CONTAINER_INSTANCE        | `string` | `yes`     | Container name. Should be uning to get fine grained log and application reporting
-| CONTAINER_TYPE            | `string` | `no`      | Container family (os, service, application. could be enhanced 
-| CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
+| <i>base image environement</i> |          |           | [see environment list](https://github.com/startxfr/docker-images/tree/alpine/OS#environment-variable)
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
 | LOG_PATH                  | `auto`   | `auto`    | default set to /logs and used as a volume mountpoint
 

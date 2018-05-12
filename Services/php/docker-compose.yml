@@ -1,4 +1,4 @@
-server:
+php:
   build: ./
   container_name: "alpine3-service-php"
   mem_limit: 1g

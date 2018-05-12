@@ -37,13 +37,13 @@ RUN apk --no-cache add postgresql postgresql-libs postgresql-client && \
     rm -rf /tmp/sx /tmp/s2i && \
     mkdir -p $DATA_PATH $LOG_PATH && \
     touch $DATA_PATH/.keep && \
-    chown -R postgres:postgres $LOG_PATH $DATA_PATH && \
+    chmod -R ug+rwx $LOG_PATH $DATA_PATH && \
     chgrp -R 0 $DATA_PATH $LOG_PATH /bin/sx-* /s2i /var/lib/sx* && \
     chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* && \
     chmod -R g=u $DATA_PATH $LOG_PATH /bin/sx-* /s2i /var/lib/sx* && \
     chmod -R ugo+x /bin/sx*
 
-USER 5432
+USER 1001
 
 WORKDIR $DATA_PATH
 

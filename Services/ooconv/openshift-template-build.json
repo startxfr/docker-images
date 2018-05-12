@@ -2,13 +2,13 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-postgres-template",
+        "name": "startx-sv-ooconv-build-template",
         "annotations": {
-            "openshift.io/display-name": "Startx PostGresQL server (alpine)",
-            "description": "PostGresQL server for simple SQL database running under Alpine",
-            "iconClass": "icon-postgresql",
-            "tags": "startx,os,alpine,postgres,database",
-            "openshift.io/long-description": "This template provides an postgres db PostGresQL Database in a alpine container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/display-name": "Startx LibreOffice converter (alpine)",
+            "description": "LibreOffice converter for document convertion running under Alpine",
+            "iconClass": "icon-aerogear",
+            "tags": "startx,os,alpine,ooconv,libreoffice",
+            "openshift.io/long-description": "This template provides an ooconv libreoffice webserver in a alpine container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/alpine3/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -16,20 +16,20 @@
     },
     "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
     "labels": {
-        "template": "startx-sv-postgres-template"
+        "template": "startx-sv-ooconv-build-template"
     },
     "objects": [
         {
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-postgres",
+                "name": "startx-sv-ooconv",
                 "annotations": {
-                    "openshift.io/display-name": "Startx PostGresQL Database",
+                    "openshift.io/display-name": "Startx LibreOffice converter",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-postgres",
+                    "base-image": "startx-sv-ooconv",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx"
@@ -40,17 +40,17 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "Startx PostGresQL Database (alpine 3.7)",
-                            "description": "PostGresQL server for simple SQL database running under alpine 3.7",
-                            "iconClass": "icon-postgresql",
-                            "tags": "builder,startx,alpine,postgres,database",
-                            "supports": "db",
+                            "openshift.io/display-name": "Startx LibreOffice converter (alpine 3.7)",
+                            "description": "LibreOffice converter for document convertion running under alpine 3.7",
+                            "iconClass": "icon-aerogear",
+                            "tags": "builder,startx,alpine,ooconv,libreoffice",
+                            "supports": "http",
                             "version": "alpine3",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-postgres.git"
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-ooconv.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-postgres:alpine3"
+                            "name": "startx/sv-ooconv:alpine3"
                         }
                     }
                 ]
@@ -66,7 +66,7 @@
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-postgres",
+                    "base-image": "startx-sv-ooconv",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx"
@@ -79,32 +79,13 @@
                         "annotations": {
                             "openshift.io/display-name": "Application ${APP_NAME}",
                             "description": "Base image for the application ${APP_NAME}",
-                            "iconClass": "icon-postgresql",
-                            "tags": "startx,alpine,postgres,database,application,${APP_NAME}",
-                            "supports": "db",
-                            "version": "rawhide"
+                            "iconClass": "icon-aerogear",
+                            "tags": "startx,alpine,ooconv,libreoffice,application,${APP_NAME}",
+                            "supports": "http",
+                            "version": "alpine3"
                         }
                     }
                 ]
-            }
-        },
-        {
-            "kind": "Secret",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APP_NAME}",
-                "creationTimestamp": null,
-                "labels": {
-                    "app": "${APP_NAME}",
-                    "type": "${APP_TYPE}",
-                    "provider": "startx",
-                    "template": "startx-sv-postgres-template"
-                }
-            },
-            "stringData": {
-                "PGSQL_ROOT_PASSWORD": "${PGSQL_ROOT_PASSWORD}",
-                "PGSQL_USER": "${PGSQL_USER}",
-                "PGSQL_PASSWORD": "${PGSQL_PASSWORD}"
             }
         },
         {
@@ -118,7 +99,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-postgres-template"
+                    "template": "startx-sv-ooconv-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -130,14 +111,14 @@
                     "rollingParams": {
                         "updatePeriodSeconds": 1,
                         "intervalSeconds": 1,
-                        "timeoutSeconds": 120,
+                        "timeoutSeconds": 180,
                         "maxUnavailable": "25%",
                         "maxSurge": "25%",
                         "pre": {
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-postgres",
+                                    "/bin/sx-ooconv",
                                     "pre-deploy"
                                 ],
                                 "env": [
@@ -157,7 +138,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-postgres",
+                                    "/bin/sx-ooconv",
                                     "post-deploy"
                                 ],
                                 "env": [
@@ -195,7 +176,7 @@
                     }
                 ],
                 "postCommit": {
-                    "script": "/bin/sx-postgres info"
+                    "script": "/bin/sx-ooconv info"
                 },
                 "replicas": 1,
                 "test": false,
@@ -210,7 +191,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-sv-postgres-template",
+                            "template": "startx-sv-ooconv-build-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -229,54 +210,21 @@
                                     }
                                 ],
                                 "command": [
-                                    "/bin/sx-postgres"
+                                    "/bin/sx-ooconv"
                                 ],
                                 "args": [
                                     "run"
-                                ],
-                                "env": [
-                                    {
-                                        "name": "PGSQL_ROOT_PASSWORD",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}",
-                                                "key": "PGSQL_ROOT_PASSWORD"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "PGSQL_USER",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}",
-                                                "key": "PGSQL_USER"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "PGSQL_PASSWORD",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}",
-                                                "key": "PGSQL_PASSWORD"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "PGSQL_DATABASE",
-                                        "value": "${PGSQL_DATABASE}"
-                                    }
                                 ],
                                 "resources": {},
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-postgres",
+                                            "/bin/sx-ooconv",
                                             "isLive"
                                         ]
                                     },
-                                    "initialDelaySeconds": 5,
-                                    "timeoutSeconds": 2,
+                                    "initialDelaySeconds": 4,
+                                    "timeoutSeconds": 1,
                                     "periodSeconds": 10,
                                     "successThreshold": 1,
                                     "failureThreshold": 3
@@ -284,12 +232,12 @@
                                 "readinessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-postgres",
+                                            "/bin/sx-ooconv",
                                             "isReady"
                                         ]
                                     },
-                                    "initialDelaySeconds": 2,
-                                    "timeoutSeconds": 2,
+                                    "initialDelaySeconds": 4,
+                                    "timeoutSeconds": 1,
                                     "periodSeconds": 10,
                                     "successThreshold": 1,
                                     "failureThreshold": 3
@@ -322,7 +270,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-postgres-template"
+                    "template": "startx-sv-ooconv-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -332,8 +280,8 @@
                 "ports": [
                     {
                         "protocol": "TCP",
-                        "port": 3306,
-                        "targetPort": 3306
+                        "port": 2002,
+                        "targetPort": 2002
                     }
                 ],
                 "selector": {
@@ -357,7 +305,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-postgres-template"
+                    "template": "startx-sv-ooconv-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -398,7 +346,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-postgres:alpine3"
+                            "name": "startx-sv-ooconv:alpine3"
                         },
                         "env": [
                             {
@@ -417,7 +365,7 @@
                 "resources": {},
                 "postCommit": {
                     "command": [
-                        "/bin/sx-postgres",
+                        "/bin/sx-ooconv",
                         "post-build"
                     ]
                 }
@@ -432,20 +380,20 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "postgres",
+            "value": "ooconv",
             "required": true
         },
         {
             "name": "APP_TYPE",
             "displayName": "Application type",
             "description": "The type of the created application",
-            "value": "database"
+            "value": "system"
         },
         {
             "name": "SOURCE_GIT",
             "displayName": "Source repository",
             "description": "URL to the source code to use during build process",
-            "value": "https://github.com/startxfr/docker-images-example-postgres.git",
+            "value": "https://github.com/startxfr/docker-images-example-ooconv.git",
             "required": true
         },
         {
@@ -462,34 +410,6 @@
             "generate": "expression",
             "from": "[a-zA-Z0-9]{24}",
             "required": true
-        },
-        {
-            "name": "PGSQL_ROOT_PASSWORD",
-            "displayName": "Postgres root password",
-            "description": "The postgres root password to use. Generated if not provided",
-            "from": "[A-Z0-9]{16}",
-            "generate": "expression"
-        },
-        {
-            "name": "PGSQL_USER",
-            "displayName": "Postgres user",
-            "description": "Default user to create",
-            "value": "demo",
-            "from": "[A-Z0-9]{8}",
-            "generate": "expression"
-        },
-        {
-            "name": "PGSQL_PASSWORD",
-            "displayName": "Postgres password",
-            "description": "Password of the default user",
-            "value": "demo",
-            "from": "[A-Z0-9]{16}",
-            "generate": "expression"
-        },
-        {
-            "name": "PGSQL_DATABASE",
-            "displayName": "Postgres database",
-            "description": "name of the default database to create"
         }
     ]
 }

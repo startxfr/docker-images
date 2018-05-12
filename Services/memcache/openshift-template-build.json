@@ -2,13 +2,13 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-ooconv-template",
+        "name": "startx-sv-memcache-build-template",
         "annotations": {
-            "openshift.io/display-name": "Startx LibreOffice converter (alpine)",
-            "description": "LibreOffice converter for document convertion running under Alpine",
-            "iconClass": "icon-aerogear",
-            "tags": "startx,os,alpine,ooconv,libreoffice",
-            "openshift.io/long-description": "This template provides an ooconv libreoffice webserver in a alpine container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/display-name": "Startx Memcached Database (alpine)",
+            "description": "Memcached Database for simple SQL database running under Alpine",
+            "iconClass": "icon-memcached",
+            "tags": "startx,alpine,memcached,database",
+            "openshift.io/long-description": "This template provides an memcache Database in a alpine container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/alpine3/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -16,20 +16,19 @@
     },
     "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
     "labels": {
-        "template": "startx-sv-ooconv-template"
+        "template": "startx-sv-memcache-build-template"
     },
     "objects": [
         {
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-ooconv",
+                "name": "startx-sv-memcache",
                 "annotations": {
-                    "openshift.io/display-name": "Startx LibreOffice converter",
-                    "openshift.io/generated-by": "STARTX"
+                    "openshift.io/display-name": "Startx Memcached Database"
                 },
                 "labels": {
-                    "base-image": "startx-sv-ooconv",
+                    "base-image": "startx-sv-memcache",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx"
@@ -40,17 +39,17 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "Startx LibreOffice converter (alpine 3.7)",
-                            "description": "LibreOffice converter for document convertion running under alpine 3.7",
-                            "iconClass": "icon-aerogear",
-                            "tags": "builder,startx,alpine,ooconv,libreoffice",
-                            "supports": "http",
+                            "openshift.io/display-name": "Startx Memcached Database (alpine 3.7)",
+                            "description": "Memcached server for caching database running under alpine 3.7",
+                            "iconClass": "icon-memcached",
+                            "tags": "builder,startx,alpine,memcached,database",
+                            "supports": "db",
                             "version": "alpine3",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-ooconv.git"
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-memcache.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-ooconv:alpine3"
+                            "name": "startx/sv-memcache:alpine3"
                         }
                     }
                 ]
@@ -62,11 +61,10 @@
             "metadata": {
                 "name": "${APP_NAME}",
                 "annotations": {
-                    "openshift.io/display-name": "Application ${APP_NAME}",
-                    "openshift.io/generated-by": "STARTX"
+                    "openshift.io/display-name": "Application ${APP_NAME}"
                 },
                 "labels": {
-                    "base-image": "startx-sv-ooconv",
+                    "base-image": "startx-sv-memcache",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx"
@@ -79,13 +77,30 @@
                         "annotations": {
                             "openshift.io/display-name": "Application ${APP_NAME}",
                             "description": "Base image for the application ${APP_NAME}",
-                            "iconClass": "icon-aerogear",
-                            "tags": "startx,alpine,ooconv,libreoffice,application,${APP_NAME}",
-                            "supports": "http",
-                            "version": "alpine3"
+                            "iconClass": "icon-memcached",
+                            "tags": "startx,alpine,memcached,database,application,${APP_NAME}",
+                            "supports": "db",
+                            "version": "rawhide"
                         }
                     }
                 ]
+            }
+        },
+        {
+            "kind": "Secret",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx",
+                    "template": "startx-sv-memcache-build-template"
+                }
+            },
+            "stringData": {
+                "MEMCACHE_PASSWORD": "${MEMCACHE_PASSWORD}"
             }
         },
         {
@@ -99,7 +114,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-ooconv-template"
+                    "template": "startx-sv-memcache-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -111,25 +126,15 @@
                     "rollingParams": {
                         "updatePeriodSeconds": 1,
                         "intervalSeconds": 1,
-                        "timeoutSeconds": 180,
+                        "timeoutSeconds": 120,
                         "maxUnavailable": "25%",
                         "maxSurge": "25%",
                         "pre": {
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-ooconv",
+                                    "/bin/sx-memcache",
                                     "pre-deploy"
-                                ],
-                                "env": [
-                                    {
-                                        "name": "SX_VERBOSE",
-                                        "value": "true"
-                                    },
-                                    {
-                                        "name": "SX_DEBUG",
-                                        "value": "true"
-                                    }
                                 ],
                                 "containerName": "${APP_NAME}"
                             }
@@ -138,18 +143,8 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-ooconv",
+                                    "/bin/sx-memcache",
                                     "post-deploy"
-                                ],
-                                "env": [
-                                    {
-                                        "name": "SX_VERBOSE",
-                                        "value": "true"
-                                    },
-                                    {
-                                        "name": "SX_DEBUG",
-                                        "value": "true"
-                                    }
                                 ],
                                 "containerName": "${APP_NAME}"
                             }
@@ -175,9 +170,6 @@
                         "type": "ConfigChange"
                     }
                 ],
-                "postCommit": {
-                    "script": "/bin/sx-ooconv info"
-                },
                 "replicas": 1,
                 "test": false,
                 "selector": {
@@ -191,7 +183,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-sv-ooconv-template",
+                            "template": "startx-sv-memcache-build-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -203,28 +195,37 @@
                             {
                                 "name": "${APP_NAME}",
                                 "image": " ",
-                                "env": [
-                                    {
-                                        "name": "SX_VERBOSE",
-                                        "value": "true"
-                                    }
-                                ],
                                 "command": [
-                                    "/bin/sx-ooconv"
+                                    "/bin/sx-memcache"
                                 ],
                                 "args": [
                                     "run"
+                                ],
+                                "env": [
+                                    {
+                                        "name": "MEMCACHE_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "name": "${APP_NAME}",
+                                                "key": "MEMCACHE_PASSWORD"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MEMCACHE_DATABASE",
+                                        "value": "${MEMCACHE_DATABASE}"
+                                    }
                                 ],
                                 "resources": {},
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-ooconv",
+                                            "/bin/sx-memcache",
                                             "isLive"
                                         ]
                                     },
-                                    "initialDelaySeconds": 4,
-                                    "timeoutSeconds": 1,
+                                    "initialDelaySeconds": 5,
+                                    "timeoutSeconds": 2,
                                     "periodSeconds": 10,
                                     "successThreshold": 1,
                                     "failureThreshold": 3
@@ -232,12 +233,12 @@
                                 "readinessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-ooconv",
+                                            "/bin/sx-memcache",
                                             "isReady"
                                         ]
                                     },
-                                    "initialDelaySeconds": 4,
-                                    "timeoutSeconds": 1,
+                                    "initialDelaySeconds": 2,
+                                    "timeoutSeconds": 2,
                                     "periodSeconds": 10,
                                     "successThreshold": 1,
                                     "failureThreshold": 3
@@ -245,11 +246,7 @@
                                 "terminationMessagePath": "/dev/termination-log",
                                 "imagePullPolicy": "Always"
                             }
-                        ],
-                        "restartPolicy": "Always",
-                        "terminationGracePeriodSeconds": 30,
-                        "dnsPolicy": "ClusterFirst",
-                        "securityContext": {}
+                        ]
                     }
                 }
             },
@@ -270,7 +267,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-ooconv-template"
+                    "template": "startx-sv-memcache-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -280,8 +277,8 @@
                 "ports": [
                     {
                         "protocol": "TCP",
-                        "port": 2002,
-                        "targetPort": 2002
+                        "port": 3306,
+                        "targetPort": 3306
                     }
                 ],
                 "selector": {
@@ -305,7 +302,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-ooconv-template"
+                    "template": "startx-sv-memcache-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -346,7 +343,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-ooconv:alpine3"
+                            "name": "startx-sv-memcache:alpine3"
                         },
                         "env": [
                             {
@@ -365,7 +362,7 @@
                 "resources": {},
                 "postCommit": {
                     "command": [
-                        "/bin/sx-ooconv",
+                        "/bin/sx-memcache",
                         "post-build"
                     ]
                 }
@@ -380,20 +377,20 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "ooconv",
+            "value": "memcache",
             "required": true
         },
         {
             "name": "APP_TYPE",
             "displayName": "Application type",
             "description": "The type of the created application",
-            "value": "system"
+            "value": "database"
         },
         {
             "name": "SOURCE_GIT",
             "displayName": "Source repository",
             "description": "URL to the source code to use during build process",
-            "value": "https://github.com/startxfr/docker-images-example-ooconv.git",
+            "value": "https://github.com/startxfr/docker-images-example-memcache.git",
             "required": true
         },
         {
@@ -410,6 +407,19 @@
             "generate": "expression",
             "from": "[a-zA-Z0-9]{24}",
             "required": true
+        },
+        {
+            "name": "MEMCACHE_PASSWORD",
+            "displayName": "Memcache password",
+            "description": "Password of the default user",
+            "value": "demo",
+            "from": "[A-Z0-9]{16}",
+            "generate": "expression"
+        },
+        {
+            "name": "MEMCACHE_DATABASE",
+            "displayName": "Memcache database",
+            "description": "name of the default database to create"
         }
     ]
 }

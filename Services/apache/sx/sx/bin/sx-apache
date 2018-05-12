@@ -11,7 +11,7 @@ case $1 in
     run|start)              apacheRun $@ ;;
     isLive)                 apacheIsLive $@ ;;
     isReady)                apacheIsReady $@ ;;
-    info)                   apacheInformation $@ ;;
+    info|--info)            apacheInformation $@ ;;
     usage|help|--help)      genericUsage $@ ;;
     usageS2i)               genericUsageS2I $@ ;;
     version|--version)      genericVersion $@ ;;
