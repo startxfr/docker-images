@@ -98,6 +98,38 @@
                             "kind": "DockerImage",
                             "name": "startx/sv-apache:centos7"
                         }
+                    },
+                    {
+                        "name": "centos6",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I WebServer (Centos 6)",
+                            "description": "Http server builder for simple web application running under Centos 6",
+                            "iconClass": "icon-apache",
+                            "tags": "builder,startx,centos,apache,httpd",
+                            "supports": "http",
+                            "version": "7",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-apache.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-apache:centos6"
+                        }
+                    },
+                    {
+                        "name": "alpine3",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I WebServer (Alpine 3)",
+                            "description": "Http server builder for simple web application running under Alpine 3",
+                            "iconClass": "icon-apache",
+                            "tags": "builder,startx,alpine,apache,httpd",
+                            "supports": "http",
+                            "version": "3",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-apache.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-apache:alpine3"
+                        }
                     }
                 ]
             }

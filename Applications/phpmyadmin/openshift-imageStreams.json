@@ -98,6 +98,38 @@
                             "kind": "DockerImage",
                             "name": "startx/app-phpmyadmin:centos7"
                         }
+                    },
+                    {
+                        "name": "centos6",
+                        "annotations": {
+                            "openshift.io/display-name": "PhpMyAdmin web-console (Centos 6)",
+                            "description": "PhpMyAdmin web-console for mariadb running under Centos 6",
+                            "iconClass": "icon-php",
+                            "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
+                            "supports": "http",
+                            "version": "6",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/app-phpmyadmin:centos6"
+                        }
+                    },
+                    {
+                        "name": "alpine3",
+                        "annotations": {
+                            "openshift.io/display-name": "PhpMyAdmin web-console (Alpine 3)",
+                            "description": "PhpMyAdmin web-console for mariadb running under Alpine 3",
+                            "iconClass": "icon-php",
+                            "tags": "startx,alpine,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
+                            "supports": "http",
+                            "version": "3",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/app-phpmyadmin:alpine3"
+                        }
                     }
                 ]
             }

@@ -129,6 +129,38 @@
                             "kind": "DockerImage",
                             "name": "startx/centos:7"
                         }
+                    },
+                    {
+                        "name": "centos6",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I Startx CentOS 6",
+                            "description": "Minimal CentOS 6 OS builder for bash operations",
+                            "iconClass": "icon-beaker",
+                            "tags": "builder,startx,centos",
+                            "supports": "centos",
+                            "version": "6",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/centos:6"
+                        }
+                    },
+                    {
+                        "name": "alpine3",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I Startx Alpine 3",
+                            "description": "Minimal Alpine 3 OS builder for bash operations",
+                            "iconClass": "icon-beaker",
+                            "tags": "builder,startx,alpine",
+                            "supports": "alpine",
+                            "version": "3",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/alpine:3"
+                        }
                     }
                 ]
             }
