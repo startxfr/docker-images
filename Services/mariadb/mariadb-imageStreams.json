@@ -98,6 +98,38 @@
                             "kind": "DockerImage",
                             "name": "startx/sv-mariadb:centos7"
                         }
+                    },
+                    {
+                        "name": "centos6",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I Mariadb Database (Centos 6)",
+                            "description": "MariaDB server builder for simple SQL database running under Centos 6",
+                            "iconClass": "icon-mariadb",
+                            "tags": "builder,startx,centos,mariadb,database",
+                            "supports": "db",
+                            "version": "6",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-mariadb:centos6"
+                        }
+                    },
+                    {
+                        "name": "alpine3",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I Mariadb Database (Alpine 3)",
+                            "description": "MariaDB server builder for simple SQL database running under Alpine 3",
+                            "iconClass": "icon-mariadb",
+                            "tags": "builder,startx,alpine,mariadb,database",
+                            "supports": "db",
+                            "version": "3",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-mariadb:alpine3"
+                        }
                     }
                 ]
             }

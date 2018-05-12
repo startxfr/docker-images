@@ -3,56 +3,57 @@ centos7:
     file: OS/docker-compose.yml
     service: centos7
 
-centos7-service-apache:
+centos7-sv-apache:
   extends:
     file: Services/apache/docker-compose.yml
-    service: server
+    service: apache
 
-centos7-service-php:
+centos7-sv-php:
   extends:
     file: Services/php/docker-compose.yml
-    service: server
+    service: php
 
-centos7-service-nodejs:
+centos7-sv-nodejs:
   extends:
     file: Services/nodejs/docker-compose.yml
-    service: server
+    service: nodejs
 
-centos7-service-mariadb:
+centos7-sv-mariadb:
   extends:
     file: Services/mariadb/docker-compose.yml
-    service: server
+    service: mariadb
 
-centos7-service-postgres:
+centos7-sv-postgres:
   extends:
     file: Services/postgres/docker-compose.yml
-    service: server
+    service: postgres
 
-centos7-service-mongo:
+centos7-sv-mongo:
   extends:
     file: Services/mongo/docker-compose.yml
-    service: server
+    service: mongo
 
-centos7-service-ooconv:
+centos7-sv-ooconv:
   extends:
     file: Services/ooconv/docker-compose.yml
-    service: server
+    service: ooconv
 
-centos7-service-memcache:
+centos7-sv-memcache:
   extends:
     file: Services/memcache/docker-compose.yml
-    service: server
+    service: memcache
     
-centos7_couchbase:
+centos7-sv-couchbase:
   extends:
     file: Services/couchbase/docker-compose.yml
-    service: server
+    service: couchbase
 
-centos7-application-pma:
+centos7-app-pma:
   extends:
     file: Applications/phpmyadmin/docker-compose.yml
-    service: application
+    service: phpmyadmin
 
-#centos7-application-rockmongo:
-#  build: Applications/rockmongo/
-#  container_name: "application-rockmongo"
+#centos7-app-rockmongo:
+#  extends:
+#    file: Applications/rockmongo/docker-compose.yml
+#    service: rockmongo

@@ -4,85 +4,106 @@ Simple container used to deliver document-oriented database
 Run [mongodb daemon](https://www.mongodb.org/) under a container 
 based on [startx/centos:7 container](https://hub.docker.com/r/startx/centos)
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-mongo/) | [Sources](https://github.com/startxfr/docker-images/tree/master/Services/mongo)             | [STARTX Profile](https://github.com/startxfr) | 
-|-------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|---------------------------------------------------------------------------------|-----------------------------------------------|
+[![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-mongo.svg)](https://hub.docker.com/r/startx/sv-mongo) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/mongo/) [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
 
 ## Available flavours
 
-* `:centos7` : Centos 7 + MongoDB 
+* `:latest` : Fedora core 29 + MongoDB 3.0.7 
+* `:fc28` : Fedora core 28 + MongoDB 3.0.7  
+* `:fc27` : Fedora core 27 + MongoDB 3.0.7  
+* `:fc26` : Fedora core 26 + MongoDB 3.0.7  
+* `:fc23` : Fedora core 23 + MongoDB 3.0.7  
+* `:fc22` : Fedora core 22 + MongoDB 
+* `:fc21` : Fedora core 21 + MongoDB 
+* `:centos7` : CentOS 7 + MongoDB 
 * `:centos6` : Centos 6 + MongoDB 
 
 ## Running from dockerhub registry
 
 * with `docker` you can run `docker run -it --name="service-mongo" startx/sv-mongo` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
-```
+```YAML
 service:
   image: startx/sv-mongo:centos7
-  container_name: "centos7-service-mongo"
-  environment:
-    CONTAINER_TYPE: "service"
-    CONTAINER_SERVICE: "mongo"
-    CONTAINER_INSTANCE: "centos7-service-mongo"
+  container_name: "service-mongo-centos7"
   volumes:
     - "/tmp/container-centos7/logs/mongo:/logs"
     - "/tmp/container-centos7/mongo:/data"
 ```
 
+### Using this image as Openshift Build image
+
+You can use this public image as a base image in your openshift build strategy. You can first import
+our [openshift image stream](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mongo/openshift-imageStreams.json)
+and automatically add them in your service catalog. You can also test our [deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mongo/openshift-template.json)
+or our [build and deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mongo/openshift-template-build.json)
+
+```bash
+# import image streams
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mongo/openshift-imageStreams.json
+# import deploy template and start a sample application
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mongo/openshift-template.json
+oc process startx-sv-mongo-template | oc create -f -
+# import build and deploy template and start a sample application
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mongo/openshift-template-build.json
+oc process startx-sv-mongo-build-template | oc create -f -
+```
+
+### Using this image as S2I builder
+
+You can use this image as an s2i builder image. 
+```bash
+s2i build https://github.com/startxfr/docker-images-example-mongo startx/sv-mongo test-mongo
+docker run --rm -i -t test-mongo
+```
+
 ## Docker-compose in various situations
 
 * sample docker-compose.yml linked to host port 1000
-```
+```YAML
 service:
   image: startx/sv-mongo:centos7
-  container_name: "centos7-service-mongo"
-  environment:
-    CONTAINER_INSTANCE: "centos7-service-mongo"
+  container_name: "service-mongo-centos7"
   ports:
     - "1000:27017"
 ```
 * sample docker-compose.yml with port exposed only to linked services
-```
+```YAML
 service:
   image: startx/sv-mongo:centos7
-  container_name: "centos7-service-mongo"
-  environment:
-    CONTAINER_INSTANCE: "centos7-service-mongo"
+  container_name: "service-mongo-centos7"
   expose:
     - "27017"
 ```
 * sample docker-compose.yml using data container
-```
+```YAML
 data:
   image: startx/centos:7
-  container_name: "centos7-service-mongo-data"
-  environment:
-    CONTAINER_INSTANCE: "centos7-service-mongo-data"
+  container_name: "service-mongo-data-centos7"
 service:
   image: startx/sv-mongo:centos7
-  container_name: "centos7-service-mongo"
-  environment:
-    CONTAINER_INSTANCE: "centos7-service-mongo"
+  container_name: "service-mongo-centos7"
   volume_from:
     - data:rw
 ```
 
-## Using this image in your own container
+### Using this image as base container
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
- ```
+```Dockerfile
 FROM startx/sv-mongo:centos7
 #... your container specifications
-CMD ["/bin/run.sh"]
+CMD ["/bin/sx", "run"]
 ```
 
 ## Environment variable
 
+This container is based on [startx centos container](https://hub.docker.com/r/startx/centos) who came with 
+some [additional environment variable](https://github.com/startxfr/docker-images/tree/master/OS#environment-variable)
+
 | Variable                  | Type     | Mandatory | Description                                                              |
 |---------------------------|----------|-----------|--------------------------------------------------------------------------|
-| CONTAINER_INSTANCE        | `string` | `yes`     | Container name. Should be uning to get fine grained log and application reporting
-| CONTAINER_TYPE            | `string` | `no`      | Container family (os, service, application. could be enhanced 
-| CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
+| <i>base image environement</i> |          |           | [see environment list](https://github.com/startxfr/docker-images/tree/master/OS#environment-variable)
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
 | LOG_PATH                  | `auto`   | `auto`    | default set to /logs and used as a volume mountpoint
 | DATA_PATH                 | `auto`   | `auto`    | default set to /data and used as a volume mountpoint

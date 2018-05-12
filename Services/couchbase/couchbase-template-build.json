@@ -2,34 +2,34 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-mariadb-template",
+        "name": "startx-sv-couchbase-build-template",
         "annotations": {
-            "openshift.io/display-name": "Startx MariaDB server (centos)",
-            "description": "MariaDB server for simple SQL database running under Centos",
-            "iconClass": "icon-mariadb",
-            "tags": "startx,os,centos,mariadb,database",
-            "openshift.io/long-description": "This template provides an mariadb db Mariadb Database in a centos container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/display-name": "Startx Couchbase server (centos)",
+            "description": "Couchbase server for NoSQL database running under Centos",
+            "iconClass": "icon-mysql-database",
+            "tags": "startx,os,centos,couchbase,database",
+            "openshift.io/long-description": "This template provides an couchbase db Couchbase Database in a centos container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
-    "message": "Service ${APP_NAME} start to be deployed in your project. You can use openshift console to log into.\n\n       Username: ${MYSQL_USER}\n       Password: ${MYSQL_PASSWORD}\n  Database Name: ${MYSQL_DATABASE}\n Connection URL: mysql://${APP_NAME}:3306",
+    "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
     "labels": {
-        "template": "startx-sv-mariadb-template"
+        "template": "startx-sv-couchbase-build-template"
     },
     "objects": [
         {
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-mariadb",
+                "name": "startx-sv-couchbase",
                 "annotations": {
-                    "openshift.io/display-name": "Startx Mariadb Database",
+                    "openshift.io/display-name": "Startx Couchbase Database",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-mariadb",
+                    "base-image": "startx-sv-couchbase",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx"
@@ -38,19 +38,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "centos7",
                         "annotations": {
-                            "openshift.io/display-name": "Startx Mariadb Database (Centos 7)",
-                            "description": "MariaDB server for simple SQL database running under Centos 7",
-                            "iconClass": "icon-mariadb",
-                            "tags": "builder,startx,centos,mariadb,database",
+                            "openshift.io/display-name": "Startx Couchbase Database (Centos 7)",
+                            "description": "Couchbase server for NoSQL database running under Centos 7",
+                            "iconClass": "icon-mysql-database",
+                            "tags": "builder,startx,centos,couchbase,database",
                             "supports": "db",
                             "version": "7",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-couchbase.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-mariadb:latest"
+                            "name": "startx/sv-couchbase:centos7"
                         }
                     }
                 ]
@@ -66,7 +66,7 @@
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-mariadb",
+                    "base-image": "startx-sv-couchbase",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx"
@@ -79,8 +79,8 @@
                         "annotations": {
                             "openshift.io/display-name": "Application ${APP_NAME}",
                             "description": "Base image for the application ${APP_NAME}",
-                            "iconClass": "icon-mariadb",
-                            "tags": "startx,centos,mariadb,database,application,${APP_NAME}",
+                            "iconClass": "icon-mysql-database",
+                            "tags": "startx,centos,couchbase,database,application,${APP_NAME}",
                             "supports": "db",
                             "version": "7"
                         }
@@ -98,18 +98,12 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mariadb-template"
-                },
-                "annotations": {
-                    "template.openshift.io/expose-username": "{.data['MYSQL_USER']}",
-                    "template.openshift.io/expose-password": "{.data['MYSQL_PASSWORD']}",
-                    "template.openshift.io/expose-root_password": "{.data['MYSQL_PASSWORD']}"
+                    "template": "startx-sv-couchbase-build-template"
                 }
             },
             "stringData": {
-                "MYSQL_ROOT_PASSWORD": "${MYSQL_ROOT_PASSWORD}",
-                "MYSQL_USER": "${MYSQL_USER}",
-                "MYSQL_PASSWORD": "${MYSQL_PASSWORD}"
+                "COUCHBASE_PASSWORD": "${COUCHBASE_PASSWORD}",
+                "COUCHBASE_USER": "${COUCHBASE_USER}"
             }
         },
         {
@@ -123,11 +117,10 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mariadb-template"
+                    "template": "startx-sv-couchbase-build-template"
                 },
                 "annotations": {
-                    "openshift.io/generated-by": "STARTX",
-                    "template.alpha.openshift.io/wait-for-ready": "true"
+                    "openshift.io/generated-by": "STARTX"
                 }
             },
             "spec": {
@@ -143,7 +136,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-mariadb",
+                                    "/bin/sx-couchbase",
                                     "pre-deploy"
                                 ],
                                 "env": [
@@ -163,7 +156,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-mariadb",
+                                    "/bin/sx-couchbase",
                                     "post-deploy"
                                 ],
                                 "env": [
@@ -201,7 +194,7 @@
                     }
                 ],
                 "postCommit": {
-                    "script": "/bin/sx-mariadb info"
+                    "script": "/bin/sx-couchbase info"
                 },
                 "replicas": 1,
                 "test": false,
@@ -216,7 +209,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-sv-mariadb-template",
+                            "template": "startx-sv-couchbase-build-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -235,48 +228,79 @@
                                     }
                                 ],
                                 "command": [
-                                    "/bin/sx-mariadb"
+                                    "/bin/sx-couchbase"
                                 ],
                                 "args": [
                                     "run"
                                 ],
-                                "ports": [
-                                    {
-                                        "containerPort": 3306,
-                                        "protocol": "TCP"
-                                    }
-                                ],
                                 "env": [
                                     {
-                                        "name": "MYSQL_ROOT_PASSWORD",
+                                        "name": "COUCHBASE_PASSWORD",
                                         "valueFrom": {
                                             "secretKeyRef": {
                                                 "name": "${APP_NAME}",
-                                                "key": "MYSQL_ROOT_PASSWORD"
+                                                "key": "COUCHBASE_PASSWORD"
                                             }
                                         }
                                     },
                                     {
-                                        "name": "MYSQL_USER",
+                                        "name": "COUCHBASE_USER",
                                         "valueFrom": {
                                             "secretKeyRef": {
                                                 "name": "${APP_NAME}",
-                                                "key": "MYSQL_USER"
+                                                "key": "COUCHBASE_USER"
                                             }
                                         }
                                     },
                                     {
-                                        "name": "MYSQL_PASSWORD",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}",
-                                                "key": "MYSQL_PASSWORD"
-                                            }
-                                        }
+                                        "name": "COUCHBASE_BUCKETS",
+                                        "value": "${COUCHBASE_BUCKETS}"
+                                    }
+                                ],
+                                "ports": [
+                                    {
+                                        "containerPort": 8091,
+                                        "protocol": "TCP"
                                     },
                                     {
-                                        "name": "MYSQL_DATABASE",
-                                        "value": "${MYSQL_DATABASE}"
+                                        "protocol": "TCP",
+                                        "containerPort": 8092
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 8093
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 8094
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 11207
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 11210
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 11211
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 18091
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 18092
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 18093
+                                    },
+                                    {
+                                        "protocol": "TCP",
+                                        "containerPort": 18094
                                     }
                                 ],
                                 "resources": {
@@ -287,13 +311,13 @@
                                 "volumeMounts": [
                                     {
                                         "name": "${APP_NAME}-data",
-                                        "mountPath": "/data"
+                                        "mountPath": "/opt/couchbase/var"
                                     }
                                 ],
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-mariadb",
+                                            "/bin/sx-couchbase",
                                             "isLive"
                                         ]
                                     },
@@ -306,7 +330,7 @@
                                 "readinessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-mariadb",
+                                            "/bin/sx-couchbase",
                                             "isReady"
                                         ]
                                     },
@@ -352,21 +376,79 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mariadb-template"
+                    "template": "startx-sv-couchbase-build-template"
                 },
                 "annotations": {
-                    "openshift.io/generated-by": "STARTX",
-                    "template.openshift.io/expose-uri": "mysql://{.spec.clusterIP}:{.spec.ports[?(.name==\"mysql\")].port}"
+                    "openshift.io/generated-by": "STARTX"
                 }
             },
             "spec": {
                 "ports": [
                     {
-                        "name": "mysql",
+                        "name": "cluster-webapi",
                         "protocol": "TCP",
-                        "port": 3306,
-                        "targetPort": 3306,
-                        "nodePort": 0
+                        "port": 8091,
+                        "targetPort": 8091
+                    },
+                    {
+                        "name": "cluster-viewxdcr",
+                        "protocol": "TCP",
+                        "port": 8092,
+                        "targetPort": 8092
+                    },
+                    {
+                        "name": "cluster-query",
+                        "protocol": "TCP",
+                        "port": 8093,
+                        "targetPort": 8093
+                    },
+                    {
+                        "name": "cluster-fts",
+                        "protocol": "TCP",
+                        "port": 8094,
+                        "targetPort": 8094
+                    },
+                    {
+                        "name": "data-moxi-ssl",
+                        "protocol": "TCP",
+                        "port": 11207,
+                        "targetPort": 11207
+                    },
+                    {
+                        "name": "data-moxi",
+                        "protocol": "TCP",
+                        "port": 11210,
+                        "targetPort": 11210
+                    },
+                    {
+                        "name": "data-legacy",
+                        "protocol": "TCP",
+                        "port": 11211,
+                        "targetPort": 11211
+                    },
+                    {
+                        "name": "cluster-webapi-ssl",
+                        "protocol": "TCP",
+                        "port": 18091,
+                        "targetPort": 18091
+                    },
+                    {
+                        "name": "cluster-viewxdcr-ssl",
+                        "protocol": "TCP",
+                        "port": 18092,
+                        "targetPort": 18092
+                    },
+                    {
+                        "name": "cluster-query-ssl",
+                        "protocol": "TCP",
+                        "port": 18093,
+                        "targetPort": 18093
+                    },
+                    {
+                        "name": "cluster-fts-ssl",
+                        "protocol": "TCP",
+                        "port": 18094,
+                        "targetPort": 18094
                     }
                 ],
                 "selector": {
@@ -390,7 +472,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mariadb-template"
+                    "template": "startx-sv-couchbase-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -431,7 +513,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-mariadb:latest"
+                            "name": "startx-sv-couchbase:centos7"
                         },
                         "env": [
                             {
@@ -450,7 +532,7 @@
                 "resources": {},
                 "postCommit": {
                     "command": [
-                        "/bin/sx-mariadb",
+                        "/bin/sx-couchbase",
                         "post-build"
                     ]
                 }
@@ -465,7 +547,7 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "mariadb",
+            "value": "couchbase",
             "required": true
         },
         {
@@ -478,7 +560,7 @@
             "name": "SOURCE_GIT",
             "displayName": "Source repository",
             "description": "URL to the source code to use during build process",
-            "value": "https://github.com/startxfr/docker-images-example-mariadb.git",
+            "value": "https://github.com/startxfr/docker-images-example-couchbase.git",
             "required": true
         },
         {
@@ -497,33 +579,24 @@
             "required": true
         },
         {
-            "name": "MYSQL_ROOT_PASSWORD",
-            "displayName": "Mysql root password",
-            "description": "The mysql root password to use. Generated if not provided",
-            "from": "[A-Z0-9]{16}",
-            "generate": "expression"
-        },
-        {
-            "name": "MYSQL_USER",
-            "displayName": "Mysql user",
+            "name": "COUCHBASE_USER",
+            "displayName": "Couchbase user",
             "description": "Default user to create",
             "value": "demo",
             "from": "[A-Z0-9]{8}",
             "generate": "expression"
         },
         {
-            "name": "MYSQL_PASSWORD",
-            "displayName": "Mysql password",
-            "description": "Password of the default user",
-            "value": "demo",
+            "name": "COUCHBASE_PASSWORD",
+            "displayName": "Couchbase root password",
+            "description": "The couchbase admin password to use. Generated if not provided",
             "from": "[A-Z0-9]{16}",
             "generate": "expression"
         },
         {
-            "name": "MYSQL_DATABASE",
-            "displayName": "Mysql database",
-            "description": "name of the default database to create",
-            "value": "example"
+            "name": "COUCHBASE_BUCKETS",
+            "displayName": "Couchbase bucket",
+            "description": "list of the default's bucket to create"
         },
         {
             "name": "MEMORY_LIMIT",

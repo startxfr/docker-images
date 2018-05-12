@@ -1,4 +1,4 @@
-server:
+couchbase:
   build: ./
   container_name: "centos7-service-couchbase"
   mem_limit: 4g

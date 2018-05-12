@@ -28,54 +28,53 @@ function displayMongoRunInformation {
 }
 
 function mongoPreDeploy {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
     echoVerbose "| "
     mongoInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     testAndRunSourceCodeScript "pre-deploy" 
 }
 
 function mongoPostDeploy {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running POST-DEPLOY HOOK"
     echoVerbose "| "
     mongoInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     testAndRunSourceCodeScript "post-deploy" 
 }
 
 function mongoPostBuild {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is running POST-BUILD HOOK"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running POST-BUILD HOOK"
     echoVerbose "| "
     mongoInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     testAndRunSourceCodeScript "post-build" 
 }
 
 function mongoAssemble {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is running ASSEMBLE"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running ASSEMBLE"
     echoVerbose "| "
     mongoInformation "| "
-    echo "+====================================================="
-    if [[ -d /tmp/src ]]; then
-        echo "Fixing perm on /tmp/src"
-        chmod g=u -R /tmp/src
-        moveSourceCodeScripts /tmp/src $APP_PATH
-        echoVerbose "Remove source temp $APP_PATH/src"
-        rm -rf /tmp/src
-    fi
+    echoVerbose "+====================================================="
+    if [[ -d $S2I_DEST ]]; then
+      echoVerbose "Fixing perm on $S2I_DEST"
+      chown 1001:0 -R $S2I_DEST
+      chmod g=u -R $S2I_DEST
+      moveSourceCode $S2I_DEST $APP_PATH
+    fi;
     testAndRunSourceCodeScript "assemble" 
 }
 
 function mongoRun {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is RUNNING"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME is RUNNING"
     echoVerbose "| "
     mongoInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     startMongoService
 }
 
@@ -91,11 +90,12 @@ function mongoIsReady {
 
 function stop_mongo_handler {
     killall /usr/bin/mongod
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is now STOPPED"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME is now STOPPED"
+    echoNotVerbose "container is now stopped"
     echoVerbose "| "
     mongoInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     exit 143; # 128 + 15 -- SIGTERM
 }
 
@@ -103,8 +103,7 @@ function stop_mongo_handler {
 # the running shell
 function startMongoService {
     trap 'kill ${!}; stop_mongo_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
-    su mongodb
-    /usr/bin/mongod --logappend --logpath $LOG_PATH/mongodb.log --dbpath $DATA_PATH --journal --fork
+    /usr/bin/mongod --logappend --logpath $LOG_PATH/mongodb.log --dbpath $DATA_PATH --journal
     exec tail -f /dev/null &
     while true
     do

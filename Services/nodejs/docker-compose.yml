@@ -1,4 +1,4 @@
-server:
+nodejs:
   build: ./
   container_name: "centos7-service-nodejs"
   mem_limit: 1g

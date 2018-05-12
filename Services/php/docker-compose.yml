@@ -1,4 +1,4 @@
-server:
+php:
   build: ./
   container_name: "centos7-service-php"
   mem_limit: 1g

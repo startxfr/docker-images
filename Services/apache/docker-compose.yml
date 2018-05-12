@@ -1,4 +1,4 @@
-server:
+apache:
   build: ./
   container_name: "centos7-service-apache"
   mem_limit: 200m

@@ -1,4 +1,4 @@
-server:
+postgres:
   build: ./
   container_name: "centos7-service-postgres"
   mem_limit: 1g

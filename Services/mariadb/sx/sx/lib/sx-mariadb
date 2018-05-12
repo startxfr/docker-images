@@ -29,57 +29,55 @@ function displayMysqlRunInformation {
 }
 
 function mysqlPreDeploy {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
     echoVerbose "| "
     mysqlInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     testAndRunSourceCodeScript "pre-deploy" 
 }
 
 function mysqlPostDeploy {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running POST-DEPLOY HOOK"
     echoVerbose "| "
     mysqlInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     testAndRunSourceCodeScript "post-deploy" 
 }
 
 function mysqlPostBuild {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is running POST-BUILD HOOK"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running POST-BUILD HOOK"
     echoVerbose "| "
     mysqlInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     testAndRunSourceCodeScript "post-build" 
 }
 
 function mysqlAssemble {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is running ASSEMBLE"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running ASSEMBLE"
     echoVerbose "| "
     mysqlInformation "| "
-    echo "+====================================================="
-    if [[ -d /tmp/src ]]; then
-        echo "Fixing perm on /tmp/src"
-        chmod g=u -R /tmp/src
-        echo "Copy sql scripts from /tmp/src > $LOADSQL_PATH"
-        cp -R /tmp/src/*.sql $LOADSQL_PATH/
-        moveSourceCodeScripts /tmp/src $APP_PATH
-        echoVerbose "Remove source temp $APP_PATH/src"
-        rm -rf /tmp/src
+    echoVerbose "+====================================================="
+    if [[ -d $S2I_DEST ]]; then
+        echoVerbose "Fixing perm on $S2I_DEST"
+        chmod g=u -R $S2I_DEST
+        echoVerbose "Copy sql scripts from $S2I_DEST > $LOADSQL_PATH"
+        cp -R $S2I_DEST/*.sql $LOADSQL_PATH/
+        moveSourceCode $S2I_DEST $APP_PATH
     fi
     testAndRunSourceCodeScript "assemble" 
     init_service_mariadb
 }
 
 function mysqlRun {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is RUNNING"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME is RUNNING"
     echoVerbose "| "
     mysqlInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     startMariadbService
 }
 
@@ -103,26 +101,26 @@ function init_service_mariadb {
 # Begin configuration before starting daemonized process
 # and start generating host keys
 function begin_config {
-    echo "=> BEGIN MARIADB CONFIGURATION"
+    echoVerbose "=> BEGIN MARIADB CONFIGURATION"
     if [[ ! -d $DATA_PATH ]]; then
-        echo "data directory $DATA_PATH not found"
+        echoVerbose "data directory $DATA_PATH not found"
         mkdir -p $DATA_PATH; 
         mkdir -p $DATA_PATH/store; 
         chmod 0774 $DATA_PATH;
-        echo "data directory $DATA_PATH CREATED"
+        echoVerbose "data directory $DATA_PATH CREATED"
     else 
-        echo "data directory $DATA_PATH EXIST"
+        echoVerbose "data directory $DATA_PATH EXIST"
     fi
     if [[ ! -d $LOG_PATH ]]; then
-        echo "log directory $LOG_PATH not found"
+        echoVerbose "log directory $LOG_PATH not found"
         mkdir -p $LOG_PATH; 
         chmod 0774 $LOG_PATH;
-        echo "log directory $LOG_PATH CREATED"
+        echoVerbose "log directory $LOG_PATH CREATED"
     else 
-        echo "log directory $LOG_PATH EXIST"
+        echoVerbose "log directory $LOG_PATH EXIST"
     fi
     if [[ -d $LOADSQL_PATH ]]; then
-        echo "sql directory $LOADSQL_PATH EXIST"
+        echoVerbose "sql directory $LOADSQL_PATH EXIST"
         chmod 0774 $LOADSQL_PATH; 
     fi
     echo "" >> $MY_CONF
@@ -139,10 +137,10 @@ function begin_config {
     echo "config file $MY_CONF updated"
     VOLUME_HOME=$DATA_PATH/mysql
     if [[ ! -d $VOLUME_HOME ]]; then
-        echo "mariadb directory is empty or uninitialized"
+        echoVerbose "mariadb directory is empty or uninitialized"
         echo "Installing MariaDB in $DATA_PATH ..."
         mysql_install_db --defaults-file=$MY_CONF --datadir=$DATA_PATH > /dev/null 2>&1 
-        echo "Installing MariaDB in $DATA_PATH is DONE !"
+        echoVerbose "Installing MariaDB in $DATA_PATH is DONE !"
         config_startserver
         config_createadmin
         config_createuser
@@ -150,13 +148,13 @@ function begin_config {
         config_importsql
         config_stopserver
     else
-        echo "mariadb directory is initialized"
-        echo "Reusing MariaDB in $DATA_PATH ..."
+        echoVerbose "mariadb directory is initialized"
+        echoVerbose "Reusing MariaDB in $DATA_PATH ..."
     fi
 }
 
 function config_startserver {
-    echo "start database for initial setup"
+    echoVerbose "start database for initial setup"
     mysqld_safe &
     mysql_pid=$!
     until mysqladmin ping >/dev/null 2>&1; do
@@ -165,7 +163,7 @@ function config_startserver {
 }
 
 function config_stopserver {
-    echo "stop database after initial setup"
+    echoVerbose "stop database after initial setup"
     mysqladmin -u root -p$MYSQL_ROOT_PASSWORD shutdown
     wait $mysql_pid
 }
@@ -174,7 +172,7 @@ function config_stopserver {
 function config_createadmin {
     PASS=${MYSQL_ROOT_PASSWORD:-$(pwgen -s 12 1)}
     _word=$( [ ${MYSQL_ROOT_PASSWORD} ] && echo "preset" || echo "random" )
-    echo "Creating MariaDB admin user with ${_word} password"
+    echoVerbose "Creating MariaDB admin user with ${_word} password"
     mysql -uroot -e "CREATE USER 'root'@'%' IDENTIFIED BY '$PASS'"
     mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION"
     MYSQL_ROOT_PASSWORD=$PASS
@@ -194,7 +192,7 @@ function config_createadmin {
 
 function config_createuser {
     if [[ -n "$MYSQL_USER" ]]; then
-        echo "Creating MariaDB $MYSQL_USER user with preset password"
+        echoVerbose "Creating MariaDB $MYSQL_USER user with preset password"
         PASS=${MYSQL_PASSWORD:-$(pwgen -s 12 1)}
         mysql -u root -p$MYSQL_ROOT_PASSWORD -h localhost -e "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$PASS'"
         mysql -u root -p$MYSQL_ROOT_PASSWORD -h localhost -e "GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%' WITH GRANT OPTION"
@@ -210,16 +208,16 @@ function config_createuser {
         echo " +------------------------------------------------------"
         echo ""
     else
-        echo "No user created because no user defined in \$MYSQL_USER"
+        echoVerbose "No user created because no user defined in \$MYSQL_USER"
     fi
 }
 
 function config_createdatabase {
     if [[ -n "$MYSQL_DATABASE" ]]; then
-        echo "processing database " $MYSQL_DATABASE
+        echoVerbose "processing database " $MYSQL_DATABASE
         if [[ ! -d $DIR_DB_DATA/$MYSQL_DATABASE ]]; then
-            echo "database " $MYSQL_DATABASE " doesn't exist"
-            mysql -u root -p$MYSQL_ROOT_PASSWORD -h localhost -e "CREATE DATABASE $MYSQL_DATABASE DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;"
+            echoVerbose "database " $MYSQL_DATABASE " doesn't exist"
+            mysql -u root -p$MYSQL_ROOT_PASSWORD -e "CREATE DATABASE $MYSQL_DATABASE DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;"
             echo ""
             echo " +------------------------------------------------------"
             echo " | DATABASE CREATED ! "
@@ -231,16 +229,16 @@ function config_createdatabase {
             echo " +------------------------------------------------------"
             echo ""
         else
-            echo "database " $MYSQL_DATABASE " already exist"
+            echoVerbose "database " $MYSQL_DATABASE " already exist"
         fi
     else
-        echo "No database created because no database declared in \$MYSQL_DATABASE"
+        echoVerbose "No database created because no database declared in \$MYSQL_DATABASE"
     fi
 }
 
 function config_importsql {
     if [[ -n "$LOADSQL_PATH" || -n "$MYSQL_DATABASE" ]]; then
-        echo "\$LOADSQL_PATH is defined and set to " $LOADSQL_PATH
+        echoVerbose "\$LOADSQL_PATH is defined and set to " $LOADSQL_PATH
         if [[ -d $LOADSQL_PATH ]]; then
             if [ "$(ls -A $LOADSQL_PATH/schema-*.sql 2> /dev/null)" ]; then
                 echo "Importing schema from $LOADSQL_PATH "
@@ -252,7 +250,7 @@ function config_importsql {
                     echo " IMPORTED"
                 done
             else
-                echo "No sql schema (schema-*.sql) found in $LOADSQL_PATH"
+                echoVerbose "No sql schema (schema-*.sql) found in $LOADSQL_PATH"
             fi
             if [ "$(ls -A $LOADSQL_PATH/data-*.sql 2> /dev/null)" ]; then
                 echo "Importing data from $LOADSQL_PATH "
@@ -264,30 +262,31 @@ function config_importsql {
                     echo " IMPORTED"
                 done
             else
-                echo "No sql data (data-*.sql) found in $LOADSQL_PATH"
+                echoVerbose "No sql data (data-*.sql) found in $LOADSQL_PATH"
             fi
         else
-            echo "No sql scripts to load because $LOADSQL_PATH is not a directory"
+            echoVerbose "No sql scripts to load because $LOADSQL_PATH is not a directory"
         fi
     else
-        echo "No sql scripts to load because no \$LOADSQL_PATH or \$MYSQL_DATABASE variables"
+        echoVerbose "No sql scripts to load because no \$LOADSQL_PATH or \$MYSQL_DATABASE variables"
     fi
 }
 
 
 # End configuration process just before starting daemon
 function end_config {
-    echo "=> END MARIADB CONFIGURATION"
+    echoVerbose "=> END MARIADB CONFIGURATION"
     touch $DATA_PATH/.sxIsInit
 }
 
 function stop_mariadb_handler {
     mysqladmin -u root -p$MYSQL_ROOT_PASSWORD shutdown
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is now STOPPED"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME is now STOPPED"
+    echoNotVerbose "container is now stopped"
     echoVerbose "| "
     mysqlInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     exit 143; # 128 + 15 -- SIGTERM
 }
 

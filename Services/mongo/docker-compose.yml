@@ -1,4 +1,4 @@
-server:
+mongo:
   build: ./
   container_name: "centos7-service-mongo"
   mem_limit: 2g
