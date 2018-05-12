@@ -2,7 +2,7 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-memcache-template",
+        "name": "startx-sv-memcache-build-template",
         "annotations": {
             "openshift.io/display-name": "Startx Memcached Database (fedora)",
             "description": "Memcached Database for simple SQL database running under Fedora",
@@ -16,7 +16,7 @@
     },
     "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
     "labels": {
-        "template": "startx-sv-memcache-template"
+        "template": "startx-sv-memcache-build-template"
     },
     "objects": [
         {
@@ -96,7 +96,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-memcache-template"
+                    "template": "startx-sv-memcache-build-template"
                 }
             },
             "stringData": {
@@ -114,7 +114,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-memcache-template"
+                    "template": "startx-sv-memcache-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -183,7 +183,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-sv-memcache-template",
+                            "template": "startx-sv-memcache-build-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -267,7 +267,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-memcache-template"
+                    "template": "startx-sv-memcache-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -302,7 +302,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-memcache-template"
+                    "template": "startx-sv-memcache-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"

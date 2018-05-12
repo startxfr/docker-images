@@ -2,7 +2,7 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-mariadb-template",
+        "name": "startx-sv-mariadb-build-template",
         "annotations": {
             "openshift.io/display-name": "Startx MariaDB server (fedora)",
             "description": "MariaDB server for simple SQL database running under Fedora",
@@ -16,7 +16,7 @@
     },
     "message": "Service ${APP_NAME} start to be deployed in your project. You can use openshift console to log into.\n\n       Username: ${MYSQL_USER}\n       Password: ${MYSQL_PASSWORD}\n  Database Name: ${MYSQL_DATABASE}\n Connection URL: mysql://${APP_NAME}:3306",
     "labels": {
-        "template": "startx-sv-mariadb-template"
+        "template": "startx-sv-mariadb-build-template"
     },
     "objects": [
         {
@@ -66,7 +66,7 @@
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-mariadb-template",
+                    "base-image": "startx-sv-mariadb-build-template",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx"
@@ -98,7 +98,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mariadb-template"
+                    "template": "startx-sv-mariadb-build-template"
                 },
                 "annotations": {
                     "template.openshift.io/expose-username": "{.data['MYSQL_USER']}",
@@ -121,7 +121,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mariadb-template"
+                    "template": "startx-sv-mariadb-build-template"
                 }
             },
             "spec": {
@@ -146,7 +146,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mariadb-template"
+                    "template": "startx-sv-mariadb-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX",
@@ -239,7 +239,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-sv-mariadb-template",
+                            "template": "startx-sv-mariadb-build-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -375,7 +375,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mariadb-template"
+                    "template": "startx-sv-mariadb-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX",
@@ -413,7 +413,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-mariadb-template"
+                    "template": "startx-sv-mariadb-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"

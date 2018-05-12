@@ -1,4 +1,4 @@
-server:
+nodejs:
   build: ./
   container_name: "fc28-service-nodejs"
   mem_limit: 1g

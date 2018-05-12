@@ -2,13 +2,13 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-couchbase-template",
+        "name": "startx-sv-postgres-build-template",
         "annotations": {
-            "openshift.io/display-name": "Startx Couchbase server (fedora)",
-            "description": "Couchbase server for NoSQL database running under Fedora",
-            "iconClass": "icon-mysql-database",
-            "tags": "startx,os,fedora,couchbase,database",
-            "openshift.io/long-description": "This template provides an couchbase db Couchbase Database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/display-name": "Startx PostGresQL server (fedora)",
+            "description": "PostGresQL server for simple SQL database running under Fedora",
+            "iconClass": "icon-postgresql",
+            "tags": "startx,os,fedora,postgres,database",
+            "openshift.io/long-description": "This template provides an postgres db PostGresQL Database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc28/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -16,20 +16,20 @@
     },
     "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
     "labels": {
-        "template": "startx-sv-couchbase-template"
+        "template": "startx-sv-postgres-build-template"
     },
     "objects": [
         {
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-couchbase",
+                "name": "startx-sv-postgres",
                 "annotations": {
-                    "openshift.io/display-name": "Startx Couchbase Database",
+                    "openshift.io/display-name": "Startx PostGresQL Database",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-couchbase",
+                    "base-image": "startx-sv-postgres",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx"
@@ -40,17 +40,17 @@
                     {
                         "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "Startx Couchbase Database (Fedora 28)",
-                            "description": "Couchbase server for NoSQL database running under Fedora 28",
-                            "iconClass": "icon-mysql-database",
-                            "tags": "builder,startx,fedora,couchbase,database",
+                            "openshift.io/display-name": "Startx PostGresQL Database (Fedora 28)",
+                            "description": "PostGresQL server for simple SQL database running under Fedora 28",
+                            "iconClass": "icon-postgresql",
+                            "tags": "builder,startx,fedora,postgres,database",
                             "supports": "db",
                             "version": "fc28",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-couchbase.git"
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-postgres.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-couchbase:fc28"
+                            "name": "startx/sv-postgres:fc28"
                         }
                     }
                 ]
@@ -66,7 +66,7 @@
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-couchbase",
+                    "base-image": "startx-sv-postgres",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx"
@@ -79,8 +79,8 @@
                         "annotations": {
                             "openshift.io/display-name": "Application ${APP_NAME}",
                             "description": "Base image for the application ${APP_NAME}",
-                            "iconClass": "icon-mysql-database",
-                            "tags": "startx,fedora,couchbase,database,application,${APP_NAME}",
+                            "iconClass": "icon-postgresql",
+                            "tags": "startx,fedora,postgres,database,application,${APP_NAME}",
                             "supports": "db",
                             "version": "rawhide"
                         }
@@ -98,12 +98,13 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-couchbase-template"
+                    "template": "startx-sv-postgres-build-template"
                 }
             },
             "stringData": {
-                "COUCHBASE_PASSWORD": "${COUCHBASE_PASSWORD}",
-                "COUCHBASE_USER": "${COUCHBASE_USER}"
+                "PGSQL_ROOT_PASSWORD": "${PGSQL_ROOT_PASSWORD}",
+                "PGSQL_USER": "${PGSQL_USER}",
+                "PGSQL_PASSWORD": "${PGSQL_PASSWORD}"
             }
         },
         {
@@ -117,7 +118,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-couchbase-template"
+                    "template": "startx-sv-postgres-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -136,7 +137,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-couchbase",
+                                    "/bin/sx-postgres",
                                     "pre-deploy"
                                 ],
                                 "env": [
@@ -156,7 +157,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-couchbase",
+                                    "/bin/sx-postgres",
                                     "post-deploy"
                                 ],
                                 "env": [
@@ -194,7 +195,7 @@
                     }
                 ],
                 "postCommit": {
-                    "script": "/bin/sx-couchbase info"
+                    "script": "/bin/sx-postgres info"
                 },
                 "replicas": 1,
                 "test": false,
@@ -209,7 +210,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-sv-couchbase-template",
+                            "template": "startx-sv-postgres-build-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -228,96 +229,49 @@
                                     }
                                 ],
                                 "command": [
-                                    "/bin/sx-couchbase"
+                                    "/bin/sx-postgres"
                                 ],
                                 "args": [
                                     "run"
                                 ],
                                 "env": [
                                     {
-                                        "name": "COUCHBASE_PASSWORD",
+                                        "name": "PGSQL_ROOT_PASSWORD",
                                         "valueFrom": {
                                             "secretKeyRef": {
                                                 "name": "${APP_NAME}",
-                                                "key": "COUCHBASE_PASSWORD"
+                                                "key": "PGSQL_ROOT_PASSWORD"
                                             }
                                         }
                                     },
                                     {
-                                        "name": "COUCHBASE_USER",
+                                        "name": "PGSQL_USER",
                                         "valueFrom": {
                                             "secretKeyRef": {
                                                 "name": "${APP_NAME}",
-                                                "key": "COUCHBASE_USER"
+                                                "key": "PGSQL_USER"
                                             }
                                         }
                                     },
                                     {
-                                        "name": "COUCHBASE_BUCKETS",
-                                        "value": "${COUCHBASE_BUCKETS}"
+                                        "name": "PGSQL_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "name": "${APP_NAME}",
+                                                "key": "PGSQL_PASSWORD"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "PGSQL_DATABASE",
+                                        "value": "${PGSQL_DATABASE}"
                                     }
                                 ],
-                                "ports": [
-                                    {
-                                        "containerPort": 8091,
-                                        "protocol": "TCP"
-                                    },
-                                    {
-                                        "protocol": "TCP",
-                                        "containerPort": 8092
-                                    },
-                                    {
-                                        "protocol": "TCP",
-                                        "containerPort": 8093
-                                    },
-                                    {
-                                        "protocol": "TCP",
-                                        "containerPort": 8094
-                                    },
-                                    {
-                                        "protocol": "TCP",
-                                        "containerPort": 11207
-                                    },
-                                    {
-                                        "protocol": "TCP",
-                                        "containerPort": 11210
-                                    },
-                                    {
-                                        "protocol": "TCP",
-                                        "containerPort": 11211
-                                    },
-                                    {
-                                        "protocol": "TCP",
-                                        "containerPort": 18091
-                                    },
-                                    {
-                                        "protocol": "TCP",
-                                        "containerPort": 18092
-                                    },
-                                    {
-                                        "protocol": "TCP",
-                                        "containerPort": 18093
-                                    },
-                                    {
-                                        "protocol": "TCP",
-                                        "containerPort": 18094
-                                    }
-                                ],
-                                "resources": {
-                                    "limits": {
-                                        "memory": "${MEMORY_LIMIT}"
-                                    }
-                                },
-                                "volumeMounts": [
-                                    {
-                                        "name": "${APP_NAME}-data",
-                                        "mountPath": "/opt/couchbase/var"
-                                    }
-                                ],
+                                "resources": {},
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-couchbase",
+                                            "/bin/sx-postgres",
                                             "isLive"
                                         ]
                                     },
@@ -330,7 +284,7 @@
                                 "readinessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-couchbase",
+                                            "/bin/sx-postgres",
                                             "isReady"
                                         ]
                                     },
@@ -342,14 +296,6 @@
                                 },
                                 "terminationMessagePath": "/dev/termination-log",
                                 "imagePullPolicy": "Always"
-                            }
-                        ],
-                        "volumes": [
-                            {
-                                "name": "${APP_NAME}-data",
-                                "emptyDir": {
-                                    "medium": ""
-                                }
                             }
                         ],
                         "restartPolicy": "Always",
@@ -376,7 +322,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-couchbase-template"
+                    "template": "startx-sv-postgres-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -385,70 +331,9 @@
             "spec": {
                 "ports": [
                     {
-                        "name": "cluster-webapi",
                         "protocol": "TCP",
-                        "port": 8091,
-                        "targetPort": 8091
-                    },
-                    {
-                        "name": "cluster-viewxdcr",
-                        "protocol": "TCP",
-                        "port": 8092,
-                        "targetPort": 8092
-                    },
-                    {
-                        "name": "cluster-query",
-                        "protocol": "TCP",
-                        "port": 8093,
-                        "targetPort": 8093
-                    },
-                    {
-                        "name": "cluster-fts",
-                        "protocol": "TCP",
-                        "port": 8094,
-                        "targetPort": 8094
-                    },
-                    {
-                        "name": "data-moxi-ssl",
-                        "protocol": "TCP",
-                        "port": 11207,
-                        "targetPort": 11207
-                    },
-                    {
-                        "name": "data-moxi",
-                        "protocol": "TCP",
-                        "port": 11210,
-                        "targetPort": 11210
-                    },
-                    {
-                        "name": "data-legacy",
-                        "protocol": "TCP",
-                        "port": 11211,
-                        "targetPort": 11211
-                    },
-                    {
-                        "name": "cluster-webapi-ssl",
-                        "protocol": "TCP",
-                        "port": 18091,
-                        "targetPort": 18091
-                    },
-                    {
-                        "name": "cluster-viewxdcr-ssl",
-                        "protocol": "TCP",
-                        "port": 18092,
-                        "targetPort": 18092
-                    },
-                    {
-                        "name": "cluster-query-ssl",
-                        "protocol": "TCP",
-                        "port": 18093,
-                        "targetPort": 18093
-                    },
-                    {
-                        "name": "cluster-fts-ssl",
-                        "protocol": "TCP",
-                        "port": 18094,
-                        "targetPort": 18094
+                        "port": 3306,
+                        "targetPort": 3306
                     }
                 ],
                 "selector": {
@@ -472,7 +357,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-couchbase-template"
+                    "template": "startx-sv-postgres-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -513,7 +398,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-couchbase:fc28"
+                            "name": "startx-sv-postgres:fc28"
                         },
                         "env": [
                             {
@@ -532,7 +417,7 @@
                 "resources": {},
                 "postCommit": {
                     "command": [
-                        "/bin/sx-couchbase",
+                        "/bin/sx-postgres",
                         "post-build"
                     ]
                 }
@@ -547,7 +432,7 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "couchbase",
+            "value": "postgres",
             "required": true
         },
         {
@@ -560,7 +445,7 @@
             "name": "SOURCE_GIT",
             "displayName": "Source repository",
             "description": "URL to the source code to use during build process",
-            "value": "https://github.com/startxfr/docker-images-example-couchbase.git",
+            "value": "https://github.com/startxfr/docker-images-example-postgres.git",
             "required": true
         },
         {
@@ -579,31 +464,32 @@
             "required": true
         },
         {
-            "name": "COUCHBASE_USER",
-            "displayName": "Couchbase user",
+            "name": "PGSQL_ROOT_PASSWORD",
+            "displayName": "Postgres root password",
+            "description": "The postgres root password to use. Generated if not provided",
+            "from": "[A-Z0-9]{16}",
+            "generate": "expression"
+        },
+        {
+            "name": "PGSQL_USER",
+            "displayName": "Postgres user",
             "description": "Default user to create",
             "value": "demo",
             "from": "[A-Z0-9]{8}",
             "generate": "expression"
         },
         {
-            "name": "COUCHBASE_PASSWORD",
-            "displayName": "Couchbase root password",
-            "description": "The couchbase admin password to use. Generated if not provided",
+            "name": "PGSQL_PASSWORD",
+            "displayName": "Postgres password",
+            "description": "Password of the default user",
+            "value": "demo",
             "from": "[A-Z0-9]{16}",
             "generate": "expression"
         },
         {
-            "name": "COUCHBASE_BUCKETS",
-            "displayName": "Couchbase bucket",
-            "description": "list of the default's bucket to create"
-        },
-        {
-            "name": "MEMORY_LIMIT",
-            "displayName": "Memory Limit",
-            "description": "Maximum amount of memory the container can use.",
-            "value": "512Mi",
-            "required": true
+            "name": "PGSQL_DATABASE",
+            "displayName": "Postgres database",
+            "description": "name of the default database to create"
         }
     ]
 }

@@ -2,107 +2,125 @@
 
 # get and store the operating system name
 OS=`cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g'`
-SXLIB_VERSION="0.1.7"
+SXLIB_VERSION="0.1.12"
+S2I_DEST=$SX_S2IDIR/src
+MYS2I_DEST=/tmp/mys2i
 
 # use xterm and set current PID
 export TERM=xterm
 pid=0
 
+# return if verbose is activated
+function isVerbose {
+    if [[ "$SX_VERBOSE" == true || "$SX_VERBOSE" == "true" ]] ; then
+        return 1
+    else
+        return 0
+    fi 
+}
+
 # echo if verbose if activated
 function echoVerbose {
-    if [ "$SX_VERBOSE" = true ] ; then
-        echo $1 $2 $3 $4
+    isVerbose
+    if [ "$?" -eq 1 ] ; then
+        echo "$@"
+    fi 
+}
+
+# echo if verbose if not activated
+function echoNotVerbose {
+    isVerbose
+    if [ "$?" -eq 0 ] ; then
+        echo "$@"
     fi 
 }
 
 # echo if debug if activated
 function echoDebug {
-    if [ "$SX_DEBUG" = true ] ; then
-        echo $1 $2 $3 $4
+    if [[ "$SX_DEBUG" == true || "$SX_DEBUG" == "true" ]] ; then
+        echo "$@"
     fi 
 }
 
 # function executed when pre-deploy hook is called
 function genericPreDeploy {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is running PRE-DEPLOY HOOK"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME running PRE-DEPLOY HOOK"
+    echoNotVerbose "container $HOSTNAME running PRE-DEPLOY HOOK"
     echoVerbose "| "
     displayInformation "| "
-    echo "+====================================================="
+    echoDebug `env`
+    echoVerbose "+====================================================="
     testAndRunSourceCodeScript "pre-deploy" 
 }
 
 # function executed when post-deploy hook is called
 function genericPostDeploy {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is running POST-DEPLOY HOOK"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running POST-DEPLOY HOOK"
+    echoNotVerbose "container $HOSTNAME  running POST-DEPLOY HOOK"
     echoVerbose "| "
     displayInformation "| "
-    echo "+====================================================="
+    echoDebug `env`
+    echoVerbose "+====================================================="
     testAndRunSourceCodeScript "post-deploy" 
 }
 
 # function executed when pre-build hook is called
 function genericPostBuild {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is running POST-BUILD HOOK"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running POST-BUILD HOOK"
+    echoNotVerbose "container $HOSTNAME  running POST-BUILD HOOK"
     echoVerbose "| "
     displayInformation "| "
-    echo "+====================================================="
+    echoDebug `env`
+    echoVerbose "+====================================================="
     testAndRunSourceCodeScript "post-build" 
 }
 
 # function executed when assemble hook is called
 function genericAssemble {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is running ASSEMBLE"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running ASSEMBLE"
+    echoNotVerbose "container $HOSTNAME  running ASSEMBLE"
     echoVerbose "| "
     displayInformation "| "
-    echo "+====================================================="
-    echoVerbose "Fixing perm on /tmp/src"
-    chown 1001:0 -R /tmp/src
-    chmod g=u -R /tmp/src
-    echoVerbose "Copy source from $APP_PATH/src > $APP_PATH"
-    cp -R /tmp/src/* $APP_PATH/
-    moveSourceCodeScripts /tmp/src $APP_PATH
-    echoVerbose "Remove source temp $APP_PATH/src"
-    rm -rf /tmp/src
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    echoVerbose "Fixing perm on $S2I_DEST"
+    if [[ -r $S2I_DEST ]]; then
+      chown 1001:0 -R $S2I_DEST
+      chmod g=u -R $S2I_DEST
+      moveSourceCode $S2I_DEST $APP_PATH
+    fi;
     testAndRunSourceCodeScript "assemble" 
 }
 
 # function executed on container startup
 function genericRun {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is RUNNING"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME is RUNNING"
+    echoNotVerbose "container $HOSTNAME is RUNNING"
     echoVerbose "| "
     displayInformation "| "
-    echo "+====================================================="
-    if [[ -x $APP_PATH/run ]]; then
-        echoVerbose "Execute main source code run script"
-        exec $APP_PATH/run
-    elif [[ -r $APP_PATH/.sx ]]; then
-        echoVerbose "Found source code CI/CD scripts in .sx/"
-        if [[ -r $APP_PATH/.sx/run ]]; then
-            echoVerbose "Found source code sx run script"
-            if [[ -x $APP_PATH/.sx/run ]]; then
-                echo "Execute source code sx run script"
-                exec $APP_PATH/.sx/run
-            else
-                echo "Start default daemon (source code sx run is script not executable)"
-                startDaemon
-            fi 
-        else
-            echo "Start default daemon (no source code run script)"
-            startDaemon
-        fi 
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    if [[ -x $MYS2I_DEST/run ]]; then
+        testAndRunSourceCodeScript "run" 
     else
+        echo "Start default daemon (no source code run script)"
         startDaemon
     fi 
 }
 
 # Display general usage
 function genericUsage {
+echoVerbose "+====================================================="
+displayInformation "| "
+echoDebug `env`
+echoVerbose "+====================================================="
 cat <<EOF
+
 Basic OS container to execute arbitrary commands
 
 Usage:
@@ -127,7 +145,12 @@ exit 0;
 
 # Display S2I usage
 function genericUsageS2I {
+echoVerbose "+====================================================="
+displayInformation "| "
+echoDebug `env`
+echoVerbose "+====================================================="
 cat <<EOF
+
 Startx builder container to use with s2i or openshift
 
 Usage:
@@ -141,7 +164,12 @@ exit 0;
 
 # Display general welcome message
 function genericWelcome {
+echoVerbose "+====================================================="
+displayInformation "| "
+echoDebug `env`
+echoVerbose "+====================================================="
 cat <<EOF
+
 Welcome to the $SX_ID base image. If you see this message, you have
 probably run this container without arguments. See usage for more informations.
 
@@ -160,6 +188,8 @@ echoVerbose $1 "name      : $SX_NAME"
 echoVerbose $1 "OS        : $OS"
 echoVerbose $1 "container : $HOSTNAME"
 echoVerbose $1 "sx-lib    : v$SXLIB_VERSION"
+echoNotVerbose "running on $OS (sxlib v$SXLIB_VERSION)"
+echoNotVerbose "based on $SX_ID:$SX_VERSION"
 }
 
 # Display information
@@ -189,52 +219,66 @@ function genericIsReady {
 # start daemon
 function startDaemon {
     while true; do
-        if [ "$SX_VERBOSE" = true ] ; then
-            echo "$HOSTNAME is alive and running $SX_ID:$SX_VERSION ($OS)"
-        else
-            echo "$HOSTNAME is alive"
-        fi 
+        echoVerbose "$HOSTNAME is alive and running $SX_ID:$SX_VERSION ($OS)"
+        echoNotVerbose "$HOSTNAME is alive"
         sleep 10
     done
 }
 
 # Display daemon
 function genericDaemon {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is RUNNING"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME is RUNNING"
     echoVerbose "| "
     displayInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     startDaemon
 }
 
 # test if a source code script of the given type exist a could be run
 function testAndRunSourceCodeScript {
-    if [[ -r $APP_PATH/.sx ]]; then
-        echoVerbose "Found source code CI/CD scripts in .sx/"
-        if [[ -r $APP_PATH/.sx/$1 ]]; then
-            echoVerbose "Found source code $1 script"
-            if [[ -x $APP_PATH/.sx/$1 ]]; then
-                echo "Execute source code $1 script"
-                . $APP_PATH/.sx/$1
-            else
-                echo "WARN: source code $1 script is not executable"
-            fi 
-        else
-            echoVerbose "No source code $1 script"
-        fi 
-    else
-        echoVerbose "no source code .sx directory"
-    fi 
+  if [[ -r $MYS2I_DEST/$1 ]]; then
+      echoDebug "Found source code $1 script"
+      if [[ -x $MYS2I_DEST/$1 ]]; then
+          echo "Execute source code $1 script"
+          . $MYS2I_DEST/$1
+      else
+          echo "WARN: source code $1 script is not executable"
+      fi 
+  else
+      echoVerbose "No source code $1 script"
+  fi 
 }
 
 
-function moveSourceCodeScripts {
-    if [[ -r $1/.sx ]]; then
-        echoVerbose "Copy source scripts from $APP_PATH/src > $APP_PATH"
-        chown 1001:0 -R $1/.sx
-        chmod g=u -R $1/.sx
-        chmod ug+x -R $1/.sx/*
-        mv $1/.sx $2/.sx
-    fi
+function moveSourceCode {
+  echoVerbose "Copy source from $S2I_DEST > $APP_PATH"
+  cp -R $1/* $2/
+  projectScriptDir=""
+  if [[ -r $1/sx ]]; then
+      echoVerbose "Found source code CI/CD scripts in sx/"
+      projectScriptDir=sx
+  elif [[ -r $1/s2i ]]; then
+      echoVerbose "Found source code CI/CD scripts in s2i/"
+      projectScriptDir=s2i
+  elif [[ -r $1/.sx ]]; then
+      echoVerbose "Found source code CI/CD scripts in .sx/"
+      projectScriptDir=.sx
+  elif [[ -r $1/.s2i ]]; then
+      echoVerbose "Found source code CI/CD scripts in .s2i/"
+      projectScriptDir=.s2i
+  fi 
+  if [[ "$projectScriptDir" != "" ]] ; then
+      echoVerbose "source code CI/CD directory $projectScriptDir found"
+      echoVerbose "Move source code scripts in $MYS2I_DEST"
+      mv $1/$projectScriptDir $MYS2I_DEST
+      echoVerbose "Fixing source code scripts perms"
+      chown 1001:0 -R $MYS2I_DEST
+      chmod g=u -R $MYS2I_DEST
+      chmod ug+x -R $MYS2I_DEST/*
+  else
+      echoVerbose "no source code CI/CD directory found"
+  fi 
+  echoVerbose "Remove source temp $S2I_DEST"
+  rm -rf $S2I_DEST
 }

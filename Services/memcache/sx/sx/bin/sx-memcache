@@ -11,7 +11,7 @@ case $1 in
     run|start)              memcacheRun $@ ;;
     isLive)                 memcacheIsLive $@ ;;
     isReady)                memcacheIsReady $@ ;;
-    info)                   memcacheInformation $@ ;;
+    info|--info)            memcacheInformation $@ ;;
     usage|help|--help)      genericUsage $@ ;;
     usageS2i)               genericUsageS2I $@ ;;
     version|--version)      genericVersion $@ ;;

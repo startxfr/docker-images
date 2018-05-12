@@ -1,4 +1,4 @@
-application:
+phpmyadmin:
   build: ./
   container_name: "fc28-application-phpmyadmin"
   mem_limit: 500m

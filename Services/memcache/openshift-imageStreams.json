@@ -98,6 +98,38 @@
                             "kind": "DockerImage",
                             "name": "startx/sv-memcache:centos7"
                         }
+                    },
+                    {
+                        "name": "centos6",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I Memcached Database (Centos 6)",
+                            "description": "Memcached server builder for caching database running under Centos 6",
+                            "iconClass": "icon-memcached",
+                            "tags": "builder,startx,centos,memcached,database",
+                            "supports": "db",
+                            "version": "6",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-memcache.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-memcache:centos6"
+                        }
+                    },
+                    {
+                        "name": "alpine3",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I Memcached Database (Alpine 3)",
+                            "description": "Memcached server builder for caching database running under Alpine 3",
+                            "iconClass": "icon-memcached",
+                            "tags": "builder,startx,alpine,memcached,database",
+                            "supports": "db",
+                            "version": "3",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-memcache.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-memcache:alpine3"
+                        }
                     }
                 ]
             }

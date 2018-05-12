@@ -11,7 +11,7 @@ case $1 in
     run|start)              couchbaseRun $@ ;;
     isLive)                 couchbaseIsLive $@ ;;
     isReady)                couchbaseIsReady $@ ;;
-    info)                   couchbaseInformation $@ ;;
+    info|--info)            couchbaseInformation $@ ;;
     usage|help|--help)      genericUsage $@ ;;
     usageS2i)               genericUsageS2I $@ ;;
     version|--version)      genericVersion $@ ;;

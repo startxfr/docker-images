@@ -4,16 +4,12 @@ Simple container used to deliver distributed memory object caching system
 Run [memcached daemon](https://www.memcached.org/) under a container 
 based on [startx/fedora:28 container](https://hub.docker.com/r/startx/fedora)
 
-Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
-or **[other memcache flavours](https://github.com/startxfr/docker-images/Services/memcache/#available-flavours)**
-
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc28)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx/sv-memcache/) | [Sources](https://github.com/startxfr/docker-images/tree/fc28/Services/memcache)             | [STARTX Profile](https://github.com/startxfr) | 
-|-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|------------------------------------------------------------------------------------|-----------------------------------------------|
+[![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-memcache.svg)](https://hub.docker.com/r/startx/sv-memcache) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc28)](https://travis-ci.org/startxfr/docker-images) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/fc28/Services/memcache/) [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
 
 ## Available flavours
 
-* `:latest` : Fedora core 23 + memcached 1.4.17 
+* `:latest` : Fedora core 29 + memcached 1.4.17 
+* `:fc28` : Fedora core 28 + memcached 1.4.17 
 * `:fc27` : Fedora core 27 + memcached 1.4.17
 * `:fc26` : Fedora core 26 + memcached 1.4.17
 * `:fc23` : Fedora core 23 + memcached 1.4.17
@@ -27,57 +23,76 @@ or **[other memcache flavours](https://github.com/startxfr/docker-images/Service
 
 * with `docker` you can run `docker run -it --name="service-memcache-fc28" startx/sv-memcache:fc28` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
-```
+```YAML
 service:
   image: startx/sv-memcache:fc28
-  container_name: "service-memcache-fc28"
-  environment:
-    CONTAINER_TYPE: "service"
-    CONTAINER_SERVICE: "memcache"
-    CONTAINER_INSTANCE: "service-memcache-fc28"
+  container_name: "fc28-service-memcache"
   volumes:
     - "/tmp/container-fc28/logs/memcache:/logs"
+```
+
+### Using this image as Openshift Build image
+
+You can use this public image as a base image in your openshift build strategy. You can first import
+our [openshift image stream](https://raw.githubusercontent.com/startxfr/docker-images/fc28/Services/memcache/openshift-imageStreams.json)
+and automatically add them in your service catalog. You can also test our [deploy template](https://raw.githubusercontent.com/startxfr/docker-images/fc28/Services/memcache/openshift-template.json)
+or our [build and deploy template](https://raw.githubusercontent.com/startxfr/docker-images/fc28/Services/memcache/openshift-template-build.json)
+
+```bash
+# import image streams
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/fc28/Services/memcache/openshift-imageStreams.json
+# import deploy template and start a sample application
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/fc28/Services/memcache/openshift-template.json
+oc process startx-sv-memcache-template | oc create -f -
+# import build and deploy template and start a sample application
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/fc28/Services/memcache/openshift-template-build.json
+oc process startx-sv-memcache-build-template | oc create -f -
+```
+
+### Using this image as S2I builder
+
+You can use this image as an s2i builder image. 
+```bash
+s2i build https://github.com/startxfr/docker-images-example-memcache startx/sv-memcache test-memcache
+docker run --rm -i -t test-memcache
 ```
 
 ## Docker-compose in various situations
 
 * sample docker-compose.yml linked to host port 1000
-```
+```YAML
 service:
   image: startx/sv-memcache:fc28
   container_name: "service-memcache-fc28"
-  environment:
-    CONTAINER_INSTANCE: "service-memcache-fc28"
   ports:
     - "1000:11211"
 ```
 * sample docker-compose.yml with port exposed only to linked services
-```
+```YAML
 service:
   image: startx/sv-memcache:fc28
   container_name: "service-memcache-fc28"
-  environment:
-    CONTAINER_INSTANCE: "service-memcache-fc28"
   expose:
     - "11211"
 ```
 
-## Using this image in your own container
+### Using this image as base container
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
- ```
+```Dockerfile
 FROM startx/sv-memcache:fc28
 #... your container specifications
-CMD ["/bin/run.sh"]
+CMD ["/bin/sx", "run"]
 ```
 
 ## Environment variable
 
+This container is based on [startx fedora container](https://hub.docker.com/r/startx/fedora) who came with 
+some [additional environment variable](https://github.com/startxfr/docker-images/tree/fc28/OS#environment-variable)
+
 | Variable                  | Type     | Mandatory | Description                                                              |
 |---------------------------|----------|-----------|--------------------------------------------------------------------------|
-| CONTAINER_INSTANCE        | `string` | `yes`     | Container name. Should be uning to get fine grained log and application reporting
-| CONTAINER_TYPE            | `string` | `no`      | Container family (os, service, application. could be enhanced 
-| CONTAINER_SERVICE         | `string` | `no`      | Define the type of service or application provided
+| <i>base image environement</i> |          |           | [see environment list](https://github.com/startxfr/docker-images/tree/fc28/OS#environment-variable)
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
 | LOG_PATH                  | `auto`   | `auto`    | default set to /logs and used as a volume mountpoint
 

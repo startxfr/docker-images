@@ -98,6 +98,38 @@
                             "kind": "DockerImage",
                             "name": "startx/sv-php:centos7"
                         }
+                    },
+                    {
+                        "name": "centos6",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I PHP WebServer (Centos 6)",
+                            "description": "Http server builder for dynamic web application running under Centos 6",
+                            "iconClass": "icon-php",
+                            "tags": "builder,startx,centos,apache,httpd,php",
+                            "supports": "http",
+                            "version": "6",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-php.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-php:centos6"
+                        }
+                    },
+                    {
+                        "name": "alpine3",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I PHP WebServer (Alpine 3)",
+                            "description": "Http server builder for dynamic web application running under Alpine 3",
+                            "iconClass": "icon-php",
+                            "tags": "builder,startx,alpine,apache,httpd,php",
+                            "supports": "http",
+                            "version": "3",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-php.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-php:alpine3"
+                        }
                     }
                 ]
             }

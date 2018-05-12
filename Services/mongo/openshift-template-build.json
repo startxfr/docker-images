@@ -2,13 +2,13 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "startx-sv-php-template",
+        "name": "startx-sv-mongo-build-template",
         "annotations": {
-            "openshift.io/display-name": "Startx PHP WebServer (fedora)",
-            "description": "PHP WebServer for dynamic web application running under Fedora",
-            "iconClass": "icon-php",
-            "tags": "startx,os,fedora,apache,httpd,php",
-            "openshift.io/long-description": "This template provides an apache + php httpd webserver in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/display-name": "Startx MongoDB server (fedora)",
+            "description": "MongoDB server for NoSQL database running under Fedora",
+            "iconClass": "icon-mongodb",
+            "tags": "startx,os,fedora,mongo,database",
+            "openshift.io/long-description": "This template provides an mongo Database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc28/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -16,20 +16,20 @@
     },
     "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
     "labels": {
-        "template": "startx-sv-php-template"
+        "template": "startx-sv-mongo-build-template"
     },
     "objects": [
         {
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-php",
+                "name": "startx-sv-mongo",
                 "annotations": {
-                    "openshift.io/display-name": "Startx PHP WebServer",
+                    "openshift.io/display-name": "Startx MongoDB Database",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-php",
+                    "base-image": "startx-sv-mongo",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx"
@@ -40,17 +40,17 @@
                     {
                         "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "Startx PHP WebServer (Fedora 28)",
-                            "description": "PHP WebServer for dynamic web application running under Fedora 28",
-                            "iconClass": "icon-php",
-                            "tags": "builder,startx,fedora,apache,httpd,php",
-                            "supports": "http",
+                            "openshift.io/display-name": "Startx MongoDB Database (Fedora 28)",
+                            "description": "MongoDB server for simple SQL database running under Fedora 28",
+                            "iconClass": "icon-mongodb",
+                            "tags": "builder,startx,fedora,mongo,database",
+                            "supports": "db",
                             "version": "fc28",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-php.git"
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mongo.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-php:fc28"
+                            "name": "startx/sv-mongo:fc28"
                         }
                     }
                 ]
@@ -66,7 +66,7 @@
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-php",
+                    "base-image": "startx-sv-mongo",
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx"
@@ -79,13 +79,31 @@
                         "annotations": {
                             "openshift.io/display-name": "Application ${APP_NAME}",
                             "description": "Base image for the application ${APP_NAME}",
-                            "iconClass": "icon-php",
-                            "tags": "startx,fedora,apache,httpd,php,application,${APP_NAME}",
-                            "supports": "http",
+                            "iconClass": "icon-mongodb",
+                            "tags": "startx,fedora,mongo,database,application,${APP_NAME}",
+                            "supports": "db",
                             "version": "rawhide"
                         }
                     }
                 ]
+            }
+        },
+        {
+            "kind": "Secret",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "type": "${APP_TYPE}",
+                    "provider": "startx",
+                    "template": "startx-sv-mongo-build-template"
+                }
+            },
+            "stringData": {
+                "MONGO_PASSWORD": "${MONGO_PASSWORD}",
+                "MONGO_USER": "${MONGO_USER}"
             }
         },
         {
@@ -99,7 +117,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-php-template"
+                    "template": "startx-sv-mongo-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -111,14 +129,14 @@
                     "rollingParams": {
                         "updatePeriodSeconds": 1,
                         "intervalSeconds": 1,
-                        "timeoutSeconds": 20,
+                        "timeoutSeconds": 120,
                         "maxUnavailable": "25%",
                         "maxSurge": "25%",
                         "pre": {
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-php",
+                                    "/bin/sx-mongo",
                                     "pre-deploy"
                                 ],
                                 "env": [
@@ -138,7 +156,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "command": [
-                                    "/bin/sx-php",
+                                    "/bin/sx-mongo",
                                     "post-deploy"
                                 ],
                                 "env": [
@@ -176,7 +194,7 @@
                     }
                 ],
                 "postCommit": {
-                    "script": "/bin/sx-php info"
+                    "script": "/bin/sx-mongo info"
                 },
                 "replicas": 1,
                 "test": false,
@@ -191,7 +209,7 @@
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
                             "provider": "startx",
-                            "template": "startx-sv-php-template",
+                            "template": "startx-sv-mongo-build-template",
                             "deploymentconfig": "${APP_NAME}"
                         },
                         "annotations": {
@@ -210,21 +228,45 @@
                                     }
                                 ],
                                 "command": [
-                                    "/bin/sx-php"
+                                    "/bin/sx-mongo"
                                 ],
                                 "args": [
                                     "run"
+                                ],
+                                "env": [
+                                    {
+                                        "name": "MONGO_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "name": "${APP_NAME}",
+                                                "key": "MONGO_PASSWORD"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MONGO_USER",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "name": "${APP_NAME}",
+                                                "key": "MONGO_USER"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MONGO_STORES",
+                                        "value": "${MONGO_STORES}"
+                                    }
                                 ],
                                 "resources": {},
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-php",
+                                            "/bin/sx-mongo",
                                             "isLive"
                                         ]
                                     },
-                                    "initialDelaySeconds": 4,
-                                    "timeoutSeconds": 1,
+                                    "initialDelaySeconds": 5,
+                                    "timeoutSeconds": 2,
                                     "periodSeconds": 10,
                                     "successThreshold": 1,
                                     "failureThreshold": 3
@@ -232,12 +274,12 @@
                                 "readinessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/bin/sx-php",
+                                            "/bin/sx-mongo",
                                             "isReady"
                                         ]
                                     },
-                                    "initialDelaySeconds": 4,
-                                    "timeoutSeconds": 1,
+                                    "initialDelaySeconds": 2,
+                                    "timeoutSeconds": 2,
                                     "periodSeconds": 10,
                                     "successThreshold": 1,
                                     "failureThreshold": 3
@@ -261,43 +303,6 @@
             }
         },
         {
-            "kind": "Route",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APP_NAME}",
-                "creationTimestamp": null,
-                "labels": {
-                    "app": "${APP_NAME}",
-                    "type": "${APP_TYPE}",
-                    "provider": "startx",
-                    "template": "startx-sv-php-template"
-                },
-                "annotations": {
-                    "openshift.io/generated-by": "STARTX"
-                }
-            },
-            "spec": {
-                "to": {
-                    "kind": "Service",
-                    "name": "${APP_NAME}",
-                    "weight": 100
-                }
-            },
-            "status": {
-                "ingress": [
-                    {
-                        "routerName": "router",
-                        "conditions": [
-                            {
-                                "type": "Admitted",
-                                "status": "True"
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        {
             "kind": "Service",
             "apiVersion": "v1",
             "metadata": {
@@ -307,7 +312,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-php-template"
+                    "template": "startx-sv-mongo-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -317,8 +322,8 @@
                 "ports": [
                     {
                         "protocol": "TCP",
-                        "port": 8080,
-                        "targetPort": 8080
+                        "port": 3306,
+                        "targetPort": 3306
                     }
                 ],
                 "selector": {
@@ -342,7 +347,7 @@
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
                     "provider": "startx",
-                    "template": "startx-sv-php-template"
+                    "template": "startx-sv-mongo-build-template"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "STARTX"
@@ -383,7 +388,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-php:fc28"
+                            "name": "startx-sv-mongo:fc28"
                         },
                         "env": [
                             {
@@ -402,7 +407,7 @@
                 "resources": {},
                 "postCommit": {
                     "command": [
-                        "/bin/sx-php",
+                        "/bin/sx-mongo",
                         "post-build"
                     ]
                 }
@@ -417,20 +422,20 @@
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
-            "value": "www-php",
+            "value": "mongo",
             "required": true
         },
         {
             "name": "APP_TYPE",
             "displayName": "Application type",
             "description": "The type of the created application",
-            "value": "application"
+            "value": "database"
         },
         {
             "name": "SOURCE_GIT",
             "displayName": "Source repository",
             "description": "URL to the source code to use during build process",
-            "value": "https://github.com/startxfr/docker-images-example-php.git",
+            "value": "https://github.com/startxfr/docker-images-example-mongo.git",
             "required": true
         },
         {
@@ -447,6 +452,26 @@
             "generate": "expression",
             "from": "[a-zA-Z0-9]{24}",
             "required": true
+        },
+        {
+            "name": "MONGO_USER",
+            "displayName": "MongoDB user",
+            "description": "Default user to create",
+            "value": "demo",
+            "from": "[A-Z0-9]{8}",
+            "generate": "expression"
+        },
+        {
+            "name": "MONGO_PASSWORD",
+            "displayName": "MongoDB root password",
+            "description": "The mysql root password to use. Generated if not provided",
+            "from": "[A-Z0-9]{16}",
+            "generate": "expression"
+        },
+        {
+            "name": "MONGO_STORES",
+            "displayName": "MongoDB store",
+            "description": "list of the default's store to create"
         }
     ]
 }

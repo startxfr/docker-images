@@ -1,4 +1,4 @@
-server:
+memcache:
   build: ./
   container_name: "fc28-service-memcache"
   mem_limit: 2g

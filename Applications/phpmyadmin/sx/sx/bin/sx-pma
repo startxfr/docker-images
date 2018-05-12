@@ -11,7 +11,7 @@ case $1 in
     run|start)              pmaRun $@ ;;
     isLive)                 pmaIsLive $@ ;;
     isReady)                pmaIsReady $@ ;;
-    info)                   pmaInformation $@ ;;
+    info|--info)            pmaInformation $@ ;;
     usage|help|--help)      genericUsage $@ ;;
     usageS2i)               genericUsageS2I $@ ;;
     version|--version)      genericVersion $@ ;;
