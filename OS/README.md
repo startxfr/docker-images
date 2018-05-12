@@ -30,14 +30,6 @@ fedora:
   container_name: "os-fedora"
 ```
 
-### Using this image as S2I builder
-
-You can use this image as an s2i builder image. 
- ```bash
-s2i build https://github.com/startxfr/docker-images-example-bash startx/fedora test-fedora
-docker run --rm -i -t test-fedora
-```
-
 ### Using this image as Openshift Build image
 
 You can use this public image as a base image in your openshift build strategy. You can first import
@@ -56,10 +48,18 @@ oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/OS/
 oc process startx-os-fedora-build-template | oc create -f -
 ```
 
+### Using this image as S2I builder
+
+You can use this image as an s2i builder image. 
+```bash
+s2i build https://github.com/startxfr/docker-images-example-bash startx/fedora test-fedora
+docker run --rm -i -t test-fedora
+```
+
 ### Using this image as base container
 
-You can use this Dockerfile template to start a new personalized container based on this container
- ```
+You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
+```Dockerfile
 FROM startx/fedora:latest
 #... your container specifications
 CMD ["/bin/sx"]
@@ -75,7 +75,8 @@ CMD ["/bin/sx"]
 | SX_ID                     | `auto`   | `startx/fedora` | Container ID coresponding to the image repository 
 | SX_NAME                   | `auto`   | `yes`           | Container name
 | SX_SUMMARY                | `auto`   | `yes`           | Container purpose description
-
+| SX_VERBOSE                | `bool`   | `no`            | Display information about the execution
+| SX_DEBUG                  | `bool`   | `no`            | Display debug informations during execution
 
 ## For advanced users
 
