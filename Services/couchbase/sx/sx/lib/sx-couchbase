@@ -27,40 +27,40 @@ function displayCouchbaseRunInformation {
 }
 
 function couchbasePreDeploy {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
     echoVerbose "| "
     couchbaseInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     testAndRunSourceCodeScript "pre-deploy" 
 }
 
 function couchbasePostDeploy {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME  running POST-DEPLOY HOOK"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running POST-DEPLOY HOOK"
     echoVerbose "| "
     couchbaseInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     testAndRunSourceCodeScript "post-deploy" 
 }
 
 function couchbasePostBuild {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME  running POST-BUILD HOOK"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running POST-BUILD HOOK"
     echoVerbose "| "
     couchbaseInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     testAndRunSourceCodeScript "post-build" 
 }
 
 function couchbaseAssemble {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME  running ASSEMBLE"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running ASSEMBLE"
     echoVerbose "| "
     couchbaseInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     if [[ -d $S2I_DEST ]]; then
-        echo "Fixing perm on $S2I_DEST"
+        echoVerbose "Fixing perm on $S2I_DEST"
         chmod g=u -R $S2I_DEST
         moveSourceCode $S2I_DEST $APP_PATH
     fi
@@ -69,11 +69,11 @@ function couchbaseAssemble {
 }
 
 function couchbaseRun {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is RUNNING"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME is RUNNING"
     echoVerbose "| "
     couchbaseInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     startCouchbaseService
 }
 
@@ -89,11 +89,12 @@ function couchbaseIsReady {
 
 function stop_couchbase_handler {
     /opt/couchbase/bin/couchbase-server -k
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is now STOPPED"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME is now STOPPED"
+    echoNotVerbose "container is now stopped"
     echoVerbose "| "
     couchbaseInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     exit 143; # 128 + 15 -- SIGTERM
 }
 
@@ -105,15 +106,13 @@ function startCouchbaseService {
     initCreateDefaultDirectoryStructure
     trap 'stop_couchbase_handler;' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
     exec /opt/couchbase/bin/couchbase-server -- -kernel global_enable_tracing false -noinput
-    sleep 5
-    echo "test after cb
-    sleep 60"
+    sleep 10
 }
 
 
 function initCreateDefaultDirectoryStructure {
     if [[ ! -d $DATA_PATH/lib/couchbase ]]; then
-        echo "Creating basic data structure in $DATA_PATH"
+        echoVerbose "Creating basic data structure in $DATA_PATH"
         mkdir -p $DATA_PATH/lib/couchbase/config \
                  $DATA_PATH/lib/couchbase/data \
                  $DATA_PATH/lib/couchbase/stats \

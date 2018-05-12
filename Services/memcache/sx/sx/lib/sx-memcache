@@ -23,52 +23,53 @@ function displayMemcacheRunInformation {
 }
 
 function memcachePreDeploy {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
     echoVerbose "| "
     memcacheInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     testAndRunSourceCodeScript "pre-deploy" 
 }
 
 function memcachePostDeploy {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME  running POST-DEPLOY HOOK"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running POST-DEPLOY HOOK"
     echoVerbose "| "
     memcacheInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     testAndRunSourceCodeScript "post-deploy" 
 }
 
 function memcachePostBuild {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME  running POST-BUILD HOOK"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running POST-BUILD HOOK"
     echoVerbose "| "
     memcacheInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     testAndRunSourceCodeScript "post-build" 
 }
 
 function memcacheAssemble {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME  running ASSEMBLE"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running ASSEMBLE"
     echoVerbose "| "
     memcacheInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     if [[ -d $S2I_DEST ]]; then
-        echo "Fixing perm on $S2I_DEST"
-        chmod g=u -R $S2I_DEST
-        moveSourceCode $S2I_DEST $APP_PATH
-    fi
+      echoVerbose "Fixing perm on $S2I_DEST"
+      chown 1001:0 -R $S2I_DEST
+      chmod g=u -R $S2I_DEST
+      moveSourceCode $S2I_DEST $APP_PATH
+    fi;
     testAndRunSourceCodeScript "assemble" 
 }
 
 function memcacheRun {
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is RUNNING"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME is RUNNING"
     echoVerbose "| "
     memcacheInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     startMemcacheService
 }
 
@@ -84,11 +85,12 @@ function memcacheIsReady {
 
 function stop_memcache_handler {
     killall memcached
-    echo "+====================================================="
-    echo "| Container $HOSTNAME is now STOPPED"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME is now STOPPED"
+    echoNotVerbose "container is now stopped"
     echoVerbose "| "
     memcacheInformation "| "
-    echo "+====================================================="
+    echoVerbose "+====================================================="
     exit 143; # 128 + 15 -- SIGTERM
 }
 

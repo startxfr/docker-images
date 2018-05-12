@@ -2,7 +2,7 @@
 
 # get and store the operating system name
 OS=`cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g'`
-SXLIB_VERSION="0.1.10"
+SXLIB_VERSION="0.1.11"
 S2I_DEST=$SX_S2IDIR/src
 MYS2I_DEST=/tmp/mys2i
 
@@ -88,7 +88,6 @@ function genericAssemble {
     echoDebug `env`
     echoVerbose "+====================================================="
     echoVerbose "Fixing perm on $S2I_DEST"
-    # /tmp is s2i source code destination defined in Dockerfile
     if [[ -r $S2I_DEST ]]; then
       chown 1001:0 -R $S2I_DEST
       chmod g=u -R $S2I_DEST
