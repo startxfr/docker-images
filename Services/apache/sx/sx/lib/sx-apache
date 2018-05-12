@@ -116,10 +116,12 @@ function stopApacheHandler {
 function startApacheService {
     trap 'kill ${!}; stopApacheHandler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
     rm -rf /run/httpd/* /tmp/httpd*
+    touch $LOG_PATH/access.log
+    touch /var/log/httpd/access.log
     exec /usr/sbin/httpd -D FOREGROUND > $LOG_PATH/access.log &
     while true
     do
-        tail -f $LOG_PATH/access.log & wait ${!}
+        tail -f $LOG_PATH/*.log & tail -f /var/log/httpd/*.log & wait ${!}
     done
 }
 
