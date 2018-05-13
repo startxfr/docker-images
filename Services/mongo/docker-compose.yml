@@ -14,5 +14,5 @@ mongo:
     CONTAINER_SERVICE: "mongo"
     CONTAINER_INSTANCE: "fc27-service-mongo"
   volumes:
-    - "/tmp/container-fc27/logs/mongodb:/logs"
-    - "/tmp/container-fc27/mongodb:/data"
+    - "/tmp/container-fc27/logs/mongodb:/logs:z"
+    - "/tmp/container-fc27/mongodb:/data:z"

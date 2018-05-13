@@ -13,4 +13,4 @@ ooconv:
     CONTAINER_SERVICE: "ooconv"
     CONTAINER_INSTANCE: "fc27-service-ooconv"
   volumes:
-    - "/tmp/container-fc27/logs/ooconv:/logs"
+    - "/tmp/container-fc27/logs/ooconv:/logs:z"

@@ -31,8 +31,8 @@ service:
   image: startx/sv-nodejs:fc27
   container_name: "fc27-service-nodejs"
   volumes:
-    - "/tmp/container-fc27/logs/nodejs:/logs"
-    - "/tmp/container-fc27/nodejs:/data"
+    - "/tmp/container-fc27/logs/nodejs:/logs:z"
+    - "/tmp/container-fc27/nodejs:/data:z"
 ```
 
 ### Using this image as Openshift Build image
