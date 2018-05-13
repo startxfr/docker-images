@@ -13,5 +13,5 @@ nodejs:
     CONTAINER_SERVICE: "nodejs"
     CONTAINER_INSTANCE: "fc28-service-nodejs"
   volumes:
-    - "/tmp/container-fc28/logs/nodejs:/logs"
-    - "/tmp/container-fc28/nodejs:/data"
+    - "/tmp/container-fc28/logs/nodejs:/logs:z"
+    - "/tmp/container-fc28/nodejs:/data:z"
