@@ -41,7 +41,7 @@ RUN yum --nogpgcheck -y install httpd  && yum clean all && \
     rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf && \
     mkdir -p $DATA_PATH $APP_PATH $LOG_PATH && \
     chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /var/lib/sx /tmp && \
-    chown -R 1001:0 /bin/sx* /s2i /var/lib/sx /tmp && \
+    chown -R 1001:0 /bin/sx* /s2i /var/lib/sx /tmp $APP_PATH $DATA_PATH $LOG_PATH && \
     chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /var/lib/sx /tmp && \
     chmod ug+r $HTTPDCONF && \
     chmod -R ugo+x /bin/sx* && \
