@@ -30,8 +30,8 @@ service:
   image: startx/sv-mongo:alpine3
   container_name: "service-mongo-alpine3"
   volumes:
-    - "/tmp/container-alpine3/logs/mongo:/logs"
-    - "/tmp/container-alpine3/mongo:/data"
+    - "/tmp/container-alpine3/logs/mongo:/logs:z"
+    - "/tmp/container-alpine3/mongo:/data:z"
 ```
 
 ### Using this image as Openshift Build image

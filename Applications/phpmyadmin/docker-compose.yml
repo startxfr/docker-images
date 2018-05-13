@@ -7,4 +7,4 @@ phpmyadmin:
   ports:
     - "9215:8080"
   volumes:
-    - "/tmp/container-alpine3/phpmyadmin:/data"
+    - "/tmp/container-alpine3/phpmyadmin:/data:z"

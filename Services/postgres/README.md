@@ -37,8 +37,8 @@ service:
     POSTGRESQL_PASSWORD: "pwd-test"
     POSTGRESQL_DATABASE: "db_test"
   volumes:
-    - "/tmp/container-alpine3/logs/postgres:/data/logs/postgres"
-    - "/tmp/container-alpine3/postgres:/data/postgres"
+    - "/tmp/container-alpine3/logs/postgres:/logs:z"
+    - "/tmp/container-alpine3/postgres:/data:z"
 ```
 
 ### Using this image as Openshift Build image

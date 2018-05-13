@@ -14,5 +14,5 @@ mongo:
     CONTAINER_SERVICE: "mongo"
     CONTAINER_INSTANCE: "alpine3-service-mongo"
   volumes:
-    - "/tmp/container-alpine3/logs/mongodb:/logs"
-    - "/tmp/container-alpine3/mongodb:/data"
+    - "/tmp/container-alpine3/logs/mongodb:/logs:z"
+    - "/tmp/container-alpine3/mongodb:/data:z"

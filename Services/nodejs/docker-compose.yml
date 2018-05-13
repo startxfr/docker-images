@@ -13,5 +13,5 @@ nodejs:
     CONTAINER_SERVICE: "nodejs"
     CONTAINER_INSTANCE: "alpine3-service-nodejs"
   volumes:
-    - "/tmp/container-alpine3/logs/nodejs:/logs"
-    - "/tmp/container-alpine3/nodejs:/data"
+    - "/tmp/container-alpine3/logs/nodejs:/logs:z"
+    - "/tmp/container-alpine3/nodejs:/data:z"

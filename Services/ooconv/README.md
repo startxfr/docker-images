@@ -30,7 +30,7 @@ service:
   image: startx/sv-ooconv:alpine3
   container_name: "service-ooconv-alpine3"
   volumes:
-    - "/tmp/container-alpine3/logs/ooconv:/logs"
+    - "/tmp/container-alpine3/logs/ooconv:/logs:z"
 ```
 
 ### Using this image as Openshift Build image

@@ -13,4 +13,4 @@ ooconv:
     CONTAINER_SERVICE: "ooconv"
     CONTAINER_INSTANCE: "alpine3-service-ooconv"
   volumes:
-    - "/tmp/container-alpine3/logs/ooconv:/logs"
+    - "/tmp/container-alpine3/logs/ooconv:/logs:z"

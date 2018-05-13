@@ -7,4 +7,4 @@ php:
   ports:
     - "9213:8080"
   volumes:
-    - "/tmp/container-alpine3/php:/data"
+    - "/tmp/container-alpine3/php:/data:z"

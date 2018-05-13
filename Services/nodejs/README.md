@@ -31,8 +31,8 @@ service:
   image: startx/sv-nodejs:alpine3
   container_name: "service-nodejs-alpine3"
   volumes:
-    - "/tmp/container-alpine3/logs/nodejs:/logs"
-    - "/tmp/container-alpine3/nodejs:/data"
+    - "/tmp/container-alpine3/logs/nodejs:/logs:z"
+    - "/tmp/container-alpine3/nodejs:/data:z"
 ```
 
 ### Using this image as Openshift Build image

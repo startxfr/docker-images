@@ -30,8 +30,8 @@ service:
   image: startx/sv-apache:alpine3
   container_name: "service-apache-alpine3"
   volumes:
-    - "/tmp/container-alpine3/logs/apache:/logs"
-    - "/tmp/container-alpine3/apache:/data"
+    - "/tmp/container-alpine3/logs/apache:/logs:z"
+    - "/tmp/container-alpine3/apache:/data:z"
 ```
 
 ### Using this image as Openshift Build image
