@@ -40,4 +40,3 @@ your project and start using stable or experimental applications in your applica
 | **ooconv**          | `docker run -d -p XXX:XXX --name="alpine3-ooconv" startx/sv-ooconv:alpine3`          | 
 | **php**             | `docker run -d -p 80:80 --name="alpine3-php" startx/sv-php:alpine3`                  | 
 | **postgreSQL**      | `docker run -d -p 5432:5432 --name="alpine3-postgres" startx/sv-postgres:alpine3`    | 
-| **Couchbase**       | `docker run -d -p 8091:8091 --name="alpine3-couchbase" startx/sv-couchbase:alpine3`  | 
