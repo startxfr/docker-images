@@ -15,6 +15,8 @@ OS, services and application you will find in this project will be closer to you
 Please **read each container manual** for more information on how you can use it in 
 your project and start using stable or experimental services in your applications
 
+**Startx Fedora 26 containers are no longer updated. They are stopped on the v0.1.6 sxlib release and are stabilized in dockerhub registry**
+
 ## OS, Services and Applications guidelines
 
 | Type                    | Manual                             | Available                                                        | Running sample                                                         | Flavours
