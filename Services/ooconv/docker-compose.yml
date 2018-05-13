@@ -7,7 +7,7 @@ ooconv:
   restart: "on-failure:2"
   privileged: true
   ports:
-    - "9271:2002"
+    - "9275:2002"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "ooconv"
