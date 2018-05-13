@@ -28,6 +28,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 RUN cd $APP_PATH && \
+    yum --nogpgcheck -y install unzip && \
     wget -q https://files.phpmyadmin.net/phpMyAdmin/4.7.7/phpMyAdmin-4.7.7-all-languages.zip && \
     unzip phpMyAdmin-4.7.7-all-languages.zip && \
     rm -f phpMyAdmin-4.7.7-all-languages.zip && \
