@@ -23,8 +23,8 @@ service:
   image: startx/sv-couchbase:centos7
   container_name: "service-couchbase-centos7"
   volumes:
-    - "/tmp/container-centos7/logs/couchbase:/logs"
-    - "/tmp/container-centos7/couchbase:/data"
+    - "/tmp/container-centos7/logs/couchbase:/logs:z"
+    - "/tmp/container-centos7/couchbase:/data:z"
 ```
 
 ### Using this image as Openshift Build image

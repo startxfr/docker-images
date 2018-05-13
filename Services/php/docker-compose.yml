@@ -7,4 +7,4 @@ php:
   ports:
     - "9213:8080"
   volumes:
-    - "/tmp/container-centos7/php:/data"
+    - "/tmp/container-centos7/php:/data:z"

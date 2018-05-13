@@ -13,4 +13,4 @@ ooconv:
     CONTAINER_SERVICE: "ooconv"
     CONTAINER_INSTANCE: "centos7-service-ooconv"
   volumes:
-    - "/tmp/container-centos7/logs/ooconv:/logs"
+    - "/tmp/container-centos7/logs/ooconv:/logs:z"

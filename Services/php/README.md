@@ -31,8 +31,8 @@ service:
   environment:
     SERVER_NAME: "localhost"
   volumes:
-    - "/tmp/container-centos7/logs/php:/logs"
-    - "/tmp/container-centos7/php:/data"
+    - "/tmp/container-centos7/logs/php:/logs:z"
+    - "/tmp/container-centos7/php:/data:z"
 ```
 
 ### Using this image as Openshift Build image
