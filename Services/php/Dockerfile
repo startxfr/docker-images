@@ -34,18 +34,17 @@ RUN yum --nogpgcheck -y install php php-cli php-pear \
         php-gd php-mcrypt php-mysqlnd php-soap \
         php-pdo php-process php-common php-mbstring \
         php-bcmath php-php-gettext php-tcpdf \
-        php-tcpdf-dejavu-sans-fonts php-tidy php-fpm && \
+        php-tcpdf-dejavu-sans-fonts php-tidy && \
     yum clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     chmod ug+r $HTTPDCONF && \
-    mkdir /run/php-fpm  && \
-    chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /var/lib/sx /tmp /run/php-fpm && \
-    chmod -R ug+rw $APP_PATH $DATA_PATH $LOG_PATH /run/php-fpm && \
-    chown -R 1001:0 /bin/sx* /s2i /var/lib/sx /tmp $APP_PATH $DATA_PATH $LOG_PATH /run/php-fpm && \
-    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /var/lib/sx /tmp /run/php-fpm && \
+    chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /var/lib/sx /tmp && \
+    chmod -R ug+rw $APP_PATH $DATA_PATH $LOG_PATH && \
+    chown -R 1001:0 /bin/sx* /s2i /var/lib/sx /tmp $APP_PATH $DATA_PATH $LOG_PATH && \
+    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /var/lib/sx /tmp && \
     chmod -R ugo+x /bin/sx*
 COPY index.php $APP_PATH/index.php
 RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH && rm -rf $APP_PATH/index.html
