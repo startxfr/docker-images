@@ -1,4 +1,6 @@
-# Docker OS Images : COUCHBASE
+<img align="right" height="50" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true">
+
+# Docker OS Images : COUCHBASE on Fedora 28
 
 Simple container used to deliver distributed and low latency document oriented database
 Run [couchbase daemon](https://www.couchbase.org/) under a container 

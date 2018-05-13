@@ -2,7 +2,7 @@
 
 # get and store the operating system name
 OS=`cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g'`
-SXLIB_VERSION="0.1.12"
+SXLIB_VERSION="0.1.14"
 S2I_DEST=$SX_S2IDIR/src
 MYS2I_DEST=/tmp/mys2i
 
@@ -44,6 +44,7 @@ function echoDebug {
 
 # function executed when pre-deploy hook is called
 function genericPreDeploy {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME running PRE-DEPLOY HOOK"
     echoNotVerbose "container $HOSTNAME running PRE-DEPLOY HOOK"
@@ -56,6 +57,7 @@ function genericPreDeploy {
 
 # function executed when post-deploy hook is called
 function genericPostDeploy {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running POST-DEPLOY HOOK"
     echoNotVerbose "container $HOSTNAME  running POST-DEPLOY HOOK"
@@ -68,6 +70,7 @@ function genericPostDeploy {
 
 # function executed when pre-build hook is called
 function genericPostBuild {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running POST-BUILD HOOK"
     echoNotVerbose "container $HOSTNAME  running POST-BUILD HOOK"
@@ -80,6 +83,7 @@ function genericPostBuild {
 
 # function executed when assemble hook is called
 function genericAssemble {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running ASSEMBLE"
     echoNotVerbose "container $HOSTNAME  running ASSEMBLE"
@@ -98,6 +102,7 @@ function genericAssemble {
 
 # function executed on container startup
 function genericRun {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME is RUNNING"
     echoNotVerbose "container $HOSTNAME is RUNNING"
@@ -115,6 +120,7 @@ function genericRun {
 
 # Display general usage
 function genericUsage {
+genericHeader
 echoVerbose "+====================================================="
 displayInformation "| "
 echoDebug `env`
@@ -145,6 +151,7 @@ exit 0;
 
 # Display S2I usage
 function genericUsageS2I {
+genericHeader
 echoVerbose "+====================================================="
 displayInformation "| "
 echoDebug `env`
@@ -164,10 +171,7 @@ exit 0;
 
 # Display general welcome message
 function genericWelcome {
-echoVerbose "+====================================================="
-displayInformation "| "
-echoDebug `env`
-echoVerbose "+====================================================="
+genericHeader
 cat <<EOF
 
 Welcome to the $SX_ID base image. If you see this message, you have
@@ -176,7 +180,26 @@ probably run this container without arguments. See usage for more informations.
 docker run $SX_ID /bin/sx usage
 
 EOF
+genericUsage
 exit 0;
+}
+
+# Display general header
+function genericHeader {
+if [[ "$SX_VERBOSE" == true || "$SX_VERBOSE" == "true" ]] ; then
+cat <<EOF
+  ____  _             _                                                 
+ / ___|| |_ __ _ _ __| |___  __                                         
+ \___ \| __/ _` | '__| __\ \/ /                                         
+  ___) | || (_| | |  | |_ >  <                                          
+ |____/ \__\__,_|_|_  \__/_/\_\       _                                 
+ |  _ \  ___   ___| | _____ _ __     (_)_ __ ___   __ _  __ _  ___  ___ 
+ | | | |/ _ \ / __| |/ / _ \ '__|____| | '_ ` _ \ / _` |/ _` |/ _ \/ __|
+ | |_| | (_) | (__|   <  __/ | |_____| | | | | | | (_| | (_| |  __/\__ \
+ |____/ \___/ \___|_|\_\___|_|       |_|_| |_| |_|\__,_|\__, |\___||___/
+                                                        |___/ 
+EOF
+fi 
 }
 
 # Display information
