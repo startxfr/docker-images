@@ -29,8 +29,10 @@ function displayMysqlRunInformation {
 }
 
 function mysqlPreDeploy {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
+    echoNotVerbose "container $HOSTNAME  running PRE-DEPLOY HOOK"
     echoVerbose "| "
     mysqlInformation "| "
     echoVerbose "+====================================================="
@@ -38,8 +40,10 @@ function mysqlPreDeploy {
 }
 
 function mysqlPostDeploy {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running POST-DEPLOY HOOK"
+    echoNotVerbose "container $HOSTNAME  running POST-DEPLOY HOOK"
     echoVerbose "| "
     mysqlInformation "| "
     echoVerbose "+====================================================="
@@ -47,8 +51,10 @@ function mysqlPostDeploy {
 }
 
 function mysqlPostBuild {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running POST-BUILD HOOK"
+    echoNotVerbose "container $HOSTNAME  running POST-BUILD HOOK"
     echoVerbose "| "
     mysqlInformation "| "
     echoVerbose "+====================================================="
@@ -56,8 +62,10 @@ function mysqlPostBuild {
 }
 
 function mysqlAssemble {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running ASSEMBLE"
+    echoNotVerbose "container $HOSTNAME  running ASSEMBLE"
     echoVerbose "| "
     mysqlInformation "| "
     echoVerbose "+====================================================="
@@ -73,8 +81,10 @@ function mysqlAssemble {
 }
 
 function mysqlRun {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME is RUNNING"
+    echoNotVerbose "container $HOSTNAME is RUNNING"
     echoVerbose "| "
     mysqlInformation "| "
     echoVerbose "+====================================================="

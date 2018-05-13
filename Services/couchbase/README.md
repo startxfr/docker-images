@@ -1,3 +1,5 @@
+<img align="right" height="50" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true">
+
 # Docker OS Images : COUCHBASE on CentOS 7
 
 Simple container used to deliver distributed and low latency document oriented database

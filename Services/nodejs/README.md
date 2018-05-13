@@ -1,3 +1,5 @@
+<img align="right" height="50" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true">
+
 # Docker OS Images : NODEJS on CentOS 7
 
 Simple container used to run server side executed javascript content. include all nodejs and npm dependency.

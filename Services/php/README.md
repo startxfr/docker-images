@@ -1,3 +1,5 @@
+<img align="right" height="50" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true">
+
 # Docker OS Images : APACHE + PHP on CentOS 7
 
 Simple container used to deliver dynamic http content using php associated with PHP engine

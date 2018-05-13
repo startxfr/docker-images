@@ -1,4 +1,6 @@
-# Docker OS Images : POSTGRESQL on CentOS 7
+<img align="right" height="50" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true">
+
+# Docker OS Images : POSTGRESQL on CentOS 7x
 
 Simple container used to deliver highly reliable and configurable transactional database service using postgresql opensource project.
 Run [postgres daemon](http://www.postgresql.org/) under a container 
