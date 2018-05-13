@@ -30,7 +30,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum --nogpgcheck -y install centos-release-scl  && \
+RUN yum --nogpgcheck -y --enablerepo=epel install centos-release-scl  && \
     yum-config-manager --enable rhel-server-rhscl-7-rpms  && \
     yum --nogpgcheck -y install  mongodb24  && \
     yum clean all  && \
