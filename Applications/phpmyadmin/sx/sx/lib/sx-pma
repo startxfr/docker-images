@@ -53,8 +53,8 @@ function pmaAssemble {
     echoNotVerbose "container $HOSTNAME  running ASSEMBLE"
     echoVerbose "| "
     pmaInformation "| "
-    echo "+====================================================="
-    echoVerbose "Fixing perm on $S2I_DEST"
+    echoVerbose "+====================================================="
+    echo "Fixing perm on $S2I_DEST"
     if [[ -r $S2I_DEST ]]; then
       chown 1001:0 -R $S2I_DEST
       chmod g=u -R $S2I_DEST

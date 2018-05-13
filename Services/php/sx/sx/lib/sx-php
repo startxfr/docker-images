@@ -54,7 +54,7 @@ function phpAssemble {
     phpInformation "| "
     echoVerbose "+====================================================="
     if [[ -d $S2I_DEST ]]; then
-      echoVerbose "Fixing perm on $S2I_DEST"
+      echo "Fixing perm on $S2I_DEST"
       chown 1001:0 -R $S2I_DEST
       chmod g=u -R $S2I_DEST
       moveSourceCode $S2I_DEST $APP_PATH
