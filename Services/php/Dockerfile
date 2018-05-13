@@ -41,9 +41,10 @@ RUN yum --nogpgcheck -y install php php-cli php-pear \
     mv /tmp/sx/lib/* /var/lib/sx/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     chmod ug+r $HTTPDCONF && \
-    chgrp -R 0 /bin/sx* /s2i && \
-    chown -R 1001:0 /bin/sx* /s2i && \
-    chmod -R g=u /bin/sx* /s2i && \
+    chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /var/lib/sx /tmp && \
+    chmod -R ug+rw $APP_PATH $DATA_PATH $LOG_PATH && \
+    chown -R 1001:0 /bin/sx* /s2i /var/lib/sx /tmp $APP_PATH $DATA_PATH $LOG_PATH && \
+    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /var/lib/sx /tmp && \
     chmod -R ugo+x /bin/sx*
 COPY index.php $APP_PATH/index.php
 RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH && rm -rf $APP_PATH/index.html
