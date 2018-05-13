@@ -23,8 +23,8 @@ service:
   image: startx/sv-apache:centos6
   container_name: "service-apache"
   volumes:
-    - "/tmp/container-centos6/logs/apache:/logs"
-    - "/tmp/container-centos6/apache:/data"
+    - "/tmp/container-centos6/logs/apache:/logs:z"
+    - "/tmp/container-centos6/apache:/data:z"
 ```
 
 ### Using this image as Openshift Build image

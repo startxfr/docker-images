@@ -30,8 +30,8 @@ service:
   image: startx/sv-nodejs:centos6
   container_name: "service-nodejs-centos6"
   volumes:
-    - "/tmp/container-centos6/logs/nodejs:/logs"
-    - "/tmp/container-centos6/nodejs:/data"
+    - "/tmp/container-centos6/logs/nodejs:/logs:z"
+    - "/tmp/container-centos6/nodejs:/data:z"
 ```
 
 ### Using this image as Openshift Build image

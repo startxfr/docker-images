@@ -13,5 +13,5 @@ nodejs:
     CONTAINER_SERVICE: "nodejs"
     CONTAINER_INSTANCE: "centos6-service-nodejs"
   volumes:
-    - "/tmp/container-centos6/logs/nodejs:/logs"
-    - "/tmp/container-centos6/nodejs:/data"
+    - "/tmp/container-centos6/logs/nodejs:/logs:z"
+    - "/tmp/container-centos6/nodejs:/data:z"

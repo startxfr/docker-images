@@ -36,8 +36,8 @@ service:
     POSTGRESQL_PASSWORD: "pwd-test"
     POSTGRESQL_DATABASE: "db_test"
   volumes:
-    - "/tmp/container-centos6/logs/postgres:/logs"
-    - "/tmp/container-centos6/postgres:/data"
+    - "/tmp/container-centos6/logs/postgres:/logs:z"
+    - "/tmp/container-centos6/postgres:/data:z"
 ```
 
 ### Using this image as Openshift Build image

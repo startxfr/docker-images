@@ -29,8 +29,8 @@ service:
   image: startx/sv-mongo:centos6
   container_name: "service-mongo-centos6"
   volumes:
-    - "/tmp/container-centos6/logs/mongo:/logs"
-    - "/tmp/container-centos6/mongo:/data"
+    - "/tmp/container-centos6/logs/mongo:/logs:z"
+    - "/tmp/container-centos6/mongo:/data:z"
 ```
 
 ### Using this image as Openshift Build image

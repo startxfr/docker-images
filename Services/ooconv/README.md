@@ -29,7 +29,7 @@ service:
   image: startx/sv-ooconv:centos6
   container_name: "service-ooconv-centos6"
   volumes:
-    - "/tmp/container-centos6/logs/ooconv:/logs"
+    - "/tmp/container-centos6/logs/ooconv:/logs:z"
 ```
 
 ### Using this image as Openshift Build image

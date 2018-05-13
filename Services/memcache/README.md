@@ -29,7 +29,7 @@ service:
   image: startx/sv-memcache:centos6
   container_name: "service-memcache-centos6"
   volumes:
-    - "/tmp/container-centos6/logs/memcache:/logs"
+    - "/tmp/container-centos6/logs/memcache:/logs:z"
 ```
 
 ### Using this image as Openshift Build image

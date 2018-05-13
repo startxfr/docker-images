@@ -7,4 +7,4 @@ phpmyadmin:
   ports:
     - "9215:8080"
   volumes:
-    - "/tmp/container-centos6/phpmyadmin:/data"
+    - "/tmp/container-centos6/phpmyadmin:/data:z"

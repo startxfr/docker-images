@@ -17,5 +17,5 @@ mariadb:
     MYSQL_PASSWORD: "pwd-test"
     MYSQL_DATABASE: "db_test"
   volumes:
-    - "/tmp/container-centos6/logs/mariadb:/logs"
-    - "/tmp/container-centos6/mariadb:/data"
+    - "/tmp/container-centos6/logs/mariadb:/logs:z"
+    - "/tmp/container-centos6/mariadb:/data:z"
