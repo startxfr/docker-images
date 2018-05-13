@@ -31,8 +31,10 @@ function apacheInformation {
 
 # function executed when pre-deploy hook is called
 function apachePreDeploy {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
+    echoNotVerbose "container $HOSTNAME  running PRE-DEPLOY HOOK"
     echoVerbose "| "
     apacheInformation "| "
     echoVerbose "+====================================================="
@@ -41,8 +43,10 @@ function apachePreDeploy {
 
 # function executed when post-deploy hook is called
 function apachePostDeploy {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running POST-DEPLOY HOOK"
+    echoNotVerbose "container $HOSTNAME  running POST-DEPLOY HOOK"
     echoVerbose "| "
     apacheInformation "| "
     echoVerbose "+====================================================="
@@ -51,8 +55,10 @@ function apachePostDeploy {
 
 # function executed when pre-build hook is called
 function apachePostBuild {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running POST-BUILD HOOK"
+    echoNotVerbose "container $HOSTNAME  running POST-BUILD HOOK"
     echoVerbose "| "
     apacheInformation "| "
     echoVerbose "+====================================================="
@@ -61,8 +67,10 @@ function apachePostBuild {
 
 # function executed when assemble hook is called
 function apacheAssemble {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running ASSEMBLE"
+    echoNotVerbose "container $HOSTNAME  running ASSEMBLE"
     echoVerbose "| "
     apacheInformation "| "
     echoVerbose "+====================================================="
@@ -77,8 +85,10 @@ function apacheAssemble {
 
 # function executed on container startup
 function apacheRun {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME is RUNNING"
+    echoNotVerbose "container $HOSTNAME is RUNNING"
     echoVerbose "| "
     apacheInformation "| "
     echoVerbose "+====================================================="

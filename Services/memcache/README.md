@@ -1,3 +1,5 @@
+<img align="right" height="50" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true">
+
 # Docker OS Images : MEMCACHE on CentOS 6
 
 Simple container used to deliver distributed memory object caching system

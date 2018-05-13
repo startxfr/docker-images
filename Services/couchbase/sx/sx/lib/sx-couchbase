@@ -27,8 +27,10 @@ function displayCouchbaseRunInformation {
 }
 
 function couchbasePreDeploy {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
+    echoNotVerbose "container $HOSTNAME  running PRE-DEPLOY HOOK"
     echoVerbose "| "
     couchbaseInformation "| "
     echoVerbose "+====================================================="
@@ -36,8 +38,10 @@ function couchbasePreDeploy {
 }
 
 function couchbasePostDeploy {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running POST-DEPLOY HOOK"
+    echoNotVerbose "container $HOSTNAME  running POST-DEPLOY HOOK"
     echoVerbose "| "
     couchbaseInformation "| "
     echoVerbose "+====================================================="
@@ -45,8 +49,10 @@ function couchbasePostDeploy {
 }
 
 function couchbasePostBuild {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running POST-BUILD HOOK"
+    echoNotVerbose "container $HOSTNAME  running POST-BUILD HOOK"
     echoVerbose "| "
     couchbaseInformation "| "
     echoVerbose "+====================================================="
@@ -54,8 +60,10 @@ function couchbasePostBuild {
 }
 
 function couchbaseAssemble {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running ASSEMBLE"
+    echoNotVerbose "container $HOSTNAME  running ASSEMBLE"
     echoVerbose "| "
     couchbaseInformation "| "
     echoVerbose "+====================================================="
@@ -69,8 +77,10 @@ function couchbaseAssemble {
 }
 
 function couchbaseRun {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME is RUNNING"
+    echoNotVerbose "container $HOSTNAME is RUNNING"
     echoVerbose "| "
     couchbaseInformation "| "
     echoVerbose "+====================================================="
