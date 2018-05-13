@@ -30,7 +30,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum --nogpgcheck -y install mongodb mongodb-server  && \
+RUN yum --nogpgcheck --enablerepo=epel -y install mongodb-server  && \
     yum clean all  && \
     usermod -a -G 0 mongodb && \
     mkdir -p $DATA_PATH && \
