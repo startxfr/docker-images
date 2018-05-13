@@ -1,3 +1,5 @@
+<img align="right" height="50" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true">
+
 # Docker OS Images : OOCONV on Fedora 27
 
 Simple container used to document convertion and manipulation tools

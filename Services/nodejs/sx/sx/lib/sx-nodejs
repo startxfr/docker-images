@@ -32,8 +32,10 @@ function nodejsInformation {
 
 # function executed when pre-deploy hook is called
 function nodejsPreDeploy {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
+    echoNotVerbose "container $HOSTNAME  running PRE-DEPLOY HOOK"
     echoVerbose "| "
     nodejsInformation "| "
     echoVerbose "+====================================================="
@@ -42,8 +44,10 @@ function nodejsPreDeploy {
 
 # function executed when post-deploy hook is called
 function nodejsPostDeploy {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running POST-DEPLOY HOOK"
+    echoNotVerbose "container $HOSTNAME  running POST-DEPLOY HOOK"
     echoVerbose "| "
     nodejsInformation "| "
     echoVerbose "+====================================================="
@@ -52,8 +56,10 @@ function nodejsPostDeploy {
 
 # function executed when pre-build hook is called
 function nodejsPostBuild {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running POST-BUILD HOOK"
+    echoNotVerbose "container $HOSTNAME  running POST-BUILD HOOK"
     echoVerbose "| "
     nodejsInformation "| "
     echoVerbose "+====================================================="
@@ -62,8 +68,10 @@ function nodejsPostBuild {
 
 # function executed when assemble hook is called
 function nodejsAssemble {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running ASSEMBLE"
+    echoNotVerbose "container $HOSTNAME  running ASSEMBLE"
     echoVerbose "| "
     nodejsInformation "| "
     echoVerbose "+====================================================="
@@ -79,8 +87,10 @@ function nodejsAssemble {
 
 # function executed on container startup
 function nodejsRun {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME is RUNNING"
+    echoNotVerbose "container $HOSTNAME is RUNNING"
     echoVerbose "| "
     nodejsInformation "| "
     echoVerbose "+====================================================="

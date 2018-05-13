@@ -1,3 +1,5 @@
+<img align="right" height="50" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true">
+
 # Docker OS Images : POSTGRESQL on Fedora 27
 
 Simple container used to deliver highly reliable and configurable transactional database service using postgresql opensource project.
