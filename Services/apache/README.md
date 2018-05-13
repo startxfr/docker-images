@@ -30,8 +30,8 @@ service:
   image: startx/sv-apache:latest
   container_name: "service-apache"
   volumes:
-    - "/tmp/container/logs/apache:/logs"
-    - "/tmp/container/apache:/data"
+    - "/tmp/container/logs/apache:/logs:z"
+    - "/tmp/container/apache:/data:z"
 ```
 
 ### Using this image as Openshift Build image

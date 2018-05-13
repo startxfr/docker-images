@@ -30,7 +30,7 @@ service:
   image: startx/sv-ooconv:latest
   container_name: "service-ooconv"
   volumes:
-    - "/tmp/container/logs/ooconv:/logs"
+    - "/tmp/container/logs/ooconv:/logs:z"
 ```
 
 ### Using this image as Openshift Build image

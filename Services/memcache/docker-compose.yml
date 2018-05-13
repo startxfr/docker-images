@@ -13,4 +13,4 @@ memcache:
     CONTAINER_SERVICE: "memcache"
     CONTAINER_INSTANCE: "service-memcache"
   volumes:
-    - "/tmp/container/logs/memcache:/logs"
+    - "/tmp/container/logs/memcache:/logs:z"

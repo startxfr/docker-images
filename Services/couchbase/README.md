@@ -23,8 +23,8 @@ service:
   image: startx/sv-couchbase:latest
   container_name: "service-couchbase"
   volumes:
-    - "/tmp/container/logs/couchbase:/logs"
-    - "/tmp/container/couchbase:/data"
+    - "/tmp/container/logs/couchbase:/logs:z"
+    - "/tmp/container/couchbase:/data:z"
 ```
 
 ### Using this image as Openshift Build image
