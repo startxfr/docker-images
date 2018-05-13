@@ -20,8 +20,10 @@ function displayOOconvRunInformation {
 }
 
 function ooconvPreDeploy {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
+    echoNotVerbose "container $HOSTNAME  running PRE-DEPLOY HOOK"
     echoVerbose "| "
     ooconvInformation "| "
     echoVerbose "+====================================================="
@@ -29,8 +31,10 @@ function ooconvPreDeploy {
 }
 
 function ooconvPostDeploy {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running POST-DEPLOY HOOK"
+    echoNotVerbose "container $HOSTNAME  running POST-DEPLOY HOOK"
     echoVerbose "| "
     ooconvInformation "| "
     echoVerbose "+====================================================="
@@ -38,8 +42,10 @@ function ooconvPostDeploy {
 }
 
 function ooconvPostBuild {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running POST-BUILD HOOK"
+    echoNotVerbose "container $HOSTNAME  running POST-BUILD HOOK"
     echoVerbose "| "
     ooconvInformation "| "
     echoVerbose "+====================================================="
@@ -47,8 +53,10 @@ function ooconvPostBuild {
 }
 
 function ooconvAssemble {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running ASSEMBLE"
+    echoNotVerbose "container $HOSTNAME  running ASSEMBLE"
     echoVerbose "| "
     ooconvInformation "| "
     echoVerbose "+====================================================="
@@ -62,8 +70,10 @@ function ooconvAssemble {
 }
 
 function ooconvRun {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME is RUNNING"
+    echoNotVerbose "container $HOSTNAME is RUNNING"
     echoVerbose "| "
     ooconvInformation "| "
     echoVerbose "+====================================================="

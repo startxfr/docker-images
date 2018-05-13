@@ -35,8 +35,10 @@ function displayPostgresRunInformation {
 }
 
 function postgresPreDeploy {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
+    echoNotVerbose "container $HOSTNAME  running PRE-DEPLOY HOOK"
     echoVerbose "| "
     postgresInformation "| "
     echoVerbose "+====================================================="
@@ -44,8 +46,10 @@ function postgresPreDeploy {
 }
 
 function postgresPostDeploy {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running POST-DEPLOY HOOK"
+    echoNotVerbose "container $HOSTNAME  running POST-DEPLOY HOOK"
     echoVerbose "| "
     postgresInformation "| "
     echoVerbose "+====================================================="
@@ -53,8 +57,10 @@ function postgresPostDeploy {
 }
 
 function postgresPostBuild {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running POST-BUILD HOOK"
+    echoNotVerbose "container $HOSTNAME  running POST-BUILD HOOK"
     echoVerbose "| "
     postgresInformation "| "
     echoVerbose "+====================================================="
@@ -62,8 +68,10 @@ function postgresPostBuild {
 }
 
 function postgresAssemble {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME  running ASSEMBLE"
+    echoNotVerbose "container $HOSTNAME  running ASSEMBLE"
     echoVerbose "| "
     postgresInformation "| "
     echoVerbose "+====================================================="
@@ -77,8 +85,10 @@ function postgresAssemble {
 }
 
 function postgresRun {
+    genericHeader
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME is RUNNING"
+    echoNotVerbose "container $HOSTNAME is RUNNING"
     echoVerbose "| "
     postgresInformation "| "
     echoVerbose "+====================================================="
