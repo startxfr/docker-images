@@ -71,6 +71,10 @@ function phpRun {
     echoVerbose "| "
     phpInformation "| "
     echoVerbose "+====================================================="
+    startPhpService
+}
+
+function startPhpService {
     if [[ -x /usr/sbin/php-fpm ]]; then
       echo "starting php-fpm process"
       /usr/sbin/php-fpm -D
@@ -78,7 +82,6 @@ function phpRun {
       echo "starting php-fpm process"
       /usr/sbin/php-fpm7 -D
     fi;
-    
     startApacheService
 }
 

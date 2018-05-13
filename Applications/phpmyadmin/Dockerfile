@@ -35,10 +35,10 @@ RUN cd $APP_PATH && \
     rm -rf phpMyAdmin-4.7.7-all-languages  && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \
-    chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /var/lib/sx /tmp && \
-    chmod -R ug+rw $APP_PATH $DATA_PATH $LOG_PATH && \
-    chown -R 1001:0 /bin/sx* /s2i /var/lib/sx /tmp $APP_PATH $DATA_PATH $LOG_PATH && \
-    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /var/lib/sx /tmp && \
+    chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /var/lib/sx /tmp /var/lib/php && \
+    chmod -R ug+rw $APP_PATH $DATA_PATH $LOG_PATH /var/lib/php && \
+    chown -R 1001:0 /bin/sx* /s2i /var/lib/sx /tmp $APP_PATH $DATA_PATH $LOG_PATH /var/lib/php && \
+    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /var/lib/sx /tmp /var/lib/php && \
     chmod -R ugo+x /bin/sx*
 COPY config.inc.php $APP_PATH/config.inc.php
 RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH && rm -rf $APP_PATH/index.html

@@ -72,7 +72,7 @@ function pmaRun {
     echoVerbose "| "
     pmaInformation "| "
     echoVerbose "+====================================================="
-    startApacheService
+    startPhpService
 }
 
 # Display liveness status
