@@ -15,6 +15,8 @@ OS, services and application you will find here will be closer to your favorite 
 Please **read each container manual** for more information on how you can use it in 
 your project and start using stable or experimental services in your applications
 
+**Startx Fedora 20 containers are no longer updated. They are stopped on the v0.1.6 sxlib release and are stabilized in dockerhub registry**
+
 | [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc20)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx) | [Sources](https://github.com/startxfr/docker-images/)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------|
 
