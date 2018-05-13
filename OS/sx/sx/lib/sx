@@ -2,7 +2,7 @@
 
 # get and store the operating system name
 OS=`cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g'`
-SXLIB_VERSION="0.2.2"
+SXLIB_VERSION="0.2.6"
 S2I_DEST=$SX_S2IDIR/src
 MYS2I_DEST=/tmp/mys2i
 
@@ -188,16 +188,16 @@ exit 0;
 function genericHeader {
 if [[ "$SX_VERBOSE" == true || "$SX_VERBOSE" == "true" ]] ; then
 cat << "EOF"
-  ____  _             _         
- / ___|| |_ __ _ _ __| |___  __ 
- \___ \| __/ _` | '__| __\ \/ / 
-  ___) | || (_| | |  | |_ >  <  
- |____/ \__\__,_|_|_  \__/_/\_\       _
- |  _ \  ___   ___| | _____ _ __     (_)_ __ ___   __ _  __ _  ___  ___  
- | | | |/ _ \ / __| |/ / _ \ '__|____| | '_ ` _ \ / _` |/ _` |/ _ \/ __| 
- | |_| | (_) | (__|   <  __/ | |_____| | | | | | | (_| | (_| |  __/\__ \ 
- |____/ \___/ \___|_|\_\___|_|       |_|_| |_| |_|\__,_|\__, |\___||___/ 
-                                                        |___/ 
+|    ____  _             _         
+|   / ___|| |_ __ _ _ __| |___  __ 
+|   \___ \| __/ _` | '__| __\ \/ / 
+|    ___) | || (_| | |  | |_ >  <  
+|   |____/ \__\__,_|_|_  \__/_/\_\       _ 
+|   |  _ \  ___   ___| | _____ _ __     (_)_ __ ___   __ _  __ _  ___  ___  
+|   | | | |/ _ \ / __| |/ / _ \ '__|____| | '_ ` _ \ / _` |/ _` |/ _ \/ __| 
+|   | |_| | (_) | (__|   <  __/ | |_____| | | | | | | (_| | (_| |  __/\__ \ 
+|   |____/ \___/ \___|_|\_\___|_|       |_|_| |_| |_|\__,_|\__, |\___||___/ 
+|                                                          |___/ 
 EOF
 fi 
 }
@@ -275,7 +275,7 @@ function testAndRunSourceCodeScript {
 
 
 function moveSourceCode {
-  echoVerbose "Copy source from $S2I_DEST > $APP_PATH"
+  echoVerbose "Copy source from $1 > $2"
   cp -R $1/* $2/
   projectScriptDir=""
   if [[ -r $1/sx ]]; then
