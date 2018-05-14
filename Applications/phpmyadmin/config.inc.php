@@ -54,6 +54,16 @@ if(getenv('DB_ENV_MYSQL_USER') != '') {
     $cfg['Servers'][$i]['user'] = getenv('DB_ENV_MYSQL_USER');
     $cfg['Servers'][$i]['password'] = getenv('DB_ENV_MYSQL_PASSWORD');
 }
+
+if(getenv('MYSQL_HOST') != '') {
+    $i++;
+    $cfg['Servers'][$i]['extension'] = 'mysqli';
+    $cfg['Servers'][$i]['auth_type'] = 'config';
+    $cfg['Servers'][$i]['host'] = getenv('MYSQL_HOST');
+    $cfg['Servers'][$i]['port'] = getenv('MYSQL_PORT');
+    $cfg['Servers'][$i]['user'] = getenv('MYSQL_USER');
+    $cfg['Servers'][$i]['password'] = getenv('MYSQL_PASSWORD');
+}
 /**
  * phpMyAdmin configuration storage settings.
  */
@@ -93,8 +103,8 @@ if(getenv('DB_ENV_MYSQL_USER') != '') {
 /**
  * Directories for saving/loading files from server
  */
-$cfg['UploadDir'] = '';
-$cfg['SaveDir'] = '';
+$cfg['UploadDir'] = getenv('DATA_PATH');
+$cfg['SaveDir'] = getenv('DATA_PATH');
 
 /**
  * Whether to display icons or text or both icons and text in table row
@@ -136,7 +146,7 @@ $cfg['SaveDir'] = '';
  * default = 'en'
  */
 //$cfg['DefaultLang'] = 'en';
-//$cfg['DefaultLang'] = 'de';
+$cfg['DefaultLang'] = 'fr';
 
 /**
  * How many columns should be used for table display of a database?
