@@ -30,11 +30,11 @@ COPY sx /tmp/
 RUN dnf --nogpgcheck -y install mysql && \
     dnf clean all && \
     cd $APP_PATH && \
-    wget -q https://files.phpmyadmin.net/phpMyAdmin/4.7.7/phpMyAdmin-4.7.7-all-languages.zip && \
-    unzip phpMyAdmin-4.7.7-all-languages.zip && \
-    rm -f phpMyAdmin-4.7.7-all-languages.zip && \
-    mv phpMyAdmin-4.7.7-all-languages/* ./  && \
-    rm -rf phpMyAdmin-4.7.7-all-languages  && \
+    wget -q https://files.phpmyadmin.net/phpMyAdmin/4.8.0.1/phpMyAdmin-4.8.0.1-all-languages.zip && \
+    unzip phpMyAdmin-4.8.0.1-all-languages.zip && \
+    rm -f phpMyAdmin-4.8.0.1-all-languages.zip && \
+    mv phpMyAdmin-4.8.0.1-all-languages/* ./  && \
+    rm -rf phpMyAdmin-4.8.0.1-all-languages  && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* /var/lib/sx/ && \
     chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /var/lib/sx /tmp /var/lib/php && \
