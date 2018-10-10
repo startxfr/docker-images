@@ -1,0 +1,17 @@
+chrome:
+  build: ./
+  container_name: "service-chrome"
+  mem_limit: 500m
+  memswap_limit: 800m
+  cpu_shares: 3
+  ports:
+    - "9350:5900"
+  environment:
+    SCREEN_RES: "1600x1200x24"
+    SCREEN_RES1: "1600,1200"
+  volumes:
+    - /home/cl/.config/chrome-docker:/home/chrome:Z
+  command:
+    - "/usr/bin/supervisord"
+    - "-c"
+    - "/etc/supervisor/conf.d/supervisord.conf"
