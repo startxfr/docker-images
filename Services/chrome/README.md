@@ -2,8 +2,8 @@
 
 # Docker OS Images : Chrome
 
-Simple container used to deliver static http content include all chrome's modules but no external languages engines (like php). For dynamic content, you should use our [sv-php service container](https://hub.docker.com/r/startx/sv-php)
-Run [chrome httpd daemon](https://httpd.chrome.org/) under a container 
+Simple container used to server VNC based chrome browser.
+Run [chrome browser application](https://httpd.chrome.org/) under a container 
 based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-chrome.svg)](https://hub.docker.com/r/startx/sv-chrome) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/chrome/) [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
@@ -12,13 +12,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 * `:latest` : Fedora core 29 + Chrome 50.0.2661.102
 * `:fc28` : Fedora core 28 + Chrome 50.0.2661.102
-* `:fc27` : Fedora core 27 + Chrome 50.0.2661.102
-* `:fc26` : Fedora core 26 + Chrome 50.0.2661.102
-* `:fc23` : Fedora core 23 + Chrome 50.0.2661.102
-* `:fc22` : Fedora core 22 + Chrome 
-* `:fc21` : Fedora core 21 + Chrome 
 * `:centos7` : CentOS 7 + Chrome 
-* `:centos6` : Centos 6 + Chrome 
 * `:alpine3` : Alpine 3.7 + Chrome 50.0.2661.102
 
 ## Running from dockerhub registry
@@ -31,7 +25,7 @@ service:
   container_name: "service-chrome"
   volumes:
     - "/tmp/container/logs/chrome:/logs:z"
-    - "/tmp/container/chrome:/data:z"
+    - "/tmp/container/chrome:/home/chrome:z"
 ```
 
 ### Using this image as Openshift Build image
@@ -68,7 +62,7 @@ service:
   image: startx/sv-chrome:latest
   container_name: "service-chrome"
   ports:
-    - "1000:8080"
+    - "1000:5900"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```YAML
@@ -76,7 +70,7 @@ service:
   image: startx/sv-chrome:latest
   container_name: "service-chrome"
   expose:
-    - "8080"
+    - "5900"
 ```
 * sample docker-compose.yml using data container
 ```YAML
@@ -111,23 +105,25 @@ some [additional environment variable](https://github.com/startxfr/docker-images
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
 | LOG_PATH                  | `auto`   | `auto`    | default set to /logs and used as a volume mountpoint
 | APP_PATH                  | `auto`   | `auto`    | default set to /data and used as a volume mountpoint
+| SCREEN_RES_X          | `1024x768x24`| `auto`    | Define the screen resolution for X server
+| SCREEN_RES_CHROME         |`1024,768`| `auto`    | Define the screen resolution for Chrome GUI window
 
 ## Exposed port
 
 | Port  | Description                                                              |
 |-------|--------------------------------------------------------------------------|
-| 8080  | standard httpd network port used for non encrypted http traffic
+| 5900  | standard httpd network port used for non encrypted http traffic
 
 ## Exposed volumes
 
 | Container directory  | Description                                                              |
 |----------------------|--------------------------------------------------------------------------|
 | /logs                | log directory used to record container and chrome logs
-| /data                | data directory served by chrome. If empty will be filled with app on startup. In other case use content from mountpoint or data volumes
+| /home/chrome         | data directory served by chrome. If empty will be filled with app on startup. In other case use content from mountpoint or data volumes
 
 ## Testing the service
 
-access to the running Browser with your favorites browser `firefox http://localhost:8080`. Change port and hostname according to your current configuration
+access to the running Browser with your favorites vnc client `vinagre vnc://localhost:5900`. Change port and hostname according to your current configuration
 
 ## For advanced users
 
@@ -144,8 +140,8 @@ You must have a working environment with the source code of this repository. Rea
 1. Jump into the container directory with `cd Services/chrome`
 2. Build the container using `docker build -t sv-chrome .`
 3. Run this container 
-  1. Interactively with `docker run -p 8080:8080 -v /logs -it sv-chrome`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -p 8080:8080 -v /logs -d sv-chrome`
+  1. Interactively with `docker run -p 5900:5900 -v /data:/home/chrome -it sv-chrome`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+  2. As a daemon with `docker run -p 5900:5900 -v /data:/home/chrome -d sv-chrome`
 
 
 ### Build & run a container using `docker-compose`

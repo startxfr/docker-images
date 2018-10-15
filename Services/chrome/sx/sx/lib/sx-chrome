@@ -26,7 +26,8 @@ function chromeInformation {
     echoVerbose $1 "app path  : $APP_PATH"
     echoVerbose $1 "log path  : $LOG_PATH"
     echoVerbose $1 "data path : $DATA_PATH"
-    echoVerbose $1 "httpd     : $(httpd -v | head -1)" 
+    echoVerbose $1 "chrome    : $(google-chrome --version)" 
+    echoVerbose $1 "resolution: $SCREEN_RES_X" 
 }
 
 # function executed when pre-deploy hook is called
@@ -102,8 +103,8 @@ function chromeIsLive {
 
 # Display readyness status
 function chromeIsReady {
-    R=`curl -sL -w "%{http_code}\\n" "http://localhost/" -o /dev/null`
-    if [ "$R" = "200" ]; then
+    R=`ps -aux | grep chrome`
+    if [ "$R" != "" ]; then
         exit 0;
     fi;
     exit 1;
@@ -111,8 +112,7 @@ function chromeIsReady {
 
 # function executed on apahce service stop
 function stopChromeHandler {
-    killall httpd
-    rm -rf /run/httpd/*
+    killall chrome
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME is now STOPPED"
     echoNotVerbose "container is now stopped"
@@ -126,12 +126,5 @@ function stopChromeHandler {
 # the running shell
 function startChromeService {
     trap 'kill ${!}; stopChromeHandler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
-    rm -rf /run/httpd/* /tmp/httpd*
-    touch $LOG_PATH/access.log
-    touch /var/log/httpd/access.log
-    exec /usr/sbin/httpd -D FOREGROUND > $LOG_PATH/access.log &
-    while true
-    do
-        tail -f $LOG_PATH/*.log & tail -f /var/log/httpd/*.log & wait ${!}
-    done
+    exec /usr/bin/supervisord -c $SUPERVISORCONF/supervisord.conf
 }

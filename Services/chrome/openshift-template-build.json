@@ -4,11 +4,11 @@
     "metadata": {
         "name": "startx-sv-chrome-build-template",
         "annotations": {
-            "openshift.io/display-name": "Startx Http Server (fedora)",
-            "description": "Http server for simple web application running under Fedora",
+            "openshift.io/display-name": "Startx Chrome browser (fedora)",
+            "description": "Chrome browser for simple web application running under Fedora",
             "iconClass": "icon-chrome",
-            "tags": "startx,os,fedora,chrome,httpd",
-            "openshift.io/long-description": "This template provides an chrome httpd Browser in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "tags": "startx,os,fedora,chrome",
+            "openshift.io/long-description": "This template provides an Chrome browser in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building personalized browser container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -43,8 +43,8 @@
                             "openshift.io/display-name": "Startx Browser (Fedora rawhide)",
                             "description": "Chrome browser builder for simple internet browsing under Fedora rawhide",
                             "iconClass": "icon-chrome",
-                            "tags": "builder,startx,fedora,chrome,httpd",
-                            "supports": "http",
+                            "tags": "builder,startx,fedora,chrome,vnc",
+                            "supports": "vnc",
                             "version": "latest",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-chrome.git"
                         },
@@ -80,8 +80,8 @@
                             "openshift.io/display-name": "Application ${APP_NAME}",
                             "description": "Base image for the application ${APP_NAME}",
                             "iconClass": "icon-chrome",
-                            "tags": "startx,fedora,chrome,httpd,application,${APP_NAME}",
-                            "supports": "http",
+                            "tags": "startx,fedora,chrome,vnc,application,${APP_NAME}",
+                            "supports": "vnc",
                             "version": "latest"
                         }
                     }
@@ -317,8 +317,8 @@
                 "ports": [
                     {
                         "protocol": "TCP",
-                        "port": 8080,
-                        "targetPort": 8080
+                        "port": 5900,
+                        "targetPort": 5900
                     }
                 ],
                 "selector": {

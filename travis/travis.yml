@@ -21,6 +21,7 @@ script:
 - "./travis/test    Services/ooconv    sv-ooconv     latest"
 - "./travis/test    Services/php       sv-php        latest"
 - "./travis/test    Services/postgres  sv-postgres   latest"
+- "./travis/test    Services/chrome    sv-chrome     latest"
 - "./travis/test    Applications/phpmyadmin  app-phpmyadmin   latest"
 after_success:
 - "./travis/publish OS                 fedora        latest"
@@ -33,4 +34,5 @@ after_success:
 - "./travis/publish Services/ooconv    sv-ooconv     latest"
 - "./travis/publish Services/php       sv-php        latest"
 - "./travis/publish Services/postgres  sv-postgres   latest"
+- "./travis/publish Services/chrome    sv-chrome     latest"
 - "./travis/publish Applications/phpmyadmin  app-phpmyadmin   latest"

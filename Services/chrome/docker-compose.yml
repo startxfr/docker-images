@@ -1,17 +1,17 @@
-chrome:
+chromesx:
   build: ./
-  container_name: "service-chrome"
-  mem_limit: 500m
-  memswap_limit: 800m
-  cpu_shares: 3
+  container_name: "service-chrome-startx"
+#  mem_limit: 600m
+#  memswap_limit: 800m
+#  cpu_shares: 2048
   ports:
     - "9350:5900"
   environment:
-    SCREEN_RES: "1600x1200x24"
-    SCREEN_RES1: "1600,1200"
+    SCREEN_RES_X: "1600x900x24"
+    SCREEN_RES_CHROME: "1600,900"
+    SX_VERBOSE: 'true'
   volumes:
     - /home/cl/.config/chrome-docker:/home/chrome:Z
   command:
-    - "/usr/bin/supervisord"
-    - "-c"
-    - "/etc/supervisor/conf.d/supervisord.conf"
+     - "/bin/sx-chrome"
+     - "run"

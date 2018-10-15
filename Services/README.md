@@ -30,6 +30,7 @@ your project and start using stable or experimental services in your application
 | php           | [`startx/sv-php`](https://hub.docker.com/r/startx/sv-php)            | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` | `:6` `:7`       | [manual](php/README.md)
 | postgreSQL    | [`startx/sv-postgres`](https://hub.docker.com/r/startx/sv-postgres)  | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` | `:6` `:7`       | [manual](postgres/README.md)
 | Couchbase     | [`startx/sv-couchbase`](https://hub.docker.com/r/startx/sv-couchbase)|                                               | `:latest` `:7`  | [manual](couchbase/README.md)
+| Chrome        | [`startx/sv-chrome`](https://hub.docker.com/r/startx/sv-chrome)      | `:latest`  `:28`                              | `:latest` `:7`  | [manual](chrome/README.md)
 
 ## Running from dockerhub registry
 
@@ -43,6 +44,7 @@ your project and start using stable or experimental services in your application
 | **ooconv**          | `docker run -d -p XXX:XXX --name="ooconv" startx/sv-ooconv`          | 
 | **php**             | `docker run -d -p 80:80 --name="php" startx/sv-php`                  | 
 | **postgreSQL**      | `docker run -d -p 5432:5432 --name="postgres" startx/sv-postgres`    | 
+| **chrome**          | `docker run -d -p 5900:5900 --name="chrome" startx/sv-chrome`        | 
 
 ## Container flavours
 
@@ -56,3 +58,4 @@ your project and start using stable or experimental services in your application
 | ooconv     | [`startx/sv-ooconv`](https://hub.docker.com/r/startx/sv-ooconv)      | `:latest` `:fc20` `:fc21` `:fc22` `:fc23`    | `:centos6` `:centos7` |
 | php        | [`startx/sv-php`](https://hub.docker.com/r/startx/sv-php)            | `:latest` `:fc20` `:fc21` `:fc22` `:fc23`    | `:centos6` `:centos7` |
 | postgreSQL | [`startx/sv-postgres`](https://hub.docker.com/r/startx/sv-postgres)  | `:latest` `:fc20` `:fc21` `:fc22` `:fc23`    | `:centos6` `:centos7` |
+| Chrome     | [`startx/sv-chrome`](https://hub.docker.com/r/startx/sv-chrome)      | `:latest` `:fc28`                            | `:centos7`            |

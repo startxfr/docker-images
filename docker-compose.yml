@@ -8,6 +8,11 @@ fedora-sv-apache:
     file: Services/apache/docker-compose.yml
     service: apache
 
+fedora-sv-chrome:
+  extends:
+    file: Services/chrome/docker-compose.yml
+    service: chrome
+
 fedora-sv-php:
   extends:
     file: Services/php/docker-compose.yml
