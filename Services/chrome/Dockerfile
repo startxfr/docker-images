@@ -34,7 +34,7 @@ LABEL name="$SX_ID" \
       fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
-RUN dnf --nogpgcheck -y install supervisor xorg-x11-server-Xvfb x11vnc fedora-workstation-repositories dnf-plugins-core pulseaudio && \
+RUN dnf --nogpgcheck -y install supervisor xorg-x11-server-Xvfb x11vnc fedora-workstation-repositories dnf-plugins-core pulseaudio python2-meld3 && \
     dnf config-manager --set-enabled google-chrome && \
     dnf --nogpgcheck -y install google-chrome-stable chrome-remote-desktop fluxbox && \
     dnf clean all
