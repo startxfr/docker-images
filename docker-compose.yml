@@ -8,6 +8,11 @@ fc27-sv-apache:
     file: Services/apache/docker-compose.yml
     service: apache
 
+fc27-sv-chrome:
+  extends:
+    file: Services/chrome/docker-compose.yml
+    service: chrome
+
 fc27-sv-php:
   extends:
     file: Services/php/docker-compose.yml
