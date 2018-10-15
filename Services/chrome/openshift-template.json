@@ -40,8 +40,8 @@
                     {
                         "name": "latest",
                         "annotations": {
-                            "openshift.io/display-name": "Startx Browser (Fedora rawhide)",
-                            "description": "Chrome browser builder for simple internet browsing under Fedora rawhide",
+                            "openshift.io/display-name": "Startx Browser (Fedora 28)",
+                            "description": "Chrome browser builder for simple internet browsing under Fedora 28",
                             "iconClass": "icon-chrome",
                             "tags": "builder,startx,fedora,chrome,vnc",
                             "supports": "vnc",
@@ -50,7 +50,7 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-chrome:latest"
+                            "name": "startx/sv-chrome:28"
                         }
                     }
                 ]

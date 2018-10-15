@@ -1,4 +1,4 @@
-FROM startx/fedora:latest
+FROM startx/fedora:28
 
 MAINTAINER Startx <dev@startx.fr>
 
@@ -6,8 +6,8 @@ ENV SX_VERSION="latest" \
     SX_TYPE="service" \
     SX_SERVICE="chrome" \
     SX_ID="startx/sv-chrome" \
-    SX_NAME="Startx Chrome service image (fedora rawhide)" \
-    SX_SUMMARY="Startx chrome service based on fedora rawhide" \
+    SX_NAME="Startx Chrome service image (fedora 28)" \
+    SX_SUMMARY="Startx chrome service based on fedora 28" \
     SUPERVISORCONF=/etc/supervisor/conf.d/ \
     LOG_PATH=/home/chrome \
     APP_PATH=/home/chrome \
