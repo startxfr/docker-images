@@ -1,0 +1,130 @@
+#!/bin/bash
+source /var/lib/sx/sx
+
+function check_chrome_environment {
+    if [ ! -v APP_PATH ]; then
+        APP_PATH="/home/chrome"
+        export APP_PATH
+    fi
+    if [ ! -v DATA_PATH ]; then
+        DATA_PATH="/home/chrome"
+        export DATA_PATH
+    fi
+    if [ ! -v LOG_PATH ]; then
+        LOG_PATH="/home/chrome"
+        export LOG_PATH
+    fi
+    if [ ! -n "$SERVER_NAME" ]; then
+        SERVER_NAME="localhost"
+        export SERVER_NAME
+    fi
+}
+
+# Display chrome information
+function chromeInformation {
+    displayInformation $1 
+    echoVerbose $1 "app path  : $APP_PATH"
+    echoVerbose $1 "log path  : $LOG_PATH"
+    echoVerbose $1 "data path : $DATA_PATH"
+    echoVerbose $1 "chrome    : $(google-chrome --version)" 
+    echoVerbose $1 "resolution: $SCREEN_RES_X" 
+}
+
+# function executed when pre-deploy hook is called
+function chromePreDeploy {
+    genericHeader
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
+    echoNotVerbose "container $HOSTNAME  running PRE-DEPLOY HOOK"
+    echoVerbose "| "
+    chromeInformation "| "
+    echoVerbose "+====================================================="
+    testAndRunSourceCodeScript "pre-deploy" 
+}
+
+# function executed when post-deploy hook is called
+function chromePostDeploy {
+    genericHeader
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running POST-DEPLOY HOOK"
+    echoNotVerbose "container $HOSTNAME  running POST-DEPLOY HOOK"
+    echoVerbose "| "
+    chromeInformation "| "
+    echoVerbose "+====================================================="
+    testAndRunSourceCodeScript "post-deploy" 
+}
+
+# function executed when pre-build hook is called
+function chromePostBuild {
+    genericHeader
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running POST-BUILD HOOK"
+    echoNotVerbose "container $HOSTNAME  running POST-BUILD HOOK"
+    echoVerbose "| "
+    chromeInformation "| "
+    echoVerbose "+====================================================="
+    testAndRunSourceCodeScript "post-build" 
+}
+
+# function executed when assemble hook is called
+function chromeAssemble {
+    genericHeader
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running ASSEMBLE"
+    echoNotVerbose "container $HOSTNAME  running ASSEMBLE"
+    echoVerbose "| "
+    chromeInformation "| "
+    echoVerbose "+====================================================="
+    if [[ -d $S2I_DEST ]]; then
+      echoVerbose "Fixing perm on $S2I_DEST"
+      chown 1001:0 -R $S2I_DEST
+      chmod g=u -R $S2I_DEST
+      moveSourceCode $S2I_DEST $APP_PATH
+    fi;
+    testAndRunSourceCodeScript "assemble" 
+}
+
+# function executed on container startup
+function chromeRun {
+    genericHeader
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME is RUNNING"
+    echoNotVerbose "container $HOSTNAME is RUNNING"
+    echoVerbose "| "
+    chromeInformation "| "
+    echoVerbose "+====================================================="
+    startChromeService
+}
+
+# Display liveness status
+function chromeIsLive {
+    genericIsLive
+}
+
+# Display readyness status
+function chromeIsReady {
+    R=`ps -aux | grep chrome`
+    if [ "$R" != "" ]; then
+        exit 0;
+    fi;
+    exit 1;
+}
+
+# function executed on apahce service stop
+function stopChromeHandler {
+    killall chrome
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME is now STOPPED"
+    echoNotVerbose "container is now stopped"
+    echoVerbose "| "
+    chromeInformation "| "
+    echoVerbose "+====================================================="
+    exit 143; # 128 + 15 -- SIGTERM
+}
+
+# Start the httpd server as a deamon and execute it inside 
+# the running shell
+function startChromeService {
+    trap 'kill ${!}; stopChromeHandler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
+    exec /usr/bin/supervisord -c $SUPERVISORCONF/supervisord.conf
+}

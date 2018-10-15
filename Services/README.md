@@ -26,6 +26,8 @@ your project and start using stable or experimental applications in your applica
 | ooconv        | [`startx/sv-ooconv:fc28`](https://hub.docker.com/r/startx/sv-ooconv)      | [manual](ooconv/README.md)
 | php           | [`startx/sv-php:fc28`](https://hub.docker.com/r/startx/sv-php)            | [manual](php/README.md)
 | postgreSQL    | [`startx/sv-postgres:fc28`](https://hub.docker.com/r/startx/sv-postgres)  | [manual](postgres/README.md)
+| Couchbase     | [`startx/sv-couchbase:fc28`](https://hub.docker.com/r/startx/sv-couchbase)| [manual](couchbase/README.md)
+| Chrome        | [`startx/sv-chrome:fc28`](https://hub.docker.com/r/startx/sv-chrome)      | [manual](chrome/README.md)
 
 
 ## Running from dockerhub registry
@@ -41,3 +43,4 @@ your project and start using stable or experimental applications in your applica
 | **php**             | `docker run -d -p 80:80 --name="fc28-php" startx/sv-php:fc28`                  | 
 | **postgreSQL**      | `docker run -d -p 5432:5432 --name="fc28-postgres" startx/sv-postgres:fc28`    | 
 | **Couchbase**       | `docker run -d -p 8091:8091 --name="fc28-couchbase" startx/sv-couchbase:fc28`  | 
+| **chrome**          | `docker run -d -p 5900:5900 --name="fc28-chrome" startx/sv-chrome:fc28`        | 
