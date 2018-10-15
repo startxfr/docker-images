@@ -34,10 +34,13 @@ LABEL name="$SX_ID" \
       fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
-RUN dnf --nogpgcheck -y install supervisor xorg-x11-server-Xvfb x11vnc fedora-workstation-repositories dnf-plugins-core pulseaudio && \
+RUN dnf --nogpgcheck -y install supervisor xorg-x11-server-Xvfb x11vnc fedora-workstation-repositories dnf-plugins-core pulseaudio python3-setuptools python3-pip && \
     dnf config-manager --set-enabled google-chrome && \
     dnf --nogpgcheck -y install google-chrome-stable chrome-remote-desktop fluxbox && \
-    dnf clean all
+    dnf clean all && \
+    easy_install pip && \
+    pip install --upgrade pip && \
+    pip install --upgrade --force-reinstall setuptools pip
 COPY copyables/supervisor*.conf $SUPERVISORCONF/
 COPY copyables /
 COPY sx /tmp/
