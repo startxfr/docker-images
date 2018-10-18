@@ -1,4 +1,4 @@
-chromesx:
+chrome:
   build: ./
   container_name: "service-chrome-startx"
 #  mem_limit: 600m
@@ -16,7 +16,7 @@ chromesx:
      - "/bin/sx-chrome"
      - "run"
  
-chrome:
+chromesx:
   image: startx/sv-chrome
   container_name: "service-chrome-startx2"
   ports:
