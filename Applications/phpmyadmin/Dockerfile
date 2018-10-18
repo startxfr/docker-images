@@ -6,8 +6,8 @@ ENV SX_VERSION="fc28" \
     SX_TYPE="application" \
     SX_SERVICE="phpmyadmin" \
     SX_ID="startx/app-phpmyadmin" \
-    SX_NAME="Startx PhpMyAdmin service image (fedora rawhide)" \
-    SX_SUMMARY="Startx phpmyadmin service based on fedora rawhide"
+    SX_NAME="Startx PhpMyAdmin service image (fedora 28)" \
+    SX_SUMMARY="Startx phpmyadmin service based on fedora 28"
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -36,11 +36,11 @@ RUN dnf --nogpgcheck -y install mysql && \
     mv phpMyAdmin-4.8.0.1-all-languages/* ./  && \
     rm -rf phpMyAdmin-4.8.0.1-all-languages  && \
     mv /tmp/sx/bin/* /bin/ && \
-    mv /tmp/sx/lib/* /var/lib/sx/ && \
-    chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /var/lib/sx /tmp /var/lib/php && \
+    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
+    chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp /var/lib/php && \
     chmod -R ug+rw $APP_PATH $DATA_PATH $LOG_PATH /var/lib/php && \
-    chown -R 1001:0 /bin/sx* /s2i /var/lib/sx /tmp $APP_PATH $DATA_PATH $LOG_PATH /var/lib/php && \
-    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /var/lib/sx /tmp /var/lib/php && \
+    chown -R 1001:0 /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH $DATA_PATH $LOG_PATH /var/lib/php && \
+    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp /var/lib/php && \
     chmod -R ugo+x /bin/sx*
 COPY config.inc.php $APP_PATH/config.inc.php
 RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH && rm -rf $APP_PATH/index.html

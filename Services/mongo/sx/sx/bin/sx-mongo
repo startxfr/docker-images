@@ -1,5 +1,5 @@
 #!/bin/bash
-source /var/lib/sx/sx-mongo
+source $SX_LIBDIR/sx-mongo
 
 check_mongo_environment
 # Dispatch input arguments
@@ -9,7 +9,7 @@ case $1 in
     pre-deploy)             mongoPreDeploy $@ ;;
     post-deploy)            mongoPostDeploy $@ ;;
     run|start)              mongoRun $@ ;;
-    isLive)                 mongoIsLive $@ ;;
+    isLive|health)          mongoIsLive $@ ;;
     isReady)                mongoIsReady $@ ;;
     info|--info)            mongoInformation $@ ;;
     usage|help|--help)      genericUsage $@ ;;

@@ -1,10 +1,10 @@
 #!/bin/bash -e
 #
-# S2I run script
+# S2I run script for the 'startx/sv-apache' image.
 # The 'run' script is the entrypoint of your application
 #
 # For more information refer to the documentation:
-#  https://github.com/openshift/source-to-image/blob/fc28/docs/builder_image.md
+#  https://dockerhub.com/u/startx/sv-apache
 #
 
 if [[ -x /tmp/run ]]; then

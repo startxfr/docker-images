@@ -1,5 +1,5 @@
 #!/bin/bash
-source /var/lib/sx/sx-php
+source $SX_LIBDIR/sx-php
 
 check_apache_environment
 # Dispatch input arguments
@@ -9,7 +9,7 @@ case $1 in
     pre-deploy)             phpPreDeploy $@ ;;
     post-deploy)            phpPostDeploy $@ ;;
     run|start)              phpRun $@ ;;
-    isLive)                 phpIsLive $@ ;;
+    isLive|health)          phpIsLive $@ ;;
     isReady)                phpIsReady $@ ;;
     info|--info)            phpInformation $@ ;;
     usage|help|--help)      genericUsage $@ ;;

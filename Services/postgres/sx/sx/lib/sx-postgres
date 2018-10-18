@@ -1,5 +1,5 @@
 #!/bin/bash
-source /var/lib/sx/sx
+source $SX_LIBDIR/sx
 
 set_listen_addresses() {
 	sedEscapedValue="$(echo "$1" | sed 's/[\/&]/\\&/g')"

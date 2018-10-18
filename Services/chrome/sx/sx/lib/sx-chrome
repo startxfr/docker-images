@@ -1,5 +1,5 @@
 #!/bin/bash
-source /var/lib/sx/sx
+source $SX_LIBDIR/sx
 
 function check_chrome_environment {
     if [ ! -v APP_PATH ]; then
@@ -27,7 +27,7 @@ function chromeInformation {
     echoVerbose $1 "log path  : $LOG_PATH"
     echoVerbose $1 "data path : $DATA_PATH"
     echoVerbose $1 "chrome    : $(google-chrome --version)" 
-    echoVerbose $1 "resolution: $SCREEN_RES_X" 
+    echoVerbose $1 "resolution: $SX_CHROME_SCREEN_RES_X" 
 }
 
 # function executed when pre-deploy hook is called
@@ -126,5 +126,5 @@ function stopChromeHandler {
 # the running shell
 function startChromeService {
     trap 'kill ${!}; stopChromeHandler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
-    exec /usr/bin/supervisord -c $SUPERVISORCONF/supervisord.conf
+    exec /usr/bin/supervisord -c $SX_CHROME_SUPERVISOR_CONF/supervisord.conf
 }

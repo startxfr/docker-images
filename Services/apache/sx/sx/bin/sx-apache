@@ -1,5 +1,5 @@
 #!/bin/bash
-source /var/lib/sx/sx-apache
+source $SX_LIBDIR/sx-apache
 
 check_apache_environment
 # Dispatch input arguments
@@ -9,7 +9,7 @@ case $1 in
     pre-deploy)             apachePreDeploy $@ ;;
     post-deploy)            apachePostDeploy $@ ;;
     run|start)              apacheRun $@ ;;
-    isLive)                 apacheIsLive $@ ;;
+    isLive|health)          apacheIsLive $@ ;;
     isReady)                apacheIsReady $@ ;;
     info|--info)            apacheInformation $@ ;;
     usage|help|--help)      genericUsage $@ ;;
