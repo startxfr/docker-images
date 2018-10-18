@@ -1,5 +1,5 @@
 #!/bin/bash
-source /var/lib/sx/sx-mariadb
+source $SX_LIBDIR/sx-mariadb
 
 check_mariadb_environment
 # Dispatch input arguments
@@ -9,7 +9,7 @@ case $1 in
     pre-deploy)             mysqlPreDeploy $@ ;;
     post-deploy)            mysqlPostDeploy $@ ;;
     run|start)              mysqlRun $@ ;;
-    isLive)                 mysqlIsLive $@ ;;
+    isLive|health)          mysqlIsLive $@ ;;
     isReady)                mysqlIsReady $@ ;;
     info|--info)            mysqlInformation $@ ;;
     usage|help|--help)      genericUsage $@ ;;

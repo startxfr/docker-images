@@ -1,5 +1,5 @@
 #!/bin/bash
-source /var/lib/sx/sx
+source $SX_LIBDIR/sx
 
 function check_apache_environment {
     if [ ! -v APP_PATH ]; then
@@ -38,7 +38,8 @@ function apachePreDeploy {
     echoVerbose "| "
     apacheInformation "| "
     echoVerbose "+====================================================="
-    testAndRunSourceCodeScript "pre-deploy" 
+    testAndRunSourceCodeScript "pre-deploy"
+    exit 0; 
 }
 
 # function executed when post-deploy hook is called
@@ -51,6 +52,7 @@ function apachePostDeploy {
     apacheInformation "| "
     echoVerbose "+====================================================="
     testAndRunSourceCodeScript "post-deploy" 
+    exit 0;
 }
 
 # function executed when pre-build hook is called
@@ -63,6 +65,7 @@ function apachePostBuild {
     apacheInformation "| "
     echoVerbose "+====================================================="
     testAndRunSourceCodeScript "post-build" 
+    exit 0;
 }
 
 # function executed when assemble hook is called
@@ -81,6 +84,7 @@ function apacheAssemble {
       moveSourceCode $S2I_DEST $APP_PATH
     fi;
     testAndRunSourceCodeScript "assemble" 
+    exit 0;
 }
 
 # function executed on container startup
@@ -97,16 +101,17 @@ function apacheRun {
 
 # Display liveness status
 function apacheIsLive {
-    genericIsLive
+    R=`curl -sL -w "%{http_code}\\n" "http://localhost/" -o /dev/null`
+    if [ "$R" = "200" ]; then
+      exit 0;
+    else 
+      exit 1;
+    fi;
 }
 
 # Display readyness status
 function apacheIsReady {
-    R=`curl -sL -w "%{http_code}\\n" "http://localhost/" -o /dev/null`
-    if [ "$R" = "200" ]; then
-        exit 0;
-    fi;
-    exit 1;
+    genericIsReady
 }
 
 # function executed on apahce service stop

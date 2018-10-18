@@ -48,7 +48,7 @@ RUN dnf --nogpgcheck -y install python-httplib2 openssl ncurses ncurses-libs ncu
     rpm --install $CB_PACKAGE && \
     rm -rf $CB_PACKAGE && \
     usermod -a -G 0 couchbase && \
-    mkdir -p /var/lib/sx /s2i && \
+    mkdir -p $SX_LIBDIR /s2i && \
     mkdir -p $DATA_PATH/lib/couchbase \
         $DATA_PATH/lib/couchbase/config \
         $DATA_PATH/lib/couchbase/data \
@@ -57,14 +57,14 @@ RUN dnf --nogpgcheck -y install python-httplib2 openssl ncurses ncurses-libs ncu
         $DATA_PATH/lib/moxi && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
-    mv /tmp/sx/lib/* /var/lib/sx/ && \
+    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     touch $DATA_PATH/.keep && \
     chmod g=u / && \
     chown -R couchbase:couchbase $DATA_PATH && \
-    chgrp -R 0 $CB_PATH /bin/sx-* /s2i /var/lib/sx* && \
-    chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* && \
-    chmod -R g=u $CB_PATH /bin/sx-* /s2i /var/lib/sx* && \
+    chgrp -R 0 $CB_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
+    chown -R 1001:0 /bin/sx-* /s2i $SX_LIBDIR* && \
+    chmod -R g=u $CB_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
     chmod -R ugo+x /bin/sx*
 
 USER 1001

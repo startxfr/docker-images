@@ -1,5 +1,5 @@
 #!/bin/bash
-source /var/lib/sx/sx-pma
+source $SX_LIBDIR/sx-pma
 
 check_apache_environment
 # Dispatch input arguments
