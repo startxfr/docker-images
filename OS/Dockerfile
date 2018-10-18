@@ -1,4 +1,4 @@
-FROM fedora:30
+FROM fedora:rawhide
 
 MAINTAINER Startx <dev@startx.fr>
 
