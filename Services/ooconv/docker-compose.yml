@@ -1,6 +1,6 @@
 ooconv:
   build: ./
-  container_name: "fc28-service-ooconv"
+  container_name: "fc29-service-ooconv"
   mem_limit: 2g
   memswap_limit: 2g
   cpu_shares: 8
@@ -11,6 +11,6 @@ ooconv:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "ooconv"
-    CONTAINER_INSTANCE: "fc28-service-ooconv"
+    CONTAINER_INSTANCE: "fc29-service-ooconv"
   volumes:
-    - "/tmp/container-fc28/logs/ooconv:/logs:z"
+    - "/tmp/container-fc29/logs/ooconv:/logs:z"

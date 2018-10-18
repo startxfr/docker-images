@@ -10,7 +10,7 @@
             "tags": "startx,os,fedora,mongo,database",
             "openshift.io/long-description": "This template provides an mongo Database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
-            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc28/README.md",
+            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc29/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
@@ -38,19 +38,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc28",
+                        "name": "fc29",
                         "annotations": {
-                            "openshift.io/display-name": "Startx MongoDB Database (Fedora 28)",
-                            "description": "MongoDB server for simple SQL database running under Fedora 28",
+                            "openshift.io/display-name": "Startx MongoDB Database (Fedora 29)",
+                            "description": "MongoDB server for simple SQL database running under Fedora 29",
                             "iconClass": "icon-mongodb",
                             "tags": "builder,startx,fedora,mongo,database",
                             "supports": "db",
-                            "version": "fc28",
+                            "version": "fc29",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-mongo.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-mongo:fc28"
+                            "name": "startx/sv-mongo:fc29"
                         }
                     }
                 ]
@@ -75,7 +75,7 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc28",
+                        "name": "fc29",
                         "annotations": {
                             "openshift.io/display-name": "Application ${APP_NAME}",
                             "description": "Base image for the application ${APP_NAME}",
@@ -185,7 +185,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:fc28"
+                                "name": "${APP_NAME}:fc29"
                             }
                         }
                     },
@@ -388,7 +388,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-mongo:fc28"
+                            "name": "startx-sv-mongo:fc29"
                         },
                         "env": [
                             {
@@ -401,7 +401,7 @@
                 "output": {
                     "to": {
                         "kind": "ImageStreamTag",
-                        "name": "${APP_NAME}:fc28"
+                        "name": "${APP_NAME}:fc29"
                     }
                 },
                 "resources": {},
@@ -442,7 +442,7 @@
             "name": "SOURCE_BRANCH",
             "displayName": "Source branch",
             "description": "Name of the default branch",
-            "value": "fc28",
+            "value": "fc29",
             "required": true
         },
         {

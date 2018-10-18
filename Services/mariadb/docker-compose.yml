@@ -1,6 +1,6 @@
 mariadb:
   build: ./
-  container_name: "fc28-service-mariadb"
+  container_name: "fc29-service-mariadb"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 8
@@ -11,11 +11,11 @@ mariadb:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mariadb"
-    CONTAINER_INSTANCE: "fc28-service-mariadb"
+    CONTAINER_INSTANCE: "fc29-service-mariadb"
     MYSQL_ROOT_PASSWORD: "secretdemerde"
     MYSQL_USER: "user-test"
     MYSQL_PASSWORD: "pwd-test"
     MYSQL_DATABASE: "db_test"
   volumes:
-    - "/tmp/container-fc28/logs/mariadb:/logs:z"
-    - "/tmp/container-fc28/mariadb:/data:z"
+    - "/tmp/container-fc29/logs/mariadb:/logs:z"
+    - "/tmp/container-fc29/mariadb:/data:z"

@@ -1,13 +1,13 @@
-FROM startx/fedora:28
+FROM startx/fedora:29
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="fc28" \
+ENV SX_VERSION="fc29" \
     SX_TYPE="service" \
     SX_SERVICE="mongo" \
     SX_ID="startx/sv-mongo" \
-    SX_NAME="Startx MongoDB service image (fedora 28)" \
-    SX_SUMMARY="Startx mongo service based on fedora 28" \
+    SX_NAME="Startx MongoDB service image (fedora 29)" \
+    SX_SUMMARY="Startx mongo service based on fedora 29" \
     LOG_PATH=/logs \
     DATA_PATH=/data
 
@@ -49,7 +49,7 @@ USER 1001
 
 WORKDIR $DATA_PATH
 
-EXPOSE 27017 28017
+EXPOSE 27017 29017
 
 VOLUME $DATA_PATH
 

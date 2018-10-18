@@ -1,13 +1,13 @@
-FROM startx/fedora:28
+FROM startx/fedora:29
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="fc28" \
+ENV SX_VERSION="fc29" \
     SX_TYPE="service" \
     SX_SERVICE="mariadb" \
     SX_ID="startx/sv-mariadb" \
-    SX_NAME="Startx Mariadb service image (fedora 28)" \
-    SX_SUMMARY="Startx mariadb service based on fedora 28" \
+    SX_NAME="Startx Mariadb service image (fedora 29)" \
+    SX_SUMMARY="Startx mariadb service based on fedora 29" \
     MY_CONF=/etc/my.cnf \
     DATA_PATH=/data \
     LOG_PATH=/logs \
