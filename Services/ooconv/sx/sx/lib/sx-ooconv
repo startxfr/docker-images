@@ -1,5 +1,5 @@
 #!/bin/bash
-source /var/lib/sx/sx
+source $SX_LIBDIR/sx
 
 function check_ooconv_environment {
     if [ ! -v DATA_PATH ]; then

@@ -2,7 +2,7 @@
 
 # get and store the operating system name
 OS=`cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g'`
-SXLIB_VERSION="0.2.8"
+SXLIB_VERSION="0.2.9"
 S2I_DEST=$SX_S2IDIR/src
 MYS2I_DEST=/tmp/mys2i
 
@@ -52,7 +52,8 @@ function genericPreDeploy {
     displayInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    testAndRunSourceCodeScript "pre-deploy" 
+    testAndRunSourceCodeScript "pre-deploy"
+    exit 0;
 }
 
 # function executed when post-deploy hook is called
@@ -66,6 +67,7 @@ function genericPostDeploy {
     echoDebug `env`
     echoVerbose "+====================================================="
     testAndRunSourceCodeScript "post-deploy" 
+    exit 0;
 }
 
 # function executed when pre-build hook is called
@@ -79,6 +81,7 @@ function genericPostBuild {
     echoDebug `env`
     echoVerbose "+====================================================="
     testAndRunSourceCodeScript "post-build" 
+    exit 0;
 }
 
 # function executed when assemble hook is called
@@ -93,11 +96,12 @@ function genericAssemble {
     echoVerbose "+====================================================="
     echoVerbose "Fixing perm on $S2I_DEST"
     if [[ -r $S2I_DEST ]]; then
-      chown 1001:0 -R $S2I_DEST
+      chgrp 0 -R $S2I_DEST
       chmod g=u -R $S2I_DEST
       moveSourceCode $S2I_DEST $APP_PATH
     fi;
     testAndRunSourceCodeScript "assemble" 
+    exit 0;
 }
 
 # function executed on container startup
@@ -123,28 +127,32 @@ function genericUsage {
 genericHeader
 echoVerbose "+====================================================="
 displayInformation "| "
-echoDebug `env`
 echoVerbose "+====================================================="
+echoDebug `env`
 cat <<EOF
 
-Basic OS container to execute arbitrary commands
+$SX_SUMMARY
 
 Usage:
-  docker run $SX_ID /bin/sx [command]
+  docker run $SX_ID [command]
 
-- General Commands:
-  assemble         execute for building output image when using s2i 
+- Build Commands:
+  assemble         execute for building output image when using s2i (alias : build)
   post-build       execute after building image
   pre-deploy       execute before the deployment begins (openshift).
   post-deploy      execute after the deployment strategy completes (openshift).
-  run              execute the service on container startup
-  health           return the service health
+
+- Run Commands:
+  run              execute the service on container startup (alias : start)
+  isLive           return the service health (alias : health)
+  isReady          return the service readiness
+
+- General Commands:
+  daemon           execute the container as a daemon (keep alive)
   usage            this message
-  help             display information about this tools
+  usageS2i         using this container with s2i or openshift build framework
   info             give information about the running container
   version          give the version of the running container
-  daemon           execute the container as a daemon (keep alive)
-
 EOF
 exit 0;
 }
@@ -177,7 +185,7 @@ cat <<EOF
 Welcome to the $SX_ID base image. If you see this message, you have
 probably run this container without arguments. See usage for more informations.
 
-docker run $SX_ID /bin/sx usage
+docker run $SX_ID usage
 
 EOF
 genericUsage
@@ -188,55 +196,56 @@ exit 0;
 function genericHeader {
 if [[ "$SX_VERBOSE" == true || "$SX_VERBOSE" == "true" ]] ; then
 cat << "EOF"
-|    ____  _             _         
-|   / ___|| |_ __ _ _ __| |___  __ 
-|   \___ \| __/ _` | '__| __\ \/ / 
-|    ___) | || (_| | |  | |_ >  <  
-|   |____/ \__\__,_|_|_  \__/_/\_\       _ 
-|   |  _ \  ___   ___| | _____ _ __     (_)_ __ ___   __ _  __ _  ___  ___  
-|   | | | |/ _ \ / __| |/ / _ \ '__|____| | '_ ` _ \ / _` |/ _` |/ _ \/ __| 
-|   | |_| | (_) | (__|   <  __/ | |_____| | | | | | | (_| | (_| |  __/\__ \ 
-|   |____/ \___/ \___|_|\_\___|_|       |_|_| |_| |_|\__,_|\__, |\___||___/ 
-|                                                          |___/ 
+  ____  _             _         
+ / ___|| |_ __ _ _ __| |___  __ 
+ \___ \| __/ _` | '__| __\ \/ / 
+  ___) | || (_| | |  | |_ >  <  
+ |____/ \__\__,_|_|_  \__/_/\_\       _ 
+ |  _ \  ___   ___| | _____ _ __     (_)_ __ ___   __ _  __ _  ___  ___  
+ | | | |/ _ \ / __| |/ / _ \ '__|____| | '_ ` _ \ / _` |/ _` |/ _ \/ __| 
+ | |_| | (_) | (__|   <  __/ | |_____| | | | | | | (_| | (_| |  __/\__ \ 
+ |____/ \___/ \___|_|\_\___|_|       |_|_| |_| |_|\__,_|\__, |\___||___/ 
+                                                        |___/ 
 EOF
 fi 
 }
 
 # Display information
 function displayInformation {
-echoVerbose $1 "type      : $SX_TYPE"
-echoVerbose $1 "service   : $SX_SERVICE"
-echoVerbose $1 "image     : $SX_ID:$SX_VERSION"
-echoVerbose $1 "name      : $SX_NAME"
-echoVerbose $1 "OS        : $OS"
-echoVerbose $1 "container : $HOSTNAME"
-echoVerbose $1 "sx-lib    : v$SXLIB_VERSION"
-echoNotVerbose "running on $OS (sxlib v$SXLIB_VERSION)"
-echoNotVerbose "based on $SX_ID:$SX_VERSION"
+  echoVerbose $1 "type      : $SX_TYPE"
+  echoVerbose $1 "service   : $SX_SERVICE"
+  echoVerbose $1 "image     : $SX_ID:$SX_VERSION"
+  echoVerbose $1 "name      : $SX_NAME"
+  echoVerbose $1 "OS        : $OS"
+  echoVerbose $1 "container : $HOSTNAME"
+  echoVerbose $1 "sx-lib    : v$SXLIB_VERSION"
+  echoNotVerbose "running on $OS (sxlib v$SXLIB_VERSION)"
+  echoNotVerbose "based on $SX_ID:$SX_VERSION"
 }
 
 # Display information
 function genericAllInformation {
-    displayInformation
-    echoDebug `env`
+  displayInformation
+  echoDebug `env`
+  exit 0;
 }
 
 # Display version
 function genericVersion {
-echo $SXDBTOOLS_VERSION
-exit 0;
+  echo $SXDBTOOLS_VERSION
+  exit 0;
 }
 
 # Display liveness status
 function genericIsLive {
-echo "OK"
-exit 0;
+  echo "OK"
+  exit 0;
 }
 
 # Display readyness status
 function genericIsReady {
-    echo "OK"
-    exit 0;
+  echo "OK"
+  exit 0;
 }
 
 # start daemon

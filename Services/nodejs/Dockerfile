@@ -35,7 +35,7 @@ COPY sx /tmp/
 RUN dnf --nogpgcheck -y install nodejs npm python make gcc && dnf clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
-    mv /tmp/sx/lib/* /var/lib/sx/ && \
+    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     mkdir -p $DATA_PATH $APP_PATH $LOG_PATH /.npm /.config  && \
     chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /.config /.npm && \

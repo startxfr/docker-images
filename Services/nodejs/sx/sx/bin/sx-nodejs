@@ -1,5 +1,5 @@
 #!/bin/bash
-source /var/lib/sx/sx-nodejs
+source $SX_LIBDIR/sx-nodejs
 
 check_nodejs_environment
 # Dispatch input arguments
@@ -9,7 +9,7 @@ case $1 in
     pre-deploy)             nodejsPreDeploy $@ ;;
     post-deploy)            nodejsPostDeploy $@ ;;
     run|start)              nodejsRun $@ ;;
-    isLive)                 nodejsIsLive $@ ;;
+    isLive|health)          nodejsIsLive $@ ;;
     isReady)                nodejsIsReady $@ ;;
     info|--info)            nodejsInformation $@ ;;
     usage|help|--help)      genericUsage $@ ;;
