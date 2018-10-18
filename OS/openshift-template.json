@@ -8,9 +8,9 @@
             "description": "Minimal Fedora OS container for bash operations",
             "iconClass": "icon-beaker",
             "tags": "startx,os,fedora",
-            "openshift.io/long-description": "This template provides a fedora container with minimal tools and scripts. Ready to use in openshift with a simple deployement config, or as a s2i builder for bash applications. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/fc29/README.md.",
+            "openshift.io/long-description": "This template provides a fedora container with minimal tools and scripts. Ready to use in openshift with a simple deployement config, or as a s2i builder for bash applications. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/fc30/README.md.",
             "openshift.io/provider-display-name": "STARTX",
-            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc29/README.md",
+            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc30/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
@@ -37,19 +37,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "29",
+                        "name": "30",
                         "annotations": {
-                            "openshift.io/display-name": "Startx Fedora (29)",
-                            "description": "Minimal Fedora 29 OS for bash operations",
+                            "openshift.io/display-name": "Startx Fedora (30)",
+                            "description": "Minimal Fedora 30 OS for bash operations",
                             "iconClass": "icon-beaker",
                             "tags": "builder,startx,fedora",
                             "supports": "fedora",
-                            "version": "29",
+                            "version": "30",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/fedora:29"
+                            "name": "startx/fedora:30"
                         }
                     }
                 ]
@@ -110,7 +110,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:29"
+                                "name": "${APP_NAME}:30"
                             }
                         }
                     },

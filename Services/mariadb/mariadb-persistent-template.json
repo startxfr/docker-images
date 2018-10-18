@@ -38,19 +38,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc29",
+                        "name": "fc30",
                         "annotations": {
-                            "openshift.io/display-name": "S2I Mariadb Database (Fedora 29)",
-                            "description": "MariaDB server builder for simple SQL database running under Fedora 29",
+                            "openshift.io/display-name": "S2I Mariadb Database (Fedora 30)",
+                            "description": "MariaDB server builder for simple SQL database running under Fedora 30",
                             "iconClass": "icon-mariadb",
                             "tags": "builder,startx,fedora,mariadb,database",
                             "supports": "db",
-                            "version": "fc29",
+                            "version": "fc30",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-mariadb:fc29"
+                            "name": "startx/sv-mariadb:fc30"
                         }
                     }
                 ]

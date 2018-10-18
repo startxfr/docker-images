@@ -1,6 +1,6 @@
 apache:
   build: ./
-  container_name: "fc29-service-apache"
+  container_name: "fc30-service-apache"
   mem_limit: 200m
   memswap_limit: 300m
   cpu_shares: 2

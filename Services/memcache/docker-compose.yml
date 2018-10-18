@@ -1,6 +1,6 @@
 memcache:
   build: ./
-  container_name: "fc29-service-memcache"
+  container_name: "fc30-service-memcache"
   mem_limit: 2g
   memswap_limit: 3g
   cpu_shares: 2
@@ -11,6 +11,6 @@ memcache:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "memcache"
-    CONTAINER_INSTANCE: "fc29-service-memcache"
+    CONTAINER_INSTANCE: "fc30-service-memcache"
   volumes:
-    - "/tmp/container-fc29/logs/memcache:/logs:z
+    - "/tmp/container-fc30/logs/memcache:/logs:z

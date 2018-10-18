@@ -10,7 +10,7 @@ based on [startx/fedora:28 container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-* `:latest` : Fedora core 29 + PostgreSQL 9.4.5 
+* `:latest` : Fedora core 30 + PostgreSQL 9.4.5 
 * `:fc28` : Fedora core 28 + PostgreSQL 9.4.5  
 * `:fc27` : Fedora core 27 + PostgreSQL 9.4.5  
 * `:fc26` : Fedora core 26 + PostgreSQL 9.4.5  

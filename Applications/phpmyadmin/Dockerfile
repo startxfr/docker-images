@@ -1,13 +1,13 @@
-FROM startx/sv-php:fc29
+FROM startx/sv-php:fc30
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="fc29" \
+ENV SX_VERSION="fc30" \
     SX_TYPE="application" \
     SX_SERVICE="phpmyadmin" \
     SX_ID="startx/app-phpmyadmin" \
-    SX_NAME="Startx PhpMyAdmin service image (fedora 29)" \
-    SX_SUMMARY="Startx phpmyadmin service based on fedora 29"
+    SX_NAME="Startx PhpMyAdmin service image (fedora 30)" \
+    SX_SUMMARY="Startx phpmyadmin service based on fedora 30"
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \

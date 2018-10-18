@@ -1,6 +1,6 @@
 mongo:
   build: ./
-  container_name: "fc29-service-mongo"
+  container_name: "fc30-service-mongo"
   mem_limit: 2g
   memswap_limit: 2g
   cpu_shares: 10
@@ -8,11 +8,11 @@ mongo:
   privileged: true
   ports:
     - "9251:27017"
-    - "9252:29017"
+    - "9252:30017"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mongo"
-    CONTAINER_INSTANCE: "fc29-service-mongo"
+    CONTAINER_INSTANCE: "fc30-service-mongo"
   volumes:
-    - "/tmp/container-fc29/logs/mongodb:/logs:z"
-    - "/tmp/container-fc29/mongodb:/data:z"
+    - "/tmp/container-fc30/logs/mongodb:/logs:z"
+    - "/tmp/container-fc30/mongodb:/data:z"

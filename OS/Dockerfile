@@ -1,13 +1,13 @@
-FROM fedora:29
+FROM fedora:30
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="fc29" \
+ENV SX_VERSION="fc30" \
     SX_TYPE="OS" \
     SX_SERVICE="fedora" \
     SX_ID="startx/fedora" \
-    SX_NAME="Startx OS base image (fedora 29)" \
-    SX_SUMMARY="Startx OS base image based on fedora 29" \
+    SX_NAME="Startx OS base image (fedora 30)" \
+    SX_SUMMARY="Startx OS base image based on fedora 30" \
     SX_VERBOSE=true \
     SX_DEBUG=false \
     APP_PATH="/app" \

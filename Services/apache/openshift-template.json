@@ -8,9 +8,9 @@
             "description": "Http server for simple web application running under Fedora",
             "iconClass": "icon-apache",
             "tags": "startx,os,fedora,apache,httpd",
-            "openshift.io/long-description": "This template provides an apache httpd webserver in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/fc29/README.md.",
+            "openshift.io/long-description": "This template provides an apache httpd webserver in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/fc30/README.md.",
             "openshift.io/provider-display-name": "STARTX",
-            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc29/README.md",
+            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc30/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
@@ -38,19 +38,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc29",
+                        "name": "fc30",
                         "annotations": {
-                            "openshift.io/display-name": "Startx WebServer (Fedora 29)",
-                            "description": "Http server for simple web application running under Fedora 29",
+                            "openshift.io/display-name": "Startx WebServer (Fedora 30)",
+                            "description": "Http server for simple web application running under Fedora 30",
                             "iconClass": "icon-apache",
                             "tags": "builder,startx,fedora,apache,httpd",
                             "supports": "http",
-                            "version": "29",
+                            "version": "30",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-apache.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-apache:fc29"
+                            "name": "startx/sv-apache:fc30"
                         }
                     }
                 ]
@@ -115,7 +115,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:fc29"
+                                "name": "${APP_NAME}:fc30"
                             }
                         }
                     },

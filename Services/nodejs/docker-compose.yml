@@ -1,6 +1,6 @@
 nodejs:
   build: ./
-  container_name: "fc29-service-nodejs"
+  container_name: "fc30-service-nodejs"
   mem_limit: 1g
   memswap_limit: 2g
   cpu_shares: 4
@@ -11,7 +11,7 @@ nodejs:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "nodejs"
-    CONTAINER_INSTANCE: "fc29-service-nodejs"
+    CONTAINER_INSTANCE: "fc30-service-nodejs"
   volumes:
-    - "/tmp/container-fc29/logs/nodejs:/logs:z"
-    - "/tmp/container-fc29/nodejs:/data:z"
+    - "/tmp/container-fc30/logs/nodejs:/logs:z"
+    - "/tmp/container-fc30/nodejs:/data:z"

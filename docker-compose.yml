@@ -1,59 +1,59 @@
-fedora29:
+fedora30:
   extends:
     file: OS/docker-compose.yml
-    service: fedora29
+    service: fedora30
 
-fc29-sv-apache:
+fc30-sv-apache:
   extends:
     file: Services/apache/docker-compose.yml
     service: apache
 
-fc29-sv-chrome:
+fc30-sv-chrome:
   extends:
     file: Services/chrome/docker-compose.yml
     service: chrome
 
-fc29-sv-php:
+fc30-sv-php:
   extends:
     file: Services/php/docker-compose.yml
     service: php
 
-fc29-sv-nodejs:
+fc30-sv-nodejs:
   extends:
     file: Services/nodejs/docker-compose.yml
     service: nodejs
 
-fc29-sv-mariadb:
+fc30-sv-mariadb:
   extends:
     file: Services/mariadb/docker-compose.yml
     service: mariadb
 
-fc29-sv-postgres:
+fc30-sv-postgres:
   extends:
     file: Services/postgres/docker-compose.yml
     service: postgres
 
-fc29-sv-mongo:
+fc30-sv-mongo:
   extends:
     file: Services/mongo/docker-compose.yml
     service: mongo
 
-fc29-sv-ooconv:
+fc30-sv-ooconv:
   extends:
     file: Services/ooconv/docker-compose.yml
     service: ooconv
 
-fc29-sv-memcache:
+fc30-sv-memcache:
   extends:
     file: Services/memcache/docker-compose.yml
     service: memcache
 
-fc29-app-pma:
+fc30-app-pma:
   extends:
     file: Applications/phpmyadmin/docker-compose.yml
     service: phpmyadmin
 
-#fc29-app-rockmongo:
+#fc30-app-rockmongo:
 #  extends:
 #    file: Applications/rockmongo/docker-compose.yml
 #    service: rockmongo

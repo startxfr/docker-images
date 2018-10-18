@@ -1,6 +1,6 @@
 postgres:
   build: ./
-  container_name: "fc29-service-postgres"
+  container_name: "fc30-service-postgres"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 8
@@ -11,11 +11,11 @@ postgres:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "postgresql"
-    CONTAINER_INSTANCE: "fc29-service-postgres"
+    CONTAINER_INSTANCE: "fc30-service-postgres"
     POSTGRESQL_ROOT_PASSWORD: "secretdemerde"
     POSTGRESQL_USER: "user-test"
     POSTGRESQL_PASSWORD: "pwd-test"
     POSTGRESQL_DATABASE: "db_test"
   volumes:
-    - "/tmp/container-fc29/logs/postgresql:/logs:z"
-    - "/tmp/container-fc29/postgresql:/data:z"
+    - "/tmp/container-fc30/logs/postgresql:/logs:z"
+    - "/tmp/container-fc30/postgresql:/data:z"

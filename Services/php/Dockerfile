@@ -1,13 +1,13 @@
-FROM startx/sv-apache:fc29
+FROM startx/sv-apache:fc30
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="fc29" \
+ENV SX_VERSION="fc30" \
     SX_TYPE="service" \
     SX_SERVICE="php" \
     SX_ID="startx/sv-php" \
-    SX_NAME="Startx Apache-PHP service image (fedora 29)" \
-    SX_SUMMARY="Startx apache-php service based on fedora 29"
+    SX_NAME="Startx Apache-PHP service image (fedora 30)" \
+    SX_SUMMARY="Startx apache-php service based on fedora 30"
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \

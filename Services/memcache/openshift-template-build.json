@@ -10,7 +10,7 @@
             "tags": "startx,fedora,memcached,database",
             "openshift.io/long-description": "This template provides an memcache Database in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building SQL databases container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
-            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc29/README.md",
+            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/fc30/README.md",
             "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
         }
     },
@@ -37,19 +37,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc29",
+                        "name": "fc30",
                         "annotations": {
-                            "openshift.io/display-name": "Startx Memcached Database (Fedora 29)",
-                            "description": "Memcached server for caching database running under Fedora 29",
+                            "openshift.io/display-name": "Startx Memcached Database (Fedora 30)",
+                            "description": "Memcached server for caching database running under Fedora 30",
                             "iconClass": "icon-memcached",
                             "tags": "builder,startx,fedora,memcached,database",
                             "supports": "db",
-                            "version": "fc29",
+                            "version": "fc30",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-memcache.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-memcache:fc29"
+                            "name": "startx/sv-memcache:fc30"
                         }
                     }
                 ]
@@ -73,7 +73,7 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc29",
+                        "name": "fc30",
                         "annotations": {
                             "openshift.io/display-name": "Application ${APP_NAME}",
                             "description": "Base image for the application ${APP_NAME}",
@@ -162,7 +162,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APP_NAME}:fc29"
+                                "name": "${APP_NAME}:fc30"
                             }
                         }
                     },
@@ -343,7 +343,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-sv-memcache:fc29"
+                            "name": "startx-sv-memcache:fc30"
                         },
                         "env": [
                             {
@@ -356,7 +356,7 @@
                 "output": {
                     "to": {
                         "kind": "ImageStreamTag",
-                        "name": "${APP_NAME}:fc29"
+                        "name": "${APP_NAME}:fc30"
                     }
                 },
                 "resources": {},
@@ -397,7 +397,7 @@
             "name": "SOURCE_BRANCH",
             "displayName": "Source branch",
             "description": "Name of the default branch",
-            "value": "fc29",
+            "value": "fc30",
             "required": true
         },
         {

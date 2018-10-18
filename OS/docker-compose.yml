@@ -1,6 +1,6 @@
-fedora29:
+fedora30:
   build: ./
-  container_name: "os-fedora29"
+  container_name: "os-fedora30"
   mem_limit: 100m
   memswap_limit: 200m
   cpu_shares: 2

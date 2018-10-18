@@ -1,10 +1,10 @@
 php:
   build: ./
-  container_name: "fc29-service-php"
+  container_name: "fc30-service-php"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 5
   ports:
     - "9213:8080"
   volumes:
-    - "/tmp/container-fc29/php:/data:z"
+    - "/tmp/container-fc30/php:/data:z"

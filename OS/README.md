@@ -1,6 +1,6 @@
 <img align="right" height="50" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true">
 
-# Docker OS Images : FEDORA 29
+# Docker OS Images : FEDORA 30
 
 Simple container used for all startx based services and applications published in [Dockerhub registry](https://github.com/startxfr/docker-images). 
 This container contain updated core OS rpm (kernel, libs,...) as well as usefull tools like pwgen, tar, zip, psmisc, procps, coreutils, findutils, wget
@@ -11,8 +11,8 @@ This container contain updated core OS rpm (kernel, libs,...) as well as usefull
 
 | Version    | Docker Hub repository                                             | Openshift                                   | Fedora distribution                         |
 |------------|-------------------------------------------------------------------|---------------------------------------------|---------------------------------------------|
-| latest     | [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora)  | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.json) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template.json)        | Fedora 29 (kernel 4.14 + GNU 2.23  )        |
-| 29         | [`startx/fedora:29`](https://hub.docker.com/r/startx/fedora)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.json) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template.json)        | Fedora 27 (kernel 4.11 + GNU 2.21  )        |
+| latest     | [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora)  | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.json) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template.json)        | Fedora 30 (kernel 4.14 + GNU 2.23  )        |
+| 30         | [`startx/fedora:30`](https://hub.docker.com/r/startx/fedora)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.json) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template.json)        | Fedora 27 (kernel 4.11 + GNU 2.21  )        |
 | 27         | [`startx/fedora:27`](https://hub.docker.com/r/startx/fedora)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.json) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template.json)        | Fedora 27 (kernel 4.11 + GNU 2.21  )        |
 | 26         | [`startx/fedora:26`](https://hub.docker.com/r/startx/fedora)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.json) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template.json)        | Fedora 26 (kernel 4.09 + GNU 2.20  )        |
 | 23         | [`startx/fedora:23`](https://hub.docker.com/r/startx/fedora)      | **N/A**                                                                                                                                                                                                                             | Fedora 23 (kernel 4.2 + GNU 3.18  )         |
@@ -24,12 +24,12 @@ This container contain updated core OS rpm (kernel, libs,...) as well as usefull
 
 ### Running from dockerhub registry
 
-* with `docker` you can run `docker run -it --name="fedora29" startx/fedora:29` from any docker host
+* with `docker` you can run `docker run -it --name="fedora30" startx/fedora:30` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```yaml
 fedora:
-  image: startx/fedora:29
-  container_name: "os-fedora29"
+  image: startx/fedora:30
+  container_name: "os-fedora30"
 ```
 
 ### Using this image as Openshift Build image
@@ -54,15 +54,15 @@ oc process startx-os-fedora-build-template | oc create -f -
 
 You can use this image as an s2i builder image. 
 ```bash
-s2i build https://github.com/startxfr/docker-images-example-bash startx/fedora:29 test-fedora29
-docker run --rm -i -t test-fedora29
+s2i build https://github.com/startxfr/docker-images-example-bash startx/fedora:30 test-fedora30
+docker run --rm -i -t test-fedora30
 ```
 
 ### Using this image as base container
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 ```Dockerfile
-FROM startx/fedora:29
+FROM startx/fedora:30
 #... your container specifications
 CMD ["/bin/sx"]
 ```
@@ -71,7 +71,7 @@ CMD ["/bin/sx"]
 
 | Variable                  | Type     | Default         | Description                                                              |
 |---------------------------|----------|-----------------|--------------------------------------------------------------------------|
-| SX_VERSION                | `string` | `29`        | container version
+| SX_VERSION                | `string` | `30`        | container version
 | SX_TYPE                   | `string` | `OS`            | Container family (os, service, application). could be enhanced 
 | SX_SERVICE                | `string` | `fedora`        | Define the type of service or application provided
 | SX_ID                     | `auto`   | `startx/fedora` | Container ID coresponding to the image repository 
@@ -92,7 +92,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-1. Switch to the flavour branch with `git branch fc29`
+1. Switch to the flavour branch with `git branch fc30`
 2. Jump into the container directory with `cd OS`
 3. Build the container using `docker build -t fedora .`
 4. Run this container 
@@ -102,7 +102,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker-compose`
 
-1. Switch to the flavour branch with `git branch fc29`
+1. Switch to the flavour branch with `git branch fc30`
 2. Jump into the container directory with `cd OS`
 3. Run this container 
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container

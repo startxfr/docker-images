@@ -1,13 +1,13 @@
-FROM startx/fedora:29
+FROM startx/fedora:30
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="fc29" \
+ENV SX_VERSION="fc30" \
     SX_TYPE="service" \
     SX_SERVICE="couchbase" \
     SX_ID="startx/sv-couchbase" \
-    SX_NAME="Startx Couchbase service image (fedora 29)" \
-    SX_SUMMARY="Startx couchbase service based on fedora 29" \
+    SX_NAME="Startx Couchbase service image (fedora 30)" \
+    SX_SUMMARY="Startx couchbase service based on fedora 30" \
     CB_PATH=/opt/couchbase \
     DATA_PATH=/opt/couchbase/var \
     CB_VERSION=5.5.0-beta \
