@@ -10,11 +10,11 @@ sudo: required
 services:
 - docker
 before_install:
-- "./travis/prepare-begin              alpine        alpine3 3"
-- "./travis/prepare-docker             alpine        alpine3 3"
-- "./travis/prepare-cache              alpine        alpine3 3"
-- "./travis/prepare-dockerhub          alpine        alpine3 3"
-- "./travis/prepare-end                alpine        alpine3 3"
+- "./travis/prepare-begin              alpine        3 3"
+- "./travis/prepare-docker             alpine        3 3"
+- "./travis/prepare-cache              alpine        3 3"
+- "./travis/prepare-dockerhub          alpine        3 3"
+- "./travis/prepare-end                alpine        3 3"
 script:
 - "./travis/test    OS                 alpine        3"
 - "./travis/test    Services/apache    sv-apache     alpine3"
