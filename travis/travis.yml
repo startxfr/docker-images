@@ -10,11 +10,11 @@ sudo: required
 services:
 - docker
 before_install:
-- "./travis/prepare-begin              centos        centos7 7"
-- "./travis/prepare-docker             centos        centos7 7"
-- "./travis/prepare-cache              centos        centos7 7"
-- "./travis/prepare-dockerhub          centos        centos7 7"
-- "./travis/prepare-end                centos        centos7 7"
+- "./travis/prepare-begin              centos        7 7"
+- "./travis/prepare-docker             centos        7 7"
+- "./travis/prepare-cache              centos        7 7"
+- "./travis/prepare-dockerhub          centos        7 7"
+- "./travis/prepare-end                centos        7 7"
 script:
 - "./travis/test    OS                 centos        latest"
 - "./travis/test    OS                 centos        7"
