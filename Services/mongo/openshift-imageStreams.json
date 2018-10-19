@@ -68,6 +68,38 @@
                         }
                     },
                     {
+                        "name": "fc29",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I MongoDB Database (Fedora 29)",
+                            "description": "MongoDB server builder for NoSQL database running under Fedora 29",
+                            "iconClass": "icon-mongodb",
+                            "tags": "builder,startx,fedora,mongo,database",
+                            "supports": "db",
+                            "version": "fc29",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mongo.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-mongo:fc29"
+                        }
+                    },
+                    {
+                        "name": "fc30",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I MongoDB Database (Fedora 30)",
+                            "description": "MongoDB server builder for NoSQL database running under Fedora 30",
+                            "iconClass": "icon-mongodb",
+                            "tags": "builder,startx,fedora,mongo,database",
+                            "supports": "db",
+                            "version": "fc30",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mongo.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-mongo:fc30"
+                        }
+                    },
+                    {
                         "name": "latest",
                         "annotations": {
                             "openshift.io/display-name": "S2I MongoDB Database (Centos 6)",

@@ -32,12 +32,12 @@ COPY sx /tmp/
 RUN yum --nogpgcheck -y install memcached && yum clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
-    mv /tmp/sx/lib/* /var/lib/sx/ && \
+    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     mkdir -p $LOG_PATH && \
-    chgrp -R 0 $LOG_PATH /bin/sx-* /s2i /var/lib/sx* && \
-    chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* && \
-    chmod -R g=u $LOG_PATH /bin/sx-* /s2i /var/lib/sx* && \
+    chgrp -R 0 $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
+    chown -R 1001:0 /bin/sx-* /s2i $SX_LIBDIR* && \
+    chmod -R g=u $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
     chmod -R ugo+x /bin/sx* && \
     chmod -R ugo+rwx $LOG_PATH
 

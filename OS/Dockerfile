@@ -8,16 +8,17 @@ ENV SX_VERSION="7" \
     SX_ID="startx/centos" \
     SX_NAME="Startx OS base image (centos 7)" \
     SX_SUMMARY="Startx OS base image based on centos 7" \
-    SX_VERBOSE=false \
+    SX_VERBOSE=true \
     SX_DEBUG=false \
     APP_PATH="/app" \
-    SX_S2IDIR="/tmp"
+    SX_S2IDIR="/tmp" \
+    SX_LIBDIR="/var/lib/sx"
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
       description="$SX_SUMMARY. Use for executing application based on bash script or as container mainstream image for your application containers." \
       version="$SX_VERSION" \
-      release="1" \
+      release="3" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
@@ -34,15 +35,15 @@ USER root
 COPY sx /tmp/
 RUN yum --nogpgcheck -y install pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip hostname  epel-release && \
     yum clean all && \
-    mkdir -p /var/lib/sx $APP_PATH && \
+    mkdir -p $SX_LIBDIR $APP_PATH && \
     chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib && \
     mv /tmp/s2i/bin /s2i && \
     mv /tmp/sx/bin/* /bin/ && \
-    mv /tmp/sx/lib/* /var/lib/sx/ && \
+    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
-    chgrp -R 0 /bin/sx /bin/sx* /s2i /var/lib/sx /tmp $APP_PATH && \
-    chown -R 1001:0 /bin/sx /bin/sx* /s2i /var/lib/sx /tmp $APP_PATH && \
-    chmod -R g=u /bin/sx /bin/sx* /s2i /var/lib/sx /tmp $APP_PATH
+    chgrp -R 0 /bin/sx /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH && \
+    chown -R 1001:0 /bin/sx /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH && \
+    chmod -R g=u /bin/sx /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH
 
 USER 1001
 

@@ -39,13 +39,13 @@ RUN yum --nogpgcheck -y --enablerepo=epel install centos-release-scl  && \
     mkdir -p $DATA_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
-    mv /tmp/sx/lib/* /var/lib/sx/ && \
+    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     mkdir -p $DATA_PATH $LOG_PATH && \
     chown -R mongodb:mongodb $DATA_PATH $LOG_PATH && \
-    chgrp -R 0 $DATA_PATH $LOG_PATH /bin/sx-* /s2i /var/lib/sx* && \
-    chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* && \
-    chmod -R g=u $DATA_PATH $LOG_PATH /bin/sx-* /s2i /var/lib/sx* && \
+    chgrp -R 0 $DATA_PATH $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
+    chown -R 1001:0 /bin/sx-* /s2i $SX_LIBDIR* && \
+    chmod -R g=u $DATA_PATH $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
     chmod -R ugo+x /bin/sx*
 
 USER 1001

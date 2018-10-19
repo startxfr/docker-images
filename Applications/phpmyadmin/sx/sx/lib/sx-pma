@@ -1,6 +1,6 @@
 #!/bin/bash
-source /var/lib/sx/sx
-source /var/lib/sx/sx-php
+source $SX_LIBDIR/sx
+source $SX_LIBDIR/sx-php
 
 # Display pma information
 function pmaInformation {

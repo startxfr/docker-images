@@ -1,4 +1,6 @@
-# STARTX Docker-Images Services based on CentOS 7
+[![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
+
+# STARTX Docker-Images Services Repository
 
 This directory host various Open Source services into docker containers based on [startx/centos:7 container](https://hub.docker.com/r/startx/centos)
 
@@ -16,17 +18,18 @@ your project and start using stable or experimental applications in your applica
 
 ## Available services
 
-| Service       | Docker Hub repository                                                | Fedora flavours                               | CentOS flavours | Doc
-|---------------|----------------------------------------------------------------------|-----------------------------------------------|-----------------|--------------------------------
-| Apache        | [`startx/sv-apache`](https://hub.docker.com/r/startx/sv-apache)      | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` | `:6` `:7`       | [manual](apache/README.md)
-| MariaDB       | [`startx/sv-mariadb`](https://hub.docker.com/r/startx/sv-mariadb)    | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` | `:6` `:7`       | [manual](mariadb/README.md)
-| Memcache      | [`startx/sv-memcache`](https://hub.docker.com/r/startx/sv-memcache)  | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` | `:6` `:7`       | [manual](memcache/README.md)
-| MongoDB       | [`startx/sv-mongo`](https://hub.docker.com/r/startx/sv-mongo)        | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` | `:6` `:7`       | [manual](mongo/README.md)
-| nodejs        | [`startx/sv-nodejs`](https://hub.docker.com/r/startx/sv-nodejs)      | `:latest` `:21` `:22` `:23` `:26` `:27`       | `:6` `:7`       | [manual](nodejs/README.md)
-| ooconv        | [`startx/sv-ooconv`](https://hub.docker.com/r/startx/sv-ooconv)      | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` | `:6` `:7`       | [manual](ooconv/README.md)
-| php           | [`startx/sv-php`](https://hub.docker.com/r/startx/sv-php)            | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` | `:6` `:7`       | [manual](php/README.md)
-| postgreSQL    | [`startx/sv-postgres`](https://hub.docker.com/r/startx/sv-postgres)  | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` | `:6` `:7`       | [manual](postgres/README.md)
-| Couchbase     | [`startx/sv-couchbase`](https://hub.docker.com/r/startx/sv-couchbase)|                                               | `:latest` `:7`  | [manual](couchbase/README.md)
+| Service       | Docker Hub repository                                                | Fedora flavours                                                                   | CentOS flavours             | Doc
+|---------------|----------------------------------------------------------------------|-----------------------------------------------------------------------------------|-----------------------------|--------------------------------
+| Apache        | [`startx/sv-apache`](https://hub.docker.com/r/startx/sv-apache)      | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` | `:centos6` `:centos7`       | [manual](apache/README.md)
+| MariaDB       | [`startx/sv-mariadb`](https://hub.docker.com/r/startx/sv-mariadb)    | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` | `:centos6` `:centos7`       | [manual](mariadb/README.md)
+| Memcache      | [`startx/sv-memcache`](https://hub.docker.com/r/startx/sv-memcache)  | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` | `:centos6` `:centos7`       | [manual](memcache/README.md)
+| MongoDB       | [`startx/sv-mongo`](https://hub.docker.com/r/startx/sv-mongo)        | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` | `:centos6` `:centos7`       | [manual](mongo/README.md)
+| nodejs        | [`startx/sv-nodejs`](https://hub.docker.com/r/startx/sv-nodejs)      | `:latest` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30`         | `:centos6` `:centos7`       | [manual](nodejs/README.md)
+| ooconv        | [`startx/sv-ooconv`](https://hub.docker.com/r/startx/sv-ooconv)      | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` | `:centos6` `:centos7`       | [manual](ooconv/README.md)
+| php           | [`startx/sv-php`](https://hub.docker.com/r/startx/sv-php)            | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` | `:centos6` `:centos7`       | [manual](php/README.md)
+| postgreSQL    | [`startx/sv-postgres`](https://hub.docker.com/r/startx/sv-postgres)  | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` | `:centos6` `:centos7`       | [manual](postgres/README.md)
+| Couchbase     | [`startx/sv-couchbase`](https://hub.docker.com/r/startx/sv-couchbase)|                                                                                   | `:centos7`                  | [manual](couchbase/README.md)
+| Chrome        | [`startx/sv-chrome`](https://hub.docker.com/r/startx/sv-chrome)      | `:latest` `:fc28` `:fc27` `:fc28` `:fc29` `:fc30`                                 | `:centos7`                  | [manual](chrome/README.md)
 
 ## Running from dockerhub registry
 

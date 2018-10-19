@@ -68,6 +68,38 @@
                         }
                     },
                     {
+                        "name": "fc29",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I Memcached Database (Fedora 29)",
+                            "description": "Memcached server builder for caching database running under Fedora 29",
+                            "iconClass": "icon-memcached",
+                            "tags": "builder,startx,fedora,memcached,database",
+                            "supports": "db",
+                            "version": "fc29",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-memcache.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-memcache:fc29"
+                        }
+                    },
+                    {
+                        "name": "fc30",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I Memcached Database (Fedora 30)",
+                            "description": "Memcached server builder for caching database running under Fedora 30",
+                            "iconClass": "icon-memcached",
+                            "tags": "builder,startx,fedora,memcached,database",
+                            "supports": "db",
+                            "version": "fc30",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-memcache.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-memcache:fc30"
+                        }
+                    },
+                    {
                         "name": "latest",
                         "annotations": {
                             "openshift.io/display-name": "S2I Memcached Database (Centos 6)",

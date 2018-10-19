@@ -8,6 +8,11 @@ centos7-sv-apache:
     file: Services/apache/docker-compose.yml
     service: apache
 
+centos7-sv-chrome:
+  extends:
+    file: Services/chrome/docker-compose.yml
+    service: chrome
+
 centos7-sv-php:
   extends:
     file: Services/php/docker-compose.yml
