@@ -52,6 +52,38 @@
                         }
                     },
                     {
+                        "name": "fc29",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I Couchbase Database (Fedora 29)",
+                            "description": "Couchbase server builder for NoSQL database running under Fedora 29",
+                            "iconClass": "icon-mysql-database",
+                            "tags": "builder,startx,fedora,couchbase,database",
+                            "supports": "db",
+                            "version": "fc29",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-couchbase.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-couchbase:fc29"
+                        }
+                    },
+                    {
+                        "name": "fc30",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I Couchbase Database (Fedora 30)",
+                            "description": "Couchbase server builder for NoSQL database running under Fedora 30",
+                            "iconClass": "icon-mysql-database",
+                            "tags": "builder,startx,fedora,couchbase,database",
+                            "supports": "db",
+                            "version": "fc30",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-couchbase.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-couchbase:fc30"
+                        }
+                    },
+                    {
                         "name": "latest",
                         "annotations": {
                             "openshift.io/display-name": "S2I Couchbase Database (Fedora rawhide)",
