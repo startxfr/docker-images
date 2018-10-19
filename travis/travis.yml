@@ -10,11 +10,11 @@ sudo: required
 services:
 - docker
 before_install:
-- "./travis/prepare-begin              fedora        fc28 28"
-- "./travis/prepare-docker             fedora        fc28 28"
-- "./travis/prepare-cache              fedora        fc28 28"
-- "./travis/prepare-dockerhub          fedora        fc28 28"
-- "./travis/prepare-end                fedora        fc28 28"
+- "./travis/prepare-begin              fedora        28 28"
+- "./travis/prepare-docker             fedora        28 28"
+- "./travis/prepare-cache              fedora        28 28"
+- "./travis/prepare-dockerhub          fedora        28 28"
+- "./travis/prepare-end                fedora        28 28"
 script:
 - "./travis/test    OS                 fedora        28"
 - "./travis/test    Services/apache    sv-apache     fc28"
