@@ -39,6 +39,8 @@ your project and start using stable or experimental services in your application
 ## Images flavours
 
 - `latest` based on fedora rawhide [see detail](https://github.com/startxfr/docker-images/tree/master)
+- `fc30` based on fedora core 30 [see detail](https://github.com/startxfr/docker-images/tree/fc30)
+- `fc29` based on fedora core 29 [see detail](https://github.com/startxfr/docker-images/tree/fc29)
 - `fc28` based on fedora core 28 [see detail](https://github.com/startxfr/docker-images/tree/fc28)
 - `fc27` based on fedora core 27 [see detail](https://github.com/startxfr/docker-images/tree/fc27)
 - `fc26` based on fedora core 26 [see detail](https://github.com/startxfr/docker-images/tree/fc26)

@@ -1,0 +1,19 @@
+#!/bin/bash
+source $SX_LIBDIR/sx-chrome
+
+check_chrome_environment
+# Dispatch input arguments
+case $1 in
+    assemble|build)         chromeAssemble $@ ;;
+    post-build)             chromePostBuild $@ ;;
+    pre-deploy)             chromePreDeploy $@ ;;
+    post-deploy)            chromePostDeploy $@ ;;
+    run|start)              chromeRun $@ ;;
+    isLive|health)          chromeIsLive $@ ;;
+    isReady)                chromeIsReady $@ ;;
+    info|--info)            chromeInformation $@ ;;
+    usage|help|--help)      genericUsage $@ ;;
+    usageS2i)               genericUsageS2I $@ ;;
+    version|--version)      genericVersion $@ ;;
+    *)                      genericWelcome $@ ;;
+esac

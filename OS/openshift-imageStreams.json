@@ -70,8 +70,8 @@
                     {
                         "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "S2I Startx Fedora 28",
-                            "description": "Minimal Fedora 28 OS builder for bash operations",
+                            "openshift.io/display-name": "S2I Startx Alpine 3",
+                            "description": "Minimal Alpine 3 OS builder for bash operations",
                             "iconClass": "icon-beaker",
                             "tags": "builder,startx,fedora",
                             "supports": "fedora",
@@ -84,10 +84,42 @@
                         }
                     },
                     {
+                        "name": "fc29",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I Startx Fedora 29",
+                            "description": "Minimal Fedora 29 OS builder for bash operations",
+                            "iconClass": "icon-beaker",
+                            "tags": "builder,startx,fedora",
+                            "supports": "fedora",
+                            "version": "fc29",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/fedora:29"
+                        }
+                    },
+                    {
+                        "name": "fc30",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I Startx Fedora 30",
+                            "description": "Minimal Fedora 30 OS builder for bash operations",
+                            "iconClass": "icon-beaker",
+                            "tags": "builder,startx,fedora",
+                            "supports": "fedora",
+                            "version": "fc30",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-bash.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/fedora:30"
+                        }
+                    },
+                    {
                         "name": "rawhide",
                         "annotations": {
                             "openshift.io/display-name": "S2I Startx Fedora (rawhide)",
-                            "description": "Minimal Fedora 28 OS builder for bash operations",
+                            "description": "Minimal Alpine 3 OS builder for bash operations",
                             "iconClass": "icon-beaker",
                             "tags": "builder,startx,fedora",
                             "supports": "fedora",

@@ -39,12 +39,12 @@ RUN apk --no-cache add mc curl util-linux libreoffice-common libreoffice-writer 
     mkdir -p $DATA_PATH /.cache && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
-    mv /tmp/sx/lib/* /var/lib/sx/ && \
+    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     touch $DATA_PATH/.keep && \
-    chgrp -R 0 $DATA_PATH /bin/sx-* /s2i /var/lib/sx* /.cache && \
-    chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* /.cache && \
-    chmod -R g=u $DATA_PATH /bin/sx-* /s2i /var/lib/sx* /.cache && \
+    chgrp -R 0 $DATA_PATH /bin/sx-* /s2i $SX_LIBDIR* /.cache && \
+    chown -R 1001:0 /bin/sx-* /s2i $SX_LIBDIR* /.cache && \
+    chmod -R g=u $DATA_PATH /bin/sx-* /s2i $SX_LIBDIR* /.cache && \
     chmod -R ugo+x /bin/sx* && \
     chmod -R ugo+wx /.cache
 

@@ -8,6 +8,11 @@ alpine3-sv-apache:
     file: Services/apache/docker-compose.yml
     service: apache
 
+alpine3-sv-chrome:
+  extends:
+    file: Services/chrome/docker-compose.yml
+    service: chrome
+
 alpine3-sv-php:
   extends:
     file: Services/php/docker-compose.yml

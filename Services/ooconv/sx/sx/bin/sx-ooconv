@@ -1,5 +1,5 @@
 #!/bin/bash
-source /var/lib/sx/sx-ooconv
+source $SX_LIBDIR/sx-ooconv
 
 check_ooconv_environment
 # Dispatch input arguments
@@ -9,7 +9,7 @@ case $1 in
     pre-deploy)             ooconvPreDeploy $@ ;;
     post-deploy)            ooconvPostDeploy $@ ;;
     run|start)              ooconvRun $@ ;;
-    isLive)                 ooconvIsLive $@ ;;
+    isLive|health)          ooconvIsLive $@ ;;
     isReady)                ooconvIsReady $@ ;;
     info|--info)            ooconvInformation $@ ;;
     usage|help|--help)      genericUsage $@ ;;

@@ -3,8 +3,10 @@
 # S2I usage script
 # The 'usage' script explay how to use the builder
 #
-# For more information refer to the documentation:
-#  https://github.com/openshift/source-to-image/blob/alpine3/docs/builder_image.md
+# For more information on how to install s2i, refer to the documentation:
+#  https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
+# For more information on how to use this image, refer to the startx container repository:
+#  https://dockerhub.com/u/startx
 #
 
 exec /bin/sx usageS2i

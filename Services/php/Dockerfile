@@ -38,13 +38,15 @@ RUN apk --no-cache add php7-apache2 php7 php7-phar php7-json php7-iconv php7-ope
     cp /usr/bin/php7 /usr/bin/php && rm -f /var/cache/apk/* && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
-    mv /tmp/sx/lib/* /var/lib/sx/ && \
+    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     chmod ug+r $HTTPDCONF && \
-    chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /var/lib/sx /tmp && \
-    chmod -R ug+rw $APP_PATH $DATA_PATH $LOG_PATH && \
-    chown -R 1001:0 /bin/sx* /s2i /var/lib/sx /tmp $APP_PATH $DATA_PATH $LOG_PATH && \
-    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /var/lib/sx /tmp && \
+    mkdir /run/php-fpm  && \
+    sed -i "s/;clear_env = no/clear_env = no/" /etc/php-fpm.d/www.conf && \
+    chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp /run/php-fpm && \
+    chmod -R ug+rw $APP_PATH $DATA_PATH $LOG_PATH /run/php-fpm && \
+    chown -R 1001:0 /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH $DATA_PATH $LOG_PATH /run/php-fpm && \
+    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp /run/php-fpm && \
     chmod -R ugo+x /bin/sx*
 COPY index.php $APP_PATH/index.php
 RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH && rm -rf $APP_PATH/index.html

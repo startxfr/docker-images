@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "========> END SETUP TEST ENVIRONMENT"
+exit 0;
