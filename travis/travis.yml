@@ -10,11 +10,11 @@ sudo: required
 services:
 - docker
 before_install:
-- "./travis/prepare-begin              fedora        latest"
-- "./travis/prepare-docker             fedora        latest"
-- "./travis/prepare-cache              fedora        latest"
-- "./travis/prepare-dockerhub          fedora        latest"
-- "./travis/prepare-end                fedora        latest"
+- "./travis/prepare-begin              fedora        latest latest"
+- "./travis/prepare-docker             fedora        latest latest"
+- "./travis/prepare-cache              fedora        latest latest"
+- "./travis/prepare-dockerhub          fedora        latest latest"
+- "./travis/prepare-end                fedora        latest latest"
 script:
 - "./travis/test    OS                 fedora        latest"
 - "./travis/test    Services/apache    sv-apache     latest"
