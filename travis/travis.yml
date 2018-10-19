@@ -10,11 +10,11 @@ sudo: required
 services:
 - docker
 before_install:
-- "./travis/prepare-begin              fedora        fc30 latest"
-- "./travis/prepare-docker             fedora        fc30 latest"
-- "./travis/prepare-cache              fedora        fc30 latest"
-- "./travis/prepare-dockerhub          fedora        fc30 latest"
-- "./travis/prepare-end                fedora        fc30 latest"
+- "./travis/prepare-begin              fedora        30 latest"
+- "./travis/prepare-docker             fedora        30 latest"
+- "./travis/prepare-cache              fedora        30 latest"
+- "./travis/prepare-dockerhub          fedora        30 latest"
+- "./travis/prepare-end                fedora        30 latest"
 script:
 - "./travis/test    OS                 fedora        30"
 - "./travis/test    Services/apache    sv-apache     fc30"
