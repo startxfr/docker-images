@@ -30,7 +30,7 @@ service:
   image: startx/sv-memcache:fc28
   container_name: "fc28-service-memcache"
   volumes:
-    - "/tmp/container-fc28/logs/memcache:/logs:z"
+    - "/tmp/container/memcache/logs:/logs:z"
 ```
 
 ### Using this image as Openshift Build image

@@ -6,5 +6,9 @@ phpmyadmin:
   cpu_shares: 2
   ports:
     - "9215:8080"
-  volumes:
-    - "/tmp/container-fc28/phpmyadmin:/data:z"
+#  volumes:
+#    - "/tmp/container/memcache/logs:/var/log/httpd:z"
+#    - "/tmp/container/phpmyadmin/data:/data:z"
+#  command:
+#     - "/bin/sx-pma"
+#     - "run"

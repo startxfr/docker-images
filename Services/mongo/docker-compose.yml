@@ -12,7 +12,9 @@ mongo:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mongo"
-    CONTAINER_INSTANCE: "fc28-service-mongo"
-  volumes:
-    - "/tmp/container-fc28/logs/mongodb:/logs:z"
-    - "/tmp/container-fc28/mongodb:/data:z"
+#  volumes:
+#    - "/tmp/container/mongo/logs:/logs:z"
+#    - "/tmp/container/mongo/data:/data:z"
+#  command:
+#     - "/bin/sx-mongo"
+#     - "run"
