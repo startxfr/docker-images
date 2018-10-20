@@ -12,7 +12,6 @@ mongo:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mongo"
-    CONTAINER_INSTANCE: "service-mongo"
 #  volumes:
 #    - "/tmp/container/mongo/logs:/logs:z"
 #    - "/tmp/container/mongo/data:/data:z"

@@ -11,7 +11,6 @@ postgres:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "postgresql"
-    CONTAINER_INSTANCE: "service-postgres"
     POSTGRESQL_ROOT_PASSWORD: "secretdemerde"
     POSTGRESQL_USER: "user-test"
     POSTGRESQL_PASSWORD: "pwd-test"

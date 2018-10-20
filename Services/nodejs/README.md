@@ -31,8 +31,8 @@ service:
   image: startx/sv-nodejs:latest
   container_name: "service-nodejs"
   volumes:
-    - "/tmp/container/logs/nodejs:/logs:z"
-    - "/tmp/container/nodejs:/data:z"
+    - "/tmp/container/nodejs/logs:/logs:z"
+    - "/tmp/container/nodejs/data:/data:z"
 ```
 
 ### Using this image as Openshift Build image
