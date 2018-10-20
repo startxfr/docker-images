@@ -30,8 +30,8 @@ service:
   image: startx/sv-apache:fc28
   container_name: "service-apache-fc28"
   volumes:
-    - "/tmp/container-fc28/logs/apache:/logs:z"
-    - "/tmp/container-fc28/apache:/data:z"
+    - "/tmp/container/apache/logs:/logs:z"
+    - "/tmp/container/apache/data:/data:z"
 ```
 
 ### Using this image as Openshift Build image

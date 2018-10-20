@@ -24,8 +24,8 @@ service:
   image: startx/sv-chrome:latest
   container_name: "service-chrome"
   volumes:
-    - "/tmp/container/logs/chrome:/logs:z"
-    - "/tmp/container/chrome:/home/chrome:z"
+    - "/tmp/container/chrome/logs:/logs:z"
+    - "/tmp/container/chrome/data:/home/chrome:z"
 ```
 
 ### Using this image as Openshift Build image
