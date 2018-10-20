@@ -11,6 +11,8 @@ memcache:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "memcache"
-    CONTAINER_INSTANCE: "alpine3-service-memcache"
-  volumes:
-    - "/tmp/container-alpine3/logs/memcache:/logs:z"
+#  volumes:
+#    - "/tmp/container/memcache/logs:/logs:z"
+#  command:
+#     - "/bin/sx-memcache"
+#     - "run"

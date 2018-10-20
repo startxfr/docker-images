@@ -37,8 +37,9 @@ service:
     MYSQL_PASSWORD: "pwd-test"
     MYSQL_DATABASE: "db_test"
   volumes:
-    - "/tmp/container-alpine3/logs/mariadb:/logs:z"
-    - "/tmp/container-alpine3/mariadb:/data:z"
+    - "/tmp/container/mariadb/logs:/logs:z"
+    - "/tmp/container/mariadb/load-sql:/tmp/sql:z"
+    - "/tmp/container/mariadb/data:/data:z"
 ```
 
 ### Using this image as Openshift Build image

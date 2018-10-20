@@ -11,11 +11,13 @@ postgres:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "postgresql"
-    CONTAINER_INSTANCE: "alpine3-service-postgres"
     POSTGRESQL_ROOT_PASSWORD: "secretdemerde"
     POSTGRESQL_USER: "user-test"
     POSTGRESQL_PASSWORD: "pwd-test"
     POSTGRESQL_DATABASE: "db_test"
-  volumes:
-    - "/tmp/container-alpine3/logs/postgresql:/logs:z"
-    - "/tmp/container-alpine3/postgresql:/data:z"
+#  volumes:
+#    - "/tmp/container/postgres/logs:/logs:z"
+#    - "/tmp/container/postgres/data:/data:z"
+#  command:
+#     - "/bin/sx-postgres"
+#     - "run"

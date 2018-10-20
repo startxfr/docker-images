@@ -30,7 +30,7 @@ service:
   image: startx/sv-memcache:alpine3
   container_name: "service-memcache-alpine3"
   volumes:
-    - "/tmp/container-alpine3/logs/memcache:/logs:z"
+    - "/tmp/container/memcache/logs:/logs:z"
 ```
 
 ### Using this image as Openshift Build image
