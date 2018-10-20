@@ -20,22 +20,6 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc26",
-                        "annotations": {
-                            "openshift.io/display-name": "S2I Browser (Fedora 26)",
-                            "description": "Chrome browser builder for simple internet browsing under Fedora 26",
-                            "iconClass": "icon-chrome",
-                            "tags": "builder,startx,fedora,chrome,vnc",
-                            "supports": "vnc",
-                            "version": "fc26",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-chrome.git"
-                        },
-                        "from": {
-                            "kind": "DockerImage",
-                            "name": "startx/sv-chrome:fc26"
-                        }
-                    },
-                    {
                         "name": "fc27",
                         "annotations": {
                             "openshift.io/display-name": "S2I Browser (Fedora 27)",
@@ -129,22 +113,6 @@
                         "from": {
                             "kind": "DockerImage",
                             "name": "startx/sv-chrome:centos7"
-                        }
-                    },
-                    {
-                        "name": "centos6",
-                        "annotations": {
-                            "openshift.io/display-name": "S2I Browser (Centos 6)",
-                            "description": "Chrome browser builder for simple internet browsing under Centos 6",
-                            "iconClass": "icon-chrome",
-                            "tags": "builder,startx,centos,chrome,vnc",
-                            "supports": "vnc",
-                            "version": "7",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-chrome.git"
-                        },
-                        "from": {
-                            "kind": "DockerImage",
-                            "name": "startx/sv-chrome:centos6"
                         }
                     },
                     {
