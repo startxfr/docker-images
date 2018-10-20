@@ -30,8 +30,8 @@ service:
   image: startx/sv-mongo:fc27
   container_name: "fc27-service-mongo"
   volumes:
-    - "/tmp/container-fc27/logs/mongo:/logs:z"
-    - "/tmp/container-fc27/mongo:/data:z"
+    - "/tmp/container/mongo/logs:/logs:z"
+    - "/tmp/container/mongo/data:/data:z"
 ```
 
 ### Using this image as Openshift Build image

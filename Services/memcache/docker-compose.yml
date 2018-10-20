@@ -11,9 +11,8 @@ memcache:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "memcache"
-    CONTAINER_INSTANCE: "fc27-service-memcache"
 #  volumes:
 #    - "/tmp/container/memcache/logs:/logs:z"
-  command:
-     - "/bin/sx-memcache"
-     - "run"
+#  command:
+#     - "/bin/sx-memcache"
+#     - "run"

@@ -13,7 +13,6 @@ couchbase:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "couchbase"
-    CONTAINER_INSTANCE: "service-couchbase"
 #  volumes:
 #    - "/tmp/container/couchbase/data:/opt/couchbase/var:z"
 #  command:
