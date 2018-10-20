@@ -1,13 +1,13 @@
-FROM startx/fedora:latest
+FROM startx/alpine:3
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="alpine3" \
     SX_TYPE="service" \
     SX_SERVICE="chrome" \
     SX_ID="startx/sv-chrome" \
-    SX_NAME="Startx Chrome service image (fedora rawhide)" \
-    SX_SUMMARY="Startx chrome service based on fedora rawhide" \
+    SX_NAME="Startx Chrome service image (alpine 3.7)" \
+    SX_SUMMARY="Startx chrome service based on alpine 3.7" \
     SX_CHROME_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
     LOG_PATH=/home/chrome \
     APP_PATH=/home/chrome \
@@ -25,7 +25,7 @@ LABEL name="$SX_ID" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,fedora,chrome,vnc,X11" \
+      io.openshift.tags="startx,os,alpine,chrome,vnc,X11" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="400Mi" \
       io.openshift.min-cpu="2000m" \
@@ -37,21 +37,19 @@ LABEL name="$SX_ID" \
 USER root
 COPY supervisord.conf $SX_CHROME_SUPERVISOR_CONF/
 COPY sx /tmp/
-RUN wget http://rpmfind.net/linux/fedora-secondary/releases/28/Everything/i386/os/Packages/p/python2-meld3-1.0.2-6.fc28.noarch.rpm && \
-    rpm -ivh python2-meld3-1.0.2-6.fc28.noarch.rpm --nodeps && \
-    dnf --nogpgcheck -y install supervisor xorg-x11-server-Xvfb x11vnc fedora-workstation-repositories dnf-plugins-core pulseaudio python2-meld3  && \
-    dnf config-manager --set-enabled google-chrome && \
-    dnf --nogpgcheck -y install google-chrome-stable && \
-    dnf clean all && \
-    easy_install pip && \
-    pip install --upgrade pip && \
-    pip install --upgrade --force-reinstall setuptools pip && \
-    useradd -s /bin/bash -m -g 0 -u 1001 -G pulse-access chrome && \
+RUN apk update && apk upgrade && \
+	echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
+    echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
+    apk add --no-cache --update --purge -uU -f x11vnc xvfb supervisor inotify-tools python py-pip chromium@edge nss@edge && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apk/* /usr/share/man
+
+RUN pip install --upgrade --force-reinstall setuptools pip supervisor && \
+    useradd -s /bin/bash -m -g 0 -u 1001 chrome && \
     mkdir -p /s2i $SX_LIBDIR && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
-    rm -rf /tmp/sx /tmp/s2i && \
+    rm -rf /tmp/* && \
     mkdir -p $DATA_PATH $APP_PATH $LOG_PATH $DATA_PATH/.config && \
 	chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp && \
     chown -R $SX_USER:0 /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH $DATA_PATH $LOG_PATH $DATA_PATH/.config && \
