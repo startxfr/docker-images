@@ -33,7 +33,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY my.cnf $MY_CONF
 COPY sx /tmp/
-RUN dnf --nogpgcheck -y install mariadb-tokudb-engine mariadb-connect-engine mariadb-rocksdb-engine mariadb-oqgraph-engine mariadb-connector-c mariadb-connector-odbc mariadb-server-utils mariadb-java-client mariadb-backup mariadb-common mariadb-config mariadb-errmsg mariadb-gssapi-server mariadb-cracklib-password-check mariadb && \
+RUN dnf --nogpgcheck -y install mariadb-tokudb-engine mariadb-connect-engine mariadb-rocksdb-engine mariadb-oqgraph-engine mariadb-connector-c mariadb-connector-odbc mariadb-server-utils mariadb-java-client mariadb-backup mariadb-common mariadb-errmsg mariadb-gssapi-server mariadb-cracklib-password-check mariadb && \
     dnf clean all && \
     mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \
