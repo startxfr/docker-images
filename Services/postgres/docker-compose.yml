@@ -16,6 +16,9 @@ postgres:
     POSTGRESQL_USER: "user-test"
     POSTGRESQL_PASSWORD: "pwd-test"
     POSTGRESQL_DATABASE: "db_test"
-  volumes:
-    - "/tmp/container/logs/postgresql:/logs:z"
-    - "/tmp/container/postgresql:/data:z"
+#  volumes:
+#    - "/tmp/container/postgres/logs:/logs:z"
+#    - "/tmp/container/postgres/data:/data:z"
+#  command:
+#     - "/bin/sx-postgres"
+#     - "run"

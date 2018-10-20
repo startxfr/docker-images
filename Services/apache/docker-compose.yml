@@ -6,3 +6,10 @@ apache:
   cpu_shares: 2
   ports:
     - "9201:8080"
+#  volumes:
+#    - "/tmp/container/memcache/logs:/var/log/httpd:z"
+#    - "/tmp/container/memcache/app:/app:z"
+#    - "/tmp/container/memcache/data:/data:z"
+#  command:
+#     - "/bin/sx-apache"
+#     - "run"

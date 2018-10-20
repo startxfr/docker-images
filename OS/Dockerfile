@@ -49,5 +49,4 @@ USER 1001
 
 WORKDIR $APP_PATH
 
-ENTRYPOINT [ "/bin/sx" ]
 CMD [ "/bin/sx" ]

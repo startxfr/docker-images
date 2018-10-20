@@ -4,8 +4,6 @@ mariadb:
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 8
-  restart: "on-failure:2"
-  privileged: true
   ports:
     - "9231:3306"
   environment:
@@ -16,6 +14,10 @@ mariadb:
     MYSQL_USER: "user-test"
     MYSQL_PASSWORD: "pwd-test"
     MYSQL_DATABASE: "db_test"
-  volumes:
-    - "/tmp/container/logs/mariadb:/logs:z"
-    - "/tmp/container/mariadb:/data:z"
+#  volumes:
+#    - "/tmp/container/mariadb/logs:/logs:z"
+#    - "/tmp/container/mariadb/load-sql:/tmp/sql:z"
+#    - "/tmp/container/mariadb/data:/data:z"
+#  command:
+#     - "/bin/sx-mariadb"
+#     - "run"

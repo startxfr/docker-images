@@ -12,5 +12,9 @@ ooconv:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "ooconv"
     CONTAINER_INSTANCE: "service-ooconv"
-  volumes:
-    - "/tmp/container/logs/ooconv:/logs:z"
+#  volumes:
+#    - "/tmp/container/ooconv/logs:/logs:z"
+#    - "/tmp/container/ooconv/data:/data:z"
+#  command:
+#     - "/bin/sx-ooconv"
+#     - "run"
