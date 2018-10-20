@@ -11,7 +11,9 @@ nodejs:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "nodejs"
-    CONTAINER_INSTANCE: "fc29-service-nodejs"
-  volumes:
-    - "/tmp/container-fc29/logs/nodejs:/logs:z"
-    - "/tmp/container-fc29/nodejs:/data:z"
+#  volumes:
+#    - "/tmp/container/nodejs/logs:/logs:z"
+#    - "/tmp/container/nodejs/data:/data:z"
+#  command:
+#     - "/bin/sx-nodejs"
+#     - "run"

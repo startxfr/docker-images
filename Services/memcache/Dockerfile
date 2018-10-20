@@ -8,7 +8,7 @@ ENV SX_VERSION="fc29" \
     SX_ID="startx/sv-memcache" \
     SX_NAME="Startx Memcached service image (fedora 29)" \
     SX_SUMMARY="Startx Memcached service based on fedora 29" \
-    LOG_PATH=/var/log/httpd
+    LOG_PATH=/logs
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \

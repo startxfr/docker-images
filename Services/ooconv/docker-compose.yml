@@ -11,6 +11,9 @@ ooconv:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "ooconv"
-    CONTAINER_INSTANCE: "fc29-service-ooconv"
-  volumes:
-    - "/tmp/container-fc29/logs/ooconv:/logs:z"
+#  volumes:
+#    - "/tmp/container/ooconv/logs:/logs:z"
+#    - "/tmp/container/ooconv/data:/data:z"
+#  command:
+#     - "/bin/sx-ooconv"
+#     - "run"

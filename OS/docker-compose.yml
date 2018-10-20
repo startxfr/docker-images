@@ -4,4 +4,9 @@ fedora29:
   mem_limit: 100m
   memswap_limit: 200m
   cpu_shares: 2
-  command: ["/bin/sx", "usage"]
+#  volumes:
+#    - "/tmp/container/fedora/logs:/logs:z"
+#    - "/tmp/container/fedora/app:/app:z"
+#  command:
+#     - "/bin/sx"
+#     - "run"
