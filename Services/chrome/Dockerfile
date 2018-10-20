@@ -1,4 +1,4 @@
-FROM startx/fedora:latest
+FROM startx/centos:7
 
 MAINTAINER Startx <dev@startx.fr>
 
@@ -37,16 +37,16 @@ LABEL name="$SX_ID" \
 USER root
 COPY supervisord.conf $SX_CHROME_SUPERVISOR_CONF/
 COPY sx /tmp/
+COPY google-chrome.repo /etc/yum.repos.d/google-chrome.repo
 RUN wget http://rpmfind.net/linux/fedora-secondary/releases/28/Everything/i386/os/Packages/p/python2-meld3-1.0.2-6.fc28.noarch.rpm && \
     rpm -ivh python2-meld3-1.0.2-6.fc28.noarch.rpm --nodeps && \
-    dnf --nogpgcheck -y install supervisor xorg-x11-server-Xvfb x11vnc fedora-workstation-repositories dnf-plugins-core pulseaudio python2-meld3  && \
-    dnf config-manager --set-enabled google-chrome && \
-    dnf --nogpgcheck -y install google-chrome-stable && \
-    dnf clean all && \
+    yum --nogpgcheck -y install supervisor xorg-x11-server-Xvfb x11vnc dnf-plugins-core pulseaudio python2-meld3 google-chrome-stable  && \
+    yum clean all && \
+    rm -rf /var/cache/yum && \
     easy_install pip && \
     pip install --upgrade pip && \
     pip install --upgrade --force-reinstall setuptools pip && \
-    useradd  -s /bin/bash -m -g 0 -u 1001 -G pulse-access chrome && \
+    useradd -s /bin/bash -m -g 0 -u 1001 -G pulse-access chrome && \
     mkdir -p /s2i $SX_LIBDIR && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
@@ -69,4 +69,4 @@ VOLUME $DATA_PATH
 
 ENTRYPOINT ["/bin/entrypoint.sh" ]
 
-CMD [ "/bin/sx-chrome" ]
+CMD [ "/bin/sx-chrome" , "run" ]

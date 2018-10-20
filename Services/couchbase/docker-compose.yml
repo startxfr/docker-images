@@ -1,10 +1,9 @@
 couchbase:
   build: ./
   container_name: "centos7-service-couchbase"
-  mem_limit: 4g
-  memswap_limit: 6g
-  cpu_shares: 10
-  restart: "on-failure:2"
+  mem_limit: 2g
+  memswap_limit: 3g
+  cpu_shares: 2
   privileged: true
   ports:
     - "8091-8094"
@@ -14,6 +13,8 @@ couchbase:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "couchbase"
-    CONTAINER_INSTANCE: "centos7-service-couchbase"
-  volumes:
-    - "/tmp/container-centos7/logs/couchbase:/logs:z"
+#  volumes:
+#    - "/tmp/container/couchbase/data:/opt/couchbase/var:z"
+#  command:
+#     - "/bin/sx-couchbase"
+#     - "run"

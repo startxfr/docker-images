@@ -12,7 +12,9 @@ mongo:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "mongo"
-    CONTAINER_INSTANCE: "centos7-service-mongo"
-  volumes:
-    - "/tmp/container-centos7/logs/mongodb:/logs:z"
-    - "/tmp/container-centos7/mongodb:/data:z"
+#  volumes:
+#    - "/tmp/container/mongo/logs:/logs:z"
+#    - "/tmp/container/mongo/data:/data:z"
+#  command:
+#     - "/bin/sx-mongo"
+#     - "run"

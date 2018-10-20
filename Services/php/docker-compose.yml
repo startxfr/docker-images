@@ -6,5 +6,10 @@ php:
   cpu_shares: 5
   ports:
     - "9213:8080"
-  volumes:
-    - "/tmp/container-centos7/php:/data:z"
+#  volumes:
+#    - "/tmp/container/php/logs:/var/log/httpd:z"
+#    - "/tmp/container/php/app:/app:z"
+#    - "/tmp/container/php/data:/data:z"
+#  command:
+#     - "/bin/sx-php"
+#     - "run"

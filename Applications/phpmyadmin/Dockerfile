@@ -51,4 +51,4 @@ WORKDIR $APP_PATH
 
 EXPOSE 8080
 
-CMD [ "/bin/sx-pma" , "start" ]
+CMD [ "/bin/sx-pma" , "run" ]
