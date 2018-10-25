@@ -7,7 +7,7 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-apache",
+                "name": "startx-apache",
                 "annotations": {
                     "openshift.io/display-name": "Startx WebServer (S2I)",
                     "openshift.io/generated-by": "STARTX"
@@ -138,7 +138,7 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-chrome",
+                "name": "startx-chrome",
                 "annotations": {
                     "openshift.io/display-name": "Startx Chrome Browser (S2I)",
                     "openshift.io/generated-by": "STARTX"
@@ -269,13 +269,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-couchbase",
+                "name": "startx-couchbase",
                 "annotations": {
                     "openshift.io/display-name": "Startx Couchbase Database (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-couchbase",
+                    "base-image": "startx-couchbase",
                     "provider": "startx"
                 }
             },
@@ -368,13 +368,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-mariadb",
+                "name": "startx-mariadb",
                 "annotations": {
                     "openshift.io/display-name": "Startx Mariadb Database (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-mariadb",
+                    "base-image": "startx-mariadb",
                     "provider": "startx"
                 }
             },
@@ -515,13 +515,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-memcache",
+                "name": "startx-memcache",
                 "annotations": {
                     "openshift.io/display-name": "Startx Memcached Database (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-memcache",
+                    "base-image": "startx-memcache",
                     "provider": "startx"
                 }
             },
@@ -662,13 +662,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-mongo",
+                "name": "startx-mongo",
                 "annotations": {
                     "openshift.io/display-name": "Startx MongoDB Database (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-mongo",
+                    "base-image": "startx-mongo",
                     "provider": "startx"
                 }
             },
@@ -793,13 +793,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-nodejs",
+                "name": "startx-nodejs",
                 "annotations": {
                     "openshift.io/display-name": "Startx NodeJS micro-server (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-nodejs",
+                    "base-image": "startx-nodejs",
                     "provider": "startx"
                 }
             },
@@ -940,13 +940,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-ooconv",
+                "name": "startx-ooconv",
                 "annotations": {
                     "openshift.io/display-name": "Startx LibreOffice converter (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-ooconv",
+                    "base-image": "startx-ooconv",
                     "provider": "startx"
                 }
             },
@@ -1039,13 +1039,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-php",
+                "name": "startx-php",
                 "annotations": {
                     "openshift.io/display-name": "Startx PHP WebServer (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-php",
+                    "base-image": "startx-php",
                     "provider": "startx"
                 }
             },
@@ -1170,13 +1170,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-postgres",
+                "name": "startx-postgres",
                 "annotations": {
                     "openshift.io/display-name": "Startx PostGresQL Database (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-postgres",
+                    "base-image": "startx-postgres",
                     "provider": "startx"
                 }
             },

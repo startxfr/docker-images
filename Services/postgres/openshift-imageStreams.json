@@ -7,13 +7,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-postgres",
+                "name": "startx-postgres",
                 "annotations": {
                     "openshift.io/display-name": "Startx PostGresQL Database (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-postgres",
+                    "base-image": "startx-os",
                     "provider": "startx"
                 }
             },

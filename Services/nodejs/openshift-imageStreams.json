@@ -7,13 +7,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-nodejs",
+                "name": "startx-nodejs",
                 "annotations": {
                     "openshift.io/display-name": "Startx NodeJS micro-server (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-nodejs",
+                    "base-image": "startx-os",
                     "provider": "startx"
                 }
             },

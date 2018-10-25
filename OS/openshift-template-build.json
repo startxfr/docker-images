@@ -31,7 +31,6 @@
                 "labels": {
                     "base-image": "startx-os",
                     "app": "${APP_NAME}",
-                    "type": "${APP_TYPE}",
                     "provider": "startx"
                 }
             },
@@ -68,7 +67,6 @@
                 "labels": {
                     "base-image": "startx-os",
                     "app": "${APP_NAME}",
-                    "type": "${APP_TYPE}",
                     "provider": "startx"
                 }
             },
@@ -97,7 +95,6 @@
                 "creationTimestamp": null,
                 "labels": {
                     "app": "${APP_NAME}",
-                    "type": "${APP_TYPE}",
                     "provider": "startx",
                     "template": "startx-os-fedora-build-template"
                 },
@@ -189,7 +186,6 @@
                         "creationTimestamp": null,
                         "labels": {
                             "app": "${APP_NAME}",
-                            "type": "${APP_TYPE}",
                             "provider": "startx",
                             "template": "startx-os-fedora-build-template",
                             "deploymentconfig": "${APP_NAME}"
@@ -213,7 +209,7 @@
                                     "/bin/sx"
                                 ],
                                 "args": [
-                                    "run"
+                                    "${RUN_ACTION}"
                                 ],
                                 "resources": {},
                                 "livenessProbe": {
@@ -243,7 +239,27 @@
                                     "failureThreshold": 3
                                 },
                                 "terminationMessagePath": "/dev/termination-log",
-                                "imagePullPolicy": "Always"
+                                "imagePullPolicy": "Always",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/logs",
+                                        "name": "${APP_NAME}-log"
+                                    },
+                                    {
+                                        "mountPath": "/app",
+                                        "name": "${APP_NAME}-app"
+                                    }
+                                ]
+                            }
+                        ],
+                        "volumes": [
+                            {
+                                "name": "${APP_NAME}-log",
+                                "emptyDir": {}
+                            },
+                            {
+                                "name": "${APP_NAME}-app",
+                                "emptyDir": {}
                             }
                         ],
                         "restartPolicy": "Always",
@@ -268,7 +284,6 @@
                 "creationTimestamp": null,
                 "labels": {
                     "app": "${APP_NAME}",
-                    "type": "${APP_TYPE}",
                     "provider": "startx",
                     "template": "startx-os-fedora-build-template"
                 },
@@ -349,12 +364,6 @@
             "required": true
         },
         {
-            "name": "APP_TYPE",
-            "displayName": "Application type",
-            "description": "The type of the created application",
-            "value": "system"
-        },
-        {
             "name": "SOURCE_GIT",
             "displayName": "Source repository",
             "description": "URL to the source code to use during build process",
@@ -374,6 +383,13 @@
             "description": "Secret token to use for webhook to github or generic",
             "generate": "expression",
             "from": "[a-zA-Z0-9]{24}",
+            "required": true
+        },
+        {
+            "name": "RUN_ACTION",
+            "displayName": "Main action to perfom",
+            "description": "Action to perform for this running Pod. Should be one of build, post-build, pre-deploy, post-deploy, run, isLive, isReady, usage, usageS2i, daemon, info, version. See documentation for action list.",
+            "value": "run",
             "required": true
         }
     ]

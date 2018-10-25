@@ -7,7 +7,7 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-chrome",
+                "name": "startx-chrome",
                 "annotations": {
                     "openshift.io/display-name": "Startx Browser (S2I)",
                     "openshift.io/generated-by": "STARTX"
