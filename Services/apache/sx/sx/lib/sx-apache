@@ -6,10 +6,6 @@ function check_apache_environment {
         APP_PATH="/app"
         export APP_PATH
     fi
-    if [ ! -v DATA_PATH ]; then
-        DATA_PATH="/data"
-        export DATA_PATH
-    fi
     if [ ! -v LOG_PATH ]; then
         LOG_PATH="/logs"
         export LOG_PATH
@@ -25,7 +21,6 @@ function apacheInformation {
     displayInformation $1 
     echoVerbose $1 "app path  : $APP_PATH"
     echoVerbose $1 "log path  : $LOG_PATH"
-    echoVerbose $1 "data path : $DATA_PATH"
     echoVerbose $1 "httpd     : $(httpd -v | head -1)" 
 }
 
