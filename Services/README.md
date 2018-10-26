@@ -11,7 +11,7 @@ Fedora Linux distribution.
 
 If you're used to work with redhat like and distribution, you would prefer start working
 from a container based on this distribution rather than ubuntu or debian like distributions.
-OS, services and application you will find here will be closer to your favorite distrbution
+OS, Services, VDI and application you will find here will be closer to your favorite distribution
 
 Please **read each container manual** for more information on how you can use it in 
 your project and start using stable or experimental services in your applications
@@ -32,7 +32,6 @@ your project and start using stable or experimental services in your application
 | php           | [`startx/sv-php`](https://hub.docker.com/r/startx/sv-php)            | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` | `:centos6` `:centos7`       | [manual](php/README.md)
 | postgreSQL    | [`startx/sv-postgres`](https://hub.docker.com/r/startx/sv-postgres)  | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` | `:centos6` `:centos7`       | [manual](postgres/README.md)
 | Couchbase     | [`startx/sv-couchbase`](https://hub.docker.com/r/startx/sv-couchbase)|                                                                                   | `:centos7`                  | [manual](couchbase/README.md)
-| Chrome        | [`startx/sv-chrome`](https://hub.docker.com/r/startx/sv-chrome)      | `:latest` `:fc28` `:fc27` `:fc28` `:fc29` `:fc30`                                 | `:centos7`                  | [manual](chrome/README.md)
 
 ## Running from dockerhub registry
 
@@ -46,7 +45,6 @@ your project and start using stable or experimental services in your application
 | **ooconv**          | `docker run -d -p XXX:XXX --name="ooconv" startx/sv-ooconv`          | 
 | **php**             | `docker run -d -p 80:80 --name="php" startx/sv-php`                  | 
 | **postgreSQL**      | `docker run -d -p 5432:5432 --name="postgres" startx/sv-postgres`    | 
-| **chrome**          | `docker run -d -p 5900:5900 --name="chrome" startx/sv-chrome`        | 
 
 ## Container flavours
 
@@ -60,4 +58,3 @@ your project and start using stable or experimental services in your application
 | ooconv     | [`startx/sv-ooconv`](https://hub.docker.com/r/startx/sv-ooconv)      | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30`    | `:centos6` `:centos7` |
 | php        | [`startx/sv-php`](https://hub.docker.com/r/startx/sv-php)            | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30`    | `:centos6` `:centos7` |
 | postgreSQL | [`startx/sv-postgres`](https://hub.docker.com/r/startx/sv-postgres)  | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30`    | `:centos6` `:centos7` |
-| Chrome     | [`startx/sv-chrome`](https://hub.docker.com/r/startx/sv-chrome)      | `:latest` `:fc28` `:fc27` `:fc28` `:fc29` `:fc30`                                    | `:centos7`            |

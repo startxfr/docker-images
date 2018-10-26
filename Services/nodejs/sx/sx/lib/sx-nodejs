@@ -111,7 +111,7 @@ function nodejsIsReady {
 }
 
 
-# function executed on apahce service stop
+# function executed on nodejs service stop
 function stop_nodejs_handler {
     killall node
     echoVerbose "+====================================================="

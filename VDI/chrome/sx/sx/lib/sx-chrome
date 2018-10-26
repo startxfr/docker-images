@@ -110,7 +110,7 @@ function chromeIsReady {
     exit 1;
 }
 
-# function executed on apahce service stop
+# function executed on chrome service stop
 function stopChromeHandler {
     killall chrome
     echoVerbose "+====================================================="

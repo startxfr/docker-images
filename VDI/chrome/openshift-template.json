@@ -2,7 +2,7 @@
   "kind": "Template",
   "apiVersion": "v1",
   "metadata": {
-    "name": "startx-sv-chrome-template",
+    "name": "startx-vdi-chrome-template",
     "annotations": {
       "openshift.io/display-name": "Startx Chrome browser (fedora)",
       "description": "Chrome browser for simple web application running under Fedora",
@@ -16,7 +16,7 @@
   },
   "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
   "labels": {
-    "template": "startx-sv-chrome-template"
+    "template": "startx-vdi-chrome-template"
   },
   "objects": [
     {
@@ -32,7 +32,7 @@
           "app": "${APP_NAME}",
           "type": "${APP_TYPE}",
           "provider": "startx",
-          "template": "startx-sv-chrome-template"
+          "template": "startx-vdi-chrome-template"
         }
       },
       "spec": {
@@ -41,7 +41,7 @@
             "name": "latest",
             "annotations": {
               "openshift.io/display-name": "Startx Browser (Fedora rawhide)",
-              "description": "Chrome browser builder for simple internet browsing under Fedora rawhide",
+              "description": "Container-based desktop Chrome browser for remote internet browsing  under Fedora rawhide",
               "iconClass": "icon-chrome",
               "tags": "builder,startx,fedora,chrome,vnc",
               "supports": "vnc",
@@ -50,7 +50,7 @@
             },
             "from": {
               "kind": "DockerImage",
-              "name": "startx/sv-chrome:latest"
+              "name": "startx/vdi-chrome:latest"
             }
           }
         ]
@@ -66,7 +66,7 @@
         "labels": {
           "app": "${APP_NAME}",
           "provider": "startx",
-          "template": "startx-sv-chrome-template"
+          "template": "startx-vdi-chrome-template"
         },
         "annotations": {
           "openshift.io/generated-by": "STARTX"
@@ -157,7 +157,7 @@
             "labels": {
               "app": "${APP_NAME}",
               "provider": "startx",
-              "template": "startx-sv-chrome-template",
+              "template": "startx-vdi-chrome-template",
               "deploymentconfig": "${APP_NAME}"
             },
             "annotations": {
@@ -253,7 +253,7 @@
         "labels": {
           "app": "${APP_NAME}",
           "provider": "startx",
-          "template": "startx-sv-chrome-template"
+          "template": "startx-vdi-chrome-template"
         },
         "annotations": {
           "openshift.io/generated-by": "STARTX"
@@ -276,7 +276,7 @@
         "labels": {
           "app": "${APP_NAME}",
           "provider": "startx",
-          "template": "startx-sv-chrome-template"
+          "template": "startx-vdi-chrome-template"
         },
         "annotations": {
           "openshift.io/generated-by": "STARTX"

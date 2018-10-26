@@ -109,7 +109,7 @@ function apacheIsReady {
     genericIsReady
 }
 
-# function executed on apahce service stop
+# function executed on apache service stop
 function stopApacheHandler {
     killall httpd
     rm -rf /run/httpd/*

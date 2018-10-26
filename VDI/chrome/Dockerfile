@@ -3,11 +3,11 @@ FROM startx/fedora:latest
 MAINTAINER Startx <dev@startx.fr>
 
 ENV SX_VERSION="latest" \
-    SX_TYPE="service" \
+    SX_TYPE="desktop" \
     SX_SERVICE="chrome" \
-    SX_ID="startx/sv-chrome" \
-    SX_NAME="Startx Chrome service image (fedora rawhide)" \
-    SX_SUMMARY="Startx chrome service based on fedora rawhide" \
+    SX_ID="startx/vdi-chrome" \
+    SX_NAME="Startx Chrome VDI image (fedora rawhide)" \
+    SX_SUMMARY="Startx chrome container-based desktop application based on fedora rawhide" \
     SX_CHROME_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
     LOG_PATH=/home/chrome \
     APP_PATH=/home/chrome \
@@ -29,7 +29,7 @@ LABEL name="$SX_ID" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="400Mi" \
       io.openshift.min-cpu="2000m" \
-      io.openshift.expose-services="$SX_CHROME_PORT:vnc" \
+      io.openshift.expose-VDI="$SX_CHROME_PORT:vnc" \
       io.openshift.s2i.destination="/tmp" \
       io.openshift.s2i.scripts-url="image:///s2i" \
       fr.startx.component="$SX_ID:$SX_VERSION"

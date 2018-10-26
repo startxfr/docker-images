@@ -1,6 +1,6 @@
 chrome:
   build: ./
-  container_name: "service-chrome"
+  container_name: "vdi-chrome"
   ports:
     - "9267:5900"
   privileged: true
@@ -11,6 +11,6 @@ chrome:
   volumes:
     - "/dev/shm:/dev/shm"
 #    - "/mnt/chrome:/home/chrome:Z"
-  command:
-    - "/bin/sx-chrome"
-    - "run"
+#  command:
+#    - "/bin/sx-chrome"
+#    - "run"
