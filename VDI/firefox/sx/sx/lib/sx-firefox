@@ -1,0 +1,125 @@
+#!/bin/bash
+source $SX_LIBDIR/sx
+
+function check_firefox_environment {
+    if [ ! -v APP_PATH ]; then
+        APP_PATH="/home/firefox"
+        export APP_PATH
+    fi
+    if [ ! -v LOG_PATH ]; then
+        LOG_PATH="/home/firefox"
+        export LOG_PATH
+    fi
+    if [ ! -n "$SERVER_NAME" ]; then
+        SERVER_NAME="localhost"
+        export SERVER_NAME
+    fi
+}
+
+# Display firefox information
+function firefoxInformation {
+    displayInformation $1 
+    echoVerbose $1 "app path  : $APP_PATH"
+    echoVerbose $1 "log path  : $LOG_PATH"
+    echoVerbose $1 "firefox   : $(firefox --version)" 
+    echoVerbose $1 "resolution: $SX_FIREFOX_SCREEN_RES_X" 
+}
+
+# function executed when pre-deploy hook is called
+function firefoxPreDeploy {
+    genericHeader
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
+    echoNotVerbose "container $HOSTNAME  running PRE-DEPLOY HOOK"
+    echoVerbose "| "
+    firefoxInformation "| "
+    echoVerbose "+====================================================="
+    testAndRunSourceCodeScript "pre-deploy" 
+}
+
+# function executed when post-deploy hook is called
+function firefoxPostDeploy {
+    genericHeader
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running POST-DEPLOY HOOK"
+    echoNotVerbose "container $HOSTNAME  running POST-DEPLOY HOOK"
+    echoVerbose "| "
+    firefoxInformation "| "
+    echoVerbose "+====================================================="
+    testAndRunSourceCodeScript "post-deploy" 
+}
+
+# function executed when pre-build hook is called
+function firefoxPostBuild {
+    genericHeader
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running POST-BUILD HOOK"
+    echoNotVerbose "container $HOSTNAME  running POST-BUILD HOOK"
+    echoVerbose "| "
+    firefoxInformation "| "
+    echoVerbose "+====================================================="
+    testAndRunSourceCodeScript "post-build" 
+}
+
+# function executed when assemble hook is called
+function firefoxAssemble {
+    genericHeader
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME  running ASSEMBLE"
+    echoNotVerbose "container $HOSTNAME  running ASSEMBLE"
+    echoVerbose "| "
+    firefoxInformation "| "
+    echoVerbose "+====================================================="
+    if [[ -d $S2I_DEST ]]; then
+      echoVerbose "Fixing perm on $S2I_DEST"
+      chown 1001:0 -R $S2I_DEST
+      chmod g=u -R $S2I_DEST
+      moveSourceCode $S2I_DEST $APP_PATH
+    fi;
+    testAndRunSourceCodeScript "assemble" 
+}
+
+# function executed on container startup
+function firefoxRun {
+    genericHeader
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME is RUNNING"
+    echoNotVerbose "container $HOSTNAME is RUNNING"
+    echoVerbose "| "
+    firefoxInformation "| "
+    echoVerbose "+====================================================="
+    startFirefoxService
+}
+
+# Display liveness status
+function firefoxIsLive {
+    genericIsLive
+}
+
+# Display readyness status
+function firefoxIsReady {
+    R=`ps -aux | grep firefox`
+    if [ "$R" != "" ]; then
+        exit 0;
+    fi;
+    exit 1;
+}
+
+# function executed on firefox service stop
+function stopFirefoxHandler {
+    killall firefox
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME is now STOPPED"
+    echoNotVerbose "container is now stopped"
+    echoVerbose "| "
+    firefoxInformation "| "
+    echoVerbose "+====================================================="
+    exit 143; # 128 + 15 -- SIGTERM
+}
+
+# Start the httpd server as a deamon and execute it inside 
+# the running shell
+function startFirefoxService {
+    trap 'kill ${!}; stopFirefoxHandler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
+    exec /usr/bin/supervisord -c $SX_FIREFOX_SUPERVISOR_CONF/supervisord.conf
+}

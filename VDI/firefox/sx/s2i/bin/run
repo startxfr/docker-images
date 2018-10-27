@@ -1,0 +1,14 @@
+#!/bin/bash -e
+#
+# S2I run script for the 'startx/vdi-firefox' image.
+# The 'run' script is the entrypoint of your application
+#
+# For more information refer to the documentation:
+#  https://dockerhub.com/u/startx/vdi-firefox
+#
+
+if [[ -x /tmp/run ]]; then
+    exec /tmp/run $@
+else
+    exec /bin/sx-firefox run
+fi 

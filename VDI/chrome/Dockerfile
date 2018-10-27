@@ -46,7 +46,7 @@ RUN wget http://rpmfind.net/linux/fedora-secondary/releases/28/Everything/i386/o
     easy_install pip && \
     pip install --upgrade pip && \
     pip install --upgrade --force-reinstall setuptools pip && \
-    useradd -s /bin/bash -m -g 0 -u 1001 -G pulse-access chrome && \
+    useradd -s /bin/bash -m -g 0 -u 1001 -G pulse-access $SX_USER && \
     mkdir -p /s2i $SX_LIBDIR && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
