@@ -48,6 +48,7 @@ function mysqlPostDeploy {
     mysqlInformation "| "
     echoVerbose "+====================================================="
     testAndRunSourceCodeScript "post-deploy" 
+    init_service_mariadb
 }
 
 function mysqlPostBuild {

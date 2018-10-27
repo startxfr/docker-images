@@ -2,13 +2,13 @@
   "kind": "Template",
   "apiVersion": "v1",
   "metadata": {
-    "name": "startx-sv-apache-build-template",
+    "name": "startx-vdi-firefox-template",
     "annotations": {
-      "openshift.io/display-name": "Startx Http Server (fedora)",
-      "description": "Http server for simple web application running under Fedora",
-      "iconClass": "icon-apache",
-      "tags": "startx,os,fedora,apache,httpd",
-      "openshift.io/long-description": "This template provides an apache httpd webserver in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+      "openshift.io/display-name": "Startx Firefox browser (fedora)",
+      "description": "Firefox browser for simple web application running under Fedora",
+      "iconClass": "icon-firefox",
+      "tags": "startx,os,fedora,firefox",
+      "openshift.io/long-description": "This template provides an Firefox browser in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building personalized browser container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
       "openshift.io/provider-display-name": "STARTX",
       "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
       "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
@@ -16,60 +16,23 @@
   },
   "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
   "labels": {
-    "template": "startx-sv-apache-build-template"
+    "template": "startx-vdi-firefox-template"
   },
   "objects": [
     {
       "kind": "ImageStream",
       "apiVersion": "v1",
       "metadata": {
-        "name": "startx-sv-apache",
-        "annotations": {
-          "openshift.io/display-name": "Startx WebServer",
-          "openshift.io/generated-by": "STARTX"
-        },
-        "labels": {
-          "base-image": "startx-sv-apache",
-          "app": "${APP_NAME}",
-          "type": "${APP_TYPE}",
-          "provider": "startx"
-        }
-      },
-      "spec": {
-        "tags": [
-          {
-            "name": "fc27",
-            "annotations": {
-              "openshift.io/display-name": "Startx WebServer (Fedora 27)",
-              "description": "Http server for simple web application running under Fedora 27",
-              "iconClass": "icon-apache",
-              "tags": "builder,startx,fedora,apache,httpd",
-              "supports": "http",
-              "version": "fc27",
-              "sampleRepo": "https://github.com/startxfr/docker-images-example-apache.git"
-            },
-            "from": {
-              "kind": "DockerImage",
-              "name": "startx/sv-apache:fc27"
-            }
-          }
-        ]
-      }
-    },
-    {
-      "kind": "ImageStream",
-      "apiVersion": "v1",
-      "metadata": {
         "name": "${APP_NAME}",
         "annotations": {
-          "openshift.io/display-name": "Application ${APP_NAME}",
+          "openshift.io/display-name": "Startx Browser",
           "openshift.io/generated-by": "STARTX"
         },
         "labels": {
-          "base-image": "startx-sv-apache",
           "app": "${APP_NAME}",
           "type": "${APP_TYPE}",
-          "provider": "startx"
+          "provider": "startx",
+          "template": "startx-vdi-firefox-template"
         }
       },
       "spec": {
@@ -77,12 +40,17 @@
           {
             "name": "latest",
             "annotations": {
-              "openshift.io/display-name": "Application ${APP_NAME}",
-              "description": "Base image for the application ${APP_NAME}",
-              "iconClass": "icon-apache",
-              "tags": "startx,fedora,apache,httpd,application,${APP_NAME}",
-              "supports": "http",
-              "version": "latest"
+              "openshift.io/display-name": "Startx Browser (Fedora rawhide)",
+              "description": "Container-based desktop Firefox browser for remote internet browsing  under Fedora rawhide",
+              "iconClass": "icon-firefox",
+              "tags": "builder,startx,fedora,firefox,vnc",
+              "supports": "vnc",
+              "version": "rawhide",
+              "sampleRepo": "https://github.com/startxfr/docker-images-example-firefox.git"
+            },
+            "from": {
+              "kind": "DockerImage",
+              "name": "startx/vdi-firefox:latest"
             }
           }
         ]
@@ -97,9 +65,8 @@
         "creationTimestamp": null,
         "labels": {
           "app": "${APP_NAME}",
-          "type": "${APP_TYPE}",
           "provider": "startx",
-          "template": "startx-sv-apache-build-template"
+          "template": "startx-vdi-firefox-template"
         },
         "annotations": {
           "openshift.io/generated-by": "STARTX"
@@ -118,7 +85,7 @@
               "failurePolicy": "Abort",
               "execNewPod": {
                 "command": [
-                  "/bin/sx-apache",
+                  "/bin/sx-firefox",
                   "pre-deploy"
                 ],
                 "env": [
@@ -129,10 +96,6 @@
                   {
                     "name": "SX_DEBUG",
                     "value": "true"
-                  },
-                  {
-                    "name": "APP_PATH",
-                    "value": "${APP_PATH}"
                   }
                 ],
                 "containerName": "${APP_NAME}"
@@ -142,7 +105,7 @@
               "failurePolicy": "Abort",
               "execNewPod": {
                 "command": [
-                  "/bin/sx-apache",
+                  "/bin/sx-firefox",
                   "post-deploy"
                 ],
                 "env": [
@@ -153,10 +116,6 @@
                   {
                     "name": "SX_DEBUG",
                     "value": "true"
-                  },
-                  {
-                    "name": "APP_PATH",
-                    "value": "${APP_PATH}"
                   }
                 ],
                 "containerName": "${APP_NAME}"
@@ -175,7 +134,7 @@
               ],
               "from": {
                 "kind": "ImageStreamTag",
-                "name": "${APP_NAME}:fc27"
+                "name": "${APP_NAME}:latest"
               }
             }
           },
@@ -184,7 +143,7 @@
           }
         ],
         "postCommit": {
-          "script": "/bin/sx-apache info"
+          "script": "/bin/sx-firefox info"
         },
         "replicas": 1,
         "test": false,
@@ -197,9 +156,8 @@
             "creationTimestamp": null,
             "labels": {
               "app": "${APP_NAME}",
-              "type": "${APP_TYPE}",
               "provider": "startx",
-              "template": "startx-sv-apache-build-template",
+              "template": "startx-vdi-firefox-template",
               "deploymentconfig": "${APP_NAME}"
             },
             "annotations": {
@@ -215,14 +173,10 @@
                   {
                     "name": "SX_VERBOSE",
                     "value": "true"
-                  },
-                  {
-                    "name": "APP_PATH",
-                    "value": "${APP_PATH}"
                   }
                 ],
                 "command": [
-                  "/bin/sx-apache"
+                  "/bin/sx-firefox"
                 ],
                 "args": [
                   "run"
@@ -231,7 +185,7 @@
                 "livenessProbe": {
                   "exec": {
                     "command": [
-                      "/bin/sx-apache",
+                      "/bin/sx-firefox",
                       "isLive"
                     ]
                   },
@@ -244,7 +198,7 @@
                 "readinessProbe": {
                   "exec": {
                     "command": [
-                      "/bin/sx-apache",
+                      "/bin/sx-firefox",
                       "isReady"
                     ]
                   },
@@ -258,13 +212,23 @@
                 "imagePullPolicy": "Always",
                 "volumeMounts": [
                   {
+                    "name": "${APP_NAME}-shm",
+                    "mountPath": "/dev/shm"
+                  },
+                  {
                     "name": "${APP_NAME}-data",
-                    "mountPath": "${APP_PATH}"
+                    "mountPath": "/home/firefox"
                   }
                 ]
               }
             ],
             "volumes": [
+              {
+                "name": "${APP_NAME}-shm",
+                "hostPath": {
+                  "path": "/dev/shm"
+                }
+              },
               {
                 "name": "${APP_NAME}-data",
                 "emptyDir": {
@@ -289,7 +253,7 @@
         "labels": {
           "app": "${APP_NAME}",
           "provider": "startx",
-          "template": "startx-sv-apache-build-template"
+          "template": "startx-vdi-firefox-template"
         },
         "annotations": {
           "openshift.io/generated-by": "STARTX"
@@ -312,7 +276,7 @@
         "labels": {
           "app": "${APP_NAME}",
           "provider": "startx",
-          "template": "startx-sv-apache-build-template"
+          "template": "startx-vdi-firefox-template"
         },
         "annotations": {
           "openshift.io/generated-by": "STARTX"
@@ -322,8 +286,8 @@
         "ports": [
           {
             "protocol": "TCP",
-            "port": 8080,
-            "targetPort": 8080
+            "port": 5900,
+            "targetPort": 5900
           }
         ],
         "selector": {
@@ -333,82 +297,6 @@
         "type": "ClusterIP",
         "sessionAffinity": "None"
       }
-    },
-    {
-      "kind": "BuildConfig",
-      "apiVersion": "v1",
-      "metadata": {
-        "name": "${APP_NAME}",
-        "creationTimestamp": null,
-        "labels": {
-          "app": "${APP_NAME}",
-          "type": "${APP_TYPE}",
-          "provider": "startx",
-          "template": "startx-sv-apache-build-template"
-        },
-        "annotations": {
-          "openshift.io/generated-by": "STARTX"
-        }
-      },
-      "spec": {
-        "triggers": [
-          {
-            "type": "GitHub",
-            "github": {
-              "secret": "${WEBHOOK_TOKEN}_${APP_NAME}"
-            }
-          },
-          {
-            "type": "Generic",
-            "generic": {
-              "secret": "${WEBHOOK_TOKEN}_${APP_NAME}"
-            }
-          },
-          {
-            "type": "ImageChange",
-            "imageChange": {}
-          },
-          {
-            "type": "ConfigChange"
-          }
-        ],
-        "runPolicy": "SerialLatestOnly",
-        "source": {
-          "type": "Git",
-          "git": {
-            "uri": "${SOURCE_GIT}",
-            "ref": "${SOURCE_BRANCH}"
-          }
-        },
-        "strategy": {
-          "type": "Source",
-          "sourceStrategy": {
-            "from": {
-              "kind": "ImageStreamTag",
-              "name": "startx-sv-apache:latest"
-            },
-            "env": [
-              {
-                "name": "SX_VERBOSE",
-                "value": "true"
-              }
-            ]
-          }
-        },
-        "output": {
-          "to": {
-            "kind": "ImageStreamTag",
-            "name": "${APP_NAME}:latest"
-          }
-        },
-        "resources": {},
-        "postCommit": {
-          "command": [
-            "/bin/sx-apache",
-            "post-build"
-          ]
-        }
-      }
     }
   ],
   "parameters": [
@@ -417,34 +305,6 @@
       "displayName": "Application name",
       "description": "The name of the created application",
       "value": "www-static",
-      "required": true
-    },
-    {
-      "name": "APP_TYPE",
-      "displayName": "Application type",
-      "description": "The type of the created application",
-      "value": "application"
-    },
-    {
-      "name": "SOURCE_GIT",
-      "displayName": "Source repository",
-      "description": "URL to the source code to use during build process",
-      "value": "https://github.com/startxfr/docker-images-example-apache.git",
-      "required": true
-    },
-    {
-      "name": "SOURCE_BRANCH",
-      "displayName": "Source branch",
-      "description": "Name of the default branch",
-      "value": "master",
-      "required": true
-    },
-    {
-      "name": "WEBHOOK_TOKEN",
-      "displayName": "Webhook token",
-      "description": "Secret token to use for webhook to github or generic",
-      "generate": "expression",
-      "from": "[a-zA-Z0-9]{24}",
       "required": true
     },
     {

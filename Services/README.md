@@ -10,6 +10,10 @@ Each container is provided with various underlying OS version based on CentOS or
 Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
 or [other services flavours](https://github.com/startxfr/docker-images/Services#container-flavours)
 
+If you're used to work with redhat like and distribution, you would prefer start working
+from a container based on this distribution rather than ubuntu or debian like distributions.
+OS, Services, VDI and application you will find here will be closer to your favorite distribution
+
 Please **read each container manual** for more information on how you can use it in 
 your project and start using stable or experimental applications in your applications
 
@@ -29,7 +33,6 @@ your project and start using stable or experimental applications in your applica
 | php           | [`startx/sv-php:fc27`](https://hub.docker.com/r/startx/sv-php)            | [manual](php/README.md)
 | postgreSQL    | [`startx/sv-postgres:fc27`](https://hub.docker.com/r/startx/sv-postgres)  | [manual](postgres/README.md)
 | Couchbase     | [`startx/sv-couchbase:fc27`](https://hub.docker.com/r/startx/sv-couchbase)| [manual](couchbase/README.md)
-| Chrome        | [`startx/sv-chrome:fc27`](https://hub.docker.com/r/startx/sv-chrome)      | [manual](chrome/README.md)
 
 
 ## Running from dockerhub registry
@@ -45,4 +48,3 @@ your project and start using stable or experimental applications in your applica
 | **php**             | `docker run -d -p 80:80 --name="fc27-php" startx/sv-php:fc27`                  | 
 | **postgreSQL**      | `docker run -d -p 5432:5432 --name="fc27-postgres" startx/sv-postgres:fc27`    | 
 | **Couchbase**       | `docker run -d -p 8091:8091 --name="fc27-couchbase" startx/sv-couchbase:fc27`  | 
-| **chrome**          | `docker run -d -p 5900:5900 --name="fc27-chrome" startx/sv-chrome:fc27`        | 

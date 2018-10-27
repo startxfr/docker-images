@@ -3,12 +3,12 @@ FROM startx/fedora:27
 MAINTAINER Startx <dev@startx.fr>
 
 ENV SX_VERSION="fc27" \
-    SX_TYPE="service" \
+    SX_TYPE="desktop" \
     SX_SERVICE="chrome" \
-    SX_ID="startx/sv-chrome" \
+    SX_ID="startx/vdi-chrome" \
     SX_NAME="Startx Chrome service image (fedora 27)" \
-    SX_SUMMARY="Startx chrome service based on fedora 27" \
-    SUPERVISORCONF=/etc/supervisor/conf.d/ \
+    SX_SUMMARY="Startx chrome container-based desktop application based on fedora 27" \
+    SX_CHROME_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
     LOG_PATH=/home/chrome \
     APP_PATH=/home/chrome \
     DATA_PATH=/home/chrome \
@@ -29,7 +29,7 @@ LABEL name="$SX_ID" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="400Mi" \
       io.openshift.min-cpu="2000m" \
-      io.openshift.expose-services="$SX_CHROME_PORT:vnc" \
+      io.openshift.expose-VDI="$SX_CHROME_PORT:vnc" \
       io.openshift.s2i.destination="/tmp" \
       io.openshift.s2i.scripts-url="image:///s2i" \
       fr.startx.component="$SX_ID:$SX_VERSION"
@@ -46,7 +46,7 @@ RUN wget http://rpmfind.net/linux/fedora-secondary/releases/28/Everything/i386/o
     easy_install pip && \
     pip install --upgrade pip && \
     pip install --upgrade --force-reinstall setuptools pip && \
-    useradd -s /bin/bash -m -g 0 -u 1001 -G pulse-access chrome && \
+    useradd -s /bin/bash -m -g 0 -u 1001 -G pulse-access $SX_USER && \
     mkdir -p /s2i $SX_LIBDIR && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \

@@ -7,7 +7,7 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-apache",
+                "name": "startx-apache",
                 "annotations": {
                     "openshift.io/display-name": "Startx WebServer (S2I)",
                     "openshift.io/generated-by": "STARTX"
