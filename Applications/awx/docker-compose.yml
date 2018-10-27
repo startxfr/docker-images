@@ -1,14 +1,78 @@
-phpmyadmin:
-  build: ./
-  container_name: "application-phpmyadmin"
-  mem_limit: 500m
-  memswap_limit: 500m
-  cpu_shares: 2
+postgres:
+  image: "postgres:9.6"
+  container_name: "application-awx-postgres"
+  environment:
+    POSTGRES_USER: awx
+    POSTGRES_PASSWORD: awxpass
+    POSTGRES_DB: awx
   ports:
-    - "9215:8080"
+    - "9223:5432"
 #  volumes:
-#    - "/tmp/container/memcache/logs:/var/log/httpd:z"
-#    - "/tmp/container/phpmyadmin/data:/data:z"
-#  command:
-#     - "/bin/sx-pma"
-#     - "run"
+#    - "/tmp/container/awx/postgres-data:/var/lib/postgresql/data:z"
+
+rabbitmq:
+  image: "rabbitmq:3"
+  container_name: "application-awx-rabbitmq"
+  environment:
+    RABBITMQ_DEFAULT_VHOST: awx
+  ports:
+    - "9222:5672"
+#  volumes:
+#    - "/tmp/container/awx/rabbitmq-data:/var/lib/rabbitmq:z"
+
+memcached:
+  image: "memcached:alpine"
+  container_name: "application-awx-memcached"
+  ports:
+    - "9221:11211"
+
+awx_web:
+  image: "ansible/awx_web:latest"
+  container_name: "application-awx-www"
+  links:
+    - rabbitmq
+    - memcached
+    - postgres
+  ports:
+    - "9220:8052"
+  hostname: awxweb
+  user: root
+  environment:
+    SECRET_KEY: aabbcc
+    DATABASE_USER: awx
+    DATABASE_PASSWORD: awxpass
+    DATABASE_NAME: awx
+    DATABASE_PORT: 5432
+    DATABASE_HOST: postgres
+    RABBITMQ_USER: guest
+    RABBITMQ_PASSWORD: guest
+    RABBITMQ_HOST: rabbitmq
+    RABBITMQ_PORT: 5672
+    RABBITMQ_VHOST: awx
+    MEMCACHED_HOST: memcached
+    MEMCACHED_PORT: 11211
+
+awx_task:
+  image: "ansible/awx_task:latest"
+  container_name: "application-awx-task"
+  links:
+    - rabbitmq
+    - memcached
+    - awx_web:awxweb
+    - postgres
+  hostname: awx
+  user: root
+  environment:
+    SECRET_KEY: aabbcc
+    DATABASE_USER: awx
+    DATABASE_PASSWORD: awxpass
+    DATABASE_NAME: awx
+    DATABASE_PORT: 5432
+    DATABASE_HOST: postgres
+    RABBITMQ_USER: guest
+    RABBITMQ_PASSWORD: guest
+    RABBITMQ_HOST: rabbitmq
+    RABBITMQ_PORT: 5672
+    RABBITMQ_VHOST: awx
+    MEMCACHED_HOST: memcached
+    MEMCACHED_PORT: 11211
