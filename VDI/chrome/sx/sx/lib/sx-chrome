@@ -125,6 +125,10 @@ function stopChromeHandler {
 # Start the httpd server as a deamon and execute it inside 
 # the running shell
 function startChromeService {
+    if [ ! -v X11VNC_AUTH ]; then
+      X11VNC_AUTH="-nopw"
+      export X11VNC_AUTH
+    fi
     trap 'kill ${!}; stopChromeHandler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
     exec /usr/bin/supervisord -c $SX_CHROME_SUPERVISOR_CONF/supervisord.conf
 }

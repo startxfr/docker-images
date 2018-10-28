@@ -416,7 +416,7 @@
       "name": "APP_NAME",
       "displayName": "Application name",
       "description": "The name of the created application",
-      "value": "www-static",
+      "value": "c",
       "required": true
     },
     {

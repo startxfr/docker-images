@@ -207,10 +207,6 @@
                                 "imagePullPolicy": "Always",
                                 "volumeMounts": [
                                     {
-                                        "mountPath": "/logs",
-                                        "name": "${APP_NAME}-log"
-                                    },
-                                    {
                                         "mountPath": "/app",
                                         "name": "${APP_NAME}-app"
                                     }
@@ -218,10 +214,6 @@
                             }
                         ],
                         "volumes": [
-                            {
-                                "name": "${APP_NAME}-log",
-                                "emptyDir": {}
-                            },
                             {
                                 "name": "${APP_NAME}-app",
                                 "emptyDir": {}
@@ -255,6 +247,13 @@
             "displayName": "Application type",
             "description": "The type of the created application",
             "value": "system"
+        },
+        {
+            "name": "RUN_ACTION",
+            "displayName": "Main action to perfom",
+            "description": "Action to perform for this running Pod. Should be one of build, post-build, pre-deploy, post-deploy, run, isLive, isReady, usage, usageS2i, daemon, info, version. See documentation for action list.",
+            "value": "run",
+            "required": true
         }
     ]
 }
