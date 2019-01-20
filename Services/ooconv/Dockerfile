@@ -8,6 +8,8 @@ ENV SX_VERSION="fc30" \
     SX_ID="startx/sv-ooconv" \
     SX_NAME="Startx LibreOffice converter service image (fedora 30)" \
     SX_SUMMARY="Startx unoconv service based on fedora 30" \
+    SX_USER=ooconv \
+    APP_PATH=/home/ooconv \
     DATA_PATH=/data
 
 LABEL name="$SX_ID" \
@@ -31,6 +33,7 @@ USER root
 COPY sx /tmp/
 RUN dnf --nogpgcheck -y install unoconv libreoffice-writer libreoffice-calc pdfmod ghostscript && \
     dnf clean all && \
+    useradd -s /bin/bash -m -g 0 -u 1001 ooconv && \
     mkdir -p $DATA_PATH /.cache && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
@@ -49,6 +52,7 @@ WORKDIR $DATA_PATH
 
 EXPOSE 2002
 
+VOLUME $APP_PATH
 VOLUME $DATA_PATH
 
 CMD [ "/bin/sx-ooconv" , "run" ]

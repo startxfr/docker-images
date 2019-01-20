@@ -4,7 +4,7 @@ source $SX_LIBDIR/sx-couchbase
 check_couchbase_environment
 # Dispatch input arguments
 case $1 in
-    assemble|build)         couchbaseAssemble $@ ;;
+    assemble|build)         couchbaseBuild $@ ;;
     post-build)             couchbasePostBuild $@ ;;
     pre-deploy)             couchbasePreDeploy $@ ;;
     post-deploy)            couchbasePostDeploy $@ ;;

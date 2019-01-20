@@ -1,0 +1,19 @@
+#!/bin/bash
+source $SX_LIBDIR/sx-firefox
+
+check_firefox_environment
+# Dispatch input arguments
+case $1 in
+    assemble|build)         firefoxAssemble $@ ;;
+    post-build)             firefoxPostBuild $@ ;;
+    pre-deploy)             firefoxPreDeploy $@ ;;
+    post-deploy)            firefoxPostDeploy $@ ;;
+    run|start)              firefoxRun $@ ;;
+    isLive|health)          firefoxIsLive $@ ;;
+    isReady)                firefoxIsReady $@ ;;
+    info|--info)            firefoxInformation $@ ;;
+    usage|help|--help)      genericUsage $@ ;;
+    usageS2i)               genericUsageS2I $@ ;;
+    version|--version)      genericVersion $@ ;;
+    *)                      genericWelcome $@ ;;
+esac

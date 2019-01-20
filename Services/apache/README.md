@@ -31,7 +31,7 @@ service:
   container_name: "service-apache-fc28"
   volumes:
     - "/tmp/container/apache/logs:/logs:z"
-    - "/tmp/container/apache/data:/data:z"
+    - "/tmp/container/apache/app:/app:z"
 ```
 
 ### Using this image as Openshift Build image
@@ -110,7 +110,7 @@ some [additional environment variable](https://github.com/startxfr/docker-images
 | SERVER_NAME               | `string` | `no`      | Server name for this container. If no name localhost will be assigned
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
 | LOG_PATH                  | `auto`   | `auto`    | default set to /logs and used as a volume mountpoint
-| APP_PATH                  | `auto`   | `auto`    | default set to /data and used as a volume mountpoint
+| APP_PATH                  | `auto`   | `auto`    | default set to /app and used as a volume mountpoint
 
 ## Exposed port
 
@@ -123,7 +123,7 @@ some [additional environment variable](https://github.com/startxfr/docker-images
 | Container directory  | Description                                                              |
 |----------------------|--------------------------------------------------------------------------|
 | /logs                | log directory used to record container and apache logs
-| /data                | data directory served by apache. If empty will be filled with app on startup. In other case use content from mountpoint or data volumes
+| /app                 | application directory served by apache. Use content from mountpoint or data volumes
 
 ## Testing the service
 

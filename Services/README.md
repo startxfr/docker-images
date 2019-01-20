@@ -7,8 +7,11 @@ This directory host various Open Source services into docker containers based on
 You can use it to instanciate new container from the dockerhub public registry 
 or as a parent container in your own container's. 
 Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
-or [other services flavours](https://github.com/startxfr/docker-images/Services#container-flavours)
+Fedora Linux distribution.
+
+If you're used to work with redhat like and distribution, you would prefer start working
+from a container based on this distribution rather than ubuntu or debian like distributions.
+OS, Services, VDI and application you will find here will be closer to your favorite distribution
 
 Please **read each container manual** for more information on how you can use it in 
 your project and start using stable or experimental applications in your applications
@@ -29,7 +32,6 @@ your project and start using stable or experimental applications in your applica
 | php           | [`startx/sv-php:fc30`](https://hub.docker.com/r/startx/sv-php)            | [manual](php/README.md)
 | postgreSQL    | [`startx/sv-postgres:fc30`](https://hub.docker.com/r/startx/sv-postgres)  | [manual](postgres/README.md)
 | Couchbase     | [`startx/sv-couchbase:fc30`](https://hub.docker.com/r/startx/sv-couchbase)| [manual](couchbase/README.md)
-| Chrome        | [`startx/sv-chrome:fc30`](https://hub.docker.com/r/startx/sv-chrome)      | [manual](chrome/README.md)
 
 
 ## Running from dockerhub registry
