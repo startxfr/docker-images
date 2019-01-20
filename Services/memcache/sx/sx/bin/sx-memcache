@@ -4,7 +4,7 @@ source $SX_LIBDIR/sx-memcache
 check_memcache_environment
 # Dispatch input arguments
 case $1 in
-    assemble|build)         memcacheAssemble $@ ;;
+    assemble|build)         memcacheBuild $@ ;;
     post-build)             memcachePostBuild $@ ;;
     pre-deploy)             memcachePreDeploy $@ ;;
     post-deploy)            memcachePostDeploy $@ ;;

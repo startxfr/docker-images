@@ -4,7 +4,7 @@ source $SX_LIBDIR/sx-chrome
 check_chrome_environment
 # Dispatch input arguments
 case $1 in
-    assemble|build)         chromeAssemble $@ ;;
+    assemble|build)         chromeBuild $@ ;;
     post-build)             chromePostBuild $@ ;;
     pre-deploy)             chromePreDeploy $@ ;;
     post-deploy)            chromePostDeploy $@ ;;
