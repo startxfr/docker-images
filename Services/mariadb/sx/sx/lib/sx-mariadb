@@ -52,10 +52,10 @@ function mysqlBuild {
 # function performing Mysql build actions
 function doMysqlBuild {
     doGenericBuild
-    echoNotVerbose "Build Mysql actions"
+    echoNotVerbose "Build Mysql"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Build Mysql actions"
+    echoVerbose "Build Mysql"
     echoVerbose "+====================================================="
     init_service_mariadb
 }
@@ -83,10 +83,10 @@ function mysqlPostBuild {
 # function performing Mysql post-build actions
 function doMysqlPostBuild {
     doGenericPostBuild
-    echoNotVerbose "PostBuild Mysql actions"
+    echoNotVerbose "PostBuild Mysql"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostBuild Mysql actions"
+    echoVerbose "PostBuild Mysql"
     echoVerbose "+====================================================="
 }
 
@@ -113,10 +113,10 @@ function mysqlPreDeploy {
 # function performing Mysql pre-deploy actions
 function doMysqlPreDeploy {
     doGenericPreDeploy
-    echoNotVerbose "PreDeploy Mysql actions"
+    echoNotVerbose "PreDeploy Mysql"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PreDeploy Mysql actions"
+    echoVerbose "PreDeploy Mysql"
     echoVerbose "+====================================================="
 }
 
@@ -143,10 +143,10 @@ function mysqlPostDeploy {
 # function performing Mysql post-deploy actions
 function doMysqlPostDeploy {
     doGenericPostDeploy
-    echoNotVerbose "PostDeploy Mysql actions"
+    echoNotVerbose "PostDeploy Mysql"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostDeploy Mysql actions"
+    echoVerbose "PostDeploy Mysql"
     echoVerbose "+====================================================="
     init_service_mariadb
 }

@@ -42,10 +42,10 @@ function ooconvBuild {
 # function performing Ooconv build actions
 function doOoconvBuild {
     doGenericBuild
-    echoNotVerbose "Build Ooconv actions"
+    echoNotVerbose "Build Ooconv"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Build Ooconv actions"
+    echoVerbose "Build Ooconv"
     echoVerbose "+====================================================="
 }
 
@@ -72,10 +72,10 @@ function ooconvPostBuild {
 # function performing Ooconv post-build actions
 function doOoconvPostBuild {
     doGenericPostBuild
-    echoNotVerbose "PostBuild Ooconv actions"
+    echoNotVerbose "PostBuild Ooconv"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostBuild Ooconv actions"
+    echoVerbose "PostBuild Ooconv"
     echoVerbose "+====================================================="
 }
 
@@ -102,10 +102,10 @@ function ooconvPreDeploy {
 # function performing Ooconv pre-deploy actions
 function doOoconvPreDeploy {
     doGenericPreDeploy
-    echoNotVerbose "PreDeploy Ooconv actions"
+    echoNotVerbose "PreDeploy Ooconv"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PreDeploy Ooconv actions"
+    echoVerbose "PreDeploy Ooconv"
     echoVerbose "+====================================================="
 }
 
@@ -132,10 +132,10 @@ function ooconvPostDeploy {
 # function performing Ooconv post-deploy actions
 function doOoconvPostDeploy {
     doGenericPostDeploy
-    echoNotVerbose "PostDeploy Ooconv actions"
+    echoNotVerbose "PostDeploy Ooconv"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostDeploy Ooconv actions"
+    echoVerbose "PostDeploy Ooconv"
     echoVerbose "+====================================================="
 }
 

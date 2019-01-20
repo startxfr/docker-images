@@ -53,10 +53,10 @@ function nodejsBuild {
 # function performing Nodejs build actions
 function doNodejsBuild {
     doGenericBuild
-    echoNotVerbose "Build Nodejs actions"
+    echoNotVerbose "Build Nodejs"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Build Nodejs actions"
+    echoVerbose "Build Nodejs"
     echoVerbose "+====================================================="
     npmInstallEnvironement
 }
@@ -84,10 +84,10 @@ function nodejsPostBuild {
 # function performing Nodejs post-build actions
 function doNodejsPostBuild {
     doGenericPostBuild
-    echoNotVerbose "PostBuild Nodejs actions"
+    echoNotVerbose "PostBuild Nodejs"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostBuild Nodejs actions"
+    echoVerbose "PostBuild Nodejs"
     echoVerbose "+====================================================="
     npmInstallEnvironement
 }
@@ -115,10 +115,10 @@ function nodejsPreDeploy {
 # function performing Nodejs pre-deploy actions
 function doNodejsPreDeploy {
     doGenericPreDeploy
-    echoNotVerbose "PreDeploy Nodejs actions"
+    echoNotVerbose "PreDeploy Nodejs"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PreDeploy Nodejs actions"
+    echoVerbose "PreDeploy Nodejs"
     echoVerbose "+====================================================="
 }
 
@@ -145,10 +145,10 @@ function nodejsPostDeploy {
 # function performing Nodejs post-deploy actions
 function doNodejsPostDeploy {
     doGenericPostDeploy
-    echoNotVerbose "PostDeploy Nodejs actions"
+    echoNotVerbose "PostDeploy Nodejs"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostDeploy Nodejs actions"
+    echoVerbose "PostDeploy Nodejs"
     echoVerbose "+====================================================="
 }
 

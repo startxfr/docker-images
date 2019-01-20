@@ -49,10 +49,10 @@ function couchbaseBuild {
 # function performing Couchbase build actions
 function doCouchbaseBuild {
     doGenericBuild
-    echoNotVerbose "Build Couchbase actions"
+    echoNotVerbose "Build Couchbase"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Build Couchbase actions"
+    echoVerbose "Build Couchbase"
     echoVerbose "+====================================================="
     initCreateDefaultDirectoryStructure
 }
@@ -80,10 +80,10 @@ function couchbasePostBuild {
 # function performing Couchbase post-build actions
 function doCouchbasePostBuild {
     doGenericPostBuild
-    echoNotVerbose "PostBuild Couchbase actions"
+    echoNotVerbose "PostBuild Couchbase"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostBuild Couchbase actions"
+    echoVerbose "PostBuild Couchbase"
     echoVerbose "+====================================================="
 }
 
@@ -110,10 +110,10 @@ function couchbasePreDeploy {
 # function performing Couchbase pre-deploy actions
 function doCouchbasePreDeploy {
     doGenericPreDeploy
-    echoNotVerbose "PreDeploy Couchbase actions"
+    echoNotVerbose "PreDeploy Couchbase"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PreDeploy Couchbase actions"
+    echoVerbose "PreDeploy Couchbase"
     echoVerbose "+====================================================="
 }
 
@@ -140,10 +140,10 @@ function couchbasePostDeploy {
 # function performing Couchbase post-deploy actions
 function doCouchbasePostDeploy {
     doGenericPostDeploy
-    echoNotVerbose "PostDeploy Couchbase actions"
+    echoNotVerbose "PostDeploy Couchbase"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostDeploy Couchbase actions"
+    echoVerbose "PostDeploy Couchbase"
     echoVerbose "+====================================================="
 }
 

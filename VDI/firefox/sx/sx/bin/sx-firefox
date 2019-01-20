@@ -4,7 +4,7 @@ source $SX_LIBDIR/sx-firefox
 check_firefox_environment
 # Dispatch input arguments
 case $1 in
-    assemble|build)         firefoxAssemble $@ ;;
+    assemble|build)         firefoxBuild $@ ;;
     post-build)             firefoxPostBuild $@ ;;
     pre-deploy)             firefoxPreDeploy $@ ;;
     post-deploy)            firefoxPostDeploy $@ ;;

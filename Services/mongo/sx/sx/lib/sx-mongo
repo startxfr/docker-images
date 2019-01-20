@@ -50,10 +50,10 @@ function mongoBuild {
 # function performing Mongo build actions
 function doMongoBuild {
     doGenericBuild
-    echoNotVerbose "Build Mongo actions"
+    echoNotVerbose "Build Mongo"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Build Mongo actions"
+    echoVerbose "Build Mongo"
     echoVerbose "+====================================================="
 }
 
@@ -80,10 +80,10 @@ function mongoPostBuild {
 # function performing Mongo post-build actions
 function doMongoPostBuild {
     doGenericPostBuild
-    echoNotVerbose "PostBuild Mongo actions"
+    echoNotVerbose "PostBuild Mongo"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostBuild Mongo actions"
+    echoVerbose "PostBuild Mongo"
     echoVerbose "+====================================================="
 }
 
@@ -110,10 +110,10 @@ function mongoPreDeploy {
 # function performing Mongo pre-deploy actions
 function doMongoPreDeploy {
     doGenericPreDeploy
-    echoNotVerbose "PreDeploy Mongo actions"
+    echoNotVerbose "PreDeploy Mongo"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PreDeploy Mongo actions"
+    echoVerbose "PreDeploy Mongo"
     echoVerbose "+====================================================="
 }
 
@@ -140,10 +140,10 @@ function mongoPostDeploy {
 # function performing Mongo post-deploy actions
 function doMongoPostDeploy {
     doGenericPostDeploy
-    echoNotVerbose "PostDeploy Mongo actions"
+    echoNotVerbose "PostDeploy Mongo"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostDeploy Mongo actions"
+    echoVerbose "PostDeploy Mongo"
     echoVerbose "+====================================================="
 }
 

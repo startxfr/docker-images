@@ -25,68 +25,152 @@ function firefoxInformation {
     echoVerbose $1 "resolution: $SX_FIREFOX_SCREEN_RES_X" 
 }
 
+# function executed when build hook is called
+function firefoxBuild {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Firefox BUILD"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Firefox BUILD"
+    echoVerbose "| "
+    firefoxInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    doFirefoxBuild
+    if [[ -x $MYS2I_DEST/assemble ]]; then
+        echoVerbose "Build source code found at $MYS2I_DEST/assemble"
+        testAndRunSourceCodeScript "assemble" 
+    else
+        echoVerbose "No Build source code found at $MYS2I_DEST/assemble"
+    fi
+    exit 0;
+}
+
+# function performing Firefox build actions
+function doFirefoxBuild {
+    doGenericBuild
+    echoNotVerbose "Build Firefox"
+    echoVerbose ""
+    echoVerbose "+====================================================="
+    echoVerbose "Build Firefox"
+    echoVerbose "+====================================================="
+}
+
+# function executed when post-build hook is called
+function firefoxPostBuild {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Firefox POST-BUILD"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Firefox POST-BUILD"
+    echoVerbose "| "
+    firefoxInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    doFirefoxPostBuild
+    if [[ -x $MYS2I_DEST/assemble ]]; then
+        echoVerbose "PostBuild source code found at $MYS2I_DEST/post-build"
+        testAndRunSourceCodeScript "post-build" 
+    else
+        echoVerbose "No PostBuild source code found at $MYS2I_DEST/post-build"
+    fi
+    exit 0;
+}
+
+# function performing Firefox post-build actions
+function doFirefoxPostBuild {
+    doGenericPostBuild
+    echoNotVerbose "PostBuild Firefox"
+    echoVerbose ""
+    echoVerbose "+====================================================="
+    echoVerbose "PostBuild Firefox"
+    echoVerbose "+====================================================="
+}
+
 # function executed when pre-deploy hook is called
 function firefoxPreDeploy {
     genericHeader
+    echoNotVerbose "container $HOSTNAME executing Firefox PRE-DEPLOY"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
-    echoNotVerbose "container $HOSTNAME  running PRE-DEPLOY HOOK"
+    echoVerbose "| Container $HOSTNAME executing Firefox PRE-DEPLOY"
     echoVerbose "| "
     firefoxInformation "| "
+    echoDebug `env`
     echoVerbose "+====================================================="
-    testAndRunSourceCodeScript "pre-deploy" 
+    doFirefoxPreDeploy
+    if [[ -x $MYS2I_DEST/pre-deploy ]]; then
+        echoVerbose "PreDeploy source code found at $MYS2I_DEST/pre-deploy"
+        testAndRunSourceCodeScript "pre-deploy" 
+    else
+        echoVerbose "No PreDeploy source code found at $MYS2I_DEST/pre-deploy"
+    fi
+    exit 0;
+}
+
+# function performing Firefox pre-deploy actions
+function doFirefoxPreDeploy {
+    doGenericPreDeploy
+    echoNotVerbose "PreDeploy Firefox"
+    echoVerbose ""
+    echoVerbose "+====================================================="
+    echoVerbose "PreDeploy Firefox"
+    echoVerbose "+====================================================="
 }
 
 # function executed when post-deploy hook is called
 function firefoxPostDeploy {
     genericHeader
+    echoNotVerbose "container $HOSTNAME executing Firefox POST-DEPLOY"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running POST-DEPLOY HOOK"
-    echoNotVerbose "container $HOSTNAME  running POST-DEPLOY HOOK"
+    echoVerbose "| Container $HOSTNAME executing Firefox POST-DEPLOY"
     echoVerbose "| "
     firefoxInformation "| "
+    echoDebug `env`
     echoVerbose "+====================================================="
-    testAndRunSourceCodeScript "post-deploy" 
+    doFirefoxPostDeploy
+    if [[ -x $MYS2I_DEST/post-deploy ]]; then
+        echoVerbose "PostDeploy source code found at $MYS2I_DEST/post-deploy"
+        testAndRunSourceCodeScript "post-deploy" 
+    else
+        echoVerbose "No PostDeploy source code found at $MYS2I_DEST/post-deploy"
+    fi
+    exit 0;
 }
 
-# function executed when pre-build hook is called
-function firefoxPostBuild {
-    genericHeader
+# function performing Firefox post-deploy actions
+function doFirefoxPostDeploy {
+    doGenericPostDeploy
+    echoNotVerbose "PostDeploy Firefox"
+    echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running POST-BUILD HOOK"
-    echoNotVerbose "container $HOSTNAME  running POST-BUILD HOOK"
-    echoVerbose "| "
-    firefoxInformation "| "
+    echoVerbose "PostDeploy Firefox"
     echoVerbose "+====================================================="
-    testAndRunSourceCodeScript "post-build" 
-}
-
-# function executed when assemble hook is called
-function firefoxAssemble {
-    genericHeader
-    echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running ASSEMBLE"
-    echoNotVerbose "container $HOSTNAME  running ASSEMBLE"
-    echoVerbose "| "
-    firefoxInformation "| "
-    echoVerbose "+====================================================="
-    if [[ -d $S2I_DEST ]]; then
-      echoVerbose "Fixing perm on $S2I_DEST"
-      chown 1001:0 -R $S2I_DEST
-      chmod g=u -R $S2I_DEST
-      moveSourceCode $S2I_DEST $APP_PATH
-    fi;
-    testAndRunSourceCodeScript "assemble" 
 }
 
 # function executed on container startup
 function firefoxRun {
     genericHeader
+    echoNotVerbose "container $HOSTNAME executing Firefox RUN"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME is RUNNING"
-    echoNotVerbose "container $HOSTNAME is RUNNING"
+    echoVerbose "| Container $HOSTNAME executing Firefox RUN"
     echoVerbose "| "
     firefoxInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    if [[ -x $MYS2I_DEST/run ]]; then
+        echoVerbose "Run source code found at $MYS2I_DEST/run"
+        testAndRunSourceCodeScript "run" 
+    else
+        echoVerbose "No Run source code found at $MYS2I_DEST/run"
+        echoVerbose "Executing default Firefox run action"
+        doFirefoxRun
+    fi
+}
+
+# function performing Firefox run actions
+function doFirefoxRun {
+    echoNotVerbose "Run Firefox"
+    echoVerbose ""
+    echoVerbose "+====================================================="
+    echoVerbose "Run Firefox"
     echoVerbose "+====================================================="
     startFirefoxService
 }
