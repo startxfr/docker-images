@@ -1,6 +1,6 @@
 [![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-# Docker OS Images : MEMCACHE on alpine 3.7
+# Docker OS Images : MEMCACHE on alpine 3.8
 
 Simple container used to deliver distributed memory object caching system
 Run [memcached daemon](https://www.memcached.org/) under a container 
@@ -19,7 +19,7 @@ based on [startx/alpine:3 container](https://hub.docker.com/r/startx/alpine)
 * `:fc21` : Fedora core 21 + memcached 
 * `:centos7` : CentOS 7 + memcached
 * `:centos6` : Centos 6 + memcached 
-* `:alpine3` : Alpine 3.7 + memcached 1.5.7 
+* `:alpine3` : Alpine 3.8 + memcached 1.5.7 
 
 ## Running from dockerhub registry
 

@@ -6,8 +6,8 @@ ENV SX_VERSION="alpine3" \
     SX_TYPE="service" \
     SX_SERVICE="mongo" \
     SX_ID="startx/sv-mongo" \
-    SX_NAME="Startx MongoDB service image (alpine 3.7)" \
-    SX_SUMMARY="Startx mongo service based on alpine 3.7" \
+    SX_NAME="Startx MongoDB service image (alpine 3.8)" \
+    SX_SUMMARY="Startx mongo service based on alpine 3.8" \
     LOG_PATH=/logs \
     DATA_PATH=/data
 

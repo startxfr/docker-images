@@ -1,6 +1,6 @@
 [![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-# Docker OS Images : APACHE + PHP on alpine 3.7
+# Docker OS Images : APACHE + PHP on alpine 3.8
 
 Simple container used to deliver dynamic http content using php associated with PHP engine
 Run [PHP engine](https://www.php.net) under a container 
@@ -19,7 +19,7 @@ based on [startx/alpine:3 container](https://hub.docker.com/r/startx/alpine)
 * `:fc21` : Fedora core 21 + Apache + PHP 
 * `:centos7` : CentOS 7 + Apache + PHP 
 * `:centos6` : Centos 6 + Apache + PHP 
-* `:alpine3` : Alpine 3.7 + Apache 2.4.33 + PHP 7.2.5
+* `:alpine3` : Alpine 3.8 + Apache 2.4.33 + PHP 7.2.5
 
 ## Running from dockerhub registry
 

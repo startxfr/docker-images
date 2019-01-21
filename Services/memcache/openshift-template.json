@@ -39,12 +39,12 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "Startx Memcached Database (alpine 3.7)",
-                            "description": "Memcached server for caching database running under alpine 3.7",
+                            "openshift.io/display-name": "Startx Memcached Database (alpine 3.8)",
+                            "description": "Memcached server for caching database running under alpine 3.8",
                             "iconClass": "icon-memcached",
                             "tags": "builder,startx,alpine,memcached,database",
                             "supports": "db",
-                            "version": "3.7",
+                            "version": "3.8",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-memcache.git"
                         },
                         "from": {

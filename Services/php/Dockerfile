@@ -6,8 +6,8 @@ ENV SX_VERSION="alpine3" \
     SX_TYPE="service" \
     SX_SERVICE="php" \
     SX_ID="startx/sv-php" \
-    SX_NAME="Startx Apache-PHP service image (alpine 3.7)" \
-    SX_SUMMARY="Startx apache-php service based on alpine 3.7"
+    SX_NAME="Startx Apache-PHP service image (alpine 3.8)" \
+    SX_SUMMARY="Startx apache-php service based on alpine 3.8"
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -41,12 +41,12 @@ RUN apk --no-cache add php7-apache2 php7 php7-phar php7-json php7-iconv php7-ope
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     chmod ug+r $HTTPDCONF && \
-    mkdir /run/php-fpm  && \
+    mkdir -p $APP_PATH $LOG_PATH /run/php-fpm && \
     sed -i "s/;clear_env = no/clear_env = no/" /etc/php-fpm.d/www.conf && \
-    chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp /run/php-fpm && \
-    chmod -R ug+rw $APP_PATH $DATA_PATH $LOG_PATH /run/php-fpm && \
-    chown -R 1001:0 /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH $DATA_PATH $LOG_PATH /run/php-fpm && \
-    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp /run/php-fpm && \
+    chgrp -R 0 $APP_PATH $LOG_PATH /run/httpd /bin/sx* /s2i $SX_LIBDIR /tmp /run/php-fpm && \
+    chmod -R ug+rw $APP_PATH $LOG_PATH /run/php-fpm && \
+    chown -R 1001:0 /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH $LOG_PATH /run/php-fpm && \
+    chmod -R g=u $APP_PATH $LOG_PATH /run/httpd /bin/sx* /s2i $SX_LIBDIR /tmp /run/php-fpm && \
     chmod -R ugo+x /bin/sx*
 COPY index.php $APP_PATH/index.php
 RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH && rm -rf $APP_PATH/index.html
@@ -57,6 +57,6 @@ WORKDIR $APP_PATH
 
 EXPOSE 8080
 
-VOLUME $DATA_PATH
+VOLUME $APP_PATH
 
 CMD [ "/bin/sx-php" , "run" ]

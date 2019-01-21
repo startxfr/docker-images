@@ -40,8 +40,8 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "Startx PHP WebServer (alpine 3.7)",
-                            "description": "PHP WebServer for dynamic web application running under alpine 3.7",
+                            "openshift.io/display-name": "Startx PHP WebServer (alpine 3.8)",
+                            "description": "PHP WebServer for dynamic web application running under alpine 3.8",
                             "iconClass": "icon-php",
                             "tags": "builder,startx,alpine,apache,httpd,php",
                             "supports": "http",

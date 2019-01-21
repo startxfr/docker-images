@@ -5,8 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>STARTX Webserver container</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.8/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.8/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
     </head>
     <body>
@@ -26,7 +26,7 @@
         <div class="jumbotron">
             <div class="container">
                 <h1>Congratulation !</h1>
-                <p>You are actually running an apache webserver + php <?php echo phpversion(); ?>  running under alpine 3.7. For more information about this container and how to add your content instead of this message, please read the following links.</p>
+                <p>You are actually running an apache webserver + php <?php echo phpversion(); ?>  running under alpine 3.8. For more information about this container and how to add your content instead of this message, please read the following links.</p>
                 <p>
                     <a class="btn btn-primary btn-lg"href="https://github.com/startxfr/docker-images/tree/alpine3/Services/php" target="_blank" role="button">See this container Dockerfile</a>
                     <a class="btn btn-primary btn-lg"href="https://github.com/startxfr/docker-images" target="_blank" role="button">STARTX github docker images repository</a>
@@ -40,6 +40,6 @@
             <p>&copy; <?php echo date('Y'); ?> - <a href="https://github.com/startxfr" target="_blank">STARTX</a> - <a href="https://www.startx.fr" target="_blank">STARTX Dev Team</a></p>
         </footer>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.8/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </body>
 </html>

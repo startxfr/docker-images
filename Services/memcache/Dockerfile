@@ -6,8 +6,8 @@ ENV SX_VERSION="alpine3" \
     SX_TYPE="service" \
     SX_SERVICE="memcache" \
     SX_ID="startx/sv-memcache" \
-    SX_NAME="Startx Memcached service image (alpine 3.7)" \
-    SX_SUMMARY="Startx Memcached service based on alpine 3.7" \
+    SX_NAME="Startx Memcached service image (alpine 3.8)" \
+    SX_SUMMARY="Startx Memcached service based on alpine 3.8" \
     LOG_PATH=/logs
 
 LABEL name="$SX_ID" \

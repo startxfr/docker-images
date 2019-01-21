@@ -40,8 +40,8 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "Startx MongoDB Database (alpine 3.7)",
-                            "description": "MongoDB server for simple SQL database running under alpine 3.7",
+                            "openshift.io/display-name": "Startx MongoDB Database (alpine 3.8)",
+                            "description": "MongoDB server for simple SQL database running under alpine 3.8",
                             "iconClass": "icon-mongodb",
                             "tags": "builder,startx,alpine,mongo,database",
                             "supports": "db",

@@ -40,8 +40,8 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "Startx NodeJS (alpine 3.7)",
-                            "description": "NodeJS micro-server for micro-service application running under alpine 3.7",
+                            "openshift.io/display-name": "Startx NodeJS (alpine 3.8)",
+                            "description": "NodeJS micro-server for micro-service application running under alpine 3.8",
                             "iconClass": "icon-nodejs",
                             "tags": "builder,startx,alpine,nodejs,httpd",
                             "supports": "http",

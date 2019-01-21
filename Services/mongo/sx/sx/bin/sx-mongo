@@ -4,7 +4,7 @@ source $SX_LIBDIR/sx-mongo
 check_mongo_environment
 # Dispatch input arguments
 case $1 in
-    assemble|build)         mongoAssemble $@ ;;
+    assemble|build)         mongoBuild $@ ;;
     post-build)             mongoPostBuild $@ ;;
     pre-deploy)             mongoPreDeploy $@ ;;
     post-deploy)            mongoPostDeploy $@ ;;

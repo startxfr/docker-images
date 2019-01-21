@@ -7,13 +7,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-postgres",
+                "name": "startx-postgres",
                 "annotations": {
                     "openshift.io/display-name": "Startx PostGresQL Database (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-postgres",
+                    "base-image": "startx-os",
                     "provider": "startx"
                 }
             },
@@ -22,8 +22,8 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "S2I PostGresQL Database (alpine 3.7)",
-                            "description": "PostGresQL server builder for simple SQL database running under alpine 3.7",
+                            "openshift.io/display-name": "S2I PostGresQL Database (alpine 3.8)",
+                            "description": "PostGresQL server builder for simple SQL database running under alpine 3.8",
                             "iconClass": "icon-postgresql",
                             "tags": "builder,startx,alpine,postgres,database",
                             "supports": "db",
@@ -38,8 +38,8 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "S2I PostGresQL Database (alpine 3.7)",
-                            "description": "PostGresQL server builder for simple SQL database running under alpine 3.7",
+                            "openshift.io/display-name": "S2I PostGresQL Database (alpine 3.8)",
+                            "description": "PostGresQL server builder for simple SQL database running under alpine 3.8",
                             "iconClass": "icon-postgresql",
                             "tags": "builder,startx,alpine,postgres,database",
                             "supports": "db",
@@ -54,8 +54,8 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "S2I PostGresQL Database (alpine 3.7)",
-                            "description": "PostGresQL server builder for simple SQL database running under alpine 3.7",
+                            "openshift.io/display-name": "S2I PostGresQL Database (alpine 3.8)",
+                            "description": "PostGresQL server builder for simple SQL database running under alpine 3.8",
                             "iconClass": "icon-postgresql",
                             "tags": "builder,startx,alpine,postgres,database",
                             "supports": "db",

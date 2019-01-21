@@ -6,8 +6,10 @@ ENV SX_VERSION="alpine3" \
     SX_TYPE="service" \
     SX_SERVICE="ooconv" \
     SX_ID="startx/sv-ooconv" \
-    SX_NAME="Startx LibreOffice converter service image (alpine 3.7)" \
-    SX_SUMMARY="Startx unoconv service based on alpine 3.7" \
+    SX_NAME="Startx LibreOffice converter service image (alpine 3.8)" \
+    SX_SUMMARY="Startx unoconv service based on alpine 3.8" \
+    SX_USER=ooconv \
+    APP_PATH=/home/ooconv \
     DATA_PATH=/data
 
 LABEL name="$SX_ID" \
@@ -36,6 +38,7 @@ RUN apk --no-cache add mc curl util-linux libreoffice-common libreoffice-writer 
     && ln -s /usr/bin/python3 /usr/bin/python \
     && apk del curl \
     && rm -rf /var/cache/apk/* && \
+    useradd -s /bin/bash -m -g 0 -u 1001 ooconv && \
     mkdir -p $DATA_PATH /.cache && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
@@ -54,6 +57,7 @@ WORKDIR $DATA_PATH
 
 EXPOSE 2002
 
+VOLUME $APP_PATH
 VOLUME $DATA_PATH
 
 CMD [ "/bin/sx-ooconv" , "run" ]

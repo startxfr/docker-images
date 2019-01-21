@@ -2,12 +2,12 @@ FROM startx/alpine:3
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="alpine3" \
-    SX_TYPE="service" \
+ENV SX_VERSION="latest" \
+    SX_TYPE="desktop" \
     SX_SERVICE="chrome" \
-    SX_ID="startx/sv-chrome" \
-    SX_NAME="Startx Chrome service image (alpine 3.7)" \
-    SX_SUMMARY="Startx chrome service based on alpine 3.7" \
+    SX_ID="startx/vdi-chrome" \
+    SX_NAME="Startx Chrome VDI image (alpine 3.8)" \
+    SX_SUMMARY="Startx chrome container-based desktop application based on alpine 3.8" \
     SX_CHROME_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
     LOG_PATH=/home/chrome \
     APP_PATH=/home/chrome \
@@ -29,7 +29,7 @@ LABEL name="$SX_ID" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="400Mi" \
       io.openshift.min-cpu="2000m" \
-      io.openshift.expose-services="$SX_CHROME_PORT:vnc" \
+      io.openshift.expose-VDI="$SX_CHROME_PORT:vnc" \
       io.openshift.s2i.destination="/tmp" \
       io.openshift.s2i.scripts-url="image:///s2i" \
       fr.startx.component="$SX_ID:$SX_VERSION"
@@ -51,11 +51,12 @@ RUN pip install --upgrade --force-reinstall setuptools pip supervisor && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/* && \
     mkdir -p $DATA_PATH $APP_PATH $LOG_PATH $DATA_PATH/.config && \
-	chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp && \
-    chown -R $SX_USER:0 /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH $DATA_PATH $LOG_PATH $DATA_PATH/.config && \
-    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp && \
+	chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp /.local && \
+    chown -R $SX_USER:0 /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH $DATA_PATH $LOG_PATH $DATA_PATH/.config /.local && \
+    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp /.local && \
     chmod ug+r $SX_CHROME_SUPERVISOR_CONF && \
-    chmod -R ugo+x /bin/sx*
+    chmod -R ugo+x /bin/sx* && \
+    chmod -R ugo+rwx /.local
 
 USER $SX_USER
 

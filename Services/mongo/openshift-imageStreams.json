@@ -7,13 +7,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-mongo",
+                "name": "startx-mongo",
                 "annotations": {
                     "openshift.io/display-name": "Startx MongoDB Database (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-mongo",
+                    "base-image": "startx-os",
                     "provider": "startx"
                 }
             },
@@ -22,8 +22,8 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "S2I MongoDB Database (alpine 3.7)",
-                            "description": "MongoDB server builder for NoSQL database running under alpine 3.7",
+                            "openshift.io/display-name": "S2I MongoDB Database (alpine 3.8)",
+                            "description": "MongoDB server builder for NoSQL database running under alpine 3.8",
                             "iconClass": "icon-mongodb",
                             "tags": "builder,startx,alpine,mongo,database",
                             "supports": "db",
@@ -38,8 +38,8 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "S2I MongoDB Database (alpine 3.7)",
-                            "description": "MongoDB server builder for NoSQL database running under alpine 3.7",
+                            "openshift.io/display-name": "S2I MongoDB Database (alpine 3.8)",
+                            "description": "MongoDB server builder for NoSQL database running under alpine 3.8",
                             "iconClass": "icon-mongodb",
                             "tags": "builder,startx,alpine,mongo,database",
                             "supports": "db",
@@ -54,8 +54,8 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "S2I MongoDB Database (alpine 3.7)",
-                            "description": "MongoDB server builder for NoSQL database running under alpine 3.7",
+                            "openshift.io/display-name": "S2I MongoDB Database (alpine 3.8)",
+                            "description": "MongoDB server builder for NoSQL database running under alpine 3.8",
                             "iconClass": "icon-mongodb",
                             "tags": "builder,startx,alpine,mongo,database",
                             "supports": "db",

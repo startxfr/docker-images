@@ -7,9 +7,9 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-chrome",
+                "name": "startx-chrome",
                 "annotations": {
-                    "openshift.io/display-name": "Startx Browser (S2I)",
+          "openshift.io/display-name": "Startx Chrome Browser (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
@@ -20,26 +20,10 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc26",
-                        "annotations": {
-                            "openshift.io/display-name": "S2I Browser (Fedora 26)",
-                            "description": "Chrome browser builder for simple internet browsing under Fedora 26",
-                            "iconClass": "icon-chrome",
-                            "tags": "builder,startx,fedora,chrome,vnc",
-                            "supports": "vnc",
-                            "version": "fc26",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-chrome.git"
-                        },
-                        "from": {
-                            "kind": "DockerImage",
-                            "name": "startx/sv-chrome:fc26"
-                        }
-                    },
-                    {
                         "name": "fc27",
                         "annotations": {
-                            "openshift.io/display-name": "S2I Browser (Fedora 27)",
-                            "description": "Chrome browser builder for simple internet browsing under Fedora 27",
+                            "openshift.io/display-name": "VDI Chrome Browser (Fedora 27)",
+                            "description": "Container-based desktop Chrome browser for remote internet browsing  under Fedora 27",
                             "iconClass": "icon-chrome",
                             "tags": "builder,startx,fedora,chrome,vnc",
                             "supports": "vnc",
@@ -48,14 +32,14 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-chrome:fc27"
+                            "name": "startx/vdi-chrome:fc27"
                         }
                     },
                     {
                         "name": "fc28",
                         "annotations": {
-                            "openshift.io/display-name": "S2I Browser (Alpine 3)",
-                            "description": "Chrome browser builder for simple internet browsing under Alpine 3",
+                            "openshift.io/display-name": "VDI Chrome Browser (Fedora 28)",
+                            "description": "Container-based desktop Chrome browser for remote internet browsing  under Fedora 28",
                             "iconClass": "icon-chrome",
                             "tags": "builder,startx,fedora,chrome,vnc",
                             "supports": "vnc",
@@ -64,14 +48,14 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-chrome:fc28"
+                            "name": "startx/vdi-chrome:fc28"
                         }
                     },
                     {
                         "name": "fc29",
                         "annotations": {
-                            "openshift.io/display-name": "S2I Browser (Fedora 29)",
-                            "description": "Chrome browser builder for simple internet browsing under Fedora 29",
+                            "openshift.io/display-name": "VDI Chrome Browser (Fedora 29)",
+                            "description": "Container-based desktop Chrome browser for remote internet browsing  under Fedora 29",
                             "iconClass": "icon-chrome",
                             "tags": "builder,startx,fedora,chrome,vnc",
                             "supports": "vnc",
@@ -80,14 +64,14 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-chrome:fc29"
+                            "name": "startx/vdi-chrome:fc29"
                         }
                     },
                     {
                         "name": "fc30",
                         "annotations": {
-                            "openshift.io/display-name": "S2I Browser (Fedora 30)",
-                            "description": "Chrome browser builder for simple internet browsing under Fedora 30",
+                            "openshift.io/display-name": "VDI Chrome Browser (Fedora 30)",
+                            "description": "Container-based desktop Chrome browser for remote internet browsing  under Fedora 30",
                             "iconClass": "icon-chrome",
                             "tags": "builder,startx,fedora,chrome,vnc",
                             "supports": "vnc",
@@ -96,14 +80,14 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-chrome:fc30"
+                            "name": "startx/vdi-chrome:fc30"
                         }
                     },
                     {
                         "name": "latest",
                         "annotations": {
-                            "openshift.io/display-name": "S2I Browser (Fedora rawhide)",
-                            "description": "Chrome browser builder for simple internet browsing under Fedora rawhide",
+                            "openshift.io/display-name": "VDI Chrome Browser (Fedora rawhide)",
+                            "description": "Container-based desktop Chrome browser for remote internet browsing  under Fedora rawhide",
                             "iconClass": "icon-chrome",
                             "tags": "builder,startx,fedora,chrome,vnc",
                             "supports": "vnc",
@@ -112,14 +96,14 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-chrome:latest"
+                            "name": "startx/vdi-chrome:latest"
                         }
                     },
                     {
                         "name": "centos7",
                         "annotations": {
-                            "openshift.io/display-name": "S2I Browser (Centos 7)",
-                            "description": "Chrome browser builder for simple internet browsing under Centos 7",
+                            "openshift.io/display-name": "VDI Chrome Browser (Centos 7)",
+                            "description": "Container-based desktop Chrome browser for remote internet browsing  under Centos 7",
                             "iconClass": "icon-chrome",
                             "tags": "builder,startx,centos,chrome,vnc",
                             "supports": "vnc",
@@ -128,30 +112,14 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-chrome:centos7"
-                        }
-                    },
-                    {
-                        "name": "centos6",
-                        "annotations": {
-                            "openshift.io/display-name": "S2I Browser (Centos 6)",
-                            "description": "Chrome browser builder for simple internet browsing under Centos 6",
-                            "iconClass": "icon-chrome",
-                            "tags": "builder,startx,centos,chrome,vnc",
-                            "supports": "vnc",
-                            "version": "7",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-chrome.git"
-                        },
-                        "from": {
-                            "kind": "DockerImage",
-                            "name": "startx/sv-chrome:centos6"
+                            "name": "startx/vdi-chrome:centos7"
                         }
                     },
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "S2I Browser (Alpine 3)",
-                            "description": "Chrome browser builder for simple internet browsing under Alpine 3",
+                            "openshift.io/display-name": "VDI Chrome Browser (Alpine 3)",
+                            "description": "Container-based desktop Chrome browser for remote internet browsing  under Alpine 3",
                             "iconClass": "icon-chrome",
                             "tags": "builder,startx,alpine,chrome,vnc",
                             "supports": "vnc",
@@ -160,7 +128,7 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/sv-chrome:alpine3"
+                            "name": "startx/vdi-chrome:alpine3"
                         }
                     }
                 ]

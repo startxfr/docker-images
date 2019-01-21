@@ -2,7 +2,7 @@
 
 # get and store the operating system name
 OS=`cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g'`
-SXLIB_VERSION="0.3.3"
+SXLIB_VERSION="0.3.14"
 S2I_DEST=$SX_S2IDIR/src
 MYS2I_DEST=/tmp/mys2i
 
@@ -42,6 +42,127 @@ function echoDebug {
     fi 
 }
 
+# test if a source code script of the given type exist a could be run
+function testAndRunSourceCodeScript {
+  if [[ -r $MYS2I_DEST/$1 ]]; then
+      echoDebug "Found source code $1 script"
+      if [[ -x $MYS2I_DEST/$1 ]]; then
+          echo "Execute source code $1 script"
+          . $MYS2I_DEST/$1
+      else
+          echo "WARN: source code $1 script is not executable"
+      fi 
+  else
+      echoVerbose "No source code $1 script"
+  fi 
+}
+
+# move source code and s2i scripts to the appropriate location and setup perms
+function moveSourceCode {
+  if [[ -r $1 ]]; then
+    echoVerbose "Copy source from $1 > $2"
+    cp -R $1/* $2/
+  else
+    echoVerbose "Could not copy $1 is not readable"
+  fi 
+  projectScriptDir=""
+  if [[ -r $1/sx ]]; then
+      echoVerbose "Found source code CI/CD scripts in sx/"
+      projectScriptDir=sx
+  elif [[ -r $1/s2i ]]; then
+      echoVerbose "Found source code CI/CD scripts in s2i/"
+      projectScriptDir=s2i
+  elif [[ -r $1/.sx ]]; then
+      echoVerbose "Found source code CI/CD scripts in .sx/"
+      projectScriptDir=.sx
+  elif [[ -r $1/.s2i ]]; then
+      echoVerbose "Found source code CI/CD scripts in .s2i/"
+      projectScriptDir=.s2i
+  else
+      echoVerbose "no source code CI/CD directory found (sx, s2i, .sx, .s2i)"
+  fi 
+  if [[ "$projectScriptDir" != "" ]] ; then
+      echoVerbose "Move source code s2i scripts to $MYS2I_DEST"
+      mv $1/$projectScriptDir $MYS2I_DEST
+      echoVerbose "Set $MYS2I_DEST perms to 1001:0"
+      chown 1001:0 -R $MYS2I_DEST
+      chmod g=u -R $MYS2I_DEST
+      chmod ug+x -R $MYS2I_DEST/*
+  else
+      echoVerbose "no source code s2i directory moved to $MYS2I_DEST"
+  fi 
+  if [[ -w $1 ]]; then
+    echoVerbose "Remove source temp $1"
+    rm -rf $1
+  else
+    echoVerbose "Could not remove $1 is not writable"
+  fi 
+}
+
+# function executed when assemble hook is called
+function genericBuild {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing BUILD"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing BUILD"
+    echoVerbose "| "
+    displayInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    doGenericBuild
+    if [[ -x $MYS2I_DEST/assemble ]]; then
+        echoVerbose "Build source code found at $MYS2I_DEST/assemble"
+        testAndRunSourceCodeScript "assemble" 
+    else
+        echoVerbose "No Build source code found at $MYS2I_DEST/assemble"
+    fi
+    exit 0;
+}
+
+# function performing OS build actions
+function doGenericBuild {
+    echoNotVerbose "Build system $OS"
+    echoVerbose ""
+    echoVerbose "+====================================================="
+    echoVerbose "| Build system $OS"
+    echoVerbose "+====================================================="
+    echoVerbose "Fixing perm on $S2I_DEST"
+    if [[ -r $S2I_DEST ]]; then
+      chgrp 0 -R $S2I_DEST
+      chmod g=u -R $S2I_DEST
+      moveSourceCode $S2I_DEST $APP_PATH
+    fi;
+}
+
+# function executed when post-build hook is called
+function genericPostBuild {
+    genericHeader
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing POST-BUILD HOOK"
+    echoNotVerbose "container $HOSTNAME executing POST-BUILD HOOK"
+    echoVerbose "| "
+    displayInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    doGenericPostBuild
+    if [[ -x $MYS2I_DEST/post-build ]]; then
+        echoVerbose "PostBuild source code found at $MYS2I_DEST/post-build"
+        testAndRunSourceCodeScript "post-build" 
+    else
+        echoVerbose "No PostBuild source code found at $MYS2I_DEST/post-build"
+    fi
+    exit 0;
+}
+
+# function performing OS post-build actions
+function doGenericPostBuild {
+    echoNotVerbose "PostBuild system $OS"
+    echoVerbose ""
+    echoVerbose "+====================================================="
+    echoVerbose "| PostBuild system $OS"
+    echoVerbose "+====================================================="
+}
+
 # function executed when pre-deploy hook is called
 function genericPreDeploy {
     genericHeader
@@ -52,56 +173,52 @@ function genericPreDeploy {
     displayInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    testAndRunSourceCodeScript "pre-deploy"
+    doGenericPreDeploy
+    if [[ -x $MYS2I_DEST/pre-deploy ]]; then
+        echoVerbose "PreDeploy source code found at $MYS2I_DEST/pre-deploy"
+        testAndRunSourceCodeScript "pre-deploy" 
+    else
+        echoVerbose "No PreDeploy source code found at $MYS2I_DEST/pre-deploy"
+    fi
     exit 0;
+}
+
+# function performing OS pre-deploy actions
+function doGenericPreDeploy {
+    echoNotVerbose "PreDeploy system $OS"
+    echoVerbose ""
+    echoVerbose "+====================================================="
+    echoVerbose "| PreDeploy system $OS"
+    echoVerbose "+====================================================="
 }
 
 # function executed when post-deploy hook is called
 function genericPostDeploy {
     genericHeader
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running POST-DEPLOY HOOK"
-    echoNotVerbose "container $HOSTNAME  running POST-DEPLOY HOOK"
+    echoVerbose "| Container $HOSTNAME executing POST-DEPLOY HOOK"
+    echoNotVerbose "container $HOSTNAME executing POST-DEPLOY HOOK"
     echoVerbose "| "
     displayInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    testAndRunSourceCodeScript "post-deploy" 
+    doGenericPostDeploy
+    if [[ -x $MYS2I_DEST/post-deploy ]]; then
+        echoVerbose "PostDeploy source code found at $MYS2I_DEST/post-deploy"
+        testAndRunSourceCodeScript "post-deploy" 
+    else
+        echoVerbose "No PostDeploy source code found at $MYS2I_DEST/post-deploy"
+    fi
     exit 0;
 }
 
-# function executed when pre-build hook is called
-function genericPostBuild {
-    genericHeader
+# function performing OS post-deploy actions
+function doGenericPostDeploy {
+    echoNotVerbose "PostDeploy system $OS"
+    echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running POST-BUILD HOOK"
-    echoNotVerbose "container $HOSTNAME  running POST-BUILD HOOK"
-    echoVerbose "| "
-    displayInformation "| "
-    echoDebug `env`
+    echoVerbose "| PostDeploy system $OS"
     echoVerbose "+====================================================="
-    testAndRunSourceCodeScript "post-build" 
-    exit 0;
-}
-
-# function executed when assemble hook is called
-function genericAssemble {
-    genericHeader
-    echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running ASSEMBLE"
-    echoNotVerbose "container $HOSTNAME  running ASSEMBLE"
-    echoVerbose "| "
-    displayInformation "| "
-    echoDebug `env`
-    echoVerbose "+====================================================="
-    echoVerbose "Fixing perm on $S2I_DEST"
-    if [[ -r $S2I_DEST ]]; then
-      chgrp 0 -R $S2I_DEST
-      chmod g=u -R $S2I_DEST
-      moveSourceCode $S2I_DEST $APP_PATH
-    fi;
-    testAndRunSourceCodeScript "assemble" 
-    exit 0;
 }
 
 # function executed on container startup
@@ -115,11 +232,23 @@ function genericRun {
     echoDebug `env`
     echoVerbose "+====================================================="
     if [[ -x $MYS2I_DEST/run ]]; then
+        echoVerbose "Run source code found at $MYS2I_DEST/run"
         testAndRunSourceCodeScript "run" 
     else
-        echo "Start default daemon (no source code run script)"
-        startDaemon
+        echoVerbose "No Run source code found at $MYS2I_DEST/run"
+        echoVerbose "Executing default OS run action"
+        doGenericRun
     fi 
+}
+
+# function performing OS run actions
+function doGenericRun {
+    echoNotVerbose "Run system $OS"
+    echoVerbose ""
+    echoVerbose "+====================================================="
+    echoVerbose "| Run system $OS"
+    echoVerbose "+====================================================="
+    startDaemon
 }
 
 # Display general usage
@@ -137,12 +266,12 @@ Usage:
   docker run $SX_ID [command]
 
 - Build Commands:
-  assemble         execute for building output image when using s2i (alias : build)
+  build            execute for building output image when using s2i (alias : assemble)
   post-build       execute after building image
-  pre-deploy       execute before the deployment begins (openshift).
-  post-deploy      execute after the deployment strategy completes (openshift).
 
 - Run Commands:
+  pre-deploy       execute before the deployment begins (openshift).
+  post-deploy      execute after the deployment strategy completes (openshift).
   run              execute the service on container startup (alias : start)
   isLive           return the service health (alias : health)
   isReady          return the service readiness
@@ -196,16 +325,16 @@ exit 0;
 function genericHeader {
 if [[ "$SX_VERBOSE" == true || "$SX_VERBOSE" == "true" ]] ; then
 cat << "EOF"
-  ____  _             _         
- / ___|| |_ __ _ _ __| |___  __ 
- \___ \| __/ _` | '__| __\ \/ / 
-  ___) | || (_| | |  | |_ >  <  
- |____/ \__\__,_|_|_  \__/_/\_\       _ 
- |  _ \  ___   ___| | _____ _ __     (_)_ __ ___   __ _  __ _  ___  ___  
- | | | |/ _ \ / __| |/ / _ \ '__|____| | '_ ` _ \ / _` |/ _` |/ _ \/ __| 
- | |_| | (_) | (__|   <  __/ | |_____| | | | | | | (_| | (_| |  __/\__ \ 
- |____/ \___/ \___|_|\_\___|_|       |_|_| |_| |_|\__,_|\__, |\___||___/ 
-                                                        |___/ 
+|  ____  _             _         
+| / ___|| |_ __ _ _ __| |___  __ 
+| \___ \| __/ _` | '__| __\ \/ / 
+|  ___) | || (_| | |  | |_ >  <  
+| |____/ \__\__,_|_|_  \__/_/\_\       _ 
+| |  _ \  ___   ___| | _____ _ __     (_)_ __ ___   __ _  __ _  ___  ___  
+| | | | |/ _ \ / __| |/ / _ \ '__|____| | '_ ` _ \ / _` |/ _` |/ _ \/ __| 
+| | |_| | (_) | (__|   <  __/ | |_____| | | | | | | (_| | (_| |  __/\__ \ 
+| |____/ \___/ \___|_|\_\___|_|       |_|_| |_| |_|\__,_|\__, |\___||___/ 
+|                                                        |___/ 
 EOF
 fi 
 }
@@ -265,52 +394,4 @@ function genericDaemon {
     displayInformation "| "
     echoVerbose "+====================================================="
     startDaemon
-}
-
-# test if a source code script of the given type exist a could be run
-function testAndRunSourceCodeScript {
-  if [[ -r $MYS2I_DEST/$1 ]]; then
-      echoDebug "Found source code $1 script"
-      if [[ -x $MYS2I_DEST/$1 ]]; then
-          echo "Execute source code $1 script"
-          . $MYS2I_DEST/$1
-      else
-          echo "WARN: source code $1 script is not executable"
-      fi 
-  else
-      echoVerbose "No source code $1 script"
-  fi 
-}
-
-
-function moveSourceCode {
-  echoVerbose "Copy source from $1 > $2"
-  cp -R $1/* $2/
-  projectScriptDir=""
-  if [[ -r $1/sx ]]; then
-      echoVerbose "Found source code CI/CD scripts in sx/"
-      projectScriptDir=sx
-  elif [[ -r $1/s2i ]]; then
-      echoVerbose "Found source code CI/CD scripts in s2i/"
-      projectScriptDir=s2i
-  elif [[ -r $1/.sx ]]; then
-      echoVerbose "Found source code CI/CD scripts in .sx/"
-      projectScriptDir=.sx
-  elif [[ -r $1/.s2i ]]; then
-      echoVerbose "Found source code CI/CD scripts in .s2i/"
-      projectScriptDir=.s2i
-  fi 
-  if [[ "$projectScriptDir" != "" ]] ; then
-      echoVerbose "source code CI/CD directory $projectScriptDir found"
-      echoVerbose "Move source code scripts in $MYS2I_DEST"
-      mv $1/$projectScriptDir $MYS2I_DEST
-      echoVerbose "Fixing source code scripts perms"
-      chown 1001:0 -R $MYS2I_DEST
-      chmod g=u -R $MYS2I_DEST
-      chmod ug+x -R $MYS2I_DEST/*
-  else
-      echoVerbose "no source code CI/CD directory found"
-  fi 
-  echoVerbose "Remove source temp $S2I_DEST"
-  rm -rf $S2I_DEST
 }

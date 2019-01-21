@@ -7,7 +7,7 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-apache",
+                "name": "startx-apache",
                 "annotations": {
                     "openshift.io/display-name": "Startx WebServer (S2I)",
                     "openshift.io/generated-by": "STARTX"
@@ -22,8 +22,8 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "S2I WebServer (alpine 3.7)",
-                            "description": "Http server builder for simple web application running under alpine 3.7",
+                            "openshift.io/display-name": "S2I WebServer (alpine 3.8)",
+                            "description": "Http server builder for simple web application running under alpine 3.8",
                             "iconClass": "icon-apache",
                             "tags": "builder,startx,alpine,apache,httpd",
                             "supports": "http",
@@ -38,8 +38,8 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "S2I WebServer (alpine 3.7)",
-                            "description": "Http server builder for simple web application running under alpine 3.7",
+                            "openshift.io/display-name": "S2I WebServer (alpine 3.8)",
+                            "description": "Http server builder for simple web application running under alpine 3.8",
                             "iconClass": "icon-apache",
                             "tags": "builder,startx,alpine,apache,httpd",
                             "supports": "http",
@@ -54,8 +54,8 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "S2I WebServer (alpine 3.7)",
-                            "description": "Http server builder for simple web application running under alpine 3.7",
+                            "openshift.io/display-name": "S2I WebServer (alpine 3.8)",
+                            "description": "Http server builder for simple web application running under alpine 3.8",
                             "iconClass": "icon-apache",
                             "tags": "builder,startx,alpine,apache,httpd",
                             "supports": "http",

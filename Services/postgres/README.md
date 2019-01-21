@@ -1,6 +1,6 @@
 [![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-# Docker OS Images : POSTGRESQL on alpine 3.7
+# Docker OS Images : POSTGRESQL on alpine 3.8
 
 Simple container used to deliver highly reliable and configurable transactional database service using postgresql opensource project.
 Run [postgres daemon](http://www.postgresql.org/) under a container 
@@ -19,7 +19,7 @@ based on [startx/alpine:3 container](https://hub.docker.com/r/startx/alpine)
 * `:fc21` : Fedora core 21 + PostgreSQL 
 * `:centos7` : CentOS 7 + PostgreSQL 
 * `:centos6` : Centos 6 + PostgreSQL 
-* `:alpine3` : Alpine 3.7 + PostgreSQL 10.3
+* `:alpine3` : Alpine 3.8 + PostgreSQL 10.3
 
 ## Running from dockerhub registry
 

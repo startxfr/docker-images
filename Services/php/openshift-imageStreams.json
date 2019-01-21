@@ -7,13 +7,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-php",
+                "name": "startx-php",
                 "annotations": {
                     "openshift.io/display-name": "Startx PHP WebServer (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-php",
+                    "base-image": "startx-apache",
                     "provider": "startx"
                 }
             },
@@ -22,8 +22,8 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "S2I PHP WebServer (alpine 3.7)",
-                            "description": "Http server builder for dynamic web application running under alpine 3.7",
+                            "openshift.io/display-name": "S2I PHP WebServer (alpine 3.8)",
+                            "description": "Http server builder for dynamic web application running under alpine 3.8",
                             "iconClass": "icon-php",
                             "tags": "builder,startx,alpine,apache,httpd,php",
                             "supports": "http",
@@ -38,8 +38,8 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "S2I PHP WebServer (alpine 3.7)",
-                            "description": "Http server builder for dynamic web application running under alpine 3.7",
+                            "openshift.io/display-name": "S2I PHP WebServer (alpine 3.8)",
+                            "description": "Http server builder for dynamic web application running under alpine 3.8",
                             "iconClass": "icon-php",
                             "tags": "builder,startx,alpine,apache,httpd,php",
                             "supports": "http",
@@ -54,8 +54,8 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "S2I PHP WebServer (alpine 3.7)",
-                            "description": "Http server builder for dynamic web application running under alpine 3.7",
+                            "openshift.io/display-name": "S2I PHP WebServer (alpine 3.8)",
+                            "description": "Http server builder for dynamic web application running under alpine 3.8",
                             "iconClass": "icon-php",
                             "tags": "builder,startx,alpine,apache,httpd,php",
                             "supports": "http",

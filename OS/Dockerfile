@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine:3.8
 
 MAINTAINER Startx <dev@startx.fr>
 
@@ -40,12 +40,13 @@ RUN apk --no-cache add bash pwgen tar psmisc procps findutils iputils net-tools 
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
-    chgrp -R 0 /bin/sx /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH && \
-    chown -R 1001:0 /bin/sx /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH && \
-    chmod -R g=u /bin/sx /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH
+    chgrp -R 0 /bin/sx /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR $APP_PATH && \
+    chown -R 1001:0 /bin/sx /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR $APP_PATH && \
+    chmod -R g=u /bin/sx /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR $APP_PATH && \
+    chmod -R ugo+wr $SX_S2IDIR $APP_PATH
 
 USER 1001
 
 WORKDIR $APP_PATH
 
-CMD [ "/bin/sx" ]
+CMD [ "/bin/sx", "daemon" ]

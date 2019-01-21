@@ -1,0 +1,218 @@
+#!/bin/bash
+source $SX_LIBDIR/sx
+
+function check_chrome_environment {
+    if [ ! -v APP_PATH ]; then
+        APP_PATH="/home/chrome"
+        export APP_PATH
+    fi
+    if [ ! -v DATA_PATH ]; then
+        DATA_PATH="/home/chrome"
+        export DATA_PATH
+    fi
+    if [ ! -v LOG_PATH ]; then
+        LOG_PATH="/home/chrome"
+        export LOG_PATH
+    fi
+    if [ ! -n "$SERVER_NAME" ]; then
+        SERVER_NAME="localhost"
+        export SERVER_NAME
+    fi
+}
+
+# Display chrome information
+function chromeInformation {
+    displayInformation $1 
+    echoVerbose $1 "app path  : $APP_PATH"
+    echoVerbose $1 "log path  : $LOG_PATH"
+    echoVerbose $1 "data path : $DATA_PATH"
+    echoVerbose $1 "chrome    : $(google-chrome --version)" 
+    echoVerbose $1 "resolution: $SX_CHROME_SCREEN_RES_X" 
+}
+
+# function executed when build hook is called
+function chromeBuild {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Chrome BUILD"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Chrome BUILD"
+    echoVerbose "| "
+    chromeInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    doChromeBuild
+    if [[ -x $MYS2I_DEST/assemble ]]; then
+        echoVerbose "Build source code found at $MYS2I_DEST/assemble"
+        testAndRunSourceCodeScript "assemble" 
+    else
+        echoVerbose "No Build source code found at $MYS2I_DEST/assemble"
+    fi
+    exit 0;
+}
+
+# function performing Chrome build actions
+function doChromeBuild {
+    doGenericBuild
+    echoNotVerbose "Build Chrome"
+    echoVerbose ""
+    echoVerbose "+====================================================="
+    echoVerbose "| Build Chrome"
+    echoVerbose "+====================================================="
+}
+
+# function executed when post-build hook is called
+function chromePostBuild {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Chrome POST-BUILD"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Chrome POST-BUILD"
+    echoVerbose "| "
+    chromeInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    doChromePostBuild
+    if [[ -x $MYS2I_DEST/assemble ]]; then
+        echoVerbose "PostBuild source code found at $MYS2I_DEST/post-build"
+        testAndRunSourceCodeScript "post-build" 
+    else
+        echoVerbose "No PostBuild source code found at $MYS2I_DEST/post-build"
+    fi
+    exit 0;
+}
+
+# function performing Chrome post-build actions
+function doChromePostBuild {
+    doGenericPostBuild
+    echoNotVerbose "PostBuild Chrome"
+    echoVerbose ""
+    echoVerbose "+====================================================="
+    echoVerbose "| PostBuild Chrome"
+    echoVerbose "+====================================================="
+}
+
+# function executed when pre-deploy hook is called
+function chromePreDeploy {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Chrome PRE-DEPLOY"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Chrome PRE-DEPLOY"
+    echoVerbose "| "
+    chromeInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    doChromePreDeploy
+    if [[ -x $MYS2I_DEST/pre-deploy ]]; then
+        echoVerbose "PreDeploy source code found at $MYS2I_DEST/pre-deploy"
+        testAndRunSourceCodeScript "pre-deploy" 
+    else
+        echoVerbose "No PreDeploy source code found at $MYS2I_DEST/pre-deploy"
+    fi
+    exit 0;
+}
+
+# function performing Chrome pre-deploy actions
+function doChromePreDeploy {
+    doGenericPreDeploy
+    echoNotVerbose "PreDeploy Chrome"
+    echoVerbose ""
+    echoVerbose "+====================================================="
+    echoVerbose "| PreDeploy Chrome"
+    echoVerbose "+====================================================="
+}
+
+# function executed when post-deploy hook is called
+function chromePostDeploy {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Chrome POST-DEPLOY"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Chrome POST-DEPLOY"
+    echoVerbose "| "
+    chromeInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    doChromePostDeploy
+    if [[ -x $MYS2I_DEST/post-deploy ]]; then
+        echoVerbose "PostDeploy source code found at $MYS2I_DEST/post-deploy"
+        testAndRunSourceCodeScript "post-deploy" 
+    else
+        echoVerbose "No PostDeploy source code found at $MYS2I_DEST/post-deploy"
+    fi
+    exit 0;
+}
+
+# function performing Chrome post-deploy actions
+function doChromePostDeploy {
+    doGenericPostDeploy
+    echoNotVerbose "PostDeploy Chrome"
+    echoVerbose ""
+    echoVerbose "+====================================================="
+    echoVerbose "| PostDeploy Chrome"
+    echoVerbose "+====================================================="
+}
+
+# function executed on container startup
+function chromeRun {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Chrome RUN"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Chrome RUN"
+    echoVerbose "| "
+    chromeInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    if [[ -x $MYS2I_DEST/run ]]; then
+        echoVerbose "Run source code found at $MYS2I_DEST/run"
+        testAndRunSourceCodeScript "run" 
+    else
+        echoVerbose "No Run source code found at $MYS2I_DEST/run"
+        echoVerbose "Executing default Chrome run action"
+        doChromeRun
+    fi
+}
+
+# function performing Chrome run actions
+function doChromeRun {
+    echoNotVerbose "Run Chrome"
+    echoVerbose ""
+    echoVerbose "+====================================================="
+    echoVerbose "| Run Chrome"
+    echoVerbose "+====================================================="
+    startChromeService
+}
+
+# Display liveness status
+function chromeIsLive {
+    genericIsLive
+}
+
+# Display readyness status
+function chromeIsReady {
+    R=`ps -aux | grep chrome`
+    if [ "$R" != "" ]; then
+        exit 0;
+    fi;
+    exit 1;
+}
+
+# function executed on chrome service stop
+function stopChromeHandler {
+    killall chrome
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME is now STOPPED"
+    echoNotVerbose "container is now stopped"
+    echoVerbose "| "
+    chromeInformation "| "
+    echoVerbose "+====================================================="
+    exit 143; # 128 + 15 -- SIGTERM
+}
+
+# Start the httpd server as a deamon and execute it inside 
+# the running shell
+function startChromeService {
+    if [ ! -v X11VNC_AUTH ]; then
+      X11VNC_AUTH="-nopw"
+      export X11VNC_AUTH
+    fi
+    trap 'kill ${!}; stopChromeHandler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
+    exec /usr/bin/supervisord -c $SX_CHROME_SUPERVISOR_CONF/supervisord.conf
+}

@@ -15,14 +15,24 @@ This container contain updated core OS rpm (kernel, libs,...) as well as usefull
 
 ## Running this image
 
-### Running from dockerhub registry
+### Running using docker
 
-* with `docker` you can run `docker run -it --name="alpine3" startx/alpine:3` from any docker host
-* with `docker-compose` you can create a docker-compose.yml file with the following content
+```bash
+docker run -it --name="alpine" startx/alpine:3
+```
+
+### Running using docker-compose
+
+* Create a docker-compose.yml file with the following content
 ```yaml
 alpine:
   image: startx/alpine:3
   container_name: "os-alpine3"
+```
+* Execute the following command
+```bash
+docker-compose up -d
+docker-compose logs
 ```
 
 ### Using this image as Openshift Build image
@@ -45,10 +55,14 @@ oc process startx-os-alpine-build-template | oc create -f -
 
 ### Using this image as S2I builder
 
-You can use this image as an s2i builder image. 
- ```bash
-s2i build https://github.com/startxfr/docker-images-example-bash startx/alpine:3 test-alpine3
-docker run --rm -i -t test-alpine3
+You can use this image as an s2i builder image
+```bash
+# With your current directory application code
+s2i build . startx/alpine:3 startx-bash-myapp
+docker run --rm -i -t startx-bash-myapp
+# With startx application sample code repository
+s2i build https://github.com/startxfr/docker-images-example-bash startx/alpine:3 startx-bash-sample
+docker run --rm -i -t startx-bash-sample
 ```
 
 ### Using this image as base container
@@ -57,14 +71,13 @@ You can use this Dockerfile template to start a new personalized container based
 ```Dockerfile
 FROM startx/alpine:3
 #... your container specifications
-CMD ["/bin/sx"]
 ```
 
 ## Environment variable
 
 | Variable                  | Type     | Default         | Description                                                              |
 |---------------------------|----------|-----------------|--------------------------------------------------------------------------|
-| SX_VERSION                | `string` | `3.7`           | container version
+| SX_VERSION                | `string` | `3.8`           | container version
 | SX_TYPE                   | `string` | `OS`            | Container family (os, service, application). could be enhanced 
 | SX_SERVICE                | `string` | `alpine`        | Define the type of service or application provided
 | SX_ID                     | `auto`   | `startx/alpine` | Container ID coresponding to the image repository 
@@ -72,6 +85,8 @@ CMD ["/bin/sx"]
 | SX_SUMMARY                | `auto`   | `yes`           | Container purpose description
 | SX_VERBOSE                | `bool`   | `no`            | Display information about the execution
 | SX_DEBUG                  | `bool`   | `no`            | Display debug informations during execution
+| APP_PATH                  | `string` | `/app`          | Path to the application
+| SX_S2IDIR                 | `string` | `/tmp`          | Destination path to the application pushed via s2i process
 
 ## For advanced users
 

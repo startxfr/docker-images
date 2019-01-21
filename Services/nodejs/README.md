@@ -1,6 +1,6 @@
 [![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-# Docker OS Images : NODEJS on alpine 3.7
+# Docker OS Images : NODEJS on alpine 3.8
 
 Simple container used to run server side executed javascript content. include all nodejs and npm dependency.
 Run [nodejs main app.js](https://www.nodejs.org/) under a container 
@@ -20,7 +20,7 @@ Could use various network protocol (like http, websocket, smtp, telnet) accordin
 * `:fc21` : Fedora core 21 + NodeJS 
 * `:centos7` : CentOS 7 + NodeJS 
 * `:centos6` : Centos 6 + NodeJS 
-* `:alpine3` : Alpine 3.7 + NodeJS 8.11.1
+* `:alpine3` : Alpine 3.8 + NodeJS 8.11.1
 
 ## Running from dockerhub registry
 

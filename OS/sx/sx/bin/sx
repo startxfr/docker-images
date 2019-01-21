@@ -3,7 +3,7 @@ source $SX_LIBDIR/sx
 
 # Dispatch input arguments
 case $1 in
-    assemble|build)         genericAssemble $@ ;;
+    assemble|build)         genericBuild $@ ;;
     post-build)             genericPostBuild $@ ;;
     pre-deploy)             genericPreDeploy $@ ;;
     post-deploy)            genericPostDeploy $@ ;;

@@ -1,6 +1,6 @@
 [![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-# Docker OS Images : APACHE on alpine 3.7
+# Docker OS Images : APACHE on alpine 3.8
 
 Simple container used to deliver static http content include all apache's modules but no external languages engines (like php). For dynamic content, you should use our [sv-php service container](https://hub.docker.com/r/startx/sv-php)
 Run [apache httpd daemon](https://httpd.apache.org/) under a container 
@@ -19,7 +19,7 @@ based on [startx/alpine:3 container](https://hub.docker.com/r/startx/alpine)
 * `:fc21` : Fedora core 21 + Apache 
 * `:centos7` : CentOS 7 + Apache 
 * `:centos6` : Centos 6 + Apache 
-* `:alpine3` : Alpine 3.7 + Apache 2.4.33
+* `:alpine3` : Alpine 3.8 + Apache 2.4.33
 
 ## Running from dockerhub registry
 
@@ -31,7 +31,7 @@ service:
   container_name: "service-apache-alpine3"
   volumes:
     - "/tmp/container/apache/logs:/logs:z"
-    - "/tmp/container/apache/data:/data:z"
+    - "/tmp/container/apache/app:/app:z"
 ```
 
 ### Using this image as Openshift Build image
@@ -110,7 +110,7 @@ some [additional environment variable](https://github.com/startxfr/docker-images
 | SERVER_NAME               | `string` | `no`      | Server name for this container. If no name localhost will be assigned
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
 | LOG_PATH                  | `auto`   | `auto`    | default set to /logs and used as a volume mountpoint
-| APP_PATH                  | `auto`   | `auto`    | default set to /data and used as a volume mountpoint
+| APP_PATH                  | `auto`   | `auto`    | default set to /app and used as a volume mountpoint
 
 ## Exposed port
 
@@ -123,7 +123,7 @@ some [additional environment variable](https://github.com/startxfr/docker-images
 | Container directory  | Description                                                              |
 |----------------------|--------------------------------------------------------------------------|
 | /logs                | log directory used to record container and apache logs
-| /data                | data directory served by apache. If empty will be filled with app on startup. In other case use content from mountpoint or data volumes
+| /app                 | application directory served by apache. Use content from mountpoint or data volumes
 
 ## Testing the service
 

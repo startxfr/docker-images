@@ -7,58 +7,7 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-chrome",
-                "annotations": {
-                    "openshift.io/display-name": "Startx Chrome Browser (S2I)",
-                    "openshift.io/generated-by": "STARTX"
-                },
-                "labels": {
-                    "base-image": "startx-os",
-                    "provider": "startx"
-                }
-            },
-            "spec": {
-                "tags": [
-                    {
-                        "name": "alpine3",
-                        "annotations": {
-                            "openshift.io/display-name": "S2I Chrome Browser (Alpine 3)",
-                            "description": "Chrome browser builder for simple internet browsing under Alpine 3",
-                            "iconClass": "icon-chrome",
-                            "tags": "builder,startx,alpine,chrome,vnc",
-                            "supports": "vnc",
-                            "version": "alpine3",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-chrome.git"
-                        },
-                        "from": {
-                            "kind": "DockerImage",
-                            "name": "startx/sv-chrome:alpine3"
-                        }
-                    },
-                    {
-                        "name": "latest",
-                        "annotations": {
-                            "openshift.io/display-name": "S2I Chrome Browser (Alpine rawhide)",
-                            "description": "Chrome browser builder for simple internet browsing under Alpine rawhide",
-                            "iconClass": "icon-chrome",
-                            "tags": "builder,startx,alpine,chrome,vnc",
-                            "supports": "vnc",
-                            "version": "rawhide",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-chrome.git"
-                        },
-                        "from": {
-                            "kind": "DockerImage",
-                            "name": "startx/sv-chrome:latest"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "kind": "ImageStream",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "startx-sv-apache",
+                "name": "startx-apache",
                 "annotations": {
                     "openshift.io/display-name": "Startx WebServer (S2I)",
                     "openshift.io/generated-by": "STARTX"
@@ -101,6 +50,22 @@
                             "kind": "DockerImage",
                             "name": "startx/sv-apache:latest"
                         }
+                    },
+                    {
+                        "name": "centos7",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I WebServer (Centos 7)",
+                            "description": "Http server builder for simple web application running under Centos 7",
+                            "iconClass": "icon-apache",
+                            "tags": "builder,startx,centos,apache,httpd",
+                            "supports": "http",
+                            "version": "7",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-apache.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-apache:centos7"
+                        }
                     }
                 ]
             }
@@ -109,34 +74,18 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-couchbase",
+                "name": "startx-couchbase",
                 "annotations": {
                     "openshift.io/display-name": "Startx Couchbase Database (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-couchbase",
+                    "base-image": "startx-couchbase",
                     "provider": "startx"
                 }
             },
             "spec": {
                 "tags": [
-                    {
-                        "name": "alpine3",
-                        "annotations": {
-                            "openshift.io/display-name": "S2I Couchbase Database (alpine 3.8)",
-                            "description": "Couchbase server builder for NoSQL database running under alpine 3.8",
-                            "iconClass": "icon-mysql-database",
-                            "tags": "builder,startx,alpine,couchbase,database",
-                            "supports": "db",
-                            "version": "alpine3",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-couchbase.git"
-                        },
-                        "from": {
-                            "kind": "DockerImage",
-                            "name": "startx/sv-couchbase:alpine3"
-                        }
-                    },
                     {
                         "name": "latest",
                         "annotations": {
@@ -160,13 +109,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-mariadb",
+                "name": "startx-mariadb",
                 "annotations": {
                     "openshift.io/display-name": "Startx Mariadb Database (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-mariadb",
+                    "base-image": "startx-mariadb",
                     "provider": "startx"
                 }
             },
@@ -203,6 +152,22 @@
                             "kind": "DockerImage",
                             "name": "startx/sv-mariadb:latest"
                         }
+                    },
+                    {
+                        "name": "centos7",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I Mariadb Database (Centos 7)",
+                            "description": "MariaDB server builder for simple SQL database running under Centos 7",
+                            "iconClass": "icon-mariadb",
+                            "tags": "builder,startx,centos,mariadb,database",
+                            "supports": "db",
+                            "version": "7",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-mariadb:centos7"
+                        }
                     }
                 ]
             }
@@ -211,13 +176,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-memcache",
+                "name": "startx-memcache",
                 "annotations": {
                     "openshift.io/display-name": "Startx Memcached Database (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-memcache",
+                    "base-image": "startx-memcache",
                     "provider": "startx"
                 }
             },
@@ -254,6 +219,22 @@
                             "kind": "DockerImage",
                             "name": "startx/sv-memcache:latest"
                         }
+                    },
+                    {
+                        "name": "centos7",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I Memcached Database (Centos 7)",
+                            "description": "Memcached server builder for caching database running under Centos 7",
+                            "iconClass": "icon-memcached",
+                            "tags": "builder,startx,centos,memcached,database",
+                            "supports": "db",
+                            "version": "7",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-memcache.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-memcache:centos7"
+                        }
                     }
                 ]
             }
@@ -262,13 +243,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-mongo",
+                "name": "startx-mongo",
                 "annotations": {
                     "openshift.io/display-name": "Startx MongoDB Database (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-mongo",
+                    "base-image": "startx-mongo",
                     "provider": "startx"
                 }
             },
@@ -305,6 +286,22 @@
                             "kind": "DockerImage",
                             "name": "startx/sv-mongo:latest"
                         }
+                    },
+                    {
+                        "name": "centos7",
+                        "annotations": {
+                            "openshift.io/display-name": "S2I MongoDB Database (Centos 7)",
+                            "description": "MongoDB server builder for NoSQL database running under Centos 7",
+                            "iconClass": "icon-mongodb",
+                            "tags": "builder,startx,centos,mongo,database",
+                            "supports": "db",
+                            "version": "7",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mongo.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/sv-mongo:centos7"
+                        }
                     }
                 ]
             }
@@ -313,13 +310,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-nodejs",
+                "name": "startx-nodejs",
                 "annotations": {
                     "openshift.io/display-name": "Startx NodeJS micro-server (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-nodejs",
+                    "base-image": "startx-nodejs",
                     "provider": "startx"
                 }
             },
@@ -356,22 +353,6 @@
                             "kind": "DockerImage",
                             "name": "startx/sv-nodejs:latest"
                         }
-                    },
-                    {
-                        "name": "alpine3",
-                        "annotations": {
-                            "openshift.io/display-name": "S2I NodeJS (alpine 3.8)",
-                            "description": "NodeJS micro-server builder for micro-service application running under alpine 3.8",
-                            "iconClass": "icon-nodejs",
-                            "tags": "builder,startx,alpine,nodejs,httpd",
-                            "supports": "http",
-                            "version": "alpine3",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-nodejs.git"
-                        },
-                        "from": {
-                            "kind": "DockerImage",
-                            "name": "startx/sv-nodejs:alpine3"
-                        }
                     }
                 ]
             }
@@ -380,13 +361,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-ooconv",
+                "name": "startx-ooconv",
                 "annotations": {
                     "openshift.io/display-name": "Startx LibreOffice converter (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-ooconv",
+                    "base-image": "startx-ooconv",
                     "provider": "startx"
                 }
             },
@@ -431,13 +412,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-php",
+                "name": "startx-php",
                 "annotations": {
                     "openshift.io/display-name": "Startx PHP WebServer (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-php",
+                    "base-image": "startx-php",
                     "provider": "startx"
                 }
             },
@@ -498,13 +479,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-postgres",
+                "name": "startx-postgres",
                 "annotations": {
                     "openshift.io/display-name": "Startx PostGresQL Database (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-postgres",
+                    "base-image": "startx-postgres",
                     "provider": "startx"
                 }
             },

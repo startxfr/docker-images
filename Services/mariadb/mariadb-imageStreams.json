@@ -22,8 +22,8 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "S2I Mariadb Database (alpine 3.7)",
-                            "description": "MariaDB server builder for simple SQL database running under alpine 3.7",
+                            "openshift.io/display-name": "S2I Mariadb Database (alpine 3.8)",
+                            "description": "MariaDB server builder for simple SQL database running under alpine 3.8",
                             "iconClass": "icon-mariadb",
                             "tags": "builder,startx,alpine,mariadb,database",
                             "supports": "db",
@@ -38,8 +38,8 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "S2I Mariadb Database (alpine 3.7)",
-                            "description": "MariaDB server builder for simple SQL database running under alpine 3.7",
+                            "openshift.io/display-name": "S2I Mariadb Database (alpine 3.8)",
+                            "description": "MariaDB server builder for simple SQL database running under alpine 3.8",
                             "iconClass": "icon-mariadb",
                             "tags": "builder,startx,alpine,mariadb,database",
                             "supports": "db",
@@ -54,8 +54,8 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "S2I Mariadb Database (alpine 3.7)",
-                            "description": "MariaDB server builder for simple SQL database running under alpine 3.7",
+                            "openshift.io/display-name": "S2I Mariadb Database (alpine 3.8)",
+                            "description": "MariaDB server builder for simple SQL database running under alpine 3.8",
                             "iconClass": "icon-mariadb",
                             "tags": "builder,startx,alpine,mariadb,database",
                             "supports": "db",

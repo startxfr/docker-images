@@ -1,6 +1,6 @@
 [![docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-# STARTX Docker-Images Repository based on alpine 3.7 [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=alpine3)](https://travis-ci.org/startxfr/docker-images)
+# STARTX Docker-Images Repository based on alpine 3.8 [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=alpine3)](https://travis-ci.org/startxfr/docker-images)
 
 This project is a collection of application or services containers ready to execute 
 or embed your application as part of a building process.  
@@ -46,7 +46,7 @@ your project and start using stable or experimental services in your application
 - `fc26` based on fedora core 26 [see detail](https://github.com/startxfr/docker-images/tree/fc26)
 - `centos7` based on Centos 7 [see detail](https://github.com/startxfr/docker-images/tree/centos7)
 - `centos6` based on Centos 6 [see detail](https://github.com/startxfr/docker-images/tree/centos6)
-- `alpine3` based on Alpine 3.7 [see detail](https://github.com/startxfr/docker-images/tree/alpine3)
+- `alpine3` based on Alpine 3.8 [see detail](https://github.com/startxfr/docker-images/tree/alpine3)
 
 
 ## For advanced users

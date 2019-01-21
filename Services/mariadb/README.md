@@ -1,6 +1,6 @@
 [![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-# Docker OS Images : MARIADB on alpine 3.7
+# Docker OS Images : MARIADB on alpine 3.8
 
 Simple container used to deliver simple and easy to use transactional database using mysql like database provided by [mariadb open-source project](https://mariadb.org/).
 Run [mariadb daemon](https://mariadb.org/) under a container 
@@ -19,7 +19,7 @@ based on [startx/alpine:3 container](https://hub.docker.com/r/startx/alpine)
 * `:fc21` : Fedora core 21 + MariaDB 
 * `:centos7` : CentOS 7 + MariaDB 
 * `:centos6` : Centos 6 + MariaDB
-* `:alpine3` : Alpine 3.7 + MariaDB 10.2.14
+* `:alpine3` : Alpine 3.8 + MariaDB 10.2.14
 
 ## Running from dockerhub registry
 
