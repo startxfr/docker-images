@@ -57,10 +57,10 @@ function postgresBuild {
 # function performing Postgres build actions
 function doPostgresBuild {
     doGenericBuild
-    echoNotVerbose "Build Postgres actions"
+    echoNotVerbose "Build Postgres"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Build Postgres actions"
+    echoVerbose "| Build Postgres"
     echoVerbose "+====================================================="
 }
 
@@ -87,10 +87,10 @@ function postgresPostBuild {
 # function performing Postgres post-build actions
 function doPostgresPostBuild {
     doGenericPostBuild
-    echoNotVerbose "PostBuild Postgres actions"
+    echoNotVerbose "PostBuild Postgres"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostBuild Postgres actions"
+    echoVerbose "| PostBuild Postgres"
     echoVerbose "+====================================================="
 }
 
@@ -117,10 +117,10 @@ function postgresPreDeploy {
 # function performing Postgres pre-deploy actions
 function doPostgresPreDeploy {
     doGenericPreDeploy
-    echoNotVerbose "PreDeploy Postgres actions"
+    echoNotVerbose "PreDeploy Postgres"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PreDeploy Postgres actions"
+    echoVerbose "| PreDeploy Postgres"
     echoVerbose "+====================================================="
 }
 
@@ -147,10 +147,10 @@ function postgresPostDeploy {
 # function performing Postgres post-deploy actions
 function doPostgresPostDeploy {
     doGenericPostDeploy
-    echoNotVerbose "PostDeploy Postgres actions"
+    echoNotVerbose "PostDeploy Postgres"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostDeploy Postgres actions"
+    echoVerbose "| PostDeploy Postgres"
     echoVerbose "+====================================================="
 }
 
@@ -179,7 +179,7 @@ function doPostgresRun {
     echoNotVerbose "Run Postgres"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Run Postgres"
+    echoVerbose "| Run Postgres"
     echoVerbose "+====================================================="
     startPostgresService
 }

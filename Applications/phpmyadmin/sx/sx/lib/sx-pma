@@ -30,10 +30,10 @@ function pmaBuild {
 # function performing Pma build actions
 function doPmaBuild {
     doGenericBuild
-    echoNotVerbose "Build Pma actions"
+    echoNotVerbose "Build Pma"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Build Pma actions"
+    echoVerbose "| Build Pma"
     echoVerbose "+====================================================="
 }
 
@@ -60,10 +60,10 @@ function pmaPostBuild {
 # function performing Pma post-build actions
 function doPmaPostBuild {
     doGenericPostBuild
-    echoNotVerbose "PostBuild Pma actions"
+    echoNotVerbose "PostBuild Pma"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostBuild Pma actions"
+    echoVerbose "| PostBuild Pma"
     echoVerbose "+====================================================="
 }
 
@@ -90,10 +90,10 @@ function pmaPreDeploy {
 # function performing Pma pre-deploy actions
 function doPmaPreDeploy {
     doGenericPreDeploy
-    echoNotVerbose "PreDeploy Pma actions"
+    echoNotVerbose "PreDeploy Pma"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PreDeploy Pma actions"
+    echoVerbose "| PreDeploy Pma"
     echoVerbose "+====================================================="
     echoVerbose "Create log directory $LOG_PATH"
     touch $LOG_PATH/access.log
@@ -122,10 +122,10 @@ function pmaPostDeploy {
 # function performing Pma post-deploy actions
 function doPmaPostDeploy {
     doGenericPostDeploy
-    echoNotVerbose "PostDeploy Pma actions"
+    echoNotVerbose "PostDeploy Pma"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostDeploy Pma actions"
+    echoVerbose "| PostDeploy Pma"
     echoVerbose "+====================================================="
 }
 
@@ -154,7 +154,7 @@ function doPmaRun {
     echoNotVerbose "Run Pma"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Run Pma"
+    echoVerbose "| Run Pma"
     echoVerbose "+====================================================="
     startPhpService
 }

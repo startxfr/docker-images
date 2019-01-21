@@ -47,10 +47,10 @@ function apacheBuild {
 # function performing Apache build actions
 function doApacheBuild {
     doGenericBuild
-    echoNotVerbose "Build Apache actions"
+    echoNotVerbose "Build Apache"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Build Apache actions"
+    echoVerbose "| Build Apache"
     echoVerbose "+====================================================="
 }
 
@@ -77,10 +77,10 @@ function apachePostBuild {
 # function performing Apache post-build actions
 function doApachePostBuild {
     doGenericPostBuild
-    echoNotVerbose "PostBuild Apache actions"
+    echoNotVerbose "PostBuild Apache"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostBuild Apache actions"
+    echoVerbose "| PostBuild Apache"
     echoVerbose "+====================================================="
 }
 
@@ -107,10 +107,10 @@ function apachePreDeploy {
 # function performing Apache pre-deploy actions
 function doApachePreDeploy {
     doGenericPreDeploy
-    echoNotVerbose "PreDeploy Apache actions"
+    echoNotVerbose "PreDeploy Apache"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PreDeploy Apache actions"
+    echoVerbose "| PreDeploy Apache"
     echoVerbose "+====================================================="
 }
 
@@ -137,10 +137,10 @@ function apachePostDeploy {
 # function performing Apache post-deploy actions
 function doApachePostDeploy {
     doGenericPostDeploy
-    echoNotVerbose "PostDeploy Apache actions"
+    echoNotVerbose "PostDeploy Apache"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostDeploy Apache actions"
+    echoVerbose "| PostDeploy Apache"
     echoVerbose "+====================================================="
     setSys2HttpEnvironmentVariable
 }
@@ -170,7 +170,7 @@ function doApacheRun {
     echoNotVerbose "Run Apache"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Run Apache"
+    echoVerbose "| Run Apache"
     echoVerbose "+====================================================="
     startApacheService
 }

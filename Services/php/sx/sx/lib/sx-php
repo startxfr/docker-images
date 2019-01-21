@@ -31,10 +31,10 @@ function phpBuild {
 # function performing Php build actions
 function doPhpBuild {
     doApacheBuild
-    echoNotVerbose "Build Php actions"
+    echoNotVerbose "Build Php"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Build Php actions"
+    echoVerbose "| Build Php"
     echoVerbose "+====================================================="
 }
 
@@ -61,10 +61,10 @@ function phpPostBuild {
 # function performing Php post-build actions
 function doPhpPostBuild {
     doApachePostBuild
-    echoNotVerbose "PostBuild Php actions"
+    echoNotVerbose "PostBuild Php"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostBuild Php actions"
+    echoVerbose "| PostBuild Php"
     echoVerbose "+====================================================="
 }
 
@@ -91,10 +91,10 @@ function phpPreDeploy {
 # function performing Php pre-deploy actions
 function doPhpPreDeploy {
     doApachePreDeploy
-    echoNotVerbose "PreDeploy Php actions"
+    echoNotVerbose "PreDeploy Php"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PreDeploy Php actions"
+    echoVerbose "| PreDeploy Php"
     echoVerbose "+====================================================="
 }
 
@@ -121,10 +121,10 @@ function phpPostDeploy {
 # function performing Php post-deploy actions
 function doPhpPostDeploy {
     doApachePostDeploy
-    echoNotVerbose "PostDeploy Php actions"
+    echoNotVerbose "PostDeploy Php"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostDeploy Php actions"
+    echoVerbose "| PostDeploy Php"
     echoVerbose "+====================================================="
 }
 
@@ -153,7 +153,7 @@ function doPhpRun {
     echoNotVerbose "Run Php"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Run Php"
+    echoVerbose "| Run Php"
     echoVerbose "+====================================================="
     startPhpService
 }

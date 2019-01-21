@@ -24,14 +24,24 @@ This container contain updated core OS rpm (kernel, libs,...) as well as usefull
 
 ## Running this image
 
-### Running from dockerhub registry
+### Running using docker
 
-* with `docker` you can run `docker run -it --name="fedora30" startx/fedora:30` from any docker host
-* with `docker-compose` you can create a docker-compose.yml file with the following content
+```bash
+docker run -it --name="fedora30" startx/fedora:30
+```
+
+### Running using docker-compose
+
+* Create a docker-compose.yml file with the following content
 ```yaml
 fedora:
   image: startx/fedora:30
   container_name: "os-fedora30"
+```
+* Execute the following command
+```bash
+docker-compose up -d
+docker-compose logs
 ```
 
 ### Using this image as Openshift Build image
@@ -54,10 +64,14 @@ oc process startx-os-fedora-build-template | oc create -f -
 
 ### Using this image as S2I builder
 
-You can use this image as an s2i builder image. 
+You can use this image as an s2i builder image
 ```bash
-s2i build https://github.com/startxfr/docker-images-example-bash startx/fedora:30 test-fedora30
-docker run --rm -i -t test-fedora30
+# With your current directory application code
+s2i build . startx/fedora:30 startx-bash-myapp
+docker run --rm -i -t startx-bash-myapp
+# With startx application sample code repository
+s2i build https://github.com/startxfr/docker-images-example-bash startx/fedora:30 startx-bash-sample
+docker run --rm -i -t startx-bash-sample
 ```
 
 ### Using this image as base container
@@ -66,7 +80,6 @@ You can use this Dockerfile template to start a new personalized container based
 ```Dockerfile
 FROM startx/fedora:30
 #... your container specifications
-CMD ["/bin/sx"]
 ```
 
 ## Environment variable
@@ -81,6 +94,8 @@ CMD ["/bin/sx"]
 | SX_SUMMARY                | `auto`   | `yes`           | Container purpose description
 | SX_VERBOSE                | `bool`   | `no`            | Display information about the execution
 | SX_DEBUG                  | `bool`   | `no`            | Display debug informations during execution
+| APP_PATH                  | `string` | `/app`          | Path to the application
+| SX_S2IDIR                 | `string` | `/tmp`          | Destination path to the application pushed via s2i process
 
 ## For advanced users
 

@@ -45,10 +45,10 @@ function memcacheBuild {
 # function performing Memcache build actions
 function doMemcacheBuild {
     doGenericBuild
-    echoNotVerbose "Build Memcache actions"
+    echoNotVerbose "Build Memcache"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Build Memcache actions"
+    echoVerbose "| Build Memcache"
     echoVerbose "+====================================================="
 }
 
@@ -75,10 +75,10 @@ function memcachePostBuild {
 # function performing Memcache post-build actions
 function doMemcachePostBuild {
     doGenericPostBuild
-    echoNotVerbose "PostBuild Memcache actions"
+    echoNotVerbose "PostBuild Memcache"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostBuild Memcache actions"
+    echoVerbose "| PostBuild Memcache"
     echoVerbose "+====================================================="
 }
 
@@ -105,10 +105,10 @@ function memcachePreDeploy {
 # function performing Memcache pre-deploy actions
 function doMemcachePreDeploy {
     doGenericPreDeploy
-    echoNotVerbose "PreDeploy Memcache actions"
+    echoNotVerbose "PreDeploy Memcache"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PreDeploy Memcache actions"
+    echoVerbose "| PreDeploy Memcache"
     echoVerbose "+====================================================="
 }
 
@@ -135,10 +135,10 @@ function memcachePostDeploy {
 # function performing Memcache post-deploy actions
 function doMemcachePostDeploy {
     doGenericPostDeploy
-    echoNotVerbose "PostDeploy Memcache actions"
+    echoNotVerbose "PostDeploy Memcache"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostDeploy Memcache actions"
+    echoVerbose "| PostDeploy Memcache"
     echoVerbose "+====================================================="
 }
 
@@ -167,7 +167,7 @@ function doMemcacheRun {
     echoNotVerbose "Run Memcache"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Run Memcache"
+    echoVerbose "| Run Memcache"
     echoVerbose "+====================================================="
     startMemcacheService
 }

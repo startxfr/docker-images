@@ -53,10 +53,10 @@ function chromeBuild {
 # function performing Chrome build actions
 function doChromeBuild {
     doGenericBuild
-    echoNotVerbose "Build Chrome actions"
+    echoNotVerbose "Build Chrome"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Build Chrome actions"
+    echoVerbose "| Build Chrome"
     echoVerbose "+====================================================="
 }
 
@@ -83,10 +83,10 @@ function chromePostBuild {
 # function performing Chrome post-build actions
 function doChromePostBuild {
     doGenericPostBuild
-    echoNotVerbose "PostBuild Chrome actions"
+    echoNotVerbose "PostBuild Chrome"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostBuild Chrome actions"
+    echoVerbose "| PostBuild Chrome"
     echoVerbose "+====================================================="
 }
 
@@ -113,10 +113,10 @@ function chromePreDeploy {
 # function performing Chrome pre-deploy actions
 function doChromePreDeploy {
     doGenericPreDeploy
-    echoNotVerbose "PreDeploy Chrome actions"
+    echoNotVerbose "PreDeploy Chrome"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PreDeploy Chrome actions"
+    echoVerbose "| PreDeploy Chrome"
     echoVerbose "+====================================================="
 }
 
@@ -143,10 +143,10 @@ function chromePostDeploy {
 # function performing Chrome post-deploy actions
 function doChromePostDeploy {
     doGenericPostDeploy
-    echoNotVerbose "PostDeploy Chrome actions"
+    echoNotVerbose "PostDeploy Chrome"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostDeploy Chrome actions"
+    echoVerbose "| PostDeploy Chrome"
     echoVerbose "+====================================================="
 }
 
@@ -175,7 +175,7 @@ function doChromeRun {
     echoNotVerbose "Run Chrome"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Run Chrome"
+    echoVerbose "| Run Chrome"
     echoVerbose "+====================================================="
     startChromeService
 }
