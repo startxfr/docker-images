@@ -60,7 +60,7 @@ function doPostgresBuild {
     echoNotVerbose "Build Postgres"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Build Postgres"
+    echoVerbose "| Build Postgres"
     echoVerbose "+====================================================="
 }
 
@@ -90,7 +90,7 @@ function doPostgresPostBuild {
     echoNotVerbose "PostBuild Postgres"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostBuild Postgres"
+    echoVerbose "| PostBuild Postgres"
     echoVerbose "+====================================================="
 }
 
@@ -120,7 +120,7 @@ function doPostgresPreDeploy {
     echoNotVerbose "PreDeploy Postgres"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PreDeploy Postgres"
+    echoVerbose "| PreDeploy Postgres"
     echoVerbose "+====================================================="
 }
 
@@ -150,7 +150,7 @@ function doPostgresPostDeploy {
     echoNotVerbose "PostDeploy Postgres"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostDeploy Postgres"
+    echoVerbose "| PostDeploy Postgres"
     echoVerbose "+====================================================="
 }
 
@@ -179,7 +179,7 @@ function doPostgresRun {
     echoNotVerbose "Run Postgres"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Run Postgres"
+    echoVerbose "| Run Postgres"
     echoVerbose "+====================================================="
     startPostgresService
 }

@@ -51,7 +51,7 @@ function doFirefoxBuild {
     echoNotVerbose "Build Firefox"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Build Firefox"
+    echoVerbose "| Build Firefox"
     echoVerbose "+====================================================="
 }
 
@@ -81,7 +81,7 @@ function doFirefoxPostBuild {
     echoNotVerbose "PostBuild Firefox"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostBuild Firefox"
+    echoVerbose "| PostBuild Firefox"
     echoVerbose "+====================================================="
 }
 
@@ -111,7 +111,7 @@ function doFirefoxPreDeploy {
     echoNotVerbose "PreDeploy Firefox"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PreDeploy Firefox"
+    echoVerbose "| PreDeploy Firefox"
     echoVerbose "+====================================================="
 }
 
@@ -141,7 +141,7 @@ function doFirefoxPostDeploy {
     echoNotVerbose "PostDeploy Firefox"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostDeploy Firefox"
+    echoVerbose "| PostDeploy Firefox"
     echoVerbose "+====================================================="
 }
 
@@ -170,7 +170,7 @@ function doFirefoxRun {
     echoNotVerbose "Run Firefox"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Run Firefox"
+    echoVerbose "| Run Firefox"
     echoVerbose "+====================================================="
     startFirefoxService
 }

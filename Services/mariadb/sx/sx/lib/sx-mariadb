@@ -55,7 +55,7 @@ function doMysqlBuild {
     echoNotVerbose "Build Mysql"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Build Mysql"
+    echoVerbose "| Build Mysql"
     echoVerbose "+====================================================="
     init_service_mariadb
 }
@@ -86,7 +86,7 @@ function doMysqlPostBuild {
     echoNotVerbose "PostBuild Mysql"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostBuild Mysql"
+    echoVerbose "| PostBuild Mysql"
     echoVerbose "+====================================================="
 }
 
@@ -116,7 +116,7 @@ function doMysqlPreDeploy {
     echoNotVerbose "PreDeploy Mysql"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PreDeploy Mysql"
+    echoVerbose "| PreDeploy Mysql"
     echoVerbose "+====================================================="
 }
 
@@ -146,7 +146,7 @@ function doMysqlPostDeploy {
     echoNotVerbose "PostDeploy Mysql"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostDeploy Mysql"
+    echoVerbose "| PostDeploy Mysql"
     echoVerbose "+====================================================="
     init_service_mariadb
 }
@@ -176,7 +176,7 @@ function doMysqlRun {
     echoNotVerbose "Run Mysql"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Run Mysql"
+    echoVerbose "| Run Mysql"
     echoVerbose "+====================================================="
     startMariadbService
 }

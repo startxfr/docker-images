@@ -45,7 +45,7 @@ function doOoconvBuild {
     echoNotVerbose "Build Ooconv"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Build Ooconv"
+    echoVerbose "| Build Ooconv"
     echoVerbose "+====================================================="
 }
 
@@ -75,7 +75,7 @@ function doOoconvPostBuild {
     echoNotVerbose "PostBuild Ooconv"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostBuild Ooconv"
+    echoVerbose "| PostBuild Ooconv"
     echoVerbose "+====================================================="
 }
 
@@ -105,7 +105,7 @@ function doOoconvPreDeploy {
     echoNotVerbose "PreDeploy Ooconv"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PreDeploy Ooconv"
+    echoVerbose "| PreDeploy Ooconv"
     echoVerbose "+====================================================="
 }
 
@@ -135,7 +135,7 @@ function doOoconvPostDeploy {
     echoNotVerbose "PostDeploy Ooconv"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostDeploy Ooconv"
+    echoVerbose "| PostDeploy Ooconv"
     echoVerbose "+====================================================="
 }
 
@@ -164,7 +164,7 @@ function doOoconvRun {
     echoNotVerbose "Run Ooconv"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Run Ooconv"
+    echoVerbose "| Run Ooconv"
     echoVerbose "+====================================================="
     startOOconvService
 }

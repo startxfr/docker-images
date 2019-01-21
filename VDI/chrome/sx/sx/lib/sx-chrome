@@ -56,7 +56,7 @@ function doChromeBuild {
     echoNotVerbose "Build Chrome"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Build Chrome"
+    echoVerbose "| Build Chrome"
     echoVerbose "+====================================================="
 }
 
@@ -86,7 +86,7 @@ function doChromePostBuild {
     echoNotVerbose "PostBuild Chrome"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostBuild Chrome"
+    echoVerbose "| PostBuild Chrome"
     echoVerbose "+====================================================="
 }
 
@@ -116,7 +116,7 @@ function doChromePreDeploy {
     echoNotVerbose "PreDeploy Chrome"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PreDeploy Chrome"
+    echoVerbose "| PreDeploy Chrome"
     echoVerbose "+====================================================="
 }
 
@@ -146,7 +146,7 @@ function doChromePostDeploy {
     echoNotVerbose "PostDeploy Chrome"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostDeploy Chrome"
+    echoVerbose "| PostDeploy Chrome"
     echoVerbose "+====================================================="
 }
 
@@ -175,7 +175,7 @@ function doChromeRun {
     echoNotVerbose "Run Chrome"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Run Chrome"
+    echoVerbose "| Run Chrome"
     echoVerbose "+====================================================="
     startChromeService
 }

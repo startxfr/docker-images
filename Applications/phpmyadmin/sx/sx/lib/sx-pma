@@ -33,7 +33,7 @@ function doPmaBuild {
     echoNotVerbose "Build Pma"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Build Pma"
+    echoVerbose "| Build Pma"
     echoVerbose "+====================================================="
 }
 
@@ -63,7 +63,7 @@ function doPmaPostBuild {
     echoNotVerbose "PostBuild Pma"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostBuild Pma"
+    echoVerbose "| PostBuild Pma"
     echoVerbose "+====================================================="
 }
 
@@ -93,7 +93,7 @@ function doPmaPreDeploy {
     echoNotVerbose "PreDeploy Pma"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PreDeploy Pma"
+    echoVerbose "| PreDeploy Pma"
     echoVerbose "+====================================================="
     echoVerbose "Create log directory $LOG_PATH"
     touch $LOG_PATH/access.log
@@ -125,7 +125,7 @@ function doPmaPostDeploy {
     echoNotVerbose "PostDeploy Pma"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostDeploy Pma"
+    echoVerbose "| PostDeploy Pma"
     echoVerbose "+====================================================="
 }
 
@@ -154,7 +154,7 @@ function doPmaRun {
     echoNotVerbose "Run Pma"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Run Pma"
+    echoVerbose "| Run Pma"
     echoVerbose "+====================================================="
     startPhpService
 }

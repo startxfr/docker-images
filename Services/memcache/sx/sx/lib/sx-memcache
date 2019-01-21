@@ -48,7 +48,7 @@ function doMemcacheBuild {
     echoNotVerbose "Build Memcache"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Build Memcache"
+    echoVerbose "| Build Memcache"
     echoVerbose "+====================================================="
 }
 
@@ -78,7 +78,7 @@ function doMemcachePostBuild {
     echoNotVerbose "PostBuild Memcache"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostBuild Memcache"
+    echoVerbose "| PostBuild Memcache"
     echoVerbose "+====================================================="
 }
 
@@ -108,7 +108,7 @@ function doMemcachePreDeploy {
     echoNotVerbose "PreDeploy Memcache"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PreDeploy Memcache"
+    echoVerbose "| PreDeploy Memcache"
     echoVerbose "+====================================================="
 }
 
@@ -138,7 +138,7 @@ function doMemcachePostDeploy {
     echoNotVerbose "PostDeploy Memcache"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostDeploy Memcache"
+    echoVerbose "| PostDeploy Memcache"
     echoVerbose "+====================================================="
 }
 
@@ -167,7 +167,7 @@ function doMemcacheRun {
     echoNotVerbose "Run Memcache"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Run Memcache"
+    echoVerbose "| Run Memcache"
     echoVerbose "+====================================================="
     startMemcacheService
 }

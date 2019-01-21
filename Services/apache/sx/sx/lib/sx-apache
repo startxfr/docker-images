@@ -50,7 +50,7 @@ function doApacheBuild {
     echoNotVerbose "Build Apache"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Build Apache"
+    echoVerbose "| Build Apache"
     echoVerbose "+====================================================="
 }
 
@@ -80,7 +80,7 @@ function doApachePostBuild {
     echoNotVerbose "PostBuild Apache"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostBuild Apache"
+    echoVerbose "| PostBuild Apache"
     echoVerbose "+====================================================="
 }
 
@@ -110,7 +110,7 @@ function doApachePreDeploy {
     echoNotVerbose "PreDeploy Apache"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PreDeploy Apache"
+    echoVerbose "| PreDeploy Apache"
     echoVerbose "+====================================================="
 }
 
@@ -140,7 +140,7 @@ function doApachePostDeploy {
     echoNotVerbose "PostDeploy Apache"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostDeploy Apache"
+    echoVerbose "| PostDeploy Apache"
     echoVerbose "+====================================================="
     setSys2HttpEnvironmentVariable
 }
@@ -170,7 +170,7 @@ function doApacheRun {
     echoNotVerbose "Run Apache"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Run Apache"
+    echoVerbose "| Run Apache"
     echoVerbose "+====================================================="
     startApacheService
 }

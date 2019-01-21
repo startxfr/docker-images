@@ -56,7 +56,7 @@ function doNodejsBuild {
     echoNotVerbose "Build Nodejs"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Build Nodejs"
+    echoVerbose "| Build Nodejs"
     echoVerbose "+====================================================="
     npmInstallEnvironement
 }
@@ -87,7 +87,7 @@ function doNodejsPostBuild {
     echoNotVerbose "PostBuild Nodejs"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostBuild Nodejs"
+    echoVerbose "| PostBuild Nodejs"
     echoVerbose "+====================================================="
     npmInstallEnvironement
 }
@@ -118,7 +118,7 @@ function doNodejsPreDeploy {
     echoNotVerbose "PreDeploy Nodejs"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PreDeploy Nodejs"
+    echoVerbose "| PreDeploy Nodejs"
     echoVerbose "+====================================================="
 }
 
@@ -148,7 +148,7 @@ function doNodejsPostDeploy {
     echoNotVerbose "PostDeploy Nodejs"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "PostDeploy Nodejs"
+    echoVerbose "| PostDeploy Nodejs"
     echoVerbose "+====================================================="
 }
 
@@ -177,7 +177,7 @@ function doNodejsRun {
     echoNotVerbose "Run Nodejs"
     echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "Run Nodejs"
+    echoVerbose "| Run Nodejs"
     echoVerbose "+====================================================="
     if [ ! -d "$APP_PATH/node_modules" ]; then
         npmInstallEnvironement
