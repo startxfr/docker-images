@@ -52,7 +52,6 @@ WORKDIR $DATA_PATH
 
 EXPOSE 2002
 
-VOLUME $APP_PATH
 VOLUME $DATA_PATH
 
 CMD [ "/bin/sx-ooconv" , "run" ]
