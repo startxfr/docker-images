@@ -4,7 +4,7 @@ source $SX_LIBDIR/sx-postgres
 check_postgres_environment
 # Dispatch input arguments
 case $1 in
-    assemble|build)         postgresAssemble $@ ;;
+    assemble|build)         postgresBuild $@ ;;
     post-build)             postgresPostBuild $@ ;;
     pre-deploy)             postgresPreDeploy $@ ;;
     post-deploy)            postgresPostDeploy $@ ;;

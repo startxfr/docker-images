@@ -27,7 +27,8 @@ script:
 - "./travis/test    Services/ooconv    sv-ooconv     centos7"
 - "./travis/test    Services/php       sv-php        centos7"
 - "./travis/test    Services/postgres  sv-postgres   centos7"
-- "./travis/test    Services/chrome    sv-chrome     centos7"
+- "./travis/test    VDI/chrome         vdi-chrome    centos7"
+- "./travis/test    VDI/firefox        vdi-firefox   centos7"
 - "./travis/test    Applications/phpmyadmin  app-phpmyadmin   centos7"
 after_success:
 - "./travis/publish OS                 centos        latest"
@@ -41,5 +42,6 @@ after_success:
 - "./travis/publish Services/ooconv    sv-ooconv     centos7"
 - "./travis/publish Services/php       sv-php        centos7"
 - "./travis/publish Services/postgres  sv-postgres   centos7"
-- "./travis/publish Services/chrome    sv-chrome     centos7"
+- "./travis/publish VDI/chrome         vdi-chrome    centos7"
+- "./travis/test    VDI/firefox        vdi-firefox   centos7"
 - "./travis/publish Applications/phpmyadmin  app-phpmyadmin   centos7"

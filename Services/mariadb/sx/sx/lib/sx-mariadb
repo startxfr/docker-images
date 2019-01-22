@@ -28,66 +28,160 @@ function displayMysqlRunInformation {
     echo $1 "database  : $MYSQL_DATABASE"
 }
 
-function mysqlPreDeploy {
+
+# function executed when build hook is called
+function mysqlBuild {
     genericHeader
+    echoNotVerbose "container $HOSTNAME executing Mysql BUILD"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
-    echoNotVerbose "container $HOSTNAME  running PRE-DEPLOY HOOK"
+    echoVerbose "| Container $HOSTNAME executing Mysql BUILD"
     echoVerbose "| "
     mysqlInformation "| "
+    echoDebug `env`
     echoVerbose "+====================================================="
-    testAndRunSourceCodeScript "pre-deploy" 
+    doMysqlBuild
+    if [[ -x $MYS2I_DEST/assemble ]]; then
+        echoVerbose "Build source code found at $MYS2I_DEST/assemble"
+        testAndRunSourceCodeScript "assemble" 
+    else
+        echoVerbose "No Build source code found at $MYS2I_DEST/assemble"
+    fi
+    exit 0;
 }
 
-function mysqlPostDeploy {
-    genericHeader
+# function performing Mysql build actions
+function doMysqlBuild {
+    doGenericBuild
+    echoNotVerbose "Build Mysql"
+    echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running POST-DEPLOY HOOK"
-    echoNotVerbose "container $HOSTNAME  running POST-DEPLOY HOOK"
-    echoVerbose "| "
-    mysqlInformation "| "
+    echoVerbose "| Build Mysql"
     echoVerbose "+====================================================="
-    testAndRunSourceCodeScript "post-deploy" 
+    if [[ -d $LOADSQL_PATH ]]; then
+        echoVerbose "Copy SQL scripts from $APP_PATH to $LOADSQL_PATH"
+        cp -R $APP_PATH/*.sql $LOADSQL_PATH/
+    fi
 }
 
+# function executed when post-build hook is called
 function mysqlPostBuild {
     genericHeader
+    echoNotVerbose "container $HOSTNAME executing Mysql POST-BUILD"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running POST-BUILD HOOK"
-    echoNotVerbose "container $HOSTNAME  running POST-BUILD HOOK"
+    echoVerbose "| Container $HOSTNAME executing Mysql POST-BUILD"
     echoVerbose "| "
     mysqlInformation "| "
+    echoDebug `env`
     echoVerbose "+====================================================="
-    testAndRunSourceCodeScript "post-build" 
+    doMysqlPostBuild
+    if [[ -x $MYS2I_DEST/assemble ]]; then
+        echoVerbose "PostBuild source code found at $MYS2I_DEST/post-build"
+        testAndRunSourceCodeScript "post-build" 
+    else
+        echoVerbose "No PostBuild source code found at $MYS2I_DEST/post-build"
+    fi
+    exit 0;
 }
 
-function mysqlAssemble {
-    genericHeader
+# function performing Mysql post-build actions
+function doMysqlPostBuild {
+    doGenericPostBuild
+    echoNotVerbose "PostBuild Mysql"
+    echoVerbose ""
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running ASSEMBLE"
-    echoNotVerbose "container $HOSTNAME  running ASSEMBLE"
+    echoVerbose "| PostBuild Mysql"
+    echoVerbose "+====================================================="
+}
+
+# function executed when pre-deploy hook is called
+function mysqlPreDeploy {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Mysql PRE-DEPLOY"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Mysql PRE-DEPLOY"
     echoVerbose "| "
     mysqlInformation "| "
+    echoDebug `env`
     echoVerbose "+====================================================="
-    if [[ -d $S2I_DEST ]]; then
-        echoVerbose "Fixing perm on $S2I_DEST"
-        chmod g=u -R $S2I_DEST
-        echoVerbose "Copy sql scripts from $S2I_DEST > $LOADSQL_PATH"
-        cp -R $S2I_DEST/*.sql $LOADSQL_PATH/
-        moveSourceCode $S2I_DEST $APP_PATH
+    doMysqlPreDeploy
+    if [[ -x $MYS2I_DEST/pre-deploy ]]; then
+        echoVerbose "PreDeploy source code found at $MYS2I_DEST/pre-deploy"
+        testAndRunSourceCodeScript "pre-deploy" 
+    else
+        echoVerbose "No PreDeploy source code found at $MYS2I_DEST/pre-deploy"
     fi
-    testAndRunSourceCodeScript "assemble" 
+    exit 0;
+}
+
+# function performing Mysql pre-deploy actions
+function doMysqlPreDeploy {
+    doGenericPreDeploy
+    echoNotVerbose "PreDeploy Mysql"
+    echoVerbose ""
+    echoVerbose "+====================================================="
+    echoVerbose "| PreDeploy Mysql"
+    echoVerbose "+====================================================="
+}
+
+# function executed when post-deploy hook is called
+function mysqlPostDeploy {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Mysql POST-DEPLOY"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Mysql POST-DEPLOY"
+    echoVerbose "| "
+    mysqlInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    doMysqlPostDeploy
+    if [[ -x $MYS2I_DEST/post-deploy ]]; then
+        echoVerbose "PostDeploy source code found at $MYS2I_DEST/post-deploy"
+        testAndRunSourceCodeScript "post-deploy" 
+    else
+        echoVerbose "No PostDeploy source code found at $MYS2I_DEST/post-deploy"
+    fi
+    exit 0;
+}
+
+# function performing Mysql post-deploy actions
+function doMysqlPostDeploy {
+    doGenericPostDeploy
+    echoNotVerbose "PostDeploy Mysql"
+    echoVerbose ""
+    echoVerbose "+====================================================="
+    echoVerbose "| PostDeploy Mysql"
+    echoVerbose "+====================================================="
     init_service_mariadb
 }
 
+# function executed on container startup
 function mysqlRun {
     genericHeader
+    echoNotVerbose "container $HOSTNAME executing Mysql RUN"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME is RUNNING"
-    echoNotVerbose "container $HOSTNAME is RUNNING"
+    echoVerbose "| Container $HOSTNAME executing Mysql RUN"
     echoVerbose "| "
     mysqlInformation "| "
+    echoDebug `env`
     echoVerbose "+====================================================="
+    if [[ -x $MYS2I_DEST/run ]]; then
+        echoVerbose "Run source code found at $MYS2I_DEST/run"
+        testAndRunSourceCodeScript "run" 
+    else
+        echoVerbose "No Run source code found at $MYS2I_DEST/run"
+        echoVerbose "Executing default Mysql run action"
+        doMysqlRun
+    fi
+}
+
+# function performing Mysql run actions
+function doMysqlRun {
+    echoNotVerbose "Run Mysql"
+    echoVerbose ""
+    echoVerbose "+====================================================="
+    echoVerbose "| Run Mysql"
+    echoVerbose "+====================================================="
+    init_service_mariadb
     startMariadbService
 }
 
@@ -133,7 +227,7 @@ function begin_config {
         echoVerbose "sql directory $LOADSQL_PATH EXIST"
         chmod 0774 $LOADSQL_PATH; 
     fi
-    echo "" >> $MY_CONF
+    echo "" > $MY_CONF
     echo "[mysqld]" >> $MY_CONF
     echo "socket=/var/lib/mysql/mysql.sock" >> $MY_CONF
     echo "pid-file=/var/run/mysqld/mysqld.pid" >> $MY_CONF

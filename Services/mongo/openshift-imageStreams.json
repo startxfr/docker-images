@@ -7,13 +7,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-mongo",
+                "name": "startx-mongo",
                 "annotations": {
                     "openshift.io/display-name": "Startx MongoDB Database (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-mongo",
+                    "base-image": "startx-os",
                     "provider": "startx"
                 }
             },

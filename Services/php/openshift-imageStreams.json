@@ -7,13 +7,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-php",
+                "name": "startx-php",
                 "annotations": {
                     "openshift.io/display-name": "Startx PHP WebServer (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-php",
+                    "base-image": "startx-apache",
                     "provider": "startx"
                 }
             },

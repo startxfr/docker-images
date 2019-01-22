@@ -10,8 +10,7 @@ ENV SX_VERSION="centos7" \
     SX_SUMMARY="Startx apache service based on centos 7" \
     HTTPDCONF=/etc/httpd/conf.d/app.conf \
     LOG_PATH=/var/log/httpd \
-    APP_PATH=/app \
-    DATA_PATH=/data
+    APP_PATH=/app
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -26,7 +25,7 @@ LABEL name="$SX_ID" \
       io.openshift.min-memory="200Mi" \
       io.openshift.min-cpu="1000m" \
       io.openshift.expose-services="8080:http" \
-      io.openshift.s2i.destination="/tmp" \
+      io.openshift.s2i.destination="$SX_S2IDIR" \
       io.openshift.s2i.scripts-url="image:///s2i" \
       fr.startx.component="$SX_ID:$SX_VERSION"
 
@@ -40,10 +39,10 @@ RUN yum --nogpgcheck -y install httpd && yum clean all && \
     rm -rf /tmp/sx /tmp/s2i && \
     sed -i "s/Listen 80/#Listen 80/" /etc/httpd/conf/httpd.conf && \
     rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf /run/httpd/httpd.pid && \
-    mkdir -p $DATA_PATH $APP_PATH $LOG_PATH && \
-    chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /run/httpd /bin/sx* /s2i $SX_LIBDIR /tmp && \
-    chown -R 1001:0 /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH $DATA_PATH $LOG_PATH && \
-    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /run/httpd /bin/sx* /s2i $SX_LIBDIR /tmp && \
+    mkdir -p $APP_PATH $LOG_PATH && \
+    chgrp -R 0 $APP_PATH $LOG_PATH /run/httpd /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR && \
+    chown -R 1001:0 /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR $APP_PATH $LOG_PATH && \
+    chmod -R g=u $APP_PATH $LOG_PATH /run/httpd /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR && \
     chmod ug+r $HTTPDCONF && \
     chmod -R ugo+x /bin/sx* && \
     chmod -R ugo+rwx $LOG_PATH
@@ -56,6 +55,6 @@ WORKDIR $APP_PATH
 
 EXPOSE 8080
 
-VOLUME $DATA_PATH
+VOLUME $LOG_PATH
 
 CMD [ "/bin/sx-apache" , "run" ]

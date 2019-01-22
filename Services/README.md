@@ -7,8 +7,11 @@ This directory host various Open Source services into docker containers based on
 You can use it to instanciate new container from the dockerhub public registry 
 or as a parent container in your own container's. 
 Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
-or [other services flavours](https://github.com/startxfr/docker-images/Services#container-flavours)
+Fedora Linux distribution.
+
+If you're used to work with redhat like and distribution, you would prefer start working
+from a container based on this distribution rather than ubuntu or debian like distributions.
+OS, Services, VDI and application you will find here will be closer to your favorite distribution
 
 Please **read each container manual** for more information on how you can use it in 
 your project and start using stable or experimental applications in your applications
@@ -29,18 +32,29 @@ your project and start using stable or experimental applications in your applica
 | php           | [`startx/sv-php`](https://hub.docker.com/r/startx/sv-php)            | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` | `:centos6` `:centos7`       | [manual](php/README.md)
 | postgreSQL    | [`startx/sv-postgres`](https://hub.docker.com/r/startx/sv-postgres)  | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` | `:centos6` `:centos7`       | [manual](postgres/README.md)
 | Couchbase     | [`startx/sv-couchbase`](https://hub.docker.com/r/startx/sv-couchbase)|                                                                                   | `:centos7`                  | [manual](couchbase/README.md)
-| Chrome        | [`startx/sv-chrome`](https://hub.docker.com/r/startx/sv-chrome)      | `:latest` `:fc28` `:fc27` `:fc28` `:fc29` `:fc30`                                 | `:centos7`                  | [manual](chrome/README.md)
 
 ## Running from dockerhub registry
 
-| Services            | Command                                                                              |
-|---------------------|--------------------------------------------------------------------------------------|
-| **Apache**          | `docker run -d -p 80:80 --name="centos7-apache" startx/sv-apache:centos7`            | 
-| **MariaDB**         | `docker run -d -p 3306:3306 --name="centos7-mariadb" startx/sv-mariadb:centos7`      | 
-| **Memcache**        | `docker run -d -p 11211:11211 --name="centos7-memcache" startx/sv-memcache:centos7`  | 
-| **MongoDB**         | `docker run -d -p 27017:27017 --name="centos7-mongo" startx/sv-mongo:centos7`        | 
-| **nodejs**          | `docker run -d -p 8000:8000 --name="centos7-nodejs" startx/sv-nodejs:centos7`        | 
-| **ooconv**          | `docker run -d -p XXX:XXX --name="centos7-ooconv" startx/sv-ooconv:centos7`          | 
-| **php**             | `docker run -d -p 80:80 --name="centos7-php" startx/sv-php:centos7`                  | 
-| **postgreSQL**      | `docker run -d -p 5432:5432 --name="centos7-postgres" startx/sv-postgres:centos7`    | 
-| **Couchbase**       | `docker run -d -p 8091:8091 --name="centos7-couchbase" startx/sv-couchbase:centos7`  | 
+| Services            | Command                                                              |
+|---------------------|----------------------------------------------------------------------|
+| **Apache**          | `docker run -d -p 80:80 --name="apache" startx/sv-apache`            | 
+| **MariaDB**         | `docker run -d -p 3306:3306 --name="mariadb" startx/sv-mariadb`      | 
+| **Memcache**        | `docker run -d -p 11211:11211 --name="memcache" startx/sv-memcache`  | 
+| **MongoDB**         | `docker run -d -p 27017:27017 --name="mongo" startx/sv-mongo`        | 
+| **nodejs**          | `docker run -d -p 8000:8000 --name="nodejs" startx/sv-nodejs`        | 
+| **ooconv**          | `docker run -d -p XXX:XXX --name="ooconv" startx/sv-ooconv`          | 
+| **php**             | `docker run -d -p 80:80 --name="php" startx/sv-php`                  | 
+| **postgreSQL**      | `docker run -d -p 5432:5432 --name="postgres" startx/sv-postgres`    | 
+
+## Container flavours
+
+| Service    | Docker Hub repository                                                | Fedora                                                                               | CentOS                |
+|------------|----------------------------------------------------------------------|--------------------------------------------------------------------------------------|-----------------------|
+| Apache     | [`startx/sv-apache`](https://hub.docker.com/r/startx/sv-apache)      | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30`    | `:centos6` `:centos7` |
+| MariaDB    | [`startx/sv-mariadb`](https://hub.docker.com/r/startx/sv-mariadb)    | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30`    | `:centos6` `:centos7` |
+| Memcache   | [`startx/sv-memcache`](https://hub.docker.com/r/startx/sv-memcache)  | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30`    | `:centos6` `:centos7` |
+| MongoDB    | [`startx/sv-mongo`](https://hub.docker.com/r/startx/sv-mongo)        | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30`    | `:centos6` `:centos7` |
+| nodejs     | [`startx/sv-nodejs`](https://hub.docker.com/r/startx/sv-nodejs)      | `:latest` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30`            | `:centos6` `:centos7` |
+| ooconv     | [`startx/sv-ooconv`](https://hub.docker.com/r/startx/sv-ooconv)      | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30`    | `:centos6` `:centos7` |
+| php        | [`startx/sv-php`](https://hub.docker.com/r/startx/sv-php)            | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30`    | `:centos6` `:centos7` |
+| postgreSQL | [`startx/sv-postgres`](https://hub.docker.com/r/startx/sv-postgres)  | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30`    | `:centos6` `:centos7` |

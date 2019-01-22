@@ -7,13 +7,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-memcache",
+                "name": "startx-memcache",
                 "annotations": {
                     "openshift.io/display-name": "Startx Memcached Database (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-memcache",
+                    "base-image": "startx-os",
                     "provider": "startx"
                 }
             },

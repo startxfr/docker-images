@@ -8,6 +8,8 @@ ENV SX_VERSION="centos7" \
     SX_ID="startx/sv-ooconv" \
     SX_NAME="Startx LibreOffice converter service image (centos 7)" \
     SX_SUMMARY="Startx unoconv service based on centos 7" \
+    SX_USER=ooconv \
+    APP_PATH=/home/ooconv \
     DATA_PATH=/data
 
 LABEL name="$SX_ID" \
@@ -29,8 +31,9 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum --nogpgcheck -y install unoconv libreoffice-writer libreoffice-calc pdfmod ghostscript && \
-    yum clean all && \
+RUN dnf --nogpgcheck -y install unoconv libreoffice-writer libreoffice-calc pdfmod ghostscript && \
+    dnf clean all && \
+    useradd -s /bin/bash -m -g 0 -u 1001 ooconv && \
     mkdir -p $DATA_PATH /.cache && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
