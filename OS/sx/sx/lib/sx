@@ -2,7 +2,7 @@
 
 # get and store the operating system name
 OS=`cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g'`
-SXLIB_VERSION="0.3.14"
+SXLIB_VERSION="0.3.17"
 S2I_DEST=$SX_S2IDIR/src
 MYS2I_DEST=/tmp/mys2i
 
@@ -234,6 +234,9 @@ function genericRun {
     if [[ -x $MYS2I_DEST/run ]]; then
         echoVerbose "Run source code found at $MYS2I_DEST/run"
         testAndRunSourceCodeScript "run" 
+    elif [[ -x $APP_PATH/run ]]; then
+        echoVerbose "Run source code found at $APP_PATH/run"
+        . $APP_PATH/run
     else
         echoVerbose "No Run source code found at $MYS2I_DEST/run"
         echoVerbose "Executing default OS run action"

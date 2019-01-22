@@ -57,7 +57,10 @@ function doMysqlBuild {
     echoVerbose "+====================================================="
     echoVerbose "| Build Mysql"
     echoVerbose "+====================================================="
-    init_service_mariadb
+    if [[ -d $LOADSQL_PATH ]]; then
+        echoVerbose "Copy SQL scripts from $APP_PATH to $LOADSQL_PATH"
+        cp -R $APP_PATH/*.sql $LOADSQL_PATH/
+    fi
 }
 
 # function executed when post-build hook is called
@@ -178,6 +181,7 @@ function doMysqlRun {
     echoVerbose "+====================================================="
     echoVerbose "| Run Mysql"
     echoVerbose "+====================================================="
+    init_service_mariadb
     startMariadbService
 }
 

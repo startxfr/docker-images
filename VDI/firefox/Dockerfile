@@ -62,8 +62,6 @@ WORKDIR $APP_PATH
 
 EXPOSE $SX_FIREFOX_PORT
 
-VOLUME $APP_PATH
-
 ENTRYPOINT ["/bin/entrypoint.sh" ]
 
 CMD [ "/bin/sx-firefox" , "run" ]

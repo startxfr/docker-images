@@ -57,6 +57,4 @@ WORKDIR $APP_PATH
 
 EXPOSE 8080
 
-VOLUME $APP_PATH
-
 CMD [ "/bin/sx-php" , "run" ]
