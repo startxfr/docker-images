@@ -3,11 +3,11 @@ FROM startx/fedora:28
 MAINTAINER Startx <dev@startx.fr>
 
 ENV SX_VERSION="fc28" \
-    SX_TYPE="service" \
+    SX_TYPE="desktop" \
     SX_SERVICE="chrome" \
-    SX_ID="startx/sv-chrome" \
-    SX_NAME="Startx Chrome service image (fedora 28)" \
-    SX_SUMMARY="Startx chrome service based on fedora 28" \
+    SX_ID="startx/vdi-chrome" \
+    SX_NAME="Startx Chrome VDI image (fedora 28)" \
+    SX_SUMMARY="Startx chrome container-based desktop application based on fedora 28" \
     SX_CHROME_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
     LOG_PATH=/home/chrome \
     APP_PATH=/home/chrome \
@@ -29,7 +29,7 @@ LABEL name="$SX_ID" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="400Mi" \
       io.openshift.min-cpu="2000m" \
-      io.openshift.expose-services="$SX_CHROME_PORT:vnc" \
+      io.openshift.expose-VDI="$SX_CHROME_PORT:vnc" \
       io.openshift.s2i.destination="/tmp" \
       io.openshift.s2i.scripts-url="image:///s2i" \
       fr.startx.component="$SX_ID:$SX_VERSION"
@@ -46,18 +46,19 @@ RUN wget http://rpmfind.net/linux/fedora-secondary/releases/28/Everything/i386/o
     easy_install pip && \
     pip install --upgrade pip && \
     pip install --upgrade --force-reinstall setuptools pip && \
-    useradd -s /bin/bash -m -g 0 -u 1001 -G pulse-access chrome && \
-    mkdir -p /s2i $SX_LIBDIR && \
+    useradd -s /bin/bash -m -g 0 -u 1001 -G pulse-access $SX_USER && \
+    mkdir -p /s2i $SX_LIBDIR /.local && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     mkdir -p $DATA_PATH $APP_PATH $LOG_PATH $DATA_PATH/.config && \
-	chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp && \
-    chown -R $SX_USER:0 /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH $DATA_PATH $LOG_PATH $DATA_PATH/.config && \
-    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp && \
+	chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp /.local && \
+    chown -R $SX_USER:0 /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH $DATA_PATH $LOG_PATH $DATA_PATH/.config /.local && \
+    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp /.local && \
     chmod ug+r $SX_CHROME_SUPERVISOR_CONF && \
-    chmod -R ugo+x /bin/sx*
+    chmod -R ugo+x /bin/sx* && \
+    chmod -R ugo+rwx /.local
 
 USER $SX_USER
 

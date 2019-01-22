@@ -7,13 +7,13 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "startx-sv-ooconv",
+                "name": "startx-ooconv",
                 "annotations": {
                     "openshift.io/display-name": "Startx LibreOffice converter (S2I)",
                     "openshift.io/generated-by": "STARTX"
                 },
                 "labels": {
-                    "base-image": "startx-sv-ooconv",
+                    "base-image": "startx-os",
                     "provider": "startx"
                 }
             },

@@ -4,7 +4,7 @@ source $SX_LIBDIR/sx-mariadb
 check_mariadb_environment
 # Dispatch input arguments
 case $1 in
-    assemble|build)         mysqlAssemble $@ ;;
+    assemble|build)         mysqlBuild $@ ;;
     post-build)             mysqlPostBuild $@ ;;
     pre-deploy)             mysqlPreDeploy $@ ;;
     post-deploy)            mysqlPostDeploy $@ ;;

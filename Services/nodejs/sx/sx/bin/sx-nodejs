@@ -4,7 +4,7 @@ source $SX_LIBDIR/sx-nodejs
 check_nodejs_environment
 # Dispatch input arguments
 case $1 in
-    assemble|build)         nodejsAssemble $@ ;;
+    assemble|build)         nodejsBuild $@ ;;
     post-build)             nodejsPostBuild $@ ;;
     pre-deploy)             nodejsPreDeploy $@ ;;
     post-deploy)            nodejsPostDeploy $@ ;;

@@ -26,7 +26,8 @@ script:
 - "./travis/test    Services/ooconv    sv-ooconv     fc28"
 - "./travis/test    Services/php       sv-php        fc28"
 - "./travis/test    Services/postgres  sv-postgres   fc28"
-- "./travis/test    Services/chrome    sv-chrome     fc28"
+- "./travis/test    VDI/chrome         vdi-chrome    fc28"
+- "./travis/test    VDI/firefox        vdi-firefox   fc28"
 - "./travis/test    Applications/phpmyadmin  app-phpmyadmin   fc28"
 after_success:
 - "./travis/publish OS                 fedora        28"
@@ -39,5 +40,6 @@ after_success:
 - "./travis/publish Services/ooconv    sv-ooconv     fc28"
 - "./travis/publish Services/php       sv-php        fc28"
 - "./travis/publish Services/postgres  sv-postgres   fc28"
-- "./travis/publish Services/chrome    sv-chrome     fc28"
+- "./travis/publish VDI/chrome         vdi-chrome    fc28"
+- "./travis/test    VDI/firefox        vdi-firefox   fc28"
 - "./travis/publish Applications/phpmyadmin  app-phpmyadmin   fc28"
