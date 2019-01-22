@@ -1,14 +1,16 @@
 chrome:
   build: ./
-  container_name: "service-chrome"
+  container_name: "vdi-chrome"
   ports:
     - "9267:5900"
+  privileged: true
   environment:
     SX_CHROME_SCREEN_RES_X: "1600x900x24"
     SX_CHROME_SCREEN_RES_CHROME: "1600,900"
     SX_VERBOSE: 'true'
-#  volumes:
-#    - "/tmp/container/chrome/data:/home/chrome:Z"
+  volumes:
+    - "/dev/shm:/dev/shm"
+#    - "/mnt/chrome:/home/chrome:Z"
 #  command:
-#     - "/bin/sx-chrome"
-#     - "run"
+#    - "/bin/sx-chrome"
+#    - "run"

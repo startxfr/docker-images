@@ -4,7 +4,7 @@ source $SX_LIBDIR/sx-pma
 check_apache_environment
 # Dispatch input arguments
 case $1 in
-    assemble|build)         pmaAssemble $@ ;;
+    assemble|build)         pmaBuild $@ ;;
     post-build)             pmaPostBuild $@ ;;
     pre-deploy)             pmaPreDeploy $@ ;;
     post-deploy)            pmaPostDeploy $@ ;;

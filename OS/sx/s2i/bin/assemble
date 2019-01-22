@@ -1,4 +1,4 @@
-#!/bin/bash -e#!/bin/bash -e
+#!/bin/bash -e
 #
 # S2I assemble script for the 'startx/fedora' image.
 # The 'assemble' script builds your application source ready to run.

@@ -6,7 +6,7 @@ export X11VNC_AUTH="-nopw"
 
 # look for VNC password file in order (first match is used)
 passwd_files=(
-  /home/chrome/.vnc/passwd
+  $APP_PATH/.vnc/passwd
   /run/secrets/vncpasswd
 )
 
