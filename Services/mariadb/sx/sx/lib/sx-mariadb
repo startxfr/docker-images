@@ -187,12 +187,19 @@ function doMysqlRun {
 
 # Display liveness status
 function mysqlIsLive {
-    genericIsLive
+    R=`mysql -h 127.0.0.1 -u root -p$MYSQL_ROOT_PASSWORD -e 'SELECT 1'`
+    if [ "$?" = "0" ]; then
+      echo "OK";
+      exit 0;
+    else 
+      echo "Not OK";
+      exit 1;
+    fi;
 }
 
 # Display readyness status
 function mysqlIsReady {
-    mysql -h 127.0.0.1 -u root -p$MYSQL_ROOT_PASSWORD -e 'SELECT 1'  || exit 1;
+    genericIsReady
 }
 
 

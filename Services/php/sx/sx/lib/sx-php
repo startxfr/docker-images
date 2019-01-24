@@ -171,7 +171,7 @@ function startPhpService {
 
 # Display liveness status
 function phpIsLive {
-    genericIsLive
+    apacheIsLive
 }
 
 # Display readyness status
