@@ -182,11 +182,14 @@ function firefoxIsLive {
 
 # Display readyness status
 function firefoxIsReady {
-    R=`ps -aux | grep firefox`
-    if [ "$R" != "" ]; then
-        exit 0;
+    R=`ps -aux | grep firefox | wc -l`
+    if [ "$R" -ge "2" ]; then
+      echo "OK";
+      exit 0;
+    else 
+      echo "Not OK";
+      exit 1;
     fi;
-    exit 1;
 }
 
 # function executed on firefox service stop
