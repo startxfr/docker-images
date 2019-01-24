@@ -161,7 +161,7 @@ function doPmaRun {
 
 # Display liveness status
 function pmaIsLive {
-    genericIsLive
+    apacheIsLive
 }
 
 # Display readyness status

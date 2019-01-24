@@ -179,8 +179,10 @@ function doApacheRun {
 function apacheIsLive {
     R=`curl -sL -w "%{http_code}\\n" "http://localhost/" -o /dev/null`
     if [ "$R" = "200" ]; then
+      echo "OK";
       exit 0;
     else 
+      echo "Not OK";
       exit 1;
     fi;
 }
