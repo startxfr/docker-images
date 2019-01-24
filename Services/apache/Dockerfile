@@ -8,7 +8,7 @@ ENV SX_VERSION="alpine3" \
     SX_ID="startx/sv-apache" \
     SX_NAME="Startx Apache service image (alpine 3.8)" \
     SX_SUMMARY="Startx apache service based on alpine 3.8" \
-    HTTPDCONF=/etc/apache2/app.conf \
+    HTTPDCONF=/etc/apache2/conf.d/app.conf \
     LOG_PATH=/var/log/httpd \
     APP_PATH=/app
 
