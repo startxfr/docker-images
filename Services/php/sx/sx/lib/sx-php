@@ -1,5 +1,4 @@
 #!/bin/bash
-source $SX_LIBDIR/sx
 source $SX_LIBDIR/sx-apache
 
 # Display php information

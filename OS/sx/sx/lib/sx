@@ -2,7 +2,7 @@
 
 # get and store the operating system name
 OS=`cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g'`
-SXLIB_VERSION="0.3.18"
+SXLIB_VERSION="0.3.21"
 S2I_DEST=$SX_S2IDIR/src
 MYS2I_DEST=/tmp/mys2i
 
@@ -13,24 +13,24 @@ pid=0
 # return if verbose is activated
 function isVerbose {
     if [[ "$SX_VERBOSE" == true || "$SX_VERBOSE" == "true" ]] ; then
-        return 1
+        echo 1
     else
-        return 0
+        echo 0
     fi 
 }
 
 # echo if verbose if activated
 function echoVerbose {
-    isVerbose
-    if [ "$?" -eq 1 ] ; then
+    x=`isVerbose`
+    if [ "$x" -eq 1 ] ; then
         echo "$@"
     fi 
 }
 
 # echo if verbose if not activated
 function echoNotVerbose {
-    isVerbose
-    if [ "$?" -eq 0 ] ; then
+    x=`isVerbose`
+    if [ "$x" -eq 0 ] ; then
         echo "$@"
     fi 
 }
@@ -391,10 +391,5 @@ function startDaemon {
 
 # Display daemon
 function genericDaemon {
-    echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME is RUNNING"
-    echoVerbose "| "
-    displayInformation "| "
-    echoVerbose "+====================================================="
-    startDaemon
+    genericRun
 }
