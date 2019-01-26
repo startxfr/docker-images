@@ -1,5 +1,4 @@
 #!/bin/bash
-source $SX_LIBDIR/sx
 source $SX_LIBDIR/sx-php
 
 # Display pma information
