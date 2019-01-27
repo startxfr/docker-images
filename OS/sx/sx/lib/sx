@@ -2,7 +2,7 @@
 
 # get and store the operating system name
 OS=`cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g'`
-SXLIB_VERSION="0.3.21"
+SXLIB_VERSION="0.3.22"
 S2I_DEST=$SX_S2IDIR/src
 MYS2I_DEST=/tmp/mys2i
 
@@ -303,7 +303,7 @@ Startx builder container to use with s2i or openshift
 Usage:
   s2i $SX_ID <code_repo_url> ≤image_name>
 
-Code repository must have a `run` script who will be executed on container startup
+Code repository must have a 'run' script who will be executed on container startup
 
 EOF
 exit 0;
