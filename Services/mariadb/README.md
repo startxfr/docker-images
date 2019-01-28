@@ -10,11 +10,12 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-* `:latest` : Fedora core 29 + MariaDB 10.0.21 (compat mysql  15.1)
-* `:fc28` : Fedora core 28 + MariaDB 10.0.21 (compat mysql  15.1)
-* `:fc27` : Fedora core 27 + MariaDB 10.0.21 (compat mysql  15.1)
-* `:fc26` : Fedora core 26 + MariaDB 10.0.21 (compat mysql  15.1)
-* `:fc23` : Fedora core 23 + MariaDB 10.0.21 (compat mysql  15.1)
+* `:latest` : Fedora core 30 + MariaDB 10.3.12 (compat mysql 15.1)
+* `:latest` : Fedora core 29 + MariaDB 10.3.12 (compat mysql 15.1)
+* `:fc28` : Fedora core 28 + MariaDB 10.0.21 (compat mysql 15.1)
+* `:fc27` : Fedora core 27 + MariaDB 10.0.21 (compat mysql 15.1)
+* `:fc26` : Fedora core 26 + MariaDB 10.0.21 (compat mysql 15.1)
+* `:fc23` : Fedora core 23 + MariaDB 10.0.21 (compat mysql 15.1)
 * `:fc22` : Fedora core 22 + MariaDB 
 * `:fc21` : Fedora core 21 + MariaDB 
 * `:centos7` : CentOS 7 + MariaDB 

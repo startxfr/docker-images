@@ -2,7 +2,7 @@
 
 # get and store the operating system name
 OS=`cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g'`
-SXLIB_VERSION="0.3.22"
+SXLIB_VERSION="0.3.23"
 S2I_DEST=$SX_S2IDIR/src
 MYS2I_DEST=/tmp/mys2i
 
@@ -83,7 +83,7 @@ function moveSourceCode {
   fi 
   if [[ "$projectScriptDir" != "" ]] ; then
       echoVerbose "Move source code s2i scripts to $MYS2I_DEST"
-      mv $1/$projectScriptDir $MYS2I_DEST
+      cp -R $1/$projectScriptDir $MYS2I_DEST
       echoVerbose "Set $MYS2I_DEST perms to 1001:0"
       chown 1001:0 -R $MYS2I_DEST
       chmod g=u -R $MYS2I_DEST
@@ -126,11 +126,14 @@ function doGenericBuild {
     echoVerbose "+====================================================="
     echoVerbose "| Build system $OS"
     echoVerbose "+====================================================="
-    echoVerbose "Fixing perm on $S2I_DEST"
     if [[ -r $S2I_DEST ]]; then
-      chgrp 0 -R $S2I_DEST
-      chmod g=u -R $S2I_DEST
+      echoVerbose "Source code found in $S2I_DEST directory"
+      echoVerbose "Fixing perm on $S2I_DEST"
+      chgrp 0 -R $S2I_DEST  2> /dev/null
+      chmod g=u -R $S2I_DEST 2> /dev/null
       moveSourceCode $S2I_DEST $APP_PATH
+    else
+        echoVerbose "No source code found in $S2I_DEST directory"
     fi;
 }
 
