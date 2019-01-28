@@ -10,7 +10,8 @@ based on [startx/alpine:3 container](https://hub.docker.com/r/startx/alpine)
 
 ## Available flavours
 
-* `:latest` : Alpine 3 + Apache 2.4.17 + PHP 5.6.16
+* `:latest` : Fedora core 30 + Apache 2.4.37 + PHP 7.3.1
+* `:fc29` : Fedora core 29 + Apache 2.4.37 + PHP 7.3.1
 * `:fc28` : Fedora core 28 + Apache 2.4.17 + PHP 5.6.16
 * `:fc27` : Fedora core 27 + Apache 2.4.17 + PHP 5.6.16
 * `:fc26` : Fedora core 26 + Apache 2.4.17 + PHP 5.6.16

@@ -10,7 +10,8 @@ based on [startx/alpine:3 container](https://hub.docker.com/r/startx/alpine)
 
 ## Available flavours
 
-* `:alpine3` : Alpine 3 + MongoDB 3.0.7 
+* `:latest` : Fedora core 29 + MongoDB 4.0.3
+* `:fc29` : Fedora core 28 + MongoDB 4.0.3
 * `:fc28` : Fedora core 28 + MongoDB 3.0.7  
 * `:fc27` : Fedora core 27 + MongoDB 3.0.7  
 * `:fc26` : Fedora core 26 + MongoDB 3.0.7  
