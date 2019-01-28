@@ -10,7 +10,8 @@ based on [startx/fedora:28 container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-* `:latest` : Fedora core 30 + memcached 1.4.17 
+* `:latest` : Fedora core 30 + memcached 1.5.10
+* `:fc29` : Fedora core 29 + memcached 1.5.10
 * `:fc28` : Fedora core 28 + memcached 1.4.17 
 * `:fc27` : Fedora core 27 + memcached 1.4.17
 * `:fc26` : Fedora core 26 + memcached 1.4.17
