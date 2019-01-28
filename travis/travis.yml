@@ -41,5 +41,5 @@ after_success:
 - "./travis/publish Services/php       sv-php        latest"
 - "./travis/publish Services/postgres  sv-postgres   latest"
 - "./travis/publish VDI/chrome         vdi-chrome    latest"
-- "./travis/test    VDI/firefox        vdi-firefox   latest"
+- "./travis/publish VDI/firefox        vdi-firefox   latest"
 - "./travis/publish Applications/phpmyadmin  app-phpmyadmin   latest"
