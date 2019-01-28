@@ -1,5 +1,9 @@
 #!/bin/bash
 source $SX_LIBDIR/sx
+MYSQL_ROOT_PASSWORD_LENGTH=20
+MYSQL_PASSWORD_LENGTH=12
+MYSQL_SQL_SCHEMA_PREFIX="schema-"
+MYSQL_SQL_DATA_PREFIX="data-"
 
 function check_mariadb_environment {
     if [ ! -v DATA_PATH ]; then
@@ -281,7 +285,7 @@ function config_stopserver {
 
 
 function config_createadmin {
-    PASS=${MYSQL_ROOT_PASSWORD:-$(pwgen -s 12 1)}
+    PASS=${MYSQL_ROOT_PASSWORD:-$(pwgen -s $MYSQL_ROOT_PASSWORD_LENGTH 1)}
     _word=$( [ ${MYSQL_ROOT_PASSWORD} ] && echo "preset" || echo "random" )
     echoVerbose "Creating MariaDB admin user with ${_word} password"
     mysql -uroot -e "CREATE USER 'root'@'%' IDENTIFIED BY '$PASS'"
@@ -303,8 +307,9 @@ function config_createadmin {
 
 function config_createuser {
     if [[ -n "$MYSQL_USER" ]]; then
-        echoVerbose "Creating MariaDB $MYSQL_USER user with preset password"
-        PASS=${MYSQL_PASSWORD:-$(pwgen -s 12 1)}
+        PASS=${MYSQL_PASSWORD:-$(pwgen -s $MYSQL_PASSWORD_LENGTH 1)}
+        _word=$( [ ${MYSQL_PASSWORD} ] && echo "preset" || echo "random" )
+        echoVerbose "Creating MariaDB $MYSQL_USER user with ${_word} password"
         mysql -u root -p$MYSQL_ROOT_PASSWORD -h localhost -e "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$PASS'"
         mysql -u root -p$MYSQL_ROOT_PASSWORD -h localhost -e "GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%' WITH GRANT OPTION"
         mysql -u root -p$MYSQL_ROOT_PASSWORD -h localhost -e "ALTER USER '$MYSQL_USER'@'$HOSTNAME' IDENTIFIED BY '$PASS';ALTER USER '$MYSQL_USER'@'127.0.0.1' IDENTIFIED BY '$PASS';ALTER USER '$MYSQL_USER'@'localhost' IDENTIFIED BY '$PASS';ALTER USER '$MYSQL_USER'@'::1' IDENTIFIED BY '$PASS';"
@@ -350,11 +355,12 @@ function config_createdatabase {
 
 function config_importsql {
     if [[ -n "$LOADSQL_PATH" || -n "$MYSQL_DATABASE" ]]; then
-        echoVerbose "\$LOADSQL_PATH is defined and set to " $LOADSQL_PATH
+        echoVerbose "\$LOADSQL_PATH is defined and set to $LOADSQL_PATH"
+        echoVerbose "\$MYSQL_DATABASE is defined and set to $MYSQL_DATABASE"
         if [[ -d $LOADSQL_PATH ]]; then
-            if [ "$(ls -A $LOADSQL_PATH/schema-*.sql 2> /dev/null)" ]; then
+            if [ "$(ls -A $LOADSQL_PATH/${MYSQL_SQL_SCHEMA_PREFIX}*.sql 2> /dev/null)" ]; then
                 echo "Importing schema from $LOADSQL_PATH "
-                SCHEMALIST=$(find $LOADSQL_PATH/schema-*.sql -type f -printf "%f\n")
+                SCHEMALIST=$(find $LOADSQL_PATH/${MYSQL_SQL_SCHEMA_PREFIX}*.sql -type f -printf "%f\n")
                 for SCHEMAFILE in $SCHEMALIST; do 
                     echo "SET NAMES utf8;"|cat - $LOADSQL_PATH/$SCHEMAFILE > /tmp/out && mv /tmp/out $LOADSQL_PATH/$SCHEMAFILE
                     echo -n "- schema " $SCHEMAFILE " ... "
@@ -362,11 +368,11 @@ function config_importsql {
                     echo " IMPORTED"
                 done
             else
-                echoVerbose "No sql schema (schema-*.sql) found in $LOADSQL_PATH"
+                echoVerbose "No sql schema (${MYSQL_SQL_SCHEMA_PREFIX}*.sql) found in $LOADSQL_PATH"
             fi
-            if [ "$(ls -A $LOADSQL_PATH/data-*.sql 2> /dev/null)" ]; then
+            if [ "$(ls -A $LOADSQL_PATH/${MYSQL_SQL_DATA_PREFIX}*.sql 2> /dev/null)" ]; then
                 echo "Importing data from $LOADSQL_PATH "
-                DATALIST=$(find $LOADSQL_PATH/data-*.sql -type f -printf "%f\n")
+                DATALIST=$(find $LOADSQL_PATH/${MYSQL_SQL_DATA_PREFIX}*.sql -type f -printf "%f\n")
                 for DATAFILE in $DATALIST; do 
                     echo "SET NAMES utf8;"|cat - $LOADSQL_PATH/$DATAFILE > /tmp/out && mv /tmp/out $LOADSQL_PATH/$DATAFILE
                     echo -n "- data " $DATAFILE " ... "
@@ -374,7 +380,7 @@ function config_importsql {
                     echo " IMPORTED"
                 done
             else
-                echoVerbose "No sql data (data-*.sql) found in $LOADSQL_PATH"
+                echoVerbose "No sql data (${MYSQL_SQL_DATA_PREFIX}*.sql) found in $LOADSQL_PATH"
             fi
         else
             echoVerbose "No sql scripts to load because $LOADSQL_PATH is not a directory"

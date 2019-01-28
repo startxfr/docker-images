@@ -10,7 +10,14 @@ based on [startx/centos:7 container](https://hub.docker.com/r/startx/centos)
 
 ## Available flavours
 
-* `:latest` : CentOS 7 + Apache 
+* `:latest` : Fedora core 30 + Apache 2.4.37
+* `:fc29` : Fedora core 29 + Apache 2.4.37
+* `:fc28` : Fedora core 28 + Apache 2.4.17
+* `:fc27` : Fedora core 27 + Apache 2.4.17
+* `:fc26` : Fedora core 26 + Apache 2.4.17
+* `:fc23` : Fedora core 23 + Apache 2.4.17
+* `:fc22` : Fedora core 22 + Apache 
+* `:fc21` : Fedora core 21 + Apache 
 * `:centos7` : CentOS 7 + Apache 
 * `:centos6` : Centos 6 + Apache 
 

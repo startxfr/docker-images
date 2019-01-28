@@ -10,7 +10,8 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-* `:latest` : Fedora core 29 + Chrome 50.0.2661.102
+* `:latest` : Fedora core 30 + Chrome 70.0.3538.77
+* `:fc29` : Fedora core 29 + Chrome 70.0.3538.77
 * `:fc28` : Fedora core 28 + Chrome 50.0.2661.102
 * `:centos7` : CentOS 7 + Chrome 
 * `:alpine3` : Alpine 3.7 + Chrome 50.0.2661.102
