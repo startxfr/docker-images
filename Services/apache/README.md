@@ -10,7 +10,8 @@ based on [startx/fedora:28 container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-* `:latest` : Fedora core 29 + Apache 2.4.17
+* `:latest` : Fedora core 30 + Apache 2.4.37
+* `:fc29` : Fedora core 29 + Apache 2.4.37
 * `:fc28` : Fedora core 28 + Apache 2.4.17
 * `:fc27` : Fedora core 27 + Apache 2.4.17
 * `:fc26` : Fedora core 26 + Apache 2.4.17
