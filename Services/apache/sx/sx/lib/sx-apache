@@ -205,17 +205,32 @@ function stopApacheHandler {
     exit 143; # 128 + 15 -- SIGTERM
 }
 
+# prepare of the httpd server as a deamon and execute it inside 
+# the running shell
+function preStartApacheService {
+    echoVerbose "Remove temporary files in /run/httpd/* and /tmp/httpd*"
+    rm -rf /run/httpd/* /tmp/httpd*
+    echoVerbose "Prepare Apache logs"
+    touch $LOG_PATH/error.log
+    if [[ -r $LOG_PATH/error.log ]]; then
+      echoVerbose "Display apache error logs from $LOG_PATH/error.log"
+      tail -f $LOG_PATH/error.log &
+    fi;
+    touch $LOG_PATH/access.log
+    if [[ -r $LOG_PATH/access.log ]]; then
+      echoVerbose "Display apache access logs from $LOG_PATH/access.log"
+      tail -f $LOG_PATH/access.log &
+    fi;
+}
+
 # Start the httpd server as a deamon and execute it inside 
 # the running shell
 function startApacheService {
     trap 'kill ${!}; stopApacheHandler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
-    rm -rf /run/httpd/* /tmp/httpd*
-    touch $LOG_PATH/access.log
-    touch /var/log/httpd/access.log
     exec /usr/sbin/httpd -D FOREGROUND > $LOG_PATH/access.log &
     while true
     do
-        tail -f $LOG_PATH/*.log & tail -f /var/log/httpd/*.log & wait ${!}
+        wait ${!}
     done
 }
 
