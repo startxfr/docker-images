@@ -29,6 +29,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY httpd.conf $HTTPDCONF
 COPY php.ini /etc/php.d/sx.ini
+COPY php-fpm.conf /etc/php-fpm.d/www.conf
 COPY sx /tmp/
 RUN dnf --nogpgcheck -y install php php-cli php-pear \
         php-gd php-mcrypt php-mysqlnd php-soap \
