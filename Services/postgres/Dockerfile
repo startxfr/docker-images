@@ -9,7 +9,7 @@ ENV SX_VERSION="latest" \
     SX_NAME="Startx Postgres service image (fedora rawhide)" \
     SX_SUMMARY="Startx postgres service based on fedora rawhide" \
     DATA_PATH=/data \
-    LOG_PATH=/logs
+    LOG_PATH=/var/log/postgres
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \

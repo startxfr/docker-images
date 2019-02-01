@@ -11,7 +11,7 @@ function check_chrome_environment {
         export DATA_PATH
     fi
     if [ ! -v LOG_PATH ]; then
-        LOG_PATH="/home/chrome"
+        LOG_PATH="/var/log/chrome"
         export LOG_PATH
     fi
     if [ ! -n "$SERVER_NAME" ]; then
@@ -40,12 +40,13 @@ function chromeBuild {
     chromeInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    doChromeBuild
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/assemble ]]; then
-        echoVerbose "Build source code found at $MYS2I_DEST/assemble"
+        echoVerbose "Build application logic found at $MYS2I_DEST/assemble"
         testAndRunSourceCodeScript "assemble" 
     else
-        echoVerbose "No Build source code found at $MYS2I_DEST/assemble"
+        echoVerbose "No Build application logic found at $MYS2I_DEST/assemble"
+    doChromeBuild
     fi
     exit 0;
 }
@@ -53,10 +54,9 @@ function chromeBuild {
 # function performing Chrome build actions
 function doChromeBuild {
     doGenericBuild
-    echoNotVerbose "Build Chrome"
-    echoVerbose ""
+    echoNotVerbose "Executing Chrome build logic"
     echoVerbose "+====================================================="
-    echoVerbose "| Build Chrome"
+    echoVerbose "| Executing Chrome build logic"
     echoVerbose "+====================================================="
 }
 
@@ -70,12 +70,13 @@ function chromePostBuild {
     chromeInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    doChromePostBuild
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/assemble ]]; then
-        echoVerbose "PostBuild source code found at $MYS2I_DEST/post-build"
+        echoVerbose "PostBuild application logic found at $MYS2I_DEST/post-build"
         testAndRunSourceCodeScript "post-build" 
     else
-        echoVerbose "No PostBuild source code found at $MYS2I_DEST/post-build"
+        echoVerbose "No PostBuild application logic found at $MYS2I_DEST/post-build"
+    doChromePostBuild
     fi
     exit 0;
 }
@@ -83,10 +84,9 @@ function chromePostBuild {
 # function performing Chrome post-build actions
 function doChromePostBuild {
     doGenericPostBuild
-    echoNotVerbose "PostBuild Chrome"
-    echoVerbose ""
+    echoNotVerbose "Executing Chrome post-build logic"
     echoVerbose "+====================================================="
-    echoVerbose "| PostBuild Chrome"
+    echoVerbose "| Executing Chrome post-build logic"
     echoVerbose "+====================================================="
 }
 
@@ -100,12 +100,13 @@ function chromePreDeploy {
     chromeInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    doChromePreDeploy
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/pre-deploy ]]; then
-        echoVerbose "PreDeploy source code found at $MYS2I_DEST/pre-deploy"
+        echoVerbose "PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
         testAndRunSourceCodeScript "pre-deploy" 
     else
-        echoVerbose "No PreDeploy source code found at $MYS2I_DEST/pre-deploy"
+        echoVerbose "No PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
+    doChromePreDeploy
     fi
     exit 0;
 }
@@ -113,10 +114,9 @@ function chromePreDeploy {
 # function performing Chrome pre-deploy actions
 function doChromePreDeploy {
     doGenericPreDeploy
-    echoNotVerbose "PreDeploy Chrome"
-    echoVerbose ""
+    echoNotVerbose "Executing Chrome pre-deploy logic"
     echoVerbose "+====================================================="
-    echoVerbose "| PreDeploy Chrome"
+    echoVerbose "| Executing Chrome pre-deploy logic"
     echoVerbose "+====================================================="
 }
 
@@ -130,12 +130,13 @@ function chromePostDeploy {
     chromeInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    doChromePostDeploy
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/post-deploy ]]; then
-        echoVerbose "PostDeploy source code found at $MYS2I_DEST/post-deploy"
+        echoVerbose "PostDeploy application logic found at $MYS2I_DEST/post-deploy"
         testAndRunSourceCodeScript "post-deploy" 
     else
-        echoVerbose "No PostDeploy source code found at $MYS2I_DEST/post-deploy"
+        echoVerbose "No PostDeploy application logic found at $MYS2I_DEST/post-deploy"
+    doChromePostDeploy
     fi
     exit 0;
 }
@@ -143,10 +144,9 @@ function chromePostDeploy {
 # function performing Chrome post-deploy actions
 function doChromePostDeploy {
     doGenericPostDeploy
-    echoNotVerbose "PostDeploy Chrome"
-    echoVerbose ""
+    echoNotVerbose "Executing Chrome post-deploy logic"
     echoVerbose "+====================================================="
-    echoVerbose "| PostDeploy Chrome"
+    echoVerbose "| Executing Chrome post-deploy logic"
     echoVerbose "+====================================================="
 }
 
@@ -160,11 +160,12 @@ function chromeRun {
     chromeInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/run ]]; then
-        echoVerbose "Run source code found at $MYS2I_DEST/run"
+        echoVerbose "Run application logic found at $MYS2I_DEST/run"
         testAndRunSourceCodeScript "run" 
     else
-        echoVerbose "No Run source code found at $MYS2I_DEST/run"
+        echoVerbose "No Run application logic found at $MYS2I_DEST/run"
         echoVerbose "Executing default Chrome run action"
         doChromeRun
     fi
@@ -172,10 +173,9 @@ function chromeRun {
 
 # function performing Chrome run actions
 function doChromeRun {
-    echoNotVerbose "Run Chrome"
-    echoVerbose ""
+    echoNotVerbose "Executing Chrome run logic"
     echoVerbose "+====================================================="
-    echoVerbose "| Run Chrome"
+    echoVerbose "| Executing Chrome run logic"
     echoVerbose "+====================================================="
     startChromeService
 }
@@ -199,14 +199,8 @@ function chromeIsReady {
 
 # function executed on chrome service stop
 function stopChromeHandler {
-    killall chrome
-    echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME is now STOPPED"
-    echoNotVerbose "container is now stopped"
-    echoVerbose "| "
-    chromeInformation "| "
-    echoVerbose "+====================================================="
-    exit 143; # 128 + 15 -- SIGTERM
+    killall chrome supervisord
+    stopDaemon
 }
 
 # Start the httpd server as a deamon and execute it inside 
@@ -216,6 +210,9 @@ function startChromeService {
       X11VNC_AUTH="-nopw"
       export X11VNC_AUTH
     fi
-    trap 'kill ${!}; stopChromeHandler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
+    trap 'stopChromeHandler' SIGHUP SIGINT SIGQUIT SIGILL SIGABRT SIGTRAP SIGBUS SIGUSR1 SIGUSR2 SIGFPE SIGPIPE SIGALRM SIGSTOP
+    trap 'killDaemon kill 9' SIGKILL
+    trap 'killDaemon term 15' SIGTERM
+    trap 'killDaemon sys 31' SIGSYS
     exec /usr/bin/supervisord -c $SX_CHROME_SUPERVISOR_CONF/supervisord.conf
 }

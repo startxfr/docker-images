@@ -7,8 +7,7 @@ ENV SX_VERSION="latest" \
     SX_SERVICE="memcache" \
     SX_ID="startx/sv-memcache" \
     SX_NAME="Startx Memcached service image (fedora rawhide)" \
-    SX_SUMMARY="Startx Memcached service based on fedora rawhide" \
-    LOG_PATH=/logs
+    SX_SUMMARY="Startx Memcached service based on fedora rawhide"
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \

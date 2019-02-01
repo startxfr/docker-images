@@ -16,12 +16,13 @@ function pmaBuild {
     pmaInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    doPmaBuild
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/assemble ]]; then
-        echoVerbose "Build source code found at $MYS2I_DEST/assemble"
+        echoVerbose "Build application logic found at $MYS2I_DEST/assemble"
         testAndRunSourceCodeScript "assemble" 
     else
-        echoVerbose "No Build source code found at $MYS2I_DEST/assemble"
+        echoVerbose "No Build application logic found at $MYS2I_DEST/assemble"
+    doPmaBuild
     fi
     exit 0;
 }
@@ -29,10 +30,9 @@ function pmaBuild {
 # function performing Pma build actions
 function doPmaBuild {
     doGenericBuild
-    echoNotVerbose "Build Pma"
-    echoVerbose ""
+    echoNotVerbose "Executing Pma build logic"
     echoVerbose "+====================================================="
-    echoVerbose "| Build Pma"
+    echoVerbose "| Executing Pma build logic"
     echoVerbose "+====================================================="
 }
 
@@ -46,12 +46,13 @@ function pmaPostBuild {
     pmaInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    doPmaPostBuild
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/assemble ]]; then
-        echoVerbose "PostBuild source code found at $MYS2I_DEST/post-build"
+        echoVerbose "PostBuild application logic found at $MYS2I_DEST/post-build"
         testAndRunSourceCodeScript "post-build" 
     else
-        echoVerbose "No PostBuild source code found at $MYS2I_DEST/post-build"
+        echoVerbose "No PostBuild application logic found at $MYS2I_DEST/post-build"
+    doPmaPostBuild
     fi
     exit 0;
 }
@@ -59,10 +60,9 @@ function pmaPostBuild {
 # function performing Pma post-build actions
 function doPmaPostBuild {
     doGenericPostBuild
-    echoNotVerbose "PostBuild Pma"
-    echoVerbose ""
+    echoNotVerbose "Executing Pma post-build logic"
     echoVerbose "+====================================================="
-    echoVerbose "| PostBuild Pma"
+    echoVerbose "| Executing Pma post-build logic"
     echoVerbose "+====================================================="
 }
 
@@ -76,12 +76,13 @@ function pmaPreDeploy {
     pmaInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    doPmaPreDeploy
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/pre-deploy ]]; then
-        echoVerbose "PreDeploy source code found at $MYS2I_DEST/pre-deploy"
+        echoVerbose "PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
         testAndRunSourceCodeScript "pre-deploy" 
     else
-        echoVerbose "No PreDeploy source code found at $MYS2I_DEST/pre-deploy"
+        echoVerbose "No PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
+    doPmaPreDeploy
     fi
     exit 0;
 }
@@ -89,10 +90,9 @@ function pmaPreDeploy {
 # function performing Pma pre-deploy actions
 function doPmaPreDeploy {
     doGenericPreDeploy
-    echoNotVerbose "PreDeploy Pma"
-    echoVerbose ""
+    echoNotVerbose "Executing Pma pre-deploy logic"
     echoVerbose "+====================================================="
-    echoVerbose "| PreDeploy Pma"
+    echoVerbose "| Executing Pma pre-deploy logic"
     echoVerbose "+====================================================="
     echoVerbose "Create log directory $LOG_PATH"
     touch $LOG_PATH/access.log
@@ -108,12 +108,13 @@ function pmaPostDeploy {
     pmaInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    doPmaPostDeploy
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/post-deploy ]]; then
-        echoVerbose "PostDeploy source code found at $MYS2I_DEST/post-deploy"
+        echoVerbose "PostDeploy application logic found at $MYS2I_DEST/post-deploy"
         testAndRunSourceCodeScript "post-deploy" 
     else
-        echoVerbose "No PostDeploy source code found at $MYS2I_DEST/post-deploy"
+        echoVerbose "No PostDeploy application logic found at $MYS2I_DEST/post-deploy"
+    doPmaPostDeploy
     fi
     exit 0;
 }
@@ -121,10 +122,9 @@ function pmaPostDeploy {
 # function performing Pma post-deploy actions
 function doPmaPostDeploy {
     doGenericPostDeploy
-    echoNotVerbose "PostDeploy Pma"
-    echoVerbose ""
+    echoNotVerbose "Executing Pma post-deploy logic"
     echoVerbose "+====================================================="
-    echoVerbose "| PostDeploy Pma"
+    echoVerbose "| Executing Pma post-deploy logic"
     echoVerbose "+====================================================="
 }
 
@@ -138,11 +138,12 @@ function pmaRun {
     pmaInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/run ]]; then
-        echoVerbose "Run source code found at $MYS2I_DEST/run"
+        echoVerbose "Run application logic found at $MYS2I_DEST/run"
         testAndRunSourceCodeScript "run" 
     else
-        echoVerbose "No Run source code found at $MYS2I_DEST/run"
+        echoVerbose "No Run application logic found at $MYS2I_DEST/run"
         echoVerbose "Executing default Pma run action"
         doPmaRun
     fi
@@ -150,10 +151,9 @@ function pmaRun {
 
 # function performing Pma run actions
 function doPmaRun {
-    echoNotVerbose "Run Pma"
-    echoVerbose ""
+    echoNotVerbose "Executing Pma run logic"
     echoVerbose "+====================================================="
-    echoVerbose "| Run Pma"
+    echoVerbose "| Executing Pma run logic"
     echoVerbose "+====================================================="
     startPhpService
 }

@@ -120,7 +120,7 @@ some [additional environment variable](https://github.com/startxfr/docker-images
 | POSTGRESQL_DATABASE       | `string` | `no`      | If present, add a new database with this name
 | LOADSQL_PATH              | `string` | `auto`    | Path used to find sql dump to import at startup
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
-| LOG_PATH                  | `auto`   | `auto`    | default set to /logs and used as a volume mountpoint
+| LOG_PATH                  | `auto`   | `auto`    | default set to /var/log/postgres and used as a volume mountpoint
 | DATA_PATH                 | `auto`   | `auto`    | default set to /data and used as a volume mountpoint
 
 ## Exposed port

@@ -7,7 +7,7 @@ function check_couchbase_environment {
         export DATA_PATH
     fi
     if [ ! -v LOG_PATH ]; then
-        LOG_PATH="/logs"
+        LOG_PATH="/var/log/couchbase"
         export LOG_PATH
     fi
 }
@@ -36,12 +36,13 @@ function couchbaseBuild {
     couchbaseInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    doCouchbaseBuild
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/assemble ]]; then
-        echoVerbose "Build source code found at $MYS2I_DEST/assemble"
+        echoVerbose "Build application logic found at $MYS2I_DEST/assemble"
         testAndRunSourceCodeScript "assemble" 
     else
-        echoVerbose "No Build source code found at $MYS2I_DEST/assemble"
+        echoVerbose "No Build application logic found at $MYS2I_DEST/assemble"
+        doCouchbaseBuild
     fi
     exit 0;
 }
@@ -49,10 +50,9 @@ function couchbaseBuild {
 # function performing Couchbase build actions
 function doCouchbaseBuild {
     doGenericBuild
-    echoNotVerbose "Build Couchbase"
-    echoVerbose ""
+    echoNotVerbose "Executing Couchbase build logic"
     echoVerbose "+====================================================="
-    echoVerbose "| Build Couchbase"
+    echoVerbose "| Executing Couchbase build logic"
     echoVerbose "+====================================================="
     initCreateDefaultDirectoryStructure
 }
@@ -67,12 +67,13 @@ function couchbasePostBuild {
     couchbaseInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    doCouchbasePostBuild
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/assemble ]]; then
-        echoVerbose "PostBuild source code found at $MYS2I_DEST/post-build"
+        echoVerbose "PostBuild application logic found at $MYS2I_DEST/post-build"
         testAndRunSourceCodeScript "post-build" 
     else
-        echoVerbose "No PostBuild source code found at $MYS2I_DEST/post-build"
+        echoVerbose "No PostBuild application logic found at $MYS2I_DEST/post-build"
+        doCouchbasePostBuild
     fi
     exit 0;
 }
@@ -80,10 +81,9 @@ function couchbasePostBuild {
 # function performing Couchbase post-build actions
 function doCouchbasePostBuild {
     doGenericPostBuild
-    echoNotVerbose "PostBuild Couchbase"
-    echoVerbose ""
+    echoNotVerbose "Executing Couchbase post-build logic"
     echoVerbose "+====================================================="
-    echoVerbose "| PostBuild Couchbase"
+    echoVerbose "| Executing Couchbase post-build logic"
     echoVerbose "+====================================================="
 }
 
@@ -97,12 +97,13 @@ function couchbasePreDeploy {
     couchbaseInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    doCouchbasePreDeploy
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/pre-deploy ]]; then
-        echoVerbose "PreDeploy source code found at $MYS2I_DEST/pre-deploy"
+        echoVerbose "PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
         testAndRunSourceCodeScript "pre-deploy" 
     else
-        echoVerbose "No PreDeploy source code found at $MYS2I_DEST/pre-deploy"
+        echoVerbose "No PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
+        doCouchbasePreDeploy
     fi
     exit 0;
 }
@@ -110,10 +111,9 @@ function couchbasePreDeploy {
 # function performing Couchbase pre-deploy actions
 function doCouchbasePreDeploy {
     doGenericPreDeploy
-    echoNotVerbose "PreDeploy Couchbase"
-    echoVerbose ""
+    echoNotVerbose "Executing Couchbase pre-deploy logic"
     echoVerbose "+====================================================="
-    echoVerbose "| PreDeploy Couchbase"
+    echoVerbose "| Executing Couchbase pre-deploy logic"
     echoVerbose "+====================================================="
 }
 
@@ -127,12 +127,13 @@ function couchbasePostDeploy {
     couchbaseInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    doCouchbasePostDeploy
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/post-deploy ]]; then
-        echoVerbose "PostDeploy source code found at $MYS2I_DEST/post-deploy"
+        echoVerbose "PostDeploy application logic found at $MYS2I_DEST/post-deploy"
         testAndRunSourceCodeScript "post-deploy" 
     else
-        echoVerbose "No PostDeploy source code found at $MYS2I_DEST/post-deploy"
+        echoVerbose "No PostDeploy application logic found at $MYS2I_DEST/post-deploy"
+        doCouchbasePostDeploy
     fi
     exit 0;
 }
@@ -140,29 +141,39 @@ function couchbasePostDeploy {
 # function performing Couchbase post-deploy actions
 function doCouchbasePostDeploy {
     doGenericPostDeploy
-    echoNotVerbose "PostDeploy Couchbase"
-    echoVerbose ""
+    echoNotVerbose "Executing Couchbase post-deploy logic"
     echoVerbose "+====================================================="
-    echoVerbose "| PostDeploy Couchbase"
+    echoVerbose "| Executing Couchbase post-deploy logic"
     echoVerbose "+====================================================="
 }
 
 function couchbaseRun {
     genericHeader
+    echoNotVerbose "container $HOSTNAME executing Couchbase RUN"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME is RUNNING"
-    echoNotVerbose "container $HOSTNAME is RUNNING"
+    echoVerbose "| Container $HOSTNAME executing Couchbase RUN"
     echoVerbose "| "
     couchbaseInformation "| "
+    echoDebug `env`
     echoVerbose "+====================================================="
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/run ]]; then
-        echoVerbose "Run source code found at $MYS2I_DEST/run"
+        echoVerbose "Run application logic found at $MYS2I_DEST/run"
         testAndRunSourceCodeScript "run" 
     else
-        echoVerbose "No Run source code found at $MYS2I_DEST/run"
+        echoVerbose "No Run application logic found at $MYS2I_DEST/run"
         echoVerbose "Executing default Couchbase run action"
-        startCouchbaseService
+        doCouchbaseRun
     fi
+}
+
+# function performing Couchbase run actions
+function doCouchbaseRun {
+    echoNotVerbose "Executing Couchbase run logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Couchbase run logic"
+    echoVerbose "+====================================================="
+    startCouchbaseService
 }
 
 # Display liveness status
@@ -175,15 +186,9 @@ function couchbaseIsReady {
     genericIsReady
 }
 
-function stop_couchbase_handler {
+function stopCouchbaseHandler {
     /opt/couchbase/bin/couchbase-server -k
-    echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME is now STOPPED"
-    echoNotVerbose "container is now stopped"
-    echoVerbose "| "
-    couchbaseInformation "| "
-    echoVerbose "+====================================================="
-    exit 143; # 128 + 15 -- SIGTERM
+    stopDaemon
 }
 
 # Start the couchbase server as a deamon and execute it inside 
@@ -192,7 +197,10 @@ function startCouchbaseService {
     exec 2>&1
     cd $DATA_PATH
     initCreateDefaultDirectoryStructure
-    trap 'stop_couchbase_handler;' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
+    trap 'stopCouchbaseHandler' SIGHUP SIGINT SIGQUIT SIGILL SIGABRT SIGTRAP SIGBUS SIGUSR1 SIGUSR2 SIGFPE SIGPIPE SIGALRM SIGSTOP
+    trap 'killDaemon kill 9' SIGKILL
+    trap 'killDaemon term 15' SIGTERM
+    trap 'killDaemon sys 31' SIGSYS
     exec /opt/couchbase/bin/couchbase-server -- -kernel global_enable_tracing false -noinput
     sleep 10
 }

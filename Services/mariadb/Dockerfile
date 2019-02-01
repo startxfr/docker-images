@@ -10,7 +10,7 @@ ENV SX_VERSION="latest" \
     SX_SUMMARY="Startx mariadb service based on fedora rawhide" \
     MY_CONF=/etc/my.cnf \
     DATA_PATH=/data \
-    LOG_PATH=/logs \
+    LOG_PATH=/var/log/mariadb \
     LOADSQL_PATH=/tmp/sql 
 
 LABEL name="$SX_ID" \
