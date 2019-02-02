@@ -10,6 +10,8 @@ S2I_DEST=$SX_S2IDIR/src
 MYS2I_DEST=/tmp/mys2i
 # timeout when stopping daemon properly (in seconds)
 DAEMON_STOP_TIMEOUT=3
+# interval for daemon log trace (in seconds)
+DAEMON_START_INTERVAL=10
 
 # use xterm and set current PID
 export TERM=xterm
@@ -435,7 +437,7 @@ function startDaemon {
     while true; do
         echoVerbose "$HOSTNAME is alive and running $SX_ID:$SX_VERSION ($OS)"
         echoNotVerbose "$HOSTNAME is alive"
-        sleep 10
+        sleep $DAEMON_START_INTERVAL
     done
 }
 
