@@ -1,13 +1,8 @@
-[![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
-
-
-xx
-
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
 # Docker OS Images : FEDORA
 
-Simple container used for all startx based services and applications published in [Dockerhub registry](https://hub.docker.com/u/startx). 
+Startx fedora is a base container used for all startx services and applications published in [Dockerhub registry](https://hub.docker.com/u/startx). 
 This container contain :
 - fedora system envelope
 - core OS rpm (kernel, libs) updated every week
