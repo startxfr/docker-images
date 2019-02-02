@@ -1,5 +1,16 @@
 [![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
+
+xx
+
+<img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
+
+xxssss
+
+[![startxfr/docker-images](<img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">)](https://github.com/startxfr/docker-images)
+
+
+
 # Docker OS Images : FEDORA
 
 Simple container used for all startx based services and applications published in [Dockerhub registry](https://hub.docker.com/u/startx). 
@@ -177,14 +188,8 @@ FROM startx/fedora:latest
 | SX_DEBUG                  | `bool`   | `no`            | Display debug informations during execution
 | APP_PATH                  | `string` | `/app`          | Path to the application
 | SX_S2IDIR                 | `string` | `/tmp`          | Destination path to the application pushed via s2i process
-| DAEMON_STOP_TIMEOUT       | `int`    | 3               | Number of second before stopping when swooth shutdown signal is received
+| DAEMON_STOP_TIMEOUT       | `int`    | 3               | Number of second before stopping when smooth shutdown signal is received
 | DAEMON_START_INTERVAL     | `int`    | 10              | Hearthbeat rythm (in second) for the startx default daemeon
-
-
-## timeout when stopping daemon properly (in seconds)
-#DAEMON_STOP_TIMEOUT=3
-## interval for daemon log trace (in seconds)
-#DAEMON_START_INTERVAL=10
 
 
 ## For advanced users
