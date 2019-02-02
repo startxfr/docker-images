@@ -311,7 +311,7 @@ echoVerbose "+====================================================="
 displayInformation "| "
 echoDebug `env`
 echoVerbose "+====================================================="
-cat <<EOF
+cat << "EOF"
 
 Startx builder container to use with s2i or openshift
 
