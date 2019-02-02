@@ -2,7 +2,7 @@
 kind: Template
 apiVersion: v1
 metadata:
-  name: startx-os-fedora-template
+  name: startx-os-fedora-deploy-template
   annotations:
     openshift.io/display-name: Startx Base OS (fedora)
     description: Minimal Fedora OS container for bash operations
@@ -131,7 +131,7 @@ objects:
         labels:
           app: "${APP_NAME}"
           provider: startx
-          template: startx-os-fedora-template
+          template: startx-os-fedora-deploy-template
           deploymentconfig: "${APP_NAME}"
         annotations:
           openshift.io/generated-by: STARTX
