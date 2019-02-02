@@ -163,7 +163,7 @@ function startPhpService {
       echoVerbose "starting php-fpm process"
       /usr/sbin/php-fpm -D
     elif [[ -x /usr/sbin/php-fpm7 ]]; then
-      echoVerbose "starting php-fpm process"
+      echoVerbose "starting php-fpm7 process"
       /usr/sbin/php-fpm7 -D
     fi;
     touch /var/log/php-fpm/error.log

@@ -16,7 +16,7 @@ function check_mariadb_environment {
     fi
 }
 
-function mysqlInformation {
+function mariadbInformation {
     displayInformation $1
     echoVerbose $1 "version   : $SX_VERSION"
     echoVerbose $1 "engine    : $(mysql -V | head -1)"
@@ -26,7 +26,7 @@ function mysqlInformation {
 }
 
 function displayMysqlRunInformation {
-    mysqlInformation $1
+    mariadbInformation $1
     echoVerbose $1 "admin     : root:$MYSQL_ROOT_PASSWORD"
     echo $1 "user      : $MYSQL_USER:$MYSQL_PASSWORD"
     echo $1 "database  : $MYSQL_DATABASE"
@@ -40,7 +40,7 @@ function mysqlBuild {
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME executing Mysql BUILD"
     echoVerbose "| "
-    mysqlInformation "| "
+    mariadbInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
     echoVerbose ""
@@ -49,13 +49,13 @@ function mysqlBuild {
         testAndRunSourceCodeScript "assemble" 
     else
         echoVerbose "No Build application logic found at $MYS2I_DEST/assemble"
-        doMysqlBuild
+        doMariadbBuild
     fi
     exit 0;
 }
 
 # function performing Mysql build actions
-function doMysqlBuild {
+function doMariadbBuild {
     doGenericBuild
     echoNotVerbose "Executing Mariadb build logic"
     echoVerbose "+====================================================="
@@ -68,13 +68,13 @@ function doMysqlBuild {
 }
 
 # function executed when post-build hook is called
-function mysqlPostBuild {
+function mariadbPostBuild {
     genericHeader
     echoNotVerbose "container $HOSTNAME executing Mysql POST-BUILD"
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME executing Mysql POST-BUILD"
     echoVerbose "| "
-    mysqlInformation "| "
+    mariadbInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
     echoVerbose ""
@@ -83,13 +83,13 @@ function mysqlPostBuild {
         testAndRunSourceCodeScript "post-build" 
     else
         echoVerbose "No PostBuild application logic found at $MYS2I_DEST/post-build"
-        doMysqlPostBuild
+        doMariadbPostBuild
     fi
     exit 0;
 }
 
 # function performing Mysql post-build actions
-function doMysqlPostBuild {
+function doMariadbPostBuild {
     doGenericPostBuild
     echoNotVerbose "Executing Mariadb post-build logic"
     echoVerbose "+====================================================="
@@ -98,13 +98,13 @@ function doMysqlPostBuild {
 }
 
 # function executed when pre-deploy hook is called
-function mysqlPreDeploy {
+function mariadbPreDeploy {
     genericHeader
     echoNotVerbose "container $HOSTNAME executing Mysql PRE-DEPLOY"
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME executing Mysql PRE-DEPLOY"
     echoVerbose "| "
-    mysqlInformation "| "
+    mariadbInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
     echoVerbose ""
@@ -113,13 +113,13 @@ function mysqlPreDeploy {
         testAndRunSourceCodeScript "pre-deploy" 
     else
         echoVerbose "No PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
-        doMysqlPreDeploy
+        doMariadbPreDeploy
     fi
     exit 0;
 }
 
 # function performing Mysql pre-deploy actions
-function doMysqlPreDeploy {
+function doMariadbPreDeploy {
     doGenericPreDeploy
     echoNotVerbose "Executing Mariadb pre-deploy logic"
     echoVerbose "+====================================================="
@@ -128,13 +128,13 @@ function doMysqlPreDeploy {
 }
 
 # function executed when post-deploy hook is called
-function mysqlPostDeploy {
+function mariadbPostDeploy {
     genericHeader
     echoNotVerbose "container $HOSTNAME executing Mysql POST-DEPLOY"
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME executing Mysql POST-DEPLOY"
     echoVerbose "| "
-    mysqlInformation "| "
+    mariadbInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
     echoVerbose ""
@@ -143,13 +143,13 @@ function mysqlPostDeploy {
         testAndRunSourceCodeScript "post-deploy" 
     else
         echoVerbose "No PostDeploy application logic found at $MYS2I_DEST/post-deploy"
-        doMysqlPostDeploy
+        doMariadbPostDeploy
     fi
     exit 0;
 }
 
 # function performing Mysql post-deploy actions
-function doMysqlPostDeploy {
+function doMariadbPostDeploy {
     doGenericPostDeploy
     echoNotVerbose "Executing Mariadb post-deploy logic"
     echoVerbose "+====================================================="
@@ -159,13 +159,13 @@ function doMysqlPostDeploy {
 }
 
 # function executed on container startup
-function mysqlRun {
+function mariadbRun {
     genericHeader
     echoNotVerbose "container $HOSTNAME executing Mysql RUN"
     echoVerbose "+====================================================="
     echoVerbose "| Container $HOSTNAME executing Mysql RUN"
     echoVerbose "| "
-    mysqlInformation "| "
+    mariadbInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
     echoVerbose ""
@@ -175,12 +175,12 @@ function mysqlRun {
     else
         echoVerbose "No Run application logic found at $MYS2I_DEST/run"
         echoVerbose "Executing default Mysql run action"
-        doMysqlRun
+        doMariadbRun
     fi
 }
 
 # function performing Mysql run actions
-function doMysqlRun {
+function doMariadbRun {
     echoNotVerbose "Executing Mariadb run logic"
     echoVerbose "+====================================================="
     echoVerbose "| Executing Mariadb run logic"
@@ -190,7 +190,7 @@ function doMysqlRun {
 }
 
 # Display liveness status
-function mysqlIsLive {
+function mariadbIsLive {
     R=`mysql -h 127.0.0.1 -u root -p$MYSQL_ROOT_PASSWORD -e 'SELECT 1'`
     if [ "$?" = "0" ]; then
       echo "OK";
@@ -202,7 +202,7 @@ function mysqlIsLive {
 }
 
 # Display readyness status
-function mysqlIsReady {
+function mariadbIsReady {
     genericIsReady
 }
 

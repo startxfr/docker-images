@@ -224,6 +224,7 @@ function startApacheService {
     trap 'killDaemon kill 9' SIGKILL
     trap 'killDaemon term 15' SIGTERM
     trap 'killDaemon sys 31' SIGSYS
+    preStartApacheService
     exec /usr/sbin/httpd -D FOREGROUND > $LOG_PATH/access.log &
     while true
     do
