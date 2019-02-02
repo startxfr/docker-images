@@ -13,7 +13,9 @@ ENV SX_VERSION="latest" \
     APP_PATH="/app" \
     LOG_PATH=/var/log/sx \
     SX_S2IDIR="/tmp" \
-    SX_LIBDIR="/var/lib/sx"
+    SX_LIBDIR="/var/lib/sx" \
+    DAEMON_STOP_TIMEOUT=3 \
+    DAEMON_START_INTERVAL=10
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
