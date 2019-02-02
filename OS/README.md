@@ -1,3 +1,8 @@
+[![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
+
+
+xx
+
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
 # Docker OS Images : FEDORA
@@ -19,6 +24,7 @@ You can use Startx Fedora image in many ways :
 - Add to your openshift service catalog an [application builder template](#openshift-builder-template)
 - Add to your openshift service catalog an [application deployement template](#openshift-deploy-template)
 
+See more applications builders and sample on [startx docker images repository](https://github.com/startxfr/docker-images/blob/master)
 
 [![Dockerhub Registry](https://img.shields.io/docker/build/startx/fedora.svg)](https://hub.docker.com/r/startx/fedora) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/OS/) [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
 
