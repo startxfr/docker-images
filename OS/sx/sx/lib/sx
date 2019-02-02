@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # STARTX library release
-SXLIB_VERSION="0.3.9999"
+SXLIB_VERSION="0.3.99999"
 # operating system name
 OS=`cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g'`
 # directory receiving S2I source code
@@ -112,6 +112,8 @@ function genericBuild {
     displayInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
+    echoVerbose ""
+    doInitS2iApp
     if [[ -x $MYS2I_DEST/assemble ]]; then
         echoVerbose "Build application logic found at $MYS2I_DEST/assemble"
         testAndRunSourceCodeScript "assemble" 
@@ -122,22 +124,22 @@ function genericBuild {
     exit 0;
 }
 
+# function for loading applicaiton and s2i logic
+function doInitS2iApp {
+    if [[ -r $S2I_DEST ]]; then
+      echoVerbose "Application found in $S2I_DEST directory"
+      moveSourceCode $S2I_DEST $APP_PATH
+    else
+        echoVerbose "No application found in $S2I_DEST directory"
+    fi;
+}
+
 # function performing OS build actions
 function doGenericBuild {
     echoNotVerbose "Executing default OS build logic on $OS"
-    echoVerbose ""
     echoVerbose "+====================================================="
     echoVerbose "| Executing default OS build logic on $OS"
     echoVerbose "+====================================================="
-    if [[ -r $S2I_DEST ]]; then
-      echoVerbose "Source code found in $S2I_DEST directory"
-      echoVerbose "Fixing perm on $S2I_DEST"
-      chgrp 0 -R $S2I_DEST  2> /dev/null
-      chmod g=u -R $S2I_DEST 2> /dev/null
-      moveSourceCode $S2I_DEST $APP_PATH
-    else
-        echoVerbose "No application logic found in $S2I_DEST directory"
-    fi;
 }
 
 # function executed when post-build hook is called
@@ -150,6 +152,7 @@ function genericPostBuild {
     displayInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/post-build ]]; then
         echoVerbose "PostBuild application logic found at $MYS2I_DEST/post-build"
         testAndRunSourceCodeScript "post-build" 
@@ -163,7 +166,6 @@ function genericPostBuild {
 # function performing OS post-build actions
 function doGenericPostBuild {
     echoNotVerbose "Executing default OS post-build logic on $OS"
-    echoVerbose ""
     echoVerbose "+====================================================="
     echoVerbose "| Executing default OS post-build logic on $OS"
     echoVerbose "+====================================================="
@@ -179,6 +181,7 @@ function genericPreDeploy {
     displayInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/pre-deploy ]]; then
         echoVerbose "PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
         testAndRunSourceCodeScript "pre-deploy" 
@@ -192,7 +195,6 @@ function genericPreDeploy {
 # function performing OS pre-deploy actions
 function doGenericPreDeploy {
     echoNotVerbose "Executing default OS pre-deploy logic on $OS"
-    echoVerbose ""
     echoVerbose "+====================================================="
     echoVerbose "| Executing default OS pre-deploy logic on $OS"
     echoVerbose "+====================================================="
@@ -208,6 +210,7 @@ function genericPostDeploy {
     displayInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/post-deploy ]]; then
         echoVerbose "PostDeploy application logic found at $MYS2I_DEST/post-deploy"
         testAndRunSourceCodeScript "post-deploy" 
@@ -221,7 +224,6 @@ function genericPostDeploy {
 # function performing OS post-deploy actions
 function doGenericPostDeploy {
     echoNotVerbose "Executing default OS post-deploy logic on $OS"
-    echoVerbose ""
     echoVerbose "+====================================================="
     echoVerbose "| Executing default OS post-deploy logic on $OS"
     echoVerbose "+====================================================="
@@ -237,6 +239,7 @@ function genericRun {
     displayInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/run ]]; then
         echoVerbose "Run application logic found at $MYS2I_DEST/run"
         testAndRunSourceCodeScript "run" 
@@ -253,7 +256,6 @@ function genericRun {
 # function performing OS run actions
 function doGenericRun {
     echoNotVerbose "Executing default OS run logic on $OS"
-    echoVerbose ""
     echoVerbose "+====================================================="
     echoVerbose "| Executing default OS run logic on $OS"
     echoVerbose "+====================================================="

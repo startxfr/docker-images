@@ -33,6 +33,7 @@ function memcacheBuild {
     echoDebug `env`
     echoVerbose "+====================================================="
     echoVerbose ""
+    doInitS2iApp
     if [[ -x $MYS2I_DEST/assemble ]]; then
         echoVerbose "Build application logic found at $MYS2I_DEST/assemble"
         testAndRunSourceCodeScript "assemble" 
