@@ -3,17 +3,20 @@
 # Docker OS Images : FEDORA
 
 Simple container used for all startx based services and applications published in [Dockerhub registry](https://github.com/startxfr/docker-images). 
-This container contain updated core OS rpm (kernel, libs,...) as well as usefull tools like pwgen, tar, zip, psmisc, procps, coreutils, findutils, wget.
+This container contain :
+- core OS rpm (kernel, libs) updated every week
+- fundamentals tools (ex: pwgen, tar, zip) updated every week
+- usefull tools (psmisc, procps, coreutils, findutils, wget, curl, vi, bash-completion) only for the `:latest` flavour.
 
 You can use Startx Fedora image in many ways :
 - Build container based image application with [s2i builder technology](#using-this-image-as-s2i-builder)
 - Build container based image application with [openshift builder image capacity](#using-this-image-as-openshift-build-image)
-- Build personalized base image [with docker tools](#using-this-image-as-base-container))
-- Run as simple and lightweiht OS container [with docker daemon](#running-using-docker))
-- Run a minimal container app  [with docker-compose](#running-using-docker-compose))
+- Build personalized base image [with docker tools](#using-this-image-as-base-container)
+- Run as simple and lightweiht OS container [with docker daemon](#running-using-docker)
+- Run a minimal container app  [with docker-compose](#running-using-docker-compose)
 - Enrich you openshift service catalog with [flavoured images streams](#openshift-images-streams)
-- Add to your openshift service catalog a [application builder template](#openshift-builder-template)
-- Add to your openshift service catalog a [application deployement template](#openshift-deploy-template)
+- Add to your openshift service catalog an [application builder template](#openshift-builder-template)
+- Add to your openshift service catalog an [application deployement template](#openshift-deploy-template)
 
 [![Dockerhub Registry](https://img.shields.io/docker/build/startx/fedora.svg)](https://hub.docker.com/r/startx/fedora) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/OS/) [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
 
@@ -61,14 +64,15 @@ docker-compose logs
 Openshift cluster administrator can offer this image and all its flavour to all consumers.
 You can import our [openshift builder stream](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) 
 in your `openshift` project.
+
 You must be cluster-admin to add this image to the `openshift` project. If not, you can add it to your own 
-project (skip the `oc project openshift` command)
+project (skip the `oc project openshift` command in the next script)
 
 ```bash
-# import image streams
+# swith to the openshift project
 oc project openshift
+# Add image streams to the service catalog (project or cluster-wide scope)
 oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml
-# import images stream and add to the default catalog (project or cluster-wide scope)
 ```
 
 #### Openshift builder template
@@ -76,14 +80,15 @@ oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/OS/
 Openshift cluster administrator can add a build and deploy template to their consumers.
 As an administrator, you can import our [openshift builder template](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) 
 in your `openshift` project.
+
 You must be cluster-admin to add this image to the `openshift` project. If not, you can add it to your own 
-project (skip the `oc project openshift` command)
+project (skip the `oc project openshift` command in the next script)
 
 ```bash
-# import image streams
+# swith to the openshift project
 oc project openshift
+# Add this template to the service catalog (project or cluster-wide scope)
 oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml
-# import builder template (and builder image stream) and add to the default catalog (project or cluster-wide scope)
 ```
 
 You can then build an application
@@ -101,14 +106,15 @@ oc process -f startx-os-fedora-build-template \
 Openshift cluster administrator can add a deploy template to their consumers.
 As an administrator, you can import our [openshift deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml) 
 in your `openshift` project.
+
 You must be cluster-admin to add this image to the `openshift` project. If not, you can add it to your own 
-project (skip the `oc project openshift` command)
+project (skip the `oc project openshift` command in the next script)
 
 ```bash
-# import image streams
+# swith to the openshift project
 oc project openshift
+# Add this template to the service catalog (project or cluster-wide scope)
 oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml
-# import deploy template (and image stream) and add to the default catalog (project or cluster-wide scope)
 ```
 
 You can then deploy an application
@@ -123,7 +129,21 @@ oc process -f startx-os-fedora-deploy-template \
 
 ### Using this image as S2I builder
 
-You can use this image as an s2i builder image
+Create your local project (skip if you already are in a project diretory with a `run` bash script)
+```bash
+# Create a project directory
+mkdir project
+cd project
+# create a run script
+cat << "EOF"
+#!/bin/bash -e
+source $SX_LIBDIR/sx
+startDaemon
+EOF > run
+chmod ug+x run
+```
+
+Then you can use this image as an s2i builder image
 ```bash
 # With your current directory application code
 s2i build . startx/fedora:latest startx-bash-myapp
@@ -135,7 +155,7 @@ docker run --rm -i -t startx-bash-sample
 
 ### Using this image as base container
 
-You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
+You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 ```Dockerfile
 FROM startx/fedora:latest
 #... your container specifications
@@ -158,27 +178,27 @@ FROM startx/fedora:latest
 
 ## For advanced users
 
-You you want to use this container and code to build and create locally this container. You can follow theses instructions to setup and working environment.
+You can contribute or start this container initiative locally. 
+[Follow theses instructions](https://github.com/startxfr/docker-images#setup-your-working-environment-mandatory) to setup a working environment.
 
 This section will help you if you want to :
-* Get latest version of this container OS
-* Enhance container content by adding instruction in Dockefile before build step
+* Get latest version of this container OS source code
+* Enhance and share your container improvement by adding instruction in Dockefile
 
-You must have a working environment with the source code of this repository. Read and follow [how to setup your working environment](https://github.com/startxfr/docker-images#setup-your-working-environment-mandatory) to get a working directory. The following instructions assume you are at the top level of your working directory.
 
 ### Build & run a container using `docker`
 
 1. Jump into the container directory with `cd OS`
 2. Build the container using `docker build -t fedora .`
 3. Run this container 
-  1. Interactively with `docker run -it fedora`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -d fedora`
+   - Interactively with `docker run -it fedora`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+   - As a daemon with `docker run -d fedora`
 
 
 ### Build & run a container using `docker-compose`
 
 1. Jump into the container directory with `cd OS`
 2. Run this container 
-  1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
-  2. As a daemon with `docker-compose up -d`. Container startup logs can be read using `docker-compose logs`
+   - Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
+   - As a daemon with `docker-compose up -d`. Container startup logs can be read using `docker-compose logs`
 
