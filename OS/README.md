@@ -1,15 +1,4 @@
-[![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
-
-
-xx
-
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
-
-xxssss
-
-[![startxfr/docker-images](<img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">)](https://github.com/startxfr/docker-images)
-
-
 
 # Docker OS Images : FEDORA
 
