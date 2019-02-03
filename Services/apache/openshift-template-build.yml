@@ -1,7 +1,7 @@
 kind: Template
 apiVersion: v1
 metadata:
-  name: startx-os-fedora-build-template
+  name: startx-sv-apache-build-template
   annotations:
     openshift.io/display-name: Startx Base OS (fedora)
     description: Minimal Fedora OS container for bash operations
@@ -21,7 +21,7 @@ message: |-
   Source      : ${SOURCE_GIT}
   action      : ${RUN_ACTION}
 labels:
-  template: startx-os-fedora-build-template
+  template: startx-sv-apache-build-template
   provider: startx 
 objects:
 - kind: ImageStream
@@ -43,7 +43,7 @@ objects:
         tags: builder,startx,fedora
         supports: fedora
         version: latest
-        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
       from:
         kind: DockerImage
         name: startx/fedora:latest
@@ -196,7 +196,7 @@ objects:
         labels:
           app: "${APP_NAME}"
           provider: startx
-          template: startx-os-fedora-build-template
+          template: startx-sv-apache-build-template
           deploymentconfig: "${APP_NAME}"
         annotations:
           openshift.io/generated-by: STARTX
@@ -261,7 +261,7 @@ parameters:
 - name: SOURCE_GIT
   displayName: Source repository
   description: URL to the source code to use during build process
-  value: https://github.com/startxfr/docker-images-example-bash.git
+  value: https://github.com/startxfr/docker-images-example-apache.git
   required: true
 - name: SOURCE_BRANCH
   displayName: Source branch

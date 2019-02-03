@@ -26,7 +26,7 @@ items:
         tags: builder,startx,fedora
         supports: fedora
         version: fc26
-        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
       from:
         kind: DockerImage
         name: startx/fedora:26
@@ -38,7 +38,7 @@ items:
         tags: builder,startx,fedora
         supports: fedora
         version: fc27
-        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
       from:
         kind: DockerImage
         name: startx/fedora:27
@@ -50,7 +50,7 @@ items:
         tags: builder,startx,fedora
         supports: fedora
         version: fc28
-        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
       from:
         kind: DockerImage
         name: startx/fedora:28
@@ -62,7 +62,7 @@ items:
         tags: builder,startx,fedora
         supports: fedora
         version: fc29
-        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
       from:
         kind: DockerImage
         name: startx/fedora:29
@@ -74,7 +74,7 @@ items:
         tags: builder,startx,fedora
         supports: fedora
         version: fc30
-        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
       from:
         kind: DockerImage
         name: startx/fedora:30
@@ -86,7 +86,7 @@ items:
         tags: builder,startx,fedora
         supports: fedora
         version: rawhide
-        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
       from:
         kind: DockerImage
         name: startx/fedora:latest
@@ -98,7 +98,7 @@ items:
         tags: builder,startx,centos
         supports: centos
         version: '7'
-        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
       from:
         kind: DockerImage
         name: startx/centos:7
@@ -110,7 +110,7 @@ items:
         tags: builder,startx,centos
         supports: centos
         version: '6'
-        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
       from:
         kind: DockerImage
         name: startx/centos:6
@@ -122,7 +122,7 @@ items:
         tags: builder,startx,alpine
         supports: alpine
         version: '3'
-        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
       from:
         kind: DockerImage
         name: startx/alpine:3
@@ -133,7 +133,7 @@ items:
         iconClass: icon-beaker
         tags: builder,startx,fedora
         supports: fedora
-        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
       from:
         kind: ImageStreamTag
         name: rawhide
