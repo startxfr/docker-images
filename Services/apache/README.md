@@ -14,7 +14,7 @@ You can use Startx Apache image in many ways :
 - Build container based image application with [s2i builder technology](#using-this-image-as-s2i-builder)
 - Build container based image application with [openshift builder image capacity](#using-this-image-as-openshift-build-image)
 - Build personalized base image [with docker tools](#using-this-image-as-base-container)
-- Run as simple and lightweiht OS container [with docker daemon](#running-using-docker)
+- Run as simple and lightweiht webserver [with docker daemon](#running-using-docker)
 - Run a minimal container app  [with docker-compose](#running-using-docker-compose)
 - Enrich you openshift service catalog with [flavoured images streams](#openshift-images-streams)
 - Add to your openshift service catalog an [application builder template](#openshift-builder-template)
@@ -47,7 +47,12 @@ See more applications builders and sample on [startx docker images repository](h
 ### Running using docker
 
 ```bash
-docker run -it --name="example-apache" startx/sv-apache
+docker run -it -p 9201:8080 --name="example-apache" startx/sv-apache
+```
+
+* Connect to your local application
+```bash
+firefox http://localhost:9201
 ```
 
 ### Running using docker-compose
@@ -57,11 +62,19 @@ docker run -it --name="example-apache" startx/sv-apache
 apache:
   image: startx/sv-apache:latest
   container_name: "example-apache"
+  ports:
+    - "9201:8080"
 ```
+
 * Execute the following command
 ```bash
 docker-compose up -d
 docker-compose logs
+```
+
+* Connect to your local application
+```bash
+firefox http://localhost:9201
 ```
 
 ### Using this image as Openshift Build image
@@ -151,10 +164,10 @@ Then you can use this image as an s2i builder image
 ```bash
 # With your current directory application code
 s2i build . startx/sv-apache:latest startx-apache-myapp
-docker run --rm -i -t startx-apache-myapp
+docker run --rm -d -p 9201:8080 startx-apache-myapp
 # With startx application sample code repository
 s2i build https://github.com/startxfr/docker-images-example-apache startx/sv-apache startx-apache-sample
-docker run --rm -i -t startx-apache-sample
+docker run --rm -d -p 9201:8080 startx-apache-sample
 ```
 
 ### Using this image as base container
@@ -197,7 +210,7 @@ This section will help you if you want to :
 2. Build the container using `docker build -t startx-apache .`
 3. Run this container 
    - Interactively with `docker run -it startx-apache`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-   - As a daemon with `docker run -d startx-apache`
+   - As a daemon with `docker run -d -p 9201:8080 startx-apache`
 
 
 ### Build & run a container using `docker-compose`

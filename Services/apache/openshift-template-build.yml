@@ -217,6 +217,9 @@ objects:
           args:
           - run
           resources: {}
+          ports:
+          - containerPort: 8080
+            protocol: TCP
           livenessProbe:
             exec:
               command:
