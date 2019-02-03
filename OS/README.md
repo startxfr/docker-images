@@ -43,7 +43,7 @@ See more applications builders and sample on [startx docker images repository](h
 ### Running using docker
 
 ```bash
-docker run -it --name="fedora" startx/fedora
+docker run -it --name="example-fedora" startx/fedora
 ```
 
 ### Running using docker-compose
@@ -52,7 +52,7 @@ docker run -it --name="fedora" startx/fedora
 ```yaml
 fedora:
   image: startx/fedora:latest
-  container_name: "os-fedora"
+  container_name: "example-fedora"
 ```
 * Execute the following command
 ```bash
@@ -96,8 +96,8 @@ oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/OS/
 
 You can then build an application
 ```bash
-# create a test project
-oc new-project test
+# create a example project
+oc new-project example
 # start a new application
 oc process -f startx-os-fedora-build-template \
     -p APP_NAME=myapp \
@@ -122,8 +122,8 @@ oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/OS/
 
 You can then deploy an application
 ```bash
-# create a test project
-oc new-project test
+# create a example project
+oc new-project example
 # start a new application
 oc process -f startx-os-fedora-deploy-template \
     -p APP_NAME=myapp \
@@ -135,8 +135,8 @@ oc process -f startx-os-fedora-deploy-template \
 Create your local project (skip if you already are in a project diretory with a `run` bash script)
 ```bash
 # Create a project directory
-mkdir project
-cd project
+mkdir example-project
+cd example-project
 # create a run script
 cat << "EOF"
 #!/bin/bash -e
@@ -195,10 +195,10 @@ This section will help you if you want to :
 ### Build & run a container using `docker`
 
 1. Jump into the container directory with `cd OS`
-2. Build the container using `docker build -t fedora .`
+2. Build the container using `docker build -t startx-fedora .`
 3. Run this container 
-   - Interactively with `docker run -it fedora`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-   - As a daemon with `docker run -d fedora`
+   - Interactively with `docker run -it startx-fedora`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+   - As a daemon with `docker run -d startx-fedora`
 
 
 ### Build & run a container using `docker-compose`

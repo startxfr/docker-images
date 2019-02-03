@@ -7,6 +7,7 @@ This container contain :
 - fedora system envelope
 - core OS rpm (kernel, libs) updated every week
 - fundamentals tools (ex: pwgen, tar, zip) updated every week
+- Apache webserver and fundamentals modules (apache release depend on the flavour you use, read down for more information)
 - usefull tools (psmisc, procps, coreutils, findutils, wget, curl, vi, bash-completion) only for the `:latest` and `:devel` flavour.
 
 You can use Startx Apache image in many ways :
@@ -21,32 +22,32 @@ You can use Startx Apache image in many ways :
 
 See more applications builders and sample on [startx docker images repository](https://github.com/startxfr/docker-images/blob/master)
 
-[![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-apache.svg)](https://hub.docker.com/r/startx/sv-apache) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/OS/) [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
+[![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-apache.svg)](https://hub.docker.com/r/startx/sv-apache) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/apache/) [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
 
 ## Container flavours
 
 | Docker Hub repository                                                   | Openshift                                                                                                                                                                                                                                                                                                                                     | Docker-compose                                                                                     | Fedora distribution                        
 |-------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|---------------------
-| [`startx/sv-apache:latest`](https://hub.docker.com/r/startx/sv-apache)  | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml)  | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora 30
-| [`startx/sv-apache:30`](https://hub.docker.com/r/startx/sv-apache)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml)  | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora 30 
-| [`startx/sv-apache:29`](https://hub.docker.com/r/startx/sv-apache)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml)  | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora 29
-| [`startx/sv-apache:28`](https://hub.docker.com/r/startx/sv-apache)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml)  | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora 28 
-| [`startx/sv-apache:27`](https://hub.docker.com/r/startx/sv-apache)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml)  | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora 27
-| [`startx/sv-apache:26`](https://hub.docker.com/r/startx/sv-apache)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml)  | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora 26 
+| [`startx/sv-apache:latest`](https://hub.docker.com/r/startx/sv-apache)  | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-deploy.yml)  | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/docker-compose.yml) | Fedora 30
+| [`startx/sv-apache:30`](https://hub.docker.com/r/startx/sv-apache)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-deploy.yml)  | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/docker-compose.yml) | Fedora 30 
+| [`startx/sv-apache:29`](https://hub.docker.com/r/startx/sv-apache)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-deploy.yml)  | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/docker-compose.yml) | Fedora 29
+| [`startx/sv-apache:28`](https://hub.docker.com/r/startx/sv-apache)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-deploy.yml)  | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/docker-compose.yml) | Fedora 28 
+| [`startx/sv-apache:27`](https://hub.docker.com/r/startx/sv-apache)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-deploy.yml)  | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/docker-compose.yml) | Fedora 27
+| [`startx/sv-apache:26`](https://hub.docker.com/r/startx/sv-apache)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-deploy.yml)  | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/docker-compose.yml) | Fedora 26 
 | [`startx/sv-apache:23`](https://hub.docker.com/r/startx/sv-apache)      | **N/A**                                                                                                                                                                                                                                                                                                                                       | **N/A**                                                                                            | Fedora 23
 | [`startx/sv-apache:22`](https://hub.docker.com/r/startx/sv-apache)      | **N/A**                                                                                                                                                                                                                                                                                                                                       | **N/A**                                                                                            | Fedora 22
 | [`startx/sv-apache:21`](https://hub.docker.com/r/startx/sv-apache)      | **N/A**                                                                                                                                                                                                                                                                                                                                       | **N/A**                                                                                            | Fedora 21
 | [`startx/sv-apache:20`](https://hub.docker.com/r/startx/sv-apache)      | **N/A**                                                                                                                                                                                                                                                                                                                                       | **N/A**                                                                                            | Fedora 20
-| [`startx/sv-apache:centos7`](https://hub.docker.com/r/startx/sv-apache) | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml)  | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Centos 7
-| [`startx/sv-apache:centos6`](https://hub.docker.com/r/startx/sv-apache) | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml)  | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Centos 6
-| [`startx/sv-apache:alpine3`](https://hub.docker.com/r/startx/sv-apache) | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml)  | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Alpine 3
+| [`startx/sv-apache:centos7`](https://hub.docker.com/r/startx/sv-apache) | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-deploy.yml)  | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/docker-compose.yml) | Centos 7
+| [`startx/sv-apache:centos6`](https://hub.docker.com/r/startx/sv-apache) | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-deploy.yml)  | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/docker-compose.yml) | Centos 6
+| [`startx/sv-apache:alpine3`](https://hub.docker.com/r/startx/sv-apache) | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-deploy.yml)  | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/docker-compose.yml) | Alpine 3
 
 ## Running this image
 
 ### Running using docker
 
 ```bash
-docker run -it --name="fedora" startx/sv-apache
+docker run -it --name="example-apache" startx/sv-apache
 ```
 
 ### Running using docker-compose
@@ -55,7 +56,7 @@ docker run -it --name="fedora" startx/sv-apache
 ```yaml
 apache:
   image: startx/sv-apache:latest
-  container_name: "sv-apache"
+  container_name: "example-apache"
 ```
 * Execute the following command
 ```bash
@@ -68,7 +69,7 @@ docker-compose logs
 #### Openshift images streams
 
 Openshift cluster administrator can offer this image and all its flavour to all consumers.
-You can import our [openshift builder stream](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) 
+You can import our [openshift builder stream](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-imageStreams.yml) 
 in your `openshift` project.
 
 You must be cluster-admin to add this image to the `openshift` project. If not, you can add it to your own 
@@ -78,13 +79,13 @@ project (skip the `oc project openshift` command in the next script)
 # swith to the openshift project
 oc project openshift
 # Add image streams to the service catalog (project or cluster-wide scope)
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-imageStreams.yml
 ```
 
 #### Openshift builder template
 
 Openshift cluster administrator can add a build and deploy template to their consumers.
-As an administrator, you can import our [openshift builder template](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) 
+As an administrator, you can import our [openshift builder template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-build.yml) 
 in your `openshift` project.
 
 You must be cluster-admin to add this image to the `openshift` project. If not, you can add it to your own 
@@ -94,13 +95,13 @@ project (skip the `oc project openshift` command in the next script)
 # swith to the openshift project
 oc project openshift
 # Add this template to the service catalog (project or cluster-wide scope)
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-build.yml
 ```
 
 You can then build an application
 ```bash
-# create a test project
-oc new-project test
+# create an example project
+oc new-project example
 # start a new application
 oc process -f startx-sv-apache-build-template \
     -p APP_NAME=myapp \
@@ -110,7 +111,7 @@ oc process -f startx-sv-apache-build-template \
 #### Openshift deploy template
 
 Openshift cluster administrator can add a deploy template to their consumers.
-As an administrator, you can import our [openshift deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml) 
+As an administrator, you can import our [openshift deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-deploy.yml) 
 in your `openshift` project.
 
 You must be cluster-admin to add this image to the `openshift` project. If not, you can add it to your own 
@@ -120,13 +121,13 @@ project (skip the `oc project openshift` command in the next script)
 # swith to the openshift project
 oc project openshift
 # Add this template to the service catalog (project or cluster-wide scope)
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-deploy.yml
 ```
 
 You can then deploy an application
 ```bash
-# create a test project
-oc new-project test
+# create a example project
+oc new-project example
 # start a new application
 oc process -f startx-sv-apache-deploy-template \
     -p APP_NAME=myapp \
@@ -138,15 +139,12 @@ oc process -f startx-sv-apache-deploy-template \
 Create your local project (skip if you already are in a project diretory with a `run` bash script)
 ```bash
 # Create a project directory
-mkdir project
-cd project
+mkdir example-project
+cd example-project
 # create a run script
 cat << "EOF"
-#!/bin/bash -e
-source $SX_LIBDIR/sx
-startDaemon
-EOF > run
-chmod ug+x run
+<html><head></head><body><h1>My Web Application</h1></body></html>
+EOF > index.html
 ```
 
 Then you can use this image as an s2i builder image
@@ -169,21 +167,19 @@ FROM startx/sv-apache:latest
 
 ## Environment variable
 
-| Variable                  | Type     | Default         | Description                                                              |
-|---------------------------|----------|-----------------|--------------------------------------------------------------------------|
-| SX_VERSION                | `string` | `latest`        | container version
-| SX_TYPE                   | `string` | `OS`            | Container family (os, service, application). could be enhanced 
-| SX_SERVICE                | `string` | `fedora`        | Define the type of service or application provided
+| Variable                  | Type     | Default            | Description                                                              |
+|---------------------------|----------|--------------------|--------------------------------------------------------------------------|
+| SX_VERSION                | `string` | `latest`           | container version
+| SX_TYPE                   | `string` | `service`          | Container family (os, service, application). could be enhanced 
+| SX_SERVICE                | `string` | `apache`           | Define the type of service or application provided
 | SX_ID                     | `auto`   | `startx/sv-apache` | Container ID coresponding to the image repository 
-| SX_NAME                   | `auto`   | `yes`           | Container name
-| SX_SUMMARY                | `auto`   | `yes`           | Container purpose description
-| SX_VERBOSE                | `bool`   | `no`            | Display information about the execution
-| SX_DEBUG                  | `bool`   | `no`            | Display debug informations during execution
-| APP_PATH                  | `string` | `/app`          | Path to the application
-| SX_S2IDIR                 | `string` | `/tmp`          | Destination path to the application pushed via s2i process
-| DAEMON_STOP_TIMEOUT       | `int`    | 3               | Number of second before stopping when smooth shutdown signal is received
-| DAEMON_START_INTERVAL     | `int`    | 10              | Hearthbeat rythm (in second) for the startx default daemeon
-
+| SX_NAME                   | `auto`   | `yes`              | Container name
+| SX_SUMMARY                | `auto`   | `yes`              | Container purpose description
+| SX_VERBOSE                | `bool`   | `no`               | Display information about the execution
+| SX_DEBUG                  | `bool`   | `no`               | Display debug informations during execution
+| APP_PATH                  | `string` | `/app`             | Path to the application
+| LOG_PATH                  | `string` | `/var/log/httpd`   | Destination path to the log produced by the webserver
+| SX_S2IDIR                 | `string` | `/tmp`             | Destination path to the application pushed via s2i process
 
 ## For advanced users
 
@@ -191,22 +187,22 @@ You can contribute or start this container initiative locally.
 [Follow theses instructions](https://github.com/startxfr/docker-images#setup-your-working-environment-mandatory) to setup a working environment.
 
 This section will help you if you want to :
-* Get latest version of this container OS source code
+* Get latest version of this container Service source code
 * Enhance and share your container improvement by adding instruction in Dockefile
 
 
 ### Build & run a container using `docker`
 
-1. Jump into the container directory with `cd OS`
-2. Build the container using `docker build -t fedora .`
+1. Jump into the container directory with `cd Services/apache`
+2. Build the container using `docker build -t startx-apache .`
 3. Run this container 
-   - Interactively with `docker run -it fedora`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-   - As a daemon with `docker run -d fedora`
+   - Interactively with `docker run -it startx-apache`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+   - As a daemon with `docker run -d startx-apache`
 
 
 ### Build & run a container using `docker-compose`
 
-1. Jump into the container directory with `cd OS`
+1. Jump into the container directory with `cd Services/apache`
 2. Run this container 
    - Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
    - As a daemon with `docker-compose up -d`. Container startup logs can be read using `docker-compose logs`
