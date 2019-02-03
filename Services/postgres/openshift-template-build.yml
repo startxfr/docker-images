@@ -1,16 +1,16 @@
 kind: Template
 apiVersion: v1
 metadata:
-  name: startx-sv-mariadb-build-template
+  name: startx-sv-postgres-build-template
   annotations:
-    openshift.io/display-name: Startx Mariadb Server (ephemeral build & deploy workflow)
-    description: Build and deployement workflow of a Mariadb SQL database using ephemeral storage
-      for data and logs records. Use mariadb with various underlying linux distribution. See 
-      https://hub.docker.com/r/startx/sv-mariadb
-    iconClass: icon-mariadb
-    tags: startx,os,fedora,mariadb,sql
+    openshift.io/display-name: Startx PostgreSQL Server (ephemeral build & deploy workflow)
+    description: Build and deployement workflow of a PostgreSQL database using ephemeral storage
+      for data and logs records. Use postgres with various underlying linux distribution. See 
+      https://hub.docker.com/r/startx/sv-postgres
+    iconClass: icon-postgresql
+    tags: startx,os,fedora,postgres,sql
     openshift.io/provider-display-name: STARTX
-    openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-mariadb
+    openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-postgres
     openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
 message: |-
   Your ephemeral database ${APP_NAME} is building and will be soon deployed...
@@ -18,12 +18,12 @@ message: |-
   Service name  : ${APP_NAME}
   Source        : ${SOURCE_GIT}
   action        : ${RUN_ACTION}
-  Username      : ${MYSQL_USER}
-  Password      : ${MYSQL_PASSWORD}
-  Database Name : ${MYSQL_DATABASE}
-  Connection URL: mysql://${APP_NAME}:3306
+  Username      : ${PGSQL_USER}
+  Password      : ${PGSQL_PASSWORD}
+  Database Name : ${PGSQL_DATABASE}
+  Connection URL: postgresql://${APP_NAME}:5432
 labels:
-  template: startx-sv-mariadb-build-template
+  template: startx-sv-postgres-build-template
   provider: startx 
 objects:
 - kind: ImageStream
@@ -31,7 +31,7 @@ objects:
   metadata:
     name: "${APP_NAME}-base"
     annotations:
-      openshift.io/display-name: Startx MariadbServer
+      openshift.io/display-name: Startx PostgreSQLServer
       openshift.io/generated-by: STARTX
     labels:
       app: "${APP_NAME}"
@@ -40,166 +40,166 @@ objects:
     tags:
     - name: fc26
       annotations:
-        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 26)
-        description: MariaDB server builder for simple SQL database running under
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 26)
+        description: PostgreSQL server builder for advanced SQL database running under
           Fedora 26
-        iconClass: icon-mariadb
-        tags: builder,startx,fedora,mariadb,sql
-        supports: mysql
+        iconClass: icon-postgresql
+        tags: builder,startx,fedora,postgres,sql
+        supports: postgresql
         version: fc26
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
       from:
         kind: DockerImage
-        name: startx/sv-mariadb:fc26
+        name: startx/sv-postgres:fc26
     - name: fc27
       annotations:
-        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 27)
-        description: MariaDB server builder for simple SQL database running under
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 27)
+        description: PostgreSQL server builder for advanced SQL database running under
           Fedora 27
-        iconClass: icon-mariadb
-        tags: builder,startx,fedora,mariadb,sql
-        supports: mysql
+        iconClass: icon-postgresql
+        tags: builder,startx,fedora,postgres,sql
+        supports: postgresql
         version: fc27
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
       from:
         kind: DockerImage
-        name: startx/sv-mariadb:fc27
+        name: startx/sv-postgres:fc27
     - name: fc28
       annotations:
-        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 28)
-        description: MariaDB server builder for simple SQL database running under
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 28)
+        description: PostgreSQL server builder for advanced SQL database running under
           Fedora 28
-        iconClass: icon-mariadb
-        tags: builder,startx,fedora,mariadb,sql
-        supports: mysql
+        iconClass: icon-postgresql
+        tags: builder,startx,fedora,postgres,sql
+        supports: postgresql
         version: fc28
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
       from:
         kind: DockerImage
-        name: startx/sv-mariadb:fc28
+        name: startx/sv-postgres:fc28
     - name: fc29
       annotations:
-        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 29)
-        description: MariaDB server builder for simple SQL database running under
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 29)
+        description: PostgreSQL server builder for advanced SQL database running under
           Fedora 29
-        iconClass: icon-mariadb
-        tags: builder,startx,fedora,mariadb,sql
-        supports: mysql
+        iconClass: icon-postgresql
+        tags: builder,startx,fedora,postgres,sql
+        supports: postgresql
         version: fc29
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
       from:
         kind: DockerImage
-        name: startx/sv-mariadb:fc29
+        name: startx/sv-postgres:fc29
     - name: fc30
       annotations:
-        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 30)
-        description: MariaDB server builder for simple SQL database running under
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 30)
+        description: PostgreSQL server builder for advanced SQL database running under
           Fedora 30
-        iconClass: icon-mariadb
-        tags: builder,startx,fedora,mariadb,sql
-        supports: mysql
+        iconClass: icon-postgresql
+        tags: builder,startx,fedora,postgres,sql
+        supports: postgresql
         version: fc30
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
       from:
         kind: DockerImage
-        name: startx/sv-mariadb:fc30
+        name: startx/sv-postgres:fc30
     - name: latest
       annotations:
-        openshift.io/display-name: S2I Startx Mariadb Database (Fedora latest)
-        description: MariaDB server builder for simple SQL database running under
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora latest)
+        description: PostgreSQL server builder for advanced SQL database running under
           Fedora latest
-        iconClass: icon-mariadb
-        tags: builder,startx,fedora,mariadb,sql
-        supports: mysql
+        iconClass: icon-postgresql
+        tags: builder,startx,fedora,postgres,sql
+        supports: postgresql
         version: rawhide
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
       from:
         kind: DockerImage
-        name: startx/sv-mariadb:latest
+        name: startx/sv-postgres:latest
     - name: centos7
       annotations:
-        openshift.io/display-name: S2I Startx Mariadb Database (Centos 7)
-        description: MariaDB server builder for simple SQL database running under
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Centos 7)
+        description: PostgreSQL server builder for advanced SQL database running under
           Centos 7
-        iconClass: icon-mariadb
-        tags: builder,startx,centos,mariadb,sql
-        supports: mysql
+        iconClass: icon-postgresql
+        tags: builder,startx,centos,postgres,sql
+        supports: postgresql
         version: '7'
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
       from:
         kind: DockerImage
-        name: startx/sv-mariadb:centos7
+        name: startx/sv-postgres:centos7
     - name: centos6
       annotations:
-        openshift.io/display-name: S2I Startx Mariadb Database (Centos 6)
-        description: MariaDB server builder for simple SQL database running under
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Centos 6)
+        description: PostgreSQL server builder for advanced SQL database running under
           Centos 6
-        iconClass: icon-mariadb
-        tags: builder,startx,centos,mariadb,sql
-        supports: mysql
+        iconClass: icon-postgresql
+        tags: builder,startx,centos,postgres,sql
+        supports: postgresql
         version: '7'
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
       from:
         kind: DockerImage
-        name: startx/sv-mariadb:centos6
+        name: startx/sv-postgres:centos6
     - name: alpine3
       annotations:
-        openshift.io/display-name: S2I Startx Mariadb Database (Alpine 3)
-        description: MariaDB server builder for simple SQL database running under
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Alpine 3)
+        description: PostgreSQL server builder for advanced SQL database running under
           Alpine 3
-        iconClass: icon-mariadb
-        tags: builder,startx,alpine,mariadb,sql
-        supports: mysql
+        iconClass: icon-postgresql
+        tags: builder,startx,alpine,postgres,sql
+        supports: postgresql
         version: '3'
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
       from:
         kind: DockerImage
-        name: startx/sv-mariadb:alpine3
+        name: startx/sv-postgres:alpine3
     - name: dev
       annotations:
-        openshift.io/display-name: S2I Startx Mariadb Database (dev)
-        description: Http server builder for simple SQL database (developpement)
-        iconClass: icon-mariadb
-        tags: builder,startx,alpine,mariadb,sql
-        supports: mysql
+        openshift.io/display-name: S2I Startx PostgreSQL Database (dev)
+        description: Http server builder for advanced SQL database (developpement)
+        iconClass: icon-postgresql
+        tags: builder,startx,alpine,postgres,sql
+        supports: postgresql
         version: 'dev'
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
       from:
         kind: ImageStreamTag
         name: rawhide
     - name: test
       annotations:
-        openshift.io/display-name: S2I Startx Mariadb Database (test)
-        description: Http server builder for simple SQL database (testing)
-        iconClass: icon-mariadb
-        tags: builder,startx,alpine,mariadb,sql
-        supports: mysql
+        openshift.io/display-name: S2I Startx PostgreSQL Database (test)
+        description: Http server builder for advanced SQL database (testing)
+        iconClass: icon-postgresql
+        tags: builder,startx,alpine,postgres,sql
+        supports: postgresql
         version: 'test'
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
       from:
         kind: ImageStreamTag
         name: centos7
     - name: preprod
       annotations:
-        openshift.io/display-name: S2I Startx Mariadb Database (preprod)
-        description: Http server builder for simple SQL database (pre-production)
-        iconClass: icon-mariadb
-        tags: builder,startx,alpine,mariadb,sql
-        supports: mysql
+        openshift.io/display-name: S2I Startx PostgreSQL Database (preprod)
+        description: Http server builder for advanced SQL database (pre-production)
+        iconClass: icon-postgresql
+        tags: builder,startx,alpine,postgres,sql
+        supports: postgresql
         version: 'pre-prod'
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
       from:
         kind: ImageStreamTag
         name: alpine3
     - name: prod
       annotations:
-        openshift.io/display-name: S2I Startx Mariadb Database (prod)
-        description: Http server builder for simple SQL database (production)
-        iconClass: icon-mariadb
-        tags: builder,startx,alpine,mariadb,sql
-        supports: mysql
+        openshift.io/display-name: S2I Startx PostgreSQL Database (prod)
+        description: Http server builder for advanced SQL database (production)
+        iconClass: icon-postgresql
+        tags: builder,startx,alpine,postgres,sql
+        supports: postgresql
         version: 'prod'
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
       from:
         kind: ImageStreamTag
         name: alpine3
@@ -219,9 +219,9 @@ objects:
       annotations:
         openshift.io/display-name: Database ${APP_NAME}
         description: Base image for the database ${APP_NAME}
-        iconClass: icon-mariadb
-        tags: startx,fedora,mariadb,sql,database,${APP_NAME}
-        supports: mysql
+        iconClass: icon-postgresql
+        tags: startx,fedora,postgres,sql,database,${APP_NAME}
+        supports: postgresql
         version: latest
 - kind: ConfigMap
   apiVersion: v1
@@ -240,7 +240,7 @@ objects:
     SX_NAME: SQL database ${APP_NAME}
     SX_SUMMARY: SQL database ${APP_NAME} based on fedora container
     SX_VERSION: 0.0.1 
-    MYSQL_DATABASE: "${MYSQL_DATABASE}"
+    PGSQL_DATABASE: "${PGSQL_DATABASE}"
 - kind: Secret
   apiVersion: v1
   metadata:
@@ -250,13 +250,13 @@ objects:
       app: "${APP_NAME}"
       stage: "${APP_STAGE}"
     annotations:
-      template.openshift.io/expose-username: "{.data['MYSQL_USER']}"
-      template.openshift.io/expose-password: "{.data['MYSQL_PASSWORD']}"
-      template.openshift.io/expose-root_password: "{.data['MYSQL_PASSWORD']}"
+      template.openshift.io/expose-username: "{.data['PGSQL_USER']}"
+      template.openshift.io/expose-password: "{.data['PGSQL_PASSWORD']}"
+      template.openshift.io/expose-root_password: "{.data['PGSQL_PASSWORD']}"
   stringData:
-    MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-    MYSQL_USER: "${MYSQL_USER}"
-    MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+    PGSQL_ROOT_PASSWORD: "${PGSQL_ROOT_PASSWORD}"
+    PGSQL_USER: "${PGSQL_USER}"
+    PGSQL_PASSWORD: "${PGSQL_PASSWORD}"
 - kind: BuildConfig
   apiVersion: v1
   metadata:
@@ -299,7 +299,7 @@ objects:
     resources: {}
     postCommit:
       command:
-      - "/bin/sx-mariadb"
+      - "/bin/sx-postgres"
       - post-build
 - kind: DeploymentConfig
   apiVersion: v1
@@ -320,28 +320,28 @@ objects:
           execNewPod:
             containerName: "${APP_NAME}"
             command:
-            - "/bin/sx-mariadb"
+            - "/bin/sx-postgres"
             - pre-deploy
             env:
             - name: SX_VERBOSE
               value: 'true'
             - name: SX_DEBUG
               value: 'true'
-            - name: MYSQL_ROOT_PASSWORD
+            - name: PGSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: "${APP_NAME}-auth"
-                  key: MYSQL_ROOT_PASSWORD
-            - name: MYSQL_USER
+                  key: PGSQL_ROOT_PASSWORD
+            - name: PGSQL_USER
               valueFrom:
                 secretKeyRef:
                   name: "${APP_NAME}-auth"
-                  key: MYSQL_USER
-            - name: MYSQL_PASSWORD
+                  key: PGSQL_USER
+            - name: PGSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: "${APP_NAME}-auth"
-                  key: MYSQL_PASSWORD
+                  key: PGSQL_PASSWORD
             envFrom:
               - configMapRef:
                   name: ${APP_NAME}-config
@@ -350,28 +350,28 @@ objects:
           execNewPod:
             containerName: "${APP_NAME}"
             command:
-            - "/bin/sx-mariadb"
+            - "/bin/sx-postgres"
             - post-deploy
             env:
             - name: SX_VERBOSE
               value: 'true'
             - name: SX_DEBUG
               value: 'true'
-            - name: MYSQL_ROOT_PASSWORD
+            - name: PGSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: "${APP_NAME}-auth"
-                  key: MYSQL_ROOT_PASSWORD
-            - name: MYSQL_USER
+                  key: PGSQL_ROOT_PASSWORD
+            - name: PGSQL_USER
               valueFrom:
                 secretKeyRef:
                   name: "${APP_NAME}-auth"
-                  key: MYSQL_USER
-            - name: MYSQL_PASSWORD
+                  key: PGSQL_USER
+            - name: PGSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: "${APP_NAME}-auth"
-                  key: MYSQL_PASSWORD
+                  key: PGSQL_PASSWORD
             envFrom:
               - configMapRef:
                   name: ${APP_NAME}-config
@@ -386,7 +386,7 @@ objects:
           name: "${APP_NAME}:latest"
     - type: ConfigChange
     postCommit:
-      script: "/bin/sx-mariadb info"
+      script: "/bin/sx-postgres info"
     replicas: 1
     test: false
     selector:
@@ -406,30 +406,30 @@ objects:
           env:
           - name: SX_VERBOSE
             value: 'true'
-          - name: MYSQL_ROOT_PASSWORD
+          - name: PGSQL_ROOT_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: "${APP_NAME}-auth"
-                key: MYSQL_ROOT_PASSWORD
-          - name: MYSQL_USER
+                key: PGSQL_ROOT_PASSWORD
+          - name: PGSQL_USER
             valueFrom:
               secretKeyRef:
                 name: "${APP_NAME}-auth"
-                key: MYSQL_USER
-          - name: MYSQL_PASSWORD
+                key: PGSQL_USER
+          - name: PGSQL_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: "${APP_NAME}-auth"
-                key: MYSQL_PASSWORD
+                key: PGSQL_PASSWORD
           envFrom:
             - configMapRef:
                 name: ${APP_NAME}-config
           command:
-          - "/bin/sx-mariadb"
+          - "/bin/sx-postgres"
           args:
           - run
           ports:
-          - containerPort: 3306
+          - containerPort: 5432
             protocol: TCP
           resources:
             limits:
@@ -437,7 +437,7 @@ objects:
           livenessProbe:
             exec:
               command:
-              - "/bin/sx-mariadb"
+              - "/bin/sx-postgres"
               - isLive
             initialDelaySeconds: 5
             timeoutSeconds: 2
@@ -447,7 +447,7 @@ objects:
           readinessProbe:
             exec:
               command:
-              - "/bin/sx-mariadb"
+              - "/bin/sx-postgres"
               - isReady
             initialDelaySeconds: 2
             timeoutSeconds: 2
@@ -458,7 +458,7 @@ objects:
           imagePullPolicy: Always
           volumeMounts:
           - name: "${APP_NAME}-log"
-            mountPath: "/var/log/mariadb"
+            mountPath: "/var/log/postgres"
           - name: "${APP_NAME}-data"
             mountPath: "/data"
         volumes:
@@ -481,13 +481,13 @@ objects:
       stage: "${APP_STAGE}"
     annotations:
       openshift.io/generated-by: STARTX
-      template.openshift.io/expose-uri: mysql://{.spec.clusterIP}:{.spec.ports[?(.name=="mysql")].port}
+      template.openshift.io/expose-uri: postgresql://{.spec.clusterIP}:{.spec.ports[?(.name=="postgresql")].port}
   spec:
     ports:
-    - name: mysql
+    - name: postgresql
       protocol: TCP
-      port: 3306
-      targetPort: 3306
+      port: 5432
+      targetPort: 5432
     selector:
       app: "${APP_NAME}"
       deploymentconfig: "${APP_NAME}"
@@ -497,7 +497,7 @@ parameters:
 - name: APP_NAME
   displayName: Database name
   description: The name of the created database
-  value: mariadb
+  value: postgres
   required: true
 - name: APP_STAGE
   displayName: Database stage
@@ -512,7 +512,7 @@ parameters:
 - name: SOURCE_GIT
   displayName: Source repository
   description: URL to the source code to use during build process
-  value: https://github.com/startxfr/docker-images-example-mariadb.git
+  value: https://github.com/startxfr/docker-images-example-postgres.git
   required: true
 - name: SOURCE_BRANCH
   displayName: Source branch
@@ -532,25 +532,25 @@ parameters:
     version. See documentation for action list.
   value: run
   required: true
-- name: MYSQL_ROOT_PASSWORD
-  displayName: Mysql root password
-  description: The mysql root password to use. Generated if not provided
+- name: PGSQL_ROOT_PASSWORD
+  displayName: PostgreSQL root password
+  description: The postgresql root password to use. Generated if not provided
   from: "[A-Z0-9]{16}"
   generate: expression
-- name: MYSQL_USER
-  displayName: Mysql user
+- name: PGSQL_USER
+  displayName: PostgreSQL user
   description: Default user to create
   value: demo
   from: "[A-Z0-9]{8}"
   generate: expression
-- name: MYSQL_PASSWORD
-  displayName: Mysql password
+- name: PGSQL_PASSWORD
+  displayName: PostgreSQL password
   description: Password of the default user
   value: demo
   from: "[A-Z0-9]{16}"
   generate: expression
-- name: MYSQL_DATABASE
-  displayName: Mysql database
+- name: PGSQL_DATABASE
+  displayName: PostgreSQL database
   description: name of the default database to create
   value: example
 - name: MEMORY_LIMIT

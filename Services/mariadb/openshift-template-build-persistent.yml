@@ -15,10 +15,13 @@ metadata:
 message: |-
   Your persistent database ${APP_NAME} is building and will be soon deployed...
 
-         Username: ${MYSQL_USER}
-         Password: ${MYSQL_PASSWORD}
-    Database Name: ${MYSQL_DATABASE}
-   Connection URL: mysql://${APP_NAME}:3306
+  Service name  : ${APP_NAME}
+  Source        : ${SOURCE_GIT}
+  action        : ${RUN_ACTION}
+  Username      : ${MYSQL_USER}
+  Password      : ${MYSQL_PASSWORD}
+  Database Name : ${MYSQL_DATABASE}
+  Connection URL: mysql://${APP_NAME}:3306
 labels:
   template: startx-sv-mariadb-build-persist-template
   provider: startx 
