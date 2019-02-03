@@ -342,7 +342,7 @@ parameters:
 - name: APP_NAME
   displayName: Application name
   description: The name of the created application
-  value: fedora
+  value: daemon
   required: true
 - name: APP_STAGE
   displayName: Application stage

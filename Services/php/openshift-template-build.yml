@@ -410,13 +410,8 @@ objects:
           volumeMounts:
           - name: "${APP_NAME}-log"
             mountPath: "/var/log/httpd"
-          - name: "${APP_NAME}-app"
-            mountPath: "/app"
         volumes:
         - name: "${APP_NAME}-log"
-          emptyDir:
-            medium: ''
-        - name: "${APP_NAME}-app"
           emptyDir:
             medium: ''
         restartPolicy: Always

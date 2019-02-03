@@ -65,7 +65,7 @@ docker-compose logs
 #### Openshift images streams
 
 Openshift cluster administrator can offer this image and all its flavour to all consumers.
-You can import our [openshift builder stream](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) 
+You can import our [openshift images stream](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) 
 in your `openshift` project.
 
 You must be cluster-admin to add this image to the `openshift` project. If not, you can add it to your own 
