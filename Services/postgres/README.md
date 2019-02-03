@@ -52,7 +52,7 @@ docker run -it -p 9241:5432 --name="example-postgres" startx/sv-postgres
 
 * Connect to your local database
 ```bash
-mysql -h localhost -P 9241
+pgsql -h localhost -P 9241
 ```
 
 ### Running using docker-compose
@@ -66,7 +66,7 @@ postgres:
 
 * Connect to your local database
 ```bash
-mysql -h localhost -P 9241
+pgsql -h localhost -P 9241
 ```
 
 * Execute the following command
