@@ -104,7 +104,7 @@ some [additional environment variable](https://github.com/startxfr/docker-images
 | <i>base image environement</i> |              |           | [see environment list](https://github.com/startxfr/docker-images/tree/master/OS#environment-variable)
 | SERVER_NAME                    | `string`     | `no`      | Server name for this container. If no name localhost will be assigned
 | HOSTNAME                       | `auto`       | `auto`    | Container unique id automatically assigned by docker daemon at startup
-| LOG_PATH                       | `auto`       | `auto`    | default set to /logs and used as a volume mountpoint
+| LOG_PATH                       | `auto`       | `auto`    | default set to /var/log/chrome and used as a volume mountpoint
 | APP_PATH                       | `auto`       | `auto`    | default set to /data and used as a volume mountpoint
 | SX_CHROME_SCREEN_RES_X         | `1024x768x24`| `auto`    | Define the screen resolution for X server
 | SX_CHROME_SCREEN_RES_CHROME    |`1024,768`    | `auto`    | Define the screen resolution for Chrome GUI window

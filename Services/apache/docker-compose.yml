@@ -1,6 +1,6 @@
 apache:
   build: ./
-  container_name: "fc30-service-apache"
+  container_name: "startx-apache-fc30"
   mem_limit: 200m
   memswap_limit: 300m
   cpu_shares: 2

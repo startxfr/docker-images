@@ -17,12 +17,14 @@ function phpBuild {
     phpInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    doPhpBuild
+    echoVerbose ""
+    doInitS2iApp
     if [[ -x $MYS2I_DEST/assemble ]]; then
-        echoVerbose "Build source code found at $MYS2I_DEST/assemble"
+        echoVerbose "Build application logic found at $MYS2I_DEST/assemble"
         testAndRunSourceCodeScript "assemble" 
     else
-        echoVerbose "No Build source code found at $MYS2I_DEST/assemble"
+        echoVerbose "No Build application logic found at $MYS2I_DEST/assemble"
+    doPhpBuild
     fi
     exit 0;
 }
@@ -30,10 +32,9 @@ function phpBuild {
 # function performing Php build actions
 function doPhpBuild {
     doApacheBuild
-    echoNotVerbose "Build Php"
-    echoVerbose ""
+    echoNotVerbose "Executing Php build logic"
     echoVerbose "+====================================================="
-    echoVerbose "| Build Php"
+    echoVerbose "| Executing Php build logic"
     echoVerbose "+====================================================="
 }
 
@@ -47,12 +48,13 @@ function phpPostBuild {
     phpInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    doPhpPostBuild
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/assemble ]]; then
-        echoVerbose "PostBuild source code found at $MYS2I_DEST/post-build"
+        echoVerbose "PostBuild application logic found at $MYS2I_DEST/post-build"
         testAndRunSourceCodeScript "post-build" 
     else
-        echoVerbose "No PostBuild source code found at $MYS2I_DEST/post-build"
+        echoVerbose "No PostBuild application logic found at $MYS2I_DEST/post-build"
+    doPhpPostBuild
     fi
     exit 0;
 }
@@ -60,10 +62,9 @@ function phpPostBuild {
 # function performing Php post-build actions
 function doPhpPostBuild {
     doApachePostBuild
-    echoNotVerbose "PostBuild Php"
-    echoVerbose ""
+    echoNotVerbose "Executing Php post-build logic"
     echoVerbose "+====================================================="
-    echoVerbose "| PostBuild Php"
+    echoVerbose "| Executing Php post-build logic"
     echoVerbose "+====================================================="
 }
 
@@ -77,12 +78,13 @@ function phpPreDeploy {
     phpInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    doPhpPreDeploy
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/pre-deploy ]]; then
-        echoVerbose "PreDeploy source code found at $MYS2I_DEST/pre-deploy"
+        echoVerbose "PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
         testAndRunSourceCodeScript "pre-deploy" 
     else
-        echoVerbose "No PreDeploy source code found at $MYS2I_DEST/pre-deploy"
+        echoVerbose "No PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
+    doPhpPreDeploy
     fi
     exit 0;
 }
@@ -90,10 +92,9 @@ function phpPreDeploy {
 # function performing Php pre-deploy actions
 function doPhpPreDeploy {
     doApachePreDeploy
-    echoNotVerbose "PreDeploy Php"
-    echoVerbose ""
+    echoNotVerbose "Executing Php pre-deploy logic"
     echoVerbose "+====================================================="
-    echoVerbose "| PreDeploy Php"
+    echoVerbose "| Executing Php pre-deploy logic"
     echoVerbose "+====================================================="
 }
 
@@ -107,12 +108,13 @@ function phpPostDeploy {
     phpInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    doPhpPostDeploy
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/post-deploy ]]; then
-        echoVerbose "PostDeploy source code found at $MYS2I_DEST/post-deploy"
+        echoVerbose "PostDeploy application logic found at $MYS2I_DEST/post-deploy"
         testAndRunSourceCodeScript "post-deploy" 
     else
-        echoVerbose "No PostDeploy source code found at $MYS2I_DEST/post-deploy"
+        echoVerbose "No PostDeploy application logic found at $MYS2I_DEST/post-deploy"
+    doPhpPostDeploy
     fi
     exit 0;
 }
@@ -120,10 +122,9 @@ function phpPostDeploy {
 # function performing Php post-deploy actions
 function doPhpPostDeploy {
     doApachePostDeploy
-    echoNotVerbose "PostDeploy Php"
-    echoVerbose ""
+    echoNotVerbose "Executing Php post-deploy logic"
     echoVerbose "+====================================================="
-    echoVerbose "| PostDeploy Php"
+    echoVerbose "| Executing Php post-deploy logic"
     echoVerbose "+====================================================="
 }
 
@@ -137,11 +138,12 @@ function phpRun {
     phpInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/run ]]; then
-        echoVerbose "Run source code found at $MYS2I_DEST/run"
+        echoVerbose "Run application logic found at $MYS2I_DEST/run"
         testAndRunSourceCodeScript "run" 
     else
-        echoVerbose "No Run source code found at $MYS2I_DEST/run"
+        echoVerbose "No Run application logic found at $MYS2I_DEST/run"
         echoVerbose "Executing default Php run action"
         doPhpRun
     fi
@@ -149,21 +151,26 @@ function phpRun {
 
 # function performing Php run actions
 function doPhpRun {
-    echoNotVerbose "Run Php"
-    echoVerbose ""
+    echoNotVerbose "Executing Php run logic"
     echoVerbose "+====================================================="
-    echoVerbose "| Run Php"
+    echoVerbose "| Executing Php run logic"
     echoVerbose "+====================================================="
     startPhpService
 }
 
 function startPhpService {
+    preStartApacheService
     if [[ -x /usr/sbin/php-fpm ]]; then
-      echo "starting php-fpm process"
+      echoVerbose "starting php-fpm process"
       /usr/sbin/php-fpm -D
     elif [[ -x /usr/sbin/php-fpm7 ]]; then
-      echo "starting php-fpm process"
+      echoVerbose "starting php-fpm7 process"
       /usr/sbin/php-fpm7 -D
+    fi;
+    touch /var/log/php-fpm/error.log
+    if [[ -r /var/log/php-fpm/error.log ]]; then
+      echoVerbose "Display php-fpm logs from /var/log/php-fpm/error.log"
+      tail -f /var/log/php-fpm/error.log &
     fi;
     startApacheService
 }

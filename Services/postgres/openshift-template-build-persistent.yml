@@ -1,0 +1,591 @@
+kind: Template
+apiVersion: v1
+metadata:
+  name: startx-sv-postgres-build-persist-template
+  annotations:
+    openshift.io/display-name: Startx PostgreSQL Server (peristent build & deploy workflow)
+    description: Build and deployement workflow of a PostgreSQL database using peristent storage
+      for data and logs records. Use postgres with various underlying linux distribution. See 
+      https://hub.docker.com/r/startx/sv-postgres
+    iconClass: icon-postgresql
+    tags: startx,os,fedora,postgres,sql
+    openshift.io/provider-display-name: STARTX
+    openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-postgres
+    openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
+message: |-
+  Your persistent database ${APP_NAME} is building and will be soon deployed...
+
+  Service name  : ${APP_NAME}
+  Source        : ${SOURCE_GIT}
+  action        : ${RUN_ACTION}
+  Username      : ${PGSQL_USER}
+  Password      : ${PGSQL_PASSWORD}
+  Database Name : ${PGSQL_DATABASE}
+  Connection URL: postgresql://${APP_NAME}:5432
+labels:
+  template: startx-sv-postgres-build-persist-template
+  provider: startx 
+objects:
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: ${APP_NAME}-base
+    annotations:
+      openshift.io/display-name: Startx PostgreSQLServer
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  spec:
+    tags:
+    - name: fc26
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 26)
+        description: PostgreSQL server builder for advanced SQL database running under
+          Fedora 26
+        iconClass: icon-postgresql
+        tags: builder,startx,fedora,postgres,sql
+        supports: postgresql
+        version: fc26
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: DockerImage
+        name: startx/sv-postgres:fc26
+    - name: fc27
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 27)
+        description: PostgreSQL server builder for advanced SQL database running under
+          Fedora 27
+        iconClass: icon-postgresql
+        tags: builder,startx,fedora,postgres,sql
+        supports: postgresql
+        version: fc27
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: DockerImage
+        name: startx/sv-postgres:fc27
+    - name: fc28
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 28)
+        description: PostgreSQL server builder for advanced SQL database running under
+          Fedora 28
+        iconClass: icon-postgresql
+        tags: builder,startx,fedora,postgres,sql
+        supports: postgresql
+        version: fc28
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: DockerImage
+        name: startx/sv-postgres:fc28
+    - name: fc29
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 29)
+        description: PostgreSQL server builder for advanced SQL database running under
+          Fedora 29
+        iconClass: icon-postgresql
+        tags: builder,startx,fedora,postgres,sql
+        supports: postgresql
+        version: fc29
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: DockerImage
+        name: startx/sv-postgres:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 30)
+        description: PostgreSQL server builder for advanced SQL database running under
+          Fedora 30
+        iconClass: icon-postgresql
+        tags: builder,startx,fedora,postgres,sql
+        supports: postgresql
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: DockerImage
+        name: startx/sv-postgres:fc30
+    - name: latest
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora latest)
+        description: PostgreSQL server builder for advanced SQL database running under
+          Fedora latest
+        iconClass: icon-postgresql
+        tags: builder,startx,fedora,postgres,sql
+        supports: postgresql
+        version: rawhide
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: DockerImage
+        name: startx/sv-postgres:latest
+    - name: centos7
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Centos 7)
+        description: PostgreSQL server builder for advanced SQL database running under
+          Centos 7
+        iconClass: icon-postgresql
+        tags: builder,startx,centos,postgres,sql
+        supports: postgresql
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: DockerImage
+        name: startx/sv-postgres:centos7
+    - name: centos6
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Centos 6)
+        description: PostgreSQL server builder for advanced SQL database running under
+          Centos 6
+        iconClass: icon-postgresql
+        tags: builder,startx,centos,postgres,sql
+        supports: postgresql
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: DockerImage
+        name: startx/sv-postgres:centos6
+    - name: alpine3
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Alpine 3)
+        description: PostgreSQL server builder for advanced SQL database running under
+          Alpine 3
+        iconClass: icon-postgresql
+        tags: builder,startx,alpine,postgres,sql
+        supports: postgresql
+        version: '3'
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: DockerImage
+        name: startx/sv-postgres:alpine3
+    - name: dev
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (dev)
+        description: Http server builder for advanced SQL database (developpement)
+        iconClass: icon-postgresql
+        tags: builder,startx,alpine,postgres,sql
+        supports: postgresql
+        version: 'dev'
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: test
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (test)
+        description: Http server builder for advanced SQL database (testing)
+        iconClass: icon-postgresql
+        tags: builder,startx,alpine,postgres,sql
+        supports: postgresql
+        version: 'test'
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: ImageStreamTag
+        name: centos7
+    - name: preprod
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (preprod)
+        description: Http server builder for advanced SQL database (pre-production)
+        iconClass: icon-postgresql
+        tags: builder,startx,alpine,postgres,sql
+        supports: postgresql
+        version: 'pre-prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+    - name: prod
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (prod)
+        description: Http server builder for advanced SQL database (production)
+        iconClass: icon-postgresql
+        tags: builder,startx,alpine,postgres,sql
+        supports: postgresql
+        version: 'prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    annotations:
+      openshift.io/display-name: Database ${APP_NAME}
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  spec:
+    tags:
+    - name: latest
+      annotations:
+        openshift.io/display-name: Database ${APP_NAME}
+        description: Base image for the database ${APP_NAME}
+        iconClass: icon-postgresql
+        tags: startx,fedora,postgres,sql,database,${APP_NAME}
+        supports: postgresql
+        version: latest
+- kind: ConfigMap
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}-config"
+    annotations:
+      openshift.io/display-name: Database ${APP_NAME} configuration
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  data:
+    SX_ID: ${APP_NAME}/${APP_STAGE}
+    SX_TYPE: ${APP_STAGE}
+    SX_SERVICE: ${APP_NAME}
+    SX_NAME: SQL database ${APP_NAME}
+    SX_SUMMARY: SQL database ${APP_NAME} based on fedora container
+    SX_VERSION: 0.0.1 
+    PGSQL_DATABASE: "${PGSQL_DATABASE}"
+- kind: Secret
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}-auth"
+    creationTimestamp: 
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      template.openshift.io/expose-username: "{.data['PGSQL_USER']}"
+      template.openshift.io/expose-password: "{.data['PGSQL_PASSWORD']}"
+      template.openshift.io/expose-root_password: "{.data['PGSQL_PASSWORD']}"
+  stringData:
+    PGSQL_ROOT_PASSWORD: "${PGSQL_ROOT_PASSWORD}"
+    PGSQL_USER: "${PGSQL_USER}"
+    PGSQL_PASSWORD: "${PGSQL_PASSWORD}"
+- kind: PersistentVolumeClaim
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}-data"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: "${VOLUME_CAPACITY}"
+- kind: PersistentVolumeClaim
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}-log"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: "${VOLUME_CAPACITY}"
+- kind: BuildConfig
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      openshift.io/generated-by: STARTX
+  spec:
+    triggers:
+    - type: GitHub
+      github:
+        secret: "${WEBHOOK_TOKEN}_${APP_NAME}"
+    - type: Generic
+      generic:
+        secret: "${WEBHOOK_TOKEN}_${APP_NAME}"
+    - type: ImageChange
+      imageChange: {}
+    - type: ConfigChange
+    runPolicy: SerialLatestOnly
+    source:
+      type: Git
+      git:
+        uri: "${SOURCE_GIT}"
+        ref: "${SOURCE_BRANCH}"
+    strategy:
+      type: Source
+      sourceStrategy:
+        from:
+          kind: ImageStreamTag
+          name: ${APP_NAME}-base:${IMAGE_STAGE}
+        env:
+        - name: SX_VERBOSE
+          value: 'true'
+    output:
+      to:
+        kind: ImageStreamTag
+        name: "${APP_NAME}:latest"
+    resources: {}
+    postCommit:
+      command:
+      - "/bin/sx-postgres"
+      - post-build
+- kind: DeploymentConfig
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      openshift.io/generated-by: STARTX
+  spec:
+    strategy:
+      type: Recreate
+      recreateParams:
+        timeoutSeconds: 20
+        pre:
+          failurePolicy: Abort
+          execNewPod:
+            containerName: "${APP_NAME}"
+            command:
+            - "/bin/sx-postgres"
+            - pre-deploy
+            env:
+            - name: SX_VERBOSE
+              value: 'true'
+            - name: SX_DEBUG
+              value: 'true'
+            - name: PGSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "${APP_NAME}-auth"
+                  key: PGSQL_ROOT_PASSWORD
+            - name: PGSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: "${APP_NAME}-auth"
+                  key: PGSQL_USER
+            - name: PGSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "${APP_NAME}-auth"
+                  key: PGSQL_PASSWORD
+            envFrom:
+              - configMapRef:
+                  name: ${APP_NAME}-config
+        post:
+          failurePolicy: Abort
+          execNewPod:
+            containerName: "${APP_NAME}"
+            command:
+            - "/bin/sx-postgres"
+            - post-deploy
+            env:
+            - name: SX_VERBOSE
+              value: 'true'
+            - name: SX_DEBUG
+              value: 'true'
+            - name: PGSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "${APP_NAME}-auth"
+                  key: PGSQL_ROOT_PASSWORD
+            - name: PGSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: "${APP_NAME}-auth"
+                  key: PGSQL_USER
+            - name: PGSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "${APP_NAME}-auth"
+                  key: PGSQL_PASSWORD
+            envFrom:
+              - configMapRef:
+                  name: ${APP_NAME}-config
+    triggers:
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+        - "${APP_NAME}"
+        from:
+          kind: ImageStreamTag
+          name: "${APP_NAME}:latest"
+    - type: ConfigChange
+    postCommit:
+      script: "/bin/sx-postgres info"
+    replicas: 1
+    test: false
+    selector:
+      app: "${APP_NAME}"
+      deploymentconfig: "${APP_NAME}"
+    template:
+      metadata:
+        labels:
+          app: "${APP_NAME}"
+          deploymentconfig: "${APP_NAME}"
+        annotations:
+          openshift.io/generated-by: STARTX
+      spec:
+        containers:
+        - name: "${APP_NAME}"
+          image: " "
+          env:
+          - name: SX_VERBOSE
+            value: 'true'
+          - name: PGSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: "${APP_NAME}-auth"
+                key: PGSQL_ROOT_PASSWORD
+          - name: PGSQL_USER
+            valueFrom:
+              secretKeyRef:
+                name: "${APP_NAME}-auth"
+                key: PGSQL_USER
+          - name: PGSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: "${APP_NAME}-auth"
+                key: PGSQL_PASSWORD
+          envFrom:
+            - configMapRef:
+                name: ${APP_NAME}-config
+          command:
+          - "/bin/sx-postgres"
+          args:
+          - run
+          ports:
+          - containerPort: 5432
+            protocol: TCP
+          resources:
+            limits:
+              memory: "${MEMORY_LIMIT}"
+          livenessProbe:
+            exec:
+              command:
+              - "/bin/sx-postgres"
+              - isLive
+            initialDelaySeconds: 5
+            timeoutSeconds: 2
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            exec:
+              command:
+              - "/bin/sx-postgres"
+              - isReady
+            initialDelaySeconds: 2
+            timeoutSeconds: 2
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          terminationMessagePath: "/dev/termination-log"
+          imagePullPolicy: Always
+          volumeMounts:
+          - name: "${APP_NAME}-log"
+            mountPath: "/var/log/postgres"
+          - name: "${APP_NAME}-data"
+            mountPath: "/data"
+        volumes:
+        - name: "${APP_NAME}-log"
+          persistentVolumeClaim:
+            claimName: "${APP_NAME}-log"
+        - name: "${APP_NAME}-data"
+          persistentVolumeClaim:
+            claimName: "${APP_NAME}-data"
+        restartPolicy: Always
+        terminationGracePeriodSeconds: 30
+        securityContext: {}
+        dnsPolicy: ClusterFirst
+- kind: Service
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      openshift.io/generated-by: STARTX
+      template.openshift.io/expose-uri: postgresql://{.spec.clusterIP}:{.spec.ports[?(.name=="postgresql")].port}
+  spec:
+    ports:
+    - name: postgresql
+      protocol: TCP
+      port: 5432
+      targetPort: 5432
+    selector:
+      app: "${APP_NAME}"
+      deploymentconfig: "${APP_NAME}"
+    type: ClusterIP
+    sessionAffinity: None
+parameters:
+- name: APP_NAME
+  displayName: Database name
+  description: The name of the created database
+  value: postgres
+  required: true
+- name: APP_STAGE
+  displayName: Database stage
+  description: "Stage of the database deployed (ex: dev, test, prod, example, demo, poc, ...)"
+  value: example
+  required: true
+- name: IMAGE_STAGE
+  displayName: Image stage
+  description: "Stage of the base image used (ex: dev, test, preprod, prod, latest, rawhide, fc30, alpine3, centos6, centos7, fc29, fc28, ...)"
+  value: latest
+  required: true
+- name: SOURCE_GIT
+  displayName: Source repository
+  description: URL to the source code to use during build process
+  value: https://github.com/startxfr/docker-images-example-postgres.git
+  required: true
+- name: SOURCE_BRANCH
+  displayName: Source branch
+  description: Name of the default branch
+  value: master
+  required: true
+- name: WEBHOOK_TOKEN
+  displayName: Webhook token
+  description: Secret token to use for webhook to github or generic
+  generate: expression
+  from: "[a-zA-Z0-9]{24}"
+  required: true
+- name: RUN_ACTION
+  displayName: Main action to perfom
+  description: Action to perform for this running Pod. Should be one of build, post-build,
+    pre-deploy, post-deploy, run, isLive, isReady, usage, usageS2i, daemon, info,
+    version. See documentation for action list.
+  value: run
+  required: true
+- name: PGSQL_ROOT_PASSWORD
+  displayName: PostgreSQL root password
+  description: The postgresql root password to use. Generated if not provided
+  from: "[A-Z0-9]{16}"
+  generate: expression
+- name: PGSQL_USER
+  displayName: PostgreSQL user
+  description: Default user to create
+  value: demo
+  from: "[A-Z0-9]{8}"
+  generate: expression
+- name: PGSQL_PASSWORD
+  displayName: PostgreSQL password
+  description: Password of the default user
+  value: demo
+  from: "[A-Z0-9]{16}"
+  generate: expression
+- name: PGSQL_DATABASE
+  displayName: PostgreSQL database
+  description: name of the default database to create
+  value: example
+- name: MEMORY_LIMIT
+  displayName: Memory Limit
+  description: Maximum amount of memory the container can use.
+  value: 512Mi
+  required: true
+- name: VOLUME_CAPACITY
+  displayName: Volume Capacity
+  description: Volume space available for data, e.g. 512Mi, 2Gi.
+  value: 1Gi
+  required: true
