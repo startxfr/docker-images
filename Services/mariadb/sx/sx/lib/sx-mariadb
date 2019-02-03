@@ -186,7 +186,9 @@ function doMariadbRun {
     echoVerbose "+====================================================="
     echoVerbose "| Executing Mariadb run logic"
     echoVerbose "+====================================================="
-    init_service_mariadb
+    if [[ ! -d $DATA_PATH/mysql ]]; then
+        init_service_mariadb
+    fi
     startMariadbService
 }
 
@@ -210,14 +212,19 @@ function mariadbIsReady {
 
 # Init the mariadb server
 function init_service_mariadb {
-    begin_config
-    end_config
+    echoVerbose "=> BEGIN MARIADB CONFIGURATION"
+    init_dataDir
+    init_logDir
+    init_sqlloadDir
+    init_mysqlConfig
+    init_configureUsers
+    init_configureDatabase
+    echoVerbose "=> END MARIADB CONFIGURATION"
+    touch $DATA_PATH/.sxIsInit
 }
 
-# Begin configuration before starting daemonized process
-# and start generating host keys
-function begin_config {
-    echoVerbose "=> BEGIN MARIADB CONFIGURATION"
+# init data directory if doesn't exist
+function init_dataDir {
     if [[ ! -d $DATA_PATH ]]; then
         echoVerbose "data directory $DATA_PATH not found"
         mkdir -p $DATA_PATH; 
@@ -227,6 +234,11 @@ function begin_config {
     else 
         echoVerbose "data directory $DATA_PATH EXIST"
     fi
+}
+
+
+# init log directory if doesn't exist
+function init_logDir {
     if [[ ! -d $LOG_PATH ]]; then
         echoVerbose "log directory $LOG_PATH not found"
         mkdir -p $LOG_PATH; 
@@ -235,10 +247,18 @@ function begin_config {
     else 
         echoVerbose "log directory $LOG_PATH EXIST"
     fi
+}
+
+# init sql directory if doesn't exist
+function init_sqlloadDir {
     if [[ -d $LOADSQL_PATH ]]; then
         echoVerbose "sql directory $LOADSQL_PATH EXIST"
         chmod 0774 $LOADSQL_PATH; 
     fi
+}
+
+# init mysql config
+function init_mysqlConfig {
     echo "" > $MY_CONF
     echo "[mysqld]" >> $MY_CONF
     echo "socket=/var/lib/mysql/mysql.sock" >> $MY_CONF
@@ -251,6 +271,11 @@ function begin_config {
     echo "datadir=$DATA_PATH" >> $MY_CONF
     echo "log-error=$LOG_PATH/mariadb.log" >> $MY_CONF
     echo "config file $MY_CONF updated"
+}
+
+
+# init database users 
+function init_configureUsers {
     VOLUME_HOME=$DATA_PATH/mysql
     if [[ ! -d $VOLUME_HOME ]]; then
         echoVerbose "mariadb directory is empty or uninitialized"
@@ -260,12 +285,26 @@ function begin_config {
         config_startserver
         config_createadmin
         config_createuser
-        config_createdatabase
-        config_importsql
         config_stopserver
     else
         echoVerbose "mariadb directory is initialized"
         echoVerbose "Reusing MariaDB in $DATA_PATH ..."
+    fi
+}
+
+# init database and import data 
+function init_configureDatabase {
+    VOLUME_HOME=$DATA_PATH/$MYSQL_DATABASE
+    if [[ ! -d $VOLUME_HOME ]]; then
+        echoVerbose "$VOLUME_HOME database directory is empty or uninitialized"
+        echo "Installing database $MYSQL_DATABASE ..."
+        config_startserver
+        config_createdatabase
+        config_importsql
+        config_stopserver
+    else
+        echoVerbose "database $MYSQL_DATABASE is initialized"
+        echoVerbose "Reusing MariaDB in $VOLUME_HOME ..."
     fi
 }
 
@@ -390,13 +429,6 @@ function config_importsql {
     else
         echoVerbose "No sql scripts to load because no \$LOADSQL_PATH or \$MYSQL_DATABASE variables"
     fi
-}
-
-
-# End configuration process just before starting daemon
-function end_config {
-    echoVerbose "=> END MARIADB CONFIGURATION"
-    touch $DATA_PATH/.sxIsInit
 }
 
 function stopMariadbHandler {
