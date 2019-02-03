@@ -1,0 +1,327 @@
+kind: Template
+apiVersion: v1
+metadata:
+  name: startx-sv-php-build-template
+  annotations:
+    openshift.io/display-name: Startx PHP WebServer (fedora)
+    description: PHP+Http server for dynamic web application running under Fedora
+    iconClass: icon-php
+    tags: startx,os,fedora,php,httpd
+    openshift.io/long-description: This template provides an php httpd webserver
+      in a fedora container. Ready to use in openshift with a simple deployement config,
+      or as a s2i builder for building web applications container. For more information
+      about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.
+    openshift.io/provider-display-name: STARTX
+    openshift.io/documentation-url: https://github.com/startxfr/docker-images/blob/master/README.md
+    openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
+message: |-
+  Your dynamic web application ${APP_NAME} is building and will be soon deployed...
+
+  Service name: ${APP_NAME}
+  Source      : ${SOURCE_GIT}
+  action      : ${RUN_ACTION}
+labels:
+  template: startx-sv-php-build-template
+  provider: startx 
+objects:
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: startx-sv-php
+    annotations:
+      openshift.io/display-name: Startx PHP WebServer
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  spec:
+    tags:
+    - name: latest
+      annotations:
+        openshift.io/display-name: Startx PHP WebServer (Fedora rawhide)
+        description: PHP+Http server for dynamic web application running under Fedora rawhide
+        iconClass: icon-php
+        tags: builder,startx,fedora,php,httpd
+        supports: http
+        version: latest
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:latest
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    annotations:
+      openshift.io/display-name: Application ${APP_NAME}
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  spec:
+    tags:
+    - name: latest
+      annotations:
+        openshift.io/display-name: Application ${APP_NAME}
+        description: Base image for the application ${APP_NAME}
+        iconClass: icon-php
+        tags: startx,fedora,php,httpd,application,${APP_NAME}
+        supports: http
+        version: latest
+- kind: ConfigMap
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}-config"
+    annotations:
+      openshift.io/display-name: Application ${APP_NAME} configuration
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  data:
+    SX_ID: ${APP_NAME}/${APP_STAGE}
+    SX_TYPE: ${APP_STAGE}
+    SX_SERVICE: ${APP_NAME}
+    SX_NAME: Static web application ${APP_NAME}
+    SX_SUMMARY: Static web application ${APP_NAME} based on fedora container
+    SX_VERSION: 0.0.1 
+- kind: BuildConfig
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      openshift.io/generated-by: STARTX
+  spec:
+    triggers:
+    - type: GitHub
+      github:
+        secret: "${WEBHOOK_TOKEN}_${APP_NAME}"
+    - type: Generic
+      generic:
+        secret: "${WEBHOOK_TOKEN}_${APP_NAME}"
+    - type: ImageChange
+      imageChange: {}
+    - type: ConfigChange
+    runPolicy: SerialLatestOnly
+    source:
+      type: Git
+      git:
+        uri: "${SOURCE_GIT}"
+        ref: "${SOURCE_BRANCH}"
+    strategy:
+      type: Source
+      sourceStrategy:
+        from:
+          kind: ImageStreamTag
+          name: startx-sv-php:latest
+        env:
+        - name: SX_VERBOSE
+          value: 'true'
+    output:
+      to:
+        kind: ImageStreamTag
+        name: "${APP_NAME}:latest"
+    resources: {}
+    postCommit:
+      command:
+      - "/bin/sx-php"
+      - post-build
+- kind: DeploymentConfig
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      openshift.io/generated-by: STARTX
+  spec:
+    strategy:
+      type: Rolling
+      rollingParams:
+        updatePeriodSeconds: 1
+        intervalSeconds: 1
+        timeoutSeconds: 20
+        maxUnavailable: 25%
+        maxSurge: 25%
+        pre:
+          failurePolicy: Abort
+          execNewPod:
+            containerName: "${APP_NAME}"
+            command:
+            - "/bin/sx-php"
+            - pre-deploy
+            env:
+            - name: SX_VERBOSE
+              value: 'true'
+            - name: SX_DEBUG
+              value: 'true'
+            envFrom:
+              - configMapRef:
+                  name: ${APP_NAME}-config
+        post:
+          failurePolicy: Abort
+          execNewPod:
+            containerName: "${APP_NAME}"
+            command:
+            - "/bin/sx-php"
+            - post-deploy
+            env:
+            - name: SX_VERBOSE
+              value: 'true'
+            - name: SX_DEBUG
+              value: 'true'
+            envFrom:
+              - configMapRef:
+                  name: ${APP_NAME}-config
+      resources: {}
+    triggers:
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+        - "${APP_NAME}"
+        from:
+          kind: ImageStreamTag
+          name: "${APP_NAME}:latest"
+    - type: ConfigChange
+    postCommit:
+      script: "/bin/sx-php info"
+    replicas: 1
+    test: false
+    selector:
+      app: "${APP_NAME}"
+      deploymentconfig: "${APP_NAME}"
+    template:
+      metadata:
+        labels:
+          app: "${APP_NAME}"
+          deploymentconfig: "${APP_NAME}"
+        annotations:
+          openshift.io/generated-by: STARTX
+      spec:
+        containers:
+        - name: "${APP_NAME}"
+          image: " "
+          env:
+          - name: SX_VERBOSE
+            value: 'true'
+          envFrom:
+            - configMapRef:
+                name: ${APP_NAME}-config
+          command:
+          - "/bin/sx-php"
+          args:
+          - run
+          resources: {}
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          livenessProbe:
+            exec:
+              command:
+              - "/bin/sx-php"
+              - isLive
+            initialDelaySeconds: 4
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            exec:
+              command:
+              - "/bin/sx-php"
+              - isReady
+            initialDelaySeconds: 4
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          terminationMessagePath: "/dev/termination-log"
+          imagePullPolicy: Always
+          volumeMounts:
+          - name: "${APP_NAME}-log"
+            mountPath: "/var/log/httpd"
+          - name: "${APP_NAME}-app"
+            mountPath: "/app"
+        volumes:
+        - name: "${APP_NAME}-log"
+          emptyDir:
+            medium: ''
+        - name: "${APP_NAME}-app"
+          emptyDir:
+            medium: ''
+        restartPolicy: Always
+        terminationGracePeriodSeconds: 30
+        securityContext: {}
+        dnsPolicy: ClusterFirst
+- kind: Service
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      openshift.io/generated-by: STARTX
+  spec:
+    ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+    selector:
+      app: "${APP_NAME}"
+      deploymentconfig: "${APP_NAME}"
+    type: ClusterIP
+    sessionAffinity: None
+- kind: Route
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      openshift.io/generated-by: STARTX
+  spec:
+    to:
+      kind: Service
+      name: "${APP_NAME}"
+      weight: 100
+parameters:
+- name: APP_NAME
+  displayName: Application name
+  description: The name of the created application
+  value: php
+  required: true
+- name: APP_STAGE
+  displayName: Application stage
+  description: "Stage of the application deployed (ex: dev, test, prod, example, demo, poc, ...)"
+  value: example
+  required: true
+- name: SOURCE_GIT
+  displayName: Source repository
+  description: URL to the source code to use during build process
+  value: https://github.com/startxfr/docker-images-example-php.git
+  required: true
+- name: SOURCE_BRANCH
+  displayName: Source branch
+  description: Name of the default branch
+  value: master
+  required: true
+- name: WEBHOOK_TOKEN
+  displayName: Webhook token
+  description: Secret token to use for webhook to github or generic
+  generate: expression
+  from: "[a-zA-Z0-9]{24}"
+  required: true
+- name: RUN_ACTION
+  displayName: Main action to perfom
+  description: Action to perform for this running Pod. Should be one of build, post-build,
+    pre-deploy, post-deploy, run, isLive, isReady, usage, usageS2i, daemon, info,
+    version. See documentation for action list.
+  value: run
+  required: true
