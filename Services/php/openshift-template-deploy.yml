@@ -4,16 +4,14 @@ apiVersion: v1
 metadata:
   name: startx-sv-php-deploy-template
   annotations:
-    openshift.io/display-name: Startx PHP WebServer (fedora)
-    description: PHP+Http server for dynamic web application running under Fedora
+    openshift.io/display-name: Startx PHP Server (ephemeral deploy workflow)
+    description: Deployement workflow of a dynamic PHP web application using ephemeral storage
+      for logs records. Use apache with various underlying linux distribution. See 
+      https://hub.docker.com/r/startx/sv-php
     iconClass: icon-php
     tags: startx,os,fedora,php,httpd
-    openshift.io/long-description: This template provides an php httpd webserver
-      in a fedora container. Ready to use in openshift with a simple deployement config,
-      or as a s2i builder for building web applications container. For more information
-      about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.
     openshift.io/provider-display-name: STARTX
-    openshift.io/documentation-url: https://github.com/startxfr/docker-images/blob/master/README.md
+    openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-php
     openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
 message: |-
   Your dynamic web application ${APP_NAME} is deploying...
@@ -346,13 +344,8 @@ objects:
           volumeMounts:
           - name: "${APP_NAME}-log"
             mountPath: "/var/log/httpd"
-          - name: "${APP_NAME}-app"
-            mountPath: "${APP_PATH}"
         volumes:
         - name: "${APP_NAME}-log"
-          emptyDir:
-            medium: ''
-        - name: "${APP_NAME}-app"
           emptyDir:
             medium: ''
         restartPolicy: Always

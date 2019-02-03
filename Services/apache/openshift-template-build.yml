@@ -3,16 +3,14 @@ apiVersion: v1
 metadata:
   name: startx-sv-apache-build-template
   annotations:
-    openshift.io/display-name: Startx Http Server (fedora)
-    description: Http server for simple web application running under Fedora
+    openshift.io/display-name: Startx Http Server (ephemeral build & deploy workflow)
+    description: Build and deployement workflow of a static web application using ephemeral storage
+      for logs records. Use apache with various underlying linux distribution. See 
+      https://hub.docker.com/r/startx/sv-apache
     iconClass: icon-apache
     tags: startx,os,fedora,apache,httpd
-    openshift.io/long-description: This template provides an apache httpd webserver
-      in a fedora container. Ready to use in openshift with a simple deployement config,
-      or as a s2i builder for building web applications container. For more information
-      about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.
     openshift.io/provider-display-name: STARTX
-    openshift.io/documentation-url: https://github.com/startxfr/docker-images/blob/master/README.md
+    openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-apache
     openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
 message: |-
   Your application ${APP_NAME} is building and will be soon deployed...

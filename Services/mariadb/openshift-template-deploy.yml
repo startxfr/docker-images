@@ -4,16 +4,14 @@ apiVersion: v1
 metadata:
   name: startx-sv-mariadb-deploy-template
   annotations:
-    openshift.io/display-name: Startx Mariadb Server (ephemeral)
-    description: Mariadb server for simple SQL database with ephemeral storage
+    openshift.io/display-name: Startx Mariadb Server (ephemeral deploy workflow)
+    description: Deployement workflow of a Mariadb SQL database using ephemeral storage
+      for data and logs records. Use mariadb with various underlying linux distribution. See 
+      https://hub.docker.com/r/startx/sv-mariadb
     iconClass: icon-mariadb
     tags: startx,os,fedora,mariadb,sql
-    openshift.io/long-description: This template provides an mariadb SQL database server
-      in a fedora container. Ready to use in openshift with a simple deployement config,
-      or as a s2i builder for building SQL database container. For more information
-      about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.
     openshift.io/provider-display-name: STARTX
-    openshift.io/documentation-url: https://github.com/startxfr/docker-images/blob/master/README.md
+    openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-mariadb
     openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
 message: |-
   Your ephemeral database ${APP_NAME} is deploying...
@@ -370,6 +368,9 @@ objects:
           resources:
             limits:
               memory: "${MEMORY_LIMIT}"
+          ports:
+          - containerPort: 3306
+            protocol: TCP
           livenessProbe:
             exec:
               command:
@@ -417,30 +418,18 @@ objects:
       stage: "${APP_STAGE}"
     annotations:
       openshift.io/generated-by: STARTX
+      template.openshift.io/expose-uri: mysql://{.spec.clusterIP}:{.spec.ports[?(.name=="mysql")].port}
   spec:
     ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 8080
+    - name: mysql
+      protocol: TCP
+      port: 3306
+      targetPort: 3306
     selector:
       app: "${APP_NAME}"
       deploymentconfig: "${APP_NAME}"
     type: ClusterIP
     sessionAffinity: None
-- kind: Route
-  apiVersion: v1
-  metadata:
-    name: "${APP_NAME}"
-    labels:
-      app: "${APP_NAME}"
-      stage: "${APP_STAGE}"
-    annotations:
-      openshift.io/generated-by: STARTX
-  spec:
-    to:
-      kind: Service
-      name: "${APP_NAME}"
-      weight: 100
 parameters:
 - name: APP_NAME
   displayName: Database name

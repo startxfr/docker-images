@@ -3,16 +3,14 @@ apiVersion: v1
 metadata:
   name: startx-sv-mariadb-build-persist-template
   annotations:
-    openshift.io/display-name: Startx Mariadb Server (persistent)
-    description: Mariadb server for simple SQL database with persistent storage
+    openshift.io/display-name: Startx Mariadb Server (peristent build & deploy workflow)
+    description: Build and deployement workflow of a Mariadb SQL database using peristent storage
+      for data and logs records. Use mariadb with various underlying linux distribution. See 
+      https://hub.docker.com/r/startx/sv-mariadb
     iconClass: icon-mariadb
     tags: startx,os,fedora,mariadb,sql
-    openshift.io/long-description: This template provides an mariadb SQL database server
-      in a fedora container. Ready to use in openshift with a simple deployement config,
-      or as a s2i builder for building SQL database container. For more information
-      about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.
     openshift.io/provider-display-name: STARTX
-    openshift.io/documentation-url: https://github.com/startxfr/docker-images/blob/master/README.md
+    openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-mariadb
     openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
 message: |-
   Your persistent database ${APP_NAME} is building and will be soon deployed...
