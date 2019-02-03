@@ -147,3 +147,51 @@ items:
       from:
         kind: ImageStreamTag
         name: rawhide
+    - name: dev
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (dev)
+        description: Http server builder for simple web application (developpement)
+        iconClass: icon-apache
+        tags: builder,startx,alpine,apache,httpd
+        supports: http
+        version: 'dev'
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: test
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (test)
+        description: Http server builder for simple web application (testing)
+        iconClass: icon-apache
+        tags: builder,startx,alpine,apache,httpd
+        supports: http
+        version: 'test'
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: ImageStreamTag
+        name: centos7
+    - name: preprod
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (preprod)
+        description: Http server builder for simple web application (pre-production)
+        iconClass: icon-apache
+        tags: builder,startx,alpine,apache,httpd
+        supports: http
+        version: 'pre-prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+    - name: prod
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (prod)
+        description: Http server builder for simple web application (production)
+        iconClass: icon-apache
+        tags: builder,startx,alpine,apache,httpd
+        supports: http
+        version: 'prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3

@@ -37,18 +37,183 @@ objects:
       stage: "${APP_STAGE}"
   spec:
     tags:
-    - name: latest
+    - name: fc26
       annotations:
-        openshift.io/display-name: Startx WebServer (Fedora rawhide)
-        description: Http server for simple web application running under Fedora rawhide
+        openshift.io/display-name: S2I Startx WebServer (Fedora 26)
+        description: Http server builder for simple web application running under
+          Fedora 26
         iconClass: icon-apache
         tags: builder,startx,fedora,apache,httpd
         supports: http
-        version: latest
+        version: fc26
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-apache:fc26
+    - name: fc27
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (Fedora 27)
+        description: Http server builder for simple web application running under
+          Fedora 27
+        iconClass: icon-apache
+        tags: builder,startx,fedora,apache,httpd
+        supports: http
+        version: fc27
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-apache:fc27
+    - name: fc28
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (Fedora 28)
+        description: Http server builder for simple web application running under
+          Fedora 28
+        iconClass: icon-apache
+        tags: builder,startx,fedora,apache,httpd
+        supports: http
+        version: fc28
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-apache:fc28
+    - name: fc29
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (Fedora 29)
+        description: Http server builder for simple web application running under
+          Fedora 29
+        iconClass: icon-apache
+        tags: builder,startx,fedora,apache,httpd
+        supports: http
+        version: fc29
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-apache:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (Fedora 30)
+        description: Http server builder for simple web application running under
+          Fedora 30
+        iconClass: icon-apache
+        tags: builder,startx,fedora,apache,httpd
+        supports: http
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-apache:fc30
+    - name: rawhide
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (Fedora rawhide)
+        description: Http server builder for simple web application running under
+          Fedora rawhide
+        iconClass: icon-apache
+        tags: builder,startx,fedora,apache,httpd
+        supports: http
+        version: rawhide
         sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
       from:
         kind: DockerImage
         name: startx/sv-apache:latest
+    - name: centos7
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (Centos 7)
+        description: Http server builder for simple web application running under
+          Centos 7
+        iconClass: icon-apache
+        tags: builder,startx,centos,apache,httpd
+        supports: http
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-apache:centos7
+    - name: centos6
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (Centos 6)
+        description: Http server builder for simple web application running under
+          Centos 6
+        iconClass: icon-apache
+        tags: builder,startx,centos,apache,httpd
+        supports: http
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-apache:centos6
+    - name: alpine3
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (Alpine 3)
+        description: Http server builder for simple web application running under
+          Alpine 3
+        iconClass: icon-apache
+        tags: builder,startx,alpine,apache,httpd
+        supports: http
+        version: '3'
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-apache:alpine3
+    - name: latest
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (latest)
+        description: Http server builder for simple web application running under
+          Fedora latest
+        iconClass: icon-apache
+        tags: builder,startx,alpine,apache,httpd
+        supports: http
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: dev
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (dev)
+        description: Http server builder for simple web application (developpement)
+        iconClass: icon-apache
+        tags: builder,startx,alpine,apache,httpd
+        supports: http
+        version: 'dev'
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: test
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (test)
+        description: Http server builder for simple web application (testing)
+        iconClass: icon-apache
+        tags: builder,startx,alpine,apache,httpd
+        supports: http
+        version: 'test'
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: ImageStreamTag
+        name: centos7
+    - name: preprod
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (preprod)
+        description: Http server builder for simple web application (pre-production)
+        iconClass: icon-apache
+        tags: builder,startx,alpine,apache,httpd
+        supports: http
+        version: 'pre-prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+    - name: prod
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (prod)
+        description: Http server builder for simple web application (production)
+        iconClass: icon-apache
+        tags: builder,startx,alpine,apache,httpd
+        supports: http
+        version: 'prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
 - kind: ConfigMap
   apiVersion: v1
   metadata:
@@ -120,7 +285,7 @@ objects:
         - "${APP_NAME}"
         from:
           kind: ImageStreamTag
-          name: "${APP_NAME}:latest"
+          name: "${APP_NAME}:${IMAGE_STAGE}"
     - type: ConfigChange
     postCommit:
       script: "/bin/sx info"
@@ -238,6 +403,11 @@ parameters:
   displayName: Application stage
   description: "Stage of the application deployed (ex: dev, test, prod, example, demo, poc, ...)"
   value: example
+  required: true
+- name: IMAGE_STAGE
+  displayName: Image stage
+  description: "Stage of the base image used (ex: dev, test, preprod, prod, latest, rawhide, fc30, alpine3, centos6, centos7, fc29, fc28, ...)"
+  value: latest
   required: true
 - name: RUN_ACTION
   displayName: Main action to perfom

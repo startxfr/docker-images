@@ -135,3 +135,51 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-mariadb:alpine3
+    - name: dev
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (dev)
+        description: Http server builder for simple SQL database (developpement)
+        iconClass: icon-mariadb
+        tags: builder,startx,alpine,mariadb,sql
+        supports: mysql
+        version: 'dev'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: test
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (test)
+        description: Http server builder for simple SQL database (testing)
+        iconClass: icon-mariadb
+        tags: builder,startx,alpine,mariadb,sql
+        supports: mysql
+        version: 'test'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: ImageStreamTag
+        name: centos7
+    - name: preprod
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (preprod)
+        description: Http server builder for simple SQL database (pre-production)
+        iconClass: icon-mariadb
+        tags: builder,startx,alpine,mariadb,sql
+        supports: mysql
+        version: 'pre-prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+    - name: prod
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (prod)
+        description: Http server builder for simple SQL database (production)
+        iconClass: icon-mariadb
+        tags: builder,startx,alpine,mariadb,sql
+        supports: mysql
+        version: 'prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3

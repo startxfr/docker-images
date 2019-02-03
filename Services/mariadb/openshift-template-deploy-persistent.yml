@@ -37,18 +37,171 @@ objects:
       stage: "${APP_STAGE}"
   spec:
     tags:
-    - name: latest
+    - name: fc26
       annotations:
-        openshift.io/display-name: Startx MariadbServer (Fedora rawhide)
-        description: Mariadb server for simple SQL database running under Fedora rawhide
+        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 26)
+        description: MariaDB server builder for simple SQL database running under
+          Fedora 26
         iconClass: icon-mariadb
         tags: builder,startx,fedora,mariadb,sql
         supports: mysql
-        version: latest
+        version: fc26
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:fc26
+    - name: fc27
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 27)
+        description: MariaDB server builder for simple SQL database running under
+          Fedora 27
+        iconClass: icon-mariadb
+        tags: builder,startx,fedora,mariadb,sql
+        supports: mysql
+        version: fc27
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:fc27
+    - name: fc28
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 28)
+        description: MariaDB server builder for simple SQL database running under
+          Fedora 28
+        iconClass: icon-mariadb
+        tags: builder,startx,fedora,mariadb,sql
+        supports: mysql
+        version: fc28
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:fc28
+    - name: fc29
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 29)
+        description: MariaDB server builder for simple SQL database running under
+          Fedora 29
+        iconClass: icon-mariadb
+        tags: builder,startx,fedora,mariadb,sql
+        supports: mysql
+        version: fc29
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 30)
+        description: MariaDB server builder for simple SQL database running under
+          Fedora 30
+        iconClass: icon-mariadb
+        tags: builder,startx,fedora,mariadb,sql
+        supports: mysql
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:fc30
+    - name: latest
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Fedora latest)
+        description: MariaDB server builder for simple SQL database running under
+          Fedora latest
+        iconClass: icon-mariadb
+        tags: builder,startx,fedora,mariadb,sql
+        supports: mysql
+        version: rawhide
         sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
       from:
         kind: DockerImage
         name: startx/sv-mariadb:latest
+    - name: centos7
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Centos 7)
+        description: MariaDB server builder for simple SQL database running under
+          Centos 7
+        iconClass: icon-mariadb
+        tags: builder,startx,centos,mariadb,sql
+        supports: mysql
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:centos7
+    - name: centos6
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Centos 6)
+        description: MariaDB server builder for simple SQL database running under
+          Centos 6
+        iconClass: icon-mariadb
+        tags: builder,startx,centos,mariadb,sql
+        supports: mysql
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:centos6
+    - name: alpine3
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Alpine 3)
+        description: MariaDB server builder for simple SQL database running under
+          Alpine 3
+        iconClass: icon-mariadb
+        tags: builder,startx,alpine,mariadb,sql
+        supports: mysql
+        version: '3'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:alpine3
+    - name: dev
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (dev)
+        description: Http server builder for simple SQL database (developpement)
+        iconClass: icon-mariadb
+        tags: builder,startx,alpine,mariadb,sql
+        supports: mysql
+        version: 'dev'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: test
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (test)
+        description: Http server builder for simple SQL database (testing)
+        iconClass: icon-mariadb
+        tags: builder,startx,alpine,mariadb,sql
+        supports: mysql
+        version: 'test'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: ImageStreamTag
+        name: centos7
+    - name: preprod
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (preprod)
+        description: Http server builder for simple SQL database (pre-production)
+        iconClass: icon-mariadb
+        tags: builder,startx,alpine,mariadb,sql
+        supports: mysql
+        version: 'pre-prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+    - name: prod
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (prod)
+        description: Http server builder for simple SQL database (production)
+        iconClass: icon-mariadb
+        tags: builder,startx,alpine,mariadb,sql
+        supports: mysql
+        version: 'prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
 - kind: ConfigMap
   apiVersion: v1
   metadata:
@@ -196,7 +349,7 @@ objects:
         - "${APP_NAME}"
         from:
           kind: ImageStreamTag
-          name: "${APP_NAME}:latest"
+          name: "${APP_NAME}:${IMAGE_STAGE}"
     - type: ConfigChange
     postCommit:
       script: "/bin/sx info"
@@ -330,6 +483,11 @@ parameters:
   displayName: Database stage
   description: "Stage of the database deployed (ex: dev, test, prod, example, demo, poc, ...)"
   value: example
+  required: true
+- name: IMAGE_STAGE
+  displayName: Image stage
+  description: "Stage of the base image used (ex: dev, test, preprod, prod, latest, rawhide, fc30, alpine3, centos6, centos7, fc29, fc28, ...)"
+  value: latest
   required: true
 - name: RUN_ACTION
   displayName: Main action to perfom

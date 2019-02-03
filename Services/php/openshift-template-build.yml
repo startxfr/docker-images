@@ -36,18 +36,183 @@ objects:
       stage: "${APP_STAGE}"
   spec:
     tags:
-    - name: latest
+    - name: fc26
       annotations:
-        openshift.io/display-name: Startx PHP WebServer (Fedora rawhide)
-        description: PHP+Http server for dynamic web application running under Fedora rawhide
+        openshift.io/display-name: S2I Startx PHP PHP WebServer (Fedora 26)
+        description: PHP+Http server builder for dynamic web application running under
+          Fedora 26
         iconClass: icon-php
         tags: builder,startx,fedora,php,httpd
         supports: http
-        version: latest
+        version: fc26
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:fc26
+    - name: fc27
+      annotations:
+        openshift.io/display-name: S2I Startx PHP PHP WebServer (Fedora 27)
+        description: PHP+Http server builder for dynamic web application running under
+          Fedora 27
+        iconClass: icon-php
+        tags: builder,startx,fedora,php,httpd
+        supports: http
+        version: fc27
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:fc27
+    - name: fc28
+      annotations:
+        openshift.io/display-name: S2I Startx PHP PHP WebServer (Fedora 28)
+        description: PHP+Http server builder for dynamic web application running under
+          Fedora 28
+        iconClass: icon-php
+        tags: builder,startx,fedora,php,httpd
+        supports: http
+        version: fc28
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:fc28
+    - name: fc29
+      annotations:
+        openshift.io/display-name: S2I Startx PHP PHP WebServer (Fedora 29)
+        description: PHP+Http server builder for dynamic web application running under
+          Fedora 29
+        iconClass: icon-php
+        tags: builder,startx,fedora,php,httpd
+        supports: http
+        version: fc29
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: S2I Startx PHP PHP WebServer (Fedora 30)
+        description: PHP+Http server builder for dynamic web application running under
+          Fedora 30
+        iconClass: icon-php
+        tags: builder,startx,fedora,php,httpd
+        supports: http
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:fc30
+    - name: rawhide
+      annotations:
+        openshift.io/display-name: S2I Startx PHP PHP WebServer (Fedora rawhide)
+        description: PHP+Http server builder for dynamic web application running under
+          Fedora rawhide
+        iconClass: icon-php
+        tags: builder,startx,fedora,php,httpd
+        supports: http
+        version: rawhide
         sampleRepo: https://github.com/startxfr/docker-images-example-php.git
       from:
         kind: DockerImage
         name: startx/sv-php:latest
+    - name: centos7
+      annotations:
+        openshift.io/display-name: S2I Startx PHP PHP WebServer (Centos 7)
+        description: PHP+Http server builder for dynamic web application running under
+          Centos 7
+        iconClass: icon-php
+        tags: builder,startx,centos,php,httpd
+        supports: http
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:centos7
+    - name: centos6
+      annotations:
+        openshift.io/display-name: S2I Startx PHP PHP WebServer (Centos 6)
+        description: PHP+Http server builder for dynamic web application running under
+          Centos 6
+        iconClass: icon-php
+        tags: builder,startx,centos,php,httpd
+        supports: http
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:centos6
+    - name: alpine3
+      annotations:
+        openshift.io/display-name: S2I Startx PHP PHP WebServer (Alpine 3)
+        description: PHP+Http server builder for dynamic web application running under
+          Alpine 3
+        iconClass: icon-php
+        tags: builder,startx,alpine,php,httpd
+        supports: http
+        version: '3'
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:alpine3
+    - name: latest
+      annotations:
+        openshift.io/display-name: S2I Startx PHP PHP WebServer (latest)
+        description: PHP+Http server builder for dynamic web application running under
+          Fedora latest
+        iconClass: icon-php
+        tags: builder,startx,alpine,php,httpd
+        supports: http
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: dev
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (dev)
+        description: Http server builder for dynamic web application (developpement)
+        iconClass: icon-php
+        tags: builder,startx,alpine,php,httpd
+        supports: http
+        version: 'dev'
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: test
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (test)
+        description: Http server builder for dynamic web application (testing)
+        iconClass: icon-php
+        tags: builder,startx,alpine,php,httpd
+        supports: http
+        version: 'test'
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: ImageStreamTag
+        name: centos7
+    - name: preprod
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (preprod)
+        description: Http server builder for dynamic web application (pre-production)
+        iconClass: icon-php
+        tags: builder,startx,alpine,php,httpd
+        supports: http
+        version: 'pre-prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+    - name: prod
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (prod)
+        description: Http server builder for dynamic web application (production)
+        iconClass: icon-php
+        tags: builder,startx,alpine,php,httpd
+        supports: http
+        version: 'prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
 - kind: ImageStream
   apiVersion: v1
   metadata:
@@ -116,7 +281,7 @@ objects:
       sourceStrategy:
         from:
           kind: ImageStreamTag
-          name: startx-sv-php:latest
+          name: startx-sv-php:${IMAGE_STAGE}
         env:
         - name: SX_VERBOSE
           value: 'true'
@@ -301,6 +466,11 @@ parameters:
   displayName: Application stage
   description: "Stage of the application deployed (ex: dev, test, prod, example, demo, poc, ...)"
   value: example
+  required: true
+- name: IMAGE_STAGE
+  displayName: Image stage
+  description: "Stage of the base image used (ex: dev, test, preprod, prod, latest, rawhide, fc30, alpine3, centos6, centos7, fc29, fc28, ...)"
+  value: latest
   required: true
 - name: SOURCE_GIT
   displayName: Source repository
