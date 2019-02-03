@@ -4,14 +4,14 @@ apiVersion: v1
 metadata:
   name: startx-sv-apache-deploy-template
   annotations:
-    openshift.io/display-name: Startx Base OS (fedora)
-    description: Minimal Fedora OS container for bash operations
-    iconClass: icon-beaker
-    tags: startx,os,fedora
-    openshift.io/long-description: This template provides a fedora container with
-      minimal tools and scripts. Ready to use in openshift with a simple deployement
-      config, or as a s2i builder for bash applications. For more information about
-      using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.
+    openshift.io/display-name: Startx Http Server (fedora)
+    description: Http server for simple web application running under Fedora
+    iconClass: icon-apache
+    tags: startx,os,fedora,apache,httpd
+    openshift.io/long-description: This template provides an apache httpd webserver
+      in a fedora container. Ready to use in openshift with a simple deployement config,
+      or as a s2i builder for building web applications container. For more information
+      about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.
     openshift.io/provider-display-name: STARTX
     openshift.io/documentation-url: https://github.com/startxfr/docker-images/blob/master/README.md
     openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
@@ -66,6 +66,7 @@ objects:
     SX_NAME: Static web application ${APP_NAME}
     SX_SUMMARY: Static web application ${APP_NAME} based on fedora container
     SX_VERSION: 0.0.1 
+    APP_PATH: "${APP_PATH}"
 - kind: DeploymentConfig
   apiVersion: v1
   metadata:
@@ -158,8 +159,8 @@ objects:
               command:
               - "/bin/sx"
               - isLive
-            initialDelaySeconds: 1
-            timeoutSeconds: 1
+            initialDelaySeconds: 5
+            timeoutSeconds: 2
             periodSeconds: 10
             successThreshold: 1
             failureThreshold: 3
@@ -168,19 +169,25 @@ objects:
               command:
               - "/bin/sx"
               - isReady
-            initialDelaySeconds: 1
-            timeoutSeconds: 1
+            initialDelaySeconds: 5
+            timeoutSeconds: 2
             periodSeconds: 10
             successThreshold: 1
             failureThreshold: 3
           terminationMessagePath: "/dev/termination-log"
           imagePullPolicy: Always
           volumeMounts:
-          - mountPath: "/app"
-            name: "${APP_NAME}-app"
+          - name: "${APP_NAME}-log"
+            mountPath: "/var/log/httpd"
+          - name: "${APP_NAME}-app"
+            mountPath: "${APP_PATH}"
         volumes:
+        - name: "${APP_NAME}-log"
+          emptyDir:
+            medium: ''
         - name: "${APP_NAME}-app"
-          emptyDir: {}
+          emptyDir:
+            medium: ''
         restartPolicy: Always
         terminationGracePeriodSeconds: 30
         securityContext: {}
@@ -235,4 +242,10 @@ parameters:
     pre-deploy, post-deploy, run, isLive, isReady, usage, usageS2i, daemon, info,
     version. See documentation for action list.
   value: run
+  required: true
+- name: APP_PATH
+  displayName: Path to the application
+  description: Container path to the application. Could be a mounted directory with
+    your web content. Default is /app as defined in the startx/sv-apache content.
+  value: "/app"
   required: true

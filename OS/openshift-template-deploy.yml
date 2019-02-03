@@ -33,7 +33,7 @@ objects:
       openshift.io/display-name: Startx Base OS (fedora)
     labels:
       app: "${APP_NAME}"
-      type: "${APP_TYPE}"
+      stage: "${APP_STAGE}"
   spec:
     tags:
     - name: latest
@@ -57,12 +57,13 @@ objects:
       openshift.io/generated-by: STARTX
     labels:
       app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
   data:
-    SX_ID: ${APP_NAME}
-    SX_NAME: Bash application example
-    SX_SERVICE: system
-    SX_SUMMARY: Bash application example based on fedora container
-    SX_TYPE: example
+    SX_ID: ${APP_NAME}/${APP_STAGE}
+    SX_TYPE: ${APP_STAGE}
+    SX_SERVICE: ${APP_NAME}
+    SX_NAME: Bash application ${APP_NAME}
+    SX_SUMMARY: Bash application ${APP_NAME} based on fedora container
     SX_VERSION: 0.0.1 
 - kind: DeploymentConfig
   apiVersion: v1
@@ -70,6 +71,7 @@ objects:
     name: "${APP_NAME}"
     labels:
       app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
     annotations:
       openshift.io/generated-by: STARTX
   spec:
@@ -130,8 +132,7 @@ objects:
         creationTimestamp: 
         labels:
           app: "${APP_NAME}"
-          provider: startx
-          template: startx-os-fedora-deploy-template
+          stage: "${APP_STAGE}"
           deploymentconfig: "${APP_NAME}"
         annotations:
           openshift.io/generated-by: STARTX
@@ -188,10 +189,11 @@ parameters:
   description: The name of the created application
   value: fedora
   required: true
-- name: APP_TYPE
-  displayName: Application type
-  description: The type of the created application
-  value: system
+- name: APP_STAGE
+  displayName: Application stage
+  description: "Stage of the application deployed (ex: dev, test, prod, example, demo, poc, ...)"
+  value: example
+  required: true
 - name: RUN_ACTION
   displayName: Main action to perfom
   description: Action to perform for this running Pod. Should be one of build, post-build,

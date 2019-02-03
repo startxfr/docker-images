@@ -33,6 +33,7 @@ objects:
       openshift.io/generated-by: STARTX
     labels:
       app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
   spec:
     tags:
     - name: latest
@@ -56,6 +57,7 @@ objects:
       openshift.io/generated-by: STARTX
     labels:
       app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
   spec:
     tags:
     - name: latest
@@ -75,12 +77,13 @@ objects:
       openshift.io/generated-by: STARTX
     labels:
       app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
   data:
-    SX_ID: ${APP_NAME}
-    SX_NAME: Bash application example
-    SX_SERVICE: system
-    SX_SUMMARY: Bash application example based on fedora container
-    SX_TYPE: example
+    SX_ID: ${APP_NAME}/${APP_STAGE}
+    SX_TYPE: ${APP_STAGE}
+    SX_SERVICE: ${APP_NAME}
+    SX_NAME: Bash application ${APP_NAME}
+    SX_SUMMARY: Bash application ${APP_NAME} based on fedora container
     SX_VERSION: 0.0.1 
 - kind: BuildConfig
   apiVersion: v1
@@ -91,6 +94,7 @@ objects:
       openshift.io/generated-by: STARTX
     labels:
       app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
   spec:
     triggers:
     - type: GitHub
@@ -126,8 +130,6 @@ objects:
       command:
       - "/bin/sx"
       - post-build
-  status:
-    lastVersion: 0
 - kind: DeploymentConfig
   apiVersion: v1
   metadata:
@@ -137,6 +139,7 @@ objects:
       openshift.io/generated-by: STARTX
     labels:
       app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
   spec:
     strategy:
       type: Rolling
@@ -170,7 +173,7 @@ objects:
               - configMapRef:
                   name: ${APP_NAME}-config
           failurePolicy: Abort
-        timeoutSeconds: 30
+        timeoutSeconds: 20
         updatePeriodSeconds: 1
       resources: {}
     triggers:
@@ -192,11 +195,9 @@ objects:
       deploymentconfig: "${APP_NAME}"
     template:
       metadata:
-        creationTimestamp: 
         labels:
           app: "${APP_NAME}"
-          provider: startx
-          template: startx-os-fedora-build-template
+          stage: "${APP_STAGE}"
           deploymentconfig: "${APP_NAME}"
         annotations:
           openshift.io/generated-by: STARTX
@@ -245,18 +246,18 @@ objects:
           emptyDir: {}
         restartPolicy: Always
         terminationGracePeriodSeconds: 10
-        dnsPolicy: ClusterFirst
         securityContext: {}
-  status:
-    observedGeneration: 2
-    replicas: 1
-    updatedReplicas: 1
-    availableReplicas: 1
+        dnsPolicy: ClusterFirst
 parameters:
 - name: APP_NAME
   displayName: Application name
   description: The name of the created application
   value: daemon
+  required: true
+- name: APP_STAGE
+  displayName: Application stage
+  description: "Stage of the application deployed (ex: dev, test, prod, example, demo, poc, ...)"
+  value: example
   required: true
 - name: SOURCE_GIT
   displayName: Source repository
