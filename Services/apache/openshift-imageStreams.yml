@@ -10,9 +10,9 @@ items:
 - kind: ImageStream
   apiVersion: v1
   metadata:
-    name: startx-os
+    name: startx-apache
     annotations:
-      openshift.io/display-name: Startx Base OS (S2I)
+      openshift.io/display-name: Startx WebServer (S2I)
       openshift.io/generated-by: STARTX
     labels:
       provider: startx
@@ -20,119 +20,129 @@ items:
     tags:
     - name: fc26
       annotations:
-        openshift.io/display-name: S2I Startx Fedora 26
-        description: Minimal Fedora 26 OS builder for bash operations
-        iconClass: icon-beaker
-        tags: builder,startx,fedora
-        supports: fedora
+        openshift.io/display-name: S2I Startx WebServer (Fedora 26)
+        description: Http server builder for simple web application running under
+          Fedora 26
+        iconClass: icon-apache
+        tags: builder,startx,fedora,apache,httpd
+        supports: http
         version: fc26
         sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
       from:
         kind: DockerImage
-        name: startx/fedora:26
+        name: startx/sv-apache:fc26
     - name: fc27
       annotations:
-        openshift.io/display-name: S2I Startx Fedora 27
-        description: Minimal Fedora 27 OS builder for bash operations
-        iconClass: icon-beaker
-        tags: builder,startx,fedora
-        supports: fedora
+        openshift.io/display-name: S2I Startx WebServer (Fedora 27)
+        description: Http server builder for simple web application running under
+          Fedora 27
+        iconClass: icon-apache
+        tags: builder,startx,fedora,apache,httpd
+        supports: http
         version: fc27
         sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
       from:
         kind: DockerImage
-        name: startx/fedora:27
+        name: startx/sv-apache:fc27
     - name: fc28
       annotations:
-        openshift.io/display-name: S2I Startx Fedora 28
-        description: Minimal Fedora 28 OS builder for bash operations
-        iconClass: icon-beaker
-        tags: builder,startx,fedora
-        supports: fedora
+        openshift.io/display-name: S2I Startx WebServer (Fedora 28)
+        description: Http server builder for simple web application running under
+          Fedora 28
+        iconClass: icon-apache
+        tags: builder,startx,fedora,apache,httpd
+        supports: http
         version: fc28
         sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
       from:
         kind: DockerImage
-        name: startx/fedora:28
+        name: startx/sv-apache:fc28
     - name: fc29
       annotations:
-        openshift.io/display-name: S2I Startx Fedora 29
-        description: Minimal Fedora 29 OS builder for bash operations
-        iconClass: icon-beaker
-        tags: builder,startx,fedora
-        supports: fedora
+        openshift.io/display-name: S2I Startx WebServer (Fedora 29)
+        description: Http server builder for simple web application running under
+          Fedora 29
+        iconClass: icon-apache
+        tags: builder,startx,fedora,apache,httpd
+        supports: http
         version: fc29
         sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
       from:
         kind: DockerImage
-        name: startx/fedora:29
+        name: startx/sv-apache:fc29
     - name: fc30
       annotations:
-        openshift.io/display-name: S2I Startx Fedora 30
-        description: Minimal Fedora 30 OS builder for bash operations
-        iconClass: icon-beaker
-        tags: builder,startx,fedora
-        supports: fedora
+        openshift.io/display-name: S2I Startx WebServer (Fedora 30)
+        description: Http server builder for simple web application running under
+          Fedora 30
+        iconClass: icon-apache
+        tags: builder,startx,fedora,apache,httpd
+        supports: http
         version: fc30
         sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
       from:
         kind: DockerImage
-        name: startx/fedora:30
+        name: startx/sv-apache:fc30
     - name: rawhide
       annotations:
-        openshift.io/display-name: S2I Startx Fedora (rawhide)
-        description: Minimal Fedora 27 OS builder for bash operations
-        iconClass: icon-beaker
-        tags: builder,startx,fedora
-        supports: fedora
+        openshift.io/display-name: S2I Startx WebServer (Fedora rawhide)
+        description: Http server builder for simple web application running under
+          Fedora rawhide
+        iconClass: icon-apache
+        tags: builder,startx,fedora,apache,httpd
+        supports: http
         version: rawhide
         sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
       from:
         kind: DockerImage
-        name: startx/fedora:latest
+        name: startx/sv-apache:latest
     - name: centos7
       annotations:
-        openshift.io/display-name: S2I Startx CentOS 7
-        description: Minimal CentOS 7 OS builder for bash operations
-        iconClass: icon-beaker
-        tags: builder,startx,centos
-        supports: centos
+        openshift.io/display-name: S2I Startx WebServer (Centos 7)
+        description: Http server builder for simple web application running under
+          Centos 7
+        iconClass: icon-apache
+        tags: builder,startx,centos,apache,httpd
+        supports: http
         version: '7'
         sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
       from:
         kind: DockerImage
-        name: startx/centos:7
+        name: startx/sv-apache:centos7
     - name: centos6
       annotations:
-        openshift.io/display-name: S2I Startx CentOS 6
-        description: Minimal CentOS 6 OS builder for bash operations
-        iconClass: icon-beaker
-        tags: builder,startx,centos
-        supports: centos
-        version: '6'
+        openshift.io/display-name: S2I Startx WebServer (Centos 6)
+        description: Http server builder for simple web application running under
+          Centos 6
+        iconClass: icon-apache
+        tags: builder,startx,centos,apache,httpd
+        supports: http
+        version: '7'
         sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
       from:
         kind: DockerImage
-        name: startx/centos:6
+        name: startx/sv-apache:centos6
     - name: alpine3
       annotations:
-        openshift.io/display-name: S2I Startx Alpine 3
-        description: Minimal Alpine 3 OS builder for bash operations
-        iconClass: icon-beaker
-        tags: builder,startx,alpine
-        supports: alpine
+        openshift.io/display-name: S2I Startx WebServer (Alpine 3)
+        description: Http server builder for simple web application running under
+          Alpine 3
+        iconClass: icon-apache
+        tags: builder,startx,alpine,apache,httpd
+        supports: http
         version: '3'
         sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
       from:
         kind: DockerImage
-        name: startx/alpine:3
+        name: startx/sv-apache:alpine3
     - name: latest
       annotations:
-        openshift.io/display-name: S2I Startx Fedora (latest)
-        description: Minimal Fedora OS builder for bash operations
-        iconClass: icon-beaker
-        tags: builder,startx,fedora
-        supports: fedora
+        openshift.io/display-name: S2I Startx WebServer (latest)
+        description: Http server builder for simple web application running under
+          Fedora latest
+        iconClass: icon-apache
+        tags: builder,startx,alpine,apache,httpd
+        supports: http
         sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
       from:
         kind: ImageStreamTag

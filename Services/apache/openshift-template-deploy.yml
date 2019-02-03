@@ -30,24 +30,25 @@ objects:
   metadata:
     name: "${APP_NAME}"
     annotations:
-      openshift.io/display-name: Startx Base OS (fedora)
+      openshift.io/display-name: Startx WebServer for application ${APP_NAME}
+      openshift.io/generated-by: STARTX
     labels:
       app: "${APP_NAME}"
-      type: "${APP_TYPE}"
+      stage: "${APP_STAGE}"
   spec:
     tags:
     - name: latest
       annotations:
-        openshift.io/display-name: Startx Fedora (latest)
-        description: Minimal Fedora OS for bash operations
-        iconClass: icon-beaker
-        tags: builder,startx,fedora
-        supports: fedora
+        openshift.io/display-name: Startx WebServer (Fedora rawhide)
+        description: Http server for simple web application running under Fedora rawhide
+        iconClass: icon-apache
+        tags: builder,startx,fedora,apache,httpd
+        supports: http
         version: latest
         sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
       from:
         kind: DockerImage
-        name: startx/fedora:latest
+        name: startx/sv-apache:latest
 - kind: ConfigMap
   apiVersion: v1
   metadata:
@@ -57,12 +58,13 @@ objects:
       openshift.io/generated-by: STARTX
     labels:
       app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
   data:
-    SX_ID: ${APP_NAME}
-    SX_NAME: Bash application example
-    SX_SERVICE: system
-    SX_SUMMARY: Bash application example based on fedora container
-    SX_TYPE: example
+    SX_ID: ${APP_NAME}/${APP_STAGE}
+    SX_TYPE: ${APP_STAGE}
+    SX_SERVICE: ${APP_NAME}
+    SX_NAME: Static web application ${APP_NAME}
+    SX_SUMMARY: Static web application ${APP_NAME} based on fedora container
     SX_VERSION: 0.0.1 
 - kind: DeploymentConfig
   apiVersion: v1
@@ -70,6 +72,7 @@ objects:
     name: "${APP_NAME}"
     labels:
       app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
     annotations:
       openshift.io/generated-by: STARTX
   spec:
@@ -180,18 +183,52 @@ objects:
           emptyDir: {}
         restartPolicy: Always
         terminationGracePeriodSeconds: 30
-        dnsPolicy: ClusterFirst
         securityContext: {}
+        dnsPolicy: ClusterFirst
+- kind: Service
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      openshift.io/generated-by: STARTX
+  spec:
+    ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+    selector:
+      app: "${APP_NAME}"
+      deploymentconfig: "${APP_NAME}"
+    type: ClusterIP
+    sessionAffinity: None
+- kind: Route
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      openshift.io/generated-by: STARTX
+  spec:
+    to:
+      kind: Service
+      name: "${APP_NAME}"
+      weight: 100
 parameters:
 - name: APP_NAME
   displayName: Application name
   description: The name of the created application
   value: fedora
   required: true
-- name: APP_TYPE
-  displayName: Application type
-  description: The type of the created application
-  value: system
+- name: APP_STAGE
+  displayName: Application stage
+  description: "Stage of the application deployed (ex: dev, test, prod, example, demo, poc, ...)"
+  value: example
+  required: true
 - name: RUN_ACTION
   displayName: Main action to perfom
   description: Action to perform for this running Pod. Should be one of build, post-build,
