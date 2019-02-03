@@ -220,6 +220,7 @@ objects:
     SX_SUMMARY: SQL database ${APP_NAME} based on fedora container
     SX_VERSION: 0.0.1 
     APP_PATH: "${APP_PATH}"
+    MYSQL_DATABASE: "${MYSQL_DATABASE}"
 - kind: Secret
   apiVersion: v1
   metadata:
@@ -280,7 +281,7 @@ objects:
           failurePolicy: Abort
           execNewPod:
             command:
-            - "/bin/sx"
+            - "/bin/sx-mariadb"
             - pre-deploy
             env:
             - name: SX_VERBOSE
@@ -302,8 +303,6 @@ objects:
                 secretKeyRef:
                   name: "${APP_NAME}-auth"
                   key: MYSQL_PASSWORD
-            - name: MYSQL_DATABASE
-              value: "${MYSQL_DATABASE}"
             envFrom:
               - configMapRef:
                   name: ${APP_NAME}-config
@@ -312,7 +311,7 @@ objects:
           failurePolicy: Abort
           execNewPod:
             command:
-            - "/bin/sx"
+            - "/bin/sx-mariadb"
             - post-deploy
             env:
             - name: SX_VERBOSE
@@ -334,8 +333,6 @@ objects:
                 secretKeyRef:
                   name: "${APP_NAME}-auth"
                   key: MYSQL_PASSWORD
-            - name: MYSQL_DATABASE
-              value: "${MYSQL_DATABASE}"
             envFrom:
               - configMapRef:
                   name: ${APP_NAME}-config
@@ -352,7 +349,7 @@ objects:
           name: "${APP_NAME}:${IMAGE_STAGE}"
     - type: ConfigChange
     postCommit:
-      script: "/bin/sx info"
+      script: "/bin/sx-mariadb info"
     replicas: 1
     test: false
     selector:
@@ -390,13 +387,11 @@ objects:
               secretKeyRef:
                 name: "${APP_NAME}-auth"
                 key: MYSQL_PASSWORD
-          - name: MYSQL_DATABASE
-            value: "${MYSQL_DATABASE}"
           envFrom:
             - configMapRef:
                 name: ${APP_NAME}-config
           command:
-          - "/bin/sx"
+          - "/bin/sx-mariadb"
           args:
           - "${RUN_ACTION}"
           resources:
@@ -405,7 +400,7 @@ objects:
           livenessProbe:
             exec:
               command:
-              - "/bin/sx"
+              - "/bin/sx-mariadb"
               - isLive
             initialDelaySeconds: 5
             timeoutSeconds: 2
@@ -415,7 +410,7 @@ objects:
           readinessProbe:
             exec:
               command:
-              - "/bin/sx"
+              - "/bin/sx-mariadb"
               - isReady
             initialDelaySeconds: 5
             timeoutSeconds: 2
@@ -431,11 +426,11 @@ objects:
             mountPath: "${APP_PATH}"
         volumes:
         - name: "${APP_NAME}-log"
-          emptyDir:
-            medium: ''
+          persistentVolumeClaim:
+            claimName: "${APP_NAME}-log"
         - name: "${APP_NAME}-app"
-          emptyDir:
-            medium: ''
+          persistentVolumeClaim:
+            claimName: "${APP_NAME}-data"
         restartPolicy: Always
         terminationGracePeriodSeconds: 30
         securityContext: {}
@@ -477,7 +472,7 @@ parameters:
 - name: APP_NAME
   displayName: Database name
   description: The name of the created database
-  value: fedora
+  value: mariadb
   required: true
 - name: APP_STAGE
   displayName: Database stage

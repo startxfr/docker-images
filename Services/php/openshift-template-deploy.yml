@@ -19,7 +19,6 @@ message: |-
   Your dynamic web application ${APP_NAME} is deploying...
 
   Service name: ${APP_NAME}
-  Source      : ${SOURCE_GIT}
   action      : ${RUN_ACTION}
 labels:
   template: startx-sv-php-deploy-template
@@ -250,7 +249,7 @@ objects:
           failurePolicy: Abort
           execNewPod:
             command:
-            - "/bin/sx"
+            - "/bin/sx-php"
             - pre-deploy
             env:
             - name: SX_VERBOSE
@@ -265,7 +264,7 @@ objects:
           failurePolicy: Abort
           execNewPod:
             command:
-            - "/bin/sx"
+            - "/bin/sx-php"
             - post-deploy
             env:
             - name: SX_VERBOSE
@@ -288,7 +287,7 @@ objects:
           name: "${APP_NAME}:${IMAGE_STAGE}"
     - type: ConfigChange
     postCommit:
-      script: "/bin/sx info"
+      script: "/bin/sx-php info"
     replicas: 1
     test: false
     selector:
@@ -315,7 +314,7 @@ objects:
             - configMapRef:
                 name: ${APP_NAME}-config
           command:
-          - "/bin/sx"
+          - "/bin/sx-php"
           args:
           - "${RUN_ACTION}"
           ports:
@@ -325,7 +324,7 @@ objects:
           livenessProbe:
             exec:
               command:
-              - "/bin/sx"
+              - "/bin/sx-php"
               - isLive
             initialDelaySeconds: 5
             timeoutSeconds: 2
@@ -335,7 +334,7 @@ objects:
           readinessProbe:
             exec:
               command:
-              - "/bin/sx"
+              - "/bin/sx-php"
               - isReady
             initialDelaySeconds: 5
             timeoutSeconds: 2
@@ -397,7 +396,7 @@ parameters:
 - name: APP_NAME
   displayName: Application name
   description: The name of the created application
-  value: fedora
+  value: php
   required: true
 - name: APP_STAGE
   displayName: Application stage

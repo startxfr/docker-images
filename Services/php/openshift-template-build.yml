@@ -27,7 +27,7 @@ objects:
 - kind: ImageStream
   apiVersion: v1
   metadata:
-    name: startx-sv-php
+    name: ${APP_NAME}-base
     annotations:
       openshift.io/display-name: Startx PHP WebServer
       openshift.io/generated-by: STARTX
@@ -281,7 +281,7 @@ objects:
       sourceStrategy:
         from:
           kind: ImageStreamTag
-          name: startx-sv-php:${IMAGE_STAGE}
+          name: ${APP_NAME}-base:${IMAGE_STAGE}
         env:
         - name: SX_VERBOSE
           value: 'true'

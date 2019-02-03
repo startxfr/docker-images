@@ -28,7 +28,7 @@ objects:
 - kind: ImageStream
   apiVersion: v1
   metadata:
-    name: startx-sv-mariadb
+    name: ${APP_NAME}-base
     annotations:
       openshift.io/display-name: Startx MariadbServer
       openshift.io/generated-by: STARTX
@@ -239,6 +239,7 @@ objects:
     SX_NAME: SQL database ${APP_NAME}
     SX_SUMMARY: SQL database ${APP_NAME} based on fedora container
     SX_VERSION: 0.0.1 
+    MYSQL_DATABASE: "${MYSQL_DATABASE}"
 - kind: Secret
   apiVersion: v1
   metadata:
@@ -312,7 +313,7 @@ objects:
       sourceStrategy:
         from:
           kind: ImageStreamTag
-          name: startx-sv-mariadb:${IMAGE_STAGE}
+          name: ${APP_NAME}-base:${IMAGE_STAGE}
         env:
         - name: SX_VERBOSE
           value: 'true'
@@ -366,8 +367,6 @@ objects:
                 secretKeyRef:
                   name: "${APP_NAME}-auth"
                   key: MYSQL_PASSWORD
-            - name: MYSQL_DATABASE
-              value: "${MYSQL_DATABASE}"
             envFrom:
               - configMapRef:
                   name: ${APP_NAME}-config
@@ -398,8 +397,6 @@ objects:
                 secretKeyRef:
                   name: "${APP_NAME}-auth"
                   key: MYSQL_PASSWORD
-            - name: MYSQL_DATABASE
-              value: "${MYSQL_DATABASE}"
             envFrom:
               - configMapRef:
                   name: ${APP_NAME}-config
@@ -449,8 +446,6 @@ objects:
               secretKeyRef:
                 name: "${APP_NAME}-auth"
                 key: MYSQL_PASSWORD
-          - name: MYSQL_DATABASE
-            value: "${MYSQL_DATABASE}"
           envFrom:
             - configMapRef:
                 name: ${APP_NAME}-config
