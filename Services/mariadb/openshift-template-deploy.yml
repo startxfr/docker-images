@@ -399,14 +399,14 @@ objects:
           imagePullPolicy: Always
           volumeMounts:
           - name: "${APP_NAME}-log"
-            mountPath: "/var/log/httpd"
-          - name: "${APP_NAME}-app"
+            mountPath: "/var/log/mariadb"
+          - name: "${APP_NAME}-data"
             mountPath: "${APP_PATH}"
         volumes:
         - name: "${APP_NAME}-log"
           emptyDir:
             medium: ''
-        - name: "${APP_NAME}-app"
+        - name: "${APP_NAME}-data"
           emptyDir:
             medium: ''
         restartPolicy: Always
