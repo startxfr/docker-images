@@ -11,7 +11,8 @@ ENV SX_VERSION="latest" \
     MY_CONF=/etc/my.cnf \
     DATA_PATH=/data \
     LOG_PATH=/var/log/mariadb \
-    LOADSQL_PATH=/tmp/sql 
+    LOADSQL_PATH=/tmp/sql  \
+    DB_CHARSET=utf8
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
