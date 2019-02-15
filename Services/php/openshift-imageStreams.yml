@@ -1,7 +1,7 @@
 kind: ImageStreamList
 apiVersion: v1
 metadata:
-  name: startx-os
+  name: startx-php
   annotations:
     openshift.io/generated-by: STARTX
   labels:
@@ -12,7 +12,7 @@ items:
   metadata:
     name: startx-php
     annotations:
-      openshift.io/display-name: Startx PHP PHP WebServer (S2I)
+      openshift.io/display-name: Startx PHP WebServer (S2I)
       openshift.io/generated-by: STARTX
     labels:
       provider: startx
@@ -20,8 +20,8 @@ items:
     tags:
     - name: fc26
       annotations:
-        openshift.io/display-name: S2I Startx PHP PHP WebServer (Fedora 26)
-        description: PHP+Http server builder for dynamic web application running under
+        openshift.io/display-name: S2I Startx PHP WebServer (Fedora 26)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
           Fedora 26
         iconClass: icon-php
         tags: builder,startx,fedora,php,httpd
@@ -33,8 +33,8 @@ items:
         name: startx/sv-php:fc26
     - name: fc27
       annotations:
-        openshift.io/display-name: S2I Startx PHP PHP WebServer (Fedora 27)
-        description: PHP+Http server builder for dynamic web application running under
+        openshift.io/display-name: S2I Startx PHP WebServer (Fedora 27)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
           Fedora 27
         iconClass: icon-php
         tags: builder,startx,fedora,php,httpd
@@ -46,8 +46,8 @@ items:
         name: startx/sv-php:fc27
     - name: fc28
       annotations:
-        openshift.io/display-name: S2I Startx PHP PHP WebServer (Fedora 28)
-        description: PHP+Http server builder for dynamic web application running under
+        openshift.io/display-name: S2I Startx PHP WebServer (Fedora 28)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
           Fedora 28
         iconClass: icon-php
         tags: builder,startx,fedora,php,httpd
@@ -59,8 +59,8 @@ items:
         name: startx/sv-php:fc28
     - name: fc29
       annotations:
-        openshift.io/display-name: S2I Startx PHP PHP WebServer (Fedora 29)
-        description: PHP+Http server builder for dynamic web application running under
+        openshift.io/display-name: S2I Startx PHP WebServer (Fedora 29)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
           Fedora 29
         iconClass: icon-php
         tags: builder,startx,fedora,php,httpd
@@ -72,8 +72,8 @@ items:
         name: startx/sv-php:fc29
     - name: fc30
       annotations:
-        openshift.io/display-name: S2I Startx PHP PHP WebServer (Fedora 30)
-        description: PHP+Http server builder for dynamic web application running under
+        openshift.io/display-name: S2I Startx PHP WebServer (Fedora 30)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
           Fedora 30
         iconClass: icon-php
         tags: builder,startx,fedora,php,httpd
@@ -85,8 +85,8 @@ items:
         name: startx/sv-php:fc30
     - name: rawhide
       annotations:
-        openshift.io/display-name: S2I Startx PHP PHP WebServer (Fedora rawhide)
-        description: PHP+Http server builder for dynamic web application running under
+        openshift.io/display-name: S2I Startx PHP WebServer (Fedora rawhide)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
           Fedora rawhide
         iconClass: icon-php
         tags: builder,startx,fedora,php,httpd
@@ -98,8 +98,8 @@ items:
         name: startx/sv-php:latest
     - name: centos7
       annotations:
-        openshift.io/display-name: S2I Startx PHP PHP WebServer (Centos 7)
-        description: PHP+Http server builder for dynamic web application running under
+        openshift.io/display-name: S2I Startx PHP WebServer (Centos 7)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
           Centos 7
         iconClass: icon-php
         tags: builder,startx,centos,php,httpd
@@ -111,8 +111,8 @@ items:
         name: startx/sv-php:centos7
     - name: centos6
       annotations:
-        openshift.io/display-name: S2I Startx PHP PHP WebServer (Centos 6)
-        description: PHP+Http server builder for dynamic web application running under
+        openshift.io/display-name: S2I Startx PHP WebServer (Centos 6)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
           Centos 6
         iconClass: icon-php
         tags: builder,startx,centos,php,httpd
@@ -124,8 +124,8 @@ items:
         name: startx/sv-php:centos6
     - name: alpine3
       annotations:
-        openshift.io/display-name: S2I Startx PHP PHP WebServer (Alpine 3)
-        description: PHP+Http server builder for dynamic web application running under
+        openshift.io/display-name: S2I Startx PHP WebServer (Alpine 3)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
           Alpine 3
         iconClass: icon-php
         tags: builder,startx,alpine,php,httpd
@@ -137,8 +137,8 @@ items:
         name: startx/sv-php:alpine3
     - name: latest
       annotations:
-        openshift.io/display-name: S2I Startx PHP PHP WebServer (latest)
-        description: PHP+Http server builder for dynamic web application running under
+        openshift.io/display-name: S2I Startx PHP WebServer (latest)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
           Fedora latest
         iconClass: icon-php
         tags: builder,startx,alpine,php,httpd
@@ -150,7 +150,7 @@ items:
     - name: dev
       annotations:
         openshift.io/display-name: S2I Startx PHP WebServer (dev)
-        description: Http server builder for dynamic web application (developpement)
+        description: Http server builder for simple web application (developpement)
         iconClass: icon-php
         tags: builder,startx,alpine,php,httpd
         supports: http
@@ -162,7 +162,7 @@ items:
     - name: test
       annotations:
         openshift.io/display-name: S2I Startx PHP WebServer (test)
-        description: Http server builder for dynamic web application (testing)
+        description: Http server builder for simple web application (testing)
         iconClass: icon-php
         tags: builder,startx,alpine,php,httpd
         supports: http
@@ -174,7 +174,7 @@ items:
     - name: preprod
       annotations:
         openshift.io/display-name: S2I Startx PHP WebServer (preprod)
-        description: Http server builder for dynamic web application (pre-production)
+        description: Http server builder for simple web application (pre-production)
         iconClass: icon-php
         tags: builder,startx,alpine,php,httpd
         supports: http
@@ -186,7 +186,7 @@ items:
     - name: prod
       annotations:
         openshift.io/display-name: S2I Startx PHP WebServer (prod)
-        description: Http server builder for dynamic web application (production)
+        description: Http server builder for simple web application (production)
         iconClass: icon-php
         tags: builder,startx,alpine,php,httpd
         supports: http

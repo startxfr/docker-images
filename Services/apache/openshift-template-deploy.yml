@@ -38,9 +38,9 @@ objects:
     - name: ${APP_STAGE}
       annotations:
         openshift.io/display-name: Application ${APP_NAME} version ${APP_STAGE}
-        description: ${APP_STAGE} image for the application ${APP_NAME}
+        description: ${APP_STAGE} image for the application ${APP_NAME} based on ${BUILDER_TAG}
         iconClass: icon-apache
-        tags: startx,fedora,apache,httpd,application,${APP_NAME},${APP_STAGE}
+        tags: startx,fedora,apache,httpd,application,${APP_NAME},${APP_STAGE},${BUILDER_TAG}
         supports: http
         version: ${APP_STAGE}
       from:

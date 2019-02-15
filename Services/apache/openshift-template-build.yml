@@ -249,7 +249,7 @@ objects:
     SX_TYPE: ${APP_STAGE}
     SX_SERVICE: ${APP_NAME}
     SX_NAME: Static web application ${APP_NAME}
-    SX_SUMMARY: Static web application ${APP_NAME} based on fedora container
+    SX_SUMMARY: Static web application ${APP_NAME} based on ${BUILDER_TAG} container
     SX_VERSION: 0.0.1 
 - kind: BuildConfig
   apiVersion: v1
