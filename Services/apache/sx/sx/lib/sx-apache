@@ -6,6 +6,10 @@ function check_apache_environment {
         APP_PATH="/app"
         export APP_PATH
     fi
+    if [ ! -v APP_PORT ]; then
+        APP_PORT="8080"
+        export APP_PORT
+    fi
     if [ ! -v LOG_PATH ]; then
         LOG_PATH="/var/log/httpd"
         export LOG_PATH
@@ -178,7 +182,7 @@ function doApacheRun {
 
 # Display liveness status
 function apacheIsLive {
-    R=`curl -sL -w "%{http_code}\\n" "http://localhost/" -o /dev/null`
+    R=`curl -sL -w "%{http_code}\\n" "http://127.0.0.1:$APP_PORT" -o /dev/null`
     if [ "$R" = "200" ]; then
       echo "OK";
       exit 0;

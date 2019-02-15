@@ -21,7 +21,7 @@ LABEL name="$SX_ID" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="300Mi" \
       io.openshift.min-cpu="2000m" \
-      io.openshift.expose-services="8080:http" \
+      io.openshift.expose-services="$APP_PORT:http" \
       io.openshift.s2i.destination="/tmp" \
       io.openshift.s2i.scripts-url="image:///s2i" \
       fr.startx.component="$SX_ID:$SX_VERSION"
@@ -56,6 +56,6 @@ USER 1001
 
 WORKDIR $APP_PATH
 
-EXPOSE 8080
+EXPOSE $APP_PORT
 
 CMD [ "/bin/sx-php" , "run" ]

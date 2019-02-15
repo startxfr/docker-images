@@ -13,11 +13,14 @@ metadata:
     openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-apache
     openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
 message: |-
-  Your application ${APP_NAME} is building and will be soon deployed...
+  Your application ${APP_NAME} is building and will be soon deployed.
+  Monitor the deployement for application availability and
+  Follow created route to browse running application
 
-  Service name: ${APP_NAME}
-  Source      : ${SOURCE_GIT}
-  action      : ${RUN_ACTION}
+  Source      : ${SOURCE_BRANCH}@${SOURCE_GIT}
+  Application : ${APP_NAME}
+  Stage       : ${APP_STAGE}
+  Builder     : ${BUILDER_TAG}
 labels:
   template: startx-sv-apache-build-template
   provider: startx 
@@ -25,7 +28,7 @@ objects:
 - kind: ImageStream
   apiVersion: v1
   metadata:
-    name: ${APP_NAME}-base
+    name: startx-apache
     annotations:
       openshift.io/display-name: Startx WebServer
       openshift.io/generated-by: STARTX
@@ -279,7 +282,7 @@ objects:
       sourceStrategy:
         from:
           kind: ImageStreamTag
-          name: ${APP_NAME}-base:${IMAGE_STAGE}
+          name: startx-apache:${BUILDER_TAG}
         env:
         - name: SX_VERBOSE
           value: 'true'
@@ -307,11 +310,11 @@ objects:
       rollingParams:
         updatePeriodSeconds: 1
         intervalSeconds: 1
-        timeoutSeconds: 20
+        timeoutSeconds: 10
         maxUnavailable: 25%
         maxSurge: 25%
         pre:
-          failurePolicy: Abort
+          failurePolicy: Ignore
           execNewPod:
             containerName: "${APP_NAME}"
             command:
@@ -326,7 +329,7 @@ objects:
               - configMapRef:
                   name: ${APP_NAME}-config
         post:
-          failurePolicy: Abort
+          failurePolicy: Ignore
           execNewPod:
             containerName: "${APP_NAME}"
             command:
@@ -388,21 +391,21 @@ objects:
               command:
               - "/bin/sx-apache"
               - isLive
-            initialDelaySeconds: 4
+            initialDelaySeconds: 2
             timeoutSeconds: 1
-            periodSeconds: 10
+            periodSeconds: 8
             successThreshold: 1
-            failureThreshold: 3
+            failureThreshold: 2
           readinessProbe:
             exec:
               command:
               - "/bin/sx-apache"
               - isReady
-            initialDelaySeconds: 4
+            initialDelaySeconds: 2
             timeoutSeconds: 1
-            periodSeconds: 10
+            periodSeconds: 8
             successThreshold: 1
-            failureThreshold: 3
+            failureThreshold: 2
           terminationMessagePath: "/dev/termination-log"
           imagePullPolicy: Always
           volumeMounts:
@@ -460,9 +463,9 @@ parameters:
   description: "Stage of the application deployed (ex: dev, test, prod, example, demo, poc, ...)"
   value: example
   required: true
-- name: IMAGE_STAGE
-  displayName: Image stage
-  description: "Stage of the base image used (ex: dev, test, preprod, prod, latest, rawhide, fc30, alpine3, centos6, centos7, fc29, fc28, ...)"
+- name: BUILDER_TAG
+  displayName: Builder image stage
+  description: "Image tag of the startx apache builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc30, fc29, fc28 - alpine3 - centos7, centos6)"
   value: latest
   required: true
 - name: SOURCE_GIT
@@ -480,11 +483,4 @@ parameters:
   description: Secret token to use for webhook to github or generic
   generate: expression
   from: "[a-zA-Z0-9]{24}"
-  required: true
-- name: RUN_ACTION
-  displayName: Main action to perfom
-  description: Action to perform for this running Pod. Should be one of build, post-build,
-    pre-deploy, post-deploy, run, isLive, isReady, usage, usageS2i, daemon, info,
-    version. See documentation for action list.
-  value: run
   required: true
