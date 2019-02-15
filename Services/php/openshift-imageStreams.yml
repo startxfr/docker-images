@@ -150,7 +150,7 @@ items:
     - name: dev
       annotations:
         openshift.io/display-name: S2I Startx PHP WebServer (dev)
-        description: Http server builder for simple web application (developpement)
+        description: PHP with fpm + apache engine container builder for dynamic web application (developpement)
         iconClass: icon-php
         tags: builder,startx,alpine,php,httpd
         supports: http
@@ -162,7 +162,7 @@ items:
     - name: test
       annotations:
         openshift.io/display-name: S2I Startx PHP WebServer (test)
-        description: Http server builder for simple web application (testing)
+        description: PHP with fpm + apache engine container builder for dynamic web application (testing)
         iconClass: icon-php
         tags: builder,startx,alpine,php,httpd
         supports: http
@@ -174,7 +174,7 @@ items:
     - name: preprod
       annotations:
         openshift.io/display-name: S2I Startx PHP WebServer (preprod)
-        description: Http server builder for simple web application (pre-production)
+        description: PHP with fpm + apache engine container builder for dynamic web application (pre-production)
         iconClass: icon-php
         tags: builder,startx,alpine,php,httpd
         supports: http
@@ -186,7 +186,7 @@ items:
     - name: prod
       annotations:
         openshift.io/display-name: S2I Startx PHP WebServer (prod)
-        description: Http server builder for simple web application (production)
+        description: PHP with fpm + apache engine container builder for dynamic web application (production)
         iconClass: icon-php
         tags: builder,startx,alpine,php,httpd
         supports: http

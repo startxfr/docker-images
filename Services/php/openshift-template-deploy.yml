@@ -111,7 +111,6 @@ objects:
             envFrom:
               - configMapRef:
                   name: ${APP_NAME}-config
-      resources: {}
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -150,7 +149,6 @@ objects:
           - "/bin/sx-php"
           args:
           - run
-          resources: {}
           ports:
           - containerPort: 8080
             protocol: TCP

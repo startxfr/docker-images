@@ -338,7 +338,6 @@ objects:
               - configMapRef:
                   name: ${APP_NAME}-config
             containerName: "${APP_NAME}"
-      resources: {}
     triggers:
     - type: ImageChange
       imageChangeParams:
