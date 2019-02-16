@@ -11,6 +11,8 @@ ENV SX_VERSION="alpine3" \
     HTTPDCONF=/etc/apache2/conf.d/app.conf \
     LOG_PATH=/var/log/httpd \
     APP_PATH=/app \
+    RUN_DIR=$RUN_DIR \
+    RUN_BIN=/usr/sbin/httpd \
     APP_PORT=8080
 
 LABEL name="$SX_ID" \
@@ -39,11 +41,11 @@ RUN apk --no-cache add apache2 curl ca-certificates openssl tzdata openntpd && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     [ -w /etc/apache2/httpd.conf ] && sed -i "s/Listen 80/#Listen 80/" /etc/apache2/httpd.conf && \
-    rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf /run/apache2/httpd.pid && \
+    rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf $RUN_DIR/httpd.pid && \
     mkdir -p $APP_PATH $LOG_PATH && \
-    chgrp -R 0 $APP_PATH $LOG_PATH /usr/sbin/httpd /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR && \
+    chgrp -R 0 $APP_PATH $LOG_PATH $RUN_DIR /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR && \
     chown -R 1001:0 /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR $APP_PATH $LOG_PATH && \
-    chmod -R g=u $APP_PATH $LOG_PATH /run/apache2 /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR && \
+    chmod -R g=u $APP_PATH $LOG_PATH $RUN_DIR /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR && \
     chmod ug+r $HTTPDCONF && \
     chmod -R ugo+x /bin/sx* && \
     chmod -R ugo+rwx $LOG_PATH
