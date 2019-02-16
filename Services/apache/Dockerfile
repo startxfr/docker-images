@@ -38,7 +38,7 @@ RUN yum --nogpgcheck -y install httpd && yum clean all && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
-    sed -i "s/Listen 80/#Listen 80/" /etc/httpd/conf/httpd.conf && \
+    [ -w /etc/httpd/conf/httpd.conf ] && sed -i "s/Listen 80/#Listen 80/" /etc/httpd/conf/httpd.conf && \
     rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf /run/httpd/httpd.pid && \
     mkdir -p $APP_PATH $LOG_PATH && \
     chgrp -R 0 $APP_PATH $LOG_PATH /run/httpd /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR && \
