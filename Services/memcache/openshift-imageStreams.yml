@@ -1,0 +1,197 @@
+kind: ImageStreamList
+apiVersion: v1
+metadata:
+  name: startx-memcache
+  annotations:
+    openshift.io/generated-by: STARTX
+  labels:
+    provider: startx
+items:
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: startx-memcache
+    annotations:
+      openshift.io/display-name: Startx Memcache Backend (S2I)
+      openshift.io/generated-by: STARTX
+    labels:
+      provider: startx
+  spec:
+    tags:
+    - name: fc26
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (Fedora 26)
+        description: Memcache server builder for distributed cache backend running under
+          Fedora 26
+        iconClass: icon-memcache
+        tags: builder,startx,fedora,memcache
+        supports: memcache
+        version: fc26
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:fc26
+    - name: fc27
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (Fedora 27)
+        description: Memcache server builder for distributed cache backend running under
+          Fedora 27
+        iconClass: icon-memcache
+        tags: builder,startx,fedora,memcache
+        supports: memcache
+        version: fc27
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:fc27
+    - name: fc28
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (Fedora 28)
+        description: Memcache server builder for distributed cache backend running under
+          Fedora 28
+        iconClass: icon-memcache
+        tags: builder,startx,fedora,memcache
+        supports: memcache
+        version: fc28
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:fc28
+    - name: fc29
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (Fedora 29)
+        description: Memcache server builder for distributed cache backend running under
+          Fedora 29
+        iconClass: icon-memcache
+        tags: builder,startx,fedora,memcache
+        supports: memcache
+        version: fc29
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (Fedora 30)
+        description: Memcache server builder for distributed cache backend running under
+          Fedora 30
+        iconClass: icon-memcache
+        tags: builder,startx,fedora,memcache
+        supports: memcache
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:fc30
+    - name: rawhide
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (Fedora rawhide)
+        description: Memcache server builder for distributed cache backend running under
+          Fedora rawhide
+        iconClass: icon-memcache
+        tags: builder,startx,fedora,memcache
+        supports: memcache
+        version: rawhide
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:latest
+    - name: centos7
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (Centos 7)
+        description: Memcache server builder for distributed cache backend running under
+          Centos 7
+        iconClass: icon-memcache
+        tags: builder,startx,centos,memcache
+        supports: memcache
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:centos7
+    - name: centos6
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (Centos 6)
+        description: Memcache server builder for distributed cache backend running under
+          Centos 6
+        iconClass: icon-memcache
+        tags: builder,startx,centos,memcache
+        supports: memcache
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:centos6
+    - name: alpine3
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (Alpine 3)
+        description: Memcache server builder for distributed cache backend running under
+          Alpine 3
+        iconClass: icon-memcache
+        tags: builder,startx,alpine,memcache
+        supports: memcache
+        version: '3'
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:alpine3
+    - name: latest
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (latest)
+        description: Memcache server builder for distributed cache backend running under
+          Fedora latest
+        iconClass: icon-memcache
+        tags: builder,startx,alpine,memcache
+        supports: memcache
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: dev
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (dev)
+        description: Memcache server builder for distributed cache backend (developpement)
+        iconClass: icon-memcache
+        tags: builder,startx,alpine,memcache
+        supports: memcache
+        version: 'dev'
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: test
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (test)
+        description: Memcache server builder for distributed cache backend (testing)
+        iconClass: icon-memcache
+        tags: builder,startx,alpine,memcache
+        supports: memcache
+        version: 'test'
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: ImageStreamTag
+        name: centos7
+    - name: preprod
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (preprod)
+        description: Memcache server builder for distributed cache backend (pre-production)
+        iconClass: icon-memcache
+        tags: builder,startx,alpine,memcache
+        supports: memcache
+        version: 'pre-prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+    - name: prod
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (prod)
+        description: Memcache server builder for distributed cache backend (production)
+        iconClass: icon-memcache
+        tags: builder,startx,alpine,memcache
+        supports: memcache
+        version: 'prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3

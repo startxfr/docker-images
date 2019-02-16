@@ -7,8 +7,7 @@ ENV SX_VERSION="centos7" \
     SX_SERVICE="memcache" \
     SX_ID="startx/sv-memcache" \
     SX_NAME="Startx Memcached service image (centos 7)" \
-    SX_SUMMARY="Startx Memcached service based on centos 7" \
-    LOG_PATH=/logs
+    SX_SUMMARY="Startx Memcached service based on centos 7"
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -29,7 +28,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum --nogpgcheck -y install memcached && yum clean all && \
+RUN yum --nogpgcheck -y install memcached nmap-ncat telnet && yum clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \

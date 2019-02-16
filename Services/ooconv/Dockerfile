@@ -10,6 +10,7 @@ ENV SX_VERSION="centos7" \
     SX_SUMMARY="Startx unoconv service based on centos 7" \
     SX_USER=ooconv \
     APP_PATH=/home/ooconv \
+    LOG_PATH=/var/log/ooconv \
     DATA_PATH=/data
 
 LABEL name="$SX_ID" \

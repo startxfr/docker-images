@@ -95,7 +95,7 @@ some [additional environment variable](https://github.com/startxfr/docker-images
 |---------------------------|----------|-----------|--------------------------------------------------------------------------|
 | <i>base image environement</i> |          |           | [see environment list](https://github.com/startxfr/docker-images/tree/master/OS#environment-variable)
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
-| LOG_PATH                  | `auto`   | `auto`    | default set to /logs and used as a volume mountpoint
+| LOG_PATH                  | `auto`   | `auto`    | default set to /var/log/ooconv and used as a volume mountpoint
 
 ## Exposed port
 

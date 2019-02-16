@@ -43,5 +43,5 @@ after_success:
 - "./travis/publish Services/php       sv-php        centos7"
 - "./travis/publish Services/postgres  sv-postgres   centos7"
 - "./travis/publish VDI/chrome         vdi-chrome    centos7"
-- "./travis/test    VDI/firefox        vdi-firefox   centos7"
+- "./travis/publish VDI/firefox        vdi-firefox   centos7"
 - "./travis/publish Applications/phpmyadmin  app-phpmyadmin   centos7"

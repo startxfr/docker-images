@@ -1,12 +1,12 @@
 centos7:
   build: ./
-  container_name: "os-centos7"
+  container_name: "startx-centos7"
   mem_limit: 100m
   memswap_limit: 200m
   cpu_shares: 2
 #  volumes:
-#    - "/tmp/container/fedora/logs:/logs:z"
-#    - "/tmp/container/fedora/app:/app:z"
+#    - "/tmp/container/centos7/logs:/logs:z"
+#    - "/tmp/container/centos7/app:/app:z"
 #  command:
 #     - "/bin/sx"
 #     - "run"
