@@ -13,14 +13,21 @@ metadata:
     openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-mariadb
     openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
 message: |-
-  Your application ${APP_NAME} is building and will be soon deployed.
-  Monitor the deployement for application availability and
-  Follow created route to browse running application
+  Your database ${APP_NAME} is building and will be soon deployed.
+  Monitor the deployement for application availability
 
   Source      : ${SOURCE_BRANCH}@${SOURCE_GIT}
   Database    : ${APP_NAME}
   Stage       : ${APP_STAGE}
   Builder     : ${BUILDER_TAG}
+  Volumes     : ${APP_NAME}-log (E), ${APP_NAME}-data (E)
+  
+  Username    : ${MYSQL_USER}
+  Password    : ${MYSQL_PASSWORD}
+  Database    : ${MYSQL_DATABASE}
+  
+  Connection  : mysql://${APP_NAME}:3306
+  
 labels:
   template: startx-sv-mariadb-build-template
   provider: startx 
@@ -324,7 +331,7 @@ objects:
     strategy:
       type: Recreate
       recreateParams:
-        timeoutSeconds: 15
+        timeoutSeconds: 25
         pre:
           failurePolicy: Abort
           execNewPod:
