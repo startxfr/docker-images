@@ -10,7 +10,8 @@ ENV SX_VERSION="alpine3" \
     SX_SUMMARY="Startx apache service based on alpine 3.8" \
     HTTPDCONF=/etc/apache2/conf.d/app.conf \
     LOG_PATH=/var/log/httpd \
-    APP_PATH=/app
+    APP_PATH=/app \
+    APP_PORT=8080
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -24,7 +25,7 @@ LABEL name="$SX_ID" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="200Mi" \
       io.openshift.min-cpu="1000m" \
-      io.openshift.expose-services="8080:http" \
+      io.openshift.expose-services="$APP_PORT:http" \
       io.openshift.s2i.destination="$SX_S2IDIR" \
       io.openshift.s2i.scripts-url="image:///s2i" \
       fr.startx.component="$SX_ID:$SX_VERSION"
@@ -53,7 +54,7 @@ USER 1001
 
 WORKDIR $APP_PATH
 
-EXPOSE 8080
+EXPOSE $APP_PORT
 
 VOLUME $LOG_PATH
 

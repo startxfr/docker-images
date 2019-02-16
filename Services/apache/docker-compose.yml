@@ -1,6 +1,6 @@
 apache:
   build: ./
-  container_name: "alpine3-service-apache"
+  container_name: "startx-alpine3-apache"
   mem_limit: 200m
   memswap_limit: 300m
   cpu_shares: 2

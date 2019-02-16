@@ -7,8 +7,7 @@ ENV SX_VERSION="alpine3" \
     SX_SERVICE="memcache" \
     SX_ID="startx/sv-memcache" \
     SX_NAME="Startx Memcached service image (alpine 3.8)" \
-    SX_SUMMARY="Startx Memcached service based on alpine 3.8" \
-    LOG_PATH=/logs
+    SX_SUMMARY="Startx Memcached service based on alpine 3.8"
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -29,7 +28,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN apk --no-cache add memcached && \
+RUN apk --no-cache add memcached nmap-ncat && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \

@@ -11,8 +11,11 @@ ENV SX_VERSION="alpine3" \
     SX_VERBOSE=true \
     SX_DEBUG=false \
     APP_PATH="/app" \
+    LOG_PATH=/var/log/sx \
     SX_S2IDIR="/tmp" \
-    SX_LIBDIR="/var/lib/sx"
+    SX_LIBDIR="/var/lib/sx" \
+    DAEMON_STOP_TIMEOUT=3 \
+    DAEMON_START_INTERVAL=10
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -33,17 +36,17 @@ LABEL name="$SX_ID" \
 USER root
 
 COPY sx /tmp/
-RUN apk --no-cache add bash pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip shadow && \
-    mkdir -p $SX_LIBDIR $APP_PATH && \
+RUN apk --no-cache add bash pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip shadow vim && \
+    mkdir -p $SX_LIBDIR $APP_PATH $LOG_PATH && \
     chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib && \
     mv /tmp/s2i/bin /s2i && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
-    chgrp -R 0 /bin/sx /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR $APP_PATH && \
-    chown -R 1001:0 /bin/sx /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR $APP_PATH && \
-    chmod -R g=u /bin/sx /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR $APP_PATH && \
-    chmod -R ugo+wr $SX_S2IDIR $APP_PATH
+    chgrp -R 0 /bin/sx /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR $APP_PATH $LOG_PATH && \
+    chown -R 1001:0 /bin/sx /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR $APP_PATH $LOG_PATH && \
+    chmod -R g=u /bin/sx /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR $APP_PATH $LOG_PATH && \
+    chmod -R ugo+wr $SX_S2IDIR $APP_PATH $LOG_PATH
 
 USER 1001
 

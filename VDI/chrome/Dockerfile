@@ -9,7 +9,7 @@ ENV SX_VERSION="latest" \
     SX_NAME="Startx Chrome VDI image (alpine 3.8)" \
     SX_SUMMARY="Startx chrome container-based desktop application based on alpine 3.8" \
     SX_CHROME_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
-    LOG_PATH=/home/chrome \
+    LOG_PATH=/var/log/chrome \
     APP_PATH=/home/chrome \
     DATA_PATH=/home/chrome \
     SX_CHROME_SCREEN_RES_X=1024x768x24 \
@@ -44,8 +44,8 @@ RUN apk update && apk upgrade && \
     rm -rf /var/lib/apt/lists/* /var/cache/apk/* /usr/share/man
 
 RUN pip install --upgrade --force-reinstall setuptools pip supervisor && \
-    useradd -s /bin/bash -m -g 0 -u 1001 chrome && \
-    mkdir -p /s2i $SX_LIBDIR && \
+    useradd -s /bin/bash -m -g 0 -u 1001 $SX_USER && \
+    mkdir -p /s2i $SX_LIBDIR /.local && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \

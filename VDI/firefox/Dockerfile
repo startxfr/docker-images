@@ -9,7 +9,7 @@ ENV SX_VERSION="latest" \
     SX_NAME="Startx Firefox VDI image (fedora rawhide)" \
     SX_SUMMARY="Startx firefox container-based desktop application based on fedora rawhide" \
     SX_FIREFOX_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
-    LOG_PATH=/home/firefox \
+    LOG_PATH=/var/log/firefox \
     APP_PATH=/home/firefox \
     SX_FIREFOX_SCREEN_RES_X=1024x768x24 \
     SX_FIREFOX_SCREEN_RES_FIREFOX=1024,768 \
@@ -36,19 +36,20 @@ LABEL name="$SX_ID" \
 USER root
 COPY supervisord.conf $SX_FIREFOX_SUPERVISOR_CONF/
 COPY sx /tmp/
-RUN wget http://rpmfind.net/linux/fedora-secondary/releases/28/Everything/i386/os/Packages/p/python2-meld3-1.0.2-6.fc28.noarch.rpm && \
-    rpm -ivh python2-meld3-1.0.2-6.fc28.noarch.rpm --nodeps && \
-    dnf --nogpgcheck -y install supervisor xorg-x11-server-Xvfb x11vnc firefox  && \
-    dnf clean all && \
-    easy_install pip && \
-    pip install --upgrade pip && \
-    pip install --upgrade --force-reinstall setuptools pip && \
+
+RUN apk update && apk upgrade && \
+	echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
+    echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
+    apk add --no-cache --update --purge -uU -f x11vnc xvfb supervisor inotify-tools python py-pip firefox@edge nss@edge && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apk/* /usr/share/man
+
+RUN pip install --upgrade --force-reinstall setuptools pip supervisor && \
     useradd -s /bin/bash -m -g 0 -u 1001 $SX_USER && \
-    mkdir -p /s2i $SX_LIBDIR && \
+    mkdir -p /s2i $SX_LIBDIR /.local && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
-    rm -rf /tmp/sx /tmp/s2i && \
+    rm -rf /tmp/* && \
     mkdir -p $APP_PATH $LOG_PATH && \
 	chgrp -R 0 $APP_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp && \
     chown -R $SX_USER:0 /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH $LOG_PATH && \
