@@ -36,7 +36,7 @@ USER root
 COPY my.cnf $MY_CONF
 COPY sx /tmp/
 RUN apk --no-cache add mariadb mariadb-client mysql && \
-    mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH /run/mysqld /usr/bin/mysqld && \
+    mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH /run/mysqld && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
