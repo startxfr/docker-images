@@ -438,7 +438,7 @@ parameters:
 - name: REPLICAS
   displayName: Number of workers
   description: Number of concurent pod to start
-  value: 2
+  value: 1
   required: true
 - name: MEMORY_LIMIT
   displayName: Memory Limit
