@@ -371,7 +371,7 @@ function config_createuser {
 
 function config_resetdatabase {
     if [[ -n "$MYSQL_DATABASE" ]]; then
-      mysql -uroot -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -e "DROP DATABASE IF EXISTS '$MYSQL_DATABASE';"
+      mysql -uroot -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -e "DROP DATABASE IF EXISTS $MYSQL_DATABASE;"
       config_createdatabase
     else
         echoVerbose "No database created because no database declared in \$MYSQL_DATABASE"
@@ -383,7 +383,7 @@ function config_createdatabase {
         echoVerbose "processing database $MYSQL_DATABASE"
         if [[ ! -d "$DIR_DB_DATA/$MYSQL_DATABASE" ]]; then
             echoVerbose "database $MYSQL_DATABASE doesn't exist"
-            mysql -uroot -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -e "CREATE DATABASE '$MYSQL_DATABASE' DEFAULT CHARACTER SET $DB_CHARSET DEFAULT COLLATE utf8_general_ci;"
+            mysql -uroot -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -e "CREATE DATABASE $MYSQL_DATABASE DEFAULT CHARACTER SET $DB_CHARSET DEFAULT COLLATE utf8_general_ci;"
             echo ""
             echo " +------------------------------------------------------"
             echo " | DATABASE CREATED ! "
@@ -405,7 +405,7 @@ function config_createdatabase {
 function config_importsql {
     if [[ -n "$LOADSQL_PATH" || -n "$MYSQL_DATABASE" ]]; then
         echoVerbose "\$LOADSQL_PATH is defined and set to $LOADSQL_PATH"
-        echoVerbose "\Using $MYSQL_DATABASE database"
+        echoVerbose "Using $MYSQL_DATABASE database"
         if [[ -d $LOADSQL_PATH ]]; then
             if [ "$(ls -A $LOADSQL_PATH/${MYSQL_SQL_SCHEMA_PREFIX}*.sql 2> /dev/null)" ]; then
                 echo "Importing schema from $LOADSQL_PATH "
@@ -413,7 +413,7 @@ function config_importsql {
                 for SCHEMAFILE in $SCHEMALIST; do 
                     echo "SET NAMES $DB_CHARSET;"|cat - $LOADSQL_PATH/$SCHEMAFILE > /tmp/out && mv -f /tmp/out $LOADSQL_PATH/$SCHEMAFILE
                     echo -n "- schema " $SCHEMAFILE " ... "
-                    mysql -uroot -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -D '$MYSQL_DATABASE' < $LOADSQL_PATH/$SCHEMAFILE
+                    mysql -uroot -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -D $MYSQL_DATABASE < $LOADSQL_PATH/$SCHEMAFILE
                     echo " IMPORTED"
                 done
             else
@@ -425,7 +425,7 @@ function config_importsql {
                 for DATAFILE in $DATALIST; do 
                     echo "SET NAMES $DB_CHARSET;"|cat - $LOADSQL_PATH/$DATAFILE > /tmp/out && mv -f /tmp/out $LOADSQL_PATH/$DATAFILE
                     echo -n "- data " $DATAFILE " ... "
-                    mysql -uroot -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -D '$MYSQL_DATABASE' < $LOADSQL_PATH/$DATAFILE
+                    mysql -uroot -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -D $MYSQL_DATABASE < $LOADSQL_PATH/$DATAFILE
                     echo " IMPORTED"
                 done
             else
@@ -436,7 +436,7 @@ function config_importsql {
         fi
 	if [[ "$SX_DEBUG" == true || "$SX_DEBUG" == "true" ]] ; then
 	   echoDebug "List all tables in $MYSQL_DATABASE database"
-	   mysql -u root -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -D '$MYSQL_DATABASE' -e "SHOW TABLES; "
+	   mysql -u root -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -D $MYSQL_DATABASE -e "SHOW TABLES; "
 	fi 
     else
         echoVerbose "No sql scripts to load because no \$LOADSQL_PATH or \$MYSQL_DATABASE variables"
