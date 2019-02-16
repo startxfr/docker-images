@@ -35,15 +35,15 @@ USER root
 COPY my.cnf $MY_CONF
 COPY sx /tmp/
 RUN apk --no-cache add mariadb mariadb-client mysql && \
-    mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH /run/mysqld && \
+    mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH /run/mysqld /usr/bin/mysqld && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     touch $DATA_PATH/.keep && \
     chown -R mysql:mysql $LOG_PATH $DATA_PATH $LOADSQL_PATH && \
-    chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* /var/lib/mysql /var/run/mariadb $MY_CONF && \
-    chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* /var/lib/mysql /var/run/mariadb $MY_CONF && \
+    chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* /var/lib/mysql /usr/bin/mysqld /run/mysqld $MY_CONF && \
+    chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* /var/lib/mysql /usr/bin/mysqld /run/mysqld $MY_CONF && \
     chmod -R ugo+x /bin/sx* && \
     chmod ug+rw $MY_CONF
 
