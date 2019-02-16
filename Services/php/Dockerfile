@@ -43,10 +43,10 @@ RUN dnf --nogpgcheck -y install php php-cli php-pear \
     rm -rf /tmp/sx /tmp/s2i && \
     chmod ug+r $HTTPDCONF && \
     mkdir -p $APP_PATH $LOG_PATH /run/php-fpm /var/lib/php && \
-    chgrp -R 0 $APP_PATH $LOG_PATH /run/httpd /bin/sx* /s2i $SX_LIBDIR /tmp /run/php-fpm /var/lib/php && \
+    chgrp -R 0 $APP_PATH $LOG_PATH $RUN_DIR /bin/sx* /s2i $SX_LIBDIR /tmp /run/php-fpm /var/lib/php && \
     chmod -R ug+rw $APP_PATH $LOG_PATH /run/php-fpm /var/lib/php && \
     chown -R 1001:0 /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH $LOG_PATH /run/php-fpm /var/lib/php && \
-    chmod -R g=u $APP_PATH $LOG_PATH /run/httpd /bin/sx* /s2i $SX_LIBDIR /tmp /run/php-fpm /var/lib/php && \
+    chmod -R g=u $APP_PATH $LOG_PATH $RUN_DIR /bin/sx* /s2i $SX_LIBDIR /tmp /run/php-fpm /var/lib/php && \
     chmod -R ugo+x /bin/sx*
 COPY index.php $APP_PATH/index.php
 RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH && rm -rf $APP_PATH/index.html
