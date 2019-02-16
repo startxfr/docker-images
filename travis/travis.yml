@@ -41,5 +41,5 @@ after_success:
 - "./travis/publish Services/php       sv-php        fc29"
 - "./travis/publish Services/postgres  sv-postgres   fc29"
 - "./travis/publish VDI/chrome         vdi-chrome    fc29"
-- "./travis/test    VDI/firefox        vdi-firefox   fc29"
+- "./travis/publish VDI/firefox        vdi-firefox   fc29"
 - "./travis/publish Applications/phpmyadmin  app-phpmyadmin   fc29"

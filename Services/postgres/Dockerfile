@@ -9,7 +9,7 @@ ENV SX_VERSION="fc29" \
     SX_NAME="Startx Postgres service image (fedora 29)" \
     SX_SUMMARY="Startx postgres service based on fedora 29" \
     DATA_PATH=/data \
-    LOG_PATH=/logs
+    LOG_PATH=/var/log/postgres
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \

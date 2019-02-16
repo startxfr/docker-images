@@ -5,13 +5,13 @@ check_mariadb_environment
 # Dispatch input arguments
 case $1 in
     assemble|build)         mysqlBuild $@ ;;
-    post-build)             mysqlPostBuild $@ ;;
-    pre-deploy)             mysqlPreDeploy $@ ;;
-    post-deploy)            mysqlPostDeploy $@ ;;
-    run|start)              mysqlRun $@ ;;
-    isLive|health)          mysqlIsLive $@ ;;
-    isReady)                mysqlIsReady $@ ;;
-    info|--info)            mysqlInformation $@ ;;
+    post-build)             mariadbPostBuild $@ ;;
+    pre-deploy)             mariadbPreDeploy $@ ;;
+    post-deploy)            mariadbPostDeploy $@ ;;
+    run|start)              mariadbRun $@ ;;
+    isLive|health)          mariadbIsLive $@ ;;
+    isReady)                mariadbIsReady $@ ;;
+    info|--info)            mariadbInformation $@ ;;
     usage|help|--help)      genericUsage $@ ;;
     usageS2i)               genericUsageS2I $@ ;;
     version|--version)      genericVersion $@ ;;

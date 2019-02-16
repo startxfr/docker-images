@@ -9,7 +9,7 @@ ENV SX_VERSION="29" \
     SX_NAME="Startx Chrome VDI image (fedora 29)" \
     SX_SUMMARY="Startx chrome container-based desktop application based on fedora 29" \
     SX_CHROME_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
-    LOG_PATH=/home/chrome \
+    LOG_PATH=/var/log/chrome \
     APP_PATH=/home/chrome \
     DATA_PATH=/home/chrome \
     SX_CHROME_SCREEN_RES_X=1024x768x24 \
@@ -39,7 +39,7 @@ COPY supervisord.conf $SX_CHROME_SUPERVISOR_CONF/
 COPY sx /tmp/
 RUN wget http://rpmfind.net/linux/fedora-secondary/releases/29/Everything/i386/os/Packages/p/python2-meld3-1.0.2-6.fc29.noarch.rpm && \
     rpm -ivh python2-meld3-1.0.2-6.fc29.noarch.rpm --nodeps && \
-    dnf --nogpgcheck -y install supervisor xorg-x11-server-Xvfb x11vnc fedora-workstation-repositories dnf-plugins-core pulseaudio python2-meld3  && \
+    dnf --nogpgcheck -y install supervisor xorg-x11-server-Xvfb x11vnc fedora-workstation-repositories dnf-plugins-core pulseaudio python2-meld3  python2-setuptools && \
     dnf config-manager --set-enabled google-chrome && \
     dnf --nogpgcheck -y install google-chrome-stable && \
     dnf clean all && \

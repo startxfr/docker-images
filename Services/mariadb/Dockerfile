@@ -10,8 +10,9 @@ ENV SX_VERSION="fc29" \
     SX_SUMMARY="Startx mariadb service based on fedora 29" \
     MY_CONF=/etc/my.cnf \
     DATA_PATH=/data \
-    LOG_PATH=/logs \
-    LOADSQL_PATH=/tmp/sql 
+    LOG_PATH=/var/log/mariadb \
+    LOADSQL_PATH=/tmp/sql  \
+    DB_CHARSET=utf8
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
