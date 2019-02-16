@@ -79,7 +79,7 @@ function mariadbPostBuild {
     echoDebug `env`
     echoVerbose "+====================================================="
     echoVerbose ""
-    if [[ -x $MYS2I_DEST/assemble ]]; then
+    if [[ -x $MYS2I_DEST/post-build ]]; then
         echoVerbose "PostBuild application logic found at $MYS2I_DEST/post-build"
         testAndRunSourceCodeScript "post-build" 
     else
@@ -299,7 +299,7 @@ function init_configureDatabase {
         echoVerbose "$VOLUME_HOME database directory is empty or uninitialized"
         echo "Installing database $MYSQL_DATABASE ..."
         config_startserver
-        config_createdatabase
+        config_resetdatabase
         config_importsql
         config_stopserver
     else
@@ -366,6 +366,15 @@ function config_createuser {
         echo ""
     else
         echoVerbose "No user created because no user defined in \$MYSQL_USER"
+    fi
+}
+
+function config_resetdatabase {
+    if [[ -n "$MYSQL_DATABASE" ]]; then
+      mysql -uroot -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -e "DROP DATABASE IF EXISTS '$MYSQL_DATABASE';"
+      config_createdatabase
+    else
+        echoVerbose "No database created because no database declared in \$MYSQL_DATABASE"
     fi
 }
 
