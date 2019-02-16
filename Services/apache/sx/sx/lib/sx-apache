@@ -200,15 +200,15 @@ function apacheIsReady {
 # function executed on apache service stop
 function stopApacheHandler {
     killall httpd
-    rm -rf /run/httpd/*
+    rm -rf $RUN_DIR/*
     stopDaemon
 }
 
 # prepare of the httpd server as a deamon and execute it inside 
 # the running shell
 function preStartApacheService {
-    echoVerbose "Remove temporary files in /run/httpd/* and /tmp/httpd*"
-    rm -rf /run/httpd/* /tmp/httpd*
+    echoVerbose "Remove temporary files in $RUN_DIR/* and /tmp/httpd*"
+    rm -rf $RUN_DIR/* /tmp/httpd*
     echoVerbose "Prepare Apache logs"
     touch $LOG_PATH/error.log
     if [[ -r $LOG_PATH/error.log ]]; then
@@ -230,7 +230,7 @@ function startApacheService {
     trap 'killDaemon term 15' SIGTERM
     trap 'killDaemon sys 31' SIGSYS
     preStartApacheService
-    exec /usr/sbin/httpd -D FOREGROUND > $LOG_PATH/access.log &
+    exec $RUN_BIN -D FOREGROUND > $LOG_PATH/access.log &
     while true
     do
         wait ${!}
