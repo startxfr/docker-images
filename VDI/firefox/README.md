@@ -31,18 +31,18 @@ service:
 ### Using this image as Openshift Build image
 
 You can use this public image as a base image in your openshift build strategy. You can first import
-our [openshift image stream](https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-imageStreams.json)
-and automatically add them in your service catalog. You can also test our [deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-template.json)
-or our [build and deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-template-build.json)
+our [openshift image stream](https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-imageStreams.yml)
+and automatically add them in your service catalog. You can also test our [deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-template.yml)
+or our [build and deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-template-build.yml)
 
 ```bash
 # import image streams
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-imageStreams.json
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-imageStreams.yml
 # import deploy template and start a sample application
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-template.json
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-template.yml
 oc process startx-vdi-firefox-template | oc create -f -
 # import build and deploy template and start a sample application
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-template-build.json
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-template-build.yml
 oc process startx-vdi-firefox-build-template | oc create -f -
 ```
 

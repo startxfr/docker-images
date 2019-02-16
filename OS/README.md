@@ -26,8 +26,8 @@ See more applications builders and sample on [startx docker images repository](h
 
 | Docker Hub repository                                             | Openshift                                                                                                                                                                                                                                                                                                                                     | Docker-compose                                                                                     | Alpine distribution                        
 |-------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|---------------------
-| [`startx/alpine:latest`](https://hub.docker.com/r/startx/alpine)  | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/alpine/OS/openshift-imageStreams.json) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/alpine/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/alpine/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/alpine/OS/docker-compose.yml) | Alpine 3
-| [`startx/alpine:3`](https://hub.docker.com/r/startx/alpine)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/alpine/OS/openshift-imageStreams.json) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/alpine/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/alpine/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/alpine/OS/docker-compose.yml) | Alpine 3 
+| [`startx/alpine:latest`](https://hub.docker.com/r/startx/alpine)  | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/alpine/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/alpine/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/alpine/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/alpine/OS/docker-compose.yml) | Alpine 3
+| [`startx/alpine:3`](https://hub.docker.com/r/startx/alpine)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/alpine/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/alpine/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/alpine/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/alpine/OS/docker-compose.yml) | Alpine 3 
 
 ## Running this image
 
@@ -90,7 +90,7 @@ You can then build an application
 # create a example project
 oc new-project example
 # start a new application
-oc process -f startx-os-alpine-build-template \
+oc process -f startx-os-build-template \
     -p APP_NAME=myapp \
 | oc create -f -
 ```
@@ -116,7 +116,7 @@ You can then deploy an application
 # create a example project
 oc new-project example
 # start a new application
-oc process -f startx-os-alpine-deploy-template \
+oc process -f startx-os-deploy-template \
     -p APP_NAME=myapp \
 | oc create -f -
 ```

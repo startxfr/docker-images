@@ -1,7 +1,7 @@
 kind: Template
 apiVersion: v1
 metadata:
-  name: startx-sv-postgres-build-persist-template
+  name: startx-postgres-build-persist-template
   annotations:
     openshift.io/display-name: Startx PostgreSQL Server (peristent build & deploy workflow)
     description: Build and deployement workflow of a PostgreSQL database using peristent storage
@@ -23,7 +23,7 @@ message: |-
   Database Name : ${PGSQL_DATABASE}
   Connection URL: postgresql://${APP_NAME}:5432
 labels:
-  template: startx-sv-postgres-build-persist-template
+  template: startx-postgres-build-persist-template
   provider: startx 
 objects:
 - kind: ImageStream
