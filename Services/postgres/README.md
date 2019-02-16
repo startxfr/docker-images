@@ -117,11 +117,11 @@ You can then build a database
 # create an example project
 oc new-project example
 # start a new ephemeral database
-oc process -f startx-sv-postgres-build-template \
+oc process -f startx-postgres-build-template \
     -p APP_NAME=mydb-e \
 | oc create -f -
 # start a new persistent database
-oc process -f startx-sv-postgres-build-persist-template \
+oc process -f startx-postgres-build-persist-template \
     -p APP_NAME=mydb-p \
 | oc create -f -
 ```
@@ -150,11 +150,11 @@ You can then deploy a database
 # create a example project
 oc new-project example
 # start a new ephemeral database
-oc process -f startx-sv-postgres-deploy-template \
+oc process -f startx-postgres-deploy-template \
     -p APP_NAME=mydb-e \
 | oc create -f -
 # start a new persistent database
-oc process -f startx-sv-postgres-deploy-persist-template \
+oc process -f startx-postgres-deploy-persist-template \
     -p APP_NAME=mydb-p \
 | oc create -f -
 ```

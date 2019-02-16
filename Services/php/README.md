@@ -117,7 +117,7 @@ You can then build an application
 # create an example project
 oc new-project example
 # start a new application
-oc process -f startx-sv-php-build-template \
+oc process -f startx-php-build-template \
     -p APP_NAME=myapp \
 | oc create -f -
 ```
@@ -143,7 +143,7 @@ You can then deploy an application
 # create a example project
 oc new-project example
 # start a new application
-oc process -f startx-sv-php-deploy-template \
+oc process -f startx-php-deploy-template \
     -p APP_NAME=myapp \
 | oc create -f -
 ```
