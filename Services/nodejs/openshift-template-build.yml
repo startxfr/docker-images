@@ -1,7 +1,7 @@
 kind: Template
 apiVersion: v1
 metadata:
-  name: startx-sv-nodejs-build-template
+  name: startx-nodejs-build-template
   annotations:
     openshift.io/display-name: Startx MicroWeb (ephemeral build & deploy workflow)
     description: Build and deployement workflow of a micro-web application using ephemeral storage
@@ -19,7 +19,7 @@ message: |-
   Source      : ${SOURCE_GIT}
   action      : ${RUN_ACTION}
 labels:
-  template: startx-sv-nodejs-build-template
+  template: startx-nodejs-build-template
   provider: startx 
 objects:
 - kind: ImageStream
