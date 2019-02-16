@@ -328,8 +328,9 @@ function config_createadmin {
     PASS=${MYSQL_ROOT_PASSWORD:-$(pwgen -s $MYSQL_ROOT_PASSWORD_LENGTH 1)}
     _word=$( [ ${MYSQL_ROOT_PASSWORD} ] && echo "preset" || echo "random" )
     echoVerbose "Creating MariaDB admin user with ${_word} password"
-    mysql -uroot -h $HOSTNAME -e "CREATE USER 'root'@'%' IDENTIFIED BY '$PASS'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION; FLUSH PRIVILEGES;"
+    mysql -uroot -h 127.0.0.1 -e "DROP USER 'root'@'$HOSTNAME'; CREATE USER 'root'@'$HOSTNAME' IDENTIFIED BY '$PASS'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'$HOSTNAME' WITH GRANT OPTION; FLUSH PRIVILEGES;"
     mysql -uroot -h $HOSTNAME -p$PASS -e "CREATE USER 'root'@'localhost' IDENTIFIED BY '$PASS'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION; FLUSH PRIVILEGES;"
+    mysql -uroot -h $HOSTNAME -p$PASS -e "DROP USER 'root'@'%'; CREATE USER 'root'@'%' IDENTIFIED BY '$PASS'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION; FLUSH PRIVILEGES;"
     MYSQL_ROOT_PASSWORD=$PASS
     export MYSQL_ROOT_PASSWORD=$PASS
     echo ""
