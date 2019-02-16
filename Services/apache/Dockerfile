@@ -9,9 +9,11 @@ ENV SX_VERSION="alpine3" \
     SX_NAME="Startx Apache service image (alpine 3.8)" \
     SX_SUMMARY="Startx apache service based on alpine 3.8" \
     HTTPDCONF=/etc/apache2/conf.d/app.conf \
-    LOG_PATH=/var/log/httpd \
+    LOG_PATH=/var/log/apache2 \
     APP_PATH=/app \
-    RUN_DIR=$RUN_DIR \
+    RUN_CONF_DIR=/etc/apache2/conf.d \
+    RUN_CONF=/etc/apache2/httpd.conf \
+    RUN_DIR=/run/apache2 \
     RUN_BIN=/usr/sbin/httpd \
     APP_PORT=8080
 
@@ -40,8 +42,8 @@ RUN apk --no-cache add apache2 curl ca-certificates openssl tzdata openntpd && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
-    [ -w /etc/apache2/httpd.conf ] && sed -i "s/Listen 80/#Listen 80/" /etc/apache2/httpd.conf && \
-    rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf $RUN_DIR/httpd.pid && \
+    [ -w $RUN_CONF ] && sed -i "s/Listen 80/#Listen 80/" $RUN_CONF && \
+    rm -f $RUN_CONF_DIR/autoindex.conf $RUN_CONF_DIR/userdir.conf $RUN_CONF_DIR/welcome.conf $RUN_DIR/httpd.pid && \
     mkdir -p $APP_PATH $LOG_PATH && \
     chgrp -R 0 $APP_PATH $LOG_PATH $RUN_DIR /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR && \
     chown -R 1001:0 /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR $APP_PATH $LOG_PATH && \
