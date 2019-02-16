@@ -12,7 +12,8 @@ ENV SX_VERSION="centos7" \
     DATA_PATH=/data \
     LOG_PATH=/var/log/mariadb \
     LOADSQL_PATH=/tmp/sql  \
-    DB_CHARSET=utf8
+    DB_CHARSET=utf8  \
+    RUN_BIN=mysqld_safe
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
