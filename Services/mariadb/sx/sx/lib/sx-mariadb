@@ -156,7 +156,9 @@ function doMariadbPostDeploy {
     echoVerbose "+====================================================="
     echoVerbose "| Executing Mariadb post-deploy logic"
     echoVerbose "+====================================================="
-    init_service_mariadb
+    if [[ ! -f $DATA_PATH/.sxIsInit ]]; then
+        init_service_mariadb
+    fi
 }
 
 # function executed on container startup
@@ -186,7 +188,7 @@ function doMariadbRun {
     echoVerbose "+====================================================="
     echoVerbose "| Executing Mariadb run logic"
     echoVerbose "+====================================================="
-    if [[ ! -d $DATA_PATH/mysql ]]; then
+    if [[ ! -f $DATA_PATH/.sxIsInit ]]; then
         init_service_mariadb
     fi
     startMariadbService
@@ -217,8 +219,7 @@ function init_service_mariadb {
     init_logDir
     init_sqlloadDir
     init_mysqlConfig
-    init_configureUsers
-    init_configureDatabase
+    init_configureUsersAndDatabase
     echoVerbose "=> END MARIADB CONFIGURATION"
     touch $DATA_PATH/.sxIsInit
 }
@@ -274,26 +275,54 @@ function init_mysqlConfig {
 }
 
 
-# init database users 
-function init_configureUsers {
+# init database users and database content
+function init_configureUsersAndDatabase {
+    init_installDb
+    config_startserver
+    config_createadmin
+    config_createuser
+    VOLUME_HOME=$DATA_PATH/$MYSQL_DATABASE
+    if [[ ! -d $VOLUME_HOME ]]; then
+        echoVerbose "$VOLUME_HOME database directory is empty or uninitialized"
+        echo "Installing database $MYSQL_DATABASE ..."
+        config_resetdatabase
+        config_importsql
+    else
+        echoVerbose "database $MYSQL_DATABASE is initialized"
+        echoVerbose "Reusing MariaDB in $VOLUME_HOME ..."
+    fi
+    echoVerbose "stop database after initial setup"
+    config_stopserver
+}
+
+
+# init database directory and setup
+function init_installDb {
     VOLUME_HOME=$DATA_PATH/mysql
     if [[ ! -d $VOLUME_HOME ]]; then
         echoVerbose "mariadb directory is empty or uninitialized"
         echo "Installing MariaDB in $DATA_PATH ..."
         mysql_install_db --defaults-file=$MY_CONF --datadir=$DATA_PATH > /dev/null 2>&1 
         echoVerbose "Installing MariaDB in $DATA_PATH is DONE !"
-        config_startserver
-        config_createadmin
-        config_createuser
-        config_stopserver
     else
         echoVerbose "mariadb directory is initialized"
         echoVerbose "Reusing MariaDB in $DATA_PATH ..."
     fi
 }
 
+# init database users 
+function init_configureUsers {
+    init_installDb
+    config_startserver
+    config_createadmin
+    config_createuser
+    echoVerbose "stop database after initial setup"
+    config_stopserver
+}
+
 # init database and import data 
 function init_configureDatabase {
+    init_installDb
     VOLUME_HOME=$DATA_PATH/$MYSQL_DATABASE
     if [[ ! -d $VOLUME_HOME ]]; then
         echoVerbose "$VOLUME_HOME database directory is empty or uninitialized"
@@ -301,6 +330,7 @@ function init_configureDatabase {
         config_startserver
         config_resetdatabase
         config_importsql
+        echoVerbose "stop database after initial setup"
         config_stopserver
     else
         echoVerbose "database $MYSQL_DATABASE is initialized"
@@ -309,8 +339,8 @@ function init_configureDatabase {
 }
 
 function config_startserver {
-    echoVerbose "start database for initial setup"
-    mysqld_safe &
+    echoVerbose "starting database for initial setup"
+    `$RUN_BIN &`
     mysql_pid=$!
     until mysqladmin ping >/dev/null 2>&1; do
         echo -n "."; sleep 0.2
@@ -318,9 +348,9 @@ function config_startserver {
 }
 
 function config_stopserver {
-    echoVerbose "stop database after initial setup"
+    echoVerbose "stopping database"
     mysqladmin -u root -p$MYSQL_ROOT_PASSWORD shutdown
-    wait $mysql_pid
+    sleep 2;
 }
 
 
@@ -391,7 +421,7 @@ function config_createdatabase {
             echo " | "
             echo " | database : $MYSQL_DATABASE"
             echo " | "
-            echo " | shell    : mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -h $HOSTNAME $MYSQL_DATABASE"
+            echo " | shell    : mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -h $HOSTNAME -D $MYSQL_DATABASE"
             echo " +------------------------------------------------------"
             echo ""
         else
@@ -458,5 +488,5 @@ function startMariadbService {
     trap 'killDaemon kill 9' SIGKILL
     trap 'killDaemon term 15' SIGTERM
     trap 'killDaemon sys 31' SIGSYS
-    exec mysqld_safe
+    exec $RUN_BIN
 }
