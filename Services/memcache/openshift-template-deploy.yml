@@ -7,7 +7,7 @@ metadata:
     description: Deployement workflow of a Memcache SQL database using ephemeral storage
       for data and logs records. Use memcache with various underlying linux distribution. See 
       https://hub.docker.com/r/startx/sv-memcache
-    iconClass: icon-memcache
+    iconClass: icon-redis
     tags: startx,os,fedora,memcache
     openshift.io/provider-display-name: STARTX
     openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-memcache
@@ -43,7 +43,7 @@ objects:
       annotations:
         openshift.io/display-name: Backend ${APP_NAME} version ${APP_STAGE}
         description: ${APP_STAGE} image for the database ${APP_NAME} based on ${BUILDER_TAG}
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: startx,fedora,memcache,database,${APP_NAME},${APP_STAGE},${BUILDER_TAG}
         supports: memcache
         version: ${APP_STAGE}
