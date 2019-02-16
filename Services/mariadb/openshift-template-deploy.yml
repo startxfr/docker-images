@@ -1,7 +1,7 @@
 kind: Template
 apiVersion: v1
 metadata:
-  name: startx-sv-mariadb-deploy-template
+  name: startx-mariadb-deploy-template
   annotations:
     openshift.io/display-name: Startx Mariadb Server (ephemeral deploy workflow)
     description: Deployement workflow of a Mariadb SQL database using ephemeral storage
@@ -29,7 +29,7 @@ message: |-
   Connection  : mysql://${APP_NAME}:3306
   
 labels:
-  template: startx-sv-mariadb-deploy-template
+  template: startx-mariadb-deploy-template
   provider: startx 
 objects:
 - kind: ImageStream

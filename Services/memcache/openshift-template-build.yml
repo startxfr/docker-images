@@ -1,7 +1,7 @@
 kind: Template
 apiVersion: v1
 metadata: 
-  name: startx-sv-memcache-build-template
+  name: startx-memcache-build-template
   annotations:
     openshift.io/display-name: Startx Memcache Server (ephemeral build & deploy workflow)
     description: Build and deployement workflow of a Memcache SQL database using ephemeral storage
@@ -24,7 +24,7 @@ message: |-
   Connection  : memcache://${APP_NAME}:11211
   
 labels:
-  template: startx-sv-memcache-build-template
+  template: startx-memcache-build-template
   provider: startx 
 objects:
 - kind: ImageStream

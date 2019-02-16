@@ -1,7 +1,7 @@
 kind: Template
 apiVersion: v1
 metadata:
-  name: startx-sv-apache-build-template
+  name: startx-apache-build-template
   annotations:
     openshift.io/display-name: Startx Http Server (ephemeral build & deploy workflow)
     description: Build and deployement workflow of a static web application using ephemeral storage
@@ -22,7 +22,7 @@ message: |-
   Stage       : ${APP_STAGE}
   Builder     : ${BUILDER_TAG}
 labels:
-  template: startx-sv-apache-build-template
+  template: startx-apache-build-template
   provider: startx 
 objects:
 - kind: ImageStream
