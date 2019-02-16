@@ -56,7 +56,7 @@ oc new-project demo
 ### Add template to the project catalog
 
 ```bash
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Applications/awx/openshift-template.json
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Applications/awx/openshift-template.yml
 ```
 
 ### Execute this template

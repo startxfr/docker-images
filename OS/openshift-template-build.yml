@@ -1,7 +1,7 @@
 kind: Template
 apiVersion: v1
 metadata:
-  name: startx-os-fedora-build-template
+  name: startx-os-build-template
   annotations:
     openshift.io/display-name: Startx Base OS (fedora)
     description: Minimal Fedora OS container for bash operations
@@ -21,7 +21,7 @@ message: |-
   Source      : ${SOURCE_GIT}
   action      : ${RUN_ACTION}
 labels:
-  template: startx-os-fedora-build-template
+  template: startx-os-build-template
   provider: startx 
 objects:
 - kind: ImageStream

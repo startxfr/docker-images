@@ -1,7 +1,7 @@
 kind: ImageStreamList
 apiVersion: v1
 metadata:
-  name: startx-os
+  name: startx-postgres
   annotations:
     openshift.io/generated-by: STARTX
   labels:
@@ -10,7 +10,7 @@ items:
 - kind: ImageStream
   apiVersion: v1
   metadata:
-    name: startx-sv-postgres
+    name: startx-postgres
     annotations:
       openshift.io/display-name: Startx PostgreSQL Database (S2I)
       openshift.io/generated-by: STARTX

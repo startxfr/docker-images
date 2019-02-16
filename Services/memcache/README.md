@@ -115,7 +115,7 @@ You can then build a cache node
 # create an example project
 oc new-project example
 # start a new ephemeral cache node
-oc process -f startx-sv-memcache-build-template \
+oc process -f startx-memcache-build-template \
     -p APP_NAME=mycache-e \
 | oc create -f -
 ```
@@ -141,7 +141,7 @@ You can then deploy a cache node
 # create a example project
 oc new-project example
 # start a new ephemeral cache node
-oc process -f startx-sv-memcache-deploy-template \
+oc process -f startx-memcache-deploy-template \
     -p APP_NAME=mycache-e \
 | oc create -f -
 ```

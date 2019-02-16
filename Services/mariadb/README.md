@@ -117,11 +117,11 @@ You can then build a database
 # create an example project
 oc new-project example
 # start a new ephemeral database
-oc process -f startx-sv-mariadb-build-template \
+oc process -f startx-mariadb-build-template \
     -p APP_NAME=mydb-e \
 | oc create -f -
 # start a new persistent database
-oc process -f startx-sv-mariadb-build-persist-template \
+oc process -f startx-mariadb-build-persist-template \
     -p APP_NAME=mydb-p \
 | oc create -f -
 ```
@@ -147,11 +147,11 @@ You can then deploy a database
 # create a example project
 oc new-project example
 # start a new ephemeral database
-oc process -f startx-sv-mariadb-deploy-template \
+oc process -f startx-mariadb-deploy-template \
     -p APP_NAME=mydb-e \
 | oc create -f -
 # start a new persistent database
-oc process -f startx-sv-mariadb-deploy-persist-template \
+oc process -f startx-mariadb-deploy-persist-template \
     -p APP_NAME=mydb-p \
 | oc create -f -
 ```
