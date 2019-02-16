@@ -1,26 +1,30 @@
 kind: Template
 apiVersion: v1
 metadata:
-  name: startx-sv-php-deploy-template
+  name: startx-sv-memcache-deploy-template
   annotations:
-    openshift.io/display-name: Startx PHP Server (ephemeral deploy workflow)
-    description: Deployement workflow of a dynamic PHP web application using ephemeral storage
-      for logs records. Use apache with various underlying linux distribution. See 
-      https://hub.docker.com/r/startx/sv-php
-    iconClass: icon-php
-    tags: startx,os,fedora,php,httpd
+    openshift.io/display-name: Startx Memcache Server (ephemeral deploy workflow)
+    description: Deployement workflow of a Memcache SQL database using ephemeral storage
+      for data and logs records. Use memcache with various underlying linux distribution. See 
+      https://hub.docker.com/r/startx/sv-memcache
+    iconClass: icon-memcache
+    tags: startx,os,fedora,memcache
     openshift.io/provider-display-name: STARTX
-    openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-php
+    openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-memcache
     openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
 message: |-
-  Your application ${APP_NAME} will be soon deployed.
-  Monitor the deployement for application availability and
-  Follow created route to browse running application
+  Your database ${APP_NAME} will be soon deployed.
+  Monitor the deployement for application availability 
 
-  Application : ${APP_NAME}
+  Source      : ${SOURCE_BRANCH}@${SOURCE_GIT}
+  Backend    : ${APP_NAME}
   Stage       : ${APP_STAGE}
+  Builder     : ${BUILDER_TAG}
+  
+  Connection  : memcache://${APP_NAME}:11211
+  
 labels:
-  template: startx-sv-php-deploy-template
+  template: startx-sv-memcache-deploy-template
   provider: startx 
 objects:
 - kind: ImageStream
@@ -28,7 +32,7 @@ objects:
   metadata:
     name: "${APP_NAME}"
     annotations:
-      openshift.io/display-name: Dynamic application ${APP_NAME}
+      openshift.io/display-name: Backend ${APP_NAME}
       openshift.io/generated-by: STARTX
     labels:
       app: "${APP_NAME}"
@@ -37,21 +41,21 @@ objects:
     tags:
     - name: ${APP_STAGE}
       annotations:
-        openshift.io/display-name: Application ${APP_NAME} version ${APP_STAGE}
-        description: ${APP_STAGE} image for the application ${APP_NAME} based on ${BUILDER_TAG}
-        iconClass: icon-php
-        tags: startx,fedora,php,httpd,application,${APP_NAME},${APP_STAGE},${BUILDER_TAG}
-        supports: http
+        openshift.io/display-name: Backend ${APP_NAME} version ${APP_STAGE}
+        description: ${APP_STAGE} image for the database ${APP_NAME} based on ${BUILDER_TAG}
+        iconClass: icon-memcache
+        tags: startx,fedora,memcache,database,${APP_NAME},${APP_STAGE},${BUILDER_TAG}
+        supports: memcache
         version: ${APP_STAGE}
       from:
         kind: DockerImage
-        name: startx/sv-php:${BUILDER_TAG}
+        name: startx/sv-memcache:${BUILDER_TAG}
 - kind: ConfigMap
   apiVersion: v1
   metadata:
     name: "${APP_NAME}-config"
     annotations:
-      openshift.io/display-name: Application ${APP_NAME} configuration
+      openshift.io/display-name: Backend ${APP_NAME} configuration
       openshift.io/generated-by: STARTX
     labels:
       app: "${APP_NAME}"
@@ -60,8 +64,8 @@ objects:
     SX_ID: ${APP_NAME}/${APP_STAGE}
     SX_TYPE: ${APP_STAGE}
     SX_SERVICE: ${APP_NAME}
-    SX_NAME: Static web application ${APP_NAME}
-    SX_SUMMARY: Static web application ${APP_NAME} based on fedora container
+    SX_NAME: Memcache database ${APP_NAME}
+    SX_SUMMARY: Memcache database ${APP_NAME} based on ${BUILDER_TAG} container
     SX_VERSION: 0.0.1 
 - kind: DeploymentConfig
   apiVersion: v1
@@ -81,36 +85,6 @@ objects:
         timeoutSeconds: 10
         maxUnavailable: 25%
         maxSurge: 25%
-        pre:
-          failurePolicy: Ignore
-          execNewPod:
-            containerName: "${APP_NAME}"
-            command:
-            - "/bin/sx-php"
-            - pre-deploy
-            env:
-            - name: SX_VERBOSE
-              value: 'true'
-            - name: SX_DEBUG
-              value: 'true'
-            envFrom:
-              - configMapRef:
-                  name: ${APP_NAME}-config
-        post:
-          failurePolicy: Ignore
-          execNewPod:
-            containerName: "${APP_NAME}"
-            command:
-            - "/bin/sx-php"
-            - post-deploy
-            env:
-            - name: SX_VERBOSE
-              value: 'true'
-            - name: SX_DEBUG
-              value: 'true'
-            envFrom:
-              - configMapRef:
-                  name: ${APP_NAME}-config
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -122,8 +96,8 @@ objects:
           name: "${APP_NAME}:${APP_STAGE}"
     - type: ConfigChange
     postCommit:
-      script: "/bin/sx-php info"
-    replicas: 1
+      script: "/bin/sx-memcache info"
+    replicas: "${REPLICAS}"
     test: false
     selector:
       app: "${APP_NAME}"
@@ -146,44 +120,39 @@ objects:
             - configMapRef:
                 name: ${APP_NAME}-config
           command:
-          - "/bin/sx-php"
+          - "/bin/sx-memcache"
           args:
           - run
+          resources:
+            limits:
+              memory: "${MEMORY_LIMIT}"
           ports:
-          - containerPort: 8080
+          - containerPort: 11211
             protocol: TCP
           livenessProbe:
             exec:
               command:
-              - "/bin/sx-php"
+              - "/bin/sx-memcache"
               - isLive
-            initialDelaySeconds: 4
-            timeoutSeconds: 2
-            periodSeconds: 10
+            initialDelaySeconds: 2
+            timeoutSeconds: 1
+            periodSeconds: 5
             successThreshold: 1
             failureThreshold: 2
           readinessProbe:
             exec:
               command:
-              - "/bin/sx-php"
+              - "/bin/sx-memcache"
               - isReady
-            initialDelaySeconds: 4
-            timeoutSeconds: 2
-            periodSeconds: 10
+            initialDelaySeconds: 2
+            timeoutSeconds: 1
+            periodSeconds: 5
             successThreshold: 1
             failureThreshold: 2
           terminationMessagePath: "/dev/termination-log"
           imagePullPolicy: Always
-          volumeMounts:
-          - name: "${APP_NAME}-log"
-            mountPath: "/var/log/httpd"
-        volumes:
-        - name: "${APP_NAME}-log"
-          emptyDir:
-            medium: ''
         restartPolicy: Always
-        terminationGracePeriodSeconds: 30
-        securityContext: {}
+        terminationGracePeriodSeconds: 2
         dnsPolicy: ClusterFirst
 - kind: Service
   apiVersion: v1
@@ -197,40 +166,36 @@ objects:
   spec:
     ports:
     - protocol: TCP
-      port: 8080
-      targetPort: 8080
+      port: 11211
+      targetPort: 11211
     selector:
       app: "${APP_NAME}"
       deploymentconfig: "${APP_NAME}"
     type: ClusterIP
     sessionAffinity: None
-- kind: Route
-  apiVersion: v1
-  metadata:
-    name: "${APP_NAME}"
-    labels:
-      app: "${APP_NAME}"
-      stage: "${APP_STAGE}"
-    annotations:
-      openshift.io/generated-by: STARTX
-  spec:
-    to:
-      kind: Service
-      name: "${APP_NAME}"
-      weight: 100
 parameters:
 - name: APP_NAME
-  displayName: Application name
+  displayName: Backend name
   description: The name of the created application
-  value: php
+  value: memcache
   required: true
 - name: APP_STAGE
-  displayName: Application stage
+  displayName: Backend stage
   description: "Stage of the application deployed (ex: dev, test, prod, example, demo, poc, ...)"
   value: example
   required: true
 - name: BUILDER_TAG
   displayName: Startx image release
-  description: "Image tag of the startx php image used. Could be : latest, fc30, fc29, fc28, alpine3, centos7, centos6"
+  description: "Image tag of the startx memcache image used. Could be : latest, fc30, fc29, fc28, alpine3, centos7, centos6"
   value: latest
+  required: true
+- name: REPLICAS
+  displayName: Number of workers
+  description: Number of concurent pod to start
+  value: 1
+  required: true
+- name: MEMORY_LIMIT
+  displayName: Memory Limit
+  description: Maximum amount of memory the container can use.
+  value: 512Mi
   required: true

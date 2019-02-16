@@ -192,6 +192,7 @@ FROM startx/sv-php:fc30
 | SX_VERBOSE                | `bool`   | `no`               | Display information about the execution
 | SX_DEBUG                  | `bool`   | `no`               | Display debug informations during execution
 | APP_PATH                  | `string` | `/app`             | Path to the application
+| APP_PORT                  | `string` | `8080`             | Port to the application
 | LOG_PATH                  | `string` | `/var/log/httpd`   | Destination path to the log produced by the webserver
 | SX_S2IDIR                 | `string` | `/tmp`             | Destination path to the application pushed via s2i process
 

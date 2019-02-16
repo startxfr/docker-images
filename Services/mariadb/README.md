@@ -130,7 +130,6 @@ oc process -f startx-sv-mariadb-build-persist-template \
 
 Openshift cluster administrator can add a deploy template to their consumers.
 As an administrator, you can import our [openshift deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-deploy.yml) 
-as well as our [openshift persistent deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-deploy-persistent.yml) 
 in your `openshift` project.
 
 You must be cluster-admin to add this image to the `openshift` project. If not, you can add it to your own 
@@ -141,8 +140,6 @@ project (skip the `oc project openshift` command in the next script)
 oc project openshift
 # Add this ephemeral template to the service catalog (project or cluster-wide scope)
 oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-deploy.yml
-# Add this persistent template to the service catalog (project or cluster-wide scope)
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-deploy-persistent.yml
 ```
 
 You can then deploy a database
