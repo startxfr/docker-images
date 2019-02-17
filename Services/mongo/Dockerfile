@@ -9,7 +9,7 @@ ENV SX_VERSION="centos7" \
     SX_NAME="Startx MongoDB service image (centos 7)" \
     SX_SUMMARY="Startx mongo service based on centos 7" \
     LOG_PATH=/var/log/mongodb \
-    DATA_PATH=/data
+    DATA_PATH=/data/db
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -30,9 +30,9 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum --nogpgcheck -y --enablerepo=epel install centos-release-scl  && \
-    yum-config-manager --enable rhel-server-rhscl-7-rpms  && \
-    yum --nogpgcheck -y install  mongodb24  && \
+RUN yum --nogpgcheck -y install epel-release && \
+    yum --nogpgcheck -y --enablerepo=epel install centos-release-scl  && \
+    yum --nogpgcheck -y install  mongodb-server  && \
     yum clean all  && \
     scl enable mongodb24 bash  && \
     usermod -a -G 0 mongodb && \
@@ -52,7 +52,7 @@ USER 1001
 
 WORKDIR $DATA_PATH
 
-EXPOSE 27017 28017
+EXPOSE 27017
 
 VOLUME $DATA_PATH
 
