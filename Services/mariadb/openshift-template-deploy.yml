@@ -16,10 +16,9 @@ message: |-
   Your database ${APP_NAME} will be soon deployed.
   Monitor the deployement for application availability 
 
-  Source      : ${SOURCE_BRANCH}@${SOURCE_GIT}
   Database    : ${APP_NAME}
   Stage       : ${APP_STAGE}
-  Builder     : ${BUILDER_TAG}
+  Image       : startx/sv-mariadb:${BUILDER_TAG}
   Volumes     : ${APP_NAME}-log (E), ${APP_NAME}-data (E)
   
   Username    : ${MYSQL_USER}
@@ -72,6 +71,21 @@ objects:
     SX_NAME: Mariadb database ${APP_NAME}
     SX_SUMMARY: Mariadb database ${APP_NAME} based on ${BUILDER_TAG} container
     SX_VERSION: 0.0.1 
+- kind: Secret
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}-auth"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      template.openshift.io/expose-username: "{.data['MYSQL_USER']}"
+      template.openshift.io/expose-password: "{.data['MYSQL_PASSWORD']}"
+      template.openshift.io/expose-root_password: "{.data['MYSQL_PASSWORD']}"
+  stringData:
+    MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+    MYSQL_USER: "${MYSQL_USER}"
+    MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
 - kind: DeploymentConfig
   apiVersion: v1
   metadata:

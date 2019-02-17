@@ -17,7 +17,7 @@ message: |-
   Monitor the deployement for application availability
 
   Source      : ${SOURCE_BRANCH}@${SOURCE_GIT}
-  Backend    : ${APP_NAME}
+  Backend     : ${APP_NAME}
   Stage       : ${APP_STAGE}
   Builder     : ${BUILDER_TAG}
   
@@ -327,7 +327,7 @@ objects:
     - type: ConfigChange
     postCommit:
       script: "/bin/sx-memcache info"
-    replicas: "${REPLICAS}"
+    replicas: 1
     test: false
     selector:
       app: "${APP_NAME}"
@@ -434,11 +434,6 @@ parameters:
   description: Secret token to use for webhook to github or generic
   generate: expression
   from: "[a-zA-Z0-9]{24}"
-  required: true
-- name: REPLICAS
-  displayName: Number of workers
-  description: Number of concurent pod to start
-  value: 1
   required: true
 - name: MEMORY_LIMIT
   displayName: Memory Limit

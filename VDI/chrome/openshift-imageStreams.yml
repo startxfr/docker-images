@@ -1,7 +1,12 @@
 ---
 kind: ImageStreamList
 apiVersion: v1
-metadata: {}
+metadata: 
+  name: startx-chrome
+  annotations:
+    openshift.io/generated-by: STARTX
+  labels:
+    provider: startx
 items:
 - kind: ImageStream
   apiVersion: v1

@@ -1,101 +1,165 @@
----
 kind: Template
 apiVersion: v1
 metadata:
   name: startx-mongo-deploy-template
   annotations:
-    openshift.io/display-name: Startx MongoDB server (fedora)
-    description: MongoDB server for NoSQL database running under Fedora
+    openshift.io/display-name: Startx MongoDB Server (ephemeral deploy workflow)
+    description: Deployement workflow of a MongoDB NoSQL database using ephemeral storage
+      for data and logs records. Use mongo with various underlying linux distribution. See 
+      https://hub.docker.com/r/startx/sv-mongo
     iconClass: icon-mongodb
     tags: startx,os,fedora,mongo,database
-    openshift.io/long-description: This template provides an mongo Database in a fedora
-      container. Ready to use in openshift with a simple deployement config, or as
-      a s2i builder for building SQL databases container. For more information about
-      using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.
     openshift.io/provider-display-name: STARTX
-    openshift.io/documentation-url: https://github.com/startxfr/docker-images/blob/master/README.md
+    openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-mongo
     openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
-message: 'The following container have been created in your project: ${APP_NAME} and
-  you can use openshift console to log into.'
+message: |-
+  Your database ${APP_NAME} will be soon deployed.
+  Monitor the deployement for application availability 
+
+  Database    : ${APP_NAME}
+  Stage       : ${APP_STAGE}
+  Image       : startx/sv-mongo:${BUILDER_TAG}
+  Volumes     : ${APP_NAME}-log (E), ${APP_NAME}-data (E)
+  
+  Username    : ${MYSQL_USER}
+  Password    : ${MYSQL_PASSWORD}
+  Database    : ${MYSQL_DATABASE}
+  
+  Connection  : mysql://${APP_NAME}:3306
+  
 labels:
   template: startx-mongo-deploy-template
+  provider: startx 
 objects:
 - kind: ImageStream
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
     annotations:
-      openshift.io/display-name: Startx MongoDB Database
+      openshift.io/display-name: Database ${APP_NAME}
       openshift.io/generated-by: STARTX
     labels:
       app: "${APP_NAME}"
-      type: "${APP_TYPE}"
-      provider: startx
-      template: startx-mongo-deploy-template
+      stage: "${APP_STAGE}"
   spec:
     tags:
-    - name: latest
+    - name: ${APP_STAGE}
       annotations:
-        openshift.io/display-name: Startx MongoDB Database (Fedora rawhide)
-        description: MongoDB server for NoSQL database running under Fedora rawhide
-        iconClass: icon-mongodb
-        tags: builder,startx,fedora,mongo,database
-        supports: db
-        version: rawhide
-        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+        openshift.io/display-name: Database ${APP_NAME} version ${APP_STAGE}
+        description: ${APP_STAGE} image for the database ${APP_NAME} based on ${BUILDER_TAG}
+        iconClass: icon-mongo
+        tags: startx,fedora,mongo,sql,database,${APP_NAME},${APP_STAGE},${BUILDER_TAG}
+        supports: mysql
+        version: ${APP_STAGE}
       from:
         kind: DockerImage
-        name: startx/sv-mongo:latest
+        name: startx/sv-mongo:${BUILDER_TAG}
+- kind: ConfigMap
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}-config"
+    annotations:
+      openshift.io/display-name: Database ${APP_NAME} configuration
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  data:
+    SX_ID: ${APP_NAME}/${APP_STAGE}
+    SX_TYPE: ${APP_STAGE}
+    SX_SERVICE: ${APP_NAME}
+    SX_NAME: Mariadb database ${APP_NAME}
+    SX_SUMMARY: Mariadb database ${APP_NAME} based on ${BUILDER_TAG} container
+    SX_VERSION: 0.0.1 
 - kind: Secret
   apiVersion: v1
   metadata:
-    name: "${APP_NAME}"
-    creationTimestamp: 
+    name: "${APP_NAME}-auth"
     labels:
       app: "${APP_NAME}"
-      type: "${APP_TYPE}"
-      provider: startx
-      template: startx-mongo-deploy-template
+      stage: "${APP_STAGE}"
+    annotations:
+      template.openshift.io/expose-username: "{.data['MYSQL_USER']}"
+      template.openshift.io/expose-password: "{.data['MYSQL_PASSWORD']}"
+      template.openshift.io/expose-root_password: "{.data['MYSQL_PASSWORD']}"
   stringData:
-    MONGO_PASSWORD: "${MONGO_PASSWORD}"
-    MONGO_USER: "${MONGO_USER}"
+    MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+    MYSQL_USER: "${MYSQL_USER}"
+    MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
 - kind: DeploymentConfig
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
-    generation: 2
-    creationTimestamp: 
     labels:
       app: "${APP_NAME}"
-      type: "${APP_TYPE}"
-      provider: startx
-      template: startx-mongo-deploy-template
+      stage: "${APP_STAGE}"
     annotations:
       openshift.io/generated-by: STARTX
   spec:
     strategy:
-      type: Rolling
-      rollingParams:
-        updatePeriodSeconds: 1
-        intervalSeconds: 1
-        timeoutSeconds: 120
-        maxUnavailable: 25%
-        maxSurge: 25%
+      type: Recreate
+      recreateParams:
+        timeoutSeconds: 25
         pre:
           failurePolicy: Abort
           execNewPod:
+            containerName: "${APP_NAME}"
             command:
             - "/bin/sx-mongo"
             - pre-deploy
-            containerName: "${APP_NAME}"
+            env:
+            - name: SX_VERBOSE
+              value: 'true'
+            - name: SX_DEBUG
+              value: 'true'
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "${APP_NAME}-auth"
+                  key: MYSQL_ROOT_PASSWORD
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: "${APP_NAME}-auth"
+                  key: MYSQL_USER
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "${APP_NAME}-auth"
+                  key: MYSQL_PASSWORD
+            envFrom:
+              - configMapRef:
+                  name: ${APP_NAME}-config
         post:
           failurePolicy: Abort
           execNewPod:
+            containerName: "${APP_NAME}"
             command:
             - "/bin/sx-mongo"
             - post-deploy
-            containerName: "${APP_NAME}"
-      resources: {}
+            env:
+            - name: SX_VERBOSE
+              value: 'true'
+            - name: SX_DEBUG
+              value: 'true'
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "${APP_NAME}-auth"
+                  key: MYSQL_ROOT_PASSWORD
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: "${APP_NAME}-auth"
+                  key: MYSQL_USER
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "${APP_NAME}-auth"
+                  key: MYSQL_PASSWORD
+            envFrom:
+              - configMapRef:
+                  name: ${APP_NAME}-config
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -104,8 +168,10 @@ objects:
         - "${APP_NAME}"
         from:
           kind: ImageStreamTag
-          name: "${APP_NAME}:latest"
+          name: "${APP_NAME}:${APP_STAGE}"
     - type: ConfigChange
+    postCommit:
+      script: "/bin/sx-mongo info"
     replicas: 1
     test: false
     selector:
@@ -113,12 +179,8 @@ objects:
       deploymentconfig: "${APP_NAME}"
     template:
       metadata:
-        creationTimestamp: 
         labels:
           app: "${APP_NAME}"
-          type: "${APP_TYPE}"
-          provider: startx
-          template: startx-mongo-deploy-template
           deploymentconfig: "${APP_NAME}"
         annotations:
           openshift.io/generated-by: STARTX
@@ -126,61 +188,77 @@ objects:
         containers:
         - name: "${APP_NAME}"
           image: " "
+          env:
+          - name: SX_VERBOSE
+            value: 'true'
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: "${APP_NAME}-auth"
+                key: MYSQL_ROOT_PASSWORD
+          - name: MYSQL_USER
+            valueFrom:
+              secretKeyRef:
+                name: "${APP_NAME}-auth"
+                key: MYSQL_USER
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: "${APP_NAME}-auth"
+                key: MYSQL_PASSWORD
+          envFrom:
+            - configMapRef:
+                name: ${APP_NAME}-config
           command:
           - "/bin/sx-mongo"
           args:
           - run
-          env:
-          - name: MONGO_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: "${APP_NAME}"
-                key: MONGO_PASSWORD
-          - name: MONGO_USER
-            valueFrom:
-              secretKeyRef:
-                name: "${APP_NAME}"
-                key: MONGO_USER
-          - name: MONGO_STORES
-            value: "${MONGO_STORES}"
-          resources: {}
+          resources:
+            limits:
+              memory: "${MEMORY_LIMIT}"
+          ports:
+          - containerPort: 3306
+            protocol: TCP
           livenessProbe:
             exec:
               command:
               - "/bin/sx-mongo"
               - isLive
-            initialDelaySeconds: 5
+            initialDelaySeconds: 4
             timeoutSeconds: 2
-            periodSeconds: 10
+            periodSeconds: 8
             successThreshold: 1
-            failureThreshold: 3
+            failureThreshold: 2
           readinessProbe:
             exec:
               command:
               - "/bin/sx-mongo"
               - isReady
-            initialDelaySeconds: 2
+            initialDelaySeconds: 4
             timeoutSeconds: 2
-            periodSeconds: 10
+            periodSeconds: 8
             successThreshold: 1
-            failureThreshold: 3
+            failureThreshold: 2
           terminationMessagePath: "/dev/termination-log"
           imagePullPolicy: Always
-  status:
-    observedGeneration: 2
-    replicas: 1
-    updatedReplicas: 1
-    availableReplicas: 1
+          volumeMounts:
+          - name: "${APP_NAME}-log"
+            mountPath: "/var/log/mongo"
+        volumes:
+        - name: "${APP_NAME}-log"
+          emptyDir:
+            medium: ''
+        restartPolicy: Always
+        terminationGracePeriodSeconds: 30
+        securityContext: {}
+        dnsPolicy: ClusterFirst
 - kind: Service
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
-    creationTimestamp: 
     labels:
       app: "${APP_NAME}"
-      type: "${APP_TYPE}"
-      provider: startx
-      template: startx-mongo-deploy-template
+      stage: "${APP_STAGE}"
     annotations:
       openshift.io/generated-by: STARTX
   spec:
@@ -193,29 +271,45 @@ objects:
       deploymentconfig: "${APP_NAME}"
     type: ClusterIP
     sessionAffinity: None
-  status:
-    loadBalancer: {}
 parameters:
 - name: APP_NAME
-  displayName: Application name
+  displayName: Database name
   description: The name of the created application
   value: mongo
   required: true
-- name: APP_TYPE
-  displayName: Application type
-  description: The type of the created application
-  value: database
-- name: MONGO_USER
-  displayName: MongoDB user
+- name: APP_STAGE
+  displayName: Database stage
+  description: "Stage of the application deployed (ex: dev, test, prod, example, demo, poc, ...)"
+  value: example
+  required: true
+- name: BUILDER_TAG
+  displayName: Startx image release
+  description: "Image tag of the startx mongo image used. Could be : latest, fc30, fc29, fc28, alpine3, centos7, centos6"
+  value: latest
+  required: true
+- name: MYSQL_ROOT_PASSWORD
+  displayName: Mysql root password
+  description: The mysql root password to use. Generated if not provided
+  from: "[A-Z0-9]{16}"
+  generate: expression
+- name: MYSQL_USER
+  displayName: Mysql user
   description: Default user to create
   value: demo
   from: "[A-Z0-9]{8}"
   generate: expression
-- name: MONGO_PASSWORD
-  displayName: MongoDB root password
-  description: The mysql root password to use. Generated if not provided
+- name: MYSQL_PASSWORD
+  displayName: Mysql password
+  description: Password of the default user
+  value: demo
   from: "[A-Z0-9]{16}"
   generate: expression
-- name: MONGO_STORES
-  displayName: MongoDB store
-  description: list of the default's store to create
+- name: MYSQL_DATABASE
+  displayName: Mysql database
+  description: name of the default database to create
+  value: example
+- name: MEMORY_LIMIT
+  displayName: Memory Limit
+  description: Maximum amount of memory the container can use.
+  value: 512Mi
+  required: true
