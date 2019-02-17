@@ -78,39 +78,9 @@ objects:
       rollingParams:
         updatePeriodSeconds: 1
         intervalSeconds: 1
-        timeoutSeconds: 10
+        timeoutSeconds: 50
         maxUnavailable: 25%
         maxSurge: 25%
-        pre:
-          failurePolicy: Ignore
-          execNewPod:
-            containerName: "${APP_NAME}"
-            command:
-            - "/bin/sx-php"
-            - pre-deploy
-            env:
-            - name: SX_VERBOSE
-              value: 'true'
-            - name: SX_DEBUG
-              value: 'true'
-            envFrom:
-              - configMapRef:
-                  name: ${APP_NAME}-config
-        post:
-          failurePolicy: Ignore
-          execNewPod:
-            containerName: "${APP_NAME}"
-            command:
-            - "/bin/sx-php"
-            - post-deploy
-            env:
-            - name: SX_VERBOSE
-              value: 'true'
-            - name: SX_DEBUG
-              value: 'true'
-            envFrom:
-              - configMapRef:
-                  name: ${APP_NAME}-config
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -172,6 +142,13 @@ objects:
             periodSeconds: 10
             successThreshold: 1
             failureThreshold: 2
+          resources:
+            limits:
+              cpu: 8000m
+              memory: 512Mi
+            requests:
+              cpu: 200m
+              memory: 128Mi
           terminationMessagePath: "/dev/termination-log"
           imagePullPolicy: Always
           volumeMounts:
@@ -233,4 +210,9 @@ parameters:
   displayName: Startx image release
   description: "Image tag of the startx php image used. Could be : latest, fc30, fc29, fc28, alpine3, centos7, centos6"
   value: latest
+  required: true
+- name: MEMORY_LIMIT
+  displayName: Memory Limit
+  description: Maximum amount of memory the container can use.
+  value: 512Mi
   required: true

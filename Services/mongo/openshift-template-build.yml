@@ -333,7 +333,6 @@ objects:
       to:
         kind: ImageStreamTag
         name: "${APP_NAME}:latest"
-    resources: {}
     postCommit:
       command:
       - "/bin/sx-mongo"
@@ -374,7 +373,7 @@ objects:
     strategy:
       type: Recreate
       recreateParams:
-        timeoutSeconds: 35
+        timeoutSeconds: 50
         pre:
           failurePolicy: Abort
           execNewPod:
@@ -480,6 +479,10 @@ objects:
             protocol: TCP
           resources:
             limits:
+              cpu: 8000m
+              memory: "${MEMORY_LIMIT}"
+            requests:
+              cpu: 200m
               memory: "${MEMORY_LIMIT}"
           livenessProbe:
             exec:
@@ -593,6 +596,6 @@ parameters:
   value: example
 - name: MEMORY_LIMIT
   displayName: Memory Limit
-  description: Maximum amount of memory the container can use.
-  value: 512Mi
+  description: Maximum amount of memory the container can use. e.g. 512Mi, 2Gi.
+  value: 1024Mi
   required: true

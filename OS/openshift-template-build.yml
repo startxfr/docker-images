@@ -3,8 +3,9 @@ apiVersion: v1
 metadata:
   name: startx-os-build-template
   annotations:
-    openshift.io/display-name: Startx Base OS (fedora)
-    description: Minimal Fedora OS container for bash operations
+    openshift.io/display-name: Startx Base OS (build & deploy workflow)
+    description: Build and deployement workflow of a bash script using various underlying linux distribution. 
+      See https://hub.docker.com/r/startx/fedora
     iconClass: icon-beaker
     tags: startx,os,fedora
     openshift.io/long-description: This template provides a fedora container with
@@ -272,7 +273,7 @@ objects:
       sourceStrategy:
         from:
           kind: ImageStreamTag
-          name: startx-os:latest
+          name: startx-os:${BUILDER_TAG}
         env:
         - name: SX_VERBOSE
           value: 'true'
@@ -280,7 +281,6 @@ objects:
       to:
         kind: ImageStreamTag
         name: "${APP_NAME}:latest"
-    resources: {}
     postCommit:
       command:
       - "/bin/sx"
@@ -328,9 +328,8 @@ objects:
               - configMapRef:
                   name: ${APP_NAME}-config
           failurePolicy: Abort
-        timeoutSeconds: 20
+        timeoutSeconds: 40
         updatePeriodSeconds: 1
-      resources: {}
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -360,7 +359,6 @@ objects:
         containers:
         - name: "${APP_NAME}"
           image: " "
-          resources: {}
           command:
           - "/bin/sx"
           args:
@@ -391,6 +389,13 @@ objects:
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 1000m
+              memory: "${MEMORY_LIMIT}"
+            requests:
+              cpu: 200m
+              memory: "${MEMORY_LIMIT}"
           terminationMessagePath: "/dev/termination-log"
           imagePullPolicy: Always
           volumeMounts:
@@ -414,6 +419,10 @@ parameters:
   description: "Stage of the application deployed (ex: dev, test, prod, example, demo, poc, ...)"
   value: example
   required: true
+- name: BUILDER_TAG
+  displayName: Builder image stage
+  description: "Image tag of the startx apache builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc30, fc29, fc28 - alpine3 - centos7, centos6)"
+  value: latest
 - name: SOURCE_GIT
   displayName: Source repository
   description: URL to the source code to use during build process
@@ -436,4 +445,9 @@ parameters:
     pre-deploy, post-deploy, run, isLive, isReady, usage, usageS2i, daemon, info,
     version. See documentation for action list.
   value: run
+  required: true
+- name: MEMORY_LIMIT
+  displayName: Memory Limit
+  description: Maximum amount of memory the container can use. e.g. 512Mi, 2Gi.
+  value: 256Mi
   required: true

@@ -153,7 +153,6 @@ objects:
         updatePeriodSeconds: 1
         intervalSeconds: 1
         timeoutSeconds: 120
-      resources: {}
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -260,7 +259,6 @@ objects:
         updatePeriodSeconds: 1
         intervalSeconds: 1
         timeoutSeconds: 120
-      resources: {}
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -326,7 +324,6 @@ objects:
         updatePeriodSeconds: 1
         intervalSeconds: 1
         timeoutSeconds: 120
-      resources: {}
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -382,7 +379,6 @@ objects:
         updatePeriodSeconds: 1
         intervalSeconds: 1
         timeoutSeconds: 120
-      resources: {}
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -480,7 +476,6 @@ objects:
         updatePeriodSeconds: 1
         intervalSeconds: 1
         timeoutSeconds: 120
-      resources: {}
     triggers:
     - type: ImageChange
       imageChangeParams:

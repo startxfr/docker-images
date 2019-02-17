@@ -61,8 +61,6 @@
             "apiVersion": "v1",
             "metadata": {
                 "name": "${APP_NAME}",
-                "generation": 2,
-                "creationTimestamp": null,
                 "labels": {
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
@@ -102,8 +100,7 @@
                                 "containerName": "${APP_NAME}"
                             }
                         }
-                    },
-                    "resources": {}
+                    }
                 },
                 "triggers": [
                     {
@@ -131,7 +128,6 @@
                 },
                 "template": {
                     "metadata": {
-                        "creationTimestamp": null,
                         "labels": {
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
@@ -170,7 +166,6 @@
                                         "value": "true"
                                     }
                                 ],
-                                "resources": { },
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
@@ -216,7 +211,6 @@
             "apiVersion": "v1",
             "metadata": {
                 "name": "${APP_NAME}",
-                "creationTimestamp": null,
                 "labels": {
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
@@ -253,7 +247,6 @@
             "apiVersion": "v1",
             "metadata": {
                 "name": "${APP_NAME}",
-                "creationTimestamp": null,
                 "labels": {
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",

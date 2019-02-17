@@ -196,7 +196,13 @@ function doMariadbRun {
 
 # Display liveness status
 function mariadbIsLive {
-    R=`mysql -h 127.0.0.1 -u root -p$MYSQL_ROOT_PASSWORD -e 'SELECT 1'`
+    if [[ -n "$MYSQL_USER" && -n "$MYSQL_PASSWORD" ]]; then
+       R=`mysql -h 127.0.0.1 -u $MYSQL_USER -p$MYSQL_PASSWORD -e 'SELECT 1'`
+    elif [[ -n "$MYSQL_ROOT_PASSWORD" ]]; then
+       R=`mysql -h 127.0.0.1 -u root -p$MYSQL_ROOT_PASSWORD -e 'SELECT 1'`
+    else
+       R=`mysql -h 127.0.0.1 -e 'SELECT 1'`
+    fi
     if [ "$?" = "0" ]; then
       echo "OK";
       exit 0;
@@ -383,6 +389,8 @@ function config_createuser {
         echoVerbose "Creating MariaDB $MYSQL_USER user with ${_word} password"
         mysql -uroot -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -e "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$PASS'; GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%' WITH GRANT OPTION; FLUSH PRIVILEGES;"
         mysql -uroot -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -e "CREATE USER '$MYSQL_USER'@'localhost' IDENTIFIED BY '$PASS'; GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'localhost' WITH GRANT OPTION; FLUSH PRIVILEGES;"
+        MYSQL_PASSWORD=$PASS
+        export MYSQL_PASSWORD=$PASS
         echo ""
         echo " +------------------------------------------------------"
         echo " | USER CREATED ! "

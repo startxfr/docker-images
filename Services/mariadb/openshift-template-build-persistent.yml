@@ -14,7 +14,7 @@ metadata:
     openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
 message: |-
   Your database ${APP_NAME} is building and will be soon deployed.
-  Monitor the deployement for application availability
+  Monitor the deployement for database availability
 
   Source      : ${SOURCE_BRANCH}@${SOURCE_GIT}
   Database    : ${APP_NAME}
@@ -399,7 +399,7 @@ objects:
     strategy:
       type: Recreate
       recreateParams:
-        timeoutSeconds: 25
+        timeoutSeconds: 50
         pre:
           failurePolicy: Abort
           execNewPod:
@@ -493,6 +493,10 @@ objects:
             protocol: TCP
           resources:
             limits:
+              cpu: 4000m
+              memory: "${MEMORY_LIMIT}"
+            requests:
+              cpu: 200m
               memory: "${MEMORY_LIMIT}"
           livenessProbe:
             exec:
@@ -607,11 +611,11 @@ parameters:
   value: example
 - name: MEMORY_LIMIT
   displayName: Memory Limit
-  description: Maximum amount of memory the container can use.
-  value: 512Mi
+  description: Maximum amount of memory the container can use. e.g. 512Mi, 2Gi.
+  value: 1024Mi
   required: true
 - name: VOLUME_CAPACITY
   displayName: Volume Capacity
-  description: Volume space available for data, e.g. 512Mi, 2Gi.
-  value: 1Gi
+  description: Volume space available for data. e.g. 512Mi, 2Gi.
+  value: 1024Mi
   required: true

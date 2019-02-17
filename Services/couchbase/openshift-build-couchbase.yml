@@ -57,7 +57,6 @@ objects:
   apiVersion: v1
   metadata:
     name: couchbase-operator
-    generation: 2
     labels:
       type: backend
       provider: startx
@@ -73,7 +72,6 @@ objects:
         timeoutSeconds: 50
         maxUnavailable: 25%
         maxSurge: 25%
-      resources: {}
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -124,11 +122,13 @@ objects:
             periodSeconds: 3
             successThreshold: 1
             failureThreshold: 19
-  status:
-    observedGeneration: 2
-    replicas: 1
-    updatedReplicas: 1
-    availableReplicas: 1
+          resources:
+            limits:
+              cpu: 12000m
+              memory: "${MEMORY_LIMIT}"
+            requests:
+              cpu: 200m
+              memory: "${MEMORY_LIMIT}"
 - kind: Route
   apiVersion: v1
   metadata:
@@ -159,7 +159,6 @@ objects:
   kind: CouchbaseCluster
   metadata:
     clusterName: couchbase-cluster
-    generation: 0
     name: couchbase-node
   spec:
     authSecret: couchbase-auth
@@ -216,7 +215,6 @@ objects:
     template:
       metadata:
         name: couchbase-workload
-        creationTimestamp: 
         labels:
           job-name: couchbase-workload
       spec:
@@ -239,7 +237,6 @@ objects:
           - '1000000'
           - "-b"
           - default
-          resources: {}
           terminationMessagePath: "/dev/termination-log"
           terminationMessagePolicy: File
           imagePullPolicy: Always
@@ -264,7 +261,6 @@ objects:
     template:
       metadata:
         name: couchbase-workload
-        creationTimestamp: 
         labels:
           job-name: couchbase-workload
       spec:
@@ -276,7 +272,6 @@ objects:
           - "-Mbignum=bpi"
           - "-wle"
           - print bpi(2000)
-          resources: {}
           terminationMessagePath: "/dev/termination-log"
           terminationMessagePolicy: File
           imagePullPolicy: Always
@@ -329,4 +324,9 @@ parameters:
   displayName: Couchbase bucket
   description: name of the default bucket to create
   value: demo
+  required: true
+- name: MEMORY_LIMIT
+  displayName: Memory Limit
+  description: Maximum amount of memory the container can use.
+  value: 2048Mi
   required: true
