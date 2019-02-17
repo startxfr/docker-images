@@ -14,30 +14,29 @@ touch $CONF_FILE
 source $CONF_FILE
 
 
-
 # Create lib
 function importImages {
-  oc create -f $1/openshift-imageStreams.yml
+  oc create -f $1/openshift-imageStreams.yml -n $SXDC_PROJECT
 }
 
 function importBuild {
-  oc create -f $1/openshift-template-build.yml
+  oc create -f $1/openshift-template-build.yml -n $SXDC_PROJECT
 }
 
 function importDeploy {
-  oc create -f $1/openshift-template-deploy.yml
+  oc create -f $1/openshift-template-deploy.yml -n $SXDC_PROJECT
 }
 
-function v {
-  oc process -f $1/openshift-template-build.yml -p APP_NAME=$2-$3-build -p APP_STAGE=test -p BUILDER_TAG=$3 | oc create -f -
+function testBuild {
+  oc process -f $1/openshift-template-build.yml -p APP_NAME=$2-$3-build -p APP_STAGE=test -p BUILDER_TAG=$3 -n $SXDC_PROJECT | oc create -f -
 }
 
 function testDeployOS {
-  oc process -f $1/openshift-template-deploy.yml -p APP_NAME=$2-$3-deploy -p APP_STAGE=test -p BUILDER_IMAGE=$2:$3 | oc create -f -
+  oc process -f $1/openshift-template-deploy.yml -p APP_NAME=$2-$3-deploy -p APP_STAGE=test -p BUILDER_IMAGE=$2:$3 -n $SXDC_PROJECT | oc create -f -
 }
 
 function testDeploy {
-  oc process -f $1/openshift-template-deploy.yml -p APP_NAME=$2-$3-deploy -p APP_STAGE=test -p BUILDER_TAG=$3 | oc create -f -
+  oc process -f $1/openshift-template-deploy.yml -p APP_NAME=$2-$3-deploy -p APP_STAGE=test -p BUILDER_TAG=$3 -n $SXDC_PROJECT | oc create -f -
 }
 
 function temporize {
@@ -304,27 +303,27 @@ function menuLoadTemplateBuild {
 # Display menu test build templates
 function menuTestBuild {
   case $2 in
-      os|fedora|centos|alpine)   testbuild OS $SXDC_OS_FLAVOUR latest;;
-      apache|http)               testbuild Services/apache apache $SXDC_FLAVOUR;;
-      couchbase)                 testbuild Services/couchbase couchbase $SXDC_FLAVOUR;;
-      mariadb|mysql)             testbuild Services/mariadb mariadb $SXDC_FLAVOUR;;
-      memcache)                  testbuild Services/memcache memcache $SXDC_FLAVOUR;;
-      mongo)                     testbuild Services/mongo mongo $SXDC_FLAVOUR;;
-      nodejs)                    testbuild Services/nodejs nodejs $SXDC_FLAVOUR;;
-      ooconv)                    testbuild Services/ooconv ooconv $SXDC_FLAVOUR;;
-      php)                       testbuild Services/php php $SXDC_FLAVOUR;;
-      postgres)                  testbuild Services/postgres postgres $SXDC_FLAVOUR;;
+      os|fedora|centos|alpine)   testBuild OS $SXDC_OS_FLAVOUR latest;;
+      apache|http)               testBuild Services/apache apache $SXDC_FLAVOUR;;
+      couchbase)                 testBuild Services/couchbase couchbase $SXDC_FLAVOUR;;
+      mariadb|mysql)             testBuild Services/mariadb mariadb $SXDC_FLAVOUR;;
+      memcache)                  testBuild Services/memcache memcache $SXDC_FLAVOUR;;
+      mongo)                     testBuild Services/mongo mongo $SXDC_FLAVOUR;;
+      nodejs)                    testBuild Services/nodejs nodejs $SXDC_FLAVOUR;;
+      ooconv)                    testBuild Services/ooconv ooconv $SXDC_FLAVOUR;;
+      php)                       testBuild Services/php php $SXDC_FLAVOUR;;
+      postgres)                  testBuild Services/postgres postgres $SXDC_FLAVOUR;;
       all)
-                                 testbuildOS OS $SXDC_OS_FLAVOUR latest
-                                 testbuild Services/apache apache $SXDC_FLAVOUR
-                                 testbuild Services/couchbase couchbase $SXDC_FLAVOUR
-                                 testbuild Services/mariadb mariadb $SXDC_FLAVOUR
-                                 testbuild Services/memcache memcache $SXDC_FLAVOUR
-                                 testbuild Services/mongo mongo $SXDC_FLAVOUR
-                                 testbuild Services/nodejs nodejs $SXDC_FLAVOUR
-                                 testbuild Services/ooconv ooconv $SXDC_FLAVOUR
-                                 testbuild Services/php php $SXDC_FLAVOUR
-                                 testbuild Services/postgres postgres $SXDC_FLAVOUR;;
+                                 testBuild OS $SXDC_OS_FLAVOUR latest
+                                 testBuild Services/apache apache $SXDC_FLAVOUR
+                                 testBuild Services/couchbase couchbase $SXDC_FLAVOUR
+                                 testBuild Services/mariadb mariadb $SXDC_FLAVOUR
+                                 testBuild Services/memcache memcache $SXDC_FLAVOUR
+                                 testBuild Services/mongo mongo $SXDC_FLAVOUR
+                                 testBuild Services/nodejs nodejs $SXDC_FLAVOUR
+                                 testBuild Services/ooconv ooconv $SXDC_FLAVOUR
+                                 testBuild Services/php php $SXDC_FLAVOUR
+                                 testBuild Services/postgres postgres $SXDC_FLAVOUR;;
       *)                         menuUsage;;
   esac
 }
@@ -361,10 +360,10 @@ function menuTestDeploy {
 function menuClean {
   case $2 in
       all) 
-          oc delete all,secret,configmap -l stage=test -l provider=startx
-          oc delete template,is -l provider=startx;;
+          oc delete all,secret,configmap -l stage=test -l provider=startx -n $SXDC_PROJECT
+          oc delete template,is -l provider=startx -n $SXDC_PROJECT;;
       *)           
-          oc delete all,secret,configmap -l stage=test -l provider=startx;;
+          oc delete all,secret,configmap -l stage=test -l provider=startx -n $SXDC_PROJECT;;
   esac
   
 }
@@ -387,6 +386,11 @@ function menuTest {
   temporize 120 20
 }
 
+# Display menu delete
+function menuDelete {
+  oc delete project $SXDC_PROJECT
+}
+
 # Dispatch input arguments
 case $1 in
     setup)                  menuSetup $@ ;;
@@ -398,6 +402,7 @@ case $1 in
     test-deploy)            menuTestDeploy $@ ;;
     test-build)             menuTestBuild $@ ;;
     clean)                  menuClean $@ ;;
+    delete)                 menuDelete $@ ;;
     usage|help|--help)      menuUsage $@ ;;
     *)                      menuUsage $@ ;;
 esac
