@@ -91,7 +91,6 @@ objects:
             - name: SX_DEBUG
               value: 'true'
             containerName: "${APP_NAME}"
-      resources: {}
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -130,7 +129,6 @@ objects:
           - "/bin/sx-chrome"
           args:
           - run
-          resources: {}
           livenessProbe:
             exec:
               command:

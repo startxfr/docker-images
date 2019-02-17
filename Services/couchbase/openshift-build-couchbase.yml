@@ -73,7 +73,6 @@ objects:
         timeoutSeconds: 50
         maxUnavailable: 25%
         maxSurge: 25%
-      resources: {}
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -239,7 +238,6 @@ objects:
           - '1000000'
           - "-b"
           - default
-          resources: {}
           terminationMessagePath: "/dev/termination-log"
           terminationMessagePolicy: File
           imagePullPolicy: Always
@@ -276,7 +274,6 @@ objects:
           - "-Mbignum=bpi"
           - "-wle"
           - print bpi(2000)
-          resources: {}
           terminationMessagePath: "/dev/termination-log"
           terminationMessagePolicy: File
           imagePullPolicy: Always

@@ -95,7 +95,6 @@ objects:
             - "/bin/sx-couchbase"
             - post-deploy
             containerName: "${APP_NAME}"
-      resources: {}
     triggers:
     - type: ImageChange
       imageChangeParams:

@@ -127,7 +127,6 @@ objects:
             - name: SX_DEBUG
               value: 'true'
             containerName: "${APP_NAME}"
-      resources: {}
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -348,7 +347,6 @@ objects:
       to:
         kind: ImageStreamTag
         name: "${APP_NAME}:latest"
-    resources: {}
     postCommit:
       command:
       - "/bin/sx-couchbase"

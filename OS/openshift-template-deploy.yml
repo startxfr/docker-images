@@ -264,7 +264,6 @@ objects:
               - configMapRef:
                   name: ${APP_NAME}-config
             containerName: "${APP_NAME}"
-      resources: {}
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -305,7 +304,6 @@ objects:
           - "/bin/sx"
           args:
           - "${RUN_ACTION}"
-          resources: {}
           livenessProbe:
             exec:
               command:

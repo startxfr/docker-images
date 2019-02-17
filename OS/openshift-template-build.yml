@@ -280,7 +280,6 @@ objects:
       to:
         kind: ImageStreamTag
         name: "${APP_NAME}:latest"
-    resources: {}
     postCommit:
       command:
       - "/bin/sx"
@@ -330,7 +329,6 @@ objects:
           failurePolicy: Abort
         timeoutSeconds: 20
         updatePeriodSeconds: 1
-      resources: {}
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -360,7 +358,6 @@ objects:
         containers:
         - name: "${APP_NAME}"
           image: " "
-          resources: {}
           command:
           - "/bin/sx"
           args:

@@ -279,7 +279,6 @@ objects:
               - configMapRef:
                   name: ${APP_NAME}-config
             containerName: "${APP_NAME}"
-      resources: {}
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -324,7 +323,6 @@ objects:
           ports:
           - containerPort: 8080
             protocol: TCP
-          resources: {}
           livenessProbe:
             exec:
               command:

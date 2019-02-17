@@ -154,8 +154,7 @@
                                 "containerName": "${APP_NAME}"
                             }
                         }
-                    },
-                    "resources": {}
+                    }
                 },
                 "triggers": [
                     {
@@ -215,7 +214,6 @@
                                 "args": [
                                     "run"
                                 ],
-                                "resources": {},
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
@@ -399,7 +397,6 @@
                         "name": "${APP_NAME}:latest"
                     }
                 },
-                "resources": {},
                 "postCommit": {
                     "command": [
                         "/bin/sx-pma",

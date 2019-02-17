@@ -102,8 +102,7 @@
                                 "containerName": "${APP_NAME}"
                             }
                         }
-                    },
-                    "resources": {}
+                    }
                 },
                 "triggers": [
                     {
@@ -170,7 +169,6 @@
                                         "value": "true"
                                     }
                                 ],
-                                "resources": { },
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
