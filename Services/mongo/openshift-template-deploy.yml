@@ -2,7 +2,7 @@
 kind: Template
 apiVersion: v1
 metadata:
-  name: startx-mongo-template
+  name: startx-mongo-deploy-template
   annotations:
     openshift.io/display-name: Startx MongoDB server (fedora)
     description: MongoDB server for NoSQL database running under Fedora
@@ -18,7 +18,7 @@ metadata:
 message: 'The following container have been created in your project: ${APP_NAME} and
   you can use openshift console to log into.'
 labels:
-  template: startx-mongo-template
+  template: startx-mongo-deploy-template
 objects:
 - kind: ImageStream
   apiVersion: v1
@@ -31,7 +31,7 @@ objects:
       app: "${APP_NAME}"
       type: "${APP_TYPE}"
       provider: startx
-      template: startx-mongo-template
+      template: startx-mongo-deploy-template
   spec:
     tags:
     - name: latest
@@ -55,7 +55,7 @@ objects:
       app: "${APP_NAME}"
       type: "${APP_TYPE}"
       provider: startx
-      template: startx-mongo-template
+      template: startx-mongo-deploy-template
   stringData:
     MONGO_PASSWORD: "${MONGO_PASSWORD}"
     MONGO_USER: "${MONGO_USER}"
@@ -69,7 +69,7 @@ objects:
       app: "${APP_NAME}"
       type: "${APP_TYPE}"
       provider: startx
-      template: startx-mongo-template
+      template: startx-mongo-deploy-template
     annotations:
       openshift.io/generated-by: STARTX
   spec:
@@ -118,7 +118,7 @@ objects:
           app: "${APP_NAME}"
           type: "${APP_TYPE}"
           provider: startx
-          template: startx-mongo-template
+          template: startx-mongo-deploy-template
           deploymentconfig: "${APP_NAME}"
         annotations:
           openshift.io/generated-by: STARTX
@@ -180,7 +180,7 @@ objects:
       app: "${APP_NAME}"
       type: "${APP_TYPE}"
       provider: startx
-      template: startx-mongo-template
+      template: startx-mongo-deploy-template
     annotations:
       openshift.io/generated-by: STARTX
   spec:
