@@ -14,10 +14,16 @@ metadata:
     openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-nodejs
     openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
 message: |-
-  Your application ${APP_NAME} is deploying...
+  Your application ${APP_NAME} is deploying and will be soon deployed.
+  Monitor the deployement for application availability
 
-  Service name: ${APP_NAME}
-  action      : ${RUN_ACTION}
+  Application : ${APP_NAME}
+  Stage       : ${APP_STAGE}
+  Image       : startx/sv-nodejs:${BUILDER_TAG}
+  Volumes     : ${APP_NAME}-log (E), ${APP_NAME}-data (E)
+  
+  Connection  : http://${APP_NAME}:8080
+  
 labels:
   template: startx-nodejs-deploy-template
   provider: startx 
@@ -314,7 +320,7 @@ objects:
           command:
           - "/bin/sx-nodejs"
           args:
-          - "${RUN_ACTION}"
+          - run
           ports:
           - containerPort: 8080
             protocol: TCP
@@ -400,13 +406,6 @@ parameters:
   displayName: Image stage
   description: "Stage of the base image used (ex: dev, test, preprod, prod, latest, rawhide, fc30, alpine3, centos6, centos7, fc29, fc28, ...)"
   value: latest
-  required: true
-- name: RUN_ACTION
-  displayName: Main action to perfom
-  description: Action to perform for this running Pod. Should be one of build, post-build,
-    pre-deploy, post-deploy, run, isLive, isReady, usage, usageS2i, daemon, info,
-    version. See documentation for action list.
-  value: run
   required: true
 - name: APP_PATH
   displayName: Path to the application
