@@ -6,7 +6,7 @@ metadata:
   annotations:
     openshift.io/display-name: Startx Firefox browser (fedora)
     description: Firefox browser for simple web application running under Fedora
-    iconClass: icon-firefox
+    iconClass: icon-aerogear
     tags: startx,os,fedora,firefox
     openshift.io/long-description: This template provides an Firefox browser in a
       fedora container. Ready to use in openshift with a simple deployement config,
@@ -39,7 +39,7 @@ objects:
         openshift.io/display-name: Startx Browser (Fedora rawhide)
         description: Container-based desktop Firefox browser for remote internet browsing  under
           Fedora rawhide
-        iconClass: icon-firefox
+        iconClass: icon-aerogear
         tags: builder,startx,fedora,firefox,vnc
         supports: vnc
         version: latest
@@ -65,7 +65,7 @@ objects:
       annotations:
         openshift.io/display-name: Application ${APP_NAME}
         description: Base image for the application ${APP_NAME}
-        iconClass: icon-firefox
+        iconClass: icon-aerogear
         tags: startx,fedora,firefox,vnc,application,${APP_NAME}
         supports: vnc
         version: latest

@@ -7,7 +7,7 @@ metadata:
     description: Build and deployement workflow of a Memcache SQL database using ephemeral storage
       for logs records. Use memcache with various underlying linux distribution. See 
       https://hub.docker.com/r/startx/sv-memcache
-    iconClass: icon-memcache
+    iconClass: icon-redis
     tags: startx,os,fedora,memcache
     openshift.io/provider-display-name: STARTX
     openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-memcache
@@ -17,7 +17,7 @@ message: |-
   Monitor the deployement for application availability
 
   Source      : ${SOURCE_BRANCH}@${SOURCE_GIT}
-  Backend    : ${APP_NAME}
+  Backend     : ${APP_NAME}
   Stage       : ${APP_STAGE}
   Builder     : ${BUILDER_TAG}
   
@@ -44,7 +44,7 @@ objects:
         openshift.io/display-name: S2I Startx Memcache Backend (Fedora 26)
         description: Memcache server builder for distributed cache backend running under
           Fedora 26
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,fedora,memcache
         supports: memcache
         version: fc26
@@ -57,7 +57,7 @@ objects:
         openshift.io/display-name: S2I Startx Memcache Backend (Fedora 27)
         description: Memcache server builder for distributed cache backend running under
           Fedora 27
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,fedora,memcache
         supports: memcache
         version: fc27
@@ -70,7 +70,7 @@ objects:
         openshift.io/display-name: S2I Startx Memcache Backend (Fedora 28)
         description: Memcache server builder for distributed cache backend running under
           Fedora 28
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,fedora,memcache
         supports: memcache
         version: fc28
@@ -83,7 +83,7 @@ objects:
         openshift.io/display-name: S2I Startx Memcache Backend (Fedora 29)
         description: Memcache server builder for distributed cache backend running under
           Fedora 29
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,fedora,memcache
         supports: memcache
         version: fc29
@@ -96,7 +96,7 @@ objects:
         openshift.io/display-name: S2I Startx Memcache Backend (Fedora 30)
         description: Memcache server builder for distributed cache backend running under
           Fedora 30
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,fedora,memcache
         supports: memcache
         version: fc30
@@ -109,7 +109,7 @@ objects:
         openshift.io/display-name: S2I Startx Memcache Backend (Fedora rawhide)
         description: Memcache server builder for distributed cache backend running under
           Fedora rawhide
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,fedora,memcache
         supports: memcache
         version: rawhide
@@ -122,7 +122,7 @@ objects:
         openshift.io/display-name: S2I Startx Memcache Backend (Centos 7)
         description: Memcache server builder for distributed cache backend running under
           Centos 7
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,centos,memcache
         supports: memcache
         version: '7'
@@ -135,7 +135,7 @@ objects:
         openshift.io/display-name: S2I Startx Memcache Backend (Centos 6)
         description: Memcache server builder for distributed cache backend running under
           Centos 6
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,centos,memcache
         supports: memcache
         version: '7'
@@ -148,7 +148,7 @@ objects:
         openshift.io/display-name: S2I Startx Memcache Backend (Alpine 3)
         description: Memcache server builder for distributed cache backend running under
           Alpine 3
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,alpine,memcache
         supports: memcache
         version: '3'
@@ -161,7 +161,7 @@ objects:
         openshift.io/display-name: S2I Startx Memcache Backend (latest)
         description: Memcache server builder for distributed cache backend running under
           Fedora latest
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,alpine,memcache
         supports: memcache
         sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
@@ -172,7 +172,7 @@ objects:
       annotations:
         openshift.io/display-name: S2I Startx Memcache Backend (dev)
         description: Memcache server builder for distributed cache backend (developpement)
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,alpine,memcache
         supports: memcache
         version: 'dev'
@@ -184,7 +184,7 @@ objects:
       annotations:
         openshift.io/display-name: S2I Startx Memcache Backend (test)
         description: Memcache server builder for distributed cache backend (testing)
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,alpine,memcache
         supports: memcache
         version: 'test'
@@ -196,7 +196,7 @@ objects:
       annotations:
         openshift.io/display-name: S2I Startx Memcache Backend (preprod)
         description: Memcache server builder for distributed cache backend (pre-production)
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,alpine,memcache
         supports: memcache
         version: 'pre-prod'
@@ -208,7 +208,7 @@ objects:
       annotations:
         openshift.io/display-name: S2I Startx Memcache Backend (prod)
         description: Memcache server builder for distributed cache backend (production)
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,alpine,memcache
         supports: memcache
         version: 'prod'
@@ -232,7 +232,7 @@ objects:
       annotations:
         openshift.io/display-name: Backend ${APP_NAME}
         description: Base image for the database ${APP_NAME}
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: startx,fedora,memcache,database,${APP_NAME}
         supports: memcache
         version: latest
@@ -327,7 +327,7 @@ objects:
     - type: ConfigChange
     postCommit:
       script: "/bin/sx-memcache info"
-    replicas: "${REPLICAS}"
+    replicas: 1
     test: false
     selector:
       app: "${APP_NAME}"
@@ -434,11 +434,6 @@ parameters:
   description: Secret token to use for webhook to github or generic
   generate: expression
   from: "[a-zA-Z0-9]{24}"
-  required: true
-- name: REPLICAS
-  displayName: Number of workers
-  description: Number of concurent pod to start
-  value: 1
   required: true
 - name: MEMORY_LIMIT
   displayName: Memory Limit
