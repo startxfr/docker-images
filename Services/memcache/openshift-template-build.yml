@@ -13,8 +13,8 @@ metadata:
     openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-memcache
     openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
 message: |-
-  Your database ${APP_NAME} is building and will be soon deployed.
-  Monitor the deployement for application availability
+  Your cache ${APP_NAME} is building and will be soon deployed.
+  Monitor the deployement for cache availability
 
   Source      : ${SOURCE_BRANCH}@${SOURCE_GIT}
   Backend     : ${APP_NAME}
@@ -292,7 +292,6 @@ objects:
       to:
         kind: ImageStreamTag
         name: "${APP_NAME}:latest"
-    resources: {}
     postCommit:
       command:
       - "/bin/sx-memcache"
@@ -312,7 +311,7 @@ objects:
       rollingParams:
         updatePeriodSeconds: 1
         intervalSeconds: 1
-        timeoutSeconds: 10
+        timeoutSeconds: 30
         maxUnavailable: 25%
         maxSurge: 25%
     triggers:
@@ -358,6 +357,10 @@ objects:
             protocol: TCP
           resources:
             limits:
+              cpu: 4000m
+              memory: "${MEMORY_LIMIT}"
+            requests:
+              cpu: 200m
               memory: "${MEMORY_LIMIT}"
           livenessProbe:
             exec:
@@ -437,6 +440,6 @@ parameters:
   required: true
 - name: MEMORY_LIMIT
   displayName: Memory Limit
-  description: Maximum amount of memory the container can use.
-  value: 512Mi
+  description: Maximum amount of memory the container can use. e.g. 512Mi, 2Gi.
+  value: 1024Mi
   required: true
