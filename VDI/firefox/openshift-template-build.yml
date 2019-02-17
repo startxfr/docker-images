@@ -19,6 +19,7 @@ message: 'The following container have been created in your project: ${APP_NAME}
   you can use openshift console to log into.'
 labels:
   template: startx-vdi-firefox-build-template
+  provider: startx 
 objects:
 - kind: ImageStream
   apiVersion: v1
@@ -73,8 +74,6 @@ objects:
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
-    generation: 2
-    creationTimestamp: 
     labels:
       app: "${APP_NAME}"
       type: "${APP_TYPE}"
@@ -88,7 +87,7 @@ objects:
       rollingParams:
         updatePeriodSeconds: 1
         intervalSeconds: 1
-        timeoutSeconds: 20
+        timeoutSeconds: 90
         maxUnavailable: 25%
         maxSurge: 25%
         pre:
@@ -115,7 +114,6 @@ objects:
             - name: SX_DEBUG
               value: 'true'
             containerName: "${APP_NAME}"
-      resources: {}
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -135,7 +133,6 @@ objects:
       deploymentconfig: "${APP_NAME}"
     template:
       metadata:
-        creationTimestamp: 
         labels:
           app: "${APP_NAME}"
           type: "${APP_TYPE}"
@@ -155,7 +152,6 @@ objects:
           - "/bin/sx-firefox"
           args:
           - run
-          resources: {}
           livenessProbe:
             exec:
               command:
@@ -176,6 +172,13 @@ objects:
             periodSeconds: 10
             successThreshold: 1
             failureThreshold: 3
+          resources:
+            limits:
+              cpu: 10000m
+              memory: "${MEMORY_LIMIT}"
+            requests:
+              cpu: 200m
+              memory: "${MEMORY_LIMIT}"
           terminationMessagePath: "/dev/termination-log"
           imagePullPolicy: Always
           volumeMounts:
@@ -198,7 +201,6 @@ objects:
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
-    creationTimestamp: 
     labels:
       app: "${APP_NAME}"
       type: "${APP_TYPE}"
@@ -215,7 +217,6 @@ objects:
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
-    creationTimestamp: 
     labels:
       app: "${APP_NAME}"
       type: "${APP_TYPE}"
@@ -237,7 +238,6 @@ objects:
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
-    creationTimestamp: 
     labels:
       app: "${APP_NAME}"
       type: "${APP_TYPE}"
@@ -275,7 +275,6 @@ objects:
       to:
         kind: ImageStreamTag
         name: "${APP_NAME}:latest"
-    resources: {}
     postCommit:
       command:
       - "/bin/sx-firefox"
@@ -305,4 +304,9 @@ parameters:
   description: Secret token to use for webhook to github or generic
   generate: expression
   from: "[a-zA-Z0-9]{24}"
+  required: true
+- name: MEMORY_LIMIT
+  displayName: Memory Limit
+  description: Maximum amount of memory the container can use. e.g. 512Mi, 2Gi.
+  value: 2048Mi
   required: true

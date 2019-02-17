@@ -93,8 +93,6 @@
             "apiVersion": "v1",
             "metadata": {
                 "name": "${APP_NAME}",
-                "generation": 2,
-                "creationTimestamp": null,
                 "labels": {
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
@@ -111,7 +109,7 @@
                     "rollingParams": {
                         "updatePeriodSeconds": 1,
                         "intervalSeconds": 1,
-                        "timeoutSeconds": 20,
+                        "timeoutSeconds": 40,
                         "maxUnavailable": "25%",
                         "maxSurge": "25%",
                         "pre": {
@@ -154,8 +152,7 @@
                                 "containerName": "${APP_NAME}"
                             }
                         }
-                    },
-                    "resources": {}
+                    }
                 },
                 "triggers": [
                     {
@@ -186,7 +183,6 @@
                 },
                 "template": {
                     "metadata": {
-                        "creationTimestamp": null,
                         "labels": {
                             "app": "${APP_NAME}",
                             "type": "${APP_TYPE}",
@@ -215,7 +211,6 @@
                                 "args": [
                                     "run"
                                 ],
-                                "resources": {},
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
@@ -265,7 +260,6 @@
             "apiVersion": "v1",
             "metadata": {
                 "name": "${APP_NAME}",
-                "creationTimestamp": null,
                 "labels": {
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
@@ -302,7 +296,6 @@
             "apiVersion": "v1",
             "metadata": {
                 "name": "${APP_NAME}",
-                "creationTimestamp": null,
                 "labels": {
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
@@ -337,7 +330,6 @@
             "apiVersion": "v1",
             "metadata": {
                 "name": "${APP_NAME}",
-                "creationTimestamp": null,
                 "labels": {
                     "app": "${APP_NAME}",
                     "type": "${APP_TYPE}",
@@ -399,7 +391,6 @@
                         "name": "${APP_NAME}:latest"
                     }
                 },
-                "resources": {},
                 "postCommit": {
                     "command": [
                         "/bin/sx-pma",

@@ -32,15 +32,15 @@ service:
 
 You can use this public image as a base image in your openshift build strategy. You can first import
 our [openshift image stream](https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-imageStreams.yml)
-and automatically add them in your service catalog. You can also test our [deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-template.yml)
+and automatically add them in your service catalog. You can also test our [deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-template-deploy.yml)
 or our [build and deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-template-build.yml)
 
 ```bash
 # import image streams
 oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-imageStreams.yml
 # import deploy template and start a sample application
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-template.yml
-oc process startx-vdi-firefox-template | oc create -f -
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-template-deploy.yml
+oc process startx-firefox-deploy-template | oc create -f -
 # import build and deploy template and start a sample application
 oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-template-build.yml
 oc process startx-vdi-firefox-build-template | oc create -f -

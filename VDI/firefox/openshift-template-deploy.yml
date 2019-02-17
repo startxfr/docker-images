@@ -2,7 +2,7 @@
 kind: Template
 apiVersion: v1
 metadata:
-  name: startx-vdi-firefox-template
+  name: startx-firefox-deploy-template
   annotations:
     openshift.io/display-name: Startx Firefox browser (fedora)
     description: Firefox browser for simple web application running under Fedora
@@ -18,7 +18,8 @@ metadata:
 message: 'The following container have been created in your project: ${APP_NAME} and
   you can use openshift console to log into.'
 labels:
-  template: startx-vdi-firefox-template
+  template: startx-firefox-deploy-template
+  provider: startx 
 objects:
 - kind: ImageStream
   apiVersion: v1
@@ -31,7 +32,7 @@ objects:
       app: "${APP_NAME}"
       type: "${APP_TYPE}"
       provider: startx
-      template: startx-vdi-firefox-template
+      template: startx-firefox-deploy-template
   spec:
     tags:
     - name: latest
@@ -51,12 +52,10 @@ objects:
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
-    generation: 2
-    creationTimestamp: 
     labels:
       app: "${APP_NAME}"
       provider: startx
-      template: startx-vdi-firefox-template
+      template: startx-firefox-deploy-template
     annotations:
       openshift.io/generated-by: STARTX
   spec:
@@ -65,34 +64,9 @@ objects:
       rollingParams:
         updatePeriodSeconds: 1
         intervalSeconds: 1
-        timeoutSeconds: 20
+        timeoutSeconds: 90
         maxUnavailable: 25%
         maxSurge: 25%
-        pre:
-          failurePolicy: Abort
-          execNewPod:
-            command:
-            - "/bin/sx-firefox"
-            - pre-deploy
-            env:
-            - name: SX_VERBOSE
-              value: 'true'
-            - name: SX_DEBUG
-              value: 'true'
-            containerName: "${APP_NAME}"
-        post:
-          failurePolicy: Abort
-          execNewPod:
-            command:
-            - "/bin/sx-firefox"
-            - post-deploy
-            env:
-            - name: SX_VERBOSE
-              value: 'true'
-            - name: SX_DEBUG
-              value: 'true'
-            containerName: "${APP_NAME}"
-      resources: {}
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -112,11 +86,10 @@ objects:
       deploymentconfig: "${APP_NAME}"
     template:
       metadata:
-        creationTimestamp: 
         labels:
           app: "${APP_NAME}"
           provider: startx
-          template: startx-vdi-firefox-template
+          template: startx-firefox-deploy-template
           deploymentconfig: "${APP_NAME}"
         annotations:
           openshift.io/generated-by: STARTX
@@ -131,7 +104,6 @@ objects:
           - "/bin/sx-firefox"
           args:
           - run
-          resources: {}
           livenessProbe:
             exec:
               command:
@@ -152,6 +124,13 @@ objects:
             periodSeconds: 10
             successThreshold: 1
             failureThreshold: 3
+          resources:
+            limits:
+              cpu: 10000m
+              memory: 2048Mi
+            requests:
+              cpu: 200m
+              memory: 512Mi
           terminationMessagePath: "/dev/termination-log"
           imagePullPolicy: Always
           volumeMounts:
@@ -174,11 +153,10 @@ objects:
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
-    creationTimestamp: 
     labels:
       app: "${APP_NAME}"
       provider: startx
-      template: startx-vdi-firefox-template
+      template: startx-firefox-deploy-template
     annotations:
       openshift.io/generated-by: STARTX
   spec:
@@ -190,11 +168,10 @@ objects:
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
-    creationTimestamp: 
     labels:
       app: "${APP_NAME}"
       provider: startx
-      template: startx-vdi-firefox-template
+      template: startx-firefox-deploy-template
     annotations:
       openshift.io/generated-by: STARTX
   spec:
