@@ -1,11 +1,11 @@
 kind: Template
 apiVersion: v1
-metadata:
+metadata: 
   name: startx-mongo-deploy-template
   annotations:
     openshift.io/display-name: Startx MongoDB Server (ephemeral deploy workflow)
     description: Deployement workflow of a MongoDB NoSQL database using ephemeral storage
-      for data and logs records. Use mongo with various underlying linux distribution. See 
+      for logs records. Use mongo with various underlying linux distribution. See 
       https://hub.docker.com/r/startx/sv-mongo
     iconClass: icon-mongodb
     tags: startx,os,fedora,mongo,database
@@ -13,19 +13,19 @@ metadata:
     openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-mongo
     openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
 message: |-
-  Your database ${APP_NAME} will be soon deployed.
-  Monitor the deployement for application availability 
+  Your database ${APP_NAME} is deploying and will be soon deployed.
+  Monitor the deployement for application availability
 
   Database    : ${APP_NAME}
   Stage       : ${APP_STAGE}
   Image       : startx/sv-mongo:${BUILDER_TAG}
   Volumes     : ${APP_NAME}-log (E), ${APP_NAME}-data (E)
   
-  Username    : ${MYSQL_USER}
-  Password    : ${MYSQL_PASSWORD}
-  Database    : ${MYSQL_DATABASE}
+  Username    : ${MONGO_USER}
+  Password    : ${MONGO_PASSWORD}
+  Store       : ${MONGO_STORES}
   
-  Connection  : mysql://${APP_NAME}:3306
+  Connection  : mongodb://${APP_NAME}:27017
   
 labels:
   template: startx-mongo-deploy-template
@@ -47,9 +47,9 @@ objects:
       annotations:
         openshift.io/display-name: Database ${APP_NAME} version ${APP_STAGE}
         description: ${APP_STAGE} image for the database ${APP_NAME} based on ${BUILDER_TAG}
-        iconClass: icon-mongo
+        iconClass: icon-mongodb
         tags: startx,fedora,mongo,sql,database,${APP_NAME},${APP_STAGE},${BUILDER_TAG}
-        supports: mysql
+        supports: mongodb
         version: ${APP_STAGE}
       from:
         kind: DockerImage
@@ -68,9 +68,10 @@ objects:
     SX_ID: ${APP_NAME}/${APP_STAGE}
     SX_TYPE: ${APP_STAGE}
     SX_SERVICE: ${APP_NAME}
-    SX_NAME: Mariadb database ${APP_NAME}
-    SX_SUMMARY: Mariadb database ${APP_NAME} based on ${BUILDER_TAG} container
+    SX_NAME: MongoDB database ${APP_NAME}
+    SX_SUMMARY: MongoDB database ${APP_NAME} based on ${BUILDER_TAG} container
     SX_VERSION: 0.0.1 
+    MONGO_STORES: "${MONGO_STORES}"
 - kind: Secret
   apiVersion: v1
   metadata:
@@ -79,13 +80,13 @@ objects:
       app: "${APP_NAME}"
       stage: "${APP_STAGE}"
     annotations:
-      template.openshift.io/expose-username: "{.data['MYSQL_USER']}"
-      template.openshift.io/expose-password: "{.data['MYSQL_PASSWORD']}"
-      template.openshift.io/expose-root_password: "{.data['MYSQL_PASSWORD']}"
+      template.openshift.io/expose-username: "{.data['MONGO_USER']}"
+      template.openshift.io/expose-password: "{.data['MONGO_PASSWORD']}"
+      template.openshift.io/expose-root_password: "{.data['MONGO_PASSWORD']}"
   stringData:
-    MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-    MYSQL_USER: "${MYSQL_USER}"
-    MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+    MONGO_ROOT_PASSWORD: "${MONGO_ROOT_PASSWORD}"
+    MONGO_USER: "${MONGO_USER}"
+    MONGO_PASSWORD: "${MONGO_PASSWORD}"
 - kind: DeploymentConfig
   apiVersion: v1
   metadata:
@@ -99,7 +100,7 @@ objects:
     strategy:
       type: Recreate
       recreateParams:
-        timeoutSeconds: 25
+        timeoutSeconds: 35
         pre:
           failurePolicy: Abort
           execNewPod:
@@ -112,21 +113,16 @@ objects:
               value: 'true'
             - name: SX_DEBUG
               value: 'true'
-            - name: MYSQL_ROOT_PASSWORD
+            - name: MONGO_USER
               valueFrom:
                 secretKeyRef:
                   name: "${APP_NAME}-auth"
-                  key: MYSQL_ROOT_PASSWORD
-            - name: MYSQL_USER
+                  key: MONGO_USER
+            - name: MONGO_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: "${APP_NAME}-auth"
-                  key: MYSQL_USER
-            - name: MYSQL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: "${APP_NAME}-auth"
-                  key: MYSQL_PASSWORD
+                  key: MONGO_PASSWORD
             envFrom:
               - configMapRef:
                   name: ${APP_NAME}-config
@@ -142,21 +138,16 @@ objects:
               value: 'true'
             - name: SX_DEBUG
               value: 'true'
-            - name: MYSQL_ROOT_PASSWORD
+            - name: MONGO_USER
               valueFrom:
                 secretKeyRef:
                   name: "${APP_NAME}-auth"
-                  key: MYSQL_ROOT_PASSWORD
-            - name: MYSQL_USER
+                  key: MONGO_USER
+            - name: MONGO_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: "${APP_NAME}-auth"
-                  key: MYSQL_USER
-            - name: MYSQL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: "${APP_NAME}-auth"
-                  key: MYSQL_PASSWORD
+                  key: MONGO_PASSWORD
             envFrom:
               - configMapRef:
                   name: ${APP_NAME}-config
@@ -191,21 +182,18 @@ objects:
           env:
           - name: SX_VERBOSE
             value: 'true'
-          - name: MYSQL_ROOT_PASSWORD
+          - name: SX_DEBUG
+            value: 'true'
+          - name: MONGO_USER
             valueFrom:
               secretKeyRef:
                 name: "${APP_NAME}-auth"
-                key: MYSQL_ROOT_PASSWORD
-          - name: MYSQL_USER
+                key: MONGO_USER
+          - name: MONGO_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: "${APP_NAME}-auth"
-                key: MYSQL_USER
-          - name: MYSQL_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: "${APP_NAME}-auth"
-                key: MYSQL_PASSWORD
+                key: MONGO_PASSWORD
           envFrom:
             - configMapRef:
                 name: ${APP_NAME}-config
@@ -213,39 +201,44 @@ objects:
           - "/bin/sx-mongo"
           args:
           - run
+          ports:
+          - containerPort: 27017
+            protocol: TCP
           resources:
             limits:
               memory: "${MEMORY_LIMIT}"
-          ports:
-          - containerPort: 3306
-            protocol: TCP
           livenessProbe:
             exec:
               command:
               - "/bin/sx-mongo"
               - isLive
-            initialDelaySeconds: 4
+            initialDelaySeconds: 5
             timeoutSeconds: 2
-            periodSeconds: 8
+            periodSeconds: 10
             successThreshold: 1
-            failureThreshold: 2
+            failureThreshold: 3
           readinessProbe:
             exec:
               command:
               - "/bin/sx-mongo"
               - isReady
-            initialDelaySeconds: 4
+            initialDelaySeconds: 5
             timeoutSeconds: 2
-            periodSeconds: 8
+            periodSeconds: 10
             successThreshold: 1
-            failureThreshold: 2
+            failureThreshold: 3
           terminationMessagePath: "/dev/termination-log"
           imagePullPolicy: Always
           volumeMounts:
           - name: "${APP_NAME}-log"
-            mountPath: "/var/log/mongo"
+            mountPath: "/var/log/mongodb"
+          - name: "${APP_NAME}-data"
+            mountPath: "/data"
         volumes:
         - name: "${APP_NAME}-log"
+          emptyDir:
+            medium: ''
+        - name: "${APP_NAME}-data"
           emptyDir:
             medium: ''
         restartPolicy: Always
@@ -264,8 +257,8 @@ objects:
   spec:
     ports:
     - protocol: TCP
-      port: 3306
-      targetPort: 3306
+      port: 27017
+      targetPort: 27017
     selector:
       app: "${APP_NAME}"
       deploymentconfig: "${APP_NAME}"
@@ -274,39 +267,45 @@ objects:
 parameters:
 - name: APP_NAME
   displayName: Database name
-  description: The name of the created application
+  description: The name of the created database
   value: mongo
   required: true
 - name: APP_STAGE
   displayName: Database stage
-  description: "Stage of the application deployed (ex: dev, test, prod, example, demo, poc, ...)"
+  description: "Stage of the database deployed (ex: dev, test, prod, example, demo, poc, ...)"
   value: example
   required: true
 - name: BUILDER_TAG
   displayName: Startx image release
-  description: "Image tag of the startx mongo image used. Could be : latest, fc30, fc29, fc28, alpine3, centos7, centos6"
+  description: "Image tag of the startx mongodb image used. Could be : latest, dev, test, preprod, prod - rawhide, fc30, fc29, fc28 - alpine3 - centos7, centos6)"
   value: latest
   required: true
-- name: MYSQL_ROOT_PASSWORD
-  displayName: Mysql root password
-  description: The mysql root password to use. Generated if not provided
+- name: WEBHOOK_TOKEN
+  displayName: Webhook token
+  description: Secret token to use for webhook to github or generic
+  generate: expression
+  from: "[a-zA-Z0-9]{24}"
+  required: true
+- name: MONGO_ROOT_PASSWORD
+  displayName: Mongodb root password
+  description: The mongodb root password to use. Generated if not provided
   from: "[A-Z0-9]{16}"
   generate: expression
-- name: MYSQL_USER
-  displayName: Mysql user
+- name: MONGO_USER
+  displayName: Mongodb user
   description: Default user to create
   value: demo
   from: "[A-Z0-9]{8}"
   generate: expression
-- name: MYSQL_PASSWORD
-  displayName: Mysql password
+- name: MONGO_PASSWORD
+  displayName: Mongodb password
   description: Password of the default user
   value: demo
   from: "[A-Z0-9]{16}"
   generate: expression
-- name: MYSQL_DATABASE
-  displayName: Mysql database
-  description: name of the default database to create
+- name: MONGO_STORES
+  displayName: MongoDB store
+  description: list of the default's store to create
   value: example
 - name: MEMORY_LIMIT
   displayName: Memory Limit

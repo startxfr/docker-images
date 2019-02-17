@@ -112,11 +112,6 @@ objects:
               value: 'true'
             - name: SX_DEBUG
               value: 'true'
-            - name: MYSQL_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: "${APP_NAME}-auth"
-                  key: MYSQL_ROOT_PASSWORD
             - name: MYSQL_USER
               valueFrom:
                 secretKeyRef:
@@ -142,11 +137,6 @@ objects:
               value: 'true'
             - name: SX_DEBUG
               value: 'true'
-            - name: MYSQL_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: "${APP_NAME}-auth"
-                  key: MYSQL_ROOT_PASSWORD
             - name: MYSQL_USER
               valueFrom:
                 secretKeyRef:
@@ -191,11 +181,6 @@ objects:
           env:
           - name: SX_VERBOSE
             value: 'true'
-          - name: MYSQL_ROOT_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: "${APP_NAME}-auth"
-                key: MYSQL_ROOT_PASSWORD
           - name: MYSQL_USER
             valueFrom:
               secretKeyRef:

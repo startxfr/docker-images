@@ -1,7 +1,6 @@
----
 kind: ImageStreamList
 apiVersion: v1
-metadata: 
+metadata:
   name: startx-mongo
   annotations:
     openshift.io/generated-by: STARTX
@@ -21,12 +20,12 @@ items:
     tags:
     - name: fc26
       annotations:
-        openshift.io/display-name: S2I MongoDB Database (Fedora 26)
-        description: MongoDB server builder for NoSQL database running under Fedora
-          26
+        openshift.io/display-name: S2I Startx MongoDB Database (Fedora 26)
+        description: MongoDB server builder for NoSQL database running under
+          Fedora 26
         iconClass: icon-mongodb
         tags: builder,startx,fedora,mongo,database
-        supports: db
+        supports: mongodb
         version: fc26
         sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
       from:
@@ -34,12 +33,12 @@ items:
         name: startx/sv-mongo:fc26
     - name: fc27
       annotations:
-        openshift.io/display-name: S2I MongoDB Database (Fedora 27)
-        description: MongoDB server builder for NoSQL database running under Fedora
-          27
+        openshift.io/display-name: S2I Startx MongoDB Database (Fedora 27)
+        description: MongoDB server builder for NoSQL database running under
+          Fedora 27
         iconClass: icon-mongodb
         tags: builder,startx,fedora,mongo,database
-        supports: db
+        supports: mongodb
         version: fc27
         sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
       from:
@@ -47,12 +46,12 @@ items:
         name: startx/sv-mongo:fc27
     - name: fc28
       annotations:
-        openshift.io/display-name: S2I MongoDB Database (Fedora 28)
-        description: MongoDB server builder for NoSQL database running under Fedora
-          28
+        openshift.io/display-name: S2I Startx MongoDB Database (Fedora 28)
+        description: MongoDB server builder for NoSQL database running under
+          Fedora 28
         iconClass: icon-mongodb
         tags: builder,startx,fedora,mongo,database
-        supports: db
+        supports: mongodb
         version: fc28
         sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
       from:
@@ -60,12 +59,12 @@ items:
         name: startx/sv-mongo:fc28
     - name: fc29
       annotations:
-        openshift.io/display-name: S2I MongoDB Database (Fedora 29)
-        description: MongoDB server builder for NoSQL database running under Fedora
-          29
+        openshift.io/display-name: S2I Startx MongoDB Database (Fedora 29)
+        description: MongoDB server builder for NoSQL database running under
+          Fedora 29
         iconClass: icon-mongodb
         tags: builder,startx,fedora,mongo,database
-        supports: db
+        supports: mongodb
         version: fc29
         sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
       from:
@@ -73,25 +72,25 @@ items:
         name: startx/sv-mongo:fc29
     - name: fc30
       annotations:
-        openshift.io/display-name: S2I MongoDB Database (Fedora 30)
-        description: MongoDB server builder for NoSQL database running under Fedora
-          30
+        openshift.io/display-name: S2I Startx MongoDB Database (Fedora 30)
+        description: MongoDB server builder for NoSQL database running under
+          Fedora 30
         iconClass: icon-mongodb
         tags: builder,startx,fedora,mongo,database
-        supports: db
+        supports: mongodb
         version: fc30
         sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
       from:
         kind: DockerImage
         name: startx/sv-mongo:fc30
-    - name: latest
+    - name: rawhide
       annotations:
-        openshift.io/display-name: S2I MongoDB Database (Fedora rawhide)
-        description: MongoDB server builder for NoSQL database running under Fedora
-          rawhide
+        openshift.io/display-name: S2I Startx MongoDB Database (Fedora rawhide)
+        description: MongoDB server builder for NoSQL database running under
+          Fedora rawhide
         iconClass: icon-mongodb
         tags: builder,startx,fedora,mongo,database
-        supports: db
+        supports: mongodb
         version: rawhide
         sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
       from:
@@ -99,12 +98,12 @@ items:
         name: startx/sv-mongo:latest
     - name: centos7
       annotations:
-        openshift.io/display-name: S2I MongoDB Database (Centos 7)
-        description: MongoDB server builder for NoSQL database running under Centos
-          7
+        openshift.io/display-name: S2I Startx MongoDB Database (Centos 7)
+        description: MongoDB server builder for NoSQL database running under
+          Centos 7
         iconClass: icon-mongodb
         tags: builder,startx,centos,mongo,database
-        supports: db
+        supports: mongodb
         version: '7'
         sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
       from:
@@ -112,27 +111,87 @@ items:
         name: startx/sv-mongo:centos7
     - name: centos6
       annotations:
-        openshift.io/display-name: S2I MongoDB Database (Centos 6)
-        description: MongoDB server builder for NoSQL database running under Centos
-          6
+        openshift.io/display-name: S2I Startx MongoDB Database (Centos 6)
+        description: MongoDB server builder for NoSQL database running under
+          Centos 6
         iconClass: icon-mongodb
         tags: builder,startx,centos,mongo,database
-        supports: db
-        version: '6'
+        supports: mongodb
+        version: '7'
         sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
       from:
         kind: DockerImage
         name: startx/sv-mongo:centos6
     - name: alpine3
       annotations:
-        openshift.io/display-name: S2I MongoDB Database (Alpine 3)
-        description: MongoDB server builder for NoSQL database running under Alpine
-          3
+        openshift.io/display-name: S2I Startx MongoDB Database (Alpine 3)
+        description: MongoDB server builder for NoSQL database running under
+          Alpine 3
         iconClass: icon-mongodb
         tags: builder,startx,alpine,mongo,database
-        supports: db
+        supports: mongodb
         version: '3'
         sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
       from:
         kind: DockerImage
         name: startx/sv-mongo:alpine3
+    - name: latest
+      annotations:
+        openshift.io/display-name: S2I Startx MongoDB Database (latest)
+        description: MongoDB server builder for NoSQL database running under
+          Fedora latest
+        iconClass: icon-mongodb
+        tags: builder,startx,alpine,mongo,database
+        supports: mongodb
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: dev
+      annotations:
+        openshift.io/display-name: S2I Startx MongoDB Database (dev)
+        description: MariaDB server builder for simple SQL database (developpement)
+        iconClass: icon-mongodb
+        tags: builder,startx,alpine,mongo,database
+        supports: mongodb
+        version: 'dev'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: test
+      annotations:
+        openshift.io/display-name: S2I Startx MongoDB Database (test)
+        description: MariaDB server builder for simple SQL database (testing)
+        iconClass: icon-mongodb
+        tags: builder,startx,alpine,mongo,database
+        supports: mongodb
+        version: 'test'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: ImageStreamTag
+        name: centos7
+    - name: preprod
+      annotations:
+        openshift.io/display-name: S2I Startx MongoDB Database (preprod)
+        description: MariaDB server builder for simple SQL database (pre-production)
+        iconClass: icon-mongodb
+        tags: builder,startx,alpine,mongo,database
+        supports: mongodb
+        version: 'pre-prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+    - name: prod
+      annotations:
+        openshift.io/display-name: S2I Startx MongoDB Database (prod)
+        description: MariaDB server builder for simple SQL database (production)
+        iconClass: icon-mongodb
+        tags: builder,startx,alpine,mongo,database
+        supports: mongodb
+        version: 'prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
