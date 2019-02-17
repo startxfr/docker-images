@@ -14,7 +14,7 @@ metadata:
     openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
 message: |-
   Your database ${APP_NAME} will be soon deployed.
-  Monitor the deployement for application availability 
+  Monitor the deployement for database availability 
 
   Database    : ${APP_NAME}
   Stage       : ${APP_STAGE}
@@ -99,57 +99,7 @@ objects:
     strategy:
       type: Recreate
       recreateParams:
-        timeoutSeconds: 25
-        pre:
-          failurePolicy: Abort
-          execNewPod:
-            containerName: "${APP_NAME}"
-            command:
-            - "/bin/sx-mariadb"
-            - pre-deploy
-            env:
-            - name: SX_VERBOSE
-              value: 'true'
-            - name: SX_DEBUG
-              value: 'true'
-            - name: MYSQL_USER
-              valueFrom:
-                secretKeyRef:
-                  name: "${APP_NAME}-auth"
-                  key: MYSQL_USER
-            - name: MYSQL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: "${APP_NAME}-auth"
-                  key: MYSQL_PASSWORD
-            envFrom:
-              - configMapRef:
-                  name: ${APP_NAME}-config
-        post:
-          failurePolicy: Abort
-          execNewPod:
-            containerName: "${APP_NAME}"
-            command:
-            - "/bin/sx-mariadb"
-            - post-deploy
-            env:
-            - name: SX_VERBOSE
-              value: 'true'
-            - name: SX_DEBUG
-              value: 'true'
-            - name: MYSQL_USER
-              valueFrom:
-                secretKeyRef:
-                  name: "${APP_NAME}-auth"
-                  key: MYSQL_USER
-            - name: MYSQL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: "${APP_NAME}-auth"
-                  key: MYSQL_PASSWORD
-            envFrom:
-              - configMapRef:
-                  name: ${APP_NAME}-config
+        timeoutSeconds: 50
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -200,7 +150,11 @@ objects:
           - run
           resources:
             limits:
-              memory: "${MEMORY_LIMIT}"
+              cpu: 4000m
+              memory: 512Mi
+            requests:
+              cpu: 200m
+              memory: 256Mi
           ports:
           - containerPort: 3306
             protocol: TCP
@@ -293,8 +247,3 @@ parameters:
   displayName: Mysql database
   description: name of the default database to create
   value: example
-- name: MEMORY_LIMIT
-  displayName: Memory Limit
-  description: Maximum amount of memory the container can use.
-  value: 512Mi
-  required: true
