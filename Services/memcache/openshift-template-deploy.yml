@@ -125,11 +125,11 @@ objects:
           - run
           resources:
             limits:
-              cpu: 2000m
-              memory: "${MEMORY_LIMIT}"
+              cpu: 4000m
+              memory: 1024Mi
             requests:
-              cpu: 500m
-              memory: "${MEMORY_LIMIT}"
+              cpu: 1000m
+              memory: 512Mi
           ports:
           - containerPort: 11211
             protocol: TCP
@@ -192,9 +192,4 @@ parameters:
   displayName: Startx image release
   description: "Image tag of the startx memcache image used. Could be : latest, fc30, fc29, fc28, alpine3, centos7, centos6"
   value: latest
-  required: true
-- name: MEMORY_LIMIT
-  displayName: Memory Limit
-  description: Maximum amount of memory the container can use.
-  value: 512Mi
   required: true

@@ -100,31 +100,6 @@ objects:
       type: Recreate
       recreateParams:
         timeoutSeconds: 35
-        post:
-          failurePolicy: Abort
-          execNewPod:
-            containerName: "${APP_NAME}"
-            command:
-            - "/bin/sx-postgres"
-            - post-deploy
-            env:
-            - name: SX_VERBOSE
-              value: 'true'
-            - name: SX_DEBUG
-              value: 'true'
-            - name: PGSQL_USER
-              valueFrom:
-                secretKeyRef:
-                  name: "${APP_NAME}-auth"
-                  key: PGSQL_USER
-            - name: PGSQL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: "${APP_NAME}-auth"
-                  key: PGSQL_PASSWORD
-            envFrom:
-              - configMapRef:
-                  name: ${APP_NAME}-config
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -175,11 +150,11 @@ objects:
           - run
           resources:
             limits:
-              cpu: 2000m
-              memory: "${MEMORY_LIMIT}"
+              cpu: 8000m
+              memory: 1024Mi
             requests:
-              cpu: 500m
-              memory: "${MEMORY_LIMIT}"
+              cpu: 2000m
+              memory: 256Mi
           ports:
           - containerPort: 5432
             protocol: TCP
@@ -272,8 +247,3 @@ parameters:
   displayName: Postgres database
   description: name of the default database to create
   value: example
-- name: MEMORY_LIMIT
-  displayName: Memory Limit
-  description: Maximum amount of memory the container can use.
-  value: 512Mi
-  required: true

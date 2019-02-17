@@ -124,10 +124,10 @@ objects:
             failureThreshold: 19
           resources:
             limits:
-              cpu: 2000m
+              cpu: 12000m
               memory: "${MEMORY_LIMIT}"
             requests:
-              cpu: 500m
+              cpu: 8000m
               memory: "${MEMORY_LIMIT}"
 - kind: Route
   apiVersion: v1
@@ -324,4 +324,9 @@ parameters:
   displayName: Couchbase bucket
   description: name of the default bucket to create
   value: demo
+  required: true
+- name: MEMORY_LIMIT
+  displayName: Memory Limit
+  description: Maximum amount of memory the container can use.
+  value: 2048Mi
   required: true

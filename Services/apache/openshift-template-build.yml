@@ -490,6 +490,6 @@ parameters:
   required: true
 - name: MEMORY_LIMIT
   displayName: Memory Limit
-  description: Maximum amount of memory the container can use.
-  value: 512Mi
+  description: Maximum amount of memory the container can use. e.g. 512Mi, 2Gi.
+  value: 256Mi
   required: true

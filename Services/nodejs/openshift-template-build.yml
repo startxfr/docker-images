@@ -408,11 +408,11 @@ objects:
             failureThreshold: 3
           resources:
             limits:
-              cpu: 2000m
-              memory: 512Mi
+              cpu: 1000m
+              memory: "${MEMORY_LIMIT}"
             requests:
               cpu: 500m
-              memory: 128Mi
+              memory: "${MEMORY_LIMIT}"
           terminationMessagePath: "/dev/termination-log"
           imagePullPolicy: Always
           volumeMounts:
@@ -490,4 +490,9 @@ parameters:
   description: Secret token to use for webhook to github or generic
   generate: expression
   from: "[a-zA-Z0-9]{24}"
+  required: true
+- name: MEMORY_LIMIT
+  displayName: Memory Limit
+  description: Maximum amount of memory the container can use. e.g. 512Mi, 2Gi.
+  value: 256Mi
   required: true

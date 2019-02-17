@@ -479,10 +479,10 @@ objects:
             protocol: TCP
           resources:
             limits:
-              cpu: 2000m
+              cpu: 8000m
               memory: "${MEMORY_LIMIT}"
             requests:
-              cpu: 500m
+              cpu: 2000m
               memory: "${MEMORY_LIMIT}"
           livenessProbe:
             exec:
@@ -596,6 +596,6 @@ parameters:
   value: example
 - name: MEMORY_LIMIT
   displayName: Memory Limit
-  description: Maximum amount of memory the container can use.
-  value: 512Mi
+  description: Maximum amount of memory the container can use. e.g. 512Mi, 2Gi.
+  value: 1024Mi
   required: true

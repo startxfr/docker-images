@@ -405,10 +405,10 @@ objects:
             failureThreshold: 2
           resources:
             limits:
-              cpu: 2000m
+              cpu: 8000m
               memory: "${MEMORY_LIMIT}"
             requests:
-              cpu: 500m
+              cpu: 2000m
               memory: "${MEMORY_LIMIT}"
           terminationMessagePath: "/dev/termination-log"
           imagePullPolicy: Always
@@ -490,6 +490,6 @@ parameters:
   required: true
 - name: MEMORY_LIMIT
   displayName: Memory Limit
-  description: Maximum amount of memory the container can use.
+  description: Maximum amount of memory the container can use. e.g. 512Mi, 2Gi.
   value: 512Mi
   required: true

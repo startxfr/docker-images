@@ -197,10 +197,10 @@ objects:
             containerPort: 18094
           resources:
             limits:
-              cpu: 2000m
+              cpu: 12000m
               memory: "${MEMORY_LIMIT}"
             requests:
-              cpu: 500m
+              cpu: 8000m
               memory: "${MEMORY_LIMIT}"
           volumeMounts:
           - name: "${APP_NAME}-data"
@@ -393,6 +393,6 @@ parameters:
   description: list of the default's bucket to create
 - name: MEMORY_LIMIT
   displayName: Memory Limit
-  description: Maximum amount of memory the container can use.
-  value: 512Mi
+  description: Maximum amount of memory the container can use. e.g. 512Mi, 2Gi.
+  value: 2048Mi
   required: true

@@ -81,36 +81,6 @@ objects:
         timeoutSeconds: 20
         maxUnavailable: 25%
         maxSurge: 25%
-        pre:
-          failurePolicy: Ignore
-          execNewPod:
-            containerName: "${APP_NAME}"
-            command:
-            - "/bin/sx-apache"
-            - pre-deploy
-            env:
-            - name: SX_VERBOSE
-              value: 'true'
-            - name: SX_DEBUG
-              value: 'true'
-            envFrom:
-              - configMapRef:
-                  name: ${APP_NAME}-config
-        post:
-          failurePolicy: Ignore
-          execNewPod:
-            containerName: "${APP_NAME}"
-            command:
-            - "/bin/sx-apache"
-            - post-deploy
-            env:
-            - name: SX_VERBOSE
-              value: 'true'
-            - name: SX_DEBUG
-              value: 'true'
-            envFrom:
-              - configMapRef:
-                  name: ${APP_NAME}-config
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -175,7 +145,7 @@ objects:
           resources:
             limits:
               cpu: 2000m
-              memory: 512Mi
+              memory: 256Mi
             requests:
               cpu: 500m
               memory: 128Mi

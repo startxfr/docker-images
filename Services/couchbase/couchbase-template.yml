@@ -78,20 +78,6 @@ objects:
         timeoutSeconds: 120
         maxUnavailable: 25%
         maxSurge: 25%
-        pre:
-          failurePolicy: Abort
-          execNewPod:
-            command:
-            - "/bin/sx-couchbase"
-            - pre-deploy
-            containerName: "${APP_NAME}"
-        post:
-          failurePolicy: Abort
-          execNewPod:
-            command:
-            - "/bin/sx-couchbase"
-            - post-deploy
-            containerName: "${APP_NAME}"
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -186,11 +172,11 @@ objects:
             failureThreshold: 3
           resources:
             limits:
-              cpu: 2000m
-              memory: "${MEMORY_LIMIT}"
+              cpu: 12000m
+              memory: 2048Mi
             requests:
-              cpu: 500m
-              memory: "${MEMORY_LIMIT}"
+              cpu: 8000m
+              memory: 1024Mi
           terminationMessagePath: "/dev/termination-log"
           imagePullPolicy: Always
         volumes:
@@ -294,8 +280,3 @@ parameters:
 - name: COUCHBASE_BUCKETS
   displayName: Couchbase bucket
   description: list of the default's bucket to create
-- name: MEMORY_LIMIT
-  displayName: Memory Limit
-  description: Maximum amount of memory the container can use.
-  value: 512Mi
-  required: true

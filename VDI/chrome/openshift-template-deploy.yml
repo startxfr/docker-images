@@ -2,7 +2,7 @@
 kind: Template
 apiVersion: v1
 metadata:
-  name: startx-vdi-chrome-template
+  name: startx-chrome-deploy-template
   annotations:
     openshift.io/display-name: Startx Chrome browser (fedora)
     description: Chrome browser for simple web application running under Fedora
@@ -18,7 +18,7 @@ metadata:
 message: 'The following container have been created in your project: ${APP_NAME} and
   you can use openshift console to log into.'
 labels:
-  template: startx-vdi-chrome-template
+  template: startx-chrome-deploy-template
 objects:
 - kind: ImageStream
   apiVersion: v1
@@ -30,7 +30,7 @@ objects:
     labels:
       app: "${APP_NAME}"
       provider: startx
-      template: startx-vdi-chrome-template
+      template: startx-chrome-deploy-template
   spec:
     tags:
     - name: latest
@@ -53,7 +53,7 @@ objects:
     labels:
       app: "${APP_NAME}"
       provider: startx
-      template: startx-vdi-chrome-template
+      template: startx-chrome-deploy-template
     annotations:
       openshift.io/generated-by: STARTX
   spec:
@@ -65,30 +65,6 @@ objects:
         timeoutSeconds: 20
         maxUnavailable: 25%
         maxSurge: 25%
-        pre:
-          failurePolicy: Abort
-          execNewPod:
-            command:
-            - "/bin/sx-chrome"
-            - pre-deploy
-            env:
-            - name: SX_VERBOSE
-              value: 'true'
-            - name: SX_DEBUG
-              value: 'true'
-            containerName: "${APP_NAME}"
-        post:
-          failurePolicy: Abort
-          execNewPod:
-            command:
-            - "/bin/sx-chrome"
-            - post-deploy
-            env:
-            - name: SX_VERBOSE
-              value: 'true'
-            - name: SX_DEBUG
-              value: 'true'
-            containerName: "${APP_NAME}"
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -111,7 +87,7 @@ objects:
         labels:
           app: "${APP_NAME}"
           provider: startx
-          template: startx-vdi-chrome-template
+          template: startx-chrome-deploy-template
           deploymentconfig: "${APP_NAME}"
         annotations:
           openshift.io/generated-by: STARTX
@@ -148,11 +124,11 @@ objects:
             failureThreshold: 3
           resources:
             limits:
-              cpu: 2000m
-              memory: "${MEMORY_LIMIT}"
+              cpu: 12000m
+              memory: 2048Mi
             requests:
-              cpu: 500m
-              memory: "${MEMORY_LIMIT}"
+              cpu: 2000m
+              memory: 512Mi
           terminationMessagePath: "/dev/termination-log"
           imagePullPolicy: Always
           volumeMounts:
@@ -178,7 +154,7 @@ objects:
     labels:
       app: "${APP_NAME}"
       provider: startx
-      template: startx-vdi-chrome-template
+      template: startx-chrome-deploy-template
     annotations:
       openshift.io/generated-by: STARTX
   spec:
@@ -193,7 +169,7 @@ objects:
     labels:
       app: "${APP_NAME}"
       provider: startx
-      template: startx-vdi-chrome-template
+      template: startx-chrome-deploy-template
     annotations:
       openshift.io/generated-by: STARTX
   spec:
@@ -218,9 +194,4 @@ parameters:
     pre-deploy, post-deploy, run, isLive, isReady, usage, usageS2i, daemon, info,
     version. See documentation for action list.
   value: run
-  required: true
-- name: MEMORY_LIMIT
-  displayName: Memory Limit
-  description: Maximum amount of memory the container can use.
-  value: 512Mi
   required: true

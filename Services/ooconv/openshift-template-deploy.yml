@@ -249,36 +249,6 @@ objects:
       type: Recreate
       recreateParams:
         timeoutSeconds: 40
-        pre:
-          failurePolicy: Abort
-          execNewPod:
-            command:
-            - "/bin/sx-ooconv"
-            - pre-deploy
-            env:
-            - name: SX_VERBOSE
-              value: 'true'
-            - name: SX_DEBUG
-              value: 'true'
-            envFrom:
-              - configMapRef:
-                  name: ${APP_NAME}-config
-            containerName: "${APP_NAME}"
-        post:
-          failurePolicy: Abort
-          execNewPod:
-            command:
-            - "/bin/sx-ooconv"
-            - post-deploy
-            env:
-            - name: SX_VERBOSE
-              value: 'true'
-            - name: SX_DEBUG
-              value: 'true'
-            envFrom:
-              - configMapRef:
-                  name: ${APP_NAME}-config
-            containerName: "${APP_NAME}"
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -339,11 +309,11 @@ objects:
               - isReady
           resources:
             limits:
-              cpu: 2000m
-              memory: 512Mi
+              cpu: 4000m
+              memory: 1024Mi
             requests:
               cpu: 500m
-              memory: 128Mi
+              memory: 256Mi
             initialDelaySeconds: 5
             timeoutSeconds: 2
             periodSeconds: 10

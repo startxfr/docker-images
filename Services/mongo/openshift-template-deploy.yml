@@ -101,56 +101,6 @@ objects:
       type: Recreate
       recreateParams:
         timeoutSeconds: 35
-        pre:
-          failurePolicy: Abort
-          execNewPod:
-            containerName: "${APP_NAME}"
-            command:
-            - "/bin/sx-mongo"
-            - pre-deploy
-            env:
-            - name: SX_VERBOSE
-              value: 'true'
-            - name: SX_DEBUG
-              value: 'true'
-            - name: MONGO_USER
-              valueFrom:
-                secretKeyRef:
-                  name: "${APP_NAME}-auth"
-                  key: MONGO_USER
-            - name: MONGO_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: "${APP_NAME}-auth"
-                  key: MONGO_PASSWORD
-            envFrom:
-              - configMapRef:
-                  name: ${APP_NAME}-config
-        post:
-          failurePolicy: Abort
-          execNewPod:
-            containerName: "${APP_NAME}"
-            command:
-            - "/bin/sx-mongo"
-            - post-deploy
-            env:
-            - name: SX_VERBOSE
-              value: 'true'
-            - name: SX_DEBUG
-              value: 'true'
-            - name: MONGO_USER
-              valueFrom:
-                secretKeyRef:
-                  name: "${APP_NAME}-auth"
-                  key: MONGO_USER
-            - name: MONGO_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: "${APP_NAME}-auth"
-                  key: MONGO_PASSWORD
-            envFrom:
-              - configMapRef:
-                  name: ${APP_NAME}-config
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -206,11 +156,11 @@ objects:
             protocol: TCP
           resources:
             limits:
-              cpu: 2000m
-              memory: "${MEMORY_LIMIT}"
+              cpu: 8000m
+              memory: 1024Mi
             requests:
-              cpu: 500m
-              memory: "${MEMORY_LIMIT}"
+              cpu: 2000m
+              memory: 512Mi
           livenessProbe:
             exec:
               command:
@@ -311,8 +261,3 @@ parameters:
   displayName: MongoDB store
   description: list of the default's store to create
   value: example
-- name: MEMORY_LIMIT
-  displayName: Memory Limit
-  description: Maximum amount of memory the container can use.
-  value: 512Mi
-  required: true
