@@ -7,7 +7,7 @@ metadata:
     description: Deployement workflow of a Memcache SQL database using ephemeral storage
       for data and logs records. Use memcache with various underlying linux distribution. See 
       https://hub.docker.com/r/startx/sv-memcache
-    iconClass: icon-memcache
+    iconClass: icon-redis
     tags: startx,os,fedora,memcache
     openshift.io/provider-display-name: STARTX
     openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-memcache
@@ -17,9 +17,9 @@ message: |-
   Monitor the deployement for application availability 
 
   Source      : ${SOURCE_BRANCH}@${SOURCE_GIT}
-  Backend    : ${APP_NAME}
+  Backend     : ${APP_NAME}
   Stage       : ${APP_STAGE}
-  Builder     : ${BUILDER_TAG}
+  Image       : startx/sv-memcache:${BUILDER_TAG}
   
   Connection  : memcache://${APP_NAME}:11211
   
@@ -43,7 +43,7 @@ objects:
       annotations:
         openshift.io/display-name: Backend ${APP_NAME} version ${APP_STAGE}
         description: ${APP_STAGE} image for the database ${APP_NAME} based on ${BUILDER_TAG}
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: startx,fedora,memcache,database,${APP_NAME},${APP_STAGE},${BUILDER_TAG}
         supports: memcache
         version: ${APP_STAGE}
@@ -97,7 +97,7 @@ objects:
     - type: ConfigChange
     postCommit:
       script: "/bin/sx-memcache info"
-    replicas: "${REPLICAS}"
+    replicas: 1
     test: false
     selector:
       app: "${APP_NAME}"
@@ -188,11 +188,6 @@ parameters:
   displayName: Startx image release
   description: "Image tag of the startx memcache image used. Could be : latest, fc30, fc29, fc28, alpine3, centos7, centos6"
   value: latest
-  required: true
-- name: REPLICAS
-  displayName: Number of workers
-  description: Number of concurent pod to start
-  value: 1
   required: true
 - name: MEMORY_LIMIT
   displayName: Memory Limit

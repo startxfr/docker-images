@@ -309,15 +309,57 @@ objects:
         env:
         - name: SX_VERBOSE
           value: 'true'
+        - name: SX_DEBUG
+          value: 'true'
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: "${APP_NAME}-auth"
+              key: MYSQL_ROOT_PASSWORD
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: "${APP_NAME}-auth"
+              key: MYSQL_USER
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: "${APP_NAME}-auth"
+              key: MYSQL_PASSWORD
+        envFrom:
+          - configMapRef:
+              name: ${APP_NAME}-config
     output:
       to:
         kind: ImageStreamTag
         name: "${APP_NAME}:latest"
-    resources: {}
     postCommit:
       command:
       - "/bin/sx-mariadb"
       - post-build
+      env:
+      - name: SX_VERBOSE
+        value: 'true'
+      - name: SX_DEBUG
+        value: 'true'
+      - name: MYSQL_ROOT_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: "${APP_NAME}-auth"
+            key: MYSQL_ROOT_PASSWORD
+      - name: MYSQL_USER
+        valueFrom:
+          secretKeyRef:
+            name: "${APP_NAME}-auth"
+            key: MYSQL_USER
+      - name: MYSQL_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: "${APP_NAME}-auth"
+            key: MYSQL_PASSWORD
+      envFrom:
+        - configMapRef:
+            name: ${APP_NAME}-config
 - kind: DeploymentConfig
   apiVersion: v1
   metadata:
@@ -344,11 +386,6 @@ objects:
               value: 'true'
             - name: SX_DEBUG
               value: 'true'
-            - name: MYSQL_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: "${APP_NAME}-auth"
-                  key: MYSQL_ROOT_PASSWORD
             - name: MYSQL_USER
               valueFrom:
                 secretKeyRef:
@@ -423,6 +460,16 @@ objects:
           env:
           - name: SX_VERBOSE
             value: 'true'
+          - name: MYSQL_USER
+            valueFrom:
+              secretKeyRef:
+                name: "${APP_NAME}-auth"
+                key: MYSQL_USER
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: "${APP_NAME}-auth"
+                key: MYSQL_PASSWORD
           envFrom:
             - configMapRef:
                 name: ${APP_NAME}-config

@@ -1,24 +1,36 @@
----
 kind: Template
 apiVersion: v1
-metadata:
+metadata: 
   name: startx-mongo-build-template
   annotations:
-    openshift.io/display-name: Startx MongoDB server (fedora)
-    description: MongoDB server for NoSQL database running under Fedora
+    openshift.io/display-name: Startx MongoDB Server (ephemeral build & deploy workflow)
+    description: Build and deployement workflow of a MongoDB NoSQL database using ephemeral storage
+      for logs records. Use mongo with various underlying linux distribution. See 
+      https://hub.docker.com/r/startx/sv-mongo
     iconClass: icon-mongodb
     tags: startx,os,fedora,mongo,database
-    openshift.io/long-description: This template provides an mongo Database in a fedora
-      container. Ready to use in openshift with a simple deployement config, or as
-      a s2i builder for building SQL databases container. For more information about
-      using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.
     openshift.io/provider-display-name: STARTX
-    openshift.io/documentation-url: https://github.com/startxfr/docker-images/blob/master/README.md
+    openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-mongo
     openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
-message: 'The following container have been created in your project: ${APP_NAME} and
-  you can use openshift console to log into.'
+message: |-
+  Your database ${APP_NAME} is building and will be soon deployed.
+  Monitor the deployement for application availability
+
+  Source      : ${SOURCE_BRANCH}@${SOURCE_GIT}
+  Database    : ${APP_NAME}
+  Stage       : ${APP_STAGE}
+  Builder     : ${BUILDER_TAG}
+  Volumes     : ${APP_NAME}-log (E), ${APP_NAME}-data (E)
+  
+  Username    : ${MONGO_USER}
+  Password    : ${MONGO_PASSWORD}
+  Store       : ${MONGO_STORES}
+  
+  Connection  : mongodb://${APP_NAME}:27017
+  
 labels:
   template: startx-mongo-build-template
+  provider: startx 
 objects:
 - kind: ImageStream
   apiVersion: v1
@@ -28,221 +40,247 @@ objects:
       openshift.io/display-name: Startx MongoDB Database
       openshift.io/generated-by: STARTX
     labels:
-      base-image: startx-mongo
       app: "${APP_NAME}"
-      type: "${APP_TYPE}"
-      provider: startx
+      stage: "${APP_STAGE}"
   spec:
     tags:
-    - name: latest
+    - name: fc26
       annotations:
-        openshift.io/display-name: Startx MongoDB Database (Fedora rawhide)
-        description: MongoDB server for simple SQL database running under Fedora rawhide
+        openshift.io/display-name: S2I Startx MongoDB Database (Fedora 26)
+        description: MongoDB server for simple SQL database running under
+          Fedora 26
         iconClass: icon-mongodb
         tags: builder,startx,fedora,mongo,database
-        supports: db
+        supports: mongodb
+        version: fc26
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mongo:fc26
+    - name: fc27
+      annotations:
+        openshift.io/display-name: S2I Startx MongoDB Database (Fedora 27)
+        description: MongoDB server for simple SQL database running under
+          Fedora 27
+        iconClass: icon-mongodb
+        tags: builder,startx,fedora,mongo,database
+        supports: mongodb
+        version: fc27
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mongo:fc27
+    - name: fc28
+      annotations:
+        openshift.io/display-name: S2I Startx MongoDB Database (Fedora 28)
+        description: MongoDB server for simple SQL database running under
+          Fedora 28
+        iconClass: icon-mongodb
+        tags: builder,startx,fedora,mongo,database
+        supports: mongodb
+        version: fc28
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mongo:fc28
+    - name: fc29
+      annotations:
+        openshift.io/display-name: S2I Startx MongoDB Database (Fedora 29)
+        description: MongoDB server for simple SQL database running under
+          Fedora 29
+        iconClass: icon-mongodb
+        tags: builder,startx,fedora,mongo,database
+        supports: mongodb
+        version: fc29
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mongo:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: S2I Startx MongoDB Database (Fedora 30)
+        description: MongoDB server for simple SQL database running under
+          Fedora 30
+        iconClass: icon-mongodb
+        tags: builder,startx,fedora,mongo,database
+        supports: mongodb
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mongo:fc30
+    - name: rawhide
+      annotations:
+        openshift.io/display-name: S2I Startx MongoDB Database (Fedora rawhide)
+        description: MongoDB server for simple SQL database running under
+          Fedora rawhide
+        iconClass: icon-mongodb
+        tags: builder,startx,fedora,mongo,database
+        supports: mongodb
         version: rawhide
         sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
       from:
         kind: DockerImage
         name: startx/sv-mongo:latest
+    - name: centos7
+      annotations:
+        openshift.io/display-name: S2I Startx MongoDB Database (Centos 7)
+        description: MongoDB server for simple SQL database running under
+          Centos 7
+        iconClass: icon-mongodb
+        tags: builder,startx,centos,mongo,database
+        supports: mongodb
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mongo:centos7
+    - name: centos6
+      annotations:
+        openshift.io/display-name: S2I Startx MongoDB Database (Centos 6)
+        description: MongoDB server for simple SQL database running under
+          Centos 6
+        iconClass: icon-mongodb
+        tags: builder,startx,centos,mongo,database
+        supports: mongodb
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mongo:centos6
+    - name: alpine3
+      annotations:
+        openshift.io/display-name: S2I Startx MongoDB Database (Alpine 3)
+        description: MongoDB server for simple SQL database running under
+          Alpine 3
+        iconClass: icon-mongodb
+        tags: builder,startx,alpine,mongo,database
+        supports: mongodb
+        version: '3'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mongo:alpine3
+    - name: latest
+      annotations:
+        openshift.io/display-name: S2I Startx MongoDB Database (latest)
+        description: MongoDB server for simple SQL database running under
+          Fedora latest
+        iconClass: icon-mongodb
+        tags: builder,startx,alpine,mongo,database
+        supports: mongodb
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: dev
+      annotations:
+        openshift.io/display-name: S2I Startx MongoDB Database (dev)
+        description: MariaDB server builder for simple SQL database (developpement)
+        iconClass: icon-mongodb
+        tags: builder,startx,alpine,mongo,database
+        supports: mongodb
+        version: 'dev'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: test
+      annotations:
+        openshift.io/display-name: S2I Startx MongoDB Database (test)
+        description: MariaDB server builder for simple SQL database (testing)
+        iconClass: icon-mongodb
+        tags: builder,startx,alpine,mongo,database
+        supports: mongodb
+        version: 'test'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: ImageStreamTag
+        name: centos7
+    - name: preprod
+      annotations:
+        openshift.io/display-name: S2I Startx MongoDB Database (preprod)
+        description: MariaDB server builder for simple SQL database (pre-production)
+        iconClass: icon-mongodb
+        tags: builder,startx,alpine,mongo,database
+        supports: mongodb
+        version: 'pre-prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+    - name: prod
+      annotations:
+        openshift.io/display-name: S2I Startx MongoDB Database (prod)
+        description: MariaDB server builder for simple SQL database (production)
+        iconClass: icon-mongodb
+        tags: builder,startx,alpine,mongo,database
+        supports: mongodb
+        version: 'prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
 - kind: ImageStream
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
     annotations:
-      openshift.io/display-name: Application ${APP_NAME}
+      openshift.io/display-name: Database ${APP_NAME}
       openshift.io/generated-by: STARTX
     labels:
-      base-image: startx-mongo
       app: "${APP_NAME}"
-      type: "${APP_TYPE}"
-      provider: startx
+      stage: "${APP_STAGE}"
   spec:
     tags:
     - name: latest
       annotations:
-        openshift.io/display-name: Application ${APP_NAME}
-        description: Base image for the application ${APP_NAME}
+        openshift.io/display-name: Database ${APP_NAME}
+        description: Base image for the database ${APP_NAME}
         iconClass: icon-mongodb
-        tags: startx,fedora,mongo,database,application,${APP_NAME}
-        supports: db
-        version: rawhide
+        tags: startx,fedora,mongo,database,${APP_NAME}
+        supports: mongodb
+        version: latest
+- kind: ConfigMap
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}-config"
+    annotations:
+      openshift.io/display-name: Database ${APP_NAME} configuration
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  data:
+    SX_ID: ${APP_NAME}/${APP_STAGE}
+    SX_TYPE: ${APP_STAGE}
+    SX_SERVICE: ${APP_NAME}
+    SX_NAME: SQL database ${APP_NAME}
+    SX_SUMMARY: SQL database ${APP_NAME} based on ${BUILDER_TAG} container
+    SX_VERSION: 0.0.1 
+    MONGO_STORES: "${MONGO_STORES}"
 - kind: Secret
   apiVersion: v1
   metadata:
-    name: "${APP_NAME}"
-    creationTimestamp: 
+    name: "${APP_NAME}-auth"
     labels:
       app: "${APP_NAME}"
-      type: "${APP_TYPE}"
-      provider: startx
-      template: startx-mongo-build-template
+      stage: "${APP_STAGE}"
+    annotations:
+      template.openshift.io/expose-username: "{.data['MONGO_USER']}"
+      template.openshift.io/expose-password: "{.data['MONGO_PASSWORD']}"
+      template.openshift.io/expose-root_password: "{.data['MONGO_PASSWORD']}"
   stringData:
-    MONGO_PASSWORD: "${MONGO_PASSWORD}"
+    MONGO_ROOT_PASSWORD: "${MONGO_ROOT_PASSWORD}"
     MONGO_USER: "${MONGO_USER}"
-- kind: DeploymentConfig
-  apiVersion: v1
-  metadata:
-    name: "${APP_NAME}"
-    generation: 2
-    creationTimestamp: 
-    labels:
-      app: "${APP_NAME}"
-      type: "${APP_TYPE}"
-      provider: startx
-      template: startx-mongo-build-template
-    annotations:
-      openshift.io/generated-by: STARTX
-  spec:
-    strategy:
-      type: Rolling
-      rollingParams:
-        updatePeriodSeconds: 1
-        intervalSeconds: 1
-        timeoutSeconds: 120
-        maxUnavailable: 25%
-        maxSurge: 25%
-        pre:
-          failurePolicy: Abort
-          execNewPod:
-            command:
-            - "/bin/sx-mongo"
-            - pre-deploy
-            env:
-            - name: SX_VERBOSE
-              value: 'true'
-            - name: SX_DEBUG
-              value: 'true'
-            containerName: "${APP_NAME}"
-        post:
-          failurePolicy: Abort
-          execNewPod:
-            command:
-            - "/bin/sx-mongo"
-            - post-deploy
-            env:
-            - name: SX_VERBOSE
-              value: 'true'
-            - name: SX_DEBUG
-              value: 'true'
-            containerName: "${APP_NAME}"
-      resources: {}
-    triggers:
-    - type: ImageChange
-      imageChangeParams:
-        automatic: true
-        containerNames:
-        - "${APP_NAME}"
-        from:
-          kind: ImageStreamTag
-          name: "${APP_NAME}:latest"
-    - type: ConfigChange
-    postCommit:
-      script: "/bin/sx-mongo info"
-    replicas: 1
-    test: false
-    selector:
-      app: "${APP_NAME}"
-      deploymentconfig: "${APP_NAME}"
-    template:
-      metadata:
-        creationTimestamp: 
-        labels:
-          app: "${APP_NAME}"
-          type: "${APP_TYPE}"
-          provider: startx
-          template: startx-mongo-build-template
-          deploymentconfig: "${APP_NAME}"
-        annotations:
-          openshift.io/generated-by: STARTX
-      spec:
-        containers:
-        - name: "${APP_NAME}"
-          image: " "
-          env:
-          - name: MONGO_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: "${APP_NAME}"
-                key: MONGO_PASSWORD
-          - name: MONGO_USER
-            valueFrom:
-              secretKeyRef:
-                name: "${APP_NAME}"
-                key: MONGO_USER
-          - name: MONGO_STORES
-            value: "${MONGO_STORES}"
-          command:
-          - "/bin/sx-mongo"
-          args:
-          - run
-          resources: {}
-          livenessProbe:
-            exec:
-              command:
-              - "/bin/sx-mongo"
-              - isLive
-            initialDelaySeconds: 5
-            timeoutSeconds: 2
-            periodSeconds: 10
-            successThreshold: 1
-            failureThreshold: 3
-          readinessProbe:
-            exec:
-              command:
-              - "/bin/sx-mongo"
-              - isReady
-            initialDelaySeconds: 2
-            timeoutSeconds: 2
-            periodSeconds: 10
-            successThreshold: 1
-            failureThreshold: 3
-          terminationMessagePath: "/dev/termination-log"
-          imagePullPolicy: Always
-        restartPolicy: Always
-        terminationGracePeriodSeconds: 30
-        dnsPolicy: ClusterFirst
-        securityContext: {}
-  status:
-    observedGeneration: 2
-    replicas: 1
-    updatedReplicas: 1
-    availableReplicas: 1
-- kind: Service
-  apiVersion: v1
-  metadata:
-    name: "${APP_NAME}"
-    creationTimestamp: 
-    labels:
-      app: "${APP_NAME}"
-      type: "${APP_TYPE}"
-      provider: startx
-      template: startx-mongo-build-template
-    annotations:
-      openshift.io/generated-by: STARTX
-  spec:
-    ports:
-    - protocol: TCP
-      port: 3306
-      targetPort: 3306
-    selector:
-      app: "${APP_NAME}"
-      deploymentconfig: "${APP_NAME}"
-    type: ClusterIP
-    sessionAffinity: None
-  status:
-    loadBalancer: {}
+    MONGO_PASSWORD: "${MONGO_PASSWORD}"
 - kind: BuildConfig
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
-    creationTimestamp: 
     labels:
       app: "${APP_NAME}"
-      type: "${APP_TYPE}"
-      provider: startx
-      template: startx-mongo-build-template
+      stage: "${APP_STAGE}"
     annotations:
       openshift.io/generated-by: STARTX
   spec:
@@ -267,10 +305,30 @@ objects:
       sourceStrategy:
         from:
           kind: ImageStreamTag
-          name: startx-mongo:latest
+          name: startx-mongo:${BUILDER_TAG}
         env:
         - name: SX_VERBOSE
           value: 'true'
+        - name: SX_DEBUG
+          value: 'true'
+        - name: MONGO_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: "${APP_NAME}-auth"
+              key: MONGO_ROOT_PASSWORD
+        - name: MONGO_USER
+          valueFrom:
+            secretKeyRef:
+              name: "${APP_NAME}-auth"
+              key: MONGO_USER
+        - name: MONGO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: "${APP_NAME}-auth"
+              key: MONGO_PASSWORD
+        envFrom:
+          - configMapRef:
+              name: ${APP_NAME}-config
     output:
       to:
         kind: ImageStreamTag
@@ -280,18 +338,222 @@ objects:
       command:
       - "/bin/sx-mongo"
       - post-build
-  status:
-    lastVersion: 0
+      env:
+      - name: SX_VERBOSE
+        value: 'true'
+      - name: SX_DEBUG
+        value: 'true'
+      - name: MONGO_ROOT_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: "${APP_NAME}-auth"
+            key: MONGO_ROOT_PASSWORD
+      - name: MONGO_USER
+        valueFrom:
+          secretKeyRef:
+            name: "${APP_NAME}-auth"
+            key: MONGO_USER
+      - name: MONGO_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: "${APP_NAME}-auth"
+            key: MONGO_PASSWORD
+      envFrom:
+        - configMapRef:
+            name: ${APP_NAME}-config
+- kind: DeploymentConfig
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      openshift.io/generated-by: STARTX
+  spec:
+    strategy:
+      type: Recreate
+      recreateParams:
+        timeoutSeconds: 35
+        pre:
+          failurePolicy: Abort
+          execNewPod:
+            containerName: "${APP_NAME}"
+            command:
+            - "/bin/sx-mongo"
+            - pre-deploy
+            env:
+            - name: SX_VERBOSE
+              value: 'true'
+            - name: SX_DEBUG
+              value: 'true'
+            - name: MONGO_USER
+              valueFrom:
+                secretKeyRef:
+                  name: "${APP_NAME}-auth"
+                  key: MONGO_USER
+            - name: MONGO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "${APP_NAME}-auth"
+                  key: MONGO_PASSWORD
+            envFrom:
+              - configMapRef:
+                  name: ${APP_NAME}-config
+        post:
+          failurePolicy: Abort
+          execNewPod:
+            containerName: "${APP_NAME}"
+            command:
+            - "/bin/sx-mongo"
+            - post-deploy
+            env:
+            - name: SX_VERBOSE
+              value: 'true'
+            - name: SX_DEBUG
+              value: 'true'
+            - name: MONGO_USER
+              valueFrom:
+                secretKeyRef:
+                  name: "${APP_NAME}-auth"
+                  key: MONGO_USER
+            - name: MONGO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "${APP_NAME}-auth"
+                  key: MONGO_PASSWORD
+            envFrom:
+              - configMapRef:
+                  name: ${APP_NAME}-config
+    triggers:
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+        - "${APP_NAME}"
+        from:
+          kind: ImageStreamTag
+          name: "${APP_NAME}:latest"
+    - type: ConfigChange
+    postCommit:
+      script: "/bin/sx-mongo info"
+    replicas: 1
+    test: false
+    selector:
+      app: "${APP_NAME}"
+      deploymentconfig: "${APP_NAME}"
+    template:
+      metadata:
+        labels:
+          app: "${APP_NAME}"
+          deploymentconfig: "${APP_NAME}"
+        annotations:
+          openshift.io/generated-by: STARTX
+      spec:
+        containers:
+        - name: "${APP_NAME}"
+          image: " "
+          env:
+          - name: SX_VERBOSE
+            value: 'true'
+          - name: SX_DEBUG
+            value: 'true'
+          - name: MONGO_USER
+            valueFrom:
+              secretKeyRef:
+                name: "${APP_NAME}-auth"
+                key: MONGO_USER
+          - name: MONGO_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: "${APP_NAME}-auth"
+                key: MONGO_PASSWORD
+          envFrom:
+            - configMapRef:
+                name: ${APP_NAME}-config
+          command:
+          - "/bin/sx-mongo"
+          args:
+          - run
+          ports:
+          - containerPort: 27017
+            protocol: TCP
+          resources:
+            limits:
+              memory: "${MEMORY_LIMIT}"
+          livenessProbe:
+            exec:
+              command:
+              - "/bin/sx-mongo"
+              - isLive
+            initialDelaySeconds: 5
+            timeoutSeconds: 2
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            exec:
+              command:
+              - "/bin/sx-mongo"
+              - isReady
+            initialDelaySeconds: 5
+            timeoutSeconds: 2
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          terminationMessagePath: "/dev/termination-log"
+          imagePullPolicy: Always
+          volumeMounts:
+          - name: "${APP_NAME}-log"
+            mountPath: "/var/log/mongodb"
+          - name: "${APP_NAME}-data"
+            mountPath: "/data"
+        volumes:
+        - name: "${APP_NAME}-log"
+          emptyDir:
+            medium: ''
+        - name: "${APP_NAME}-data"
+          emptyDir:
+            medium: ''
+        restartPolicy: Always
+        terminationGracePeriodSeconds: 30
+        securityContext: {}
+        dnsPolicy: ClusterFirst
+- kind: Service
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      openshift.io/generated-by: STARTX
+  spec:
+    ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+    selector:
+      app: "${APP_NAME}"
+      deploymentconfig: "${APP_NAME}"
+    type: ClusterIP
+    sessionAffinity: None
 parameters:
 - name: APP_NAME
-  displayName: Application name
-  description: The name of the created application
+  displayName: Database name
+  description: The name of the created database
   value: mongo
   required: true
-- name: APP_TYPE
-  displayName: Application type
-  description: The type of the created application
-  value: database
+- name: APP_STAGE
+  displayName: Database stage
+  description: "Stage of the database deployed (ex: dev, test, prod, example, demo, poc, ...)"
+  value: example
+  required: true
+- name: BUILDER_TAG
+  displayName: Builder image stage
+  description: "Image tag of the startx mongo builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc30, fc29, fc28 - alpine3 - centos7, centos6)"
+  value: latest
+  required: true
 - name: SOURCE_GIT
   displayName: Source repository
   description: URL to the source code to use during build process
@@ -308,17 +570,29 @@ parameters:
   generate: expression
   from: "[a-zA-Z0-9]{24}"
   required: true
+- name: MONGO_ROOT_PASSWORD
+  displayName: Mongodb root password
+  description: The mongodb root password to use. Generated if not provided
+  from: "[A-Z0-9]{16}"
+  generate: expression
 - name: MONGO_USER
-  displayName: MongoDB user
+  displayName: Mongodb user
   description: Default user to create
   value: demo
   from: "[A-Z0-9]{8}"
   generate: expression
 - name: MONGO_PASSWORD
-  displayName: MongoDB root password
-  description: The mysql root password to use. Generated if not provided
+  displayName: Mongodb password
+  description: Password of the default user
+  value: demo
   from: "[A-Z0-9]{16}"
   generate: expression
 - name: MONGO_STORES
   displayName: MongoDB store
   description: list of the default's store to create
+  value: example
+- name: MEMORY_LIMIT
+  displayName: Memory Limit
+  description: Maximum amount of memory the container can use.
+  value: 512Mi
+  required: true

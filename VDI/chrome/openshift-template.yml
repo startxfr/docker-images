@@ -6,7 +6,7 @@ metadata:
   annotations:
     openshift.io/display-name: Startx Chrome browser (fedora)
     description: Chrome browser for simple web application running under Fedora
-    iconClass: icon-chrome
+    iconClass: icon-aerogear
     tags: startx,os,fedora,chrome
     openshift.io/long-description: This template provides an Chrome browser in a fedora
       container. Ready to use in openshift with a simple deployement config, or as
@@ -38,7 +38,7 @@ objects:
         openshift.io/display-name: Startx Browser (Fedora rawhide)
         description: Container-based desktop Chrome browser for remote internet browsing  under
           Fedora rawhide
-        iconClass: icon-chrome
+        iconClass: icon-aerogear
         tags: builder,startx,fedora,chrome,vnc
         supports: vnc
         version: rawhide
