@@ -50,7 +50,6 @@ objects:
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
-    creationTimestamp: 
     labels:
       app: "${APP_NAME}"
       type: "${APP_TYPE}"
@@ -63,8 +62,6 @@ objects:
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
-    generation: 2
-    creationTimestamp: 
     labels:
       app: "${APP_NAME}"
       type: "${APP_TYPE}"
@@ -112,7 +109,6 @@ objects:
       deploymentconfig: "${APP_NAME}"
     template:
       metadata:
-        creationTimestamp: 
         labels:
           app: "${APP_NAME}"
           type: "${APP_TYPE}"
@@ -165,9 +161,6 @@ objects:
             containerPort: 18093
           - protocol: TCP
             containerPort: 18094
-          resources:
-            limits:
-              memory: "${MEMORY_LIMIT}"
           volumeMounts:
           - name: "${APP_NAME}-data"
             mountPath: "/opt/couchbase/var"
@@ -191,6 +184,13 @@ objects:
             periodSeconds: 10
             successThreshold: 1
             failureThreshold: 3
+          resources:
+            limits:
+              cpu: 2000m
+              memory: "${MEMORY_LIMIT}"
+            requests:
+              cpu: 500m
+              memory: "${MEMORY_LIMIT}"
           terminationMessagePath: "/dev/termination-log"
           imagePullPolicy: Always
         volumes:
@@ -210,7 +210,6 @@ objects:
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
-    creationTimestamp: 
     labels:
       app: "${APP_NAME}"
       type: "${APP_TYPE}"

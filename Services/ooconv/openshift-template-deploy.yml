@@ -298,7 +298,6 @@ objects:
       deploymentconfig: "${APP_NAME}"
     template:
       metadata:
-        creationTimestamp: 
         labels:
           app: "${APP_NAME}"
           provider: startx
@@ -338,6 +337,13 @@ objects:
               command:
               - "/bin/sx-ooconv"
               - isReady
+          resources:
+            limits:
+              cpu: 2000m
+              memory: 512Mi
+            requests:
+              cpu: 500m
+              memory: 128Mi
             initialDelaySeconds: 5
             timeoutSeconds: 2
             periodSeconds: 10

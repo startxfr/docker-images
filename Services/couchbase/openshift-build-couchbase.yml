@@ -57,7 +57,6 @@ objects:
   apiVersion: v1
   metadata:
     name: couchbase-operator
-    generation: 2
     labels:
       type: backend
       provider: startx
@@ -123,11 +122,13 @@ objects:
             periodSeconds: 3
             successThreshold: 1
             failureThreshold: 19
-  status:
-    observedGeneration: 2
-    replicas: 1
-    updatedReplicas: 1
-    availableReplicas: 1
+          resources:
+            limits:
+              cpu: 2000m
+              memory: "${MEMORY_LIMIT}"
+            requests:
+              cpu: 500m
+              memory: "${MEMORY_LIMIT}"
 - kind: Route
   apiVersion: v1
   metadata:
@@ -158,7 +159,6 @@ objects:
   kind: CouchbaseCluster
   metadata:
     clusterName: couchbase-cluster
-    generation: 0
     name: couchbase-node
   spec:
     authSecret: couchbase-auth
@@ -215,7 +215,6 @@ objects:
     template:
       metadata:
         name: couchbase-workload
-        creationTimestamp: 
         labels:
           job-name: couchbase-workload
       spec:
@@ -262,7 +261,6 @@ objects:
     template:
       metadata:
         name: couchbase-workload
-        creationTimestamp: 
         labels:
           job-name: couchbase-workload
       spec:

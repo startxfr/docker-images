@@ -72,7 +72,6 @@ objects:
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
-    creationTimestamp: 
     labels:
       app: "${APP_NAME}"
       type: "${APP_TYPE}"
@@ -85,8 +84,6 @@ objects:
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
-    generation: 2
-    creationTimestamp: 
     labels:
       app: "${APP_NAME}"
       type: "${APP_TYPE}"
@@ -146,7 +143,6 @@ objects:
       deploymentconfig: "${APP_NAME}"
     template:
       metadata:
-        creationTimestamp: 
         labels:
           app: "${APP_NAME}"
           type: "${APP_TYPE}"
@@ -201,6 +197,10 @@ objects:
             containerPort: 18094
           resources:
             limits:
+              cpu: 2000m
+              memory: "${MEMORY_LIMIT}"
+            requests:
+              cpu: 500m
               memory: "${MEMORY_LIMIT}"
           volumeMounts:
           - name: "${APP_NAME}-data"
@@ -244,7 +244,6 @@ objects:
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
-    creationTimestamp: 
     labels:
       app: "${APP_NAME}"
       type: "${APP_TYPE}"
@@ -309,7 +308,6 @@ objects:
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
-    creationTimestamp: 
     labels:
       app: "${APP_NAME}"
       type: "${APP_TYPE}"

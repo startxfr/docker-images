@@ -283,7 +283,6 @@ objects:
       deploymentconfig: "${APP_NAME}"
     template:
       metadata:
-        creationTimestamp: 
         labels:
           app: "${APP_NAME}"
           stage: "${APP_STAGE}"
@@ -324,6 +323,12 @@ objects:
             periodSeconds: 10
             successThreshold: 1
             failureThreshold: 3
+            limits:
+              cpu: 1000m
+              memory: 128Mi
+            requests:
+              cpu: 500m
+              memory: 128Mi
           terminationMessagePath: "/dev/termination-log"
           imagePullPolicy: Always
           volumeMounts:

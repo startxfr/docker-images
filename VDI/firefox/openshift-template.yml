@@ -51,8 +51,6 @@ objects:
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
-    generation: 2
-    creationTimestamp: 
     labels:
       app: "${APP_NAME}"
       provider: startx
@@ -111,7 +109,6 @@ objects:
       deploymentconfig: "${APP_NAME}"
     template:
       metadata:
-        creationTimestamp: 
         labels:
           app: "${APP_NAME}"
           provider: startx
@@ -150,6 +147,13 @@ objects:
             periodSeconds: 10
             successThreshold: 1
             failureThreshold: 3
+          resources:
+            limits:
+              cpu: 2000m
+              memory: "${MEMORY_LIMIT}"
+            requests:
+              cpu: 500m
+              memory: "${MEMORY_LIMIT}"
           terminationMessagePath: "/dev/termination-log"
           imagePullPolicy: Always
           volumeMounts:
@@ -172,7 +176,6 @@ objects:
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
-    creationTimestamp: 
     labels:
       app: "${APP_NAME}"
       provider: startx
@@ -188,7 +191,6 @@ objects:
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
-    creationTimestamp: 
     labels:
       app: "${APP_NAME}"
       provider: startx
@@ -217,4 +219,9 @@ parameters:
     pre-deploy, post-deploy, run, isLive, isReady, usage, usageS2i, daemon, info,
     version. See documentation for action list.
   value: run
+  required: true
+- name: MEMORY_LIMIT
+  displayName: Memory Limit
+  description: Maximum amount of memory the container can use.
+  value: 512Mi
   required: true

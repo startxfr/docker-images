@@ -477,6 +477,10 @@ objects:
             protocol: TCP
           resources:
             limits:
+              cpu: 2000m
+              memory: "${MEMORY_LIMIT}"
+            requests:
+              cpu: 500m
               memory: "${MEMORY_LIMIT}"
           livenessProbe:
             exec:

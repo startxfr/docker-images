@@ -73,8 +73,6 @@ objects:
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
-    generation: 2
-    creationTimestamp: 
     labels:
       app: "${APP_NAME}"
       type: "${APP_TYPE}"
@@ -134,7 +132,6 @@ objects:
       deploymentconfig: "${APP_NAME}"
     template:
       metadata:
-        creationTimestamp: 
         labels:
           app: "${APP_NAME}"
           type: "${APP_TYPE}"
@@ -174,6 +171,13 @@ objects:
             periodSeconds: 10
             successThreshold: 1
             failureThreshold: 3
+          resources:
+            limits:
+              cpu: 2000m
+              memory: "${MEMORY_LIMIT}"
+            requests:
+              cpu: 500m
+              memory: "${MEMORY_LIMIT}"
           terminationMessagePath: "/dev/termination-log"
           imagePullPolicy: Always
           volumeMounts:
@@ -196,7 +200,6 @@ objects:
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
-    creationTimestamp: 
     labels:
       app: "${APP_NAME}"
       type: "${APP_TYPE}"
@@ -213,7 +216,6 @@ objects:
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
-    creationTimestamp: 
     labels:
       app: "${APP_NAME}"
       type: "${APP_TYPE}"
@@ -235,7 +237,6 @@ objects:
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
-    creationTimestamp: 
     labels:
       app: "${APP_NAME}"
       type: "${APP_TYPE}"
@@ -302,4 +303,9 @@ parameters:
   description: Secret token to use for webhook to github or generic
   generate: expression
   from: "[a-zA-Z0-9]{24}"
+  required: true
+- name: MEMORY_LIMIT
+  displayName: Memory Limit
+  description: Maximum amount of memory the container can use.
+  value: 512Mi
   required: true

@@ -172,6 +172,13 @@ objects:
             periodSeconds: 10
             successThreshold: 1
             failureThreshold: 2
+          resources:
+            limits:
+              cpu: 2000m
+              memory: "${MEMORY_LIMIT}"
+            requests:
+              cpu: 500m
+              memory: "${MEMORY_LIMIT}"
           terminationMessagePath: "/dev/termination-log"
           imagePullPolicy: Always
           volumeMounts:
@@ -233,4 +240,9 @@ parameters:
   displayName: Startx image release
   description: "Image tag of the startx php image used. Could be : latest, fc30, fc29, fc28, alpine3, centos7, centos6"
   value: latest
+  required: true
+- name: MEMORY_LIMIT
+  displayName: Memory Limit
+  description: Maximum amount of memory the container can use.
+  value: 512Mi
   required: true

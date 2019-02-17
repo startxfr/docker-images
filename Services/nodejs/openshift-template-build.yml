@@ -406,6 +406,13 @@ objects:
             periodSeconds: 10
             successThreshold: 1
             failureThreshold: 3
+          resources:
+            limits:
+              cpu: 2000m
+              memory: 512Mi
+            requests:
+              cpu: 500m
+              memory: 128Mi
           terminationMessagePath: "/dev/termination-log"
           imagePullPolicy: Always
           volumeMounts:

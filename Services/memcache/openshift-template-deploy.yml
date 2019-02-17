@@ -125,6 +125,10 @@ objects:
           - run
           resources:
             limits:
+              cpu: 2000m
+              memory: "${MEMORY_LIMIT}"
+            requests:
+              cpu: 500m
               memory: "${MEMORY_LIMIT}"
           ports:
           - containerPort: 11211
