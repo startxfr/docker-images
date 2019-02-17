@@ -127,7 +127,7 @@ objects:
               cpu: 12000m
               memory: "${MEMORY_LIMIT}"
             requests:
-              cpu: 8000m
+              cpu: 200m
               memory: "${MEMORY_LIMIT}"
 - kind: Route
   apiVersion: v1

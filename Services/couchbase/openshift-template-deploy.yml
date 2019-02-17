@@ -2,23 +2,27 @@
 kind: Template
 apiVersion: v1
 metadata:
-  name: startx-couchbase-template
+  name: startx-couchbase-deploy-template
   annotations:
-    openshift.io/display-name: Startx Couchbase server (fedora)
-    description: Couchbase server for NoSQL database running under Fedora
-    iconClass: icon-mysql-database
-    tags: startx,os,fedora,couchbase,database
-    openshift.io/long-description: This template provides an couchbase Database in
-      a fedora container. Ready to use in openshift with a simple deployement config,
-      or as a s2i builder for building SQL databases container. For more information
-      about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.
+    openshift.io/display-name: Couchbase database (ephemeral deploy workflow)
+    description: Deployement workflow of a nosql database using ephemeral storage
+      for logs records. Use couchbase with various underlying linux distribution. See 
+      https://hub.docker.com/r/startx/sv-couchbase
+    iconClass: icon-couchbase
+    tags: startx,os,fedora,couchbase,nosql
     openshift.io/provider-display-name: STARTX
-    openshift.io/documentation-url: https://github.com/startxfr/docker-images/blob/master/README.md
+    openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-couchbase
     openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
-message: 'The following container have been created in your project: ${APP_NAME} and
-  you can use openshift console to log into.'
+message: |-
+  Your database ${APP_NAME} will be soon deployed.
+  Monitor the deployement for database availability and
+  Follow created route to browse running application
+
+  Database    : ${APP_NAME}
+  Stage       : ${APP_STAGE}
 labels:
-  template: startx-couchbase-template
+  template: startx-couchbase-deploy-template
+  provider: startx 
 objects:
 - kind: ImageStream
   apiVersion: v1
@@ -29,9 +33,7 @@ objects:
       openshift.io/generated-by: STARTX
     labels:
       app: "${APP_NAME}"
-      type: "${APP_TYPE}"
-      provider: startx
-      template: startx-couchbase-template
+      stage: "${APP_STAGE}"
   spec:
     tags:
     - name: latest
@@ -45,16 +47,14 @@ objects:
         sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
       from:
         kind: DockerImage
-        name: startx/sv-couchbase:latest
+        name: startx/sv-couchbase:${BUILDER_TAG}
 - kind: Secret
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
     labels:
       app: "${APP_NAME}"
-      type: "${APP_TYPE}"
-      provider: startx
-      template: startx-couchbase-template
+      stage: "${APP_STAGE}"
   stringData:
     COUCHBASE_PASSWORD: "${COUCHBASE_PASSWORD}"
     COUCHBASE_USER: "${COUCHBASE_USER}"
@@ -64,9 +64,7 @@ objects:
     name: "${APP_NAME}"
     labels:
       app: "${APP_NAME}"
-      type: "${APP_TYPE}"
-      provider: startx
-      template: startx-couchbase-template
+      stage: "${APP_STAGE}"
     annotations:
       openshift.io/generated-by: STARTX
   spec:
@@ -97,9 +95,9 @@ objects:
       metadata:
         labels:
           app: "${APP_NAME}"
-          type: "${APP_TYPE}"
+          type: "${APP_STAGE}"
           provider: startx
-          template: startx-couchbase-template
+          template: startx-couchbase-deploy-template
           deploymentconfig: "${APP_NAME}"
         annotations:
           openshift.io/generated-by: STARTX
@@ -175,7 +173,7 @@ objects:
               cpu: 12000m
               memory: 2048Mi
             requests:
-              cpu: 8000m
+              cpu: 200m
               memory: 1024Mi
           terminationMessagePath: "/dev/termination-log"
           imagePullPolicy: Always
@@ -186,21 +184,13 @@ objects:
         restartPolicy: Always
         terminationGracePeriodSeconds: 30
         dnsPolicy: ClusterFirst
-        securityContext: {}
-  status:
-    observedGeneration: 2
-    replicas: 1
-    updatedReplicas: 1
-    availableReplicas: 1
 - kind: Service
   apiVersion: v1
   metadata:
     name: "${APP_NAME}"
     labels:
       app: "${APP_NAME}"
-      type: "${APP_TYPE}"
-      provider: startx
-      template: startx-couchbase-template
+      stage: "${APP_STAGE}"
     annotations:
       openshift.io/generated-by: STARTX
   spec:
@@ -254,18 +244,17 @@ objects:
       deploymentconfig: "${APP_NAME}"
     type: ClusterIP
     sessionAffinity: None
-  status:
-    loadBalancer: {}
 parameters:
 - name: APP_NAME
   displayName: Application name
   description: The name of the created application
   value: couchbase
   required: true
-- name: APP_TYPE
-  displayName: Application type
-  description: The type of the created application
-  value: database
+- name: APP_STAGE
+  displayName: Application stage
+  description: "Stage of the application deployed (ex: dev, test, prod, example, demo, poc, ...)"
+  value: example
+  required: true
 - name: COUCHBASE_USER
   displayName: Couchbase user
   description: Default user to create
@@ -280,3 +269,8 @@ parameters:
 - name: COUCHBASE_BUCKETS
   displayName: Couchbase bucket
   description: list of the default's bucket to create
+- name: BUILDER_TAG
+  displayName: Startx image release
+  description: "Image tag of the startx couchbase image used. Could be : latest, fc30, fc29, fc28, alpine3, centos7, centos6"
+  value: latest
+  required: true

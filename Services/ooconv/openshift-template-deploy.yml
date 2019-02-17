@@ -248,7 +248,7 @@ objects:
     strategy:
       type: Recreate
       recreateParams:
-        timeoutSeconds: 40
+        timeoutSeconds: 90
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -257,7 +257,7 @@ objects:
         - "${APP_NAME}"
         from:
           kind: ImageStreamTag
-          name: "${APP_NAME}:${IMAGE_STAGE}"
+          name: "${APP_NAME}:${BUILDER_TAG}"
     - type: ConfigChange
     postCommit:
       script: "/bin/sx-ooconv info"
@@ -312,7 +312,7 @@ objects:
               cpu: 4000m
               memory: 1024Mi
             requests:
-              cpu: 500m
+              cpu: 200m
               memory: 256Mi
             initialDelaySeconds: 5
             timeoutSeconds: 2
@@ -351,20 +351,6 @@ objects:
       deploymentconfig: "${APP_NAME}"
     type: ClusterIP
     sessionAffinity: None
-- kind: Route
-  apiVersion: v1
-  metadata:
-    name: "${APP_NAME}"
-    labels:
-      app: "${APP_NAME}"
-      stage: "${APP_STAGE}"
-    annotations:
-      openshift.io/generated-by: STARTX
-  spec:
-    to:
-      kind: Service
-      name: "${APP_NAME}"
-      weight: 100
 parameters:
 - name: APP_NAME
   displayName: Application name
@@ -376,9 +362,9 @@ parameters:
   description: "Stage of the application deployed (ex: dev, test, prod, example, demo, poc, ...)"
   value: example
   required: true
-- name: IMAGE_STAGE
-  displayName: Image stage
-  description: "Stage of the base image used (ex: dev, test, preprod, prod, latest, rawhide, fc30, alpine3, centos6, centos7, fc29, fc28, ...)"
+- name: BUILDER_TAG
+  displayName: Startx image release
+  description: "Image tag of the startx ooconv image used. Could be : latest, dev, test, preprod, prod - rawhide, fc30, fc29, fc28 - alpine3 - centos7, centos6)"
   value: latest
   required: true
 - name: APP_PATH

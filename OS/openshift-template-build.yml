@@ -3,8 +3,9 @@ apiVersion: v1
 metadata:
   name: startx-os-build-template
   annotations:
-    openshift.io/display-name: Startx Base OS (fedora)
-    description: Minimal Fedora OS container for bash operations
+    openshift.io/display-name: Startx Base OS (build & deploy workflow)
+    description: Build and deployement workflow of a bash script using various underlying linux distribution. 
+      See https://hub.docker.com/r/startx/fedora
     iconClass: icon-beaker
     tags: startx,os,fedora
     openshift.io/long-description: This template provides a fedora container with
@@ -272,7 +273,7 @@ objects:
       sourceStrategy:
         from:
           kind: ImageStreamTag
-          name: startx-os:latest
+          name: startx-os:${BUILDER_TAG}
         env:
         - name: SX_VERBOSE
           value: 'true'
@@ -327,7 +328,7 @@ objects:
               - configMapRef:
                   name: ${APP_NAME}-config
           failurePolicy: Abort
-        timeoutSeconds: 20
+        timeoutSeconds: 40
         updatePeriodSeconds: 1
     triggers:
     - type: ImageChange
@@ -393,7 +394,7 @@ objects:
               cpu: 1000m
               memory: "${MEMORY_LIMIT}"
             requests:
-              cpu: 500m
+              cpu: 200m
               memory: "${MEMORY_LIMIT}"
           terminationMessagePath: "/dev/termination-log"
           imagePullPolicy: Always
@@ -418,6 +419,10 @@ parameters:
   description: "Stage of the application deployed (ex: dev, test, prod, example, demo, poc, ...)"
   value: example
   required: true
+- name: BUILDER_TAG
+  displayName: Builder image stage
+  description: "Image tag of the startx apache builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc30, fc29, fc28 - alpine3 - centos7, centos6)"
+  value: latest
 - name: SOURCE_GIT
   displayName: Source repository
   description: URL to the source code to use during build process

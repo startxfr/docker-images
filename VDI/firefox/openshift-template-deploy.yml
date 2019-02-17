@@ -19,6 +19,7 @@ message: 'The following container have been created in your project: ${APP_NAME}
   you can use openshift console to log into.'
 labels:
   template: startx-firefox-deploy-template
+  provider: startx 
 objects:
 - kind: ImageStream
   apiVersion: v1
@@ -63,7 +64,7 @@ objects:
       rollingParams:
         updatePeriodSeconds: 1
         intervalSeconds: 1
-        timeoutSeconds: 20
+        timeoutSeconds: 90
         maxUnavailable: 25%
         maxSurge: 25%
     triggers:
@@ -128,7 +129,7 @@ objects:
               cpu: 10000m
               memory: 2048Mi
             requests:
-              cpu: 2000m
+              cpu: 200m
               memory: 512Mi
           terminationMessagePath: "/dev/termination-log"
           imagePullPolicy: Always

@@ -4,40 +4,97 @@ apiVersion: v1
 metadata:
   name: startx-couchbase-build-template
   annotations:
-    openshift.io/display-name: Startx Couchbase server (fedora)
-    description: Couchbase server for NoSQL database running under Fedora
-    iconClass: icon-mysql-database
-    tags: startx,os,fedora,couchbase,database
-    openshift.io/long-description: This template provides an couchbase db Couchbase
-      Database in a fedora container. Ready to use in openshift with a simple deployement
-      config, or as a s2i builder for building SQL databases container. For more information
-      about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.
+    openshift.io/display-name: Couchbase database Server (ephemeral build & deploy workflow)
+    description: Build and deployement workflow of a nosql database using ephemeral storage
+      for logs records. Use couchbase with various underlying linux distribution. See 
+      https://hub.docker.com/r/startx/sv-couchbase
+    iconClass: icon-couchbase
+    tags: startx,os,fedora,couchbase,nosql
     openshift.io/provider-display-name: STARTX
-    openshift.io/documentation-url: https://github.com/startxfr/docker-images/blob/master/README.md
+    openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-couchbase
     openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
-message: 'The following container have been created in your project: ${APP_NAME} and
-  you can use openshift console to log into.'
+message: |-
+  Your database ${APP_NAME} is building and will be soon deployed.
+  Monitor the deployement for database availability and
+  Follow created route to browse running application
+
+  Source      : ${SOURCE_BRANCH}@${SOURCE_GIT}
+  Database    : ${APP_NAME}
+  Stage       : ${APP_STAGE}
+  Builder     : ${BUILDER_TAG}
 labels:
   template: startx-couchbase-build-template
+  provider: startx 
 objects:
 - kind: ImageStream
   apiVersion: v1
   metadata:
     name: startx-couchbase
     annotations:
-      openshift.io/display-name: Startx Couchbase Database
+      openshift.io/display-name: Startx Couchbase Database (S2I)
       openshift.io/generated-by: STARTX
     labels:
-      base-image: startx-couchbase
       app: "${APP_NAME}"
-      type: "${APP_TYPE}"
-      provider: startx
+      stage: "${APP_STAGE}"
   spec:
     tags:
+    - name: fc27
+      annotations:
+        openshift.io/display-name: S2I Couchbase Database (Fedora 27)
+        description: Couchbase server builder for NoSQL database running under Fedora
+          27
+        iconClass: icon-mysql-database
+        tags: builder,startx,fedora,couchbase,database
+        supports: db
+        version: fc27
+        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+      from:
+        kind: DockerImage
+        name: startx/sv-couchbase:fc27
+    - name: fc28
+      annotations:
+        openshift.io/display-name: S2I Couchbase Database (Fedora 28)
+        description: Couchbase server builder for NoSQL database running under Fedora
+          28
+        iconClass: icon-mysql-database
+        tags: builder,startx,fedora,couchbase,database
+        supports: db
+        version: fc28
+        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+      from:
+        kind: DockerImage
+        name: startx/sv-couchbase:fc28
+    - name: fc29
+      annotations:
+        openshift.io/display-name: S2I Couchbase Database (Fedora 29)
+        description: Couchbase server builder for NoSQL database running under Fedora
+          29
+        iconClass: icon-mysql-database
+        tags: builder,startx,fedora,couchbase,database
+        supports: db
+        version: fc29
+        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+      from:
+        kind: DockerImage
+        name: startx/sv-couchbase:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: S2I Couchbase Database (Fedora 30)
+        description: Couchbase server builder for NoSQL database running under Fedora
+          30
+        iconClass: icon-mysql-database
+        tags: builder,startx,fedora,couchbase,database
+        supports: db
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+      from:
+        kind: DockerImage
+        name: startx/sv-couchbase:fc30
     - name: latest
       annotations:
-        openshift.io/display-name: Startx Couchbase Database (Fedora rawhide)
-        description: Couchbase server for NoSQL database running under Fedora rawhide
+        openshift.io/display-name: S2I Couchbase Database (Fedora rawhide)
+        description: Couchbase server builder for NoSQL database running under Fedora
+          rawhide
         iconClass: icon-mysql-database
         tags: builder,startx,fedora,couchbase,database
         supports: db
@@ -46,6 +103,45 @@ objects:
       from:
         kind: DockerImage
         name: startx/sv-couchbase:latest
+    - name: centos7
+      annotations:
+        openshift.io/display-name: S2I Couchbase Database (Centos 7)
+        description: Couchbase server builder for NoSQL database running under Centos
+          7
+        iconClass: icon-mysql-database
+        tags: builder,startx,centos,couchbase,database
+        supports: db
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+      from:
+        kind: DockerImage
+        name: startx/sv-couchbase:centos7
+    - name: centos6
+      annotations:
+        openshift.io/display-name: S2I Couchbase Database (Centos 6)
+        description: Couchbase server builder for NoSQL database running under Centos
+          6
+        iconClass: icon-mysql-database
+        tags: builder,startx,centos,couchbase,database
+        supports: db
+        version: '6'
+        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+      from:
+        kind: DockerImage
+        name: startx/sv-couchbase:centos6
+    - name: alpine3
+      annotations:
+        openshift.io/display-name: S2I Couchbase Database (Alpine 3)
+        description: Couchbase server builder for NoSQL database running under Alpine
+          3
+        iconClass: icon-mysql-database
+        tags: builder,startx,alpine,couchbase,database
+        supports: db
+        version: '3'
+        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+      from:
+        kind: DockerImage
+        name: startx/sv-couchbase:alpine3
 - kind: ImageStream
   apiVersion: v1
   metadata:
@@ -54,10 +150,8 @@ objects:
       openshift.io/display-name: Application ${APP_NAME}
       openshift.io/generated-by: STARTX
     labels:
-      base-image: startx-couchbase
       app: "${APP_NAME}"
-      type: "${APP_TYPE}"
-      provider: startx
+      stage: "${APP_STAGE}"
   spec:
     tags:
     - name: latest
@@ -74,9 +168,7 @@ objects:
     name: "${APP_NAME}"
     labels:
       app: "${APP_NAME}"
-      type: "${APP_TYPE}"
-      provider: startx
-      template: startx-couchbase-build-template
+      stage: "${APP_STAGE}"
   stringData:
     COUCHBASE_PASSWORD: "${COUCHBASE_PASSWORD}"
     COUCHBASE_USER: "${COUCHBASE_USER}"
@@ -86,9 +178,7 @@ objects:
     name: "${APP_NAME}"
     labels:
       app: "${APP_NAME}"
-      type: "${APP_TYPE}"
-      provider: startx
-      template: startx-couchbase-build-template
+      stage: "${APP_STAGE}"
     annotations:
       openshift.io/generated-by: STARTX
   spec:
@@ -145,7 +235,7 @@ objects:
       metadata:
         labels:
           app: "${APP_NAME}"
-          type: "${APP_TYPE}"
+          type: "${APP_STAGE}"
           provider: startx
           template: startx-couchbase-build-template
           deploymentconfig: "${APP_NAME}"
@@ -200,7 +290,7 @@ objects:
               cpu: 12000m
               memory: "${MEMORY_LIMIT}"
             requests:
-              cpu: 8000m
+              cpu: 200m
               memory: "${MEMORY_LIMIT}"
           volumeMounts:
           - name: "${APP_NAME}-data"
@@ -246,9 +336,7 @@ objects:
     name: "${APP_NAME}"
     labels:
       app: "${APP_NAME}"
-      type: "${APP_TYPE}"
-      provider: startx
-      template: startx-couchbase-build-template
+      stage: "${APP_STAGE}"
     annotations:
       openshift.io/generated-by: STARTX
   spec:
@@ -310,9 +398,7 @@ objects:
     name: "${APP_NAME}"
     labels:
       app: "${APP_NAME}"
-      type: "${APP_TYPE}"
-      provider: startx
-      template: startx-couchbase-build-template
+      stage: "${APP_STAGE}"
     annotations:
       openshift.io/generated-by: STARTX
   spec:
@@ -337,7 +423,7 @@ objects:
       sourceStrategy:
         from:
           kind: ImageStreamTag
-          name: startx-couchbase:latest
+          name: startx-couchbase:${BUILDER_TAG}
         env:
         - name: SX_VERBOSE
           value: 'true'
@@ -357,10 +443,11 @@ parameters:
   description: The name of the created application
   value: couchbase
   required: true
-- name: APP_TYPE
-  displayName: Application type
-  description: The type of the created application
-  value: database
+- name: APP_STAGE
+  displayName: Application stage
+  description: "Stage of the application deployed (ex: dev, test, prod, example, demo, poc, ...)"
+  value: example
+  required: true
 - name: SOURCE_GIT
   displayName: Source repository
   description: URL to the source code to use during build process
@@ -371,6 +458,10 @@ parameters:
   description: Name of the default branch
   value: master
   required: true
+- name: BUILDER_TAG
+  displayName: Builder image stage
+  description: "Image tag of the startx couchbase builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc30, fc29, fc28 - alpine3 - centos7, centos6)"
+  value: latest
 - name: WEBHOOK_TOKEN
   displayName: Webhook token
   description: Secret token to use for webhook to github or generic

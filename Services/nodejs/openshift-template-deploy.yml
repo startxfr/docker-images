@@ -257,7 +257,7 @@ objects:
         - "${APP_NAME}"
         from:
           kind: ImageStreamTag
-          name: "${APP_NAME}:${IMAGE_STAGE}"
+          name: "${APP_NAME}:${BUILDER_TAG}"
     - type: ConfigChange
     postCommit:
       script: "/bin/sx-nodejs info"
@@ -317,7 +317,7 @@ objects:
               cpu: 1000m
               memory: 256Mi
             requests:
-              cpu: 500m
+              cpu: 200m
               memory: 128Mi
           terminationMessagePath: "/dev/termination-log"
           imagePullPolicy: Always
@@ -376,9 +376,9 @@ parameters:
   description: "Stage of the application deployed (ex: dev, test, prod, example, demo, poc, ...)"
   value: example
   required: true
-- name: IMAGE_STAGE
-  displayName: Image stage
-  description: "Stage of the base image used (ex: dev, test, preprod, prod, latest, rawhide, fc30, alpine3, centos6, centos7, fc29, fc28, ...)"
+- name: BUILDER_TAG
+  displayName: Startx image release
+  description: "Image tag of the startx nodejs image used. Could be : latest, dev, test, preprod, prod - rawhide, fc30, fc29, fc28 - alpine3 - centos7, centos6)"
   value: latest
   required: true
 - name: APP_PATH

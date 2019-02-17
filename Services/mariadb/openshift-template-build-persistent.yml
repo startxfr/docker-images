@@ -399,7 +399,7 @@ objects:
     strategy:
       type: Recreate
       recreateParams:
-        timeoutSeconds: 25
+        timeoutSeconds: 50
         pre:
           failurePolicy: Abort
           execNewPod:
@@ -496,7 +496,7 @@ objects:
               cpu: 4000m
               memory: "${MEMORY_LIMIT}"
             requests:
-              cpu: 1000m
+              cpu: 200m
               memory: "${MEMORY_LIMIT}"
           livenessProbe:
             exec:

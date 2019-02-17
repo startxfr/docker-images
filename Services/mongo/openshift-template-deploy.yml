@@ -100,7 +100,7 @@ objects:
     strategy:
       type: Recreate
       recreateParams:
-        timeoutSeconds: 35
+        timeoutSeconds: 50
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -159,7 +159,7 @@ objects:
               cpu: 8000m
               memory: 1024Mi
             requests:
-              cpu: 2000m
+              cpu: 200m
               memory: 512Mi
           livenessProbe:
             exec:

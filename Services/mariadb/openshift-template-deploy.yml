@@ -99,7 +99,7 @@ objects:
     strategy:
       type: Recreate
       recreateParams:
-        timeoutSeconds: 25
+        timeoutSeconds: 50
     triggers:
     - type: ImageChange
       imageChangeParams:
@@ -153,7 +153,7 @@ objects:
               cpu: 4000m
               memory: 512Mi
             requests:
-              cpu: 1000m
+              cpu: 200m
               memory: 256Mi
           ports:
           - containerPort: 3306
