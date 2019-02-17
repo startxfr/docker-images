@@ -100,7 +100,7 @@ objects:
     strategy:
       type: Recreate
       recreateParams:
-        timeoutSeconds: 50
+        timeoutSeconds: 60
     triggers:
     - type: ImageChange
       imageChangeParams:
