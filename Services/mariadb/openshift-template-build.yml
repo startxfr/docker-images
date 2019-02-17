@@ -14,7 +14,7 @@ metadata:
     openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
 message: |-
   Your database ${APP_NAME} is building and will be soon deployed.
-  Monitor the deployement for application availability
+  Monitor the deployement for database availability
 
   Source      : ${SOURCE_BRANCH}@${SOURCE_GIT}
   Database    : ${APP_NAME}
@@ -411,11 +411,6 @@ objects:
               value: 'true'
             - name: SX_DEBUG
               value: 'true'
-            - name: MYSQL_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: "${APP_NAME}-auth"
-                  key: MYSQL_ROOT_PASSWORD
             - name: MYSQL_USER
               valueFrom:
                 secretKeyRef:

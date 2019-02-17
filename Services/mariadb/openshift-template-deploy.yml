@@ -14,7 +14,7 @@ metadata:
     openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
 message: |-
   Your database ${APP_NAME} will be soon deployed.
-  Monitor the deployement for application availability 
+  Monitor the deployement for database availability 
 
   Database    : ${APP_NAME}
   Stage       : ${APP_STAGE}
