@@ -117,7 +117,7 @@ items:
         iconClass: icon-apache
         tags: builder,startx,centos,apache,httpd
         supports: http
-        version: '7'
+        version: '6'
         sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
       from:
         kind: DockerImage

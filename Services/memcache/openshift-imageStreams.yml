@@ -23,7 +23,7 @@ items:
         openshift.io/display-name: S2I Startx Memcache Backend (Fedora 26)
         description: Memcache server builder for distributed cache backend running under
           Fedora 26
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,fedora,memcache
         supports: memcache
         version: fc26
@@ -36,7 +36,7 @@ items:
         openshift.io/display-name: S2I Startx Memcache Backend (Fedora 27)
         description: Memcache server builder for distributed cache backend running under
           Fedora 27
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,fedora,memcache
         supports: memcache
         version: fc27
@@ -49,7 +49,7 @@ items:
         openshift.io/display-name: S2I Startx Memcache Backend (Fedora 28)
         description: Memcache server builder for distributed cache backend running under
           Fedora 28
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,fedora,memcache
         supports: memcache
         version: fc28
@@ -62,7 +62,7 @@ items:
         openshift.io/display-name: S2I Startx Memcache Backend (Fedora 29)
         description: Memcache server builder for distributed cache backend running under
           Fedora 29
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,fedora,memcache
         supports: memcache
         version: fc29
@@ -75,7 +75,7 @@ items:
         openshift.io/display-name: S2I Startx Memcache Backend (Fedora 30)
         description: Memcache server builder for distributed cache backend running under
           Fedora 30
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,fedora,memcache
         supports: memcache
         version: fc30
@@ -88,7 +88,7 @@ items:
         openshift.io/display-name: S2I Startx Memcache Backend (Fedora rawhide)
         description: Memcache server builder for distributed cache backend running under
           Fedora rawhide
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,fedora,memcache
         supports: memcache
         version: rawhide
@@ -101,7 +101,7 @@ items:
         openshift.io/display-name: S2I Startx Memcache Backend (Centos 7)
         description: Memcache server builder for distributed cache backend running under
           Centos 7
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,centos,memcache
         supports: memcache
         version: '7'
@@ -114,7 +114,7 @@ items:
         openshift.io/display-name: S2I Startx Memcache Backend (Centos 6)
         description: Memcache server builder for distributed cache backend running under
           Centos 6
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,centos,memcache
         supports: memcache
         version: '7'
@@ -127,7 +127,7 @@ items:
         openshift.io/display-name: S2I Startx Memcache Backend (Alpine 3)
         description: Memcache server builder for distributed cache backend running under
           Alpine 3
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,alpine,memcache
         supports: memcache
         version: '3'
@@ -140,7 +140,7 @@ items:
         openshift.io/display-name: S2I Startx Memcache Backend (latest)
         description: Memcache server builder for distributed cache backend running under
           Fedora latest
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,alpine,memcache
         supports: memcache
         sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
@@ -151,7 +151,7 @@ items:
       annotations:
         openshift.io/display-name: S2I Startx Memcache Backend (dev)
         description: Memcache server builder for distributed cache backend (developpement)
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,alpine,memcache
         supports: memcache
         version: 'dev'
@@ -163,7 +163,7 @@ items:
       annotations:
         openshift.io/display-name: S2I Startx Memcache Backend (test)
         description: Memcache server builder for distributed cache backend (testing)
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,alpine,memcache
         supports: memcache
         version: 'test'
@@ -175,7 +175,7 @@ items:
       annotations:
         openshift.io/display-name: S2I Startx Memcache Backend (preprod)
         description: Memcache server builder for distributed cache backend (pre-production)
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,alpine,memcache
         supports: memcache
         version: 'pre-prod'
@@ -187,7 +187,7 @@ items:
       annotations:
         openshift.io/display-name: S2I Startx Memcache Backend (prod)
         description: Memcache server builder for distributed cache backend (production)
-        iconClass: icon-memcache
+        iconClass: icon-redis
         tags: builder,startx,alpine,memcache
         supports: memcache
         version: 'prod'
