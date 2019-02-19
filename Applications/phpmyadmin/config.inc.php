@@ -146,7 +146,8 @@ $cfg['SaveDir'] = getenv('DATA_PATH');
  * default = 'en'
  */
 //$cfg['DefaultLang'] = 'en';
-$cfg['DefaultLang'] = 'fr';
+$cfg['DefaultLang'] = 'en';
+$cfg['Lang'] = 'en';
 
 /**
  * How many columns should be used for table display of a database?
