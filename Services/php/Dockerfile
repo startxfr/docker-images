@@ -7,8 +7,8 @@ ENV SX_VERSION="latest" \
     SX_SERVICE="php" \
     SX_ID="startx/sv-php" \
     SX_NAME="Startx Apache-PHP service image (fedora rawhide)" \
-    SX_SUMMARY="Startx apache-php service based on fedora rawhide"
-    SX_PHPSESS_PATH="/var/lib/php/session"
+    SX_SUMMARY="Startx apache-php service based on fedora rawhide" \
+    SX_PHPSESS_PATH="/var/lib/php/session" \
     SX_PHP_TMPPATH="/tmp"
 
 LABEL name="$SX_ID" \

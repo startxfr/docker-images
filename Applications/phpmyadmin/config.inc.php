@@ -16,8 +16,8 @@
  */
 $cfg['blowfish_secret'] = 'SECRET'; /* YOU MUST FILL IN THIS FOR COOKIE AUTH! */
 $cfg['PmaNoRelation_DisableWarning'] = true;
-$cfg['Lang'] = "en_US";
-
+$cfg['DefaultLang'] = 'en';
+$cfg['Lang'] = 'en';
 /**
  * Servers configuration
  */
@@ -65,6 +65,12 @@ if(getenv('MYSQL_HOST') != '') {
     $cfg['Servers'][$i]['user'] = getenv('MYSQL_USER');
     $cfg['Servers'][$i]['password'] = getenv('MYSQL_PASSWORD');
 }
+if(getenv('MYSQL_LANG') != '') {
+    $cfg['DefaultLang'] = getenv('MYSQL_LANG');
+    $cfg['Lang'] = getenv('MYSQL_LANG');
+}
+
+
 /**
  * phpMyAdmin configuration storage settings.
  */
@@ -147,8 +153,8 @@ $cfg['SaveDir'] = getenv('DATA_PATH');
  * default = 'en'
  */
 //$cfg['DefaultLang'] = 'en';
-$cfg['DefaultLang'] = 'en';
-$cfg['Lang'] = 'en';
+//$cfg['DefaultLang'] = 'en';
+//$cfg['Lang'] = 'en';
 
 /**
  * How many columns should be used for table display of a database?
