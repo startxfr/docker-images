@@ -16,6 +16,7 @@
  */
 $cfg['blowfish_secret'] = 'SECRET'; /* YOU MUST FILL IN THIS FOR COOKIE AUTH! */
 $cfg['PmaNoRelation_DisableWarning'] = true;
+$cfg['Lang'] = "en_US";
 
 /**
  * Servers configuration
