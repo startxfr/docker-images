@@ -272,11 +272,13 @@ function init_mysqlConfig {
     echo "pid-file=/var/run/mysqld/mysqld.pid" >> $MY_CONF
     echo "datadir=$DATA_PATH" >> $MY_CONF
     echo "log-error=$LOG_PATH/mysqld.log" >> $MY_CONF
+    echo "lc-messages=$LC_MESSAGES" >> $MY_CONF
     echo "" >> $MY_CONF
     echo "[mariadb]" >> $MY_CONF
     echo "pid-file=/var/run/mariadb/mariadb.pid" >> $MY_CONF
     echo "datadir=$DATA_PATH" >> $MY_CONF
     echo "log-error=$LOG_PATH/mariadb.log" >> $MY_CONF
+    echo "lc-messages=$LC_MESSAGES" >> $MY_CONF
     echo "config file $MY_CONF updated"
 }
 

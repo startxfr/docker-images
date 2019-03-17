@@ -13,6 +13,7 @@ ENV SX_VERSION="latest" \
     LOG_PATH=/var/log/mariadb \
     LOADSQL_PATH=/tmp/sql  \
     DB_CHARSET=utf8 \
+    LC_MESSAGES=fr_FR \
     RUN_BIN=mysqld_safe
 
 LABEL name="$SX_ID" \
