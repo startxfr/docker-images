@@ -272,13 +272,13 @@ function init_mysqlConfig {
     echo "pid-file=/var/run/mysqld/mysqld.pid" >> $MY_CONF
     echo "datadir=$DATA_PATH" >> $MY_CONF
     echo "log-error=$LOG_PATH/mysqld.log" >> $MY_CONF
-    echo "lc-messages=$LC_MESSAGES" >> $MY_CONF
+    echo "lc_messages=$LC_MESSAGES" >> $MY_CONF
     echo "" >> $MY_CONF
     echo "[mariadb]" >> $MY_CONF
     echo "pid-file=/var/run/mariadb/mariadb.pid" >> $MY_CONF
     echo "datadir=$DATA_PATH" >> $MY_CONF
     echo "log-error=$LOG_PATH/mariadb.log" >> $MY_CONF
-    echo "lc-messages=$LC_MESSAGES" >> $MY_CONF
+    echo "lc_messages=$LC_MESSAGES" >> $MY_CONF
     echo "config file $MY_CONF updated"
 }
 
@@ -348,7 +348,7 @@ function init_configureDatabase {
 
 function config_startserver {
     echoVerbose "starting database for initial setup"
-    `$RUN_BIN &`
+    mysqld_safe &
     mysql_pid=$!
     until mysqladmin ping >/dev/null 2>&1; do
         echo -n "."; sleep 0.2

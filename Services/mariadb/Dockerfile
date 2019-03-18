@@ -14,7 +14,7 @@ ENV SX_VERSION="latest" \
     LOADSQL_PATH=/tmp/sql  \
     DB_CHARSET=utf8 \
     LC_MESSAGES=fr_FR \
-    RUN_BIN=mysqld_safe
+    RUN_BIN="mysqld_safe"
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -35,6 +35,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
+COPY my.cnf $MY_CONF
 RUN dnf --nogpgcheck -y install mariadb-tokudb-engine mariadb-connect-engine mariadb-rocksdb-engine mariadb-oqgraph-engine mariadb-connector-c mariadb-connector-odbc mariadb-server-utils mariadb-java-client mariadb-backup mariadb-common mariadb-errmsg mariadb-gssapi-server mariadb-cracklib-password-check mariadb && \
     dnf clean all && \
     mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH && \
@@ -42,9 +43,8 @@ RUN dnf --nogpgcheck -y install mariadb-tokudb-engine mariadb-connect-engine mar
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
-    touch $DATA_PATH/.keep
-COPY my.cnf $MY_CONF
-RUN chown -R mysql:mysql $LOG_PATH $DATA_PATH $LOADSQL_PATH && \
+    touch $DATA_PATH/.keep && \
+    chown -R mysql:mysql $LOG_PATH $DATA_PATH $LOADSQL_PATH && \
     chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* /var/lib/mysql /var/run/mariadb $MY_CONF && \
     chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* /var/lib/mysql /var/run/mariadb $MY_CONF && \
     chmod -R ugo+x /bin/sx* && \
