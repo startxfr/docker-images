@@ -1,13 +1,13 @@
-FROM startx/fedora:30
+FROM startx/fedora:31
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="fc30" \
+ENV SX_VERSION="fc31" \
     SX_TYPE="desktop" \
     SX_SERVICE="chrome" \
     SX_ID="startx/vdi-chrome" \
-    SX_NAME="Startx Chrome VDI image (fedora 30)" \
-    SX_SUMMARY="Startx chrome container-based desktop application based on fedora 30" \
+    SX_NAME="Startx Chrome VDI image (fedora 31)" \
+    SX_SUMMARY="Startx chrome container-based desktop application based on fedora 31" \
     SX_CHROME_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
     LOG_PATH=/var/log/chrome \
     APP_PATH=/home/chrome \
@@ -36,9 +36,9 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY supervisord.conf $SX_CHROME_SUPERVISOR_CONF/
-COPY sx /tmp/
-RUN wget http://rpmfind.net/linux/fedora-secondary/releases/30/Everything/i386/os/Packages/p/python2-meld3-1.0.2-6.fc30.noarch.rpm && \
-    rpm -ivh python2-meld3-1.0.2-6.fc30.noarch.rpm --nodeps && \
+COPY sx /tmp/ 
+RUN https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/p/python-meld3-1.0.2-10.fc30.noarch.rpm && \
+    rpm -ivh python-meld3-1.0.2-10.fc30.noarch.rpm --nodeps && \
     dnf --nogpgcheck -y install supervisor xorg-x11-server-Xvfb x11vnc fedora-workstation-repositories dnf-plugins-core pulseaudio python2-meld3  python2-setuptools && \
     dnf config-manager --set-enabled google-chrome && \
     dnf --nogpgcheck -y install google-chrome-stable && \

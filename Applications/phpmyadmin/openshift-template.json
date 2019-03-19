@@ -38,19 +38,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc30",
+                        "name": "fc31",
                         "annotations": {
-                            "openshift.io/display-name": "PhpMyAdmin web-console (Fedora 30)",
-                            "description": "PhpMyAdmin web-console for mariadb running under Fedora 30",
+                            "openshift.io/display-name": "PhpMyAdmin web-console (Fedora 31)",
+                            "description": "PhpMyAdmin web-console for mariadb running under Fedora 31",
                             "iconClass": "icon-php",
                             "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
-                            "version": "fc30",
+                            "version": "fc31",
                             "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/app-phpmyadmin:fc30"
+                            "name": "startx/app-phpmyadmin:fc31"
                         }
                     }
                 ]
@@ -112,7 +112,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "startx-app-phpmyadmin:fc30"
+                                "name": "startx-app-phpmyadmin:fc31"
                             }
                         }
                     },
@@ -143,7 +143,7 @@
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
-                                "image": "startx-app-phpmyadmin:fc30",
+                                "image": "startx-app-phpmyadmin:fc31",
                                 "command": [
                                     "/bin/sx-pma"
                                 ],

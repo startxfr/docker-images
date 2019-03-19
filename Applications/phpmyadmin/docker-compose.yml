@@ -1,6 +1,6 @@
 phpmyadmin:
   build: ./
-  container_name: "fc30-application-phpmyadmin"
+  container_name: "fc31-application-phpmyadmin"
   mem_limit: 500m
   memswap_limit: 500m
   cpu_shares: 2

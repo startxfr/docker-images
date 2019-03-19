@@ -91,19 +91,19 @@ objects:
       from:
         kind: DockerImage
         name: startx/sv-memcache:fc29
-    - name: fc30
+    - name: fc31
       annotations:
-        openshift.io/display-name: S2I Startx Memcache Backend (Fedora 30)
+        openshift.io/display-name: S2I Startx Memcache Backend (Fedora 31)
         description: Memcache server builder for distributed cache backend running under
-          Fedora 30
+          Fedora 31
         iconClass: icon-redis
         tags: builder,startx,fedora,memcache
         supports: memcache
-        version: fc30
+        version: fc31
         sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
       from:
         kind: DockerImage
-        name: startx/sv-memcache:fc30
+        name: startx/sv-memcache:fc31
     - name: rawhide
       annotations:
         openshift.io/display-name: S2I Startx Memcache Backend (Fedora rawhide)
@@ -419,7 +419,7 @@ parameters:
   required: true
 - name: BUILDER_TAG
   displayName: Builder image stage
-  description: "Image tag of the startx memcache builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc30, fc29, fc28 - alpine3 - centos7, centos6)"
+  description: "Image tag of the startx memcache builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc29, fc28 - alpine3 - centos7, centos6)"
   value: latest
   required: true
 - name: SOURCE_GIT

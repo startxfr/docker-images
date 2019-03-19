@@ -70,19 +70,19 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-postgres:fc29
-    - name: fc30
+    - name: fc31
       annotations:
-        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 30)
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 31)
         description: PostgreSQL server builder for advanced SQL database running under
-          Fedora 30
+          Fedora 31
         iconClass: icon-postgresql
         tags: builder,startx,fedora,postgres,sql
         supports: postgresql
-        version: fc30
+        version: fc31
         sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
       from:
         kind: DockerImage
-        name: startx/sv-postgres:fc30
+        name: startx/sv-postgres:fc31
     - name: latest
       annotations:
         openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora latest)

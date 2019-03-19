@@ -1,6 +1,6 @@
 [![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-# Docker OS Images : COUCHBASE on Fedora 30
+# Docker OS Images : COUCHBASE on Fedora 31
 
 Simple container used to deliver distributed and low latency document oriented database
 Run [couchbase daemon](https://www.couchbase.org/) under a container 

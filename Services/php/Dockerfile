@@ -1,13 +1,13 @@
-FROM startx/sv-apache:fc30
+FROM startx/sv-apache:fc31
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="fc30" \
+ENV SX_VERSION="fc31" \
     SX_TYPE="service" \
     SX_SERVICE="php" \
     SX_ID="startx/sv-php" \
-    SX_NAME="Startx Apache-PHP service image (fedora 30)" \
-    SX_SUMMARY="Startx apache-php service based on fedora 30" \
+    SX_NAME="Startx Apache-PHP service image (fedora 31)" \
+    SX_SUMMARY="Startx apache-php service based on fedora 31" \
     SX_PHPSESS_PATH="/var/lib/php/session" \
     SX_PHP_TMPPATH="/tmp"
 

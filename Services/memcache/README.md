@@ -1,6 +1,6 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : MEMCACHE on Fedora 30
+# Docker OS Images : MEMCACHE on Fedora 31
 
 Startx memcache is a base container used for distributed cache published in [Dockerhub registry](https://hub.docker.com/u/startx). 
 This container contain :

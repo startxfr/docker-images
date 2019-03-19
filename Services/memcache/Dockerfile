@@ -1,13 +1,13 @@
-FROM startx/fedora:30
+FROM startx/fedora:31
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="fc30" \
+ENV SX_VERSION="fc31" \
     SX_TYPE="service" \
     SX_SERVICE="memcache" \
     SX_ID="startx/sv-memcache" \
-    SX_NAME="Startx Memcached service image (fedora 30)" \
-    SX_SUMMARY="Startx Memcached service based on fedora 30" \
+    SX_NAME="Startx Memcached service image (fedora 31)" \
+    SX_SUMMARY="Startx Memcached service based on fedora 31" \
     LOG_PATH=/logs
 
 LABEL name="$SX_ID" \

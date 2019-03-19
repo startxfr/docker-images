@@ -169,7 +169,7 @@ parameters:
   required: true
 - name: BUILDER_IMAGE
   displayName: Startx image 
-  description: "Image tag of the startx os image used. Could be : fedora:latest, fedora:30, fedora:29, fedora:28, alpine:3, centos:7, centos:6"
+  description: "Image tag of the startx os image used. Could be : fedora:latest, fedora:31, fedora:29, fedora:28, alpine:3, centos:7, centos:6"
   value: fedora:latest
   required: true
 - name: RUN_ACTION

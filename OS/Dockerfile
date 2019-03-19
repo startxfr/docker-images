@@ -2,12 +2,12 @@ FROM fedora:rawhide
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="fc30" \
+ENV SX_VERSION="fc31" \
     SX_TYPE="OS" \
     SX_SERVICE="fedora" \
     SX_ID="startx/fedora" \
-    SX_NAME="Startx OS base image (fedora 30)" \
-    SX_SUMMARY="Startx OS base image based on fedora 30" \
+    SX_NAME="Startx OS base image (fedora 31)" \
+    SX_SUMMARY="Startx OS base image based on fedora 31" \
     SX_VERBOSE=true \
     SX_DEBUG=false \
     APP_PATH="/app" \

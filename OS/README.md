@@ -1,6 +1,6 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : FEDORA 30
+# Docker OS Images : Fedora 31
 
 Startx fedora is a base container used for all startx services and applications published in [Dockerhub registry](https://hub.docker.com/u/startx). 
 This container contain :
@@ -27,8 +27,8 @@ See more applications builders and sample on [startx docker images repository](h
 
 | Docker Hub repository                                             | Openshift                                                                                                                                                                                                                                                                                                                                     | Docker-compose                                                                                     | Fedora distribution                        
 |-------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|---------------------
-| [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora)  | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora 30
-| [`startx/fedora:30`](https://hub.docker.com/r/startx/fedora)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora 30 
+| [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora)  | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora 31
+| [`startx/fedora:31`](https://hub.docker.com/r/startx/fedora)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora 31 
 | [`startx/fedora:29`](https://hub.docker.com/r/startx/fedora)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora 29
 | [`startx/fedora:28`](https://hub.docker.com/r/startx/fedora)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora 28 
 | [`startx/fedora:27`](https://hub.docker.com/r/startx/fedora)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora 27
@@ -43,7 +43,7 @@ See more applications builders and sample on [startx docker images repository](h
 ### Running using docker
 
 ```bash
-docker run -it --name="example-fedora30" startx/fedora:30
+docker run -it --name="example-fedora31" startx/fedora:31
 ```
 
 ### Running using docker-compose
@@ -51,8 +51,8 @@ docker run -it --name="example-fedora30" startx/fedora:30
 * Create a `docker-compose.yml` file with the following content
 ```yaml
 fedora:
-  image: startx/fedora:30
-  container_name: "example-fedora30"
+  image: startx/fedora:31
+  container_name: "example-fedora31"
 ```
 * Execute the following command
 ```bash
@@ -149,10 +149,10 @@ chmod ug+x run
 Then you can use this image as an s2i builder image
 ```bash
 # With your current directory application code
-s2i build . startx/fedora:30 startx-bash-myapp
+s2i build . startx/fedora:31 startx-bash-myapp
 docker run --rm -i -t startx-bash-myapp
 # With startx application sample code repository
-s2i build https://github.com/startxfr/docker-images-example-bash startx/fedora:30 startx-bash-sample
+s2i build https://github.com/startxfr/docker-images-example-bash startx/fedora:31 startx-bash-sample
 docker run --rm -i -t startx-bash-sample
 ```
 
@@ -160,7 +160,7 @@ docker run --rm -i -t startx-bash-sample
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 ```Dockerfile
-FROM startx/fedora:30
+FROM startx/fedora:31
 #... your container specifications
 ```
 
@@ -168,7 +168,7 @@ FROM startx/fedora:30
 
 | Variable                  | Type     | Default         | Description                                                              |
 |---------------------------|----------|-----------------|--------------------------------------------------------------------------|
-| SX_VERSION                | `string` | `30`            | container version
+| SX_VERSION                | `string` | `31`            | container version
 | SX_TYPE                   | `string` | `OS`            | Container family (os, service, application). could be enhanced 
 | SX_SERVICE                | `string` | `fedora`        | Define the type of service or application provided
 | SX_ID                     | `auto`   | `startx/fedora` | Container ID coresponding to the image repository 
@@ -195,10 +195,10 @@ This section will help you if you want to :
 ### Build & run a container using `docker`
 
 1. Jump into the container directory with `cd OS`
-2. Build the container using `docker build -t startx-fedora30 .`
+2. Build the container using `docker build -t startx-fedora31 .`
 3. Run this container 
-   - Interactively with `docker run -it startx-fedora30`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-   - As a daemon with `docker run -d startx-fedora30`
+   - Interactively with `docker run -it startx-fedora31`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+   - As a daemon with `docker run -d startx-fedora31`
 
 
 ### Build & run a container using `docker-compose`

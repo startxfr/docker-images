@@ -1,6 +1,6 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : APACHE on Fedora 30
+# Docker OS Images : APACHE on Fedora 31
 
 Startx apache is a base container used for web services and applications published in [Dockerhub registry](https://hub.docker.com/u/startx). 
 This container contain :
@@ -47,7 +47,7 @@ See more applications builders and sample on [startx docker images repository](h
 ### Running using docker
 
 ```bash
-docker run -it -p 9201:8080 --name="example-apache" startx/sv-apache:fc30
+docker run -it -p 9201:8080 --name="example-apache" startx/sv-apache:fc31
 ```
 
 * Connect to your local application
@@ -60,7 +60,7 @@ firefox http://localhost:9201
 * Create a `docker-compose.yml` file with the following content
 ```yaml
 apache:
-  image: startx/sv-apache:fc30
+  image: startx/sv-apache:fc31
   container_name: "example-apache"
   ports:
     - "9201:8080"
@@ -163,10 +163,10 @@ EOF > index.html
 Then you can use this image as an s2i builder image
 ```bash
 # With your current directory application code
-s2i build . startx/sv-apache:fc30 startx-apache-myapp
+s2i build . startx/sv-apache:fc31 startx-apache-myapp
 docker run --rm -d -p 9201:8080 startx-apache-myapp
 # With startx application sample code repository
-s2i build https://github.com/startxfr/docker-images-example-apache startx/sv-apache:fc30 startx-apache-sample
+s2i build https://github.com/startxfr/docker-images-example-apache startx/sv-apache:fc31 startx-apache-sample
 docker run --rm -d -p 9201:8080 startx-apache-sample
 ```
 
@@ -174,7 +174,7 @@ docker run --rm -d -p 9201:8080 startx-apache-sample
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 ```Dockerfile
-FROM startx/sv-apache:fc30
+FROM startx/sv-apache:fc31
 #... your container specifications
 ```
 

@@ -1,6 +1,6 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : APACHE + PHP on Fedora 30
+# Docker OS Images : APACHE + PHP on Fedora 31
 
 Startx php is a base container used for dynamic web services and applications published in [Dockerhub registry](https://hub.docker.com/u/startx). 
 This container contain :
@@ -48,7 +48,7 @@ See more applications builders and sample on [startx docker images repository](h
 ### Running using docker
 
 ```bash
-docker run -it -p 9213:8080 --name="example-php" startx/sv-php:fc30
+docker run -it -p 9213:8080 --name="example-php" startx/sv-php:fc31
 ```
 
 * Connect to your local application
@@ -61,7 +61,7 @@ firefox http://localhost:9213
 * Create a `docker-compose.yml` file with the following content
 ```yaml
 php:
-  image: startx/sv-php:fc30
+  image: startx/sv-php:fc31
   container_name: "example-php"
   ports:
     - "9213:8080"
@@ -164,10 +164,10 @@ EOF > index.html
 Then you can use this image as an s2i builder image
 ```bash
 # With your current directory application code
-s2i build . startx/sv-php:fc30 startx-php-myapp
+s2i build . startx/sv-php:fc31 startx-php-myapp
 docker run --rm -d -p 9213:8080 startx-php-myapp
 # With startx application sample code repository
-s2i build https://github.com/startxfr/docker-images-example-php startx/sv-php:fc30 startx-php-sample
+s2i build https://github.com/startxfr/docker-images-example-php startx/sv-php:fc31 startx-php-sample
 docker run --rm -d -p 9213:8080 startx-php-sample
 ```
 
@@ -175,7 +175,7 @@ docker run --rm -d -p 9213:8080 startx-php-sample
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 ```Dockerfile
-FROM startx/sv-php:fc30
+FROM startx/sv-php:fc31
 #... your container specifications
 ```
 

@@ -1,13 +1,13 @@
-FROM startx/fedora:30
+FROM startx/fedora:31
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="fc30" \
+ENV SX_VERSION="fc31" \
     SX_TYPE="service" \
     SX_SERVICE="postgres" \
     SX_ID="startx/sv-postgres" \
-    SX_NAME="Startx Postgres service image (fedora 30)" \
-    SX_SUMMARY="Startx postgres service based on fedora 30" \
+    SX_NAME="Startx Postgres service image (fedora 31)" \
+    SX_SUMMARY="Startx postgres service based on fedora 31" \
     DATA_PATH=/data \
     LOG_PATH=/var/log/postgres
 

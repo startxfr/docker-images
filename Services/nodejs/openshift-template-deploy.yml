@@ -92,19 +92,19 @@ objects:
       from:
         kind: DockerImage
         name: startx/sv-nodejs:fc29
-    - name: fc30
+    - name: fc31
       annotations:
-        openshift.io/display-name: S2I Startx Micro-WebServer (Fedora 30)
+        openshift.io/display-name: S2I Startx Micro-WebServer (Fedora 31)
         description: Lightweight Http server builder for micro-web application running under
-          Fedora 30
+          Fedora 31
         iconClass: icon-nodejs
         tags: builder,startx,fedora,nodejs,httpd
         supports: http
-        version: fc30
+        version: fc31
         sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
       from:
         kind: DockerImage
-        name: startx/sv-nodejs:fc30
+        name: startx/sv-nodejs:fc31
     - name: rawhide
       annotations:
         openshift.io/display-name: S2I Startx Micro-WebServer (Fedora rawhide)
@@ -378,7 +378,7 @@ parameters:
   required: true
 - name: BUILDER_TAG
   displayName: Startx image release
-  description: "Image tag of the startx nodejs image used. Could be : latest, dev, test, preprod, prod - rawhide, fc30, fc29, fc28 - alpine3 - centos7, centos6)"
+  description: "Image tag of the startx nodejs image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc29, fc28 - alpine3 - centos7, centos6)"
   value: latest
   required: true
 - name: APP_PATH

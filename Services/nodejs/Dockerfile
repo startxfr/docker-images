@@ -1,13 +1,13 @@
-FROM startx/fedora:30
+FROM startx/fedora:31
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="fc30" \
+ENV SX_VERSION="fc31" \
     SX_TYPE="service" \
     SX_SERVICE="nodejs" \
     SX_ID="startx/sv-nodejs" \
-    SX_NAME="Startx Nodejs service image (fedora 30)" \
-    SX_SUMMARY="Startx nodejs service based on fedora 30" \
+    SX_NAME="Startx Nodejs service image (fedora 31)" \
+    SX_SUMMARY="Startx nodejs service based on fedora 31" \
     LOG_PATH=/var/log/nodejs \
     APP_PATH=/app \
     DATA_PATH=/data \

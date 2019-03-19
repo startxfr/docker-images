@@ -58,19 +58,19 @@ items:
       from:
         kind: DockerImage
         name: startx/vdi-chrome:fc29
-    - name: fc30
+    - name: fc31
       annotations:
-        openshift.io/display-name: VDI Chrome Browser (Fedora 30)
+        openshift.io/display-name: VDI Chrome Browser (Fedora 31)
         description: Container-based desktop Chrome browser for remote internet browsing  under
-          Fedora 30
+          Fedora 31
         iconClass: icon-aerogear
         tags: builder,startx,fedora,chrome,vnc
         supports: vnc
-        version: fc30
+        version: fc31
         sampleRepo: https://github.com/startxfr/docker-images-example-chrome.git
       from:
         kind: DockerImage
-        name: startx/vdi-chrome:fc30
+        name: startx/vdi-chrome:fc31
     - name: latest
       annotations:
         openshift.io/display-name: VDI Chrome Browser (Fedora rawhide)
@@ -160,19 +160,19 @@ items:
       from:
         kind: DockerImage
         name: startx/vdi-firefox:fc29
-    - name: fc30
+    - name: fc31
       annotations:
-        openshift.io/display-name: VDI Firefox Browser (Fedora 30)
+        openshift.io/display-name: VDI Firefox Browser (Fedora 31)
         description: Container-based desktop Firefox browser for remote internet browsing  under
-          Fedora 30
+          Fedora 31
         iconClass: icon-aerogear
         tags: builder,startx,fedora,firefox,vnc
         supports: vnc
-        version: fc30
+        version: fc31
         sampleRepo: https://github.com/startxfr/docker-images-example-firefox.git
       from:
         kind: DockerImage
-        name: startx/vdi-firefox:fc30
+        name: startx/vdi-firefox:fc31
     - name: latest
       annotations:
         openshift.io/display-name: VDI Firefox Browser (Fedora rawhide)

@@ -1,6 +1,6 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : MARIADB on Fedora 30
+# Docker OS Images : MARIADB on Fedora 31
 
 Startx mariadb is a base container used for database services published in [Dockerhub registry](https://hub.docker.com/u/startx). 
 This container contain :
@@ -47,7 +47,7 @@ See more databases builders and sample on [startx docker images repository](http
 ### Running using docker
 
 ```bash
-docker run -it -p 9231:3306 --name="example-mariadb" startx/sv-mariadb:fc30
+docker run -it -p 9231:3306 --name="example-mariadb" startx/sv-mariadb:fc31
 ```
 
 * Connect to your local database
@@ -60,7 +60,7 @@ mysql -h localhost -P 9231
 * Create a `docker-compose.yml` file with the following content
 ```yaml
 mariadb:
-  image: startx/sv-mariadb:fc30
+  image: startx/sv-mariadb:fc31
   container_name: "example-mariadb"
 ```
 
@@ -180,10 +180,10 @@ EOF > schema-sample.sql
 Then you can use this image as an s2i builder image
 ```bash
 # With your current directory database code
-s2i build . startx/sv-mariadb:fc30 startx-mariadb-mydb
+s2i build . startx/sv-mariadb:fc31 startx-mariadb-mydb
 docker run --rm -d -p 9231:3306 startx-mariadb-mydb
 # With startx database sample code repository
-s2i build https://github.com/startxfr/docker-images-example-mariadb startx/sv-mariadb:fc30 startx-mariadb-sample
+s2i build https://github.com/startxfr/docker-images-example-mariadb startx/sv-mariadb:fc31 startx-mariadb-sample
 docker run --rm -d -p 9231:3306 startx-mariadb-sample
 ```
 
@@ -191,7 +191,7 @@ docker run --rm -d -p 9231:3306 startx-mariadb-sample
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 ```Dockerfile
-FROM startx/sv-mariadb:fc30
+FROM startx/sv-mariadb:fc31
 #... your container specifications
 ```
 

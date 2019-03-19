@@ -1,6 +1,6 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : NODEJS on Fedora 30
+# Docker OS Images : NODEJS on Fedora 31
 
 Startx nodejs is a base container used for web services and applications published in [Dockerhub registry](https://hub.docker.com/u/startx). 
 This container contain :
@@ -47,7 +47,7 @@ See more applications builders and sample on [startx docker images repository](h
 ### Running using docker
 
 ```bash
-docker run -it -p 9221:8080 --name="example-nodejs" startx/sv-nodejs:fc30
+docker run -it -p 9221:8080 --name="example-nodejs" startx/sv-nodejs:fc31
 ```
 
 * Connect to your local application
@@ -60,7 +60,7 @@ firefox http://localhost:9221
 * Create a `docker-compose.yml` file with the following content
 ```yaml
 nodejs:
-  image: startx/sv-nodejs:fc30
+  image: startx/sv-nodejs:fc31
   container_name: "example-nodejs"
   ports:
     - "9221:8080"
@@ -169,10 +169,10 @@ EOF > app.js
 Then you can use this image as an s2i builder image
 ```bash
 # With your current directory application code
-s2i build . startx/sv-nodejs:fc30 startx-nodejs-myapp
+s2i build . startx/sv-nodejs:fc31 startx-nodejs-myapp
 docker run --rm -d -p 9221:8080 startx-nodejs-myapp
 # With startx application sample code repository
-s2i build https://github.com/startxfr/docker-images-example-nodejs startx/sv-nodejs:fc30 startx-nodejs-sample
+s2i build https://github.com/startxfr/docker-images-example-nodejs startx/sv-nodejs:fc31 startx-nodejs-sample
 docker run --rm -d -p 9221:8080 startx-nodejs-sample
 ```
 
@@ -180,7 +180,7 @@ docker run --rm -d -p 9221:8080 startx-nodejs-sample
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 ```Dockerfile
-FROM startx/sv-nodejs:fc30
+FROM startx/sv-nodejs:fc31
 #... your container specifications
 ```
 

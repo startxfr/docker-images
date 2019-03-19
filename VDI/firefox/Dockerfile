@@ -1,13 +1,13 @@
-FROM startx/fedora:30
+FROM startx/fedora:31
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="30" \
+ENV SX_VERSION="31" \
     SX_TYPE="desktop" \
     SX_SERVICE="firefox" \
     SX_ID="startx/vdi-firefox" \
-    SX_NAME="Startx Firefox VDI image (fedora 30)" \
-    SX_SUMMARY="Startx firefox container-based desktop application based on fedora 30" \
+    SX_NAME="Startx Firefox VDI image (fedora 31)" \
+    SX_SUMMARY="Startx firefox container-based desktop application based on fedora 31" \
     SX_FIREFOX_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
     LOG_PATH=/var/log/firefox \
     APP_PATH=/home/firefox \
