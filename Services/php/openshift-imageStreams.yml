@@ -83,6 +83,19 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-php:fc30
+    - name: fc31
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (Fedora 31)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
+          Fedora 31
+        iconClass: icon-php
+        tags: builder,startx,fedora,php,httpd
+        supports: http
+        version: fc31
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:fc31
     - name: rawhide
       annotations:
         openshift.io/display-name: S2I Startx PHP WebServer (Fedora rawhide)

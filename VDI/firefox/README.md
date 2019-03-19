@@ -10,7 +10,10 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-* `:latest` : Fedora core 29 + Firefox 50.0.2661.102
+* `:latest` : Fedora core rawhide + Firefox 50.0.2661.102
+* `:fc31` : Fedora core 31 + Firefox 50.0.2661.102
+* `:fc30` : Fedora core 30 + Firefox 50.0.2661.102
+* `:fc29` : Fedora core 29 + Firefox 50.0.2661.102
 * `:fc28` : Fedora core 28 + Firefox 50.0.2661.102
 * `:centos7` : CentOS 7 + Firefox 
 * `:alpine3` : Alpine 3.7 + Firefox 50.0.2661.102

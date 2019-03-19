@@ -98,6 +98,10 @@ This script assume :
 ./okd-helper.sh setup flavour centos6
 ./okd-helper.sh test-deploy all
 ./okd-helper.sh test-build all
+# setup test for fedora:31
+./okd-helper.sh setup flavour 31
+./okd-helper.sh test-deploy all
+./okd-helper.sh test-build all
 # setup test for fedora:30
 ./okd-helper.sh setup flavour fc30
 ./okd-helper.sh test-deploy all
@@ -130,6 +134,11 @@ This script assume :
 # setup test for centos:6
 ./okd-helper.sh setup project centos-6
 ./okd-helper.sh setup flavour centos6
+./okd-helper.sh test-deploy all
+./okd-helper.sh test-build all
+# setup test for fedora:31
+./okd-helper.sh setup project fedora-31
+./okd-helper.sh setup flavour fc31
 ./okd-helper.sh test-deploy all
 ./okd-helper.sh test-build all
 # setup test for fedora:30
