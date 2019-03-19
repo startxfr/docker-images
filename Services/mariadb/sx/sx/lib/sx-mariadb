@@ -64,7 +64,7 @@ function doMariadbBuild {
     echoVerbose "+====================================================="
     if [[ -d $LOADSQL_PATH ]]; then
         echoVerbose "Copy SQL scripts from $APP_PATH to $LOADSQL_PATH"
-        cp -R $APP_PATH/*.sql $LOADSQL_PATH/
+        cp -R $APP_PATH/*.sql $LOADSQL_PATH/ &> /dev/null
     fi
 }
 
@@ -269,16 +269,22 @@ function init_mysqlConfig {
     echo "" > $MY_CONF
     echo "[mysqld]" >> $MY_CONF
     echo "socket=/var/lib/mysql/mysql.sock" >> $MY_CONF
-    echo "pid-file=/var/run/mysqld/mysqld.pid" >> $MY_CONF
+    echo "pid-file=/var/run/mariadb/mysqld.pid" >> $MY_CONF
     echo "datadir=$DATA_PATH" >> $MY_CONF
     echo "log-error=$LOG_PATH/mysqld.log" >> $MY_CONF
+    echo "lc_messages_dir=/usr/share/mariadb" >> $MY_CONF
     echo "lc_messages=$LC_MESSAGES" >> $MY_CONF
+    echo "character-set-server=utf8" >> $MY_CONF
+    echo "collation-server=utf8_general_ci" >> $MY_CONF
     echo "" >> $MY_CONF
     echo "[mariadb]" >> $MY_CONF
     echo "pid-file=/var/run/mariadb/mariadb.pid" >> $MY_CONF
     echo "datadir=$DATA_PATH" >> $MY_CONF
     echo "log-error=$LOG_PATH/mariadb.log" >> $MY_CONF
+    echo "lc_messages_dir=/usr/share/mariadb" >> $MY_CONF
     echo "lc_messages=$LC_MESSAGES" >> $MY_CONF
+    echo "character-set-server=utf8" >> $MY_CONF
+    echo "collation-server=utf8_general_ci" >> $MY_CONF
     echo "config file $MY_CONF updated"
 }
 
@@ -348,7 +354,7 @@ function init_configureDatabase {
 
 function config_startserver {
     echoVerbose "starting database for initial setup"
-    $(mysqld_safe &)
+    mysqld_safe &
     mysql_pid=$!
     until mysqladmin ping >/dev/null 2>&1; do
         echo -n "."; sleep 0.2

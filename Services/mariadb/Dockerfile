@@ -13,7 +13,7 @@ ENV SX_VERSION="latest" \
     LOG_PATH=/var/log/mariadb \
     LOADSQL_PATH=/tmp/sql  \
     DB_CHARSET=utf8 \
-    LC_MESSAGES=fr_FR \
+    LC_MESSAGES=en_US \
     RUN_BIN="mysqld_safe"
 
 LABEL name="$SX_ID" \
@@ -36,7 +36,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 COPY my.cnf $MY_CONF
-RUN dnf --nogpgcheck -y install mariadb-tokudb-engine mariadb-connect-engine mariadb-rocksdb-engine mariadb-oqgraph-engine mariadb-connector-c mariadb-connector-odbc mariadb-server-utils mariadb-java-client mariadb-backup mariadb-common mariadb-errmsg mariadb-gssapi-server mariadb-cracklib-password-check mariadb && \
+RUN dnf --nogpgcheck -y install mariadb-tokudb-engine mariadb-connect-engine mariadb-rocksdb-engine mariadb-oqgraph-engine mariadb-connector-c mariadb-connector-odbc mariadb-server-utils mariadb-java-client mariadb-backup mariadb-common mariadb-errmsg mariadb-gssapi-server mariadb-cracklib-password-check glibc-langpack-fr mariadb && \
     dnf clean all && \
     mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \
