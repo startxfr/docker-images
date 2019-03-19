@@ -458,9 +458,10 @@ function config_importsql {
                 echo "Importing schema from $LOADSQL_PATH "
                 SCHEMALIST=$(find $LOADSQL_PATH/${MYSQL_SQL_SCHEMA_PREFIX}*.sql -type f -printf "%f\n")
                 for SCHEMAFILE in $SCHEMALIST; do 
-                    echo "SET NAMES $DB_CHARSET;"|cat - $LOADSQL_PATH/$SCHEMAFILE > /tmp/out && mv -f /tmp/out $LOADSQL_PATH/$SCHEMAFILE
+                    echo "SET NAMES $DB_CHARSET;"|cat - $LOADSQL_PATH/$SCHEMAFILE > /tmp/tmp.sql
                     echo -n "- schema " $SCHEMAFILE " ... "
-                    mysql -uroot -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -D $MYSQL_DATABASE < $LOADSQL_PATH/$SCHEMAFILE
+                    mysql -uroot -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -D $MYSQL_DATABASE < /tmp/tmp.sql
+                    rm -f /tmp/tmp.sql
                     echo " IMPORTED"
                 done
             else
@@ -470,9 +471,10 @@ function config_importsql {
                 echo "Importing data from $LOADSQL_PATH "
                 DATALIST=$(find $LOADSQL_PATH/${MYSQL_SQL_DATA_PREFIX}*.sql -type f -printf "%f\n")
                 for DATAFILE in $DATALIST; do 
-                    echo "SET NAMES $DB_CHARSET;"|cat - $LOADSQL_PATH/$DATAFILE > /tmp/out && mv -f /tmp/out $LOADSQL_PATH/$DATAFILE
+                    echo "SET NAMES $DB_CHARSET;"|cat - $LOADSQL_PATH/$DATAFILE > /tmp/tmp.sql
                     echo -n "- data " $DATAFILE " ... "
-                    mysql -uroot -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -D $MYSQL_DATABASE < $LOADSQL_PATH/$DATAFILE
+                    mysql -uroot -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -D $MYSQL_DATABASE < /tmp/tmp.sql
+                    rm -f /tmp/tmp.sql
                     echo " IMPORTED"
                 done
             else
