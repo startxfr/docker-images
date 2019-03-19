@@ -36,8 +36,8 @@ LABEL name="$SX_ID" \
 USER root
 COPY supervisord.conf $SX_FIREFOX_SUPERVISOR_CONF/
 COPY sx /tmp/
-RUN wget http://rpmfind.net/linux/fedora-secondary/releases/28/Everything/i386/os/Packages/p/python2-meld3-1.0.2-6.fc28.noarch.rpm && \
-    rpm -ivh python2-meld3-1.0.2-6.fc28.noarch.rpm --nodeps && \
+RUN wget https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/p/python-meld3-1.0.2-10.fc30.noarch.rpm && \
+    rpm -ivh python-meld3-1.0.2-10.fc30.noarch.rpm --nodeps && \
     dnf --nogpgcheck -y install supervisor xorg-x11-server-Xvfb x11vnc firefox python2-setuptools  && \
     dnf clean all && \
     easy_install pip && \

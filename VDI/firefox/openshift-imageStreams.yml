@@ -71,6 +71,19 @@ items:
       from:
         kind: DockerImage
         name: startx/vdi-firefox:fc30
+    - name: fc31
+      annotations:
+        openshift.io/display-name: VDI Firefox Browser (Fedora 31)
+        description: Container-based desktop Firefox browser for remote internet browsing  under
+          Fedora 31
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,firefox,vnc
+        supports: vnc
+        version: fc31
+        sampleRepo: https://github.com/startxfr/docker-images-example-firefox.git
+      from:
+        kind: DockerImage
+        name: startx/vdi-firefox:fc31
     - name: latest
       annotations:
         openshift.io/display-name: VDI Firefox Browser (Fedora rawhide)
