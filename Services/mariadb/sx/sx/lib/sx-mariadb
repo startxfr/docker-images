@@ -273,18 +273,18 @@ function init_mysqlConfig {
     echo "datadir=$DATA_PATH" >> $MY_CONF
     echo "log-error=$LOG_PATH/mysqld.log" >> $MY_CONF
     echo "lc_messages_dir=/usr/share/mariadb" >> $MY_CONF
-    echo "lc_messages=$LC_MESSAGES" >> $MY_CONF
-    echo "character-set-server=utf8" >> $MY_CONF
-    echo "collation-server=utf8_general_ci" >> $MY_CONF
+    echo "lc_messages=${LC_MESSAGES}" >> $MY_CONF
+    echo "character-set-server=${DB_CHARSET}" >> $MY_CONF
+    echo "collation-server=${DB_CHARSET}_general_ci" >> $MY_CONF
     echo "" >> $MY_CONF
     echo "[mariadb]" >> $MY_CONF
     echo "pid-file=/var/run/mariadb/mariadb.pid" >> $MY_CONF
     echo "datadir=$DATA_PATH" >> $MY_CONF
     echo "log-error=$LOG_PATH/mariadb.log" >> $MY_CONF
     echo "lc_messages_dir=/usr/share/mariadb" >> $MY_CONF
-    echo "lc_messages=$LC_MESSAGES" >> $MY_CONF
-    echo "character-set-server=utf8" >> $MY_CONF
-    echo "collation-server=utf8_general_ci" >> $MY_CONF
+    echo "lc_messages=${LC_MESSAGES}" >> $MY_CONF
+    echo "character-set-server=${DB_CHARSET}" >> $MY_CONF
+    echo "collation-server=${DB_CHARSET}_general_ci" >> $MY_CONF
     echo "config file $MY_CONF updated"
 }
 
