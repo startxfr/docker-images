@@ -406,3 +406,381 @@ case $1 in
     usage|help|--help)      menuUsage $@ ;;
     *)                      menuUsage $@ ;;
 esac
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#!/bin/bash
+
+CONF_FILE=~/.sx-demo
+TEMPLATE_BASE=https://raw.githubusercontent.com/startxfr/docker-images
+TEMPLATE_BRANCH=master
+TEMPLATE_SERVICE=apache
+TEMPLATE_DIR=Services/$TEMPLATE_SERVICE
+TEMPLATE_URL=$TEMPLATE_BASE/$TEMPLATE_BRANCH/$TEMPLATE_DIR
+DEFAULT_PROJECT=demo-storage
+DEFAULT_FLAVOUR=latest
+SXDC_PROJECT=$DEFAULT_PROJECT
+SXDC_FLAVOUR=$DEFAULT_FLAVOUR
+SXDC_CLUSTER=https://openshift.cloud.startx.fr:8443
+SXDC_USER=dev
+
+# config file
+touch $CONF_FILE
+
+# append key to conf
+function appendConf {
+  echo "$1=$2" >> $CONF_FILE
+  export $1=$2
+}
+
+# reload conf file
+function reloadConf {
+  source $CONF_FILE
+}
+
+# do menu install
+function menuInstall {
+	echo -e "Install \033[1mgit,curl, oc\033[0m dependencies"
+	sudo yum install -y curl git atomic-openshift-clients 
+}
+
+# do menu login
+function menuLogin {
+	#test if openshift is connected
+	ou=`oc whoami`
+	if [[ $? != 0 || $2 == 'force' ]]; then
+	  	echo "Openshift is not logged."
+		echo -en "User name : "
+		read un
+		echo -en "Password  : "
+		read pw
+		echo -en "Cluster  \e[2m(\e[0m\e[1m$SXDC_CLUSTER\e[0m\e[2m)\e[0m : "
+		read cl
+		if [[ "$cl" != "" ]]; then
+			appendConf SXDC_CLUSTER $cl
+	  		echo -e "Switching to cluster \033[1m$SXDC_CLUSTER\033[0m"
+		fi
+		if [[ "$un" != "" && "$pw" != "" ]]; then
+			lg=`oc login $SXDC_CLUSTER -u $un -p $pw`
+			if [[ "$?" != 0 ]]; then
+			  	echo -e "Could not login to \033[1m$SXDC_CLUSTER\033[0m with user \033[1m$un\033[0m"
+			  	echo -e "Log to openshift cluster first 'oc login $SXDC_CLUSTER -u $un -p <pwd>'"
+			  	echo -e "or run 'demo-sx login'"
+			  	exit 1;
+			else
+				appendConf SXDC_USER $un
+				echo -e "Logged to \033[1m$SXDC_CLUSTER\033[0m with user \033[1m$SXDC_USER\033[0m"
+			  	exit 0;
+			fi
+		else
+		  echo -e "Log to openshift cluster first 'oc login $SXDC_CLUSTER -u <user> -p <pwd>'"
+		  echo -e "or run 'demo-sx login'"
+		  exit 1;
+		fi
+	else
+		appendConf SXDC_USER $ou
+		echo -e "Logged to \033[1m$SXDC_CLUSTER\033[0m with user \033[1m$SXDC_USER\033[0m"
+	fi
+}
+
+# do menu project
+function menuProject {
+	#test current project
+	pj=`oc project -q`
+	pjr=$?
+	if [[ $pj != '' && $SXDC_PROJECT != $pj ]]; then
+		appendConf SXDC_PROJECT $pj
+	fi
+	oc project $SXDC_PROJECT &> /dev/null
+	pjr=$?
+	if [[ $pjr != 0 || $2 = "force" ]]; then
+		if [ $2 = "force" ]; then
+	  		echo "Force new project"
+		else
+	  		echo "No project found"
+		fi
+		echo -en "Project name \e[2m(\e[0m\e[1m$SXDC_PROJECT\e[0m\e[2m)\e[0m : "
+		read pjn
+		if [[ "$pjn" != "" ]]; then
+			appendConf SXDC_PROJECT $pjn
+			oc new-project $SXDC_PROJECT
+		fi
+	fi
+	echo -e "Switching to project \033[1m$SXDC_PROJECT\033[0m"
+	oc project $SXDC_PROJECT
+}
+
+# do menu get
+function menuGet {
+	echo -e "Get all resource in project \033[1m$SXDC_PROJECT\033[0m"
+	oc get secret,configmap,is,template -n $SXDC_PROJECT
+}
+
+# do menu load
+function menuLoad {
+	echo -e "Loading \033[1mstartx\033[0m images streams (10 images x 8 flavours) in project \033[1m$SXDC_PROJECT\033[0m"
+	oc create -f $TEMPLATE_BASE/$TEMPLATE_BRANCH/openshift-imageStreams.yml -n $SXDC_PROJECT
+	echo -e "Loading template \033[1mstartx-$TEMPLATE_SERVICE-deploy-template\033[0m in project \033[1m$SXDC_PROJECT\033[0m"
+	oc create -f $TEMPLATE_URL/openshift-template-deploy.yml -n $SXDC_PROJECT
+}
+
+# do menu remove
+function menuDelete {
+	echo -e "Delete \033[1mstartx\033[0m images streams in project \033[1m$SXDC_PROJECT\033[0m"
+	oc delete is,secret,configmap,all -l provider=startx -n $SXDC_PROJECT
+	echo -e "Delete template \033[1mstartx-$TEMPLATE_SERVICE-deploy-template\033[0m in project \033[1m$SXDC_PROJECT\033[0m"
+	oc delete template startx-$TEMPLATE_SERVICE-deploy-template -n $SXDC_PROJECT
+}
+
+# do menu usage
+function menuUsage {
+cat <<EOF
+
+Startx demo showing various usage of volume storage backend 
+
+Usage:
+  demo [command] [sub-command]
+
+- Commands:
+  install                Setup openshift client (oc) and auto-completion if installed
+  login                  Login to openshift cluster (detect active connection)
+  login force            Force re-connection to the openshift cluster
+  project                Setup openshift demo project (detect current project)
+  project force          Force creating a new project
+  load                   Load openshift demo resource (images streams and templates)
+  get                    List al ressources used in this demo
+  ...                    you must then use a demo sub-command to use this demo script
+  delete                 Delete all resources used from this demo
+
+
+- Ephemeral demo commands:
+  ephemeral start        Start ephemeral demo
+  ephemeral watch        Watch resources for ephemeral demo resources
+  ephemeral ps           List resources for ephemeral demo resources
+  ephemeral ls           List storage backend for ephemeral demo
+  ephemeral delete       Delete all resources for ephemeral demo
+
+EOF
+}
+
+# do sub-menu usage
+function menuSubUsage {
+cat <<EOF
+
+Startx $2 demo sub-command
+
+Usage:
+  demo $2 [command]
+
+- Commands:
+  $2 start        Start $2 demo
+  $2 watch        Watch resources for $2 demo resources
+  $2 ps           List resources for $2 demo resources
+  $2 ls           List storage backend for $2 demo
+  $2 delete       Delete all resources for $2 demo
+
+EOF
+}
+
+
+## Ephemeral sub-section
+# do menu ephemeral
+function menuEphemeral {
+case $2 in
+    start)               
+	echo -e "Start \033[1m$TEMPLATE_SERVICE-ephemeral\033[0m demo in project \033[1m$SXDC_PROJECT\033[0m"
+	oc process startx-$TEMPLATE_SERVICE-deploy-template -p APP_NAME=$TEMPLATE_SERVICE-ephemeral -n $SXDC_PROJECT | oc create -n $SXDC_PROJECT -f -
+	;;
+    watch)
+	echo -e "Watch \033[1m$TEMPLATE_SERVICE-ephemeral\033[0m resources in project \033[1m$SXDC_PROJECT\033[0m"
+	dockerIds=$(docker ps -sa | grep k8s_$TEMPLATE_SERVICE-ephemeral_$TEMPLATE_SERVICE-ephemeral | grep "Up " | cut -d\  -f1)
+	echo -e "Found the following docker container(s) : $dockerIds"
+	listVolumes=$(docker inspect $dockerIds | grep :/var/log/httpd | cut -d\" -f2 | cut -d: -f1 | tr '\n' ' ')
+	echo -e "Found the following ephemeral storage volumes : $listVolumes"
+	watch -n .5 "oc get configmap,po,dc,svc,route -n $SXDC_PROJECT; echo ""; ls -la $listVolumes;"
+	;;
+    ps)
+	echo -e "Get all \033[1m$TEMPLATE_SERVICE-ephemeral\033[0m resources in project \033[1m$SXDC_PROJECT\033[0m"
+	oc get configmap,po,dc,svc,route -n $SXDC_PROJECT
+	;;
+    ls)
+	echo -e "List all ephemeral storage for \033[1m$TEMPLATE_SERVICE-ephemeral\033[0m application in project \033[1m$SXDC_PROJECT\033[0m"
+	dockerIds=$(docker ps -sa | grep k8s_$TEMPLATE_SERVICE-ephemeral_$TEMPLATE_SERVICE-ephemeral | grep "Up " | cut -d\  -f1)
+	echo -e "Found the following docker container(s) : $dockerIds"
+	listVolumes=$(docker inspect $dockerIds | grep :/var/log/httpd | cut -d\" -f2 | cut -d: -f1 | tr '\n' ' ')
+	echo -e "Found the following ephemeral storage volumes : $listVolumes"
+	ls -la $listVolumes
+	;;
+    delete)
+	echo -e "Delete \033[1m$TEMPLATE_SERVICE-ephemeral\033[0m resources in project \033[1m$SXDC_PROJECT\033[0m"
+	oc delete all,configmap,secret,pvc,route -l template=startx-$TEMPLATE_SERVICE-deploy-template -n $SXDC_PROJECT
+	;;
+    *)  menuSubUsage $1 ;;
+esac
+}
+
+
+## Volatile sub-section
+# do menu volatile
+function menuVolatile {
+case $2 in
+    start)               
+	echo -e "Start \033[1m$TEMPLATE_SERVICE-volatile\033[0m demo in project \033[1m$SXDC_PROJECT\033[0m"
+	oc process startx-$TEMPLATE_SERVICE-deploy-template -p APP_NAME=$TEMPLATE_SERVICE-volatile -n $SXDC_PROJECT | oc create -n $SXDC_PROJECT -f -
+	;;
+    watch)
+	echo -e "Watch \033[1m$TEMPLATE_SERVICE-volatile\033[0m resources in project \033[1m$SXDC_PROJECT\033[0m"
+	dockerIds=$(docker ps -sa | grep k8s_$TEMPLATE_SERVICE-volatile_$TEMPLATE_SERVICE-volatile | grep "Up " | cut -d\  -f1)
+	echo -e "Found the following docker container(s) : $dockerIds"
+	listVolumes=$(docker inspect $dockerIds | grep :/var/log/httpd | cut -d\" -f2 | cut -d: -f1 | tr '\n' ' ')
+	echo -e "Found the following volatile storage volumes : $listVolumes"
+	watch -n .5 "oc get configmap,po,dc,svc,route -n $SXDC_PROJECT; echo ""; ls -la $listVolumes;"
+	;;
+    ps)
+	echo -e "Get all \033[1m$TEMPLATE_SERVICE-volatile\033[0m resources in project \033[1m$SXDC_PROJECT\033[0m"
+	oc get configmap,po,dc,svc,route -n $SXDC_PROJECT
+	;;
+    ls)
+	echo -e "List all volatile storage for \033[1m$TEMPLATE_SERVICE-volatile\033[0m application in project \033[1m$SXDC_PROJECT\033[0m"
+	dockerIds=$(docker ps -sa | grep k8s_$TEMPLATE_SERVICE-volatile_$TEMPLATE_SERVICE-volatile | grep "Up " | cut -d\  -f1)
+	echo -e "Found the following docker container(s) : $dockerIds"
+	listVolumes=$(docker inspect $dockerIds | grep :/var/log/httpd | cut -d\" -f2 | cut -d: -f1 | tr '\n' ' ')
+	echo -e "Found the following volatile storage volumes : $listVolumes"
+	ls -la $listVolumes
+	;;
+    delete)
+	echo -e "Delete \033[1m$TEMPLATE_SERVICE-volatile\033[0m resources in project \033[1m$SXDC_PROJECT\033[0m"
+	oc delete all,configmap,secret,pvc,route -l template=startx-$TEMPLATE_SERVICE-deploy-template -n $SXDC_PROJECT
+	;;
+    *)  menuSubUsage $1 ;;
+esac
+}
+
+## Resilient sub-section
+# do menu Resilient
+function menuResilient {
+case $2 in
+    start)               
+	echo -e "Start \033[1m$TEMPLATE_SERVICE-resilient\033[0m demo in project \033[1m$SXDC_PROJECT\033[0m"
+	oc process startx-$TEMPLATE_SERVICE-deploy-template -p APP_NAME=$TEMPLATE_SERVICE-resilient -n $SXDC_PROJECT | oc create -n $SXDC_PROJECT -f -
+	;;
+    watch)
+	echo -e "Watch \033[1m$TEMPLATE_SERVICE-resilient\033[0m resources in project \033[1m$SXDC_PROJECT\033[0m"
+	dockerIds=$(docker ps -sa | grep k8s_$TEMPLATE_SERVICE-resilient_$TEMPLATE_SERVICE-resilient | grep "Up " | cut -d\  -f1)
+	echo -e "Found the following docker container(s) : $dockerIds"
+	listVolumes=$(docker inspect $dockerIds | grep :/var/log/httpd | cut -d\" -f2 | cut -d: -f1 | tr '\n' ' ')
+	echo -e "Found the following resilient storage volumes : $listVolumes"
+	watch -n .5 "oc get configmap,po,dc,svc,route -n $SXDC_PROJECT; echo ""; ls -la $listVolumes;"
+	;;
+    ps)
+	echo -e "Get all \033[1m$TEMPLATE_SERVICE-resilient\033[0m resources in project \033[1m$SXDC_PROJECT\033[0m"
+	oc get configmap,po,dc,svc,route -n $SXDC_PROJECT
+	;;
+    ls)
+	echo -e "List all resilient storage for \033[1m$TEMPLATE_SERVICE-resilient\033[0m application in project \033[1m$SXDC_PROJECT\033[0m"
+	dockerIds=$(docker ps -sa | grep k8s_$TEMPLATE_SERVICE-resilient_$TEMPLATE_SERVICE-resilient | grep "Up " | cut -d\  -f1)
+	echo -e "Found the following docker container(s) : $dockerIds"
+	listVolumes=$(docker inspect $dockerIds | grep :/var/log/httpd | cut -d\" -f2 | cut -d: -f1 | tr '\n' ' ')
+	echo -e "Found the following resilient storage volumes : $listVolumes"
+	ls -la $listVolumes
+	;;
+    delete)
+	echo -e "Delete \033[1m$TEMPLATE_SERVICE-resilient\033[0m resources in project \033[1m$SXDC_PROJECT\033[0m"
+	oc delete all,configmap,secret,pvc,route -l template=startx-$TEMPLATE_SERVICE-deploy-template -n $SXDC_PROJECT
+	;;
+    *)  menuSubUsage $1 ;;
+esac
+}
+
+## Distributed sub-section
+# do menu Distributed
+function menuDistributed {
+case $2 in
+    start)               
+	echo -e "Start \033[1m$TEMPLATE_SERVICE-distributed\033[0m demo in project \033[1m$SXDC_PROJECT\033[0m"
+	oc process startx-$TEMPLATE_SERVICE-deploy-template -p APP_NAME=$TEMPLATE_SERVICE-distributed -n $SXDC_PROJECT | oc create -n $SXDC_PROJECT -f -
+	;;
+    watch)
+	echo -e "Watch \033[1m$TEMPLATE_SERVICE-distributed\033[0m resources in project \033[1m$SXDC_PROJECT\033[0m"
+	dockerIds=$(docker ps -sa | grep k8s_$TEMPLATE_SERVICE-distributed_$TEMPLATE_SERVICE-distributed | grep "Up " | cut -d\  -f1)
+	echo -e "Found the following docker container(s) : $dockerIds"
+	listVolumes=$(docker inspect $dockerIds | grep :/var/log/httpd | cut -d\" -f2 | cut -d: -f1 | tr '\n' ' ')
+	echo -e "Found the following distributed storage volumes : $listVolumes"
+	watch -n .5 "oc get configmap,po,dc,svc,route -n $SXDC_PROJECT; echo ""; ls -la $listVolumes;"
+	;;
+    ps)
+	echo -e "Get all \033[1m$TEMPLATE_SERVICE-distributed\033[0m resources in project \033[1m$SXDC_PROJECT\033[0m"
+	oc get configmap,po,dc,svc,route -n $SXDC_PROJECT
+	;;
+    ls)
+	echo -e "List all distributed storage for \033[1m$TEMPLATE_SERVICE-distributed\033[0m application in project \033[1m$SXDC_PROJECT\033[0m"
+	dockerIds=$(docker ps -sa | grep k8s_$TEMPLATE_SERVICE-distributed_$TEMPLATE_SERVICE-distributed | grep "Up " | cut -d\  -f1)
+	echo -e "Found the following docker container(s) : $dockerIds"
+	listVolumes=$(docker inspect $dockerIds | grep :/var/log/httpd | cut -d\" -f2 | cut -d: -f1 | tr '\n' ' ')
+	echo -e "Found the following distributed storage volumes : $listVolumes"
+	ls -la $listVolumes
+	;;
+    delete)
+	echo -e "Delete \033[1m$TEMPLATE_SERVICE-distributed\033[0m resources in project \033[1m$SXDC_PROJECT\033[0m"
+	oc delete all,configmap,secret,pvc,route -l template=startx-$TEMPLATE_SERVICE-deploy-template -n $SXDC_PROJECT
+	;;
+    *)  menuSubUsage $1 ;;
+esac
+}
+
+
+
+## Start prog switch
+reloadConf
+clear
+case $1 in
+    install)                menuInstall $@ ;;
+    login)                  menuLogin $@ ;;
+    project)                menuProject $@ ;;
+    load)                   menuLoad $@ ;;
+    get)                    menuGet $@ ;;
+    ephemeral)              menuEphemeral $@ ;;
+    volatile)               menuVolatile $@ ;;
+    resilient)              menuResilient $@ ;;
+    distributed)            menuDistributed $@ ;;
+    delete)                 menuDelete $@ ;;
+    *)                      menuUsage $@ ;;
+esac
