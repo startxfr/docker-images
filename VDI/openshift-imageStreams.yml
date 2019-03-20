@@ -58,6 +58,19 @@ items:
       from:
         kind: DockerImage
         name: startx/vdi-chrome:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: VDI Chrome Browser (Fedora 30)
+        description: Container-based desktop Chrome browser for remote internet browsing  under
+          Fedora 30
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,chrome,vnc
+        supports: vnc
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-chrome.git
+      from:
+        kind: DockerImage
+        name: startx/vdi-chrome:fc30
     - name: fc31
       annotations:
         openshift.io/display-name: VDI Chrome Browser (Fedora 31)

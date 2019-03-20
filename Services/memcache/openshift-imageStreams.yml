@@ -70,6 +70,19 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-memcache:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (Fedora 30)
+        description: Memcache server builder for distributed cache backend running under
+          Fedora 30
+        iconClass: icon-redis
+        tags: builder,startx,fedora,memcache
+        supports: memcache
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:fc30
     - name: fc31
       annotations:
         openshift.io/display-name: S2I Startx Memcache Backend (Fedora 31)

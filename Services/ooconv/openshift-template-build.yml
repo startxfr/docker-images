@@ -92,6 +92,19 @@ objects:
       from:
         kind: DockerImage
         name: startx/sv-ooconv:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: S2I Startx LibreOffice converter (Fedora 30)
+        description: LibreOffice converter for document convertion running under
+          Fedora 30
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,ooconv,libreoffice
+        supports: ooconv
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:fc30
     - name: fc31
       annotations:
         openshift.io/display-name: S2I Startx LibreOffice converter (Fedora 31)
@@ -458,7 +471,7 @@ parameters:
   required: true
 - name: BUILDER_TAG
   displayName: Builder image stage
-  description: "Image tag of the startx ooconv builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc29, fc28 - alpine3 - centos7, centos6)"
+  description: "Image tag of the startx ooconv builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc30, fc29, fc28 - alpine3 - centos7, centos6)"
   value: latest
   required: true
 - name: SOURCE_GIT

@@ -47,4 +47,4 @@ your project and start using stable or experimental applications in your applica
 | **php**             | `docker run -d -p 80:80 --name="fc31-php" startx/sv-php:fc31`                  | 
 | **postgreSQL**      | `docker run -d -p 5432:5432 --name="fc31-postgres" startx/sv-postgres:fc31`    | 
 | **Couchbase**       | `docker run -d -p 8091:8091 --name="fc31-couchbase" startx/sv-couchbase:fc31`  | 
-| **chrome**          | `docker run -d -p 5900:5900 --name="fc31-chrome" startx/sv-chrome:fc31`        | 
+| **chrome**          | `docker run -d -p 5900:5900 --name="fc31-chrome" startx/sv-chrome:fc31`        |

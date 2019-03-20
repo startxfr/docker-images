@@ -46,7 +46,7 @@ objects:
         sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
       from:
         kind: DockerImage
-        name: startx/${BUILDER_IMAGE}
+        name: ${BUILDER_IMAGE}
 - kind: ConfigMap
   apiVersion: v1
   metadata:
@@ -169,8 +169,8 @@ parameters:
   required: true
 - name: BUILDER_IMAGE
   displayName: Startx image 
-  description: "Image tag of the startx os image used. Could be : fedora:latest, fedora:31, fedora:29, fedora:28, alpine:3, centos:7, centos:6"
-  value: fedora:latest
+  description: "Image tag of the startx os image used. Could be : startx/fedora:latest, startx/fedora:31, startx/fedora:30, startx/fedora:29, startx/fedora:28, startx/alpine:3, startx/centos:7, startx/centos:6"
+  value: startx/fedora:latest 
   required: true
 - name: RUN_ACTION
   displayName: Main action to perfom

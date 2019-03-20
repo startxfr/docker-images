@@ -70,6 +70,19 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-mongo:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: S2I Startx MongoDB Database (Fedora 30)
+        description: MongoDB server builder for NoSQL database running under
+          Fedora 30
+        iconClass: icon-mongodb
+        tags: builder,startx,fedora,mongo,database
+        supports: mongodb
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mongo:fc30
     - name: fc31
       annotations:
         openshift.io/display-name: S2I Startx MongoDB Database (Fedora 31)

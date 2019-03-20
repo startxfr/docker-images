@@ -40,183 +40,17 @@ objects:
       stage: "${APP_STAGE}"
   spec:
     tags:
-    - name: fc26
+    - name: ${APP_STAGE}
       annotations:
-        openshift.io/display-name: S2I Startx LibreOffice converter (Fedora 26)
-        description: LibreOffice converter for document convertion running under
-          Fedora 26
+        openshift.io/display-name: Startx LibreOffice converter ${APP_NAME} version ${APP_STAGE}
+        description: ${APP_STAGE} image for the ooconv ${APP_NAME} based on ${BUILDER_TAG}
         iconClass: icon-aerogear
-        tags: builder,startx,fedora,ooconv,libreoffice
+        tags: startx,fedora,ooconv,libreoffice,${APP_NAME},${APP_STAGE},${BUILDER_TAG}
         supports: ooconv
-        version: fc26
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+        version: ${APP_STAGE}
       from:
         kind: DockerImage
-        name: startx/sv-ooconv:fc26
-    - name: fc27
-      annotations:
-        openshift.io/display-name: S2I Startx LibreOffice converter (Fedora 27)
-        description: LibreOffice converter for document convertion running under
-          Fedora 27
-        iconClass: icon-aerogear
-        tags: builder,startx,fedora,ooconv,libreoffice
-        supports: ooconv
-        version: fc27
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
-      from:
-        kind: DockerImage
-        name: startx/sv-ooconv:fc27
-    - name: fc28
-      annotations:
-        openshift.io/display-name: S2I Startx LibreOffice converter (Fedora 28)
-        description: LibreOffice converter for document convertion running under
-          Fedora 28
-        iconClass: icon-aerogear
-        tags: builder,startx,fedora,ooconv,libreoffice
-        supports: ooconv
-        version: fc28
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
-      from:
-        kind: DockerImage
-        name: startx/sv-ooconv:fc28
-    - name: fc29
-      annotations:
-        openshift.io/display-name: S2I Startx LibreOffice converter (Fedora 29)
-        description: LibreOffice converter for document convertion running under
-          Fedora 29
-        iconClass: icon-aerogear
-        tags: builder,startx,fedora,ooconv,libreoffice
-        supports: ooconv
-        version: fc29
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
-      from:
-        kind: DockerImage
-        name: startx/sv-ooconv:fc29
-    - name: fc31
-      annotations:
-        openshift.io/display-name: S2I Startx LibreOffice converter (Fedora 31)
-        description: LibreOffice converter for document convertion running under
-          Fedora 31
-        iconClass: icon-aerogear
-        tags: builder,startx,fedora,ooconv,libreoffice
-        supports: ooconv
-        version: fc31
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
-      from:
-        kind: DockerImage
-        name: startx/sv-ooconv:fc31
-    - name: rawhide
-      annotations:
-        openshift.io/display-name: S2I Startx LibreOffice converter (Fedora rawhide)
-        description: LibreOffice converter for document convertion running under
-          Fedora rawhide
-        iconClass: icon-aerogear
-        tags: builder,startx,fedora,ooconv,libreoffice
-        supports: ooconv
-        version: rawhide
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
-      from:
-        kind: DockerImage
-        name: startx/sv-ooconv:latest
-    - name: centos7
-      annotations:
-        openshift.io/display-name: S2I Startx LibreOffice converter (Centos 7)
-        description: LibreOffice converter for document convertion running under
-          Centos 7
-        iconClass: icon-aerogear
-        tags: builder,startx,centos,ooconv,libreoffice
-        supports: ooconv
-        version: '7'
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
-      from:
-        kind: DockerImage
-        name: startx/sv-ooconv:centos7
-    - name: centos6
-      annotations:
-        openshift.io/display-name: S2I Startx LibreOffice converter (Centos 6)
-        description: LibreOffice converter for document convertion running under
-          Centos 6
-        iconClass: icon-aerogear
-        tags: builder,startx,centos,ooconv,libreoffice
-        supports: ooconv
-        version: '7'
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
-      from:
-        kind: DockerImage
-        name: startx/sv-ooconv:centos6
-    - name: alpine3
-      annotations:
-        openshift.io/display-name: S2I Startx LibreOffice converter (Alpine 3)
-        description: LibreOffice converter for document convertion running under
-          Alpine 3
-        iconClass: icon-aerogear
-        tags: builder,startx,alpine,ooconv,libreoffice
-        supports: ooconv
-        version: '3'
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
-      from:
-        kind: DockerImage
-        name: startx/sv-ooconv:alpine3
-    - name: latest
-      annotations:
-        openshift.io/display-name: S2I Startx LibreOffice converter (latest)
-        description: LibreOffice converter for document convertion running under
-          Fedora latest
-        iconClass: icon-aerogear
-        tags: builder,startx,alpine,ooconv,libreoffice
-        supports: ooconv
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
-      from:
-        kind: ImageStreamTag
-        name: rawhide
-    - name: dev
-      annotations:
-        openshift.io/display-name: S2I Startx LibreOffice converter (dev)
-        description: Lightweight Http server builder for micro-web application (developpement)
-        iconClass: icon-aerogear
-        tags: builder,startx,alpine,ooconv,libreoffice
-        supports: ooconv
-        version: 'dev'
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
-      from:
-        kind: ImageStreamTag
-        name: rawhide
-    - name: test
-      annotations:
-        openshift.io/display-name: S2I Startx LibreOffice converter (test)
-        description: Lightweight Http server builder for micro-web application (testing)
-        iconClass: icon-aerogear
-        tags: builder,startx,alpine,ooconv,libreoffice
-        supports: ooconv
-        version: 'test'
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
-      from:
-        kind: ImageStreamTag
-        name: centos7
-    - name: preprod
-      annotations:
-        openshift.io/display-name: S2I Startx LibreOffice converter (preprod)
-        description: Lightweight Http server builder for micro-web application (pre-production)
-        iconClass: icon-aerogear
-        tags: builder,startx,alpine,ooconv,libreoffice
-        supports: ooconv
-        version: 'pre-prod'
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
-      from:
-        kind: ImageStreamTag
-        name: alpine3
-    - name: prod
-      annotations:
-        openshift.io/display-name: S2I Startx LibreOffice converter (prod)
-        description: Lightweight Http server builder for micro-web application (production)
-        iconClass: icon-aerogear
-        tags: builder,startx,alpine,ooconv,libreoffice
-        supports: ooconv
-        version: 'prod'
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
-      from:
-        kind: ImageStreamTag
-        name: alpine3
+        name: startx/sv-ooconv:${BUILDER_TAG}
 - kind: ConfigMap
   apiVersion: v1
   metadata:
@@ -257,7 +91,7 @@ objects:
         - "${APP_NAME}"
         from:
           kind: ImageStreamTag
-          name: "${APP_NAME}:${BUILDER_TAG}"
+          name: "${APP_NAME}:${APP_STAGE}"
     - type: ConfigChange
     postCommit:
       script: "/bin/sx-ooconv info"
@@ -364,7 +198,7 @@ parameters:
   required: true
 - name: BUILDER_TAG
   displayName: Startx image release
-  description: "Image tag of the startx ooconv image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc29, fc28 - alpine3 - centos7, centos6)"
+  description: "Image tag of the startx ooconv image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc30, fc29, fc28 - alpine3 - centos7, centos6)"
   value: latest
   required: true
 - name: APP_PATH

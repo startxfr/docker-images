@@ -70,6 +70,19 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-nodejs:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: S2I Startx Micro-WebServer (Fedora 30)
+        description: Lightweight Http server builder for micro-web application running under
+          Fedora 30
+        iconClass: icon-nodejs
+        tags: builder,startx,fedora,nodejs,httpd
+        supports: http
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+      from:
+        kind: DockerImage
+        name: startx/sv-nodejs:fc30
     - name: fc31
       annotations:
         openshift.io/display-name: S2I Startx Micro-WebServer (Fedora 31)
