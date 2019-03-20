@@ -31,11 +31,9 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum --nogpgcheck -y install epel-release && \
-    yum --nogpgcheck -y --enablerepo=epel install centos-release-scl  && \
-    yum --nogpgcheck -y install  mongodb-server  && \
+COPY mongodb-centos.repo /etc/yum.repos.d/mongodb.repo
+RUN yum install mongodb-org && \
     yum clean all  && \
-    scl enable mongodb24 bash  && \
     usermod -a -G 0 mongodb && \
     mkdir -p $DATA_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \
