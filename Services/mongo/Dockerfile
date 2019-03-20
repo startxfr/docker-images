@@ -9,6 +9,7 @@ ENV SX_VERSION="alpine3" \
     SX_NAME="Startx MongoDB service image (alpine 3.8)" \
     SX_SUMMARY="Startx mongo service based on alpine 3.8" \
     LOG_PATH=/var/log/mongodb \
+    MONGO_RUNTIME=/usr/bin/mongod \
     DATA_PATH=/data
 
 LABEL name="$SX_ID" \

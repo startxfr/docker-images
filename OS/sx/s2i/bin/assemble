@@ -1,6 +1,6 @@
 #!/bin/bash -e
 #
-# S2I assemble script for the 'startx/fedora' image.
+# S2I assemble script for the 'startx/alpine' image.
 # The 'assemble' script builds your application source ready to run.
 #
 # For more information on how to install s2i, refer to the documentation:

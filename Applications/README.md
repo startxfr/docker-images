@@ -19,10 +19,10 @@ your project and start using stable or experimental applications in your applica
 
 ## Available applications
 
-| Service         | Docker Hub repository                                                          | Doc
-|-----------------|--------------------------------------------------------------------------------|--------------------------------
-| PhpMyAdmin      | [`startx/app-pma:alpine3`](https://hub.docker.com/r/startx/app-pma)               | [manual](pma/README.md)
-| RockMongo       | [`startx/app-rockmongo:alpine3`](https://hub.docker.com/r/startx/app-rockmongo)   | [manual](rockmongo/README.md)
+| Service         | Docker Hub repository                                                     | Fedora flavours                                                       | CentOS flavours | Doc                                        | 
+|-----------------|---------------------------------------------------------------------------|-----------------------------------------------------------------------|-----------------|--------------------------------------------|
+| PhpMyAdmin      | [`startx/app-pma`](https://hub.docker.com/r/startx/app-pma)               | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` `:28` `:29` `:30` `:31` | `:6` `:7`       | [manual](pma/README.md)                    | 
+| RockMongo       | [`startx/app-rockmongo`](https://hub.docker.com/r/startx/app-rockmongo)   | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` `:28` `:29` `:30` `:31` | `:6` `:7`       | [manual](rockmongo/README.md)              | 
 
 
 ## Running from dockerhub registry

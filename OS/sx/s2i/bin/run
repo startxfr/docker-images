@@ -1,10 +1,10 @@
 #!/bin/bash -e
 #
-# S2I run script for the 'startx/fedora' image.
+# S2I run script for the 'startx/alpine' image.
 # The 'run' script is the entrypoint of your application
 #
 # For more information refer to the documentation:
-#  https://dockerhub.com/u/startx/fedora
+#  https://dockerhub.com/u/startx/alpine
 #
 
 if [[ -x /tmp/run ]]; then

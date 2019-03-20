@@ -12,7 +12,8 @@ ENV SX_VERSION="alpine3" \
     DATA_PATH=/data \
     LOG_PATH=/var/log/mariadb \
     LOADSQL_PATH=/tmp/sql  \
-    DB_CHARSET=utf8  \
+    DB_CHARSET=utf8 \
+    LC_MESSAGES=en_US \
     RUN_BIN=/usr/bin/mysqld
 
 LABEL name="$SX_ID" \
@@ -33,9 +34,9 @@ LABEL name="$SX_ID" \
       fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
-COPY my.cnf $MY_CONF
 COPY sx /tmp/
-RUN apk --no-cache add mariadb mariadb-client mysql && \
+COPY my.cnf $MY_CONF
+RUN apk --no-cache add mariadb mariadb-client mysql glibc-langpack-fr && \
     mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH /run/mysqld && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \

@@ -47,7 +47,7 @@ function nodejsBuild {
         testAndRunSourceCodeScript "assemble" 
     else
         echoVerbose "No Build application logic found at $MYS2I_DEST/assemble"
-    doNodejsBuild
+        doNodejsBuild
     fi
     exit 0;
 }
@@ -78,7 +78,7 @@ function nodejsPostBuild {
         testAndRunSourceCodeScript "post-build" 
     else
         echoVerbose "No PostBuild application logic found at $MYS2I_DEST/post-build"
-    doNodejsPostBuild
+        doNodejsPostBuild
     fi
     exit 0;
 }
@@ -109,7 +109,7 @@ function nodejsPreDeploy {
         testAndRunSourceCodeScript "pre-deploy" 
     else
         echoVerbose "No PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
-    doNodejsPreDeploy
+        doNodejsPreDeploy
     fi
     exit 0;
 }
@@ -139,7 +139,7 @@ function nodejsPostDeploy {
         testAndRunSourceCodeScript "post-deploy" 
     else
         echoVerbose "No PostDeploy application logic found at $MYS2I_DEST/post-deploy"
-    doNodejsPostDeploy
+        doNodejsPostDeploy
     fi
     exit 0;
 }

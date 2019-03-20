@@ -41,9 +41,8 @@ RUN apk update && apk upgrade && \
 	echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
     echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
     apk add --no-cache --update --purge -uU -f x11vnc xvfb supervisor inotify-tools python py-pip chromium@edge nss@edge && \
-    rm -rf /var/lib/apt/lists/* /var/cache/apk/* /usr/share/man
-
-RUN pip install --upgrade --force-reinstall setuptools pip supervisor && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apk/* /usr/share/man && \
+    pip install --upgrade --force-reinstall setuptools pip supervisor && \
     useradd -s /bin/bash -m -g 0 -u 1001 $SX_USER && \
     mkdir -p /s2i $SX_LIBDIR /.local && \
     mv /tmp/s2i/bin/* /s2i/ && \

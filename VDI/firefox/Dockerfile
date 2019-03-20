@@ -1,4 +1,4 @@
-FROM startx/fedora:latest
+FROM startx/alpine:latest
 
 MAINTAINER Startx <dev@startx.fr>
 
@@ -6,8 +6,8 @@ ENV SX_VERSION="latest" \
     SX_TYPE="desktop" \
     SX_SERVICE="firefox" \
     SX_ID="startx/vdi-firefox" \
-    SX_NAME="Startx Firefox VDI image (fedora rawhide)" \
-    SX_SUMMARY="Startx firefox container-based desktop application based on fedora rawhide" \
+    SX_NAME="Startx Firefox VDI image (alpine 3.8)" \
+    SX_SUMMARY="Startx firefox container-based desktop application based on alpine 3.8" \
     SX_FIREFOX_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
     LOG_PATH=/var/log/firefox \
     APP_PATH=/home/firefox \
@@ -24,7 +24,7 @@ LABEL name="$SX_ID" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,fedora,firefox,vnc,X11" \
+      io.openshift.tags="startx,os,alpine,firefox,vnc,X11" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="400Mi" \
       io.openshift.min-cpu="2000m" \
@@ -41,9 +41,8 @@ RUN apk update && apk upgrade && \
 	echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
     echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
     apk add --no-cache --update --purge -uU -f x11vnc xvfb supervisor inotify-tools python py-pip firefox@edge nss@edge && \
-    rm -rf /var/lib/apt/lists/* /var/cache/apk/* /usr/share/man
-
-RUN pip install --upgrade --force-reinstall setuptools pip supervisor && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apk/* /usr/share/man && \
+    pip install --upgrade --force-reinstall setuptools pip supervisor && \
     useradd -s /bin/bash -m -g 0 -u 1001 $SX_USER && \
     mkdir -p /s2i $SX_LIBDIR /.local && \
     mv /tmp/s2i/bin/* /s2i/ && \
