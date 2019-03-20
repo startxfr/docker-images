@@ -3,7 +3,7 @@ apiVersion: v1
 metadata:
   name: startx-app-awx-template
   annotations:
-    openshift.io/display-name: Startx AWX Server (fedora)
+    openshift.io/display-name: Startx AWX Server (centos)
     description: AWX server for automation management
     iconClass: icon-gear
     tags: startx,awx,postgres,memcached,rabitmq,ansible

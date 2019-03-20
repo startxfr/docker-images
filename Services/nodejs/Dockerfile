@@ -32,7 +32,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum --nogpgcheck --enablerepo=epel -y install nodejs npm python make gcc && yum clean all && \
+RUN yum --nogpgcheck --enablerepo=epel -y install nodejs npm python make gcc git && yum clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \

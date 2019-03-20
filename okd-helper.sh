@@ -28,15 +28,15 @@ function importDeploy {
 }
 
 function testBuild {
-  oc process -f $1/openshift-template-build.yml -p APP_NAME=$2-$3-build -p APP_STAGE=test -p BUILDER_TAG=$3 -n $SXDC_PROJECT | oc create -f -
+  oc process -f $1/openshift-template-build.yml -p APP_NAME=$2-$3-build -p APP_STAGE=$SXDC_STAGE -p BUILDER_TAG=$3 -n $SXDC_PROJECT | oc create -f -
 }
 
 function testDeployOS {
-  oc process -f $1/openshift-template-deploy.yml -p APP_NAME=$2-$3-deploy -p APP_STAGE=test -p BUILDER_IMAGE=$2:$3 -n $SXDC_PROJECT | oc create -f -
+  oc process -f $1/openshift-template-deploy.yml -p APP_NAME=$2-$3-deploy -p APP_STAGE=$SXDC_STAGE -p BUILDER_IMAGE=startx/$2:$3 -n $SXDC_PROJECT | oc create -f -
 }
 
 function testDeploy {
-  oc process -f $1/openshift-template-deploy.yml -p APP_NAME=$2-$3-deploy -p APP_STAGE=test -p BUILDER_TAG=$3 -n $SXDC_PROJECT | oc create -f -
+  oc process -f $1/openshift-template-deploy.yml -p APP_NAME=$2-$3-deploy -p APP_STAGE=$SXDC_STAGE -p BUILDER_TAG=$3 -n $SXDC_PROJECT | oc create -f -
 }
 
 function temporize {

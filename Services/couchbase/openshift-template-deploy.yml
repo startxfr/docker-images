@@ -36,7 +36,7 @@ objects:
       stage: "${APP_STAGE}"
   spec:
     tags:
-    - name: latest
+    - name: ${APP_STAGE}
       annotations:
         openshift.io/display-name: Startx Couchbase Database (Fedora rawhide)
         description: Couchbase server for NoSQL database running under Fedora rawhide
@@ -84,7 +84,7 @@ objects:
         - "${APP_NAME}"
         from:
           kind: ImageStreamTag
-          name: "${APP_NAME}:latest"
+          name: "${APP_NAME}:${APP_STAGE}"
     - type: ConfigChange
     replicas: 1
     test: false
@@ -271,6 +271,6 @@ parameters:
   description: list of the default's bucket to create
 - name: BUILDER_TAG
   displayName: Startx image release
-  description: "Image tag of the startx couchbase image used. Could be : latest, fc30, fc29, fc28, alpine3, centos7, centos6"
+  description: "Image tag of the startx couchbase image used. Could be : latest, fc31, fc30, fc29, fc28, alpine3, centos7, centos6"
   value: latest
   required: true

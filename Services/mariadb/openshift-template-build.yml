@@ -109,6 +109,19 @@ objects:
       from:
         kind: DockerImage
         name: startx/sv-mariadb:fc30
+    - name: fc31
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 31)
+        description: MariaDB server builder for simple SQL database running under
+          Fedora 31
+        iconClass: icon-mariadb
+        tags: builder,startx,fedora,mariadb,sql
+        supports: mysql
+        version: fc31
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:fc31
     - name: rawhide
       annotations:
         openshift.io/display-name: S2I Startx Mariadb Database (Fedora rawhide)
@@ -552,7 +565,7 @@ parameters:
   required: true
 - name: BUILDER_TAG
   displayName: Builder image stage
-  description: "Image tag of the startx mariadb builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc30, fc29, fc28 - alpine3 - centos7, centos6)"
+  description: "Image tag of the startx mariadb builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc30, fc29, fc28 - alpine3 - centos7, centos6)"
   value: latest
   required: true
 - name: SOURCE_GIT

@@ -9,7 +9,7 @@ This container contain :
 - fundamentals tools (ex: pwgen, tar, zip) updated every week
 - usefull tools (psmisc, procps, coreutils, findutils, wget, curl, vi, bash-completion) only for the `:latest` and `:devel` flavour.
 
-You can use Startx Fedora image in many ways :
+You can use Startx Centos image in many ways :
 - Build container based image application with [s2i builder technology](#using-this-image-as-s2i-builder)
 - Build container based image application with [openshift builder image capacity](#using-this-image-as-openshift-build-image)
 - Build personalized base image [with docker tools](#using-this-image-as-base-container)
@@ -25,7 +25,7 @@ See more applications builders and sample on [startx docker images repository](h
 
 ## Container flavours
 
-| Docker Hub repository                                             | Openshift                                                                                                                                                                                                                                                                                                                                     | Docker-compose                                                                                     | Fedora distribution                        
+| Docker Hub repository                                             | Openshift                                                                                                                                                                                                                                                                                                                                     | Docker-compose                                                                                     | Centos distribution                        
 |-------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|---------------------
 | [`startx/centos:latest`](https://hub.docker.com/r/startx/centos)  | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/docker-compose.yml) | Centos 7
 | [`startx/centos:7`](https://hub.docker.com/r/startx/centos)       | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/docker-compose.yml) | Centos 7

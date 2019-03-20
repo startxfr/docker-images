@@ -33,190 +33,24 @@ objects:
   metadata:
     name: "${APP_NAME}"
     annotations:
-      openshift.io/display-name: Startx Micro-WebServer for application ${APP_NAME}
+      openshift.io/display-name: Dynamic application ${APP_NAME}
       openshift.io/generated-by: STARTX
     labels:
       app: "${APP_NAME}"
       stage: "${APP_STAGE}"
   spec:
     tags:
-    - name: fc26
+    - name: ${APP_STAGE}
       annotations:
-        openshift.io/display-name: S2I Startx Micro-WebServer (Fedora 26)
-        description: Lightweight Http server builder for micro-web application running under
-          Fedora 26
+        openshift.io/display-name: Micro-application ${APP_NAME} version ${APP_STAGE}
+        description: Lightweight Http server for micro-application ${APP_NAME} based on ${BUILDER_TAG}
         iconClass: icon-nodejs
-        tags: builder,startx,fedora,nodejs,httpd
+        tags: startx,fedora,php,httpd,application,${APP_NAME},${APP_STAGE},${BUILDER_TAG}
         supports: http
-        version: fc26
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+        version: ${APP_STAGE}
       from:
         kind: DockerImage
-        name: startx/sv-nodejs:fc26
-    - name: fc27
-      annotations:
-        openshift.io/display-name: S2I Startx Micro-WebServer (Fedora 27)
-        description: Lightweight Http server builder for micro-web application running under
-          Fedora 27
-        iconClass: icon-nodejs
-        tags: builder,startx,fedora,nodejs,httpd
-        supports: http
-        version: fc27
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
-      from:
-        kind: DockerImage
-        name: startx/sv-nodejs:fc27
-    - name: fc28
-      annotations:
-        openshift.io/display-name: S2I Startx Micro-WebServer (Fedora 28)
-        description: Lightweight Http server builder for micro-web application running under
-          Fedora 28
-        iconClass: icon-nodejs
-        tags: builder,startx,fedora,nodejs,httpd
-        supports: http
-        version: fc28
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
-      from:
-        kind: DockerImage
-        name: startx/sv-nodejs:fc28
-    - name: fc29
-      annotations:
-        openshift.io/display-name: S2I Startx Micro-WebServer (Fedora 29)
-        description: Lightweight Http server builder for micro-web application running under
-          Fedora 29
-        iconClass: icon-nodejs
-        tags: builder,startx,fedora,nodejs,httpd
-        supports: http
-        version: fc29
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
-      from:
-        kind: DockerImage
-        name: startx/sv-nodejs:fc29
-    - name: fc30
-      annotations:
-        openshift.io/display-name: S2I Startx Micro-WebServer (Fedora 30)
-        description: Lightweight Http server builder for micro-web application running under
-          Fedora 30
-        iconClass: icon-nodejs
-        tags: builder,startx,fedora,nodejs,httpd
-        supports: http
-        version: fc30
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
-      from:
-        kind: DockerImage
-        name: startx/sv-nodejs:fc30
-    - name: rawhide
-      annotations:
-        openshift.io/display-name: S2I Startx Micro-WebServer (Fedora rawhide)
-        description: Lightweight Http server builder for micro-web application running under
-          Fedora rawhide
-        iconClass: icon-nodejs
-        tags: builder,startx,fedora,nodejs,httpd
-        supports: http
-        version: rawhide
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
-      from:
-        kind: DockerImage
-        name: startx/sv-nodejs:latest
-    - name: centos7
-      annotations:
-        openshift.io/display-name: S2I Startx Micro-WebServer (Centos 7)
-        description: Lightweight Http server builder for micro-web application running under
-          Centos 7
-        iconClass: icon-nodejs
-        tags: builder,startx,centos,nodejs,httpd
-        supports: http
-        version: '7'
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
-      from:
-        kind: DockerImage
-        name: startx/sv-nodejs:centos7
-    - name: centos6
-      annotations:
-        openshift.io/display-name: S2I Startx Micro-WebServer (Centos 6)
-        description: Lightweight Http server builder for micro-web application running under
-          Centos 6
-        iconClass: icon-nodejs
-        tags: builder,startx,centos,nodejs,httpd
-        supports: http
-        version: '7'
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
-      from:
-        kind: DockerImage
-        name: startx/sv-nodejs:centos6
-    - name: alpine3
-      annotations:
-        openshift.io/display-name: S2I Startx Micro-WebServer (Alpine 3)
-        description: Lightweight Http server builder for micro-web application running under
-          Alpine 3
-        iconClass: icon-nodejs
-        tags: builder,startx,alpine,nodejs,httpd
-        supports: http
-        version: '3'
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
-      from:
-        kind: DockerImage
-        name: startx/sv-nodejs:alpine3
-    - name: latest
-      annotations:
-        openshift.io/display-name: S2I Startx Micro-WebServer (latest)
-        description: Lightweight Http server builder for micro-web application running under
-          Fedora latest
-        iconClass: icon-nodejs
-        tags: builder,startx,alpine,nodejs,httpd
-        supports: http
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
-      from:
-        kind: ImageStreamTag
-        name: rawhide
-    - name: dev
-      annotations:
-        openshift.io/display-name: S2I Startx Micro-WebServer (dev)
-        description: Lightweight Http server builder for micro-web application (developpement)
-        iconClass: icon-nodejs
-        tags: builder,startx,alpine,nodejs,httpd
-        supports: http
-        version: 'dev'
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
-      from:
-        kind: ImageStreamTag
-        name: rawhide
-    - name: test
-      annotations:
-        openshift.io/display-name: S2I Startx Micro-WebServer (test)
-        description: Lightweight Http server builder for micro-web application (testing)
-        iconClass: icon-nodejs
-        tags: builder,startx,alpine,nodejs,httpd
-        supports: http
-        version: 'test'
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
-      from:
-        kind: ImageStreamTag
-        name: centos7
-    - name: preprod
-      annotations:
-        openshift.io/display-name: S2I Startx Micro-WebServer (preprod)
-        description: Lightweight Http server builder for micro-web application (pre-production)
-        iconClass: icon-nodejs
-        tags: builder,startx,alpine,nodejs,httpd
-        supports: http
-        version: 'pre-prod'
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
-      from:
-        kind: ImageStreamTag
-        name: alpine3
-    - name: prod
-      annotations:
-        openshift.io/display-name: S2I Startx Micro-WebServer (prod)
-        description: Lightweight Http server builder for micro-web application (production)
-        iconClass: icon-nodejs
-        tags: builder,startx,alpine,nodejs,httpd
-        supports: http
-        version: 'prod'
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
-      from:
-        kind: ImageStreamTag
-        name: alpine3
+        name: startx/sv-nodejs:${BUILDER_TAG}
 - kind: ConfigMap
   apiVersion: v1
   metadata:
@@ -257,7 +91,7 @@ objects:
         - "${APP_NAME}"
         from:
           kind: ImageStreamTag
-          name: "${APP_NAME}:${BUILDER_TAG}"
+          name: "${APP_NAME}:${APP_STAGE}"
     - type: ConfigChange
     postCommit:
       script: "/bin/sx-nodejs info"
@@ -378,7 +212,7 @@ parameters:
   required: true
 - name: BUILDER_TAG
   displayName: Startx image release
-  description: "Image tag of the startx nodejs image used. Could be : latest, dev, test, preprod, prod - rawhide, fc30, fc29, fc28 - alpine3 - centos7, centos6)"
+  description: "Image tag of the startx nodejs image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc30, fc29, fc28 - alpine3 - centos7, centos6)"
   value: latest
   required: true
 - name: APP_PATH

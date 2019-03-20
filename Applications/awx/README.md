@@ -76,4 +76,4 @@ oc logs dc/awx-awx_task
 * [Sources files](https://github.com/startxfr/docker-images/tree/master/Applications/awx)
 * [Github STARTX profile](https://github.com/startxfr/docker-images)
 * [Docker registry for this container](https://registry.hub.docker.com/u/startx/app-awx/)
-* [Docker registry for Fedora](https://registry.hub.docker.com/u/fedora/)
+* [Docker registry for centos](https://registry.hub.docker.com/u/centos/)

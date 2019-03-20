@@ -9,7 +9,8 @@ ENV SX_VERSION="centos7" \
     SX_NAME="Startx MongoDB service image (centos 7)" \
     SX_SUMMARY="Startx mongo service based on centos 7" \
     LOG_PATH=/var/log/mongodb \
-    DATA_PATH=/data/db
+    MONGO_RUNTIME=/usr/bin/mongod \
+    DATA_PATH=/data
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \

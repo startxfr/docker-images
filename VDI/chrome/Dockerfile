@@ -6,8 +6,8 @@ ENV SX_VERSION="latest" \
     SX_TYPE="desktop" \
     SX_SERVICE="chrome" \
     SX_ID="startx/vdi-chrome" \
-    SX_NAME="Startx Chrome VDI image (fedora rawhide)" \
-    SX_SUMMARY="Startx chrome container-based desktop application based on fedora rawhide" \
+    SX_NAME="Startx Chrome VDI image (Centos 7)" \
+    SX_SUMMARY="Startx chrome container-based desktop application based on Centos 7" \
     SX_CHROME_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
     LOG_PATH=/var/log/chrome \
     APP_PATH=/home/chrome \
@@ -25,7 +25,7 @@ LABEL name="$SX_ID" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,fedora,chrome,vnc,X11" \
+      io.openshift.tags="startx,os,centos,chrome,vnc,X11" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="400Mi" \
       io.openshift.min-cpu="2000m" \
@@ -38,8 +38,8 @@ USER root
 COPY supervisord.conf $SX_CHROME_SUPERVISOR_CONF/
 COPY sx /tmp/
 COPY google-chrome.repo /etc/yum.repos.d/google-chrome.repo
-RUN wget http://rpmfind.net/linux/fedora-secondary/releases/28/Everything/i386/os/Packages/p/python2-meld3-1.0.2-6.fc28.noarch.rpm && \
-    rpm -ivh python2-meld3-1.0.2-6.fc28.noarch.rpm --nodeps && \
+RUN wget https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/p/python-meld3-1.0.2-10.fc30.noarch.rpm && \
+    rpm -ivh python-meld3-1.0.2-10.fc30.noarch.rpm --nodeps && \
     yum --nogpgcheck -y install supervisor xorg-x11-server-Xvfb x11vnc dnf-plugins-core pulseaudio python2-meld3 google-chrome-stable  && \
     yum clean all && \
     rm -rf /var/cache/yum && \

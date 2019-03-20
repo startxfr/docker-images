@@ -7,7 +7,8 @@ ENV SX_VERSION="centos7" \
     SX_SERVICE="phpmyadmin" \
     SX_ID="startx/app-phpmyadmin" \
     SX_NAME="Startx PhpMyAdmin service image (centos 7)" \
-    SX_SUMMARY="Startx phpmyadmin service based on centos 7"
+    SX_SUMMARY="Startx phpmyadmin service based on centos 7" \
+    MYSQL_LANG=fr_FR
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
