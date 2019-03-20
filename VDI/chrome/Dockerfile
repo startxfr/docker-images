@@ -39,7 +39,7 @@ COPY supervisord.conf $SX_CHROME_SUPERVISOR_CONF/
 COPY sx /tmp/ 
 RUN https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/p/python-meld3-1.0.2-10.fc30.noarch.rpm && \
     rpm -ivh python-meld3-1.0.2-10.fc30.noarch.rpm --nodeps && \
-    dnf --nogpgcheck -y install supervisor xorg-x11-server-Xvfb x11vnc fedora-workstation-repositories dnf-plugins-core pulseaudio python2-meld3  python2-setuptools && \
+    dnf --nogpgcheck -y install supervisor xorg-x11-server-Xvfb x11vnc fedora-workstation-repositories dnf-plugins-core pulseaudio  python2-setuptools && \
     dnf config-manager --set-enabled google-chrome && \
     dnf --nogpgcheck -y install google-chrome-stable && \
     dnf clean all && \
