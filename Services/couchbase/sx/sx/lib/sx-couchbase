@@ -203,7 +203,7 @@ function startCouchbaseService {
     trap 'killDaemon term 15' SIGTERM
     trap 'killDaemon sys 31' SIGSYS
     exec /opt/couchbase/bin/couchbase-server -- -kernel global_enable_tracing false -noinput
-    sleep 10
+    temporize 12 2
 }
 
 

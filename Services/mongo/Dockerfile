@@ -9,6 +9,7 @@ ENV SX_VERSION="fc30" \
     SX_NAME="Startx MongoDB service image (fedora 30)" \
     SX_SUMMARY="Startx mongo service based on fedora 30" \
     LOG_PATH=/var/log/mongodb \
+    MONGO_RUNTIME=/usr/bin/mongod \
     DATA_PATH=/data
 
 LABEL name="$SX_ID" \
