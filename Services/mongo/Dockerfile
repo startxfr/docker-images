@@ -9,6 +9,7 @@ ENV SX_VERSION="latest" \
     SX_NAME="Startx MongoDB service image (fedora rawhide)" \
     SX_SUMMARY="Startx mongo service based on fedora rawhide" \
     LOG_PATH=/var/log/mongodb \
+    MONGO_RUNTIME=/usr/bin/mongod \
     DATA_PATH=/data
 
 LABEL name="$SX_ID" \

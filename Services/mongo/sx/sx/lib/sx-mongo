@@ -189,7 +189,7 @@ function mongoIsReady {
 }
 
 function stopMongoHandler {
-    killall /usr/bin/mongod
+    killall $MONGO_RUNTIME
     stopDaemon 
 }
 
@@ -200,5 +200,5 @@ function startMongoService {
     trap 'killDaemon kill 9' SIGKILL
     trap 'killDaemon term 15' SIGTERM
     trap 'killDaemon sys 31' SIGSYS
-    exec /usr/bin/mongod --logappend --logpath $LOG_PATH/mongodb.log --dbpath $DATA_PATH --journal
+    exec $MONGO_RUNTIME --logappend --logpath $LOG_PATH/mongodb.log --dbpath $DATA_PATH --journal
 }
