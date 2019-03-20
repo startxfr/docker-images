@@ -36,7 +36,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 COPY my.cnf $MY_CONF
-RUN apk --no-cache add mariadb mariadb-client mysql glibc-langpack-fr && \
+RUN apk --no-cache add mariadb mariadb-client mysql && \
     mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH /run/mysqld && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \

@@ -36,7 +36,7 @@ LABEL name="$SX_ID" \
 USER root
 
 COPY sx /tmp/
-RUN apk --no-cache add bash pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip shadow vim glibc-langpack-fr && \
+RUN apk --no-cache add bash pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip shadow vim && \
     mkdir -p $SX_LIBDIR $APP_PATH $LOG_PATH && \
     chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib && \
     mv /tmp/s2i/bin /s2i && \
