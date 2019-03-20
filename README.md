@@ -108,6 +108,7 @@ and stay stiked to a defined stable release.
 | Release  | Description
 |----------|-------------
 | 0.31.3   | Stable release with images fully compatible with OKD 4.0 (s2i, podman)
+| 0.31.1   | Adding temporize function into sx lib
 | 0.31.0   | Adding support for fedora 31 containers
 | 0.4.16   | Adding support for OKD 3.11 (s2i, docker)
 | 0.4.10   | Adding build and deploy templates for OCP 3.9
