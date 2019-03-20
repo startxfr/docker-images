@@ -97,3 +97,29 @@ If you want to build and run locally all the images provided in this repository,
 2. Run this container 
   1. Interactively with `docker-compose up`. You should see container startup logs and escaping this command will stop the container
   2. As a daemon with `docker-compose up -d`. You can look at your container startup and behaviour with `docker-compose logs`
+
+
+### sx lib release lifecycle
+
+You can run `sx version` to know witch version of the sx-lib you are running. Older environement may not be updated
+and stay stiked to a defined stable release. 
+
+| Release  | Description
+|----------|-------------
+| 0.31.3   | Stable release with images fully compatible with OKD 4.0 (s2i, podman)
+| 0.31.0   | Adding support for fedora 31 containers
+| 0.4.16   | Adding support for OKD 3.11 (s2i, docker)
+| 0.4.10   | Adding build and deploy templates for OCP 3.9
+| 0.4.8    | Adding images streams for OCP 3.6
+| 0.4.3    | Adding post-build, pre-deploy, post-deploy hooks extentions in code environement
+| 0.4.0    | Adding build and run s2i support
+| 0.3.0    | Adding support for fedora 30 containers
+| 0.2.0    | Adding support for fedora 29 and alpine containers
+
+sx-lib release is defined with the followng rules
+
+| Release  | Name  | Description
+|----------|-------|------
+| x.0.0    | Major | Major change in the sx-lib constitution
+| x.x.0    | Minor | Major change in offered docker image flavour (second numeric coresponding to the fedora release counter. ex: Fedora 31 = x.31.x sx-lib release)
+| x.x.x    | Push  | Evolution, bugfix or security fix related to the sx-lib or image construction
