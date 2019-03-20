@@ -7,7 +7,8 @@ ENV SX_VERSION="fc29" \
     SX_SERVICE="phpmyadmin" \
     SX_ID="startx/app-phpmyadmin" \
     SX_NAME="Startx PhpMyAdmin service image (fedora 29)" \
-    SX_SUMMARY="Startx phpmyadmin service based on fedora 29"
+    SX_SUMMARY="Startx phpmyadmin service based on fedora 29" \
+    MYSQL_LANG=fr_FR
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \

@@ -83,6 +83,19 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-apache:fc30
+    - name: fc31
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (Fedora 31)
+        description: Http server builder for simple web application running under
+          Fedora 31
+        iconClass: icon-apache
+        tags: builder,startx,fedora,apache,httpd
+        supports: http
+        version: fc31
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-apache:fc31
     - name: rawhide
       annotations:
         openshift.io/display-name: S2I Startx WebServer (Fedora rawhide)

@@ -64,7 +64,7 @@ function doMariadbBuild {
     echoVerbose "+====================================================="
     if [[ -d $LOADSQL_PATH ]]; then
         echoVerbose "Copy SQL scripts from $APP_PATH to $LOADSQL_PATH"
-        cp -R $APP_PATH/*.sql $LOADSQL_PATH/
+        cp -R $APP_PATH/*.sql $LOADSQL_PATH/ &> /dev/null
     fi
 }
 
@@ -269,14 +269,22 @@ function init_mysqlConfig {
     echo "" > $MY_CONF
     echo "[mysqld]" >> $MY_CONF
     echo "socket=/var/lib/mysql/mysql.sock" >> $MY_CONF
-    echo "pid-file=/var/run/mysqld/mysqld.pid" >> $MY_CONF
+    echo "pid-file=/var/run/mariadb/mysqld.pid" >> $MY_CONF
     echo "datadir=$DATA_PATH" >> $MY_CONF
     echo "log-error=$LOG_PATH/mysqld.log" >> $MY_CONF
+    echo "lc_messages_dir=/usr/share/mariadb" >> $MY_CONF
+    echo "lc_messages=${LC_MESSAGES}" >> $MY_CONF
+    echo "character-set-server=${DB_CHARSET}" >> $MY_CONF
+    echo "collation-server=${DB_CHARSET}_general_ci" >> $MY_CONF
     echo "" >> $MY_CONF
     echo "[mariadb]" >> $MY_CONF
     echo "pid-file=/var/run/mariadb/mariadb.pid" >> $MY_CONF
     echo "datadir=$DATA_PATH" >> $MY_CONF
     echo "log-error=$LOG_PATH/mariadb.log" >> $MY_CONF
+    echo "lc_messages_dir=/usr/share/mariadb" >> $MY_CONF
+    echo "lc_messages=${LC_MESSAGES}" >> $MY_CONF
+    echo "character-set-server=${DB_CHARSET}" >> $MY_CONF
+    echo "collation-server=${DB_CHARSET}_general_ci" >> $MY_CONF
     echo "config file $MY_CONF updated"
 }
 
@@ -306,7 +314,7 @@ function init_configureUsersAndDatabase {
 function init_installDb {
     VOLUME_HOME=$DATA_PATH/mysql
     if [[ ! -d $VOLUME_HOME ]]; then
-        echoVerbose "mariadb directory is empty or uninitialized"
+        echoVerbose "mariadb $VOLUME_HOME directory is empty or uninitialized"
         echo "Installing MariaDB in $DATA_PATH ..."
         mysql_install_db --defaults-file=$MY_CONF --datadir=$DATA_PATH > /dev/null 2>&1 
         echoVerbose "Installing MariaDB in $DATA_PATH is DONE !"
@@ -346,7 +354,7 @@ function init_configureDatabase {
 
 function config_startserver {
     echoVerbose "starting database for initial setup"
-    `$RUN_BIN &`
+    mysqld_safe &
     mysql_pid=$!
     until mysqladmin ping >/dev/null 2>&1; do
         echo -n "."; sleep 0.2
@@ -357,6 +365,7 @@ function config_stopserver {
     echoVerbose "stopping database"
     mysqladmin -u root -p$MYSQL_ROOT_PASSWORD shutdown
     sleep 2;
+    kill -9 $mysql_pid
 }
 
 
@@ -449,9 +458,10 @@ function config_importsql {
                 echo "Importing schema from $LOADSQL_PATH "
                 SCHEMALIST=$(find $LOADSQL_PATH/${MYSQL_SQL_SCHEMA_PREFIX}*.sql -type f -printf "%f\n")
                 for SCHEMAFILE in $SCHEMALIST; do 
-                    echo "SET NAMES $DB_CHARSET;"|cat - $LOADSQL_PATH/$SCHEMAFILE > /tmp/out && mv -f /tmp/out $LOADSQL_PATH/$SCHEMAFILE
+                    echo "SET NAMES $DB_CHARSET;"|cat - $LOADSQL_PATH/$SCHEMAFILE > /tmp/tmp.sql
                     echo -n "- schema " $SCHEMAFILE " ... "
-                    mysql -uroot -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -D $MYSQL_DATABASE < $LOADSQL_PATH/$SCHEMAFILE
+                    mysql -uroot -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -D $MYSQL_DATABASE < /tmp/tmp.sql
+                    rm -f /tmp/tmp.sql
                     echo " IMPORTED"
                 done
             else
@@ -461,9 +471,10 @@ function config_importsql {
                 echo "Importing data from $LOADSQL_PATH "
                 DATALIST=$(find $LOADSQL_PATH/${MYSQL_SQL_DATA_PREFIX}*.sql -type f -printf "%f\n")
                 for DATAFILE in $DATALIST; do 
-                    echo "SET NAMES $DB_CHARSET;"|cat - $LOADSQL_PATH/$DATAFILE > /tmp/out && mv -f /tmp/out $LOADSQL_PATH/$DATAFILE
+                    echo "SET NAMES $DB_CHARSET;"|cat - $LOADSQL_PATH/$DATAFILE > /tmp/tmp.sql
                     echo -n "- data " $DATAFILE " ... "
-                    mysql -uroot -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -D $MYSQL_DATABASE < $LOADSQL_PATH/$DATAFILE
+                    mysql -uroot -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -D $MYSQL_DATABASE < /tmp/tmp.sql
+                    rm -f /tmp/tmp.sql
                     echo " IMPORTED"
                 done
             else

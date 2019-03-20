@@ -90,6 +90,19 @@ objects:
       from:
         kind: DockerImage
         name: startx/sv-couchbase:fc30
+    - name: fc31
+      annotations:
+        openshift.io/display-name: S2I Couchbase Database (Fedora 31)
+        description: Couchbase server builder for NoSQL database running under Fedora
+          31
+        iconClass: icon-mysql-database
+        tags: builder,startx,fedora,couchbase,database
+        supports: db
+        version: fc31
+        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+      from:
+        kind: DockerImage
+        name: startx/sv-couchbase:fc31
     - name: latest
       annotations:
         openshift.io/display-name: S2I Couchbase Database (Fedora rawhide)
@@ -460,7 +473,7 @@ parameters:
   required: true
 - name: BUILDER_TAG
   displayName: Builder image stage
-  description: "Image tag of the startx couchbase builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc30, fc29, fc28 - alpine3 - centos7, centos6)"
+  description: "Image tag of the startx couchbase builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc30, fc29, fc28 - alpine3 - centos7, centos6)"
   value: latest
 - name: WEBHOOK_TOKEN
   displayName: Webhook token
