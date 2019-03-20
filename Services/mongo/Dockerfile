@@ -31,7 +31,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-COPY mongodb-centos.repo /etc/yum.repos.d/mongodb.repo
+COPY mongodb-org.repo /etc/yum.repos.d/mongodb.repo
 RUN yum install mongodb-org && \
     yum clean all  && \
     usermod -a -G 0 mongodb && \
