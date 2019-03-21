@@ -44,7 +44,8 @@ RUN dnf --nogpgcheck -y install mysql && \
     chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp /var/lib/php && \
     chmod -R ugo+x /bin/sx*
 COPY config.inc.php $APP_PATH/config.inc.php
-RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH && rm -rf $APP_PATH/index.html
+COPY DatabaseInterface.php $APP_PATH/libraries/classes/DatabaseInterface.php
+RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH && rm -rf $APP_PATH/index.html $APP_PATH/config.sample.inc.php
 
 USER 1001
 
