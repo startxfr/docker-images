@@ -11,7 +11,7 @@ ENV SX_VERSION="latest" \
     CB_PATH=/opt/couchbase \
     DATA_PATH=/opt/couchbase/var \
     CB_VERSION=6.0.2 \
-    CB_RELEASE_URL=https://packages.couchbase.com/6.0.2 \
+    CB_RELEASE_URL=https://packages.couchbase.com/releases/6.0.2 \
     CB_PACKAGE=couchbase-server-enterprise-6.0.2-rhel8.x86_64.rpm \
     PATH=$PATH:/opt/couchbase/bin:/opt/couchbase/bin/tools:/opt/couchbase/bin/install
 
