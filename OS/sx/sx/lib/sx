@@ -382,6 +382,7 @@ function displayInformation {
   echoVerbose $1 "image     : $SX_ID:$SX_VERSION"
   echoVerbose $1 "name      : $SX_NAME"
   echoVerbose $1 "OS        : $OS"
+  echoVerbose $1 "kernel    : $(uname -r)"
   echoVerbose $1 "container : $HOSTNAME"
   echoVerbose $1 "sx-lib    : v$SXLIB_VERSION"
   echoNotVerbose "running on $OS (sxlib v$SXLIB_VERSION)"
@@ -391,7 +392,6 @@ function displayInformation {
 # Display information
 function genericAllInformation {
   displayInformation
-  echoVerbose $1 "kernel    : $(uname -r)"
   echoVerbose $1 "bash      : $(bash --version | head -n 1 | tr -s ' ' | cut -d ' ' -f 4  | cut -d '(' -f 1)"
 
   echoDebug `env`

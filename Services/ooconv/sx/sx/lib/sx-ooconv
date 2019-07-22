@@ -12,7 +12,6 @@ function ooconvInformation {
     displayInformation $1
     echoVerbose $1 "version   : $SX_VERSION"
     echoVerbose $1 "unoconv   : $(unoconv --version | tail -1)"
-    echoVerbose $1 "libreOff. : $(libreoffice --version | tr -s ' ' | cut -d ' ' -f 2)"
     echoVerbose $1 "data path : $DATA_PATH"
 }
 
