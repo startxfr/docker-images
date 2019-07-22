@@ -187,6 +187,8 @@ function menuSetupFlavour {
                 appendConf SXDC_OS_FLAVOUR 'centos';;
       fc31)     appendConf SXDC_FLAVOUR fc31
                 appendConf SXDC_OS_FLAVOUR 'fedora';;
+      fc30)     appendConf SXDC_FLAVOUR fc30
+                appendConf SXDC_OS_FLAVOUR 'fedora';;
       fc29)     appendConf SXDC_FLAVOUR fc29
                 appendConf SXDC_OS_FLAVOUR 'fedora';;
       fc28)     appendConf SXDC_FLAVOUR fc28
