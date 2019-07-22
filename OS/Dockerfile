@@ -38,7 +38,8 @@ USER root
 COPY sx /tmp/
 
 RUN dnf --nogpgcheck -y install pwgen tar zip hostname && \
-    dnf --nogpgcheck -y install psmisc procps findutils iputils net-tools wget logrotate bash-completion vim glibc-langpack-fr && \
+    dnf --nogpgcheck -y install psmisc procps findutils iputils net-tools wget && \
+    dnf --nogpgcheck -y install logrotate bash-completion vim glibc-langpack-fr && \
     dnf clean all && \
     mkdir -p $SX_LIBDIR $APP_PATH $LOG_PATH && \
     chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib && \

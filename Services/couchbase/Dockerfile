@@ -10,9 +10,9 @@ ENV SX_VERSION="fc29" \
     SX_SUMMARY="Startx couchbase service based on fedora 29" \
     CB_PATH=/opt/couchbase \
     DATA_PATH=/opt/couchbase/var \
-    CB_VERSION=5.5.0-beta \
-    CB_RELEASE_URL=https://packages.couchbase.com/releases/5.5.0-Mar \
-    CB_PACKAGE=couchbase-server-enterprise-5.5.0-Mar-centos7.x86_64.rpm \
+    CB_VERSION=6.0.2 \
+    CB_RELEASE_URL=https://packages.couchbase.com/releases/6.0.2 \
+    CB_PACKAGE=couchbase-server-enterprise-6.0.2-rhel8.x86_64.rpm \
     PATH=$PATH:/opt/couchbase/bin:/opt/couchbase/bin/tools:/opt/couchbase/bin/install
 
 LABEL name="$SX_ID" \

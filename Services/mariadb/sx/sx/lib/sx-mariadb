@@ -364,7 +364,7 @@ function config_startserver {
 function config_stopserver {
     echoVerbose "stopping database"
     mysqladmin -u root -p$MYSQL_ROOT_PASSWORD shutdown
-    sleep 2;
+    temporize 4 1
     kill -9 $mysql_pid
 }
 

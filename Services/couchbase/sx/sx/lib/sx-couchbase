@@ -15,7 +15,7 @@ function check_couchbase_environment {
 function couchbaseInformation {
     displayInformation $1
     echoVerbose $1 "version   : $SX_VERSION"
-    echoVerbose $1 "engine    : v$CB_VERSION"
+    echoVerbose $1 "engine    : $(couchbase-server --version | cut -d\  -f 3)"
     echoVerbose $1 "log path  : $LOG_PATH"
     echoVerbose $1 "data path : $DATA_PATH"
 }
@@ -203,7 +203,7 @@ function startCouchbaseService {
     trap 'killDaemon term 15' SIGTERM
     trap 'killDaemon sys 31' SIGSYS
     exec /opt/couchbase/bin/couchbase-server -- -kernel global_enable_tracing false -noinput
-    sleep 10
+    temporize 12 2
 }
 
 

@@ -107,7 +107,9 @@ and stay stiked to a defined stable release.
 
 | Release  | Description
 |----------|-------------
+| 0.4.0    | Stable release with updated images lib packages
 | 0.31.3   | Stable release with images fully compatible with OKD 4.0 (s2i, podman)
+| 0.31.1   | Adding temporize function into sx lib
 | 0.31.0   | Adding support for fedora 31 containers
 | 0.4.16   | Adding support for OKD 3.11 (s2i, docker)
 | 0.4.10   | Adding build and deploy templates for OCP 3.9
@@ -117,7 +119,7 @@ and stay stiked to a defined stable release.
 | 0.3.0    | Adding support for fedora 30 containers
 | 0.2.0    | Adding support for fedora 29 and alpine containers
 
-sx-lib release is defined with the followng rules
+sx-lib release is defined with the following rules
 
 | Release  | Name  | Description
 |----------|-------|------
