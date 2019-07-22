@@ -33,7 +33,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 COPY mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo  
-RUN dnf --nogpgcheck -y install mongodb-org-unstable  && \
+RUN dnf --nogpgcheck -y install mongodb-org  && \
     dnf clean all  && \
     usermod -a -G 0 $MONGO_USER && \
     mkdir -p $DATA_PATH && \
