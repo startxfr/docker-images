@@ -10,7 +10,12 @@ ENV SX_VERSION="fc28" \
     SX_SUMMARY="Startx apache service based on fedora 28" \
     HTTPDCONF=/etc/httpd/conf.d/app.conf \
     LOG_PATH=/var/log/httpd \
-    APP_PATH=/app
+    APP_PATH=/app \
+    RUN_CONF_DIR=/etc/httpd/conf.d \
+    RUN_CONF=/etc/httpd/conf/httpd.conf \
+    RUN_DIR=/run/httpd \
+    RUN_BIN=/usr/sbin/httpd \
+    APP_PORT=8080
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -24,7 +29,7 @@ LABEL name="$SX_ID" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="200Mi" \
       io.openshift.min-cpu="1000m" \
-      io.openshift.expose-services="8080:http" \
+      io.openshift.expose-services="$APP_PORT:http" \
       io.openshift.s2i.destination="$SX_S2IDIR" \
       io.openshift.s2i.scripts-url="image:///s2i" \
       fr.startx.component="$SX_ID:$SX_VERSION"
@@ -37,12 +42,12 @@ RUN dnf --nogpgcheck -y install httpd && dnf clean all && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
-    sed -i "s/Listen 80/#Listen 80/" /etc/httpd/conf/httpd.conf && \
-    rm -f /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/welcome.conf /run/httpd/httpd.pid && \
+    [ -w $RUN_CONF ] && sed -i "s/Listen 80/#Listen 80/" $RUN_CONF && \
+    rm -f $RUN_CONF_DIR/autoindex.conf $RUN_CONF_DIR/userdir.conf $RUN_CONF_DIR/welcome.conf $RUN_DIR/httpd.pid && \
     mkdir -p $APP_PATH $LOG_PATH && \
-    chgrp -R 0 $APP_PATH $LOG_PATH /run/httpd /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR && \
+    chgrp -R 0 $APP_PATH $LOG_PATH $RUN_DIR /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR && \
     chown -R 1001:0 /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR $APP_PATH $LOG_PATH && \
-    chmod -R g=u $APP_PATH $LOG_PATH /run/httpd /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR && \
+    chmod -R g=u $APP_PATH $LOG_PATH $RUN_DIR /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR && \
     chmod ug+r $HTTPDCONF && \
     chmod -R ugo+x /bin/sx* && \
     chmod -R ugo+rwx $LOG_PATH
@@ -53,7 +58,7 @@ USER 1001
 
 WORKDIR $APP_PATH
 
-EXPOSE 8080
+EXPOSE $APP_PORT
 
 VOLUME $LOG_PATH
 

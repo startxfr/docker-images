@@ -7,7 +7,8 @@ ENV SX_VERSION="fc28" \
     SX_SERVICE="phpmyadmin" \
     SX_ID="startx/app-phpmyadmin" \
     SX_NAME="Startx PhpMyAdmin service image (fedora 28)" \
-    SX_SUMMARY="Startx phpmyadmin service based on fedora 28"
+    SX_SUMMARY="Startx phpmyadmin service based on fedora 28" \
+    MYSQL_LANG=fr_FR
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -43,7 +44,8 @@ RUN dnf --nogpgcheck -y install mysql && \
     chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp /var/lib/php && \
     chmod -R ugo+x /bin/sx*
 COPY config.inc.php $APP_PATH/config.inc.php
-RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH && rm -rf $APP_PATH/index.html
+COPY DatabaseInterface.php $APP_PATH/libraries/classes/DatabaseInterface.php
+RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH && rm -rf $APP_PATH/index.html $APP_PATH/config.sample.inc.php
 
 USER 1001
 

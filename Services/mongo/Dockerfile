@@ -8,7 +8,9 @@ ENV SX_VERSION="fc28" \
     SX_ID="startx/sv-mongo" \
     SX_NAME="Startx MongoDB service image (fedora 28)" \
     SX_SUMMARY="Startx mongo service based on fedora 28" \
-    LOG_PATH=/logs \
+    LOG_PATH=/var/log/mongodb \
+    MONGO_RUNTIME=/usr/bin/mongod \
+    MONGO_USER=mongod \
     DATA_PATH=/data
 
 LABEL name="$SX_ID" \
@@ -30,16 +32,17 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf --nogpgcheck -y install mongodb mongodb-server  && \
+COPY mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo  
+RUN dnf --nogpgcheck -y install mongodb-org  && \
     dnf clean all  && \
-    usermod -a -G 0 mongodb && \
+    usermod -a -G 0 $MONGO_USER && \
     mkdir -p $DATA_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     mkdir -p $DATA_PATH $LOG_PATH && \
-    chown -R mongodb:mongodb $DATA_PATH $LOG_PATH && \
+    chown -R $MONGO_USER:$MONGO_USER $DATA_PATH $LOG_PATH && \
     chgrp -R 0 $DATA_PATH $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
     chown -R 1001:0 /bin/sx-* /s2i $SX_LIBDIR* && \
     chmod -R g=u $DATA_PATH $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
@@ -49,7 +52,7 @@ USER 1001
 
 WORKDIR $DATA_PATH
 
-EXPOSE 27017 28017
+EXPOSE 27017
 
 VOLUME $DATA_PATH
 

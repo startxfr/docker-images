@@ -8,7 +8,7 @@ ENV SX_VERSION="fc28" \
     SX_ID="startx/sv-nodejs" \
     SX_NAME="Startx Nodejs service image (fedora 28)" \
     SX_SUMMARY="Startx nodejs service based on fedora 28" \
-    LOG_PATH=/logs \
+    LOG_PATH=/var/log/nodejs \
     APP_PATH=/app \
     DATA_PATH=/data \
     APP_MAIN=/app/app.js
@@ -32,7 +32,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf --nogpgcheck -y install nodejs npm python make gcc && dnf clean all && \
+RUN dnf --nogpgcheck -y install nodejs npm python make gcc git && dnf clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \

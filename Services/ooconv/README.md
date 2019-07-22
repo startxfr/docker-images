@@ -10,7 +10,10 @@ based on [startx/fedora:28 container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-* `:latest` : Fedora core 29 + unoconv 0.7 + LibreOffice 5.0.3.2
+* `:latest` : Fedora core rawhide + unoconv 0.7 + LibreOffice 6.2.4.2.0
+* `:fc31` : Fedora core 31 + unoconv 0.7 + LibreOffice 5.0.3.2
+* `:fc30` : Fedora core 30 + unoconv 0.7 + LibreOffice 5.0.3.2
+* `:fc29` : Fedora core 29 + unoconv 0.7 + LibreOffice 5.0.3.2
 * `:fc28` : Fedora core 28 + unoconv 0.7 + LibreOffice 5.0.3.2
 * `:fc27` : Fedora core 27 + unoconv 0.7 + LibreOffice 5.0.3.2
 * `:fc26` : Fedora core 26 + unoconv 0.7 + LibreOffice 5.0.3.2
@@ -36,19 +39,19 @@ service:
 ### Using this image as Openshift Build image
 
 You can use this public image as a base image in your openshift build strategy. You can first import
-our [openshift image stream](https://raw.githubusercontent.com/startxfr/docker-images/fc28/Services/ooconv/openshift-imageStreams.json)
-and automatically add them in your service catalog. You can also test our [deploy template](https://raw.githubusercontent.com/startxfr/docker-images/fc28/Services/ooconv/openshift-template.json)
-or our [build and deploy template](https://raw.githubusercontent.com/startxfr/docker-images/fc28/Services/ooconv/openshift-template-build.json)
+our [openshift image stream](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/ooconv/openshift-imageStreams.yml)
+and automatically add them in your service catalog. You can also test our [deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/ooconv/openshift-template-deploy.yml)
+or our [build and deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/ooconv/openshift-template-build.yml)
 
 ```bash
 # import image streams
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/fc28/Services/ooconv/openshift-imageStreams.json
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/ooconv/openshift-imageStreams.yml
 # import deploy template and start a sample application
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/fc28/Services/ooconv/openshift-template.json
-oc process startx-sv-ooconv-template | oc create -f -
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/ooconv/openshift-template-deploy.yml
+oc process startx-ooconv-template | oc create -f -
 # import build and deploy template and start a sample application
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/fc28/Services/ooconv/openshift-template-build.json
-oc process startx-sv-ooconv-build-template | oc create -f -
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/ooconv/openshift-template-build.yml
+oc process startx-ooconv-build-template | oc create -f -
 ```
 
 ### Using this image as S2I builder
@@ -96,7 +99,7 @@ some [additional environment variable](https://github.com/startxfr/docker-images
 |---------------------------|----------|-----------|--------------------------------------------------------------------------|
 | <i>base image environement</i> |          |           | [see environment list](https://github.com/startxfr/docker-images/tree/fc28/OS#environment-variable)
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
-| LOG_PATH                  | `auto`   | `auto`    | default set to /logs and used as a volume mountpoint
+| LOG_PATH                  | `auto`   | `auto`    | default set to /var/log/ooconv and used as a volume mountpoint
 
 ## Exposed port
 

@@ -1,10 +1,17 @@
 #!/bin/bash
 
-# get and store the operating system name
+## STARTX library release
+SXLIB_VERSION="0.4.0"
+## operating system name
 OS=`cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g'`
-SXLIB_VERSION="0.3.18"
+## directory receiving S2I source code
 S2I_DEST=$SX_S2IDIR/src
+## directory used to store application devops scripts
 MYS2I_DEST=/tmp/mys2i
+## timeout when stopping daemon properly (in seconds)
+#DAEMON_STOP_TIMEOUT=3
+## interval for daemon log trace (in seconds)
+#DAEMON_START_INTERVAL=10
 
 # use xterm and set current PID
 export TERM=xterm
@@ -13,24 +20,24 @@ pid=0
 # return if verbose is activated
 function isVerbose {
     if [[ "$SX_VERBOSE" == true || "$SX_VERBOSE" == "true" ]] ; then
-        return 1
+        echo 1
     else
-        return 0
+        echo 0
     fi 
 }
 
 # echo if verbose if activated
 function echoVerbose {
-    isVerbose
-    if [ "$?" -eq 1 ] ; then
+    x=`isVerbose`
+    if [ "$x" -eq 1 ] ; then
         echo "$@"
     fi 
 }
 
 # echo if verbose if not activated
 function echoNotVerbose {
-    isVerbose
-    if [ "$?" -eq 0 ] ; then
+    x=`isVerbose`
+    if [ "$x" -eq 0 ] ; then
         echo "$@"
     fi 
 }
@@ -42,54 +49,66 @@ function echoDebug {
     fi 
 }
 
-# test if a source code script of the given type exist a could be run
+# Wait or an amount of time and display waiting message at each interval
+# $1 Amount of time to wait and block execution
+# $2 Interval used to display a generic waiting message
+function temporize {
+  x=$1
+  echo "temporize during ${x}sec"
+  while [ $x -gt 0 ]
+  do
+    sleep $2
+    x=$(( $x - $2 ))
+    echo "wait for ${x}sec..."
+  done
+}
+
+# test if a application logic script of the given type exist a could be run
 function testAndRunSourceCodeScript {
   if [[ -r $MYS2I_DEST/$1 ]]; then
-      echoDebug "Found source code $1 script"
+      echoDebug "Found application logic $1 script"
       if [[ -x $MYS2I_DEST/$1 ]]; then
-          echo "Execute source code $1 script"
+          echo "Execute application logic $1 script"
           . $MYS2I_DEST/$1
       else
-          echo "WARN: source code $1 script is not executable"
+          echo "WARN: application logic $1 script is not executable"
       fi 
   else
-      echoVerbose "No source code $1 script"
+      echoVerbose "No application logic $1 script"
   fi 
 }
 
-# move source code and s2i scripts to the appropriate location and setup perms
+# move application logic and s2i scripts to the appropriate location and setup perms
 function moveSourceCode {
   if [[ -r $1 ]]; then
-    echoVerbose "Copy source from $1 > $2"
+    echoVerbose "Copy application from $1 to $2"
     cp -R $1/* $2/
   else
-    echoVerbose "Could not copy $1 is not readable"
+    echoVerbose "Could not copy $1, directory is not readable"
   fi 
   projectScriptDir=""
   if [[ -r $1/sx ]]; then
-      echoVerbose "Found source code CI/CD scripts in sx/"
+      echoVerbose "Found application CI/CD scripts in sx/"
       projectScriptDir=sx
   elif [[ -r $1/s2i ]]; then
-      echoVerbose "Found source code CI/CD scripts in s2i/"
+      echoVerbose "Found application CI/CD scripts in s2i/"
       projectScriptDir=s2i
   elif [[ -r $1/.sx ]]; then
-      echoVerbose "Found source code CI/CD scripts in .sx/"
+      echoVerbose "Found application CI/CD scripts in .sx/"
       projectScriptDir=.sx
   elif [[ -r $1/.s2i ]]; then
-      echoVerbose "Found source code CI/CD scripts in .s2i/"
+      echoVerbose "Found application CI/CD scripts in .s2i/"
       projectScriptDir=.s2i
   else
-      echoVerbose "no source code CI/CD directory found (sx, s2i, .sx, .s2i)"
+      echoVerbose "no application CI/CD directory found (sx, s2i, .sx, .s2i)"
   fi 
   if [[ "$projectScriptDir" != "" ]] ; then
-      echoVerbose "Move source code s2i scripts to $MYS2I_DEST"
-      mv $1/$projectScriptDir $MYS2I_DEST
-      echoVerbose "Set $MYS2I_DEST perms to 1001:0"
+      echoVerbose "Move application s2i scripts to $MYS2I_DEST"
+      cp -R $1/$projectScriptDir $MYS2I_DEST
+      echoVerbose "Set $MYS2I_DEST perms (1001:0, g=u)"
       chown 1001:0 -R $MYS2I_DEST
+      chmod u+x -R $MYS2I_DEST/*
       chmod g=u -R $MYS2I_DEST
-      chmod ug+x -R $MYS2I_DEST/*
-  else
-      echoVerbose "no source code s2i directory moved to $MYS2I_DEST"
   fi 
   if [[ -w $1 ]]; then
     echoVerbose "Remove source temp $1"
@@ -109,29 +128,34 @@ function genericBuild {
     displayInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    doGenericBuild
+    echoVerbose ""
+    doInitS2iApp
     if [[ -x $MYS2I_DEST/assemble ]]; then
-        echoVerbose "Build source code found at $MYS2I_DEST/assemble"
+        echoVerbose "Build application logic found at $MYS2I_DEST/assemble"
         testAndRunSourceCodeScript "assemble" 
     else
-        echoVerbose "No Build source code found at $MYS2I_DEST/assemble"
+        echoVerbose "No Build application logic found at $MYS2I_DEST/assemble"
+        doGenericBuild
     fi
     exit 0;
 }
 
+# function for loading application and s2i logic
+function doInitS2iApp {
+    if [[ -r $S2I_DEST ]]; then
+      echoVerbose "Application found in $S2I_DEST directory"
+      moveSourceCode $S2I_DEST $APP_PATH
+    else
+        echoVerbose "No application found in $S2I_DEST directory"
+    fi;
+}
+
 # function performing OS build actions
 function doGenericBuild {
-    echoNotVerbose "Build system $OS"
-    echoVerbose ""
+    echoNotVerbose "Executing default OS build logic on $OS"
     echoVerbose "+====================================================="
-    echoVerbose "| Build system $OS"
+    echoVerbose "| Executing default OS build logic on $OS"
     echoVerbose "+====================================================="
-    echoVerbose "Fixing perm on $S2I_DEST"
-    if [[ -r $S2I_DEST ]]; then
-      chgrp 0 -R $S2I_DEST
-      chmod g=u -R $S2I_DEST
-      moveSourceCode $S2I_DEST $APP_PATH
-    fi;
 }
 
 # function executed when post-build hook is called
@@ -144,22 +168,22 @@ function genericPostBuild {
     displayInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    doGenericPostBuild
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/post-build ]]; then
-        echoVerbose "PostBuild source code found at $MYS2I_DEST/post-build"
+        echoVerbose "PostBuild application logic found at $MYS2I_DEST/post-build"
         testAndRunSourceCodeScript "post-build" 
     else
-        echoVerbose "No PostBuild source code found at $MYS2I_DEST/post-build"
+        echoVerbose "No PostBuild application logic found at $MYS2I_DEST/post-build"
+        doGenericPostBuild
     fi
     exit 0;
 }
 
 # function performing OS post-build actions
 function doGenericPostBuild {
-    echoNotVerbose "PostBuild system $OS"
-    echoVerbose ""
+    echoNotVerbose "Executing default OS post-build logic on $OS"
     echoVerbose "+====================================================="
-    echoVerbose "| PostBuild system $OS"
+    echoVerbose "| Executing default OS post-build logic on $OS"
     echoVerbose "+====================================================="
 }
 
@@ -173,22 +197,22 @@ function genericPreDeploy {
     displayInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    doGenericPreDeploy
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/pre-deploy ]]; then
-        echoVerbose "PreDeploy source code found at $MYS2I_DEST/pre-deploy"
+        echoVerbose "PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
         testAndRunSourceCodeScript "pre-deploy" 
     else
-        echoVerbose "No PreDeploy source code found at $MYS2I_DEST/pre-deploy"
+        echoVerbose "No PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
+        doGenericPreDeploy
     fi
     exit 0;
 }
 
 # function performing OS pre-deploy actions
 function doGenericPreDeploy {
-    echoNotVerbose "PreDeploy system $OS"
-    echoVerbose ""
+    echoNotVerbose "Executing default OS pre-deploy logic on $OS"
     echoVerbose "+====================================================="
-    echoVerbose "| PreDeploy system $OS"
+    echoVerbose "| Executing default OS pre-deploy logic on $OS"
     echoVerbose "+====================================================="
 }
 
@@ -202,22 +226,22 @@ function genericPostDeploy {
     displayInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
-    doGenericPostDeploy
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/post-deploy ]]; then
-        echoVerbose "PostDeploy source code found at $MYS2I_DEST/post-deploy"
+        echoVerbose "PostDeploy application logic found at $MYS2I_DEST/post-deploy"
         testAndRunSourceCodeScript "post-deploy" 
     else
-        echoVerbose "No PostDeploy source code found at $MYS2I_DEST/post-deploy"
+        echoVerbose "No PostDeploy application logic found at $MYS2I_DEST/post-deploy"
+        doGenericPostDeploy
     fi
     exit 0;
 }
 
 # function performing OS post-deploy actions
 function doGenericPostDeploy {
-    echoNotVerbose "PostDeploy system $OS"
-    echoVerbose ""
+    echoNotVerbose "Executing default OS post-deploy logic on $OS"
     echoVerbose "+====================================================="
-    echoVerbose "| PostDeploy system $OS"
+    echoVerbose "| Executing default OS post-deploy logic on $OS"
     echoVerbose "+====================================================="
 }
 
@@ -231,14 +255,15 @@ function genericRun {
     displayInformation "| "
     echoDebug `env`
     echoVerbose "+====================================================="
+    echoVerbose ""
     if [[ -x $MYS2I_DEST/run ]]; then
-        echoVerbose "Run source code found at $MYS2I_DEST/run"
+        echoVerbose "Run application logic found at $MYS2I_DEST/run"
         testAndRunSourceCodeScript "run" 
     elif [[ -x $APP_PATH/run ]]; then
-        echoVerbose "Run source code found at $APP_PATH/run"
+        echoVerbose "Run application logic found at $APP_PATH/run"
         . $APP_PATH/run
     else
-        echoVerbose "No Run source code found at $MYS2I_DEST/run"
+        echoVerbose "No Run application logic found at $MYS2I_DEST/run"
         echoVerbose "Executing default OS run action"
         doGenericRun
     fi 
@@ -246,10 +271,9 @@ function genericRun {
 
 # function performing OS run actions
 function doGenericRun {
-    echoNotVerbose "Run system $OS"
-    echoVerbose ""
+    echoNotVerbose "Executing default OS run logic on $OS"
     echoVerbose "+====================================================="
-    echoVerbose "| Run system $OS"
+    echoVerbose "| Executing default OS run logic on $OS"
     echoVerbose "+====================================================="
     startDaemon
 }
@@ -261,6 +285,16 @@ echoVerbose "+====================================================="
 displayInformation "| "
 echoVerbose "+====================================================="
 echoDebug `env`
+if [[ -x $MYS2I_DEST/usage ]]; then
+    echoVerbose "Usage application logic found at $MYS2I_DEST/usage"
+    testAndRunSourceCodeScript "usage" 
+else
+    genericDefaultUsage
+fi 
+exit 0;
+}
+# Display general usage
+function genericDefaultUsage {
 cat <<EOF
 
 $SX_SUMMARY
@@ -286,7 +320,6 @@ Usage:
   info             give information about the running container
   version          give the version of the running container
 EOF
-exit 0;
 }
 
 # Display S2I usage
@@ -296,14 +329,14 @@ echoVerbose "+====================================================="
 displayInformation "| "
 echoDebug `env`
 echoVerbose "+====================================================="
-cat <<EOF
+cat << "EOF"
 
 Startx builder container to use with s2i or openshift
 
 Usage:
   s2i $SX_ID <code_repo_url> ≤image_name>
 
-Code repository must have a `run` script who will be executed on container startup
+Code repository could have a 'run' script who will be executed on container startup
 
 EOF
 exit 0;
@@ -349,6 +382,7 @@ function displayInformation {
   echoVerbose $1 "image     : $SX_ID:$SX_VERSION"
   echoVerbose $1 "name      : $SX_NAME"
   echoVerbose $1 "OS        : $OS"
+  echoVerbose $1 "kernel    : $(uname -r)"
   echoVerbose $1 "container : $HOSTNAME"
   echoVerbose $1 "sx-lib    : v$SXLIB_VERSION"
   echoNotVerbose "running on $OS (sxlib v$SXLIB_VERSION)"
@@ -358,6 +392,8 @@ function displayInformation {
 # Display information
 function genericAllInformation {
   displayInformation
+  echoVerbose $1 "bash      : $(bash --version | head -n 1 | tr -s ' ' | cut -d ' ' -f 4  | cut -d '(' -f 1)"
+
   echoDebug `env`
   exit 0;
 }
@@ -380,21 +416,49 @@ function genericIsReady {
   exit 0;
 }
 
+# stop daemon
+function stopDaemon {
+  echoVerbose "+====================================================="
+  echoVerbose "| Container $HOSTNAME is now STOPPING"
+  echoNotVerbose "container is now stopping"
+  echoVerbose "+====================================================="
+  X=0
+  while true; do
+    echo "X=$X"
+    X=`expr ${X} + 1`
+    if [ "${X}" -gt $DAEMON_STOP_TIMEOUT ]; then
+        echo "$HOSTNAME is exiting properly. Good bye..."
+        exit 0
+    else
+        echo "$HOSTNAME will exit in ${X}sec"
+        sleep 1
+    fi 
+  done
+}
+
+# kill daemon
+function killDaemon {
+  echoVerbose "+====================================================="
+  echoVerbose "| Container $HOSTNAME is KILLED with a $1 signal"
+  echoNotVerbose "container is killed with a $1 signal"
+  echoVerbose "+====================================================="
+  exit $2
+}
+
 # start daemon
 function startDaemon {
+    trap 'stopDaemon' SIGHUP SIGINT SIGQUIT SIGILL SIGABRT SIGTRAP SIGBUS SIGUSR1 SIGUSR2 SIGFPE SIGPIPE SIGALRM SIGSTOP
+    trap 'killDaemon kill 9' SIGKILL
+    trap 'killDaemon term 15' SIGTERM
+    trap 'killDaemon sys 31' SIGSYS
     while true; do
         echoVerbose "$HOSTNAME is alive and running $SX_ID:$SX_VERSION ($OS)"
         echoNotVerbose "$HOSTNAME is alive"
-        sleep 10
+        sleep $DAEMON_START_INTERVAL
     done
 }
 
 # Display daemon
 function genericDaemon {
-    echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME is RUNNING"
-    echoVerbose "| "
-    displayInformation "| "
-    echoVerbose "+====================================================="
-    startDaemon
+    genericRun
 }

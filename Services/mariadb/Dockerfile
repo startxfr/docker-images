@@ -10,8 +10,11 @@ ENV SX_VERSION="fc28" \
     SX_SUMMARY="Startx mariadb service based on fedora 28" \
     MY_CONF=/etc/my.cnf \
     DATA_PATH=/data \
-    LOG_PATH=/logs \
-    LOADSQL_PATH=/tmp/sql 
+    LOG_PATH=/var/log/mariadb \
+    LOADSQL_PATH=/tmp/sql  \
+    DB_CHARSET=utf8 \
+    LC_MESSAGES=en_US \
+    RUN_BIN="mysqld_safe"
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -31,9 +34,9 @@ LABEL name="$SX_ID" \
       fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
-COPY my.cnf $MY_CONF
 COPY sx /tmp/
-RUN dnf --nogpgcheck -y install mariadb-tokudb-engine mariadb-connect-engine mariadb-rocksdb-engine mariadb-oqgraph-engine mariadb-connector-c mariadb-connector-odbc mariadb-server-utils mariadb-java-client mariadb-backup mariadb-common mariadb-errmsg mariadb-gssapi-server mariadb-cracklib-password-check mariadb && \
+COPY my.cnf $MY_CONF
+RUN dnf --nogpgcheck -y install mariadb-tokudb-engine mariadb-connect-engine mariadb-rocksdb-engine mariadb-oqgraph-engine mariadb-connector-c mariadb-connector-odbc mariadb-server-utils mariadb-java-client mariadb-backup mariadb-common mariadb-errmsg mariadb-gssapi-server mariadb-cracklib-password-check glibc-langpack-fr mariadb maria* && \
     dnf clean all && \
     mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \
