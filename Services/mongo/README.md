@@ -10,8 +10,8 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-* `:latest` : Fedora core rawhide + MongoDB 4.x (testing)
-* `:fc31` : Fedora core 31 + MongoDB 4.1
+* `:latest` : Fedora core rawhide + MongoDB 4.1.13
+* `:fc31` : Fedora core 31 + MongoDB 4.1.13
 * `:fc30` : Fedora core 30 + MongoDB 4.0
 * `:fc29` : Fedora core 29 + MongoDB 3.7
 * `:fc28` : Fedora core 28 + MongoDB 3.6

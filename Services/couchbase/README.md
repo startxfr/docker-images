@@ -10,8 +10,8 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-* `:latest` : Fedora rawhide + Couchbase Server 6.0.2
-* `:fc31` : Fedora 31 + Couchbase Server 6.0.2
+* `:latest` : Fedora rawhide + Couchbase Server 6.0.2-2413
+* `:fc31` : Fedora 31 + Couchbase Server 6.0.2-2413
 * `:fc30` : Fedora 30 + Couchbase Server 6.0.0
 * `:fc29` : Fedora 29 + Couchbase Server 5.5.0-2036
 * `:fc28` : Fedora 28 + Couchbase Server 4.5.0
