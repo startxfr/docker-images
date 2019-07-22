@@ -1,15 +1,15 @@
 #!/bin/bash
-source /var/lib/sx/sx-couchbase
+source $SX_LIBDIR/sx-couchbase
 
 check_couchbase_environment
 # Dispatch input arguments
 case $1 in
-    assemble|build)         couchbaseAssemble $@ ;;
+    assemble|build)         couchbaseBuild $@ ;;
     post-build)             couchbasePostBuild $@ ;;
     pre-deploy)             couchbasePreDeploy $@ ;;
     post-deploy)            couchbasePostDeploy $@ ;;
     run|start)              couchbaseRun $@ ;;
-    isLive)                 couchbaseIsLive $@ ;;
+    isLive|health)          couchbaseIsLive $@ ;;
     isReady)                couchbaseIsReady $@ ;;
     info|--info)            couchbaseInformation $@ ;;
     usage|help|--help)      genericUsage $@ ;;

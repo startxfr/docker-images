@@ -8,7 +8,7 @@ ENV SX_VERSION="centos6" \
     SX_ID="startx/sv-nodejs" \
     SX_NAME="Startx Nodejs service image (centos 6)" \
     SX_SUMMARY="Startx nodejs service based on centos 6" \
-    LOG_PATH=/logs \
+    LOG_PATH=/var/log/nodejs \
     APP_PATH=/app \
     DATA_PATH=/data \
     APP_MAIN=/app/app.js
@@ -32,10 +32,10 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum --nogpgcheck -y --enablerepo=epel install nodejs npm python make gcc && yum clean all && \
+RUN yum --nogpgcheck -y --enablerepo=epel install nodejs npm python make gcc git && yum clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
-    mv /tmp/sx/lib/* /var/lib/sx/ && \
+    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     mkdir -p $DATA_PATH $APP_PATH $LOG_PATH /.npm /.config  && \
     chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /.config /.npm && \

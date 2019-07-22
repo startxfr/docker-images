@@ -1,0 +1,210 @@
+#!/bin/bash
+source $SX_LIBDIR/sx
+
+function check_firefox_environment {
+    if [ ! -v APP_PATH ]; then
+        APP_PATH="/home/firefox"
+        export APP_PATH
+    fi
+    if [ ! -v LOG_PATH ]; then
+        LOG_PATH="/var/log/firefox"
+        export LOG_PATH
+    fi
+    if [ ! -n "$SERVER_NAME" ]; then
+        SERVER_NAME="localhost"
+        export SERVER_NAME
+    fi
+}
+
+# Display firefox information
+function firefoxInformation {
+    displayInformation $1 
+    echoVerbose $1 "app path  : $APP_PATH"
+    echoVerbose $1 "log path  : $LOG_PATH"
+    echoVerbose $1 "firefox   : $(firefox --version)" 
+    echoVerbose $1 "resolution: $SX_FIREFOX_SCREEN_RES_X" 
+}
+
+# function executed when build hook is called
+function firefoxBuild {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Firefox BUILD"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Firefox BUILD"
+    echoVerbose "| "
+    firefoxInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    echoVerbose ""
+    doInitS2iApp
+    if [[ -x $MYS2I_DEST/assemble ]]; then
+        echoVerbose "Build application logic found at $MYS2I_DEST/assemble"
+        testAndRunSourceCodeScript "assemble" 
+    else
+        echoVerbose "No Build application logic found at $MYS2I_DEST/assemble"
+    doFirefoxBuild
+    fi
+    exit 0;
+}
+
+# function performing Firefox build actions
+function doFirefoxBuild {
+    doGenericBuild
+    echoNotVerbose "Executing Firefox build logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Firefox build logic"
+    echoVerbose "+====================================================="
+}
+
+# function executed when post-build hook is called
+function firefoxPostBuild {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Firefox POST-BUILD"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Firefox POST-BUILD"
+    echoVerbose "| "
+    firefoxInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    echoVerbose ""
+    if [[ -x $MYS2I_DEST/assemble ]]; then
+        echoVerbose "PostBuild application logic found at $MYS2I_DEST/post-build"
+        testAndRunSourceCodeScript "post-build" 
+    else
+        echoVerbose "No PostBuild application logic found at $MYS2I_DEST/post-build"
+    doFirefoxPostBuild
+    fi
+    exit 0;
+}
+
+# function performing Firefox post-build actions
+function doFirefoxPostBuild {
+    doGenericPostBuild
+    echoNotVerbose "Executing Firefox post-build logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Firefox post-build logic"
+    echoVerbose "+====================================================="
+}
+
+# function executed when pre-deploy hook is called
+function firefoxPreDeploy {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Firefox PRE-DEPLOY"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Firefox PRE-DEPLOY"
+    echoVerbose "| "
+    firefoxInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    echoVerbose ""
+    if [[ -x $MYS2I_DEST/pre-deploy ]]; then
+        echoVerbose "PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
+        testAndRunSourceCodeScript "pre-deploy" 
+    else
+        echoVerbose "No PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
+    doFirefoxPreDeploy
+    fi
+    exit 0;
+}
+
+# function performing Firefox pre-deploy actions
+function doFirefoxPreDeploy {
+    doGenericPreDeploy
+    echoNotVerbose "Executing Firefox pre-deploy logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Firefox pre-deploy logic"
+    echoVerbose "+====================================================="
+}
+
+# function executed when post-deploy hook is called
+function firefoxPostDeploy {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Firefox POST-DEPLOY"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Firefox POST-DEPLOY"
+    echoVerbose "| "
+    firefoxInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    echoVerbose ""
+    if [[ -x $MYS2I_DEST/post-deploy ]]; then
+        echoVerbose "PostDeploy application logic found at $MYS2I_DEST/post-deploy"
+        testAndRunSourceCodeScript "post-deploy" 
+    else
+        echoVerbose "No PostDeploy application logic found at $MYS2I_DEST/post-deploy"
+    doFirefoxPostDeploy
+    fi
+    exit 0;
+}
+
+# function performing Firefox post-deploy actions
+function doFirefoxPostDeploy {
+    doGenericPostDeploy
+    echoNotVerbose "Executing Firefox post-deploy logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Firefox post-deploy logic"
+    echoVerbose "+====================================================="
+}
+
+# function executed on container startup
+function firefoxRun { 
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Firefox RUN"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Firefox RUN"
+    echoVerbose "| "
+    firefoxInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    echoVerbose ""
+    if [[ -x $MYS2I_DEST/run ]]; then
+        echoVerbose "Run application logic found at $MYS2I_DEST/run"
+        testAndRunSourceCodeScript "run" 
+    else
+        echoVerbose "No Run application logic found at $MYS2I_DEST/run"
+        echoVerbose "Executing default Firefox run action"
+        doFirefoxRun
+    fi
+}
+
+# function performing Firefox run actions
+function doFirefoxRun {
+    echoNotVerbose "Executing Firefox run logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Firefox run logic"
+    echoVerbose "+====================================================="
+    startFirefoxService
+}
+
+# Display liveness status
+function firefoxIsLive {
+    genericIsLive
+}
+
+# Display readyness status
+function firefoxIsReady {
+    R=`ps -aux | grep firefox | wc -l`
+    if [ "$R" -ge "2" ]; then
+      echo "OK";
+      exit 0;
+    else 
+      echo "Not OK";
+      exit 1;
+    fi;
+}
+
+# function executed on firefox service stop
+function stopFirefoxHandler {
+    killall firefox supervisord
+    stopDaemon
+}
+
+# Start the httpd server as a deamon and execute it inside 
+# the running shell
+function startFirefoxService {
+    trap 'stopFirefoxHandler' SIGHUP SIGINT SIGQUIT SIGILL SIGABRT SIGTRAP SIGBUS SIGUSR1 SIGUSR2 SIGFPE SIGPIPE SIGALRM SIGSTOP
+    trap 'killDaemon kill 9' SIGKILL
+    trap 'killDaemon term 15' SIGTERM
+    trap 'killDaemon sys 31' SIGSYS
+    exec /usr/bin/supervisord -c $SX_FIREFOX_SUPERVISOR_CONF/supervisord.conf
+}

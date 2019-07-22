@@ -1,19 +1,19 @@
 #!/bin/bash
-source /var/lib/sx/sx
+source $SX_LIBDIR/sx
 
 # Dispatch input arguments
 case $1 in
-    assemble|build)         genericAssemble $@ ;;
+    assemble|build)         genericBuild $@ ;;
     post-build)             genericPostBuild $@ ;;
     pre-deploy)             genericPreDeploy $@ ;;
     post-deploy)            genericPostDeploy $@ ;;
     run|start)              genericRun $@ ;;
-    isLive)                 genericIsLive $@ ;;
+    isLive|health)          genericIsLive $@ ;;
     isReady)                genericIsReady $@ ;;
     usage|help|--help)      genericUsage $@ ;;
     usageS2i)               genericUsageS2I $@ ;;
-    info|--info)            genericAllInformation $@ ;;
     daemon)                 genericDaemon $@ ;;
+    info|--info)            genericAllInformation $@ ;;
     version|--version)      genericVersion $@ ;;
     *)                      genericWelcome $@ ;;
 esac

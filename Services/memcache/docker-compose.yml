@@ -11,6 +11,8 @@ memcache:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "memcache"
-    CONTAINER_INSTANCE: "centos6-service-memcache"
-  volumes:
-    - "/tmp/container-centos6/logs/memcache:/logs:z"
+#  volumes:
+#    - "/tmp/container/memcache/logs:/logs:z"
+#  command:
+#     - "/bin/sx-memcache"
+#     - "run"

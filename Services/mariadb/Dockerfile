@@ -10,8 +10,11 @@ ENV SX_VERSION="centos6" \
     SX_SUMMARY="Startx mariadb service based on centos 6" \
     MY_CONF=/etc/my.cnf \
     DATA_PATH=/data \
-    LOG_PATH=/logs \
-    LOADSQL_PATH=/tmp/sql 
+    LOG_PATH=/var/log/mariadb \
+    LOADSQL_PATH=/tmp/sql  \
+    DB_CHARSET=utf8 \
+    LC_MESSAGES=en_US \
+    RUN_BIN="mysqld_safe"
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -31,19 +34,19 @@ LABEL name="$SX_ID" \
       fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
-COPY my.cnf $MY_CONF
 COPY sx /tmp/
+COPY my.cnf $MY_CONF
 RUN yum --nogpgcheck -y install mysql-libs mysql-server mysql && \
     yum clean all && \
     mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
-    mv /tmp/sx/lib/* /var/lib/sx/ && \
+    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     touch $DATA_PATH/.keep && \
     chown -R mysql:mysql $LOG_PATH $DATA_PATH $LOADSQL_PATH && \
-    chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i /var/lib/sx* /var/lib/mysql /var/run/mysqld $MY_CONF && \
-    chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i /var/lib/sx* /var/lib/mysql /var/run/mysqld $MY_CONF && \
+    chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* /var/lib/mysql /var/run/mariadb $MY_CONF && \
+    chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* /var/lib/mysql /var/run/mariadb $MY_CONF && \
     chmod -R ugo+x /bin/sx* && \
     chmod ug+rw $MY_CONF
 

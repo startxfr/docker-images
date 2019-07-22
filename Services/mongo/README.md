@@ -1,4 +1,4 @@
-<img align="right" height="50" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true">
+[![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
 # Docker OS Images : MONGO on CentOS 6
 
@@ -10,15 +10,19 @@ based on [startx/centos:6 container](https://hub.docker.com/r/startx/centos)
 
 ## Available flavours
 
-* `:latest` : Fedora core 29 + MongoDB 3.0.7 
-* `:fc28` : Fedora core 28 + MongoDB 3.0.7  
-* `:fc27` : Fedora core 27 + MongoDB 3.0.7  
-* `:fc26` : Fedora core 26 + MongoDB 3.0.7  
+* `:latest` : Fedora core rawhide + MongoDB 4.1.13
+* `:fc31` : Fedora core 31 + MongoDB 4.1.13
+* `:fc30` : Fedora core 30 + MongoDB 4.0
+* `:fc29` : Fedora core 29 + MongoDB 3.7
+* `:fc28` : Fedora core 28 + MongoDB 3.6
+* `:fc27` : Fedora core 27 + MongoDB 3.4
+* `:fc26` : Fedora core 26 + MongoDB 3.4
 * `:fc23` : Fedora core 23 + MongoDB 3.0.7  
 * `:fc22` : Fedora core 22 + MongoDB 
 * `:fc21` : Fedora core 21 + MongoDB 
-* `:centos6` : CentOS 6 + MongoDB 
-* `:centos6` : Centos 6 + MongoDB 
+* `:centos7` : CentOS 7 + MongoDB 4.1
+* `:centos6` : Centos 6 + MongoDB 3.7
+* `:alpine3` : Alpine 3.7 + MongoDB 4.1
 
 ## Running from dockerhub registry
 
@@ -29,26 +33,26 @@ service:
   image: startx/sv-mongo:centos6
   container_name: "service-mongo-centos6"
   volumes:
-    - "/tmp/container-centos6/logs/mongo:/logs:z"
-    - "/tmp/container-centos6/mongo:/data:z"
+    - "/tmp/container/mongo/logs:/logs:z"
+    - "/tmp/container/mongo/data:/data:z"
 ```
 
 ### Using this image as Openshift Build image
 
 You can use this public image as a base image in your openshift build strategy. You can first import
-our [openshift image stream](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mongo/openshift-imageStreams.json)
-and automatically add them in your service catalog. You can also test our [deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mongo/openshift-template.json)
-or our [build and deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mongo/openshift-template-build.json)
+our [openshift image stream](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mongo/openshift-imageStreams.yml)
+and automatically add them in your service catalog. You can also test our [deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mongo/openshift-template-deploy.yml)
+or our [build and deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mongo/openshift-template-build.yml)
 
 ```bash
 # import image streams
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mongo/openshift-imageStreams.json
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mongo/openshift-imageStreams.yml
 # import deploy template and start a sample application
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mongo/openshift-template.json
-oc process startx-sv-mongo-template | oc create -f -
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mongo/openshift-template-deploy.yml
+oc process startx-mongo-deploy-template | oc create -f -
 # import build and deploy template and start a sample application
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mongo/openshift-template-build.json
-oc process startx-sv-mongo-build-template | oc create -f -
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mongo/openshift-template-build.yml
+oc process startx-mongo-build-template | oc create -f -
 ```
 
 ### Using this image as S2I builder
@@ -107,7 +111,7 @@ some [additional environment variable](https://github.com/startxfr/docker-images
 |---------------------------|----------|-----------|--------------------------------------------------------------------------|
 | <i>base image environement</i> |          |           | [see environment list](https://github.com/startxfr/docker-images/tree/master/OS#environment-variable)
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
-| LOG_PATH                  | `auto`   | `auto`    | default set to /logs and used as a volume mountpoint
+| LOG_PATH                  | `auto`   | `auto`    | default set to /var/log/mongodb and used as a volume mountpoint
 | DATA_PATH                 | `auto`   | `auto`    | default set to /data and used as a volume mountpoint
 
 ## Exposed port

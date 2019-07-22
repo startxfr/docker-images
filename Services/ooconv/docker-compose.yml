@@ -11,6 +11,9 @@ ooconv:
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "ooconv"
-    CONTAINER_INSTANCE: "centos6-service-ooconv"
-  volumes:
-    - "/tmp/container-centos6/logs/ooconv:/logs:z"
+#  volumes:
+#    - "/tmp/container/ooconv/logs:/logs:z"
+#    - "/tmp/container/ooconv/data:/data:z"
+#  command:
+#     - "/bin/sx-ooconv"
+#     - "run"

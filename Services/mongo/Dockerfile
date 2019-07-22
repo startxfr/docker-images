@@ -8,7 +8,9 @@ ENV SX_VERSION="centos6" \
     SX_ID="startx/sv-mongo" \
     SX_NAME="Startx MongoDB service image (centos 6)" \
     SX_SUMMARY="Startx mongo service based on centos 6" \
-    LOG_PATH=/logs \
+    LOG_PATH=/var/log/mongodb \
+    MONGO_RUNTIME=/usr/bin/mongod \
+    MONGO_USER=mongod \
     DATA_PATH=/data
 
 LABEL name="$SX_ID" \
@@ -32,24 +34,24 @@ USER root
 COPY sx /tmp/
 RUN yum --nogpgcheck --enablerepo=epel -y install mongodb-server  && \
     yum clean all  && \
-    usermod -a -G 0 mongodb && \
+    usermod -a -G 0 $MONGO_USER && \
     mkdir -p $DATA_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
-    mv /tmp/sx/lib/* /var/lib/sx/ && \
+    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     mkdir -p $DATA_PATH $LOG_PATH && \
-    chown -R mongodb:mongodb $DATA_PATH $LOG_PATH && \
-    chgrp -R 0 $DATA_PATH $LOG_PATH /bin/sx-* /s2i /var/lib/sx* && \
-    chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* && \
-    chmod -R g=u $DATA_PATH $LOG_PATH /bin/sx-* /s2i /var/lib/sx* && \
+    chown -R $MONGO_USER:$MONGO_USER $DATA_PATH $LOG_PATH && \
+    chgrp -R 0 $DATA_PATH $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
+    chown -R 1001:0 /bin/sx-* /s2i $SX_LIBDIR* && \
+    chmod -R g=u $DATA_PATH $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
     chmod -R ugo+x /bin/sx*
 
 USER 1001
 
 WORKDIR $DATA_PATH
 
-EXPOSE 27017 28017
+EXPOSE 27017
 
 VOLUME $DATA_PATH
 

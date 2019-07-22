@@ -1,5 +1,5 @@
 #!/bin/bash
-source /var/lib/sx/sx
+source $SX_LIBDIR/sx
 
 function check_mongo_environment {
     if [ ! -v APP_PATH ]; then
@@ -27,63 +27,153 @@ function displayMongoRunInformation {
     echo $1 "database  : $MYSQL_DATABASE"
 }
 
-function mongoPreDeploy {
+# function executed when build hook is called
+function mongoBuild {
     genericHeader
+    echoNotVerbose "container $HOSTNAME executing Mongo BUILD"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
-    echoNotVerbose "container $HOSTNAME  running PRE-DEPLOY HOOK"
+    echoVerbose "| Container $HOSTNAME executing Mongo BUILD"
     echoVerbose "| "
     mongoInformation "| "
+    echoDebug `env`
     echoVerbose "+====================================================="
-    testAndRunSourceCodeScript "pre-deploy" 
+    echoVerbose ""
+    doInitS2iApp
+    if [[ -x $MYS2I_DEST/assemble ]]; then
+        echoVerbose "Build application logic found at $MYS2I_DEST/assemble"
+        testAndRunSourceCodeScript "assemble" 
+    else
+        echoVerbose "No Build application logic found at $MYS2I_DEST/assemble"
+    doMongoBuild
+    fi
+    exit 0;
 }
 
-function mongoPostDeploy {
-    genericHeader
+# function performing Mongo build actions
+function doMongoBuild {
+    doGenericBuild
+    echoNotVerbose "Executing Mongo build logic"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running POST-DEPLOY HOOK"
-    echoNotVerbose "container $HOSTNAME  running POST-DEPLOY HOOK"
-    echoVerbose "| "
-    mongoInformation "| "
+    echoVerbose "| Executing Mongo build logic"
     echoVerbose "+====================================================="
-    testAndRunSourceCodeScript "post-deploy" 
 }
 
+# function executed when post-build hook is called
 function mongoPostBuild {
     genericHeader
+    echoNotVerbose "container $HOSTNAME executing Mongo POST-BUILD"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running POST-BUILD HOOK"
-    echoNotVerbose "container $HOSTNAME  running POST-BUILD HOOK"
+    echoVerbose "| Container $HOSTNAME executing Mongo POST-BUILD"
     echoVerbose "| "
     mongoInformation "| "
+    echoDebug `env`
     echoVerbose "+====================================================="
-    testAndRunSourceCodeScript "post-build" 
+    echoVerbose ""
+    if [[ -x $MYS2I_DEST/assemble ]]; then
+        echoVerbose "PostBuild application logic found at $MYS2I_DEST/post-build"
+        testAndRunSourceCodeScript "post-build" 
+    else
+        echoVerbose "No PostBuild application logic found at $MYS2I_DEST/post-build"
+    doMongoPostBuild
+    fi
+    exit 0;
 }
 
-function mongoAssemble {
+# function performing Mongo post-build actions
+function doMongoPostBuild {
+    doGenericPostBuild
+    echoNotVerbose "Executing Mongo post-build logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Mongo post-build logic"
+    echoVerbose "+====================================================="
+}
+
+# function executed when pre-deploy hook is called
+function mongoPreDeploy {
     genericHeader
+    echoNotVerbose "container $HOSTNAME executing Mongo PRE-DEPLOY"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running ASSEMBLE"
-    echoNotVerbose "container $HOSTNAME  running ASSEMBLE"
+    echoVerbose "| Container $HOSTNAME executing Mongo PRE-DEPLOY"
     echoVerbose "| "
     mongoInformation "| "
+    echoDebug `env`
     echoVerbose "+====================================================="
-    if [[ -d $S2I_DEST ]]; then
-      echoVerbose "Fixing perm on $S2I_DEST"
-      chown 1001:0 -R $S2I_DEST
-      chmod g=u -R $S2I_DEST
-      moveSourceCode $S2I_DEST $APP_PATH
-    fi;
-    testAndRunSourceCodeScript "assemble" 
+    echoVerbose ""
+    if [[ -x $MYS2I_DEST/pre-deploy ]]; then
+        echoVerbose "PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
+        testAndRunSourceCodeScript "pre-deploy" 
+    else
+        echoVerbose "No PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
+    doMongoPreDeploy
+    fi
+    exit 0;
 }
 
+# function performing Mongo pre-deploy actions
+function doMongoPreDeploy {
+    doGenericPreDeploy
+    echoNotVerbose "Executing Mongo pre-deploy logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Mongo pre-deploy logic"
+    echoVerbose "+====================================================="
+}
+
+# function executed when post-deploy hook is called
+function mongoPostDeploy {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Mongo POST-DEPLOY"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Mongo POST-DEPLOY"
+    echoVerbose "| "
+    mongoInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    echoVerbose ""
+    if [[ -x $MYS2I_DEST/post-deploy ]]; then
+        echoVerbose "PostDeploy application logic found at $MYS2I_DEST/post-deploy"
+        testAndRunSourceCodeScript "post-deploy" 
+    else
+        echoVerbose "No PostDeploy application logic found at $MYS2I_DEST/post-deploy"
+    doMongoPostDeploy
+    fi
+    exit 0;
+}
+
+# function performing Mongo post-deploy actions
+function doMongoPostDeploy {
+    doGenericPostDeploy
+    echoNotVerbose "Executing Mongo post-deploy logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Mongo post-deploy logic"
+    echoVerbose "+====================================================="
+}
+
+# function executed on container startup
 function mongoRun {
     genericHeader
+    echoNotVerbose "container $HOSTNAME executing Mongo RUN"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME is RUNNING"
-    echoNotVerbose "container $HOSTNAME is RUNNING"
+    echoVerbose "| Container $HOSTNAME executing Mongo RUN"
     echoVerbose "| "
     mongoInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    echoVerbose ""
+    if [[ -x $MYS2I_DEST/run ]]; then
+        echoVerbose "Run application logic found at $MYS2I_DEST/run"
+        testAndRunSourceCodeScript "run" 
+    else
+        echoVerbose "No Run application logic found at $MYS2I_DEST/run"
+        echoVerbose "Executing default Mongo run action"
+        doMongoRun
+    fi
+}
+
+# function performing Mongo run actions
+function doMongoRun {
+    echoNotVerbose "Executing Mongo run logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Mongo run logic"
     echoVerbose "+====================================================="
     startMongoService
 }
@@ -98,25 +188,17 @@ function mongoIsReady {
     genericIsReady
 }
 
-function stop_mongo_handler {
-    killall /usr/bin/mongod
-    echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME is now STOPPED"
-    echoNotVerbose "container is now stopped"
-    echoVerbose "| "
-    mongoInformation "| "
-    echoVerbose "+====================================================="
-    exit 143; # 128 + 15 -- SIGTERM
+function stopMongoHandler {
+    killall $MONGO_RUNTIME
+    stopDaemon 
 }
 
 # Start the mongo server as a deamon and execute it inside 
 # the running shell
 function startMongoService {
-    trap 'kill ${!}; stop_mongo_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
-    /usr/bin/mongod --logappend --logpath $LOG_PATH/mongodb.log --dbpath $DATA_PATH --journal
-    exec tail -f /dev/null &
-    while true
-    do
-      tail -f /dev/null & wait ${!}
-    done
+    trap 'stopMongoHandler' SIGHUP SIGINT SIGQUIT SIGILL SIGABRT SIGTRAP SIGBUS SIGUSR1 SIGUSR2 SIGFPE SIGPIPE SIGALRM SIGSTOP
+    trap 'killDaemon kill 9' SIGKILL
+    trap 'killDaemon term 15' SIGTERM
+    trap 'killDaemon sys 31' SIGSYS
+    exec $MONGO_RUNTIME --logappend --logpath $LOG_PATH/mongodb.log --dbpath $DATA_PATH --journal
 }

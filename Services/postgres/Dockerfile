@@ -9,7 +9,7 @@ ENV SX_VERSION="centos6" \
     SX_NAME="Startx Postgres service image (centos 6)" \
     SX_SUMMARY="Startx postgres service based on centos 6" \
     DATA_PATH=/data \
-    LOG_PATH=/logs
+    LOG_PATH=/var/log/postgres
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -34,14 +34,14 @@ RUN yum --nogpgcheck -y install postgresql postgresql-libs postgresql-server \
     && yum clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
-    mv /tmp/sx/lib/* /var/lib/sx/ && \
+    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     mkdir -p $DATA_PATH $LOG_PATH && \
     touch $DATA_PATH/.keep && \
     chmod -R ug+rwx $LOG_PATH $DATA_PATH && \
-    chgrp -R 0 $DATA_PATH $LOG_PATH /bin/sx-* /s2i /var/lib/sx* && \
-    chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* && \
-    chmod -R g=u $DATA_PATH $LOG_PATH /bin/sx-* /s2i /var/lib/sx* && \
+    chgrp -R 0 $DATA_PATH $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
+    chown -R 1001:0 /bin/sx-* /s2i $SX_LIBDIR* && \
+    chmod -R g=u $DATA_PATH $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
     chmod -R ugo+x /bin/sx*
 
 USER 1001

@@ -7,8 +7,7 @@ ENV SX_VERSION="centos6" \
     SX_SERVICE="memcache" \
     SX_ID="startx/sv-memcache" \
     SX_NAME="Startx Memcached service image (centos 6)" \
-    SX_SUMMARY="Startx Memcached service based on centos 6" \
-    LOG_PATH=/var/log/httpd
+    SX_SUMMARY="Startx Memcached service based on centos 6"
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -32,12 +31,12 @@ COPY sx /tmp/
 RUN yum --nogpgcheck -y install memcached && yum clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
-    mv /tmp/sx/lib/* /var/lib/sx/ && \
+    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     mkdir -p $LOG_PATH && \
-    chgrp -R 0 $LOG_PATH /bin/sx-* /s2i /var/lib/sx* && \
-    chown -R 1001:0 /bin/sx-* /s2i /var/lib/sx* && \
-    chmod -R g=u $LOG_PATH /bin/sx-* /s2i /var/lib/sx* && \
+    chgrp -R 0 $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
+    chown -R 1001:0 /bin/sx-* /s2i $SX_LIBDIR* && \
+    chmod -R g=u $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
     chmod -R ugo+x /bin/sx* && \
     chmod -R ugo+rwx $LOG_PATH
 

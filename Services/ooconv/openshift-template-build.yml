@@ -1,0 +1,497 @@
+kind: Template
+apiVersion: v1
+metadata:
+  name: startx-ooconv-build-template
+  annotations:
+    openshift.io/display-name: Startx LibreOffice (ephemeral build & deploy workflow)
+    description: LibreOffice converter for document convertion using ephemeral storage
+      for logs records. Use ooconv with various underlying linux distribution. See 
+      https://hub.docker.com/r/startx/sv-ooconv
+    iconClass: icon-aerogear
+    tags: startx,os,fedora,ooconv,libreoffice
+    openshift.io/provider-display-name: STARTX
+    openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-ooconv
+    openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
+message: |-
+  Your converter ${APP_NAME} is building and will be soon deployed.
+  Monitor the deployement for application availability
+
+  Source      : ${SOURCE_BRANCH}@${SOURCE_GIT}
+  Converter   : ${APP_NAME}
+  Stage       : ${APP_STAGE}
+  Builder     : ${BUILDER_TAG}
+  Volumes     : ${APP_NAME}-data (E)
+  
+  Connection  : socket://${APP_NAME}:2002
+  
+labels:
+  template: startx-ooconv-build-template
+  provider: startx 
+objects:
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: startx-ooconv
+    annotations:
+      openshift.io/display-name: Startx LibreOffice converter
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  spec:
+    tags:
+    - name: fc26
+      annotations:
+        openshift.io/display-name: S2I Startx LibreOffice converter (Fedora 26)
+        description: LibreOffice converter for document convertion running under
+          Fedora 26
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,ooconv,libreoffice
+        supports: ooconv
+        version: fc26
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:fc26
+    - name: fc27
+      annotations:
+        openshift.io/display-name: S2I Startx LibreOffice converter (Fedora 27)
+        description: LibreOffice converter for document convertion running under
+          Fedora 27
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,ooconv,libreoffice
+        supports: ooconv
+        version: fc27
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:fc27
+    - name: fc28
+      annotations:
+        openshift.io/display-name: S2I Startx LibreOffice converter (Fedora 28)
+        description: LibreOffice converter for document convertion running under
+          Fedora 28
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,ooconv,libreoffice
+        supports: ooconv
+        version: fc28
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:fc28
+    - name: fc29
+      annotations:
+        openshift.io/display-name: S2I Startx LibreOffice converter (Fedora 29)
+        description: LibreOffice converter for document convertion running under
+          Fedora 29
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,ooconv,libreoffice
+        supports: ooconv
+        version: fc29
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: S2I Startx LibreOffice converter (Fedora 30)
+        description: LibreOffice converter for document convertion running under
+          Fedora 30
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,ooconv,libreoffice
+        supports: ooconv
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:fc30
+    - name: fc31
+      annotations:
+        openshift.io/display-name: S2I Startx LibreOffice converter (Fedora 31)
+        description: LibreOffice converter for document convertion running under
+          Fedora 31
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,ooconv,libreoffice
+        supports: ooconv
+        version: fc31
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:fc31
+    - name: rawhide
+      annotations:
+        openshift.io/display-name: S2I Startx LibreOffice converter (Fedora rawhide)
+        description: LibreOffice converter for document convertion running under
+          Fedora rawhide
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,ooconv,libreoffice
+        supports: ooconv
+        version: rawhide
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:latest
+    - name: centos7
+      annotations:
+        openshift.io/display-name: S2I Startx LibreOffice converter (Centos 7)
+        description: LibreOffice converter for document convertion running under
+          Centos 7
+        iconClass: icon-aerogear
+        tags: builder,startx,centos,ooconv,libreoffice
+        supports: ooconv
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:centos7
+    - name: centos6
+      annotations:
+        openshift.io/display-name: S2I Startx LibreOffice converter (Centos 6)
+        description: LibreOffice converter for document convertion running under
+          Centos 6
+        iconClass: icon-aerogear
+        tags: builder,startx,centos,ooconv,libreoffice
+        supports: ooconv
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:centos6
+    - name: alpine3
+      annotations:
+        openshift.io/display-name: S2I Startx LibreOffice converter (Alpine 3)
+        description: LibreOffice converter for document convertion running under
+          Alpine 3
+        iconClass: icon-aerogear
+        tags: builder,startx,alpine,ooconv,libreoffice
+        supports: ooconv
+        version: '3'
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:alpine3
+    - name: latest
+      annotations:
+        openshift.io/display-name: S2I Startx LibreOffice converter (latest)
+        description: LibreOffice converter for document convertion running under
+          Fedora latest
+        iconClass: icon-aerogear
+        tags: builder,startx,alpine,ooconv,libreoffice
+        supports: ooconv
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: dev
+      annotations:
+        openshift.io/display-name: S2I Startx LibreOffice converter (dev)
+        description: Lightweight Http server builder for micro-web application (developpement)
+        iconClass: icon-aerogear
+        tags: builder,startx,alpine,ooconv,libreoffice
+        supports: ooconv
+        version: 'dev'
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: test
+      annotations:
+        openshift.io/display-name: S2I Startx LibreOffice converter (test)
+        description: Lightweight Http server builder for micro-web application (testing)
+        iconClass: icon-aerogear
+        tags: builder,startx,alpine,ooconv,libreoffice
+        supports: ooconv
+        version: 'test'
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: ImageStreamTag
+        name: centos7
+    - name: preprod
+      annotations:
+        openshift.io/display-name: S2I Startx LibreOffice converter (preprod)
+        description: Lightweight Http server builder for micro-web application (pre-production)
+        iconClass: icon-aerogear
+        tags: builder,startx,alpine,ooconv,libreoffice
+        supports: ooconv
+        version: 'pre-prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+    - name: prod
+      annotations:
+        openshift.io/display-name: S2I Startx LibreOffice converter (prod)
+        description: Lightweight Http server builder for micro-web application (production)
+        iconClass: icon-aerogear
+        tags: builder,startx,alpine,ooconv,libreoffice
+        supports: ooconv
+        version: 'prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    annotations:
+      openshift.io/display-name: Application ${APP_NAME}
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  spec:
+    tags:
+    - name: latest
+      annotations:
+        openshift.io/display-name: Application ${APP_NAME}
+        description: Base image for the application ${APP_NAME}
+        iconClass: icon-aerogear
+        tags: startx,fedora,ooconv,libreoffice,application,${APP_NAME}
+        supports: ooconv
+        version: latest
+- kind: ConfigMap
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}-config"
+    annotations:
+      openshift.io/display-name: Application ${APP_NAME} configuration
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  data:
+    SX_ID: ${APP_NAME}/${APP_STAGE}
+    SX_TYPE: ${APP_STAGE}
+    SX_SERVICE: ${APP_NAME}
+    SX_NAME: Document converter ${APP_NAME}
+    SX_SUMMARY: Document converter ${APP_NAME} based on fedora container
+    SX_VERSION: 0.0.1 
+- kind: BuildConfig
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      openshift.io/generated-by: STARTX
+  spec:
+    triggers:
+    - type: GitHub
+      github:
+        secret: "${WEBHOOK_TOKEN}_${APP_NAME}"
+    - type: Generic
+      generic:
+        secret: "${WEBHOOK_TOKEN}_${APP_NAME}"
+    - type: ImageChange
+      imageChange: {}
+    - type: ConfigChange
+    runPolicy: SerialLatestOnly
+    source:
+      type: Git
+      git:
+        uri: "${SOURCE_GIT}"
+        ref: "${SOURCE_BRANCH}"
+    strategy:
+      type: Source
+      sourceStrategy:
+        from:
+          kind: ImageStreamTag
+          name: startx-ooconv:${BUILDER_TAG}
+        env:
+        - name: SX_VERBOSE
+          value: 'true'
+    output:
+      to:
+        kind: ImageStreamTag
+        name: "${APP_NAME}:latest"
+    postCommit:
+      command:
+      - "/bin/sx-ooconv"
+      - post-build
+- kind: DeploymentConfig
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      openshift.io/generated-by: STARTX
+  spec:
+    strategy:
+      type: Rolling
+      rollingParams:
+        updatePeriodSeconds: 1
+        intervalSeconds: 1
+        timeoutSeconds: 90
+        maxUnavailable: 25%
+        maxSurge: 25%
+        pre:
+          failurePolicy: Abort
+          execNewPod:
+            containerName: "${APP_NAME}"
+            command:
+            - "/bin/sx-ooconv"
+            - pre-deploy
+            env:
+            - name: SX_VERBOSE
+              value: 'true'
+            - name: SX_DEBUG
+              value: 'true'
+            envFrom:
+              - configMapRef:
+                  name: ${APP_NAME}-config
+        post:
+          failurePolicy: Abort
+          execNewPod:
+            containerName: "${APP_NAME}"
+            command:
+            - "/bin/sx-ooconv"
+            - post-deploy
+            env:
+            - name: SX_VERBOSE
+              value: 'true'
+            - name: SX_DEBUG
+              value: 'true'
+            envFrom:
+              - configMapRef:
+                  name: ${APP_NAME}-config
+    triggers:
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+        - "${APP_NAME}"
+        from:
+          kind: ImageStreamTag
+          name: "${APP_NAME}:latest"
+    - type: ConfigChange
+    postCommit:
+      script: "/bin/sx-ooconv info"
+    replicas: 1
+    test: false
+    selector:
+      app: "${APP_NAME}"
+      deploymentconfig: "${APP_NAME}"
+    template:
+      metadata:
+        labels:
+          app: "${APP_NAME}"
+          deploymentconfig: "${APP_NAME}"
+        annotations:
+          openshift.io/generated-by: STARTX
+      spec:
+        containers:
+        - name: "${APP_NAME}"
+          image: " "
+          env:
+          - name: SX_VERBOSE
+            value: 'true'
+          envFrom:
+            - configMapRef:
+                name: ${APP_NAME}-config
+          command:
+          - "/bin/sx-ooconv"
+          args:
+          - run
+          ports:
+          - containerPort: 2002
+            protocol: TCP
+          livenessProbe:
+            exec:
+              command:
+              - "/bin/sx-ooconv"
+              - isLive
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 15
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            exec:
+              command:
+              - "/bin/sx-ooconv"
+              - isReady
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 15
+            successThreshold: 1
+            failureThreshold: 3
+          resources:
+            limits:
+              cpu: 4000m
+              memory: "${MEMORY_LIMIT}"
+            requests:
+              cpu: 200m
+              memory: "${MEMORY_LIMIT}"
+          terminationMessagePath: "/dev/termination-log"
+          imagePullPolicy: Always
+          volumeMounts:
+          - name: "${APP_NAME}-data"
+            mountPath: "/data"
+        volumes:
+        - name: "${APP_NAME}-data"
+          emptyDir:
+            medium: ''
+        restartPolicy: Always
+        terminationGracePeriodSeconds: 30
+        securityContext: {}
+        dnsPolicy: ClusterFirst
+- kind: Service
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      openshift.io/generated-by: STARTX
+  spec:
+    ports:
+    - protocol: TCP
+      port: 2002
+      targetPort: 2002
+    selector:
+      app: "${APP_NAME}"
+      deploymentconfig: "${APP_NAME}"
+    type: ClusterIP
+    sessionAffinity: None
+parameters:
+- name: APP_NAME
+  displayName: Application name
+  description: The name of the created application
+  value: ooconv
+  required: true
+- name: APP_STAGE
+  displayName: Application stage
+  description: "Stage of the application deployed (ex: dev, test, prod, example, demo, poc, ...)"
+  value: example
+  required: true
+- name: BUILDER_TAG
+  displayName: Builder image stage
+  description: "Image tag of the startx ooconv builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc30, fc29, fc28 - alpine3 - centos7, centos6)"
+  value: latest
+  required: true
+- name: SOURCE_GIT
+  displayName: Source repository
+  description: URL to the source code to use during build process
+  value: https://github.com/startxfr/docker-images-example-ooconv.git
+  required: true
+- name: SOURCE_BRANCH
+  displayName: Source branch
+  description: Name of the default branch
+  value: master
+  required: true
+- name: WEBHOOK_TOKEN
+  displayName: Webhook token
+  description: Secret token to use for webhook to github or generic
+  generate: expression
+  from: "[a-zA-Z0-9]{24}"
+  required: true
+- name: MEMORY_LIMIT
+  displayName: Memory Limit
+  description: Maximum amount of memory the container can use. e.g. 512Mi, 2Gi.
+  value: 1024Mi
+  required: true

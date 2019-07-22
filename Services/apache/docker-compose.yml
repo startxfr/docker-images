@@ -1,8 +1,14 @@
 apache:
   build: ./
-  container_name: "centos6-service-apache"
+  container_name: "startx-apache"
   mem_limit: 200m
   memswap_limit: 300m
   cpu_shares: 2
   ports:
     - "9201:8080"
+#  volumes:
+#    - "/tmp/container/apache/logs:/var/log/httpd:z"
+#    - "/tmp/container/apache/app:/app:z"
+#  command:
+#     - "/bin/sx-apache"
+#     - "run"

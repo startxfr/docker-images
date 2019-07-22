@@ -1,9 +1,25 @@
-<img align="right" height="50" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true">
+<img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
 # Docker OS Images : CentOS 6
 
-Simple container used for all startx based services and applications published in [Dockerhub registry](https://github.com/startxfr/docker-images). 
-This container contain updated core OS rpm (kernel, libs,...) as well as usefull tools like pwgen, tar, zip, psmisc, procps, coreutils, findutils, wget
+Startx centos is a base container used for all startx services and applications published in [Dockerhub registry](https://hub.docker.com/u/startx). 
+This container contain :
+- centos system envelope
+- core OS rpm (kernel, libs) updated every week
+- fundamentals tools (ex: pwgen, tar, zip) updated every week
+- usefull tools (psmisc, procps, coreutils, findutils, wget, curl, vi, bash-completion) only for the `:latest` and `:devel` flavour.
+
+You can use Startx Fedora image in many ways :
+- Build container based image application with [s2i builder technology](#using-this-image-as-s2i-builder)
+- Build container based image application with [openshift builder image capacity](#using-this-image-as-openshift-build-image)
+- Build personalized base image [with docker tools](#using-this-image-as-base-container)
+- Run as simple and lightweiht OS container [with docker daemon](#running-using-docker)
+- Run a minimal container app  [with docker-compose](#running-using-docker-compose)
+- Enrich you openshift service catalog with [flavoured images streams](#openshift-images-streams)
+- Add to your openshift service catalog an [application builder template](#openshift-builder-template)
+- Add to your openshift service catalog an [application deployement template](#openshift-deploy-template)
+
+See more applications builders and sample on [startx docker images repository](https://github.com/startxfr/docker-images/blob/master)
 
 [![Dockerhub Registry](https://img.shields.io/docker/build/startx/centos.svg)](https://hub.docker.com/r/startx/centos) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/OS/) [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
 
@@ -17,49 +33,128 @@ This container contain updated core OS rpm (kernel, libs,...) as well as usefull
 
 ## Running this image
 
-### Running from dockerhub registry
+### Running using docker
 
-* with `docker` you can run `docker run -it --name="centos6" startx/centos:6` from any docker host
-* with `docker-compose` you can create a docker-compose.yml file with the following content
+```bash
+docker run -it --name="example-centos" startx/centos:6
+```
+
+### Running using docker-compose
+
+* Create a `docker-compose.yml` file with the following content
 ```yaml
-centos6:
+centos:
   image: startx/centos:6
-  container_name: "os-centos6"
+  container_name: "example-centos"
+```
+* Execute the following command
+```bash
+docker-compose up -d
+docker-compose logs
 ```
 
 ### Using this image as Openshift Build image
 
-You can use this public image as a base image in your openshift build strategy. You can first import
-our [openshift image stream](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.json)
-and automatically add them in your service catalog. You can also test our [deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template.json)
-or our [build and deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.json)
+#### Openshift images streams
+
+Openshift cluster administrator can offer this image and all its flavour to all consumers.
+You can import our [openshift images stream](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) 
+in your `openshift` project.
+
+You must be cluster-admin to add this image to the `openshift` project. If not, you can add it to your own 
+project (skip the `oc project openshift` command in the next script)
 
 ```bash
-# import image streams
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.json
-# import deploy template and start a sample application
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template.json
-oc process startx-os-fedora-template | oc create -f -
-# import build and deploy template and start a sample application
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.json
-oc process startx-os-fedora-build-template | oc create -f -
+# swith to the openshift project
+oc project openshift
+# Add image streams to the service catalog (project or cluster-wide scope)
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml
+```
+
+#### Openshift builder template
+
+Openshift cluster administrator can add a build and deploy template to their consumers.
+As an administrator, you can import our [openshift builder template](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) 
+in your `openshift` project.
+
+You must be cluster-admin to add this image to the `openshift` project. If not, you can add it to your own 
+project (skip the `oc project openshift` command in the next script)
+
+```bash
+# swith to the openshift project
+oc project openshift
+# Add this template to the service catalog (project or cluster-wide scope)
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml
+```
+
+You can then build an application
+```bash
+# create a example project
+oc new-project example
+# start a new application
+oc process -f startx-os-build-template \
+    -p APP_NAME=myapp \
+| oc create -f -
+```
+
+#### Openshift deploy template
+
+Openshift cluster administrator can add a deploy template to their consumers.
+As an administrator, you can import our [openshift deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml) 
+in your `openshift` project.
+
+You must be cluster-admin to add this image to the `openshift` project. If not, you can add it to your own 
+project (skip the `oc project openshift` command in the next script)
+
+```bash
+# swith to the openshift project
+oc project openshift
+# Add this template to the service catalog (project or cluster-wide scope)
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml
+```
+
+You can then deploy an application
+```bash
+# create a example project
+oc new-project example
+# start a new application
+oc process -f startx-os-deploy-template \
+    -p APP_NAME=myapp \
+| oc create -f -
 ```
 
 ### Using this image as S2I builder
 
-You can use this image as an s2i builder image. 
+Create your local project (skip if you already are in a project diretory with a `run` bash script)
 ```bash
-s2i build https://github.com/startxfr/docker-images-example-bash startx/centos:6 test-centos6
-docker run --rm -i -t test-centos6
+# Create a project directory
+mkdir example-project
+cd example-project
+# create a run script
+cat << "EOF"
+#!/bin/bash -e
+source $SX_LIBDIR/sx
+startDaemon
+EOF > run
+chmod ug+x run
+```
+
+Then you can use this image as an s2i builder image
+```bash
+# With your current directory application code
+s2i build . startx/centos:6 startx-bash-myapp
+docker run --rm -i -t startx-bash-myapp
+# With startx application sample code repository
+s2i build https://github.com/startxfr/docker-images-example-bash startx/centos:6 startx-bash-sample
+docker run --rm -i -t startx-bash-sample
 ```
 
 ### Using this image as base container
 
-You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
+You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 ```Dockerfile
 FROM startx/centos:6
 #... your container specifications
-CMD ["/bin/sx"]
 ```
 
 ## Environment variable
@@ -74,32 +169,35 @@ CMD ["/bin/sx"]
 | SX_SUMMARY                | `auto`   | `yes`           | Container purpose description
 | SX_VERBOSE                | `bool`   | `no`            | Display information about the execution
 | SX_DEBUG                  | `bool`   | `no`            | Display debug informations during execution
+| APP_PATH                  | `string` | `/app`          | Path to the application
+| SX_S2IDIR                 | `string` | `/tmp`          | Destination path to the application pushed via s2i process
+| DAEMON_STOP_TIMEOUT       | `int`    | 3               | Number of second before stopping when smooth shutdown signal is received
+| DAEMON_START_INTERVAL     | `int`    | 10              | Hearthbeat rythm (in second) for the startx default daemeon
+
 
 ## For advanced users
 
-You you want to use this container and code to build and create locally this container. You can follow theses instructions to setup and working environment.
+You can contribute or start this container initiative locally. 
+[Follow theses instructions](https://github.com/startxfr/docker-images#setup-your-working-environment-mandatory) to setup a working environment.
 
 This section will help you if you want to :
-* Get latest version of this container OS
-* Enhance container content by adding instruction in Dockefile before build step
+* Get latest version of this container OS source code
+* Enhance and share your container improvement by adding instruction in Dockefile
 
-You must have a working environment with the source code of this repository. Read and follow [how to setup your working environment](https://github.com/startxfr/docker-images#setup-your-working-environment-mandatory) to get a working directory. The following instructions assume you are at the top level of your working directory.
 
 ### Build & run a container using `docker`
 
-1. Switch to the flavour branch with `git branch centos6`
-2. Jump into the container directory with `cd OS`
-3. Build the container using `docker build -t centos .`
-4. Run this container 
-  1. Interactively with `docker run -it centos`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -d centos`
+1. Jump into the container directory with `cd OS`
+2. Build the container using `docker build -t startx-centos .`
+3. Run this container 
+   - Interactively with `docker run -it startx-centos`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+   - As a daemon with `docker run -d startx-centos`
 
 
 ### Build & run a container using `docker-compose`
 
-1. Switch to the flavour branch with `git branch centos6`
-2. Jump into the container directory with `cd OS`
-3. Run this container 
-  1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
-  2. As a daemon with `docker-compose up -d`. Container startup logs can be read using `docker-compose logs`
+1. Jump into the container directory with `cd OS`
+2. Run this container 
+   - Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
+   - As a daemon with `docker-compose up -d`. Container startup logs can be read using `docker-compose logs`
 

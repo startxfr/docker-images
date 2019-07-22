@@ -5,8 +5,11 @@ This directory host various Open Source applications into docker containers base
 You can use it to instanciate new container from the dockerhub public registry 
 or as a parent container in your own container's. 
 Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux. Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/)
-or [other applications flavours](https://github.com/startxfr/docker-images/Applications#container-flavours)
+Fedora Linux distribution.
+
+If you're used to work with redhat like and distribution, you would prefer start working
+from a container based on this distribution rather than ubuntu or debian like distributions.
+OS, Services, VDI and application you will find here will be closer to your favorite distribution
 
 Please **read each container manual** for more information on how you can use it in 
 your project and start using stable or experimental applications in your applications
@@ -16,10 +19,10 @@ your project and start using stable or experimental applications in your applica
 
 ## Available applications
 
-| Service         | Docker Hub repository                                                          | Doc
-|-----------------|--------------------------------------------------------------------------------|--------------------------------
-| PhpMyAdmin      | [`startx/app-pma:centos6`](https://hub.docker.com/r/startx/app-pma)               | [manual](pma/README.md)
-| RockMongo       | [`startx/app-rockmongo:centos6`](https://hub.docker.com/r/startx/app-rockmongo)   | [manual](rockmongo/README.md)
+| Service         | Docker Hub repository                                                     | Fedora flavours                                                       | CentOS flavours | Doc                                        | 
+|-----------------|---------------------------------------------------------------------------|-----------------------------------------------------------------------|-----------------|--------------------------------------------|
+| PhpMyAdmin      | [`startx/app-pma`](https://hub.docker.com/r/startx/app-pma)               | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` `:28` `:29` `:30` `:31` | `:6` `:7`       | [manual](pma/README.md)                    | 
+| RockMongo       | [`startx/app-rockmongo`](https://hub.docker.com/r/startx/app-rockmongo)   | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` `:28` `:29` `:30` `:31` | `:6` `:7`       | [manual](rockmongo/README.md)              | 
 
 
 ## Running from dockerhub registry

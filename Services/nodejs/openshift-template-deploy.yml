@@ -1,0 +1,223 @@
+---
+kind: Template
+apiVersion: v1
+metadata:
+  name: startx-nodejs-deploy-template
+  annotations:
+    openshift.io/display-name: Startx MicroWeb Server (ephemeral deploy workflow)
+    description: Deployement workflow of a micro-web application using ephemeral storage
+      for logs records. Use nodejs with various underlying linux distribution. See 
+      https://hub.docker.com/r/startx/sv-nodejs
+    iconClass: icon-nodejs
+    tags: startx,os,fedora,nodejs,httpd
+    openshift.io/provider-display-name: STARTX
+    openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-nodejs
+    openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
+message: |-
+  Your application ${APP_NAME} is deploying and will be soon deployed.
+  Monitor the deployement for application availability
+
+  Application : ${APP_NAME}
+  Stage       : ${APP_STAGE}
+  Image       : startx/sv-nodejs:${BUILDER_TAG}
+  Volumes     : ${APP_NAME}-log (E), ${APP_NAME}-data (E)
+  
+  Connection  : http://${APP_NAME}:8080
+  
+labels:
+  template: startx-nodejs-deploy-template
+  provider: startx 
+objects:
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    annotations:
+      openshift.io/display-name: Dynamic application ${APP_NAME}
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  spec:
+    tags:
+    - name: ${APP_STAGE}
+      annotations:
+        openshift.io/display-name: Micro-application ${APP_NAME} version ${APP_STAGE}
+        description: Lightweight Http server for micro-application ${APP_NAME} based on ${BUILDER_TAG}
+        iconClass: icon-nodejs
+        tags: startx,fedora,php,httpd,application,${APP_NAME},${APP_STAGE},${BUILDER_TAG}
+        supports: http
+        version: ${APP_STAGE}
+      from:
+        kind: DockerImage
+        name: startx/sv-nodejs:${BUILDER_TAG}
+- kind: ConfigMap
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}-config"
+    annotations:
+      openshift.io/display-name: Application ${APP_NAME} configuration
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  data:
+    SX_ID: ${APP_NAME}/${APP_STAGE}
+    SX_TYPE: ${APP_STAGE}
+    SX_SERVICE: ${APP_NAME}
+    SX_NAME: Static web application ${APP_NAME}
+    SX_SUMMARY: Static web application ${APP_NAME} based on fedora container
+    SX_VERSION: 0.0.1 
+    APP_PATH: "${APP_PATH}"
+- kind: DeploymentConfig
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      openshift.io/generated-by: STARTX
+  spec:
+    strategy:
+      type: Recreate
+      recreateParams:
+        timeoutSeconds: 40
+    triggers:
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+        - "${APP_NAME}"
+        from:
+          kind: ImageStreamTag
+          name: "${APP_NAME}:${APP_STAGE}"
+    - type: ConfigChange
+    postCommit:
+      script: "/bin/sx-nodejs info"
+    replicas: 1
+    test: false
+    selector:
+      app: "${APP_NAME}"
+      deploymentconfig: "${APP_NAME}"
+    template:
+      metadata:
+        labels:
+          app: "${APP_NAME}"
+          provider: startx
+          template: startx-nodejs-deploy-template
+          deploymentconfig: "${APP_NAME}"
+        annotations:
+          openshift.io/generated-by: STARTX
+      spec:
+        containers:
+        - name: "${APP_NAME}"
+          image: " "
+          env:
+          - name: SX_VERBOSE
+            value: 'true'
+          envFrom:
+            - configMapRef:
+                name: ${APP_NAME}-config
+          command:
+          - "/bin/sx-nodejs"
+          args:
+          - run
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          livenessProbe:
+            exec:
+              command:
+              - "/bin/sx-nodejs"
+              - isLive
+            initialDelaySeconds: 5
+            timeoutSeconds: 2
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            exec:
+              command:
+              - "/bin/sx-nodejs"
+              - isReady
+            initialDelaySeconds: 5
+            timeoutSeconds: 2
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 256Mi
+            requests:
+              cpu: 200m
+              memory: 128Mi
+          terminationMessagePath: "/dev/termination-log"
+          imagePullPolicy: Always
+          volumeMounts:
+          - name: "${APP_NAME}-log"
+            mountPath: "/var/log/httpd"
+        volumes:
+        - name: "${APP_NAME}-log"
+          emptyDir:
+            medium: ''
+        restartPolicy: Always
+        terminationGracePeriodSeconds: 30
+        securityContext: {}
+        dnsPolicy: ClusterFirst
+- kind: Service
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      openshift.io/generated-by: STARTX
+  spec:
+    ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+    selector:
+      app: "${APP_NAME}"
+      deploymentconfig: "${APP_NAME}"
+    type: ClusterIP
+    sessionAffinity: None
+- kind: Route
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      openshift.io/generated-by: STARTX
+  spec:
+    to:
+      kind: Service
+      name: "${APP_NAME}"
+      weight: 100
+parameters:
+- name: APP_NAME
+  displayName: Application name
+  description: The name of the created application
+  value: nodejs
+  required: true
+- name: APP_STAGE
+  displayName: Application stage
+  description: "Stage of the application deployed (ex: dev, test, prod, example, demo, poc, ...)"
+  value: example
+  required: true
+- name: BUILDER_TAG
+  displayName: Startx image release
+  description: "Image tag of the startx nodejs image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc30, fc29, fc28 - alpine3 - centos7, centos6)"
+  value: latest
+  required: true
+- name: APP_PATH
+  displayName: Path to the application
+  description: Container path to the application. Could be a mounted directory with
+    your web content. Default is /app as defined in the startx/sv-nodejs content.
+  value: "/app"
+  required: true

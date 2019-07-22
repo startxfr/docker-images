@@ -1,5 +1,5 @@
 #!/bin/bash
-source /var/lib/sx/sx
+source $SX_LIBDIR/sx
 
 function check_ooconv_environment {
     if [ ! -v DATA_PATH ]; then
@@ -19,63 +19,153 @@ function displayOOconvRunInformation {
     ooconvInformation $1
 }
 
-function ooconvPreDeploy {
+# function executed when build hook is called
+function ooconvBuild {
     genericHeader
+    echoNotVerbose "container $HOSTNAME executing Ooconv BUILD"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
-    echoNotVerbose "container $HOSTNAME  running PRE-DEPLOY HOOK"
+    echoVerbose "| Container $HOSTNAME executing Ooconv BUILD"
     echoVerbose "| "
     ooconvInformation "| "
+    echoDebug `env`
     echoVerbose "+====================================================="
-    testAndRunSourceCodeScript "pre-deploy" 
+    echoVerbose ""
+    doInitS2iApp
+    if [[ -x $MYS2I_DEST/assemble ]]; then
+        echoVerbose "Build application logic found at $MYS2I_DEST/assemble"
+        testAndRunSourceCodeScript "assemble" 
+    else
+        echoVerbose "No Build application logic found at $MYS2I_DEST/assemble"
+    doOoconvBuild
+    fi
+    exit 0;
 }
 
-function ooconvPostDeploy {
-    genericHeader
+# function performing Ooconv build actions
+function doOoconvBuild {
+    doGenericBuild
+    echoNotVerbose "Executing Ooconv build logic"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running POST-DEPLOY HOOK"
-    echoNotVerbose "container $HOSTNAME  running POST-DEPLOY HOOK"
-    echoVerbose "| "
-    ooconvInformation "| "
+    echoVerbose "| Executing Ooconv build logic"
     echoVerbose "+====================================================="
-    testAndRunSourceCodeScript "post-deploy" 
 }
 
+# function executed when post-build hook is called
 function ooconvPostBuild {
     genericHeader
+    echoNotVerbose "container $HOSTNAME executing Ooconv POST-BUILD"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running POST-BUILD HOOK"
-    echoNotVerbose "container $HOSTNAME  running POST-BUILD HOOK"
+    echoVerbose "| Container $HOSTNAME executing Ooconv POST-BUILD"
     echoVerbose "| "
     ooconvInformation "| "
+    echoDebug `env`
     echoVerbose "+====================================================="
-    testAndRunSourceCodeScript "post-build" 
+    echoVerbose ""
+    if [[ -x $MYS2I_DEST/assemble ]]; then
+        echoVerbose "PostBuild application logic found at $MYS2I_DEST/post-build"
+        testAndRunSourceCodeScript "post-build" 
+    else
+        echoVerbose "No PostBuild application logic found at $MYS2I_DEST/post-build"
+    doOoconvPostBuild
+    fi
+    exit 0;
 }
 
-function ooconvAssemble {
+# function performing Ooconv post-build actions
+function doOoconvPostBuild {
+    doGenericPostBuild
+    echoNotVerbose "Executing Ooconv post-build logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Ooconv post-build logic"
+    echoVerbose "+====================================================="
+}
+
+# function executed when pre-deploy hook is called
+function ooconvPreDeploy {
     genericHeader
+    echoNotVerbose "container $HOSTNAME executing Ooconv PRE-DEPLOY"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running ASSEMBLE"
-    echoNotVerbose "container $HOSTNAME  running ASSEMBLE"
+    echoVerbose "| Container $HOSTNAME executing Ooconv PRE-DEPLOY"
     echoVerbose "| "
     ooconvInformation "| "
+    echoDebug `env`
     echoVerbose "+====================================================="
-    if [[ -d $S2I_DEST ]]; then
-      echoVerbose "Fixing perm on $S2I_DEST"
-      chown 1001:0 -R $S2I_DEST
-      chmod g=u -R $S2I_DEST
-      moveSourceCode $S2I_DEST $APP_PATH
-    fi;
-    testAndRunSourceCodeScript "assemble" 
+    echoVerbose ""
+    if [[ -x $MYS2I_DEST/pre-deploy ]]; then
+        echoVerbose "PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
+        testAndRunSourceCodeScript "pre-deploy" 
+    else
+        echoVerbose "No PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
+    doOoconvPreDeploy
+    fi
+    exit 0;
 }
 
+# function performing Ooconv pre-deploy actions
+function doOoconvPreDeploy {
+    doGenericPreDeploy
+    echoNotVerbose "Executing Ooconv pre-deploy logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Ooconv pre-deploy logic"
+    echoVerbose "+====================================================="
+}
+
+# function executed when post-deploy hook is called
+function ooconvPostDeploy {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Ooconv POST-DEPLOY"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Ooconv POST-DEPLOY"
+    echoVerbose "| "
+    ooconvInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    echoVerbose ""
+    if [[ -x $MYS2I_DEST/post-deploy ]]; then
+        echoVerbose "PostDeploy application logic found at $MYS2I_DEST/post-deploy"
+        testAndRunSourceCodeScript "post-deploy" 
+    else
+        echoVerbose "No PostDeploy application logic found at $MYS2I_DEST/post-deploy"
+    doOoconvPostDeploy
+    fi
+    exit 0;
+}
+
+# function performing Ooconv post-deploy actions
+function doOoconvPostDeploy {
+    doGenericPostDeploy
+    echoNotVerbose "Executing Ooconv post-deploy logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Ooconv post-deploy logic"
+    echoVerbose "+====================================================="
+}
+
+# function executed on container startup
 function ooconvRun {
     genericHeader
+    echoNotVerbose "container $HOSTNAME executing Ooconv RUN"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME is RUNNING"
-    echoNotVerbose "container $HOSTNAME is RUNNING"
+    echoVerbose "| Container $HOSTNAME executing Ooconv RUN"
     echoVerbose "| "
     ooconvInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    echoVerbose ""
+    if [[ -x $MYS2I_DEST/run ]]; then
+        echoVerbose "Run application logic found at $MYS2I_DEST/run"
+        testAndRunSourceCodeScript "run" 
+    else
+        echoVerbose "No Run application logic found at $MYS2I_DEST/run"
+        echoVerbose "Executing default Ooconv run action"
+        doOoconvRun
+    fi
+}
+
+# function performing Ooconv run actions
+function doOoconvRun {
+    echoNotVerbose "Executing Ooconv run logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Ooconv run logic"
     echoVerbose "+====================================================="
     startOOconvService
 }
@@ -90,21 +180,18 @@ function ooconvIsReady {
     genericIsReady
 }
 
-function stop_ooconv_handler {
+function stopOoconvHandler {
     killall unoconv soffice.bin 
-    echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME is now STOPPED"
-    echoNotVerbose "container is now stopped"
-    echoVerbose "| "
-    ooconvInformation "| "
-    echoVerbose "+====================================================="
-    exit 143; # 128 + 15 -- SIGTERM
+    stopDaemon
 }
 
 # Start the ooconv server as a deamon and execute it inside 
 # the running shell
 function startOOconvService {
-    trap 'kill ${!}; stop_ooconv_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
+    trap 'stopOoconvHandler' SIGHUP SIGINT SIGQUIT SIGILL SIGABRT SIGTRAP SIGBUS SIGUSR1 SIGUSR2 SIGFPE SIGPIPE SIGALRM SIGSTOP
+    trap 'killDaemon kill 9' SIGKILL
+    trap 'killDaemon term 15' SIGTERM
+    trap 'killDaemon sys 31' SIGSYS
     if [ "$SX_DEBUG" = true ] ; then
         unoconv --listener -vvv
     else

@@ -1,4 +1,4 @@
-<img align="right" height="50" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true">
+[![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
 # Docker OS Images : COUCHBASE on CentOS 6
 
@@ -10,9 +10,12 @@ based on [startx/centos:6 container](https://hub.docker.com/r/startx/centos)
 
 ## Available flavours
 
-* `:latest` : Fedora rawhide + Couchbase Server 5.5.0-Mar (beta)
-* `:fc28` : Fedora 28 + Couchbase Server 5.5.0-Mar (beta)
-* `:centos6` : Centos 6 + Couchbase Server 5.5.0-Mar (beta)
+* `:latest` : Fedora rawhide + Couchbase Server 6.0.2-2413
+* `:fc31` : Fedora 31 + Couchbase Server 6.0.2-2413
+* `:fc30` : Fedora 30 + Couchbase Server 6.0.0
+* `:fc29` : Fedora 29 + Couchbase Server 5.5.0-2036
+* `:fc28` : Fedora 28 + Couchbase Server 4.5.0
+* `:centos7` : Centos 7 + Couchbase Server 6.0.0
 
 ## Running from dockerhub registry
 
@@ -23,26 +26,26 @@ service:
   image: startx/sv-couchbase:centos6
   container_name: "service-couchbase-centos6"
   volumes:
-    - "/tmp/container-centos6/logs/couchbase:/logs:z"
-    - "/tmp/container-centos6/couchbase:/data:z"
+    - "/tmp/container/couchbase/logs:/logs:z"
+    - "/tmp/container/couchbase/data:/data:z"
 ```
 
 ### Using this image as Openshift Build image
 
 You can use this public image as a base image in your openshift build strategy. You can first import
-our [openshift image stream](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-imageStreams.json)
-and automatically add them in your service catalog. You can also test our [deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-template.json)
-or our [build and deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-template-build.json)
+our [openshift image stream](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-imageStreams.yml)
+and automatically add them in your service catalog. You can also test our [deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-template-deploy.yml)
+or our [build and deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-template-build.yml)
 
 ```bash
 # import image streams
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-imageStreams.json
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-imageStreams.yml
 # import deploy template and start a sample application
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-template.json
-oc process startx-sv-couchbase-template | oc create -f -
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-template-deploy.yml
+oc process startx-couchbase-deploy-template | oc create -f -
 # import build and deploy template and start a sample application
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-template-build.json
-oc process startx-sv-couchbase-build-template | oc create -f -
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-template-build.yml
+oc process startx-couchbase-build-template | oc create -f -
 ```
 
 ### Using this image as S2I builder
@@ -119,7 +122,7 @@ some [additional environment variable](https://github.com/startxfr/docker-images
 |---------------------------|----------|-----------|--------------------------------------------------------------------------|
 | <i>base image environement</i> |          |           | [see environment list](https://github.com/startxfr/docker-images/tree/master/OS#environment-variable)
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
-| LOG_PATH                  | `auto`   | `auto`    | default set to /logs and used as a volume mountpoint
+| LOG_PATH                  | `auto`   | `auto`    | default set to /var/log/couchbase and used as a volume mountpoint
 
 ## Exposed port
 

@@ -1,0 +1,219 @@
+#!/bin/bash
+source $SX_LIBDIR/sx
+
+function check_chrome_environment {
+    if [ ! -v APP_PATH ]; then
+        APP_PATH="/home/chrome"
+        export APP_PATH
+    fi
+    if [ ! -v DATA_PATH ]; then
+        DATA_PATH="/home/chrome"
+        export DATA_PATH
+    fi
+    if [ ! -v LOG_PATH ]; then
+        LOG_PATH="/var/log/chrome"
+        export LOG_PATH
+    fi
+    if [ ! -n "$SERVER_NAME" ]; then
+        SERVER_NAME="localhost"
+        export SERVER_NAME
+    fi
+}
+
+# Display chrome information
+function chromeInformation {
+    displayInformation $1 
+    echoVerbose $1 "app path  : $APP_PATH"
+    echoVerbose $1 "log path  : $LOG_PATH"
+    echoVerbose $1 "data path : $DATA_PATH"
+    echoVerbose $1 "chrome    : $(google-chrome --version)" 
+    echoVerbose $1 "resolution: $SX_CHROME_SCREEN_RES_X" 
+}
+
+# function executed when build hook is called
+function chromeBuild {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Chrome BUILD"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Chrome BUILD"
+    echoVerbose "| "
+    chromeInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    echoVerbose ""
+    doInitS2iApp
+    if [[ -x $MYS2I_DEST/assemble ]]; then
+        echoVerbose "Build application logic found at $MYS2I_DEST/assemble"
+        testAndRunSourceCodeScript "assemble" 
+    else
+        echoVerbose "No Build application logic found at $MYS2I_DEST/assemble"
+    doChromeBuild
+    fi
+    exit 0;
+}
+
+# function performing Chrome build actions
+function doChromeBuild {
+    doGenericBuild
+    echoNotVerbose "Executing Chrome build logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Chrome build logic"
+    echoVerbose "+====================================================="
+}
+
+# function executed when post-build hook is called
+function chromePostBuild {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Chrome POST-BUILD"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Chrome POST-BUILD"
+    echoVerbose "| "
+    chromeInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    echoVerbose ""
+    if [[ -x $MYS2I_DEST/assemble ]]; then
+        echoVerbose "PostBuild application logic found at $MYS2I_DEST/post-build"
+        testAndRunSourceCodeScript "post-build" 
+    else
+        echoVerbose "No PostBuild application logic found at $MYS2I_DEST/post-build"
+    doChromePostBuild
+    fi
+    exit 0;
+}
+
+# function performing Chrome post-build actions
+function doChromePostBuild {
+    doGenericPostBuild
+    echoNotVerbose "Executing Chrome post-build logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Chrome post-build logic"
+    echoVerbose "+====================================================="
+}
+
+# function executed when pre-deploy hook is called
+function chromePreDeploy {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Chrome PRE-DEPLOY"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Chrome PRE-DEPLOY"
+    echoVerbose "| "
+    chromeInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    echoVerbose ""
+    if [[ -x $MYS2I_DEST/pre-deploy ]]; then
+        echoVerbose "PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
+        testAndRunSourceCodeScript "pre-deploy" 
+    else
+        echoVerbose "No PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
+    doChromePreDeploy
+    fi
+    exit 0;
+}
+
+# function performing Chrome pre-deploy actions
+function doChromePreDeploy {
+    doGenericPreDeploy
+    echoNotVerbose "Executing Chrome pre-deploy logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Chrome pre-deploy logic"
+    echoVerbose "+====================================================="
+}
+
+# function executed when post-deploy hook is called
+function chromePostDeploy {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Chrome POST-DEPLOY"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Chrome POST-DEPLOY"
+    echoVerbose "| "
+    chromeInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    echoVerbose ""
+    if [[ -x $MYS2I_DEST/post-deploy ]]; then
+        echoVerbose "PostDeploy application logic found at $MYS2I_DEST/post-deploy"
+        testAndRunSourceCodeScript "post-deploy" 
+    else
+        echoVerbose "No PostDeploy application logic found at $MYS2I_DEST/post-deploy"
+    doChromePostDeploy
+    fi
+    exit 0;
+}
+
+# function performing Chrome post-deploy actions
+function doChromePostDeploy {
+    doGenericPostDeploy
+    echoNotVerbose "Executing Chrome post-deploy logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Chrome post-deploy logic"
+    echoVerbose "+====================================================="
+}
+
+# function executed on container startup
+function chromeRun {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Chrome RUN"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Chrome RUN"
+    echoVerbose "| "
+    chromeInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    echoVerbose ""
+    if [[ -x $MYS2I_DEST/run ]]; then
+        echoVerbose "Run application logic found at $MYS2I_DEST/run"
+        testAndRunSourceCodeScript "run" 
+    else
+        echoVerbose "No Run application logic found at $MYS2I_DEST/run"
+        echoVerbose "Executing default Chrome run action"
+        doChromeRun
+    fi
+}
+
+# function performing Chrome run actions
+function doChromeRun {
+    echoNotVerbose "Executing Chrome run logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Chrome run logic"
+    echoVerbose "+====================================================="
+    startChromeService
+}
+
+# Display liveness status
+function chromeIsLive {
+    genericIsLive
+}
+
+# Display readyness status
+function chromeIsReady {
+    R=`ps -aux | grep chrome | wc -l`
+    if [ "$R" -ge "2" ]; then
+      echo "OK";
+      exit 0;
+    else 
+      echo "Not OK";
+      exit 1;
+    fi;
+}
+
+# function executed on chrome service stop
+function stopChromeHandler {
+    killall chrome supervisord
+    stopDaemon
+}
+
+# Start the httpd server as a deamon and execute it inside 
+# the running shell
+function startChromeService {
+    if [ ! -v X11VNC_AUTH ]; then
+      X11VNC_AUTH="-nopw"
+      export X11VNC_AUTH
+    fi
+    trap 'stopChromeHandler' SIGHUP SIGINT SIGQUIT SIGILL SIGABRT SIGTRAP SIGBUS SIGUSR1 SIGUSR2 SIGFPE SIGPIPE SIGALRM SIGSTOP
+    trap 'killDaemon kill 9' SIGKILL
+    trap 'killDaemon term 15' SIGTERM
+    trap 'killDaemon sys 31' SIGSYS
+    exec /usr/bin/supervisord -c $SX_CHROME_SUPERVISOR_CONF/supervisord.conf
+}
