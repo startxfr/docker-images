@@ -2,7 +2,7 @@
 
 # STARTX OKD Helper
 
-This script will help you load and run startx docker images 
+This script will help you load and run startx docker images in an OKD cluster
 
 ## Requirements
 
