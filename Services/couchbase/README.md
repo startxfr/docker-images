@@ -1,12 +1,12 @@
 [![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-# Docker OS Images : COUCHBASE on Fedora 28
+# Docker OS Images : COUCHBASE on Fedora 29
 
 Simple container used to deliver distributed and low latency document oriented database
 Run [couchbase daemon](https://www.couchbase.org/) under a container 
 based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
-[![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-couchbase.svg)](https://hub.docker.com/r/startx/sv-couchbase) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc28)](https://travis-ci.org/startxfr/docker-images) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/fc28/Services/couchbase/) [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
+[![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-couchbase.svg)](https://hub.docker.com/r/startx/sv-couchbase) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc28)](https://travis-ci.org/startxfr/docker-images) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/fc29/Services/couchbase/) [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
 
 ## Available flavours
 
@@ -23,8 +23,8 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```YAML
 service:
-  image: startx/sv-couchbase:fc28
-  container_name: "fc28-service-couchbase"
+  image: startx/sv-couchbase:fc29
+  container_name: "fc29-service-couchbase"
   volumes:
     - "/tmp/container/couchbase/logs:/logs:z"
     - "/tmp/container/couchbase/data:/data:z"
@@ -61,16 +61,16 @@ docker run --rm -i -t test-couchbase
 * sample docker-compose.yml linked to host port 1000
 ```YAML
 service:
-  image: startx/sv-couchbase:fc28
-  container_name: "service-couchbase-fc28"
+  image: startx/sv-couchbase:fc29
+  container_name: "service-couchbase-fc29"
   ports:
     - "1000:11211"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```YAML
 service:
-  image: startx/sv-couchbase:fc28
-  container_name: "service-couchbase-fc28"
+  image: startx/sv-couchbase:fc29
+  container_name: "service-couchbase-fc29"
   expose:
     - "11211"
 ```
@@ -79,7 +79,7 @@ service:
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 ```Dockerfile
-FROM startx/sv-couchbase:fc28
+FROM startx/sv-couchbase:fc29
 #... your container specifications
 CMD ["/bin/sx", "run"]
 ```
@@ -87,11 +87,11 @@ CMD ["/bin/sx", "run"]
 ## Environment variable
 
 This container is based on [startx fedora container](https://hub.docker.com/r/startx/fedora) who came with 
-some [additional environment variable](https://github.com/startxfr/docker-images/tree/fc28/OS#environment-variable)
+some [additional environment variable](https://github.com/startxfr/docker-images/tree/fc29/OS#environment-variable)
 
 | Variable                  | Type     | Mandatory | Description                                                              |
 |---------------------------|----------|-----------|--------------------------------------------------------------------------|
-| <i>base image environement</i> |          |           | [see environment list](https://github.com/startxfr/docker-images/tree/fc28/OS#environment-variable)
+| <i>base image environement</i> |          |           | [see environment list](https://github.com/startxfr/docker-images/tree/fc29/OS#environment-variable)
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
 | LOG_PATH                  | `auto`   | `auto`    | default set to /var/log/couchbase and used as a volume mountpoint
 

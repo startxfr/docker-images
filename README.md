@@ -1,6 +1,6 @@
 [![docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-# STARTX Docker-Images Repository based on Fedora 28 [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc28)](https://travis-ci.org/startxfr/docker-images)
+# STARTX Docker-Images Repository based on Fedora 29 [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc29)](https://travis-ci.org/startxfr/docker-images)
 
 This project is a collection of application or services containers ready to execute 
 or embed your application as part of a building process.  
@@ -42,7 +42,7 @@ your project and start using stable or experimental services in your application
 - `fc31` based on fedora core 31 [see detail](https://github.com/startxfr/docker-images/tree/fc31)
 - `fc30` based on fedora core 30 [see detail](https://github.com/startxfr/docker-images/tree/fc30)
 - `fc29` based on fedora core 29 [see detail](https://github.com/startxfr/docker-images/tree/fc29)
-- `fc28` based on fedora core 28 [see detail](https://github.com/startxfr/docker-images/tree/fc28)
+- `fc28` based on fedora core 28 [see detail](https://github.com/startxfr/docker-images/tree/fc29)
 - `fc27` based on fedora core 27 [see detail](https://github.com/startxfr/docker-images/tree/fc27)
 - `fc26` based on fedora core 26 [see detail](https://github.com/startxfr/docker-images/tree/fc26)
 - `centos7` based on Centos 7 [see detail](https://github.com/startxfr/docker-images/tree/centos7)

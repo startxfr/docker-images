@@ -1,6 +1,6 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : MARIADB on Fedora 28
+# Docker OS Images : MARIADB on Fedora 29
 
 Startx mariadb is a base container used for database services published in [Dockerhub registry](https://hub.docker.com/u/startx). 
 This container contain :
@@ -22,7 +22,7 @@ You can use Startx Mariadb image in many ways :
 
 See more databases builders and sample on [startx docker images repository](https://github.com/startxfr/docker-images/blob/master)
 
-[![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-mariadb.svg)](https://hub.docker.com/r/startx/sv-mariadb) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc28)](https://travis-ci.org/startxfr/docker-images) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/fc28/Services/mariadb/) [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
+[![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-mariadb.svg)](https://hub.docker.com/r/startx/sv-mariadb) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc29)](https://travis-ci.org/startxfr/docker-images) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/fc29/Services/mariadb/) [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
 
 ## Container flavours
 
@@ -192,7 +192,7 @@ docker run --rm -d -p 9231:3306 startx-mariadb-sample
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 ```Dockerfile
-FROM startx/sv-mariadb:fc28
+FROM startx/sv-mariadb:fc29
 #... your container specifications
 ```
 

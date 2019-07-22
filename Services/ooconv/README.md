@@ -1,12 +1,12 @@
 [![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-# Docker OS Images : OOCONV on Fedora 28
+# Docker OS Images : OOCONV on Fedora 29
 
 Simple container used to document convertion and manipulation tools
 Run [libreoffice](https://www.libreoffice.org/) as a daemon using [dagwieers unoconv](https://github.com/dagwieers/unoconv) under a container 
-based on [startx/fedora:28 container](https://hub.docker.com/r/startx/fedora)
+based on [startx/fedora:29 container](https://hub.docker.com/r/startx/fedora)
 
-[![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-ooconv.svg)](https://hub.docker.com/r/startx/sv-ooconv) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc28)](https://travis-ci.org/startxfr/docker-images) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/fc28/Services/ooconv/) [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
+[![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-ooconv.svg)](https://hub.docker.com/r/startx/sv-ooconv) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc29)](https://travis-ci.org/startxfr/docker-images) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/fc29/Services/ooconv/) [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
 
 ## Available flavours
 
@@ -30,8 +30,8 @@ based on [startx/fedora:28 container](https://hub.docker.com/r/startx/fedora)
 * with `docker-compose` you can create a docker-compose.yml file with the following content
 ```YAML
 service:
-  image: startx/sv-ooconv:fc28
-  container_name: "fc28-service-ooconv"
+  image: startx/sv-ooconv:fc29
+  container_name: "fc29-service-ooconv"
   volumes:
     - "/tmp/container/ooconv/logs:/logs:z"
 ```
@@ -67,16 +67,16 @@ docker run --rm -i -t test-ooconv
 * sample docker-compose.yml linked to host port 1000
 ```YAML
 service:
-  image: startx/sv-ooconv:fc28
-  container_name: "service-ooconv-fc28"
+  image: startx/sv-ooconv:fc29
+  container_name: "service-ooconv-fc29"
   ports:
     - "1000:2002"
 ```
 * sample docker-compose.yml with port exposed only to linked services
 ```YAML
 service:
-  image: startx/sv-ooconv:fc28
-  container_name: "service-ooconv-fc28"
+  image: startx/sv-ooconv:fc29
+  container_name: "service-ooconv-fc29"
   expose:
     - "2002"
 ```
@@ -85,7 +85,7 @@ service:
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 ```Dockerfile
-FROM startx/sv-ooconv:fc28
+FROM startx/sv-ooconv:fc29
 #... your container specifications
 CMD ["/bin/sx", "run"]
 ```
@@ -93,11 +93,11 @@ CMD ["/bin/sx", "run"]
 ## Environment variable
 
 This container is based on [startx fedora container](https://hub.docker.com/r/startx/fedora) who came with 
-some [additional environment variable](https://github.com/startxfr/docker-images/tree/fc28/OS#environment-variable)
+some [additional environment variable](https://github.com/startxfr/docker-images/tree/fc29/OS#environment-variable)
 
 | Variable                  | Type     | Mandatory | Description                                                              |
 |---------------------------|----------|-----------|--------------------------------------------------------------------------|
-| <i>base image environement</i> |          |           | [see environment list](https://github.com/startxfr/docker-images/tree/fc28/OS#environment-variable)
+| <i>base image environement</i> |          |           | [see environment list](https://github.com/startxfr/docker-images/tree/fc29/OS#environment-variable)
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
 | LOG_PATH                  | `auto`   | `auto`    | default set to /var/log/ooconv and used as a volume mountpoint
 
@@ -129,7 +129,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-1. Switch to the flavour branch with `git branch fc28`
+1. Switch to the flavour branch with `git branch fc29`
 2. Jump into the container directory with `cd Services/ooconv`
 3. Build the container using `docker build -t sv-ooconv .`
 4. Run this container 
@@ -139,7 +139,7 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker-compose`
 
-1. Switch to the flavour branch with `git branch fc28`
+1. Switch to the flavour branch with `git branch fc29`
 2. Jump into the container directory with `cd Services/ooconv`
 3. Run this container 
   1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
