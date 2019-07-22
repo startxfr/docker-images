@@ -1,6 +1,6 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : APACHE on alpine 3.8
+# Docker OS Images : APACHE on alpine 3.10
 
 Startx apache is a base container used for web services and applications published in [Dockerhub registry](https://hub.docker.com/u/startx). 
 This container contain :

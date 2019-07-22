@@ -1,4 +1,4 @@
-# STARTX Docker-Images Applications based on alpine 3.8
+# STARTX Docker-Images Applications based on alpine 3.10
 
 This directory host various Open Source applications into docker containers based on [startx/alpine:3 container](https://hub.docker.com/r/startx/alpine)
 

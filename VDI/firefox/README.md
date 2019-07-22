@@ -16,7 +16,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 * `:fc29` : Fedora core 29 + Firefox 50.0.2661.102
 * `:fc28` : Fedora core 28 + Firefox 50.0.2661.102
 * `:centos7` : CentOS 7 + Firefox 
-* `:alpine3` : Alpine 3.8 + Firefox 50.0.2661.102
+* `:alpine3` : alpine 3.10 + Firefox 50.0.2661.102
 
 ## Running from dockerhub registry
 

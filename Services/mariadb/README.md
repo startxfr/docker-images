@@ -1,6 +1,6 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : MARIADB on alpine 3.8
+# Docker OS Images : MARIADB on alpine 3.10
 
 Startx mariadb is a base container used for database services published in [Dockerhub registry](https://hub.docker.com/u/startx). 
 This container contain :

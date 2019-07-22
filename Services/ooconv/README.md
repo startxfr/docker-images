@@ -1,6 +1,6 @@
 [![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-# Docker OS Images : OOCONV on alpine 3.8
+# Docker OS Images : OOCONV on alpine 3.10
 
 Simple container used to document convertion and manipulation tools
 Run [libreoffice](https://www.libreoffice.org/) as a daemon using [dagwieers unoconv](https://github.com/dagwieers/unoconv) under a container 
@@ -22,7 +22,7 @@ based on [startx/alpine:3 container](https://hub.docker.com/r/startx/alpine)
 * `:fc21` : Fedora core 21 + unoconv 
 * `:centos7` : CentOS 7 + unoconv 
 * `:centos6` : Centos 6 + unoconv 
-* `:alpine3` : Alpine 3.8 + unoconv 0.8 + LibreOffice 5.4.5.1
+* `:alpine3` : alpine 3.10 + unoconv 0.8 + LibreOffice 5.4.5.1
 
 ## Running from dockerhub registry
 

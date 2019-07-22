@@ -1,6 +1,6 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/alpine/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : ALPINE 3.8
+# Docker OS Images : alpine 3.10
 
 Startx Alpine is a minimal base container used for all startx services and applications published in [Dockerhub registry](https://hub.docker.com/u/startx). 
 This container contain :
@@ -168,7 +168,7 @@ FROM startx/alpine:3
 
 | Variable                  | Type     | Default         | Description                                                              |
 |---------------------------|----------|-----------------|--------------------------------------------------------------------------|
-| SX_VERSION                | `string` | `3.8`           | container version
+| SX_VERSION                | `string` | `3.10`          | container version
 | SX_TYPE                   | `string` | `OS`            | Container family (os, service, application). could be enhanced 
 | SX_SERVICE                | `string` | `alpine`        | Define the type of service or application provided
 | SX_ID                     | `auto`   | `startx/alpine` | Container ID coresponding to the image repository 
