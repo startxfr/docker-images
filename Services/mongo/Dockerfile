@@ -10,6 +10,7 @@ ENV SX_VERSION="centos7" \
     SX_SUMMARY="Startx mongo service based on centos 7" \
     LOG_PATH=/var/log/mongodb \
     MONGO_RUNTIME=/usr/bin/mongod \
+    MONGO_USER=mongod \
     DATA_PATH=/data
 
 LABEL name="$SX_ID" \
@@ -34,14 +35,14 @@ COPY sx /tmp/
 COPY mongodb-org.repo /etc/yum.repos.d/mongodb.repo
 RUN yum install mongodb-org && \
     yum clean all  && \
-    usermod -a -G 0 mongodb && \
+    usermod -a -G 0 $MONGO_USER && \
     mkdir -p $DATA_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     mkdir -p $DATA_PATH $LOG_PATH && \
-    chown -R mongodb:mongodb $DATA_PATH $LOG_PATH && \
+    chown -R $MONGO_USER:$MONGO_USER $DATA_PATH $LOG_PATH && \
     chgrp -R 0 $DATA_PATH $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
     chown -R 1001:0 /bin/sx-* /s2i $SX_LIBDIR* && \
     chmod -R g=u $DATA_PATH $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* && \

@@ -10,18 +10,19 @@ based on [startx/centos:7 container](https://hub.docker.com/r/startx/centos)
 
 ## Available flavours
 
-* `:latest` : Fedora core rawhide + MongoDB 4.0.3
-* `:fc31` : Fedora core 31 + MongoDB 4.0.3
-* `:fc30` : Fedora core 30 + MongoDB 4.0.3
-* `:fc29` : Fedora core 29 + MongoDB 4.0.3
-* `:fc28` : Fedora core 28 + MongoDB 3.0.7  
-* `:fc27` : Fedora core 27 + MongoDB 3.0.7  
-* `:fc26` : Fedora core 26 + MongoDB 3.0.7  
+* `:latest` : Fedora core rawhide + MongoDB 4.1.13
+* `:fc31` : Fedora core 31 + MongoDB 4.1.13
+* `:fc30` : Fedora core 30 + MongoDB 4.0
+* `:fc29` : Fedora core 29 + MongoDB 3.7
+* `:fc28` : Fedora core 28 + MongoDB 3.6
+* `:fc27` : Fedora core 27 + MongoDB 3.4
+* `:fc26` : Fedora core 26 + MongoDB 3.4
 * `:fc23` : Fedora core 23 + MongoDB 3.0.7  
 * `:fc22` : Fedora core 22 + MongoDB 
 * `:fc21` : Fedora core 21 + MongoDB 
-* `:centos7` : CentOS 7 + MongoDB 
-* `:centos6` : Centos 6 + MongoDB 
+* `:centos7` : CentOS 7 + MongoDB 4.1
+* `:centos6` : Centos 6 + MongoDB 3.7
+* `:alpine3` : Alpine 3.7 + MongoDB 4.1
 
 ## Running from dockerhub registry
 
