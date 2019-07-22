@@ -15,7 +15,7 @@ function check_couchbase_environment {
 function couchbaseInformation {
     displayInformation $1
     echoVerbose $1 "version   : $SX_VERSION"
-    echoVerbose $1 "engine    : v$CB_VERSION"
+    echoVerbose $1 "engine    : $(couchbase-server --version | cut -d\  -f 3)"
     echoVerbose $1 "log path  : $LOG_PATH"
     echoVerbose $1 "data path : $DATA_PATH"
 }
