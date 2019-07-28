@@ -53,14 +53,12 @@ function temporize {
 ## start application
 
 #test if openshift client is present
-ov=`oc version | grep openshift`
+ov=`oc version | grep Client`
 if [ $? != 0 ]; then
   echo "Openshift is not installed."
   echo "Install openshift client (oc) first"
   echo "Exit"
   exit 1;
-else
-  echo $ov
 fi
 
 #test if openshift is connected

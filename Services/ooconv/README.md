@@ -13,7 +13,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 * `:latest` : Fedora core rawhide + unoconv 0.7 + LibreOffice 6.2.4.2.0
 * `:fc31` : Fedora core 31 + unoconv 0.7 + LibreOffice 5.0.3.2
 * `:fc30` : Fedora core 30 + unoconv 0.7 + LibreOffice 5.0.3.2
-* `:fc29` : Fedora core 29 + unoconv 0.7 + LibreOffice 5.0.3.2
+* `:fc29` : Fedora core 29 + unoconv 0.7 + LibreOffice 6.1.6.3
 * `:fc28` : Fedora core 28 + unoconv 0.7 + LibreOffice 5.0.3.2
 * `:fc27` : Fedora core 27 + unoconv 0.7 + LibreOffice 5.0.3.2
 * `:fc26` : Fedora core 26 + unoconv 0.7 + LibreOffice 5.0.3.2
