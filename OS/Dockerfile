@@ -36,7 +36,7 @@ LABEL name="$SX_ID" \
 USER root
 
 COPY sx /tmp/
-RUN yum --nogpgcheck -y install pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip hostname epel-release  bash-completion vim glibc-langpack-fr && \
+RUN yum --nogpgcheck -y install tar psmisc procps findutils iputils net-tools wget logrotate zip hostname vim && \
     yum clean all && \
     mkdir -p $SX_LIBDIR $APP_PATH $LOG_PATH && \
     chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib && \
