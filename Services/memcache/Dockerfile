@@ -1,4 +1,4 @@
-FROM startx/centos:7
+FROM startx/ubi:8
 
 MAINTAINER Startx <dev@startx.fr>
 
