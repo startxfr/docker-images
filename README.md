@@ -37,7 +37,8 @@ your project and start using stable or experimental services in your application
 
 ## Images flavours
 
-- `latest` based on centos 7 [see detail](https://github.com/startxfr/docker-images/tree/centos7)
+- `latest` based on centos 8 [see detail](https://github.com/startxfr/docker-images/tree/centos8)
+- `centos8` based on Centos 8 [see detail](https://github.com/startxfr/docker-images/tree/centos8)
 - `centos7` based on centos 7 [see detail](https://github.com/startxfr/docker-images/tree/centos7)
 - `centos6` based on centos 6 [see detail](https://github.com/startxfr/docker-images/tree/centos6)
 

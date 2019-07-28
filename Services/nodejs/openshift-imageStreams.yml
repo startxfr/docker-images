@@ -109,6 +109,32 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-nodejs:latest
+    - name: ubi8
+      annotations:
+        openshift.io/display-name: S2I Startx Micro-WebServer (RedHat UBI 8)
+        description: Lightweight Http server builder for micro-web application running under
+          RedHat UBI 8
+        iconClass: icon-nodejs
+        tags: builder,startx,ubi,nodejs,httpd
+        supports: http
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+      from:
+        kind: DockerImage
+        name: startx/sv-nodejs:ubi8
+    - name: centos8
+      annotations:
+        openshift.io/display-name: S2I Startx Micro-WebServer (Centos 8)
+        description: Lightweight Http server builder for micro-web application running under
+          Centos 8
+        iconClass: icon-nodejs
+        tags: builder,startx,centos,nodejs,httpd
+        supports: http
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+      from:
+        kind: DockerImage
+        name: startx/sv-nodejs:centos8
     - name: centos7
       annotations:
         openshift.io/display-name: S2I Startx Micro-WebServer (Centos 7)
@@ -130,7 +156,7 @@ items:
         iconClass: icon-nodejs
         tags: builder,startx,centos,nodejs,httpd
         supports: http
-        version: '7'
+        version: '6'
         sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
       from:
         kind: DockerImage
@@ -183,7 +209,7 @@ items:
         sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
       from:
         kind: ImageStreamTag
-        name: centos7
+        name: centos8
     - name: preprod
       annotations:
         openshift.io/display-name: S2I Startx Micro-WebServer (preprod)
