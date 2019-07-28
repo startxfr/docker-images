@@ -1,3 +1,4 @@
 #!/bin/bash
 echo "========> START SETUP TEST ENVIRONMENT"
-docker login -e $RH_EMAIL -u $RH_LOGIN -p $RH_PWD registry.redhat.io
+docker --version
+docker login --email=$RH_EMAIL --username=$RH_LOGIN --password=$RH_PWD registry.redhat.io
