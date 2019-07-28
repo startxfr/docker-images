@@ -21,8 +21,8 @@ your project and start using stable or experimental applications in your applica
 
 | Service         | Docker Hub repository                                                     | Fedora flavours                                                       | CentOS flavours | Doc                                        | 
 |-----------------|---------------------------------------------------------------------------|-----------------------------------------------------------------------|-----------------|--------------------------------------------|
-| PhpMyAdmin      | [`startx/app-pma`](https://hub.docker.com/r/startx/app-pma)               | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` `:28` `:29` `:30` `:31` | `:6` `:7`       | [manual](pma/README.md)                    | 
-| RockMongo       | [`startx/app-rockmongo`](https://hub.docker.com/r/startx/app-rockmongo)   | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` `:28` `:29` `:30` `:31` | `:6` `:7`       | [manual](rockmongo/README.md)              | 
+| PhpMyAdmin      | [`startx/app-pma`](https://hub.docker.com/r/startx/app-pma)               | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` `:28` `:29` `:30` `:31` | `:6` `:7` `:8`  | [manual](pma/README.md)                    | 
+| RockMongo       | [`startx/app-rockmongo`](https://hub.docker.com/r/startx/app-rockmongo)   | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` `:28` `:29` `:30` `:31` | `:6` `:7` `:8`  | [manual](rockmongo/README.md)              | 
 
 
 ## Running from dockerhub registry
@@ -31,3 +31,10 @@ your project and start using stable or experimental applications in your applica
 |---------------------|---------------------------------------------------------------------------|
 | **PhpMyAdmin**      | `docker run -d -p 80:80 --name="fc30-pma" startx/app-pma:fc30`            | 
 | **RockMongo**       | `docker run -d -p 80:80 --name="fc30-rockmongo" startx/app-rockmongo:fc30`| 
+
+## Container flavours
+
+| Service    | Docker Hub repository                                                   | Fedora                                                    | CentOS 
+|------------|-------------------------------------------------------------------------|-----------------------------------------------------------|----------------------
+| PhpMyAdmin | [`startx/app-pma`](https://hub.docker.com/r/startx/app-pma)             | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` | `:centos6` `:centos7` `:centos8` |
+| RockMongo  | [`startx/app-rockmongo`](https://hub.docker.com/r/startx/app-rockmongo) | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` | `:centos6` `:centos7` `:centos8` |

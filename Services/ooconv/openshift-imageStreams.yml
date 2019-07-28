@@ -123,6 +123,19 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-ooconv:centos7
+    - name: centos7
+      annotations:
+        openshift.io/display-name: S2I LibreOffice converter (Centos 7)
+        description: LibreOffice converter builder for document convertion running
+          under Centos 7
+        iconClass: icon-aerogear
+        tags: builder,startx,centos,ooconv,libreoffice
+        supports: http
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:centos7
     - name: centos6
       annotations:
         openshift.io/display-name: S2I LibreOffice converter (Centos 6)
