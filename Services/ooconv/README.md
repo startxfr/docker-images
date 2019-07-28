@@ -23,7 +23,7 @@ based on [startx/fedora:28 container](https://hub.docker.com/r/startx/fedora)
 * `:centos8` : CentOS 8 + unoconv 
 * `:centos7` : CentOS 7 + unoconv 
 * `:centos6` : Centos 6 + unoconv 
-* `:alpine3` : Alpine 3.7 + unoconv 0.8 + LibreOffice 5.4.5.1
+* `:alpine3` : Alpine 3.10 + unoconv 0.8 + LibreOffice 5.4.5.1
 * `:ubi8` : RedHat UBI 8 + unoconv 
 
 ## Running from dockerhub registry
