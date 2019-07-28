@@ -1,13 +1,13 @@
-FROM startx/centos:7
+FROM startx/centos:8
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="centos7" \
+ENV SX_VERSION="centos8" \
     SX_TYPE="service" \
     SX_SERVICE="apache" \
     SX_ID="startx/sv-apache" \
-    SX_NAME="Startx Apache service image (centos 7)" \
-    SX_SUMMARY="Startx apache service based on centos 7" \
+    SX_NAME="Startx Apache service image (centos 8)" \
+    SX_SUMMARY="Startx apache service based on centos 8" \
     HTTPDCONF=/etc/httpd/conf.d/app.conf \
     LOG_PATH=/var/log/httpd \
     APP_PATH=/app \

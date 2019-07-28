@@ -2,12 +2,12 @@ FROM startx/sv-php:centos7
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="centos7" \
+ENV SX_VERSION="centos8" \
     SX_TYPE="application" \
     SX_SERVICE="phpmyadmin" \
     SX_ID="startx/app-phpmyadmin" \
-    SX_NAME="Startx PhpMyAdmin service image (centos 7)" \
-    SX_SUMMARY="Startx phpmyadmin service based on centos 7" \
+    SX_NAME="Startx PhpMyAdmin service image (centos 8)" \
+    SX_SUMMARY="Startx phpmyadmin service based on centos 8" \
     MYSQL_LANG=fr_FR
 
 LABEL name="$SX_ID" \

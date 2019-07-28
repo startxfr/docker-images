@@ -1,4 +1,4 @@
-FROM startx/centos:7
+FROM startx/centos:8
 
 MAINTAINER Startx <dev@startx.fr>
 
@@ -6,8 +6,8 @@ ENV SX_VERSION="latest" \
     SX_TYPE="desktop" \
     SX_SERVICE="chrome" \
     SX_ID="startx/vdi-chrome" \
-    SX_NAME="Startx Chrome VDI image (Centos 7)" \
-    SX_SUMMARY="Startx chrome container-based desktop application based on Centos 7" \
+    SX_NAME="Startx Chrome VDI image (centos 8)" \
+    SX_SUMMARY="Startx chrome container-based desktop application based on centos 8" \
     SX_CHROME_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
     LOG_PATH=/var/log/chrome \
     APP_PATH=/home/chrome \

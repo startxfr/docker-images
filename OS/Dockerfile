@@ -2,12 +2,12 @@ FROM centos:7
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="7" \
+ENV SX_VERSION="8" \
     SX_TYPE="OS" \
     SX_SERVICE="centos" \
     SX_ID="startx/centos" \
-    SX_NAME="Startx OS base image (centos 7)" \
-    SX_SUMMARY="Startx OS base image based on centos 7" \
+    SX_NAME="Startx OS base image (centos 8)" \
+    SX_SUMMARY="Startx OS base image based on centos 8" \
     SX_VERBOSE=true \
     SX_DEBUG=false \
     APP_PATH="/app" \

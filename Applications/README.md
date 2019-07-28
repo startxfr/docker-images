@@ -1,4 +1,4 @@
-# STARTX Docker-Images Applications based on CentOS 7
+# STARTX Docker-Images Applications based on CentOS 8
 
 This directory host various Open Source applications into docker containers based on [startx/centos:7 container](https://hub.docker.com/r/startx/centos)
 

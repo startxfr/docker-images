@@ -1,4 +1,4 @@
-FROM startx/centos:7
+FROM startx/centos:8
 
 MAINTAINER Startx <dev@startx.fr>
 
@@ -6,8 +6,8 @@ ENV SX_VERSION="latest" \
     SX_TYPE="desktop" \
     SX_SERVICE="firefox" \
     SX_ID="startx/vdi-firefox" \
-    SX_NAME="Startx Firefox VDI image (Centos 7)" \
-    SX_SUMMARY="Startx firefox container-based desktop application based on Centos 7" \
+    SX_NAME="Startx Firefox VDI image (centos 8)" \
+    SX_SUMMARY="Startx firefox container-based desktop application based on centos 8" \
     SX_FIREFOX_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
     LOG_PATH=/var/log/firefox \
     APP_PATH=/home/firefox \
