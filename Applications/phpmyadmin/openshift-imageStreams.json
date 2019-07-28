@@ -132,6 +132,22 @@
                         }
                     },
                     {
+                        "name": "centos8",
+                        "annotations": {
+                            "openshift.io/display-name": "PhpMyAdmin web-console (Centos 8)",
+                            "description": "PhpMyAdmin web-console for mariadb running under Centos 8",
+                            "iconClass": "icon-php",
+                            "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
+                            "supports": "http",
+                            "version": "8",
+                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/app-phpmyadmin:centos8"
+                        }
+                    },
+                    {
                         "name": "centos7",
                         "annotations": {
                             "openshift.io/display-name": "PhpMyAdmin web-console (Centos 7)",
