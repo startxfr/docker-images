@@ -290,7 +290,7 @@ parameters:
 - name: BASE_IMAGE_TAG
   displayName: Base image tag
   description: Base image flavour to use for buidling this application (latest, fc27,
-    fc28, centos6, centos7)
+    fc28, centos6, centos7, centos8, ubi8)
   value: latest
   required: true
 - name: DEMO_API

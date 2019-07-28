@@ -53,14 +53,12 @@ function temporize {
 ## start application
 
 #test if openshift client is present
-ov=`oc version | grep openshift`
+ov=`oc version | grep Client`
 if [ $? != 0 ]; then
   echo "Openshift is not installed."
   echo "Install openshift client (oc) first"
   echo "Exit"
   exit 1;
-else
-  echo $ov
 fi
 
 #test if openshift is connected
@@ -181,6 +179,10 @@ function menuSetupFlavour {
   case $flavour in
       alpine3)  appendConf SXDC_FLAVOUR alpine3
                 appendConf SXDC_OS_FLAVOUR 'alpine';;
+      ubi8)     appendConf SXDC_FLAVOUR ubi8
+                appendConf SXDC_OS_FLAVOUR 'ubi';;
+      centos8)  appendConf SXDC_FLAVOUR centos8
+                appendConf SXDC_OS_FLAVOUR 'centos';;
       centos7)  appendConf SXDC_FLAVOUR centos7
                 appendConf SXDC_OS_FLAVOUR 'centos';;
       centos6)  appendConf SXDC_FLAVOUR centos6

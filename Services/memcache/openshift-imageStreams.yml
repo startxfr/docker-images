@@ -109,6 +109,32 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-memcache:latest
+    - name: ubi8
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (RedHat UBI 8)
+        description: Memcache server builder for distributed cache backend running under
+          RedHat UBI 8
+        iconClass: icon-redis
+        tags: builder,startx,ubi,memcache
+        supports: memcache
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:ubi8
+    - name: centos8
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (Centos 8)
+        description: Memcache server builder for distributed cache backend running under
+          Centos 8
+        iconClass: icon-redis
+        tags: builder,startx,centos,memcache
+        supports: memcache
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:centos8
     - name: centos7
       annotations:
         openshift.io/display-name: S2I Startx Memcache Backend (Centos 7)
@@ -130,7 +156,7 @@ items:
         iconClass: icon-redis
         tags: builder,startx,centos,memcache
         supports: memcache
-        version: '7'
+        version: '6'
         sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
       from:
         kind: DockerImage
@@ -183,7 +209,7 @@ items:
         sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
       from:
         kind: ImageStreamTag
-        name: centos7
+        name: centos8
     - name: preprod
       annotations:
         openshift.io/display-name: S2I Startx Memcache Backend (preprod)
