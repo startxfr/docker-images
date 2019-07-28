@@ -2,7 +2,7 @@ FROM registry.redhat.io/ubi8/ubi
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="7" \
+ENV SX_VERSION="8" \
     SX_TYPE="OS" \
     SX_SERVICE="ubi" \
     SX_ID="startx/ubi" \
