@@ -231,7 +231,7 @@ parameters:
   required: true
 - name: BUILDER_TAG
   displayName: Startx image release
-  description: "Image tag of the startx mongodb image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc30, fc29, fc28 - alpine3 - centos7, centos6)"
+  description: "Image tag of the startx mongodb image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc30, fc29, fc28 - alpine3 - ubi8 - centos8, centos7, centos6)"
   value: latest
   required: true
 - name: WEBHOOK_TOKEN
