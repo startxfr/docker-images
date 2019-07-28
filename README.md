@@ -5,9 +5,9 @@
 This project is a collection of application or services containers ready to execute 
 or embed your application as part of a building process.  
 
-Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux distribution. Kumbernetes and Openshift friendly, they can all be used as a s2i builder
-within an openshift cluster.
+Each container is provided with various underlying OS version based on CentOS, 
+Fedora Linux, Alpine and UBI distributions. Kubernetes and Openshift friendly, 
+they can all be used as a s2i builder within an openshift cluster.
 
 If you're used to work with redhat like and distribution, you would prefer start working
 from a container based on this distribution rather than ubuntu or debian like distributions.
