@@ -30,7 +30,6 @@ script:
 - "./travis/test    VDI/firefox        vdi-firefox   centos7"
 - "./travis/test    Applications/phpmyadmin  app-phpmyadmin   centos7"
 after_success:
-- "./travis/publish OS                 centos        latest"
 - "./travis/publish OS                 centos        7"
 - "./travis/publish Services/apache    sv-apache     centos7"
 - "./travis/publish Services/couchbase sv-couchbase  centos7"
