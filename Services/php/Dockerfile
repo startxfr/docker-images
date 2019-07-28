@@ -2,12 +2,12 @@ FROM startx/sv-apache:centos7
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="centos7" \
+ENV SX_VERSION="ubi8" \
     SX_TYPE="service" \
     SX_SERVICE="php" \
     SX_ID="startx/sv-php" \
-    SX_NAME="Startx Apache-PHP service image (centos 7)" \
-    SX_SUMMARY="Startx apache-php service based on centos 7" \
+    SX_NAME="Startx Apache-PHP service image (UBI 8)" \
+    SX_SUMMARY="Startx apache-php service based on RedHat UBI 8" \
     SX_PHPSESS_PATH="/var/lib/php/session" \
     SX_PHP_TMPPATH="/tmp"
 

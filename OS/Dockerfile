@@ -1,13 +1,13 @@
-FROM centos:7
+FROM registry.redhat.io/ubi8/ubi
 
 MAINTAINER Startx <dev@startx.fr>
 
 ENV SX_VERSION="7" \
     SX_TYPE="OS" \
-    SX_SERVICE="centos" \
-    SX_ID="startx/centos" \
-    SX_NAME="Startx OS base image (centos 7)" \
-    SX_SUMMARY="Startx OS base image based on centos 7" \
+    SX_SERVICE="ubi" \
+    SX_ID="startx/ubi" \
+    SX_NAME="Startx OS base image (UBI 8)" \
+    SX_SUMMARY="Startx OS base image based on RedHat UBI 8" \
     SX_VERBOSE=true \
     SX_DEBUG=false \
     APP_PATH="/app" \
@@ -25,7 +25,7 @@ LABEL name="$SX_ID" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,centos" \
+      io.openshift.tags="startx,os,ubi" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="128Mi" \
       io.openshift.min-cpu="500m" \

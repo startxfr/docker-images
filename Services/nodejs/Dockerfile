@@ -2,12 +2,12 @@ FROM startx/centos:7
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="centos7" \
+ENV SX_VERSION="ubi8" \
     SX_TYPE="service" \
     SX_SERVICE="nodejs" \
     SX_ID="startx/sv-nodejs" \
-    SX_NAME="Startx Nodejs service image (centos 7)" \
-    SX_SUMMARY="Startx nodejs service based on centos 7" \
+    SX_NAME="Startx Nodejs service image (UBI 8)" \
+    SX_SUMMARY="Startx nodejs service based on RedHat UBI 8" \
     LOG_PATH=/var/log/nodejs \
     APP_PATH=/app \
     DATA_PATH=/data \

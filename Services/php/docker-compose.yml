@@ -1,6 +1,6 @@
 php:
   build: ./
-  container_name: "centos7-service-php"
+  container_name: "ubi8-service-php"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 5

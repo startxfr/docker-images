@@ -2,12 +2,12 @@ FROM startx/centos:7
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="centos7" \
+ENV SX_VERSION="ubi8" \
     SX_TYPE="service" \
     SX_SERVICE="mariadb" \
     SX_ID="startx/sv-mariadb" \
-    SX_NAME="Startx Mariadb service image (centos 7)" \
-    SX_SUMMARY="Startx mariadb service based on centos 7" \
+    SX_NAME="Startx Mariadb service image (UBI 8)" \
+    SX_SUMMARY="Startx mariadb service based on RedHat UBI 8" \
     MY_CONF=/etc/my.cnf \
     DATA_PATH=/data \
     LOG_PATH=/var/log/mariadb \

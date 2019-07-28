@@ -2,12 +2,12 @@ FROM startx/centos:7
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="centos7" \
+ENV SX_VERSION="ubi8" \
     SX_TYPE="service" \
     SX_SERVICE="memcache" \
     SX_ID="startx/sv-memcache" \
-    SX_NAME="Startx Memcached service image (centos 7)" \
-    SX_SUMMARY="Startx Memcached service based on centos 7"
+    SX_NAME="Startx Memcached service image (UBI 8)" \
+    SX_SUMMARY="Startx Memcached service based on RedHat UBI 8"
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \

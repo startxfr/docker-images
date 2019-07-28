@@ -2,12 +2,12 @@ FROM startx/centos:7
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="centos7" \
+ENV SX_VERSION="ubi8" \
     SX_TYPE="service" \
     SX_SERVICE="postgres" \
     SX_ID="startx/sv-postgres" \
-    SX_NAME="Startx Postgres service image (centos 7)" \
-    SX_SUMMARY="Startx postgres service based on centos 7" \
+    SX_NAME="Startx Postgres service image (UBI 8)" \
+    SX_SUMMARY="Startx postgres service based on RedHat UBI 8" \
     DATA_PATH=/data \
     LOG_PATH=/var/log/postgres
 
