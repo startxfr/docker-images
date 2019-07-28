@@ -13,16 +13,18 @@ based on [startx/fedora:29 container](https://hub.docker.com/r/startx/fedora)
 * `:latest` : Fedora core rawhide + unoconv 0.7 + LibreOffice 6.2.4.2.0
 * `:fc31` : Fedora core 31 + unoconv 0.7 + LibreOffice 5.0.3.2
 * `:fc30` : Fedora core 30 + unoconv 0.7 + LibreOffice 5.0.3.2
-* `:fc29` : Fedora core 29 + unoconv 0.7 + LibreOffice 5.0.3.2
+* `:fc29` : Fedora core 29 + unoconv 0.7 + LibreOffice 6.1.6.3
 * `:fc28` : Fedora core 28 + unoconv 0.7 + LibreOffice 5.0.3.2
 * `:fc27` : Fedora core 27 + unoconv 0.7 + LibreOffice 5.0.3.2
 * `:fc26` : Fedora core 26 + unoconv 0.7 + LibreOffice 5.0.3.2
 * `:fc23` : Fedora core 23 + unoconv 0.7 + LibreOffice 5.0.3.2
 * `:fc22` : Fedora core 22 + unoconv 
 * `:fc21` : Fedora core 21 + unoconv 
+* `:centos8` : CentOS 8 + unoconv 
 * `:centos7` : CentOS 7 + unoconv 
 * `:centos6` : Centos 6 + unoconv 
 * `:alpine3` : Alpine 3.7 + unoconv 0.8 + LibreOffice 5.4.5.1
+* `:ubi8` : RedHat UBI 8 + unoconv 
 
 ## Running from dockerhub registry
 
