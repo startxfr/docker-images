@@ -5,9 +5,9 @@
 This project is a collection of application or services containers ready to execute 
 or embed your application as part of a building process.  
 
-Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux distribution. Kumbernetes and Openshift friendly, they can all be used as a s2i builder
-within an openshift cluster.
+Each container is provided with various underlying OS version based on CentOS, 
+Fedora Linux, Alpine and UBI distributions. Kubernetes and Openshift friendly, 
+they can all be used as a s2i builder within an openshift cluster.
 
 If you're used to work with redhat like and distribution, you would prefer start working
 from a container based on this distribution rather than ubuntu or debian like distributions.
@@ -39,8 +39,8 @@ your project and start using stable or experimental services in your application
 
 - `latest` based on centos 8 [see detail](https://github.com/startxfr/docker-images/tree/centos8)
 - `centos8` based on Centos 8 [see detail](https://github.com/startxfr/docker-images/tree/centos8)
-- `centos7` based on centos 7 [see detail](https://github.com/startxfr/docker-images/tree/centos7)
-- `centos6` based on centos 6 [see detail](https://github.com/startxfr/docker-images/tree/centos6)
+- `centos7` based on Centos 7 [see detail](https://github.com/startxfr/docker-images/tree/centos7)
+- `centos6` based on Centos 6 [see detail](https://github.com/startxfr/docker-images/tree/centos6)
 
 
 ## For advanced users
@@ -100,7 +100,8 @@ and stay stiked to a defined stable release.
 
 | Release  | Description
 |----------|-------------
-| 0.4.0    | Stable release with updated images lib packages
+| 0.93.1   | Unstable release with UBI and centos8 added. Prepare first major release
+| 0.40.0   | Stable release with updated images lib packages
 | 0.31.3   | Stable release with images fully compatible with OKD 4.0 (s2i, podman)
 | 0.31.1   | Adding temporize function into sx lib
 | 0.31.0   | Adding support for fedora 31 containers
