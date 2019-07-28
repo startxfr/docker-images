@@ -1,6 +1,6 @@
 [![docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-# STARTX Docker-Images Repository CentOS 7 [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images)
+# STARTX Docker-Images Repository CentOS 8 [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos8)](https://travis-ci.org/startxfr/docker-images)
 
 This project is a collection of application or services containers ready to execute 
 or embed your application as part of a building process.  

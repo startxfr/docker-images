@@ -1,6 +1,6 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : CentOS 7
+# Docker OS Images : CentOS 8
 
 Startx Centos is a base container used for all startx services and applications published in [Dockerhub registry](https://hub.docker.com/u/startx). 
 This container contain :
@@ -154,7 +154,7 @@ docker run --rm -i -t startx-bash-sample
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 ```Dockerfile
-FROM startx/centos:7
+FROM startx/centos:8
 #... your container specifications
 ```
 
