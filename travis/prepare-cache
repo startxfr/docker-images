@@ -1,4 +1,4 @@
 #!/bin/bash
 echo "INFO: Cache $1 image"
-docker pull centos:$3
+docker pull registry.redhat.io/ubi$3/ubi
 docker pull startx/$1:$2
