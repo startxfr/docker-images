@@ -1,6 +1,6 @@
 [![docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-# STARTX Docker-Images Repository CentOS 7 [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images)
+# STARTX Docker-Images Repository RedHat UBI 8 [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=ubi8)](https://travis-ci.org/startxfr/docker-images)
 
 This project is a collection of application or services containers ready to execute 
 or embed your application as part of a building process.  
@@ -37,10 +37,8 @@ your project and start using stable or experimental services in your application
 
 ## Images flavours
 
-- `latest` based on centos 8 [see detail](https://github.com/startxfr/docker-images/tree/centos8)
-- `centos8` based on Centos 8 [see detail](https://github.com/startxfr/docker-images/tree/centos8)
-- `centos7` based on centos 7 [see detail](https://github.com/startxfr/docker-images/tree/centos7)
-- `centos6` based on centos 6 [see detail](https://github.com/startxfr/docker-images/tree/centos6)
+- `latest` based on RedHat UBI 8 [see detail](https://github.com/startxfr/docker-images/tree/ubi8)
+- `ubi8` based on RedHat UBI 8 [see detail](https://github.com/startxfr/docker-images/tree/ubi8)
 
 
 ## For advanced users

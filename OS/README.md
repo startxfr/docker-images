@@ -1,10 +1,10 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : CentOS 7
+# Docker OS Images : RedHat UBI 8
 
-Startx Centos is a base container used for all startx services and applications published in [Dockerhub registry](https://hub.docker.com/u/startx). 
+Startx UBI is a base container used for all startx services and applications published in [Dockerhub registry](https://hub.docker.com/u/startx). 
 This container contain :
-- Centos system envelope
+- Redhat UBI system envelope
 - core OS rpm (kernel, libs) updated every week
 - fundamentals tools (ex: pwgen, tar, zip) updated every week
 - usefull tools (psmisc, procps, coreutils, findutils, wget, curl, vi, bash-completion) only for the `:latest` and `:devel` flavour.
@@ -21,32 +21,30 @@ You can use Startx Centos image in many ways :
 
 See more applications builders and sample on [startx docker images repository](https://github.com/startxfr/docker-images/blob/master)
 
-[![Dockerhub Registry](https://img.shields.io/docker/build/startx/centos.svg)](https://hub.docker.com/r/startx/centos) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/OS/) [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
+[![Dockerhub Registry](https://img.shields.io/docker/build/startx/ubi.svg)](https://hub.docker.com/r/startx/ubi) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/OS/) [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
 
 ## Container flavours
 
-| Docker Hub repository                                             | Openshift                                                                                                                                                                                                                                                                                                                                     | Docker-compose                                                                                     | Centos distribution                        
-|-------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|---------------------
-| [`startx/centos:latest`](https://hub.docker.com/r/startx/centos)  | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/docker-compose.yml) | Centos 8
-| [`startx/centos:8`](https://hub.docker.com/r/startx/centos)       | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/docker-compose.yml) | Centos 8
-| [`startx/centos:7`](https://hub.docker.com/r/startx/centos)       | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/centos7/OS/docker-compose.yml) | Centos 7
-| [`startx/centos:6`](https://hub.docker.com/r/startx/centos)       | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/centos6/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/centos6/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/centos6/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/centos6/OS/docker-compose.yml) | Centos 6
+| Docker Hub repository                                       | Openshift                                                                                                                                                                                                                                                                                                                              | Docker-compose                                                                                   | Centos distribution                        
+|-------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|---------------------
+| [`startx/ubi:latest`](https://hub.docker.com/r/startx/ubi)  | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/ubi8/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/ubi8/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/ubi8/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/ubi8/OS/docker-compose.yml) | RedHat UBI 8
+| [`startx/ubi:8`](https://hub.docker.com/r/startx/ubi)       | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/ubi8/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/ubi8/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/ubi8/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/ubi8/OS/docker-compose.yml) | RedHat UBI 8
 
 ## Running this image
 
 ### Running using docker
 
 ```bash
-docker run -it --name="example-centos" startx/centos
+docker run -it --name="example-ubi" startx/ubi
 ```
 
 ### Running using docker-compose
 
 * Create a `docker-compose.yml` file with the following content
 ```yaml
-centos:
-  image: startx/centos:latest
-  container_name: "example-centos"
+ubi:
+  image: startx/ubi:latest
+  container_name: "example-ubi"
 ```
 * Execute the following command
 ```bash
@@ -143,10 +141,10 @@ chmod ug+x run
 Then you can use this image as an s2i builder image
 ```bash
 # With your current directory application code
-s2i build . startx/centos:latest startx-bash-myapp
+s2i build . startx/ubi:latest startx-bash-myapp
 docker run --rm -i -t startx-bash-myapp
 # With startx application sample code repository
-s2i build https://github.com/startxfr/docker-images-example-bash startx/centos startx-bash-sample
+s2i build https://github.com/startxfr/docker-images-example-bash startx/ubi startx-bash-sample
 docker run --rm -i -t startx-bash-sample
 ```
 
@@ -154,7 +152,7 @@ docker run --rm -i -t startx-bash-sample
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 ```Dockerfile
-FROM startx/centos:7
+FROM startx/ubi:8
 #... your container specifications
 ```
 
@@ -164,8 +162,8 @@ FROM startx/centos:7
 |---------------------------|----------|-----------------|--------------------------------------------------------------------------|
 | SX_VERSION                | `string` | `7`             | container version
 | SX_TYPE                   | `string` | `OS`            | Container family (os, service, application). could be enhanced 
-| SX_SERVICE                | `string` | `centos`        | Define the type of service or application provided
-| SX_ID                     | `auto`   | `startx/centos` | Container ID coresponding to the image repository 
+| SX_SERVICE                | `string` | `ubi`           | Define the type of service or application provided
+| SX_ID                     | `auto`   | `startx/ubi`    | Container ID coresponding to the image repository 
 | SX_NAME                   | `auto`   | `yes`           | Container name
 | SX_SUMMARY                | `auto`   | `yes`           | Container purpose description
 | SX_VERBOSE                | `bool`   | `no`            | Display information about the execution
@@ -189,10 +187,10 @@ This section will help you if you want to :
 ### Build & run a container using `docker`
 
 1. Jump into the container directory with `cd OS`
-2. Build the container using `docker build -t startx-centos .`
+2. Build the container using `docker build -t startx-ubi .`
 3. Run this container 
-   - Interactively with `docker run -it startx-centos`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-   - As a daemon with `docker run -d startx-centos`
+   - Interactively with `docker run -it startx-ubi`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
+   - As a daemon with `docker run -d startx-ubi`
 
 
 ### Build & run a container using `docker-compose`

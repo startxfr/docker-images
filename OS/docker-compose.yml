@@ -1,12 +1,12 @@
-centos7:
+ubi8:
   build: ./
-  container_name: "startx-centos7"
+  container_name: "startx-ubi8"
   mem_limit: 100m
   memswap_limit: 200m
   cpu_shares: 2
 #  volumes:
-#    - "/tmp/container/centos7/logs:/logs:z"
-#    - "/tmp/container/centos7/app:/app:z"
+#    - "/tmp/container/ubi8/logs:/logs:z"
+#    - "/tmp/container/ubi8/app:/app:z"
 #  command:
 #     - "/bin/sx"
 #     - "run"
