@@ -109,6 +109,19 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-mongo:latest
+    - name: ubi8
+      annotations:
+        openshift.io/display-name: S2I Startx MongoDB Database (RedHat UBI 8)
+        description: MongoDB server builder for NoSQL database running under
+          RedHat UBI 8
+        iconClass: icon-mongodb
+        tags: builder,startx,ubi,mongo,database
+        supports: mongodb
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mongo:ubi8
     - name: centos8
       annotations:
         openshift.io/display-name: S2I Startx MongoDB Database (Centos 8)

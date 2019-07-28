@@ -24,6 +24,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 * `:centos7` : CentOS 7 + MongoDB 4.1
 * `:centos6` : Centos 6 + MongoDB 3.7
 * `:alpine3` : Alpine 3.7 + MongoDB 4.1
+* `:ubi8` : RedHat UBI 8 + MongoDB 4.1
 
 ## Running from dockerhub registry
 

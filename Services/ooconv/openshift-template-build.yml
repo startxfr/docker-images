@@ -131,6 +131,19 @@ objects:
       from:
         kind: DockerImage
         name: startx/sv-ooconv:latest
+    - name: ubi8
+      annotations:
+        openshift.io/display-name: S2I Startx LibreOffice converter (RedHat UBI 8)
+        description: LibreOffice converter for document convertion running under
+          RedHat UBI 8
+        iconClass: icon-aerogear
+        tags: builder,startx,ubi,ooconv,libreoffice
+        supports: ooconv
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:ubi8
     - name: centos8
       annotations:
         openshift.io/display-name: S2I Startx LibreOffice converter (Centos 8)
@@ -484,7 +497,7 @@ parameters:
   required: true
 - name: BUILDER_TAG
   displayName: Builder image stage
-  description: "Image tag of the startx ooconv builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc30, fc29, fc28 - alpine3 - centos8, centos7, centos6)"
+  description: "Image tag of the startx ooconv builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc30, fc29, fc28 - alpine3 - ubi8 - centos8, centos7, centos6)"
   value: latest
   required: true
 - name: SOURCE_GIT

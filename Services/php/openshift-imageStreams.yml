@@ -109,6 +109,19 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-php:latest
+    - name: ubi8
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (RedHat UBI 8)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
+          RedHat UBI 8
+        iconClass: icon-php
+        tags: builder,startx,ubi,php,httpd
+        supports: http
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:ubi8
     - name: centos8
       annotations:
         openshift.io/display-name: S2I Startx PHP WebServer (Centos 8)

@@ -17,6 +17,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 * `:fc28` : Fedora 28 + Couchbase Server 4.5.0
 * `:centos7` : Centos 7 + Couchbase Server 6.0.0
 * `:centos8` : Centos 8 + Couchbase Server 6.0.0
+* `:ubi8` : RedHat UBI 8 + Couchbase Server 6.0.0
 
 ## Running from dockerhub registry
 

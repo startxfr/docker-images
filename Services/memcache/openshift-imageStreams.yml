@@ -109,6 +109,19 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-memcache:latest
+    - name: ubi8
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (RedHat UBI 8)
+        description: Memcache server builder for distributed cache backend running under
+          RedHat UBI 8
+        iconClass: icon-redis
+        tags: builder,startx,ubi,memcache
+        supports: memcache
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:ubi8
     - name: centos8
       annotations:
         openshift.io/display-name: S2I Startx Memcache Backend (Centos 8)

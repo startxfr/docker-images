@@ -19,7 +19,7 @@ This script assume :
 # setup project
 ./okd-helper.sh setup project fedora
 
-# setup flavour (alpine3, centos8, centos7, centos6, fc31, fc30, fc29 or fc28)
+# setup flavour (alpine3, ubi8, centos8, centos7, centos6, fc31, fc30, fc29 or fc28)
 ./okd-helper.sh setup flavour latest
 
 # setup stage
@@ -87,8 +87,8 @@ This script assume :
 # Start full test for centos 8 containers
 ./okd-helper.sh setup flavour centos8
 ./okd-helper.sh test
-# Start full test for centos 8 containers
-./okd-helper.sh setup flavour centos8
+# Start full test for centos 7 containers
+./okd-helper.sh setup flavour centos7
 ./okd-helper.sh test
 # Start full test for centos 6 containers
 ./okd-helper.sh setup flavour centos6
@@ -104,6 +104,9 @@ This script assume :
 ./okd-helper.sh test
 # Start full test for alpine 3 containers
 ./okd-helper.sh setup flavour alpine3
+./okd-helper.sh test
+# Start full test for RedHat UBI 8 containers
+./okd-helper.sh setup flavour ubi8
 ./okd-helper.sh test
 ```
 
@@ -143,5 +146,9 @@ This script assume :
 # Start full test for alpine 3 containers (dedicated project)
 ./okd-helper.sh setup project alpine-3
 ./okd-helper.sh setup flavour alpine3
+./okd-helper.sh test
+# Start full test for RedHat UBI 8 containers (dedicated project)
+./okd-helper.sh setup project ubi-8
+./okd-helper.sh setup flavour ubi8
 ./okd-helper.sh test
 ```

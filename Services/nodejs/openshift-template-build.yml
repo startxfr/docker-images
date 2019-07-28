@@ -131,6 +131,19 @@ objects:
       from:
         kind: DockerImage
         name: startx/sv-nodejs:latest
+    - name: ubi8
+      annotations:
+        openshift.io/display-name: S2I Startx Micro-WebServer (RedHat UBI 8)
+        description: Lightweight Http server builder for micro-web application running under
+          RedHat UBI 8
+        iconClass: icon-nodejs
+        tags: builder,startx,ubi,nodejs,httpd
+        supports: http
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+      from:
+        kind: DockerImage
+        name: startx/sv-nodejs:ubi8
     - name: centos8
       annotations:
         openshift.io/display-name: S2I Startx Micro-WebServer (Centos 8)
@@ -498,7 +511,7 @@ parameters:
   required: true
 - name: BUILDER_TAG
   displayName: Builder image stage
-  description: "Image tag of the startx nodejs builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc30, fc29, fc28 - alpine3 - centos8, centos7, centos6)"
+  description: "Image tag of the startx nodejs builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc30, fc29, fc28 - alpine3 - ubi8 - centos8, centos7, centos6)"
   value: latest
   required: true
 - name: SOURCE_GIT

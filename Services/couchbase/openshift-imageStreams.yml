@@ -98,6 +98,19 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-couchbase:latest
+    - name: ubi8
+      annotations:
+        openshift.io/display-name: S2I Couchbase Database (RedHat UBI 8)
+        description: Couchbase server builder for NoSQL database running under RedHat UBI
+          8
+        iconClass: icon-mysql-database
+        tags: builder,startx,ubi,couchbase,database
+        supports: db
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+      from:
+        kind: DockerImage
+        name: startx/sv-couchbase:ubi8
     - name: centos8
       annotations:
         openshift.io/display-name: S2I Couchbase Database (Centos 8)

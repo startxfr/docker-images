@@ -18,7 +18,7 @@ This script assume :
 # setup project
 ./podman-helper.sh setup project startx
 
-# setup flavour (alpine3, centos8, centos7, centos6, fc31, fc30, fc29 or fc28)
+# setup flavour (alpine3, ubi8, centos8, centos7, centos6, fc31, fc30, fc29 or fc28)
 ./podman-helper.sh setup flavour latest
 ```
 ## Building images
@@ -84,6 +84,9 @@ This script assume :
 # Start full test for alpine 3 containers
 ./podman-helper.sh setup flavour alpine3
 ./podman-helper.sh buildrun
+# Start full test for RedHat UBI 8 containers
+./podman-helper.sh setup flavour ubi8
+./podman-helper.sh buildrun
 ```
 
 ### Test in individuals project
@@ -121,5 +124,9 @@ This script assume :
 # Start full test for alpine 3 containers (dedicated project)
 ./podman-helper.sh setup project alpine-3
 ./podman-helper.sh setup flavour alpine3
+./podman-helper.sh buildrun
+# Start full test for RedHat UBI 8 containers (dedicated project)
+./podman-helper.sh setup project ubi-8
+./podman-helper.sh setup flavour ubi8
 ./podman-helper.sh buildrun
 ```

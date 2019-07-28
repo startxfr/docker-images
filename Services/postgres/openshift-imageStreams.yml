@@ -109,6 +109,19 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-postgres:latest
+    - name: ubi8
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (RedHat UBI 8)
+        description: PostgreSQL server builder for advanced SQL database running under
+          RedHat UBI 8
+        iconClass: icon-postgresql
+        tags: builder,startx,ubi,postgres,sql
+        supports: postgresql
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: DockerImage
+        name: startx/sv-postgres:ubi8
     - name: centos8
       annotations:
         openshift.io/display-name: S2I Startx PostgreSQL Database (Centos 8)
