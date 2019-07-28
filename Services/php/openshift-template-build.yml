@@ -128,6 +128,32 @@ objects:
       from:
         kind: DockerImage
         name: startx/sv-php:latest
+    - name: ubi8
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (RedHat UBI 8)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
+          RedHat UBI 8
+        iconClass: icon-php
+        tags: builder,startx,ubi,php,httpd
+        supports: http
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:ubi8
+    - name: centos8
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (Centos 8)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
+          Centos 8
+        iconClass: icon-php
+        tags: builder,startx,centos,php,httpd
+        supports: http
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:centos8
     - name: centos7
       annotations:
         openshift.io/display-name: S2I Startx PHP WebServer (Centos 7)
@@ -149,7 +175,7 @@ objects:
         iconClass: icon-php
         tags: builder,startx,centos,php,httpd
         supports: http
-        version: '7'
+        version: '6'
         sampleRepo: https://github.com/startxfr/docker-images-example-php.git
       from:
         kind: DockerImage
@@ -202,7 +228,7 @@ objects:
         sampleRepo: https://github.com/startxfr/docker-images-example-php.git
       from:
         kind: ImageStreamTag
-        name: centos7
+        name: centos8
     - name: preprod
       annotations:
         openshift.io/display-name: S2I Startx PHP WebServer (preprod)
@@ -482,7 +508,7 @@ parameters:
   required: true
 - name: BUILDER_TAG
   displayName: Builder image stage
-  description: "Image tag of the startx php builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc30, fc29, fc28 - alpine3 - centos7, centos6)"
+  description: "Image tag of the startx php builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc30, fc29, fc28 - alpine3 - ubi8 - centos8, centos7, centos6)"
   value: latest
   required: true
 - name: SOURCE_GIT

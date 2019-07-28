@@ -223,7 +223,7 @@ parameters:
   required: true
 - name: BUILDER_TAG
   displayName: Startx image release
-  description: "Image tag of the startx postgres image used. Could be : latest, fc31, fc30, fc29, fc28, alpine3, centos7, centos6"
+  description: "Image tag of the startx postgres image used. Could be : latest, fc31, fc30, fc29, fc28, alpine3, ubi8, centos8, centos7, centos6"
   value: latest
   required: true
 - name: PGSQL_ROOT_PASSWORD

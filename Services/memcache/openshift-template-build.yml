@@ -130,6 +130,32 @@ objects:
       from:
         kind: DockerImage
         name: startx/sv-memcache:latest
+    - name: ubi8
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (RedHat UBI 8)
+        description: Memcache server builder for distributed cache backend running under
+          RedHat UBI 8
+        iconClass: icon-redis
+        tags: builder,startx,ubi,memcache
+        supports: memcache
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:ubi8
+    - name: centos8
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (Centos 8)
+        description: Memcache server builder for distributed cache backend running under
+          Centos 8
+        iconClass: icon-redis
+        tags: builder,startx,centos,memcache
+        supports: memcache
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:centos8
     - name: centos7
       annotations:
         openshift.io/display-name: S2I Startx Memcache Backend (Centos 7)
@@ -151,7 +177,7 @@ objects:
         iconClass: icon-redis
         tags: builder,startx,centos,memcache
         supports: memcache
-        version: '7'
+        version: '6'
         sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
       from:
         kind: DockerImage
@@ -204,7 +230,7 @@ objects:
         sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
       from:
         kind: ImageStreamTag
-        name: centos7
+        name: centos8
     - name: preprod
       annotations:
         openshift.io/display-name: S2I Startx Memcache Backend (preprod)
@@ -432,7 +458,7 @@ parameters:
   required: true
 - name: BUILDER_TAG
   displayName: Builder image stage
-  description: "Image tag of the startx memcache builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc30, fc29, fc28 - alpine3 - centos7, centos6)"
+  description: "Image tag of the startx memcache builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc30, fc29, fc28 - alpine3 - ubi8 - centos8, centos7, centos6)"
   value: latest
   required: true
 - name: SOURCE_GIT
