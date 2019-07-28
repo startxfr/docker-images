@@ -20,6 +20,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 * `:fc23` : Fedora core 23 + MongoDB 3.0.7  
 * `:fc22` : Fedora core 22 + MongoDB 
 * `:fc21` : Fedora core 21 + MongoDB 
+* `:centos8` : CentOS 8 + MongoDB 4.1
 * `:centos7` : CentOS 7 + MongoDB 4.1
 * `:centos6` : Centos 6 + MongoDB 3.7
 * `:alpine3` : Alpine 3.7 + MongoDB 4.1

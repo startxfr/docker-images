@@ -109,6 +109,19 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-php:latest
+    - name: centos8
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (Centos 8)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
+          Centos 8
+        iconClass: icon-php
+        tags: builder,startx,centos,php,httpd
+        supports: http
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:centos8
     - name: centos7
       annotations:
         openshift.io/display-name: S2I Startx PHP WebServer (Centos 7)
@@ -130,7 +143,7 @@ items:
         iconClass: icon-php
         tags: builder,startx,centos,php,httpd
         supports: http
-        version: '7'
+        version: '6'
         sampleRepo: https://github.com/startxfr/docker-images-example-php.git
       from:
         kind: DockerImage
@@ -183,7 +196,7 @@ items:
         sampleRepo: https://github.com/startxfr/docker-images-example-php.git
       from:
         kind: ImageStreamTag
-        name: centos7
+        name: centos8
     - name: preprod
       annotations:
         openshift.io/display-name: S2I Startx PHP WebServer (preprod)

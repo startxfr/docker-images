@@ -18,7 +18,7 @@ This script assume :
 # setup project
 ./podman-helper.sh setup project startx
 
-# setup flavour (alpine3, centos7, centos6, fc31, fc30, fc29 or fc28)
+# setup flavour (alpine3, centos8, centos7, centos6, fc31, fc30, fc29 or fc28)
 ./podman-helper.sh setup flavour latest
 ```
 ## Building images
@@ -63,6 +63,9 @@ This script assume :
 # Start full test for fedora rawhide containers
 ./podman-helper.sh setup flavour latest
 ./podman-helper.sh buildrun
+# Start full test for centos 8 containers
+./podman-helper.sh setup flavour centos8
+./podman-helper.sh buildrun
 # Start full test for centos 7 containers
 ./podman-helper.sh setup flavour centos7
 ./podman-helper.sh buildrun
@@ -90,6 +93,10 @@ This script assume :
 # Start full test for fedora rawhide containers (dedicated project)
 ./podman-helper.sh setup project fedora-latest
 ./podman-helper.sh setup flavour latest
+./podman-helper.sh buildrun
+# Start full test for centos 8 containers (dedicated project)
+./podman-helper.sh setup project centos-8
+./podman-helper.sh setup flavour centos8
 ./podman-helper.sh buildrun
 # Start full test for centos 7 containers (dedicated project)
 ./podman-helper.sh setup project centos-7

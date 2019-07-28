@@ -97,6 +97,19 @@ items:
       from:
         kind: DockerImage
         name: startx/vdi-firefox:latest
+    - name: centos8
+      annotations:
+        openshift.io/display-name: VDI Firefox Browser (Centos 8)
+        description: Container-based desktop Firefox browser for remote internet browsing  under
+          Centos 8
+        iconClass: icon-aerogear
+        tags: builder,startx,centos,firefox,vnc
+        supports: vnc
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-firefox.git
+      from:
+        kind: DockerImage
+        name: startx/vdi-firefox:centos8
     - name: centos7
       annotations:
         openshift.io/display-name: VDI Firefox Browser (Centos 7)

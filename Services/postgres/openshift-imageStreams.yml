@@ -109,6 +109,19 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-postgres:latest
+    - name: centos8
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Centos 8)
+        description: PostgreSQL server builder for advanced SQL database running under
+          Centos 8
+        iconClass: icon-postgresql
+        tags: builder,startx,centos,postgres,sql
+        supports: postgresql
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: DockerImage
+        name: startx/sv-postgres:centos8
     - name: centos7
       annotations:
         openshift.io/display-name: S2I Startx PostgreSQL Database (Centos 7)
@@ -130,7 +143,7 @@ items:
         iconClass: icon-postgresql
         tags: builder,startx,centos,postgres,sql
         supports: postgresql
-        version: '7'
+        version: '6'
         sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
       from:
         kind: DockerImage
@@ -171,7 +184,7 @@ items:
         sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
       from:
         kind: ImageStreamTag
-        name: centos7
+        name: centos8
     - name: preprod
       annotations:
         openshift.io/display-name: S2I Startx PostgreSQL Database (preprod)

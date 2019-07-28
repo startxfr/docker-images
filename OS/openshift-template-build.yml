@@ -121,6 +121,18 @@ objects:
       from:
         kind: DockerImage
         name: startx/fedora:latest
+    - name: centos8
+      annotations:
+        openshift.io/display-name: S2I Startx CentOS 8
+        description: Minimal CentOS 8 OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,centos
+        supports: centos
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: DockerImage
+        name: startx/centos:8
     - name: centos7
       annotations:
         openshift.io/display-name: S2I Startx CentOS 7
@@ -191,7 +203,7 @@ objects:
         sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
       from:
         kind: ImageStreamTag
-        name: centos7
+        name: centos8
     - name: preprod
       annotations:
         openshift.io/display-name: S2I Startx Fedora (preprod)
@@ -433,7 +445,7 @@ parameters:
   required: true
 - name: BUILDER_TAG
   displayName: Builder image stage
-  description: "Image tag of the startx apache builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc30, fc29, fc28 - alpine3 - centos7, centos6)"
+  description: "Image tag of the startx apache builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc30, fc29, fc28 - alpine3 - centos8, centos7, centos6)"
   value: latest
 - name: SOURCE_GIT
   displayName: Source repository

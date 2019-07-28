@@ -130,6 +130,8 @@ function menuSetupFlavour {
   case $flavour in
       alpine3)  appendConf SXDC_FLAVOUR alpine3
                 appendConf SXDC_OS_FLAVOUR 'alpine';;
+      centos8)  appendConf SXDC_FLAVOUR centos8
+                appendConf SXDC_OS_FLAVOUR 'centos';;
       centos7)  appendConf SXDC_FLAVOUR centos7
                 appendConf SXDC_OS_FLAVOUR 'centos';;
       centos6)  appendConf SXDC_FLAVOUR centos6

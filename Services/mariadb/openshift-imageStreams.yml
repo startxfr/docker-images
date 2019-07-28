@@ -109,6 +109,19 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-mariadb:latest
+    - name: centos8
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Centos 8)
+        description: MariaDB server builder for simple SQL database running under
+          Centos 8
+        iconClass: icon-mariadb
+        tags: builder,startx,centos,mariadb,sql
+        supports: mysql
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:centos8
     - name: centos7
       annotations:
         openshift.io/display-name: S2I Startx Mariadb Database (Centos 7)
@@ -130,7 +143,7 @@ items:
         iconClass: icon-mariadb
         tags: builder,startx,centos,mariadb,sql
         supports: mysql
-        version: '7'
+        version: '6'
         sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
       from:
         kind: DockerImage
@@ -183,7 +196,7 @@ items:
         sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
       from:
         kind: ImageStreamTag
-        name: centos7
+        name: centos8
     - name: preprod
       annotations:
         openshift.io/display-name: S2I Startx Mariadb Database (preprod)
