@@ -36,7 +36,9 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 COPY my.cnf $MY_CONF
-RUN yum --nogpgcheck -y install mariadb-libs mariadb-server mariadb && \
+COPY mariadb.repo /etc/yum.repos.d/MariaDB.repo
+RUN rpm --import https://yum.mariadb.org/RPM-GPG-KEY-MariaDB && \
+    yum --nogpgcheck -y install MariaDB-server galera-4 MariaDB-client MariaDB-shared MariaDB-backup MariaDB-common --skip-broken && \
     yum clean all && \
     mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \

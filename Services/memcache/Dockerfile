@@ -28,7 +28,14 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum --nogpgcheck -y install memcached nmap-ncat telnet && yum clean all && \
+RUN yum --nogpgcheck -y install ncurses ncurses-libs nmap-ncat wget gcc libevent && \
+    yum --nogpgcheck -y install --skip-broken http://rpmfind.net/linux/centos/7.6.1810/os/x86_64/Packages/telnet-0.17-64.el7.x86_64.rpm && \
+    wget http://memcached.org/latest && \
+    tar -zxvf latest && \
+    cd cd memcached-1.5.16 && \
+    ./configure && make && make test && sudo make install && \
+    yum --nogpgcheck -y uninstall wget gcc && \
+    yum clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \

@@ -9,7 +9,8 @@ ENV SX_VERSION="ubi8" \
     SX_NAME="Startx Postgres service image (UBI 8)" \
     SX_SUMMARY="Startx postgres service based on RedHat UBI 8" \
     DATA_PATH=/data \
-    LOG_PATH=/var/log/postgres
+    LOG_PATH=/var/log/postgres \
+    RPM_REPO=https://yum.postgresql.org/testing/12/redhat/rhel-8-x86_64
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -30,8 +31,11 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum --nogpgcheck -y install postgresql postgresql-libs postgresql-server \
-    && yum clean all && \
+RUN yum install -y libicu libpq && \
+    rpm -ivh $RPM_REPO/postgresql12-libs-12beta2-1PGDG.rhel8.x86_64.rpm && \
+    rpm -ivh $RPM_REPO/postgresql12-12beta2-1PGDG.rhel8.x86_64.rpm && \
+    rpm -ivh $RPM_REPO/postgresql12-server-12beta2-1PGDG.rhel8.x86_64.rpm && \
+    yum clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \

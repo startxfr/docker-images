@@ -33,7 +33,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 COPY mongodb-org.repo /etc/yum.repos.d/mongodb.repo
-RUN yum install mongodb-org && \
+RUN yum install mongodb-org-unstable && \
     yum clean all  && \
     usermod -a -G 0 $MONGO_USER && \
     mkdir -p $DATA_PATH && \
