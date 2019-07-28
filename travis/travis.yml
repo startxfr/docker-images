@@ -16,7 +16,6 @@ before_install:
 - "./travis/prepare-dockerhub          centos        7 7"
 - "./travis/prepare-end                centos        7 7"
 script:
-- "./travis/test    OS                 centos        latest"
 - "./travis/test    OS                 centos        7"
 - "./travis/test    Services/apache    sv-apache     centos7"
 - "./travis/test    Services/couchbase sv-couchbase  centos7"
