@@ -34,7 +34,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum --nogpgcheck -y install python-httplib2 openssl ncurses ncurses-libs && \
+RUN yum --nogpgcheck -y install python3-requests python3-urllib3 wget openssl ncurses ncurses-libs && \
     yum clean all && \
     #echo 0 > /proc/sys/vm/swappiness && \
     echo '' >> /etc/sysctl.conf && \

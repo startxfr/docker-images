@@ -29,8 +29,6 @@ script:
 - "./travis/test    Services/ooconv    sv-ooconv     ubi8"
 - "./travis/test    Services/php       sv-php        ubi8"
 - "./travis/test    Services/postgres  sv-postgres   ubi8"
-- "./travis/test    VDI/chrome         vdi-chrome    ubi8"
-- "./travis/test    VDI/firefox        vdi-firefox   ubi8"
 after_success:
 - "./travis/publish OS                 ubi        latest"
 - "./travis/publish OS                 ubi        8"
@@ -43,5 +41,3 @@ after_success:
 - "./travis/publish Services/ooconv    sv-ooconv     ubi8"
 - "./travis/publish Services/php       sv-php        ubi8"
 - "./travis/publish Services/postgres  sv-postgres   ubi8"
-- "./travis/publish VDI/chrome         vdi-chrome    ubi8"
-- "./travis/publish VDI/firefox        vdi-firefox   ubi8"

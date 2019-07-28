@@ -40,6 +40,8 @@ COPY mariadb.repo /etc/yum.repos.d/MariaDB.repo
 RUN rpm --import https://yum.mariadb.org/RPM-GPG-KEY-MariaDB && \
     yum --nogpgcheck -y install MariaDB-server galera-4 MariaDB-client MariaDB-shared MariaDB-backup MariaDB-common --skip-broken && \
     yum clean all && \
+    useradd -s /bin/bash -m -u 1001 mysql && \
+    usermod -G 0 mysql && \
     mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
