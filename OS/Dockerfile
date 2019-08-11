@@ -37,7 +37,8 @@ USER root
 
 COPY sx /tmp/
 
-RUN yum --nogpgcheck -y install pwgen tar zip hostname && \
+RUN yum update -y  && \
+    yum --nogpgcheck -y install pwgen tar zip hostname && \
     yum --nogpgcheck -y install psmisc procps findutils iputils net-tools wget && \
     yum --nogpgcheck -y install logrotate bash-completion vim glibc-langpack-fr && \
     yum clean all && \
