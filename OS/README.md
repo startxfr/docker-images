@@ -2,19 +2,15 @@
 
 # Docker OS Images : FEDORA
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/OS/) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
-
-[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/fedora.svg)](https://hub.docker.com/r/startx/fedora) [![Docker Repository on Quay](https://quay.io/repository/startx/alpine/status "Docker Repository on Quay")](https://quay.io/repository/startx/alpine)
-
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) 
+[![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
+[![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/OS/)
+[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
+[![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) 
 [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images)
-
 [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
-
-[![Github download](https://img.shields.io/github/downloads/startxfr/docker-images/total)](https://github.com/startxfr/docker-images)
-
-[![Docker Fedora pulls](https://img.shields.io/docker/pulls/startx/fedora)](https://hub.docker.com/r/startx/fedora)
-
-/docker/pulls/:user/:repo
+ 
+[![Dockerhub Registry](https://img.shields.io/docker/build/startx/fedora.svg)](https://hub.docker.com/r/startx/fedora) [![Docker Fedora pulls](https://img.shields.io/docker/pulls/startx/fedora)](https://hub.docker.com/r/startx/fedora) [![Docker Repository on Quay](https://quay.io/repository/startx/fedora/status "Docker Repository on Quay")](https://quay.io/repository/startx/fedora)
 
 
 Startx fedora is a base container used for all startx services and applications published in [Dockerhub registry](https://hub.docker.com/u/startx). 
