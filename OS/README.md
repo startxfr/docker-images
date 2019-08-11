@@ -45,6 +45,15 @@ See more applications builders and sample on [startx docker images repository](h
 
 ## Running this image
 
+If you want to be guided on setting-up and installing various containers engines
+([docker](https://github.com/startxfr/containers-engines/blob/master/Docker.md),
+ [podman](https://github.com/startxfr/containers-engines/blob/master/Podman.md),
+ [s2i](https://github.com/startxfr/containers-engines/blob/master/S2I.md),
+ [dockerEE](https://github.com/startxfr/containers-engines/blob/master/DockerEE.md),
+ [kubernetes](https://github.com/startxfr/containers-engines/blob/master/Kubernetes.md),
+ [openshift](https://github.com/startxfr/containers-engines/blob/master/Openshift.md))
+you can [read ours containers engines guidelines](https://github.com/startxfr/containers-engines).
+
 ### Running using docker
 
 ```bash

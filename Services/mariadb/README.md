@@ -27,8 +27,6 @@ You can use Startx Mariadb image in many ways :
 
 See more databases builders and sample on [startx docker images repository](https://github.com/startxfr/docker-images/blob/master)
 
-[![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-mariadb.svg)](https://hub.docker.com/r/startx/sv-mariadb) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/mariadb/) [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
-
 ## Container flavours
 
 | Docker Hub repository                                                   | Openshift                                                                                                                                                                                                                                                                                                                                     | Docker-compose                                                                                     | Fedora distribution                        
@@ -51,6 +49,15 @@ See more databases builders and sample on [startx docker images repository](http
 | [`startx/sv-mariadb:ubi8`](https://hub.docker.com/r/startx/sv-mariadb)    | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-deploy.yml)  | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/docker-compose.yml) | RedHat UBI 8
 
 ## Running this image
+
+If you want to be guided on setting-up and installing various containers engines
+([docker](https://github.com/startxfr/containers-engines/blob/master/Docker.md),
+ [podman](https://github.com/startxfr/containers-engines/blob/master/Podman.md),
+ [s2i](https://github.com/startxfr/containers-engines/blob/master/S2I.md),
+ [dockerEE](https://github.com/startxfr/containers-engines/blob/master/DockerEE.md),
+ [kubernetes](https://github.com/startxfr/containers-engines/blob/master/Kubernetes.md),
+ [openshift](https://github.com/startxfr/containers-engines/blob/master/Openshift.md))
+you can [read ours containers engines guidelines](https://github.com/startxfr/containers-engines).
 
 ### Running using docker
 

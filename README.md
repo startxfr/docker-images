@@ -62,7 +62,16 @@ This section is usefull if you want :
 
 ### Setup your working environment (mandatory)
 
-1. **Install docker and docker-compose on you environment** 
+If you want to be guided on setting-up and installing various containers engines
+([docker](https://github.com/startxfr/containers-engines/blob/master/Docker.md),
+ [podman](https://github.com/startxfr/containers-engines/blob/master/Podman.md),
+ [s2i](https://github.com/startxfr/containers-engines/blob/master/S2I.md),
+ [dockerEE](https://github.com/startxfr/containers-engines/blob/master/DockerEE.md),
+ [kubernetes](https://github.com/startxfr/containers-engines/blob/master/Kubernetes.md),
+ [openshift](https://github.com/startxfr/containers-engines/blob/master/Openshift.md))
+you can [read ours containers engines guidelines](https://github.com/startxfr/containers-engines).
+
+1. **Install docker and docker-compose on your environment** 
   1. Check if you have a running docker daemon using `docker --version` If not try to run it using `sudo docker --daemon`. If docker is not installed, follow [docker installation guidelines](https://docs.docker.com/v1.8/installation/)
   2. Check if you have docker-compose installed using `docker-compose --version`. If docker-compose is not installed, follow [docker-compose installation guidelines](https://docs.docker.com/compose/install/)
   3. Check if you have git installed using `git --version`. If git is not installed, execute `sudo dnf install -y git`

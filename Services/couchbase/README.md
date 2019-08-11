@@ -11,8 +11,6 @@ Simple container used to deliver distributed and low latency document oriented d
 Run [couchbase daemon](https://www.couchbase.org/) under a container 
 based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
-[![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-couchbase.svg)](https://hub.docker.com/r/startx/sv-couchbase) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/couchbase/) [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
-
 ## Available flavours
 
 * `:latest` : Fedora rawhide + Couchbase Server 6.0.2-2413
@@ -26,6 +24,15 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 * `:ubi8` : RedHat UBI 8 + Couchbase Server 6.0.0
 
 ## Running from dockerhub registry
+
+If you want to be guided on setting-up and installing various containers engines
+([docker](https://github.com/startxfr/containers-engines/blob/master/Docker.md),
+ [podman](https://github.com/startxfr/containers-engines/blob/master/Podman.md),
+ [s2i](https://github.com/startxfr/containers-engines/blob/master/S2I.md),
+ [dockerEE](https://github.com/startxfr/containers-engines/blob/master/DockerEE.md),
+ [kubernetes](https://github.com/startxfr/containers-engines/blob/master/Kubernetes.md),
+ [openshift](https://github.com/startxfr/containers-engines/blob/master/Openshift.md))
+you can [read ours containers engines guidelines](https://github.com/startxfr/containers-engines).
 
 * with `docker` you can run `docker run -it --name="service-couchbase" startx/sv-couchbase` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
