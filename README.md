@@ -8,11 +8,26 @@
 
 
 This project is a collection of application or services containers ready to execute 
-or embed your application as part of a building process.  
+or embed your application as part of a building process 
+([docker](https://github.com/startxfr/containers-engines/blob/master/Docker.md),
+ [podman](https://github.com/startxfr/containers-engines/blob/master/Podman.md),
+ [s2i](https://github.com/startxfr/containers-engines/blob/master/S2I.md))
+or by running it direcly with various containers engines like 
+[docker](https://github.com/startxfr/containers-engines/blob/master/Docker.md),
+[podman](https://github.com/startxfr/containers-engines/blob/master/Podman.md),
+[dockerEE](https://github.com/startxfr/containers-engines/blob/master/DockerEE.md),
+[kubernetes](https://github.com/startxfr/containers-engines/blob/master/Kubernetes.md) or 
+[openshift](https://github.com/startxfr/containers-engines/blob/master/Openshift.md).  
 
-Each container is provided with various underlying OS version based on CentOS, 
-Fedora Linux, Alpine and UBI distributions. Kubernetes and Openshift friendly, 
-they can all be used as a s2i builder within an openshift cluster.
+Each container is provided with various underlying OS version based on 
+[CentOS](https://quay.io/repository/startx/centos), 
+[Fedora Linux](https://quay.io/repository/startx/fedora), 
+[Alpine](https://quay.io/repository/startx/alpine) and 
+[UBI](https://quay.io/repository/startx/ubi) distributions. 
+[Kubernetes](https://github.com/startxfr/containers-engines/blob/master/Kubernetes.md) and 
+[Openshift](https://github.com/startxfr/containers-engines/blob/master/Openshift.md) friendly, 
+they can all be used as a [s2i builder](https://github.com/startxfr/containers-engines/blob/master/S2I.md)
+within an openshift cluster.
 
 If you're used to work with redhat like and distribution, you would prefer start working
 from a container based on this distribution rather than ubuntu or debian like distributions.
