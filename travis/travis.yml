@@ -19,7 +19,7 @@ before_install:
 - "./travis/prepare-end                alpine        3 3"
 script:
 - "./travis/test    OS                 alpine        3       alpine"
-- "./travis/test    OS                 alpine        alpine3 alpine"
+- "./travis/test    OS                 alpine        latest  alpine"
 - "./travis/test    Services/apache    sv-apache     alpine3 apache"
 - "./travis/test    Services/couchbase sv-couchbase  alpine3 couchbase"
 - "./travis/test    Services/mariadb   sv-mariadb    alpine3 mariadb"
@@ -34,7 +34,7 @@ script:
 - "./travis/test    Applications/phpmyadmin  app-phpmyadmin   alpine3 phpmyadmin"
 after_success:
 - "./travis/publish OS                 alpine        3       alpine"
-- "./travis/publish OS                 alpine        alpine3 alpine"
+- "./travis/publish OS                 alpine        latest  alpine"
 - "./travis/publish Services/apache    sv-apache     alpine3 apache"
 - "./travis/publish Services/couchbase sv-couchbase  alpine3 couchbase"
 - "./travis/publish Services/mariadb   sv-mariadb    alpine3 mariadb"
