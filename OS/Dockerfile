@@ -37,11 +37,11 @@ USER root
 
 COPY sx /tmp/
 
-RUN dnf update -y  && \
-    dnf --nogpgcheck -y install pwgen tar zip hostname && \
-    dnf --nogpgcheck -y install psmisc procps findutils iputils net-tools wget && \
-    dnf --nogpgcheck -y install logrotate bash-completion vim glibc-langpack-fr && \
-    dnf clean all && \
+RUN yum update -y  && \
+    yum --nogpgcheck -y install pwgen tar zip hostname && \
+    yum --nogpgcheck -y install psmisc procps findutils iputils net-tools wget && \
+    yum --nogpgcheck -y install logrotate bash-completion vim glibc-langpack-fr && \
+    yum clean all && \
     mkdir -p $SX_LIBDIR $APP_PATH $LOG_PATH && \
     chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib && \
     mv /tmp/s2i/bin /s2i && \
