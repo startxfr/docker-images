@@ -37,7 +37,8 @@ USER root
 
 COPY sx /tmp/
 
-RUN dnf --nogpgcheck -y install pwgen tar zip hostname && \
+RUN dnf update -y  && \
+    dnf --nogpgcheck -y install pwgen tar zip hostname && \
     dnf --nogpgcheck -y install psmisc procps findutils iputils net-tools wget && \
     dnf --nogpgcheck -y install logrotate bash-completion vim glibc-langpack-fr && \
     dnf clean all && \
