@@ -1,6 +1,11 @@
 [![docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-# STARTX Docker-Images Repository based on Fedora 29 [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc29)](https://travis-ci.org/startxfr/docker-images)
+# STARTX Docker-Images Repository Fedora 29
+
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/fc29/OS/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc29)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
+ 
+[![Dockerhub Registry](https://img.shields.io/docker/build/startx/fedora.svg)](https://hub.docker.com/r/startx/fedora) [![Docker Fedora pulls](https://img.shields.io/docker/pulls/startx/fedora)](https://hub.docker.com/r/startx/fedora) [![Docker Repository on Quay](https://quay.io/repository/startx/fedora/status "Docker Repository on Quay")](https://quay.io/repository/startx/fedora)
+
 
 This project is a collection of application or services containers ready to execute 
 or embed your application as part of a building process.  
@@ -18,21 +23,21 @@ your project and start using stable or experimental services in your application
 
 ## OS, Services and Applications guidelines
 
-| Type                    | Manual                             | Available                                                        | Running sample                                                         | Flavours
-|-------------------------|------------------------------------|------------------------------------------------------------------|------------------------------------------------------------------------|-------------------------------------------------------------|
-| **OS**                  | [read manual](OS)                  | [read OS list](OS#container-flavours)                            | [see sample code](OS#running-from-dockerhub-registry)                  | [read flavours list](OS#container-flavours)                 |
-| **Services**            | [read manual](Services)            | [read services list](Services#container-flavours)                | [see sample code](Services#running-from-dockerhub-registry)            | [read flavours list](Services#container-flavours)           |
-| Services/**apache**     | [read manual](Services/apache)     | [read services list](Services/apache#container-flavours)         | [see sample code](Services/apache#running-from-dockerhub-registry)     | [read flavours list](Services/apache#container-flavours)    |
-| Services/**couchbase**  | [read manual](Services/couchbase)  | [read services list](Services/couchbase#container-flavours)      | [see sample code](Services/couchbase#running-from-dockerhub-registry)  | [read flavours list](Services/couchbase#container-flavours) |
-| Services/**mariadb**    | [read manual](Services/mariadb)    | [read services list](Services/mariadb#container-flavours)        | [see sample code](Services/mariadb#running-from-dockerhub-registry)    | [read flavours list](Services/mariadb#container-flavours)   |
-| Services/**memcache**   | [read manual](Services/memcache)   | [read services list](Services/memcache#container-flavours)       | [see sample code](Services/memcache#running-from-dockerhub-registry)   | [read flavours list](Services/memcache#container-flavours)  |
-| Services/**mongo**      | [read manual](Services/mongo)      | [read services list](Services/mongo#container-flavours)          | [see sample code](Services/mongo#running-from-dockerhub-registry)      | [read flavours list](Services/mongo#container-flavours)     |
-| Services/**nodejs**     | [read manual](Services/nodejs)     | [read services list](Services/nodejs#container-flavours)         | [see sample code](Services/nodejs#running-from-dockerhub-registry)     | [read flavours list](Services/nodejs#container-flavours)    |
-| Services/**ooconv**     | [read manual](Services/ooconv)     | [read services list](Services/ooconv#container-flavours)         | [see sample code](Services/ooconv#running-from-dockerhub-registry)     | [read flavours list](Services/ooconv#container-flavours)    |
-| Services/**php**        | [read manual](Services/php)        | [read services list](Services/php#container-flavours)            | [see sample code](Services/php#running-from-dockerhub-registry)        | [read flavours list](Services/php#container-flavours)       |
-| **Applications**        | [read manual](Applications)        | [read applications list](Applications#container-flavours)        | [see sample code](Applications#running-from-dockerhub-registry)        | [read flavours list](Applications#container-flavours)       |
-| Applications/**phpmyadmin** | [read manual](Applications/phpmyadmin) | [read services list](Applications/phpmyadmin#container-flavours) | [see sample code](Applications/phpmyadmin#running-from-dockerhub-registry) | [read flavours list](Applications/phpmyadmin#container-flavours) |
-| Applications/**rockmongo**  | [read manual](Applications/rockmongo)  | [read services list](Applications/rockmongo#container-flavours)  | [see sample code](Applications/rockmongo#running-from-dockerhub-registry)  | [read flavours list](Applications/rockmongo#container-flavours)  |
+| Type                        | Guideline                       | Available                                              | Running sample                                                      | Flavours                                           |
+|-----------------------------|---------------------------------|--------------------------------------------------------|---------------------------------------------------------------------|----------------------------------------------------|
+| **OS**                      | [read](OS)                      | [OS list](OS#container-flavours)                       | [examples](OS#running-from-dockerhub-registry)                      | [list](OS#container-flavours)                      |
+| **Services**                | [read](Services)                | [services list](Services#container-flavours)           | [examples](Services#running-from-dockerhub-registry)                | [list](Services#container-flavours)                |
+| Services/**apache**         | [read](Services/apache)         | [flavours](Services/apache#container-flavours)         | [examples](Services/apache#running-from-dockerhub-registry)         | [list](Services/apache#container-flavours)         |
+| Services/**couchbase**      | [read](Services/couchbase)      | [flavours](Services/couchbase#container-flavours)      | [examples](Services/couchbase#running-from-dockerhub-registry)      | [list](Services/couchbase#container-flavours)      |
+| Services/**mariadb**        | [read](Services/mariadb)        | [flavours](Services/mariadb#container-flavours)        | [examples](Services/mariadb#running-from-dockerhub-registry)        | [list](Services/mariadb#container-flavours)        |
+| Services/**memcache**       | [read](Services/memcache)       | [flavours](Services/memcache#container-flavours)       | [examples](Services/memcache#running-from-dockerhub-registry)       | [list](Services/memcache#container-flavours)       |
+| Services/**mongo**          | [read](Services/mongo)          | [flavours](Services/mongo#container-flavours)          | [examples](Services/mongo#running-from-dockerhub-registry)          | [list](Services/mongo#container-flavours)          |
+| Services/**nodejs**         | [read](Services/nodejs)         | [flavours](Services/nodejs#container-flavours)         | [examples](Services/nodejs#running-from-dockerhub-registry)         | [list](Services/nodejs#container-flavours)         |
+| Services/**ooconv**         | [read](Services/ooconv)         | [flavours](Services/ooconv#container-flavours)         | [examples](Services/ooconv#running-from-dockerhub-registry)         | [list](Services/ooconv#container-flavours)         |
+| Services/**php**            | [read](Services/php)            | [flavours](Services/php#container-flavours)            | [examples](Services/php#running-from-dockerhub-registry)            | [list](Services/php#container-flavours)            |
+| **Applications**            | [read](Applications)            | [applications list](Applications#container-flavours)   | [examples](Applications#running-from-dockerhub-registry)            | [list](Applications#container-flavours)            |
+| Applications/**phpmyadmin** | [read](Applications/phpmyadmin) | [flavours](Applications/phpmyadmin#container-flavours) | [examples](Applications/phpmyadmin#running-from-dockerhub-registry) | [list](Applications/phpmyadmin#container-flavours) |
+| Applications/**rockmongo**  | [read](Applications/rockmongo)  | [flavours](Applications/rockmongo#container-flavours)  | [examples](Applications/rockmongo#running-from-dockerhub-registry)  | [list](Applications/rockmongo#container-flavours)  |
 
 
 ## Images flavours
@@ -62,7 +67,16 @@ This section is usefull if you want :
 
 ### Setup your working environment (mandatory)
 
-1. **Install docker and docker-compose on you environment** 
+If you want to be guided on setting-up and installing various containers engines
+([docker](https://github.com/startxfr/containers-engines/blob/master/Docker.md),
+ [podman](https://github.com/startxfr/containers-engines/blob/master/Podman.md),
+ [s2i](https://github.com/startxfr/containers-engines/blob/master/S2I.md),
+ [dockerEE](https://github.com/startxfr/containers-engines/blob/master/DockerEE.md),
+ [kubernetes](https://github.com/startxfr/containers-engines/blob/master/Kubernetes.md),
+ [openshift](https://github.com/startxfr/containers-engines/blob/master/Openshift.md))
+you can [read ours containers engines guidelines](https://github.com/startxfr/containers-engines).
+
+1. **Install docker and docker-compose on your environment** 
   1. Check if you have a running docker daemon using `docker --version` If not try to run it using `sudo docker --daemon`. If docker is not installed, follow [docker installation guidelines](https://docs.docker.com/v1.8/installation/)
   2. Check if you have docker-compose installed using `docker-compose --version`. If docker-compose is not installed, follow [docker-compose installation guidelines](https://docs.docker.com/compose/install/)
   3. Check if you have git installed using `git --version`. If git is not installed, execute `sudo dnf install -y git`
