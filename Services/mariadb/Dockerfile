@@ -46,8 +46,8 @@ RUN yum --nogpgcheck -y install mariadb-libs mariadb-server mariadb && \
     rm -rf /tmp/sx /tmp/s2i && \
     touch $DATA_PATH/.keep && \
     chown -R mysql:mysql $LOG_PATH $DATA_PATH $LOADSQL_PATH && \
-    chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* /var/lib/mysql /var/run/mariadb $MY_CONF && \
-    chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* /var/lib/mysql /var/run/mariadb $MY_CONF && \
+    chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* /var/lib/mysql $MY_CONF && \
+    chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* /var/lib/mysql $MY_CONF && \
     chmod -R ugo+x /bin/sx* && \
     chmod ug+rw $MY_CONF
 
