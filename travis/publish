@@ -1,17 +1,20 @@
 #!/bin/bash
 
-echo "========> PUBLISH Container image $NAMESPACE/$2:$3"
+echo "========> PUBLISH Container image docker.io/$NAMESPACE/$2:$3"
 if [ -f /tmp/istested_$2 ] ; then
     rm -f /tmp/istested_$2
-    RESULT=$(docker push $NAMESPACE/$2)
+    RESULT=$(docker push docker.io/$NAMESPACE/$2)
     if [ "$SX_DEBUG" = true ] ; then
         echo $RESULT
     fi
     if [[ $? = "0" ]]; then
-        echo "========> PUBLISHED Container image $NAMESPACE/$2:$3"
+        echo "========> PUBLISHED Container image docker.io/$NAMESPACE/$2:$3"
+        echo "========> PUBLISH Container image quay.io/$NAMESPACE/$4:$3"
+        docker push quay.io/$NAMESPACE/$4
+        echo "========> PUBLISHED Container image quay.io/$NAMESPACE/$4:$3"
         exit 0;
     else
-        echo "!! Could not publish container image $NAMESPACE/$2:$3"
+        echo "!! Could not publish container image docker.io/$NAMESPACE/$2:$3"
         if [[ "$ISFATAL" = "true" ]]; then
             exit 1;
         else
@@ -19,6 +22,6 @@ if [ -f /tmp/istested_$2 ] ; then
         fi
     fi
 else
-    echo "========> PUBLISHING Container image $NAMESPACE/$2:$3 skipped because test failed"
+    echo "========> PUBLISHING Container image docker.io/$NAMESPACE/$2:$3 skipped because test failed"
     exit 0;
 fi
