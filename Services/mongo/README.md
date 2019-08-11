@@ -1,12 +1,15 @@
 [![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-# Docker OS Images : MONGO on CentOS 7
+# Docker OS Images : MONGO on CentOS 8
+
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/centos8/Services/mongo/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos8)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
+ 
+[![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-mongo.svg)](https://hub.docker.com/r/startx/sv-mongo) [![Docker mongo pulls](https://img.shields.io/docker/pulls/startx/sv-mongo)](https://hub.docker.com/r/startx/sv-mongo) [![Docker Repository on Quay](https://quay.io/repository/startx/mongo/status "Docker Repository on Quay")](https://quay.io/repository/startx/mongo)
+
 
 Simple container used to deliver document-oriented database
 Run [mongodb daemon](https://www.mongodb.org/) under a container 
 based on [startx/centos:7 container](https://hub.docker.com/r/startx/centos)
-
-[![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-mongo.svg)](https://hub.docker.com/r/startx/sv-mongo) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/mongo/) [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
 
 ## Available flavours
 
@@ -21,12 +24,21 @@ based on [startx/centos:7 container](https://hub.docker.com/r/startx/centos)
 * `:fc22` : Fedora core 22 + MongoDB 
 * `:fc21` : Fedora core 21 + MongoDB 
 * `:centos8` : CentOS 8 + MongoDB 4.1
-* `:centos7` : CentOS 7 + MongoDB 4.1
+* `:centos7` : CentOS 8 + MongoDB 4.1
 * `:centos6` : Centos 6 + MongoDB 3.7
 * `:alpine3` : Alpine 3.10 + MongoDB 4.1
 * `:ubi8` : RedHat UBI 8 + MongoDB 4.1
 
 ## Running from dockerhub registry
+
+If you want to be guided on setting-up and installing various containers engines
+([docker](https://github.com/startxfr/containers-engines/blob/master/Docker.md),
+ [podman](https://github.com/startxfr/containers-engines/blob/master/Podman.md),
+ [s2i](https://github.com/startxfr/containers-engines/blob/master/S2I.md),
+ [dockerEE](https://github.com/startxfr/containers-engines/blob/master/DockerEE.md),
+ [kubernetes](https://github.com/startxfr/containers-engines/blob/master/Kubernetes.md),
+ [openshift](https://github.com/startxfr/containers-engines/blob/master/Openshift.md))
+you can [read ours containers engines guidelines](https://github.com/startxfr/containers-engines).
 
 * with `docker` you can run `docker run -it --name="service-mongo" startx/sv-mongo` from any docker host
 * with `docker-compose` you can create a docker-compose.yml file with the following content
