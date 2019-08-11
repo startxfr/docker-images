@@ -42,6 +42,7 @@ RUN yum --nogpgcheck -y install yum-utils  && \
     yum-config-manager --enable epel-release  && \
     yum update -y  && \
     yum --nogpgcheck -y install pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip hostname  && \
+    yum --nogpgcheck -y remove dbus-glib && \
     yum clean all && \
     mkdir -p $SX_LIBDIR $APP_PATH $LOG_PATH && \
     chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib && \
