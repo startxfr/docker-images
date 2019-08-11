@@ -15,6 +15,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 * `:fc30` : Fedora 30 + Couchbase Server 6.0.0
 * `:fc29` : Fedora 29 + Couchbase Server 5.5.0-beta
 * `:fc28` : Fedora 28 + Couchbase Server 4.5.0
+* `:fc27` : Fedora 27 + Couchbase Server 4.5.0
 * `:centos7` : Centos 7 + Couchbase Server 6.0.0
 * `:centos8` : Centos 8 + Couchbase Server 6.0.0
 * `:ubi8` : RedHat UBI 8 + Couchbase Server 6.0.0
