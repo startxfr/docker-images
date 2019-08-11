@@ -13,7 +13,7 @@ ENV SX_VERSION="centos6" \
     APP_PATH=/app \
     RUN_CONF_DIR=/etc/httpd/conf.d \
     RUN_CONF=/etc/httpd/conf/httpd.conf \
-    RUN_DIR=/run/httpd \
+    RUN_DIR=/var/run/httpd \
     RUN_BIN=/usr/sbin/httpd \
     APP_PORT=8080
 
@@ -52,7 +52,8 @@ RUN yum --nogpgcheck -y install httpd  && yum clean all && \
     chmod -R ugo+x /bin/sx* && \
     chmod -R ugo+rwx $LOG_PATH
 COPY index.html $APP_PATH/index.html
-RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH
+RUN chgrp -R 0 $APP_PATH && \
+    chmod -R g=u $APP_PATH
 
 USER 1001
 
