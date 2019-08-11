@@ -36,6 +36,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 COPY my.cnf $MY_CONF
+COPY mariadb.repo /etc/yum.repos.d/mariadb.repo
 RUN yum --nogpgcheck -y install mariadb-libs mariadb-server mariadb && \
     yum clean all && \
     mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH && \
