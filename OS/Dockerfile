@@ -37,9 +37,8 @@ USER root
 
 COPY sx /tmp/
 RUN yum --nogpgcheck -y install yum-utils  && \
-    yum-config-manager --enable cr  && \
     yum --nogpgcheck -y install epel-release  && \
-    yum-config-manager --enable epel-release  && \
+    yum-config-manager --enable cr epel-release extras centosplus  && \
     yum update -y  && \
     yum --nogpgcheck -y install pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip hostname  && \
     yum clean all && \
