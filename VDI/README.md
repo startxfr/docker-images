@@ -23,7 +23,7 @@ your project and start using stable or experimental Container-based desktop appl
 
 | Application   | Docker Hub repository                                                | Fedora flavours                                                                   | CentOS flavours             | Doc
 |---------------|----------------------------------------------------------------------|-----------------------------------------------------------------------------------|-----------------------------|--------------------------------
-| Chrome        | [`startx/vdi-chrome`](https://hub.docker.com/r/startx/vdi-chrome)    | `:latest` `:fc28` `:fc27` `:fc28` `:fc29` `:fc30`                                 | `:centos7`                  | [manual](chrome/README.md)
+| Chrome        | [`startx/vdi-chrome`](https://hub.docker.com/r/startx/vdi-chrome)    | `:latest` `:fc28` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31`                         | `:centos7` `:centos8`       | [manual](chrome/README.md)
 
 ## Running from dockerhub registry
 
@@ -33,6 +33,6 @@ your project and start using stable or experimental Container-based desktop appl
 
 ## Container flavours
 
-| Application  | Docker Hub repository                                                | Fedora                                                                               | CentOS                |
-|--------------|----------------------------------------------------------------------|--------------------------------------------------------------------------------------|-----------------------|
-| Chrome       | [`startx/vdi-chrome`](https://hub.docker.com/r/startx/vdi-chrome)    | `:latest` `:fc28` `:fc27` `:fc28` `:fc29` `:fc30`                                    | `:centos7`            |
+| Application  | Docker Hub repository                                                | Fedora                                                                               | CentOS 
+|--------------|----------------------------------------------------------------------|--------------------------------------------------------------------------------------|----------------------
+| Chrome       | [`startx/vdi-chrome`](https://hub.docker.com/r/startx/vdi-chrome)    | `:latest` `:fc28` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31`                            | `:centos7` `:centos8` 

@@ -13,6 +13,7 @@ mariadb:
     MYSQL_USER: "user-test"
     MYSQL_PASSWORD: "pwd-test"
     MYSQL_DATABASE: "db_test"
+    LC_MESSAGES: en_US
 #  volumes:
 #    - "/tmp/container/mariadb/logs:/logs:z"
 #    - "/tmp/container/mariadb/load-sql:/tmp/sql:z"

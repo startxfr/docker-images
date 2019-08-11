@@ -10,10 +10,14 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-* `:latest` : Fedora core 29 + Firefox 50.0.2661.102
+* `:latest` : Fedora core rawhide + Firefox 50.0.2661.102
+* `:fc31` : Fedora core 31 + Firefox 50.0.2661.102
+* `:fc30` : Fedora core 30 + Firefox 50.0.2661.102
+* `:fc29` : Fedora core 29 + Firefox 50.0.2661.102
 * `:fc28` : Fedora core 28 + Firefox 50.0.2661.102
+* `:centos8` : CentOS 8 + Firefox 
 * `:centos7` : CentOS 7 + Firefox 
-* `:alpine3` : Alpine 3.7 + Firefox 50.0.2661.102
+* `:alpine3` : Alpine 3.10 + Firefox 50.0.2661.102
 
 ## Running from dockerhub registry
 
@@ -31,18 +35,18 @@ service:
 ### Using this image as Openshift Build image
 
 You can use this public image as a base image in your openshift build strategy. You can first import
-our [openshift image stream](https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-imageStreams.json)
-and automatically add them in your service catalog. You can also test our [deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-template.json)
-or our [build and deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-template-build.json)
+our [openshift image stream](https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-imageStreams.yml)
+and automatically add them in your service catalog. You can also test our [deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-template-deploy.yml)
+or our [build and deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-template-build.yml)
 
 ```bash
 # import image streams
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-imageStreams.json
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-imageStreams.yml
 # import deploy template and start a sample application
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-template.json
-oc process startx-vdi-firefox-template | oc create -f -
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-template-deploy.yml
+oc process startx-firefox-deploy-template | oc create -f -
 # import build and deploy template and start a sample application
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-template-build.json
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/VDI/firefox/openshift-template-build.yml
 oc process startx-vdi-firefox-build-template | oc create -f -
 ```
 
@@ -103,7 +107,7 @@ some [additional environment variable](https://github.com/startxfr/docker-images
 | <i>base image environement</i> |              |           | [see environment list](https://github.com/startxfr/docker-images/tree/master/OS#environment-variable)
 | SERVER_NAME                    | `string`     | `no`      | Server name for this container. If no name localhost will be assigned
 | HOSTNAME                       | `auto`       | `auto`    | Container unique id automatically assigned by docker daemon at startup
-| LOG_PATH                       | `auto`       | `auto`    | default set to /logs and used as a volume mountpoint
+| LOG_PATH                       | `auto`       | `auto`    | default set to /var/log/firefox and used as a volume mountpoint
 | APP_PATH                       | `auto`       | `auto`    | default set to /data and used as a volume mountpoint
 | SX_FIREFOX_SCREEN_RES_X         | `1024x768x24`| `auto`    | Define the screen resolution for X server
 | SX_FIREFOX_SCREEN_RES_FIREFOX    |`1024,768`    | `auto`    | Define the screen resolution for Firefox GUI window

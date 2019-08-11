@@ -9,7 +9,7 @@ ENV SX_VERSION="fc27" \
     SX_NAME="Startx Firefox VDI image (fedora 27)" \
     SX_SUMMARY="Startx firefox container-based desktop application based on fedora 27" \
     SX_FIREFOX_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
-    LOG_PATH=/home/firefox \
+    LOG_PATH=/var/log/firefox \
     APP_PATH=/home/firefox \
     SX_FIREFOX_SCREEN_RES_X=1024x768x24 \
     SX_FIREFOX_SCREEN_RES_FIREFOX=1024,768 \
@@ -36,10 +36,10 @@ LABEL name="$SX_ID" \
 USER root
 COPY supervisord.conf $SX_FIREFOX_SUPERVISOR_CONF/
 COPY sx /tmp/
-RUN wget http://rpmfind.net/linux/fedora-secondary/releases/28/Everything/i386/os/Packages/p/python2-meld3-1.0.2-6.fc28.noarch.rpm && \
-    rpm -ivh python2-meld3-1.0.2-6.fc28.noarch.rpm --nodeps && \
-    dnf --nogpgcheck -y install supervisor xorg-x11-server-Xvfb x11vnc firefox  && \
-    dnf clean all && \
+RUN wget https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/p/python-meld3-1.0.2-10.fc30.noarch.rpm && \
+    rpm -ivh python-meld3-1.0.2-10.fc30.noarch.rpm --nodeps && \
+    yum --nogpgcheck -y install supervisor xorg-x11-server-Xvfb x11vnc firefox python2-setuptools  && \
+    yum clean all && \
     easy_install pip && \
     pip install --upgrade pip && \
     pip install --upgrade --force-reinstall setuptools pip && \
@@ -61,8 +61,6 @@ USER $SX_USER
 WORKDIR $APP_PATH
 
 EXPOSE $SX_FIREFOX_PORT
-
-VOLUME $APP_PATH
 
 ENTRYPOINT ["/bin/entrypoint.sh" ]
 

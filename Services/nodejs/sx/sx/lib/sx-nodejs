@@ -15,7 +15,7 @@ function check_nodejs_environment {
         export DATA_PATH
     fi
     if [ ! -v LOG_PATH ]; then
-        LOG_PATH="/logs"
+        LOG_PATH="/var/log/nodejs"
         export LOG_PATH
     fi
 }
@@ -30,69 +30,155 @@ function nodejsInformation {
     echoVerbose $1 "npm       : $(npm -v | head -1)" 
 }
 
+# function executed when build hook is called
+function nodejsBuild {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Nodejs BUILD"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Nodejs BUILD"
+    echoVerbose "| "
+    nodejsInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    echoVerbose ""
+    doInitS2iApp
+    if [[ -x $MYS2I_DEST/assemble ]]; then
+        echoVerbose "Build application logic found at $MYS2I_DEST/assemble"
+        testAndRunSourceCodeScript "assemble" 
+    else
+        echoVerbose "No Build application logic found at $MYS2I_DEST/assemble"
+        doNodejsBuild
+    fi
+    exit 0;
+}
+
+# function performing Nodejs build actions
+function doNodejsBuild {
+    doGenericBuild
+    echoNotVerbose "Executing Nodejs build logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Nodejs build logic"
+    echoVerbose "+====================================================="
+    npmInstallEnvironement
+}
+
+# function executed when post-build hook is called
+function nodejsPostBuild {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Nodejs POST-BUILD"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Nodejs POST-BUILD"
+    echoVerbose "| "
+    nodejsInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    echoVerbose ""
+    if [[ -x $MYS2I_DEST/assemble ]]; then
+        echoVerbose "PostBuild application logic found at $MYS2I_DEST/post-build"
+        testAndRunSourceCodeScript "post-build" 
+    else
+        echoVerbose "No PostBuild application logic found at $MYS2I_DEST/post-build"
+        doNodejsPostBuild
+    fi
+    exit 0;
+}
+
+# function performing Nodejs post-build actions
+function doNodejsPostBuild {
+    doGenericPostBuild
+    echoNotVerbose "Executing Nodejs post-build logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Nodejs post-build logic"
+    echoVerbose "+====================================================="
+    npmInstallEnvironement
+}
+
 # function executed when pre-deploy hook is called
 function nodejsPreDeploy {
     genericHeader
+    echoNotVerbose "container $HOSTNAME executing Nodejs PRE-DEPLOY"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
-    echoNotVerbose "container $HOSTNAME  running PRE-DEPLOY HOOK"
+    echoVerbose "| Container $HOSTNAME executing Nodejs PRE-DEPLOY"
     echoVerbose "| "
     nodejsInformation "| "
+    echoDebug `env`
     echoVerbose "+====================================================="
-    testAndRunSourceCodeScript "pre-deploy" 
+    echoVerbose ""
+    if [[ -x $MYS2I_DEST/pre-deploy ]]; then
+        echoVerbose "PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
+        testAndRunSourceCodeScript "pre-deploy" 
+    else
+        echoVerbose "No PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
+        doNodejsPreDeploy
+    fi
+    exit 0;
+}
+
+# function performing Nodejs pre-deploy actions
+function doNodejsPreDeploy {
+    doGenericPreDeploy
+    echoNotVerbose "Executing Nodejs pre-deploy logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Nodejs pre-deploy logic"
+    echoVerbose "+====================================================="
 }
 
 # function executed when post-deploy hook is called
 function nodejsPostDeploy {
     genericHeader
+    echoNotVerbose "container $HOSTNAME executing Nodejs POST-DEPLOY"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running POST-DEPLOY HOOK"
-    echoNotVerbose "container $HOSTNAME  running POST-DEPLOY HOOK"
+    echoVerbose "| Container $HOSTNAME executing Nodejs POST-DEPLOY"
     echoVerbose "| "
     nodejsInformation "| "
+    echoDebug `env`
     echoVerbose "+====================================================="
-    testAndRunSourceCodeScript "post-deploy" 
+    echoVerbose ""
+    if [[ -x $MYS2I_DEST/post-deploy ]]; then
+        echoVerbose "PostDeploy application logic found at $MYS2I_DEST/post-deploy"
+        testAndRunSourceCodeScript "post-deploy" 
+    else
+        echoVerbose "No PostDeploy application logic found at $MYS2I_DEST/post-deploy"
+        doNodejsPostDeploy
+    fi
+    exit 0;
 }
 
-# function executed when pre-build hook is called
-function nodejsPostBuild {
-    genericHeader
+# function performing Nodejs post-deploy actions
+function doNodejsPostDeploy {
+    doGenericPostDeploy
+    echoNotVerbose "Executing Nodejs post-deploy logic"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running POST-BUILD HOOK"
-    echoNotVerbose "container $HOSTNAME  running POST-BUILD HOOK"
-    echoVerbose "| "
-    nodejsInformation "| "
+    echoVerbose "| Executing Nodejs post-deploy logic"
     echoVerbose "+====================================================="
-    testAndRunSourceCodeScript "post-build" 
-}
-
-# function executed when assemble hook is called
-function nodejsAssemble {
-    genericHeader
-    echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running ASSEMBLE"
-    echoNotVerbose "container $HOSTNAME  running ASSEMBLE"
-    echoVerbose "| "
-    nodejsInformation "| "
-    echoVerbose "+====================================================="
-    if [[ -d $S2I_DEST ]]; then
-      echoVerbose "Fixing perm on $S2I_DEST"
-      chown 1001:0 -R $S2I_DEST
-      chmod g=u -R $S2I_DEST
-      moveSourceCode $S2I_DEST $APP_PATH
-    fi;
-    testAndRunSourceCodeScript "assemble" 
-    npmInstallEnvironement
 }
 
 # function executed on container startup
 function nodejsRun {
     genericHeader
+    echoNotVerbose "container $HOSTNAME executing Nodejs RUN"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME is RUNNING"
-    echoNotVerbose "container $HOSTNAME is RUNNING"
+    echoVerbose "| Container $HOSTNAME executing Nodejs RUN"
     echoVerbose "| "
     nodejsInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    echoVerbose ""
+    if [[ -x $MYS2I_DEST/run ]]; then
+        echoVerbose "Run application logic found at $MYS2I_DEST/run"
+        testAndRunSourceCodeScript "run" 
+    else
+        echoVerbose "No Run application logic found at $MYS2I_DEST/run"
+        echoVerbose "Executing default Nodejs run action"
+        doNodejsRun
+    fi
+}
+
+# function performing Nodejs run actions
+function doNodejsRun {
+    echoNotVerbose "Executing Nodejs run logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Nodejs run logic"
     echoVerbose "+====================================================="
     if [ ! -d "$APP_PATH/node_modules" ]; then
         npmInstallEnvironement
@@ -112,22 +198,19 @@ function nodejsIsReady {
 
 
 # function executed on nodejs service stop
-function stop_nodejs_handler {
+function stopNodejsHandler {
     killall node
-    echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME is now STOPPED"
-    echoNotVerbose "container is now stopped"
-    echoVerbose "| "
-    nodejsInformation "| "
-    echoVerbose "+====================================================="
-    exit 143; # 128 + 15 -- SIGTERM
+    stopDaemon
 }
 
 # Start the httpd server as a deamon and execute it inside 
 # the running shell
 function startNodejsService {
     cd $APP_PATH
-    trap 'kill ${!}; stop_nodejs_handler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
+    trap 'stopNodejsHandler' SIGHUP SIGINT SIGQUIT SIGILL SIGABRT SIGTRAP SIGBUS SIGUSR1 SIGUSR2 SIGFPE SIGPIPE SIGALRM SIGSTOP
+    trap 'killDaemon kill 9' SIGKILL
+    trap 'killDaemon term 15' SIGTERM
+    trap 'killDaemon sys 31' SIGSYS
     if [ ! -d "$APP_PATH/node_modules" ]; then
         npmInstallEnvironement
     fi

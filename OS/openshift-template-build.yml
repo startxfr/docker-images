@@ -1,0 +1,489 @@
+kind: Template
+apiVersion: v1
+metadata:
+  name: startx-os-build-template
+  annotations:
+    openshift.io/display-name: Startx Base OS (build & deploy workflow)
+    description: Build and deployement workflow of a bash script using various underlying linux distribution. 
+      See https://hub.docker.com/r/startx/fedora
+    iconClass: icon-beaker
+    tags: startx,os,fedora
+    openshift.io/long-description: This template provides a fedora container with
+      minimal tools and scripts. Ready to use in openshift with a simple deployement
+      config, or as a s2i builder for bash applications. For more information about
+      using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.
+    openshift.io/provider-display-name: STARTX
+    openshift.io/documentation-url: https://github.com/startxfr/docker-images/blob/master/README.md
+    openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
+message: |-
+  Your application ${APP_NAME} is building and will be soon deployed...
+
+  Service name: ${APP_NAME}
+  Source      : ${SOURCE_GIT}
+  action      : ${RUN_ACTION}
+labels:
+  template: startx-os-build-template
+  provider: startx 
+objects:
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: startx-os
+    annotations:
+      openshift.io/display-name: Startx Base OS (fedora)
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  spec:
+    tags:
+    - name: fc26
+      annotations:
+        openshift.io/display-name: S2I Startx Fedora 26
+        description: Minimal Fedora 26 OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,fedora
+        supports: fedora
+        version: fc26
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: DockerImage
+        name: startx/fedora:26
+    - name: fc27
+      annotations:
+        openshift.io/display-name: S2I Startx Fedora 27
+        description: Minimal Fedora 27 OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,fedora
+        supports: fedora
+        version: fc27
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: DockerImage
+        name: startx/fedora:27
+    - name: fc28
+      annotations:
+        openshift.io/display-name: S2I Startx Fedora 28
+        description: Minimal Fedora 28 OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,fedora
+        supports: fedora
+        version: fc28
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: DockerImage
+        name: startx/fedora:28
+    - name: fc29
+      annotations:
+        openshift.io/display-name: S2I Startx Fedora 29
+        description: Minimal Fedora 29 OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,fedora
+        supports: fedora
+        version: fc29
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: DockerImage
+        name: startx/fedora:29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: S2I Startx Fedora 30
+        description: Minimal Fedora 30 OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,fedora
+        supports: fedora
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: DockerImage
+        name: startx/fedora:30
+    - name: fc31
+      annotations:
+        openshift.io/display-name: S2I Startx Fedora 31
+        description: Minimal Fedora 31 OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,fedora
+        supports: fedora
+        version: fc31
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: DockerImage
+        name: startx/fedora:31
+    - name: rawhide
+      annotations:
+        openshift.io/display-name: S2I Startx Fedora (rawhide)
+        description: Minimal Fedora 27 OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,fedora
+        supports: fedora
+        version: rawhide
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: DockerImage
+        name: startx/fedora:latest
+    - name: ubi8
+      annotations:
+        openshift.io/display-name: S2I Startx RedHat UBI 8
+        description: Minimal RedHat UBI 8 OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,ubi
+        supports: ubi
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: DockerImage
+        name: startx/ubi:8
+    - name: centos8
+      annotations:
+        openshift.io/display-name: S2I Startx CentOS 8
+        description: Minimal CentOS 8 OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,centos
+        supports: centos
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: DockerImage
+        name: startx/centos:8
+    - name: centos7
+      annotations:
+        openshift.io/display-name: S2I Startx CentOS 7
+        description: Minimal CentOS 7 OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,centos
+        supports: centos
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: DockerImage
+        name: startx/centos:7
+    - name: centos6
+      annotations:
+        openshift.io/display-name: S2I Startx CentOS 6
+        description: Minimal CentOS 6 OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,centos
+        supports: centos
+        version: '6'
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: DockerImage
+        name: startx/centos:6
+    - name: alpine3
+      annotations:
+        openshift.io/display-name: S2I Startx Alpine 3
+        description: Minimal Alpine 3 OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,alpine
+        supports: alpine
+        version: '3'
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: DockerImage
+        name: startx/alpine:3
+    - name: latest
+      annotations:
+        openshift.io/display-name: S2I Startx Fedora (latest)
+        description: Minimal Fedora OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,fedora
+        supports: fedora
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: dev
+      annotations:
+        openshift.io/display-name: S2I Startx Fedora (dev)
+        description: Fedora OS builder for bash operations (developpement)
+        iconClass: icon-beaker
+        tags: builder,startx,fedora
+        supports: fedora
+        version: 'dev'
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: test
+      annotations:
+        openshift.io/display-name: S2I Startx Fedora (test)
+        description: Fedora OS builder for bash operations (testing)
+        iconClass: icon-beaker
+        tags: builder,startx,fedora
+        supports: fedora
+        version: 'test'
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: ImageStreamTag
+        name: centos8
+    - name: preprod
+      annotations:
+        openshift.io/display-name: S2I Startx Fedora (preprod)
+        description: Fedora OS builder for bash operations (pre-production)
+        iconClass: icon-beaker
+        tags: builder,startx,fedora
+        supports: fedora
+        version: 'pre-prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+    - name: prod
+      annotations:
+        openshift.io/display-name: S2I Startx Fedora (prod)
+        description: Fedora OS builder for bash operations (production)
+        iconClass: icon-beaker
+        tags: builder,startx,fedora
+        supports: fedora
+        version: 'prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    annotations:
+      openshift.io/display-name: Application ${APP_NAME}
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  spec:
+    tags:
+    - name: latest
+      annotations:
+        openshift.io/display-name: Application ${APP_NAME}
+        description: Base image for the application ${APP_NAME}
+        iconClass: icon-beaker
+        tags: startx,fedora,application,${APP_NAME}
+        supports: fedora
+        version: latest
+- kind: ConfigMap
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}-config"
+    annotations:
+      openshift.io/display-name: Application ${APP_NAME} configuration
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  data:
+    SX_ID: ${APP_NAME}/${APP_STAGE}
+    SX_TYPE: ${APP_STAGE}
+    SX_SERVICE: ${APP_NAME}
+    SX_NAME: Bash application ${APP_NAME}
+    SX_SUMMARY: Bash application ${APP_NAME} based on fedora container
+    SX_VERSION: 0.0.1 
+- kind: BuildConfig
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    annotations:
+      openshift.io/display-name: Application ${APP_NAME} build config
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  spec:
+    triggers:
+    - type: GitHub
+      github:
+        secret: "${WEBHOOK_TOKEN}_${APP_NAME}"
+    - type: Generic
+      generic:
+        secret: "${WEBHOOK_TOKEN}_${APP_NAME}"
+    - type: ImageChange
+      imageChange: {}
+    - type: ConfigChange
+    runPolicy: SerialLatestOnly
+    source:
+      type: Git
+      git:
+        uri: "${SOURCE_GIT}"
+        ref: "${SOURCE_BRANCH}"
+    strategy:
+      type: Source
+      sourceStrategy:
+        from:
+          kind: ImageStreamTag
+          name: startx-os:${BUILDER_TAG}
+        env:
+        - name: SX_VERBOSE
+          value: 'true'
+    output:
+      to:
+        kind: ImageStreamTag
+        name: "${APP_NAME}:latest"
+    postCommit:
+      command:
+      - "/bin/sx"
+      - post-build
+- kind: DeploymentConfig
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    annotations:
+      openshift.io/display-name: Application ${APP_NAME} deployment config
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  spec:
+    strategy:
+      type: Rolling
+      rollingParams:
+        intervalSeconds: 1
+        maxSurge: 25%
+        maxUnavailable: 25%
+        post:
+          execNewPod:
+            containerName: "${APP_NAME}"
+            command:
+            - sx
+            - post-deploy
+            env:
+            - name: SX_VERBOSE
+              value: "true"
+            envFrom:
+              - configMapRef:
+                  name: ${APP_NAME}-config
+          failurePolicy: Abort
+        pre:
+          execNewPod:
+            containerName: "${APP_NAME}"
+            command:
+            - sx
+            - pre-deploy
+            env:
+            - name: SX_VERBOSE
+              value: "true"
+            envFrom:
+              - configMapRef:
+                  name: ${APP_NAME}-config
+          failurePolicy: Abort
+        timeoutSeconds: 40
+        updatePeriodSeconds: 1
+    triggers:
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+        - "${APP_NAME}"
+        from:
+          kind: ImageStreamTag
+          name: "${APP_NAME}:latest"
+    - type: ConfigChange
+    postCommit:
+      script: "/bin/sx info"
+    replicas: 1
+    test: false
+    selector:
+      app: "${APP_NAME}"
+      deploymentconfig: "${APP_NAME}"
+    template:
+      metadata:
+        labels:
+          app: "${APP_NAME}"
+          stage: "${APP_STAGE}"
+          deploymentconfig: "${APP_NAME}"
+        annotations:
+          openshift.io/generated-by: STARTX
+      spec:
+        containers:
+        - name: "${APP_NAME}"
+          image: " "
+          command:
+          - "/bin/sx"
+          args:
+          - "${RUN_ACTION}"
+          env:
+          - name: SX_VERBOSE
+            value: 'true'
+          envFrom:
+            - configMapRef:
+                name: ${APP_NAME}-config
+          livenessProbe:
+            exec:
+              command:
+              - sx
+              - isLive
+            failureThreshold: 3
+            initialDelaySeconds: 1
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          readinessProbe:
+            exec:
+              command:
+              - sx
+              - isReady
+            failureThreshold: 3
+            initialDelaySeconds: 3
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 1000m
+              memory: "${MEMORY_LIMIT}"
+            requests:
+              cpu: 200m
+              memory: "${MEMORY_LIMIT}"
+          terminationMessagePath: "/dev/termination-log"
+          imagePullPolicy: Always
+          volumeMounts:
+          - mountPath: "/app"
+            name: "${APP_NAME}-app"
+        volumes:
+        - name: "${APP_NAME}-app"
+          emptyDir: {}
+        restartPolicy: Always
+        terminationGracePeriodSeconds: 10
+        securityContext: {}
+        dnsPolicy: ClusterFirst
+parameters:
+- name: APP_NAME
+  displayName: Application name
+  description: The name of the created application
+  value: daemon
+  required: true
+- name: APP_STAGE
+  displayName: Application stage
+  description: "Stage of the application deployed (ex: dev, test, prod, example, demo, poc, ...)"
+  value: example
+  required: true
+- name: BUILDER_TAG
+  displayName: Builder image stage
+  description: "Image tag of the startx apache builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc30, fc29, fc28 - alpine3 - centos8, centos7, centos6)"
+  value: latest
+- name: SOURCE_GIT
+  displayName: Source repository
+  description: URL to the source code to use during build process
+  value: https://github.com/startxfr/docker-images-example-bash.git
+  required: true
+- name: SOURCE_BRANCH
+  displayName: Source branch
+  description: Name of the default branch
+  value: master
+  required: true
+- name: WEBHOOK_TOKEN
+  displayName: Webhook token
+  description: Secret token to use for webhook to github or generic
+  generate: expression
+  from: "[a-zA-Z0-9]{24}"
+  required: true
+- name: RUN_ACTION
+  displayName: Main action to perfom
+  description: Action to perform for this running Pod. Should be one of build, post-build,
+    pre-deploy, post-deploy, run, isLive, isReady, usage, usageS2i, daemon, info,
+    version. See documentation for action list.
+  value: run
+  required: true
+- name: MEMORY_LIMIT
+  displayName: Memory Limit
+  description: Maximum amount of memory the container can use. e.g. 512Mi, 2Gi.
+  value: 256Mi
+  required: true

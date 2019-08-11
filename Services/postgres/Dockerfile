@@ -9,7 +9,7 @@ ENV SX_VERSION="fc27" \
     SX_NAME="Startx Postgres service image (fedora 27)" \
     SX_SUMMARY="Startx postgres service based on fedora 27" \
     DATA_PATH=/data \
-    LOG_PATH=/logs
+    LOG_PATH=/var/log/postgres
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -30,8 +30,8 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf --nogpgcheck -y install postgresql postgresql-libs postgresql-server \
-    && dnf clean all && \
+RUN yum --nogpgcheck -y install postgresql postgresql-libs postgresql-server \
+    && yum clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \

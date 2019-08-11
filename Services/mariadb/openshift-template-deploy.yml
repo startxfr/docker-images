@@ -1,0 +1,249 @@
+kind: Template
+apiVersion: v1
+metadata:
+  name: startx-mariadb-deploy-template
+  annotations:
+    openshift.io/display-name: Startx Mariadb Server (ephemeral deploy workflow)
+    description: Deployement workflow of a Mariadb SQL database using ephemeral storage
+      for data and logs records. Use mariadb with various underlying linux distribution. See 
+      https://hub.docker.com/r/startx/sv-mariadb
+    iconClass: icon-mariadb
+    tags: startx,os,fedora,mariadb,sql
+    openshift.io/provider-display-name: STARTX
+    openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-mariadb
+    openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
+message: |-
+  Your database ${APP_NAME} will be soon deployed.
+  Monitor the deployement for database availability 
+
+  Database    : ${APP_NAME}
+  Stage       : ${APP_STAGE}
+  Image       : startx/sv-mariadb:${BUILDER_TAG}
+  Volumes     : ${APP_NAME}-log (E), ${APP_NAME}-data (E)
+  
+  Username    : ${MYSQL_USER}
+  Password    : ${MYSQL_PASSWORD}
+  Database    : ${MYSQL_DATABASE}
+  
+  Connection  : mysql://${APP_NAME}:3306
+  
+labels:
+  template: startx-mariadb-deploy-template
+  provider: startx 
+objects:
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    annotations:
+      openshift.io/display-name: Database ${APP_NAME}
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  spec:
+    tags:
+    - name: ${APP_STAGE}
+      annotations:
+        openshift.io/display-name: Database ${APP_NAME} version ${APP_STAGE}
+        description: ${APP_STAGE} image for the database ${APP_NAME} based on ${BUILDER_TAG}
+        iconClass: icon-mariadb
+        tags: startx,fedora,mariadb,sql,database,${APP_NAME},${APP_STAGE},${BUILDER_TAG}
+        supports: mysql
+        version: ${APP_STAGE}
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:${BUILDER_TAG}
+- kind: ConfigMap
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}-config"
+    annotations:
+      openshift.io/display-name: Database ${APP_NAME} configuration
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  data:
+    SX_ID: ${APP_NAME}/${APP_STAGE}
+    SX_TYPE: ${APP_STAGE}
+    SX_SERVICE: ${APP_NAME}
+    SX_NAME: Mariadb database ${APP_NAME}
+    SX_SUMMARY: Mariadb database ${APP_NAME} based on ${BUILDER_TAG} container
+    SX_VERSION: 0.0.1 
+- kind: Secret
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}-auth"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      template.openshift.io/expose-username: "{.data['MYSQL_USER']}"
+      template.openshift.io/expose-password: "{.data['MYSQL_PASSWORD']}"
+      template.openshift.io/expose-root_password: "{.data['MYSQL_PASSWORD']}"
+  stringData:
+    MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+    MYSQL_USER: "${MYSQL_USER}"
+    MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+- kind: DeploymentConfig
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      openshift.io/generated-by: STARTX
+  spec:
+    strategy:
+      type: Recreate
+      recreateParams:
+        timeoutSeconds: 50
+    triggers:
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+        - "${APP_NAME}"
+        from:
+          kind: ImageStreamTag
+          name: "${APP_NAME}:${APP_STAGE}"
+    - type: ConfigChange
+    postCommit:
+      script: "/bin/sx-mariadb info"
+    replicas: 1
+    test: false
+    selector:
+      app: "${APP_NAME}"
+      deploymentconfig: "${APP_NAME}"
+    template:
+      metadata:
+        labels:
+          app: "${APP_NAME}"
+          deploymentconfig: "${APP_NAME}"
+        annotations:
+          openshift.io/generated-by: STARTX
+      spec:
+        containers:
+        - name: "${APP_NAME}"
+          image: " "
+          env:
+          - name: SX_VERBOSE
+            value: 'true'
+          - name: MYSQL_USER
+            valueFrom:
+              secretKeyRef:
+                name: "${APP_NAME}-auth"
+                key: MYSQL_USER
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: "${APP_NAME}-auth"
+                key: MYSQL_PASSWORD
+          envFrom:
+            - configMapRef:
+                name: ${APP_NAME}-config
+          command:
+          - "/bin/sx-mariadb"
+          args:
+          - run
+          resources:
+            limits:
+              cpu: 4000m
+              memory: 512Mi
+            requests:
+              cpu: 200m
+              memory: 256Mi
+          ports:
+          - containerPort: 3306
+            protocol: TCP
+          livenessProbe:
+            exec:
+              command:
+              - "/bin/sx-mariadb"
+              - isLive
+            initialDelaySeconds: 4
+            timeoutSeconds: 2
+            periodSeconds: 8
+            successThreshold: 1
+            failureThreshold: 2
+          readinessProbe:
+            exec:
+              command:
+              - "/bin/sx-mariadb"
+              - isReady
+            initialDelaySeconds: 4
+            timeoutSeconds: 2
+            periodSeconds: 8
+            successThreshold: 1
+            failureThreshold: 2
+          terminationMessagePath: "/dev/termination-log"
+          imagePullPolicy: Always
+          volumeMounts:
+          - name: "${APP_NAME}-log"
+            mountPath: "/var/log/mariadb"
+        volumes:
+        - name: "${APP_NAME}-log"
+          emptyDir:
+            medium: ''
+        restartPolicy: Always
+        terminationGracePeriodSeconds: 30
+        securityContext: {}
+        dnsPolicy: ClusterFirst
+- kind: Service
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      openshift.io/generated-by: STARTX
+  spec:
+    ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+    selector:
+      app: "${APP_NAME}"
+      deploymentconfig: "${APP_NAME}"
+    type: ClusterIP
+    sessionAffinity: None
+parameters:
+- name: APP_NAME
+  displayName: Database name
+  description: The name of the created application
+  value: mariadb
+  required: true
+- name: APP_STAGE
+  displayName: Database stage
+  description: "Stage of the application deployed (ex: dev, test, prod, example, demo, poc, ...)"
+  value: example
+  required: true
+- name: BUILDER_TAG
+  displayName: Startx image release
+  description: "Image tag of the startx mariadb image used. Could be : latest, fc31, fc30, fc29, fc28, alpine3, centos8, centos7, centos6"
+  value: latest
+  required: true
+- name: MYSQL_ROOT_PASSWORD
+  displayName: Mysql root password
+  description: The mysql root password to use. Generated if not provided
+  from: "[A-Z0-9]{16}"
+  generate: expression
+- name: MYSQL_USER
+  displayName: Mysql user
+  description: Default user to create
+  value: demo
+  from: "[A-Z0-9]{8}"
+  generate: expression
+- name: MYSQL_PASSWORD
+  displayName: Mysql password
+  description: Password of the default user
+  value: demo
+  from: "[A-Z0-9]{16}"
+  generate: expression
+- name: MYSQL_DATABASE
+  displayName: Mysql database
+  description: name of the default database to create
+  value: example

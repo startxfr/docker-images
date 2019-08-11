@@ -6,8 +6,12 @@ function check_apache_environment {
         APP_PATH="/app"
         export APP_PATH
     fi
+    if [ ! -v APP_PORT ]; then
+        APP_PORT="8080"
+        export APP_PORT
+    fi
     if [ ! -v LOG_PATH ]; then
-        LOG_PATH="/logs"
+        LOG_PATH="/var/log/httpd"
         export LOG_PATH
     fi
     if [ ! -n "$SERVER_NAME" ]; then
@@ -24,82 +28,166 @@ function apacheInformation {
     echoVerbose $1 "httpd     : $(httpd -v | head -1)" 
 }
 
+# function executed when build hook is called
+function apacheBuild {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Apache BUILD"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Apache BUILD"
+    echoVerbose "| "
+    apacheInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    echoVerbose ""
+    doInitS2iApp
+    if [[ -x $MYS2I_DEST/assemble ]]; then
+        echoVerbose "Build application logic found at $MYS2I_DEST/assemble"
+        testAndRunSourceCodeScript "assemble" 
+    else
+        echoVerbose "No Build application logic found at $MYS2I_DEST/assemble"
+        doApacheBuild
+    fi
+    exit 0;
+}
+
+# function performing Apache build actions
+function doApacheBuild {
+    doGenericBuild
+    echoNotVerbose "Executing Apache build logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing default Apache build logic"
+    echoVerbose "+====================================================="
+}
+
+# function executed when post-build hook is called
+function apachePostBuild {
+    genericHeader
+    echoNotVerbose "container $HOSTNAME executing Apache POST-BUILD"
+    echoVerbose "+====================================================="
+    echoVerbose "| Container $HOSTNAME executing Apache POST-BUILD"
+    echoVerbose "| "
+    apacheInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    echoVerbose ""
+    if [[ -x $MYS2I_DEST/assemble ]]; then
+        echoVerbose "PostBuild application logic found at $MYS2I_DEST/post-build"
+        testAndRunSourceCodeScript "post-build" 
+    else
+        echoVerbose "No PostBuild application logic found at $MYS2I_DEST/post-build"
+        doApachePostBuild
+    fi
+    exit 0;
+}
+
+# function performing Apache post-build actions
+function doApachePostBuild {
+    doGenericPostBuild
+    echoVerbose "Executing Apache post-build logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Apache post-build logic"
+    echoVerbose "+====================================================="
+}
+
 # function executed when pre-deploy hook is called
 function apachePreDeploy {
     genericHeader
+    echoNotVerbose "container $HOSTNAME executing Apache PRE-DEPLOY"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running PRE-DEPLOY HOOK"
-    echoNotVerbose "container $HOSTNAME  running PRE-DEPLOY HOOK"
+    echoVerbose "| Container $HOSTNAME executing Apache PRE-DEPLOY"
     echoVerbose "| "
     apacheInformation "| "
+    echoDebug `env`
     echoVerbose "+====================================================="
-    testAndRunSourceCodeScript "pre-deploy"
-    exit 0; 
+    echoVerbose ""
+    if [[ -x $MYS2I_DEST/pre-deploy ]]; then
+        echoVerbose "PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
+        testAndRunSourceCodeScript "pre-deploy" 
+    else
+        echoVerbose "No PreDeploy application logic found at $MYS2I_DEST/pre-deploy"
+        doApachePreDeploy
+    fi
+    exit 0;
+}
+
+# function performing Apache pre-deploy actions
+function doApachePreDeploy {
+    doGenericPreDeploy
+    echoVerbose "Executing Apache pre-deploy logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Apache pre-deploy logic"
+    echoVerbose "+====================================================="
 }
 
 # function executed when post-deploy hook is called
 function apachePostDeploy {
     genericHeader
+    echoNotVerbose "container $HOSTNAME executing Apache POST-DEPLOY"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running POST-DEPLOY HOOK"
-    echoNotVerbose "container $HOSTNAME  running POST-DEPLOY HOOK"
+    echoVerbose "| Container $HOSTNAME executing Apache POST-DEPLOY"
     echoVerbose "| "
     apacheInformation "| "
+    echoDebug `env`
     echoVerbose "+====================================================="
-    testAndRunSourceCodeScript "post-deploy" 
+    echoVerbose ""
+    if [[ -x $MYS2I_DEST/post-deploy ]]; then
+        echoVerbose "PostDeploy application logic found at $MYS2I_DEST/post-deploy"
+        testAndRunSourceCodeScript "post-deploy" 
+    else
+        echoVerbose "No PostDeploy application logic found at $MYS2I_DEST/post-deploy"
+        doApachePostDeploy
+    fi
     exit 0;
 }
 
-# function executed when pre-build hook is called
-function apachePostBuild {
-    genericHeader
+# function performing Apache post-deploy actions
+function doApachePostDeploy {
+    doGenericPostDeploy
+    echoVerbose "Executing Apache post-deploy logic"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running POST-BUILD HOOK"
-    echoNotVerbose "container $HOSTNAME  running POST-BUILD HOOK"
-    echoVerbose "| "
-    apacheInformation "| "
+    echoVerbose "| Executing Apache post-deploy logic"
     echoVerbose "+====================================================="
-    testAndRunSourceCodeScript "post-build" 
-    exit 0;
-}
-
-# function executed when assemble hook is called
-function apacheAssemble {
-    genericHeader
-    echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME  running ASSEMBLE"
-    echoNotVerbose "container $HOSTNAME  running ASSEMBLE"
-    echoVerbose "| "
-    apacheInformation "| "
-    echoVerbose "+====================================================="
-    if [[ -d $S2I_DEST ]]; then
-      echoVerbose "Fixing perm on $S2I_DEST"
-      chown 1001:0 -R $S2I_DEST
-      chmod g=u -R $S2I_DEST
-      moveSourceCode $S2I_DEST $APP_PATH
-    fi;
-    testAndRunSourceCodeScript "assemble" 
-    exit 0;
+    setSys2HttpEnvironmentVariable
 }
 
 # function executed on container startup
 function apacheRun {
     genericHeader
+    echoNotVerbose "container $HOSTNAME executing Apache RUN"
     echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME is RUNNING"
-    echoNotVerbose "container $HOSTNAME is RUNNING"
+    echoVerbose "| Container $HOSTNAME executing Apache RUN"
     echoVerbose "| "
     apacheInformation "| "
+    echoDebug `env`
+    echoVerbose "+====================================================="
+    echoVerbose ""
+    if [[ -x $MYS2I_DEST/run ]]; then
+        echoVerbose "Run application logic found at $MYS2I_DEST/run"
+        testAndRunSourceCodeScript "run" 
+    else
+        echoVerbose "No Run application logic found at $MYS2I_DEST/run"
+        echoVerbose "Executing default Apache run action"
+        doApacheRun
+    fi
+}
+
+# function performing Apache run actions
+function doApacheRun {
+    echoNotVerbose "Executing Apache run logic"
+    echoVerbose "+====================================================="
+    echoVerbose "| Executing Apache run logic"
     echoVerbose "+====================================================="
     startApacheService
 }
 
 # Display liveness status
 function apacheIsLive {
-    R=`curl -sL -w "%{http_code}\\n" "http://localhost/" -o /dev/null`
+    R=`curl -sL -w "%{http_code}\\n" "http://127.0.0.1:$APP_PORT" -o /dev/null`
     if [ "$R" = "200" ]; then
+      echo "OK";
       exit 0;
     else 
+      echo "Not OK";
       exit 1;
     fi;
 }
@@ -112,27 +200,40 @@ function apacheIsReady {
 # function executed on apache service stop
 function stopApacheHandler {
     killall httpd
-    rm -rf /run/httpd/*
-    echoVerbose "+====================================================="
-    echoVerbose "| Container $HOSTNAME is now STOPPED"
-    echoNotVerbose "container is now stopped"
-    echoVerbose "| "
-    apacheInformation "| "
-    echoVerbose "+====================================================="
-    exit 143; # 128 + 15 -- SIGTERM
+    rm -rf $RUN_DIR/*
+    stopDaemon
+}
+
+# prepare of the httpd server as a deamon and execute it inside 
+# the running shell
+function preStartApacheService {
+    echoVerbose "Remove temporary files in $RUN_DIR/* and /tmp/httpd*"
+    rm -rf $RUN_DIR/* /tmp/httpd*
+    echoVerbose "Prepare Apache logs"
+    touch $LOG_PATH/error.log
+    if [[ -r $LOG_PATH/error.log ]]; then
+      echoVerbose "Display apache error logs from $LOG_PATH/error.log"
+      tail -f $LOG_PATH/error.log &
+    fi;
+    touch $LOG_PATH/access.log
+    if [[ -r $LOG_PATH/access.log ]]; then
+      echoVerbose "Display apache access logs from $LOG_PATH/access.log"
+      tail -f $LOG_PATH/access.log &
+    fi;
 }
 
 # Start the httpd server as a deamon and execute it inside 
 # the running shell
 function startApacheService {
-    trap 'kill ${!}; stopApacheHandler' SIGHUP SIGINT SIGQUIT SIGTERM SIGKILL SIGSTOP SIGCONT
-    rm -rf /run/httpd/* /tmp/httpd*
-    touch $LOG_PATH/access.log
-    touch /var/log/httpd/access.log
-    exec /usr/sbin/httpd -D FOREGROUND > $LOG_PATH/access.log &
+    trap 'stopApacheHandler' SIGHUP SIGINT SIGQUIT SIGILL SIGABRT SIGTRAP SIGBUS SIGUSR1 SIGUSR2 SIGFPE SIGPIPE SIGALRM SIGSTOP
+    trap 'killDaemon kill 9' SIGKILL
+    trap 'killDaemon term 15' SIGTERM
+    trap 'killDaemon sys 31' SIGSYS
+    preStartApacheService
+    exec $RUN_BIN -D FOREGROUND > $LOG_PATH/access.log &
     while true
     do
-        tail -f $LOG_PATH/*.log & tail -f /var/log/httpd/*.log & wait ${!}
+        wait ${!}
     done
 }
 

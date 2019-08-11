@@ -10,9 +10,14 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-* `:latest` : Fedora rawhide + Couchbase Server 5.5.0-Mar (beta)
-* `:fc28` : Fedora 28 + Couchbase Server 5.5.0-Mar (beta)
-* `:centos7` : Centos 7 + Couchbase Server 5.5.0-Mar (beta)
+* `:latest` : Fedora rawhide + Couchbase Server 6.0.2-2413
+* `:fc31` : Fedora 31 + Couchbase Server 6.0.2-2413
+* `:fc30` : Fedora 30 + Couchbase Server 6.0.0
+* `:fc29` : Fedora 29 + Couchbase Server 5.5.0-beta
+* `:fc28` : Fedora 28 + Couchbase Server 4.5.0
+* `:centos7` : Centos 7 + Couchbase Server 6.0.0
+* `:centos8` : Centos 8 + Couchbase Server 6.0.0
+* `:ubi8` : RedHat UBI 8 + Couchbase Server 6.0.0
 
 ## Running from dockerhub registry
 
@@ -30,19 +35,19 @@ service:
 ### Using this image as Openshift Build image
 
 You can use this public image as a base image in your openshift build strategy. You can first import
-our [openshift image stream](https://raw.githubusercontent.com/startxfr/docker-images/fc27/Services/couchbase/openshift-imageStreams.json)
-and automatically add them in your service catalog. You can also test our [deploy template](https://raw.githubusercontent.com/startxfr/docker-images/fc27/Services/couchbase/openshift-template.json)
-or our [build and deploy template](https://raw.githubusercontent.com/startxfr/docker-images/fc27/Services/couchbase/openshift-template-build.json)
+our [openshift image stream](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-imageStreams.yml)
+and automatically add them in your service catalog. You can also test our [deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-template-deploy.yml)
+or our [build and deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-template-build.yml)
 
 ```bash
 # import image streams
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/fc27/Services/couchbase/openshift-imageStreams.json
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-imageStreams.yml
 # import deploy template and start a sample application
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/fc27/Services/couchbase/openshift-template.json
-oc process startx-sv-couchbase-template | oc create -f -
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-template-deploy.yml
+oc process startx-couchbase-deploy-template | oc create -f -
 # import build and deploy template and start a sample application
-oc create -f https://raw.githubusercontent.com/startxfr/docker-images/fc27/Services/couchbase/openshift-template-build.json
-oc process startx-sv-couchbase-build-template | oc create -f -
+oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-template-build.yml
+oc process startx-couchbase-build-template | oc create -f -
 ```
 
 ### Using this image as S2I builder
@@ -90,7 +95,7 @@ some [additional environment variable](https://github.com/startxfr/docker-images
 |---------------------------|----------|-----------|--------------------------------------------------------------------------|
 | <i>base image environement</i> |          |           | [see environment list](https://github.com/startxfr/docker-images/tree/fc27/OS#environment-variable)
 | HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
-| LOG_PATH                  | `auto`   | `auto`    | default set to /logs and used as a volume mountpoint
+| LOG_PATH                  | `auto`   | `auto`    | default set to /var/log/couchbase and used as a volume mountpoint
 
 ## Exposed port
 
@@ -114,7 +119,7 @@ access to the running couchbase daemon with `telnet localhost 11211; stats`. Cha
 You want to use this container and code to build and create locally this container, follow theses instructions.
 
 This section will help you if you want to :
-* Get latest version of this service container
+* Get version 27 of this service container
 * Enhance container content by adding instruction in Dockefile before build step
 
 You must have a working environment with the source code of this repository. Read and follow [how to setup your working environment](https://github.com/startxfr/docker-images#setup-your-working-environment-mandatory) to get a working directory. The following instructions assume you are at the top level of your working directory.

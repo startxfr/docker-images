@@ -1,6 +1,6 @@
 fedora27:
   build: ./
-  container_name: "os-fedora27"
+  container_name: "startx-fedora27"
   mem_limit: 100m
   memswap_limit: 200m
   cpu_shares: 2

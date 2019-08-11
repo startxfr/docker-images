@@ -1,0 +1,660 @@
+kind: Template
+apiVersion: v1
+metadata: 
+  name: startx-mariadb-build-persist-template
+  annotations:
+    openshift.io/display-name: Startx Mariadb Server (persistent build & deploy workflow)
+    description: Build and deployement workflow of a Mariadb SQL database using persistent storage
+      for data and logs records. Use mariadb with various underlying linux distribution. See 
+      https://hub.docker.com/r/startx/sv-mariadb
+    iconClass: icon-mariadb
+    tags: startx,os,fedora,mariadb,sql
+    openshift.io/provider-display-name: STARTX
+    openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-mariadb
+    openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
+message: |-
+  Your database ${APP_NAME} is building and will be soon deployed.
+  Monitor the deployement for database availability
+
+  Source      : ${SOURCE_BRANCH}@${SOURCE_GIT}
+  Database    : ${APP_NAME}
+  Stage       : ${APP_STAGE}
+  Builder     : ${BUILDER_TAG}
+  Volumes     : ${APP_NAME}-log (P), ${APP_NAME}-data (P)
+  
+  Username    : ${MYSQL_USER}
+  Password    : ${MYSQL_PASSWORD}
+  Database    : ${MYSQL_DATABASE}
+  
+  Connection  : mysql://${APP_NAME}:3306
+  
+labels:
+  template: startx-mariadb-build-persist-template
+  provider: startx 
+objects:
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: startx-mariadb
+    annotations:
+      openshift.io/display-name: Startx Mariadb Database
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  spec:
+    tags:
+    - name: fc26
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 26)
+        description: MariaDB server builder for simple SQL database running under
+          Fedora 26
+        iconClass: icon-mariadb
+        tags: builder,startx,fedora,mariadb,sql
+        supports: mysql
+        version: fc26
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:fc26
+    - name: fc27
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 27)
+        description: MariaDB server builder for simple SQL database running under
+          Fedora 27
+        iconClass: icon-mariadb
+        tags: builder,startx,fedora,mariadb,sql
+        supports: mysql
+        version: fc27
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:fc27
+    - name: fc28
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 28)
+        description: MariaDB server builder for simple SQL database running under
+          Fedora 28
+        iconClass: icon-mariadb
+        tags: builder,startx,fedora,mariadb,sql
+        supports: mysql
+        version: fc28
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:fc28
+    - name: fc29
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 29)
+        description: MariaDB server builder for simple SQL database running under
+          Fedora 29
+        iconClass: icon-mariadb
+        tags: builder,startx,fedora,mariadb,sql
+        supports: mysql
+        version: fc29
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 30)
+        description: MariaDB server builder for simple SQL database running under
+          Fedora 30
+        iconClass: icon-mariadb
+        tags: builder,startx,fedora,mariadb,sql
+        supports: mysql
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:fc30
+    - name: fc31
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 31)
+        description: MariaDB server builder for simple SQL database running under
+          Fedora 31
+        iconClass: icon-mariadb
+        tags: builder,startx,fedora,mariadb,sql
+        supports: mysql
+        version: fc31
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:fc31
+    - name: rawhide
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Fedora rawhide)
+        description: MariaDB server builder for simple SQL database running under
+          Fedora rawhide
+        iconClass: icon-mariadb
+        tags: builder,startx,fedora,mariadb,sql
+        supports: mysql
+        version: rawhide
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:latest
+    - name: ubi8
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (RedHat UBI 8)
+        description: MariaDB server builder for simple SQL database running under
+          RedHat UBI 8
+        iconClass: icon-mariadb
+        tags: builder,startx,ubi,mariadb,sql
+        supports: mysql
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:ubi8
+    - name: centos8
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Centos 8)
+        description: MariaDB server builder for simple SQL database running under
+          Centos 8
+        iconClass: icon-mariadb
+        tags: builder,startx,centos,mariadb,sql
+        supports: mysql
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:centos8
+    - name: centos7
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Centos 7)
+        description: MariaDB server builder for simple SQL database running under
+          Centos 7
+        iconClass: icon-mariadb
+        tags: builder,startx,centos,mariadb,sql
+        supports: mysql
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:centos7
+    - name: centos6
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Centos 6)
+        description: MariaDB server builder for simple SQL database running under
+          Centos 6
+        iconClass: icon-mariadb
+        tags: builder,startx,centos,mariadb,sql
+        supports: mysql
+        version: '6'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:centos6
+    - name: alpine3
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Alpine 3)
+        description: MariaDB server builder for simple SQL database running under
+          Alpine 3
+        iconClass: icon-mariadb
+        tags: builder,startx,alpine,mariadb,sql
+        supports: mysql
+        version: '3'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:alpine3
+    - name: latest
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (latest)
+        description: MariaDB server builder for simple SQL database running under
+          Fedora latest
+        iconClass: icon-mariadb
+        tags: builder,startx,alpine,mariadb,sql
+        supports: mysql
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: dev
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (dev)
+        description: MariaDB server builder for simple SQL database (developpement)
+        iconClass: icon-mariadb
+        tags: builder,startx,alpine,mariadb,sql
+        supports: mysql
+        version: 'dev'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: test
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (test)
+        description: MariaDB server builder for simple SQL database (testing)
+        iconClass: icon-mariadb
+        tags: builder,startx,alpine,mariadb,sql
+        supports: mysql
+        version: 'test'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: ImageStreamTag
+        name: centos8
+    - name: preprod
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (preprod)
+        description: MariaDB server builder for simple SQL database (pre-production)
+        iconClass: icon-mariadb
+        tags: builder,startx,alpine,mariadb,sql
+        supports: mysql
+        version: 'pre-prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+    - name: prod
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (prod)
+        description: MariaDB server builder for simple SQL database (production)
+        iconClass: icon-mariadb
+        tags: builder,startx,alpine,mariadb,sql
+        supports: mysql
+        version: 'prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    annotations:
+      openshift.io/display-name: Database ${APP_NAME}
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  spec:
+    tags:
+    - name: latest
+      annotations:
+        openshift.io/display-name: Database ${APP_NAME}
+        description: Base image for the database ${APP_NAME}
+        iconClass: icon-mariadb
+        tags: startx,fedora,mariadb,sql,database,${APP_NAME}
+        supports: mysql
+        version: latest
+- kind: ConfigMap
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}-config"
+    annotations:
+      openshift.io/display-name: Database ${APP_NAME} configuration
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  data:
+    SX_ID: ${APP_NAME}/${APP_STAGE}
+    SX_TYPE: ${APP_STAGE}
+    SX_SERVICE: ${APP_NAME}
+    SX_NAME: SQL database ${APP_NAME}
+    SX_SUMMARY: SQL database ${APP_NAME} based on ${BUILDER_TAG} container
+    SX_VERSION: 0.0.1 
+    MYSQL_DATABASE: "${MYSQL_DATABASE}"
+- kind: Secret
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}-auth"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      template.openshift.io/expose-username: "{.data['MYSQL_USER']}"
+      template.openshift.io/expose-password: "{.data['MYSQL_PASSWORD']}"
+      template.openshift.io/expose-root_password: "{.data['MYSQL_PASSWORD']}"
+  stringData:
+    MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+    MYSQL_USER: "${MYSQL_USER}"
+    MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+- kind: PersistentVolumeClaim
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}-data"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: "${VOLUME_CAPACITY}"
+- kind: PersistentVolumeClaim
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}-log"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: "${VOLUME_CAPACITY}"
+- kind: BuildConfig
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      openshift.io/generated-by: STARTX
+  spec:
+    triggers:
+    - type: GitHub
+      github:
+        secret: "${WEBHOOK_TOKEN}_${APP_NAME}"
+    - type: Generic
+      generic:
+        secret: "${WEBHOOK_TOKEN}_${APP_NAME}"
+    - type: ImageChange
+      imageChange: {}
+    - type: ConfigChange
+    runPolicy: SerialLatestOnly
+    source:
+      type: Git
+      git:
+        uri: "${SOURCE_GIT}"
+        ref: "${SOURCE_BRANCH}"
+    strategy:
+      type: Source
+      sourceStrategy:
+        from:
+          kind: ImageStreamTag
+          name: startx-mariadb:${BUILDER_TAG}
+        env:
+        - name: SX_VERBOSE
+          value: 'true'
+        - name: SX_DEBUG
+          value: 'true'
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: "${APP_NAME}-auth"
+              key: MYSQL_ROOT_PASSWORD
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: "${APP_NAME}-auth"
+              key: MYSQL_USER
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: "${APP_NAME}-auth"
+              key: MYSQL_PASSWORD
+        envFrom:
+          - configMapRef:
+              name: ${APP_NAME}-config
+    output:
+      to:
+        kind: ImageStreamTag
+        name: "${APP_NAME}:latest"
+    postCommit:
+      command:
+      - "/bin/sx-mariadb"
+      - post-build
+      env:
+      - name: SX_VERBOSE
+        value: 'true'
+      - name: SX_DEBUG
+        value: 'true'
+      - name: MYSQL_ROOT_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: "${APP_NAME}-auth"
+            key: MYSQL_ROOT_PASSWORD
+      - name: MYSQL_USER
+        valueFrom:
+          secretKeyRef:
+            name: "${APP_NAME}-auth"
+            key: MYSQL_USER
+      - name: MYSQL_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: "${APP_NAME}-auth"
+            key: MYSQL_PASSWORD
+      envFrom:
+        - configMapRef:
+            name: ${APP_NAME}-config
+- kind: DeploymentConfig
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      openshift.io/generated-by: STARTX
+  spec:
+    strategy:
+      type: Recreate
+      recreateParams:
+        timeoutSeconds: 50
+        pre:
+          failurePolicy: Abort
+          execNewPod:
+            containerName: "${APP_NAME}"
+            command:
+            - "/bin/sx-mariadb"
+            - pre-deploy
+            env:
+            - name: SX_VERBOSE
+              value: 'true'
+            - name: SX_DEBUG
+              value: 'true'
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: "${APP_NAME}-auth"
+                  key: MYSQL_USER
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "${APP_NAME}-auth"
+                  key: MYSQL_PASSWORD
+            envFrom:
+              - configMapRef:
+                  name: ${APP_NAME}-config
+        post:
+          failurePolicy: Abort
+          execNewPod:
+            containerName: "${APP_NAME}"
+            command:
+            - "/bin/sx-mariadb"
+            - post-deploy
+            env:
+            - name: SX_VERBOSE
+              value: 'true'
+            - name: SX_DEBUG
+              value: 'true'
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: "${APP_NAME}-auth"
+                  key: MYSQL_USER
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "${APP_NAME}-auth"
+                  key: MYSQL_PASSWORD
+            envFrom:
+              - configMapRef:
+                  name: ${APP_NAME}-config
+    triggers:
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+        - "${APP_NAME}"
+        from:
+          kind: ImageStreamTag
+          name: "${APP_NAME}:latest"
+    - type: ConfigChange
+    postCommit:
+      script: "/bin/sx-mariadb info"
+    replicas: 1
+    test: false
+    selector:
+      app: "${APP_NAME}"
+      deploymentconfig: "${APP_NAME}"
+    template:
+      metadata:
+        labels:
+          app: "${APP_NAME}"
+          deploymentconfig: "${APP_NAME}"
+        annotations:
+          openshift.io/generated-by: STARTX
+      spec:
+        containers:
+        - name: "${APP_NAME}"
+          image: " "
+          env:
+          - name: SX_VERBOSE
+            value: 'true'
+          envFrom:
+            - configMapRef:
+                name: ${APP_NAME}-config
+          command:
+          - "/bin/sx-mariadb"
+          args:
+          - run
+          ports:
+          - containerPort: 3306
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 4000m
+              memory: "${MEMORY_LIMIT}"
+            requests:
+              cpu: 200m
+              memory: "${MEMORY_LIMIT}"
+          livenessProbe:
+            exec:
+              command:
+              - "/bin/sx-mariadb"
+              - isLive
+            initialDelaySeconds: 6
+            timeoutSeconds: 2
+            periodSeconds: 8
+            successThreshold: 1
+            failureThreshold: 2
+          readinessProbe:
+            exec:
+              command:
+              - "/bin/sx-mariadb"
+              - isReady
+            initialDelaySeconds: 6
+            timeoutSeconds: 2
+            periodSeconds: 8
+            successThreshold: 1
+            failureThreshold: 2
+          terminationMessagePath: "/dev/termination-log"
+          imagePullPolicy: Always
+          volumeMounts:
+          - name: "${APP_NAME}-log"
+            mountPath: "/var/log/mariadb"
+          - name: "${APP_NAME}-data"
+            mountPath: "/data"
+        volumes:
+        - name: "${APP_NAME}-log"
+          persistentVolumeClaim:
+            claimName: "${APP_NAME}-log"
+        - name: "${APP_NAME}-data"
+          persistentVolumeClaim:
+            claimName: "${APP_NAME}-data"
+        restartPolicy: Always
+        terminationGracePeriodSeconds: 30
+        securityContext: {}
+        dnsPolicy: ClusterFirst
+- kind: Service
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      openshift.io/generated-by: STARTX
+      template.openshift.io/expose-uri: mysql://{.spec.clusterIP}:{.spec.ports[?(.name=="mysql")].port}
+  spec:
+    ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+    selector:
+      app: "${APP_NAME}"
+      deploymentconfig: "${APP_NAME}"
+    type: ClusterIP
+    sessionAffinity: None
+parameters:
+- name: APP_NAME
+  displayName: Database name
+  description: The name of the created database
+  value: mariadb
+  required: true
+- name: APP_STAGE
+  displayName: Database stage
+  description: "Stage of the database deployed (ex: dev, test, prod, example, demo, poc, ...)"
+  value: example
+  required: true
+- name: BUILDER_TAG
+  displayName: Builder image stage
+  description: "Image tag of the startx mariadb builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc30, fc29, fc28 - alpine3 - ubi8 - centos8, centos7, centos6)"
+  value: latest
+  required: true
+- name: SOURCE_GIT
+  displayName: Source repository
+  description: URL to the source code to use during build process
+  value: https://github.com/startxfr/docker-images-example-mariadb.git
+  required: true
+- name: SOURCE_BRANCH
+  displayName: Source branch
+  description: Name of the default branch
+  value: master
+  required: true
+- name: WEBHOOK_TOKEN
+  displayName: Webhook token
+  description: Secret token to use for webhook to github or generic
+  generate: expression
+  from: "[a-zA-Z0-9]{24}"
+  required: true
+- name: MYSQL_ROOT_PASSWORD
+  displayName: Mysql root password
+  description: The mysql root password to use. Generated if not provided
+  from: "[A-Z0-9]{16}"
+  generate: expression
+- name: MYSQL_USER
+  displayName: Mysql user
+  description: Default user to create
+  value: demo
+  from: "[A-Z0-9]{8}"
+  generate: expression
+- name: MYSQL_PASSWORD
+  displayName: Mysql password
+  description: Password of the default user
+  value: demo
+  from: "[A-Z0-9]{16}"
+  generate: expression
+- name: MYSQL_DATABASE
+  displayName: Mysql database
+  description: name of the default database to create
+  value: example
+- name: MEMORY_LIMIT
+  displayName: Memory Limit
+  description: Maximum amount of memory the container can use. e.g. 512Mi, 2Gi.
+  value: 1024Mi
+  required: true
+- name: VOLUME_CAPACITY
+  displayName: Volume Capacity
+  description: Volume space available for data. e.g. 512Mi, 2Gi.
+  value: 1024Mi
+  required: true

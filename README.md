@@ -5,10 +5,9 @@
 This project is a collection of application or services containers ready to execute 
 or embed your application as part of a building process.  
 
-Each container is provided with various underlying OS version based on CentOS or 
-Fedora Linux distribution. Kumbernetes and Openshift friendly, they can all be used as a s2i builder
-within an openshift cluster.
-Please visit [startx docker-images homepage](https://github.com/startxfr/docker-images/) for [other OS flavours](https://github.com/startxfr/docker-images/OS#container-flavours)
+Each container is provided with various underlying OS version based on CentOS, 
+Fedora Linux, Alpine and UBI distributions. Kubernetes and Openshift friendly, 
+they can all be used as a s2i builder within an openshift cluster.
 
 If you're used to work with redhat like and distribution, you would prefer start working
 from a container based on this distribution rather than ubuntu or debian like distributions.
@@ -39,14 +38,17 @@ your project and start using stable or experimental services in your application
 ## Images flavours
 
 - `latest` based on fedora rawhide [see detail](https://github.com/startxfr/docker-images/tree/master)
+- `fc31` based on fedora core 31 [see detail](https://github.com/startxfr/docker-images/tree/fc31)
 - `fc30` based on fedora core 30 [see detail](https://github.com/startxfr/docker-images/tree/fc30)
 - `fc29` based on fedora core 29 [see detail](https://github.com/startxfr/docker-images/tree/fc29)
 - `fc28` based on fedora core 28 [see detail](https://github.com/startxfr/docker-images/tree/fc28)
 - `fc27` based on fedora core 27 [see detail](https://github.com/startxfr/docker-images/tree/fc27)
 - `fc26` based on fedora core 26 [see detail](https://github.com/startxfr/docker-images/tree/fc26)
+- `centos8` based on Centos 8 [see detail](https://github.com/startxfr/docker-images/tree/centos8)
 - `centos7` based on Centos 7 [see detail](https://github.com/startxfr/docker-images/tree/centos7)
 - `centos6` based on Centos 6 [see detail](https://github.com/startxfr/docker-images/tree/centos6)
-- `alpine3` based on Alpine 3.7 [see detail](https://github.com/startxfr/docker-images/tree/alpine3)
+- `alpine3` based on Alpine 3.10 [see detail](https://github.com/startxfr/docker-images/tree/alpine3)
+- `ubi8` based on RedHat UBI 8 [see detail](https://github.com/startxfr/docker-images/tree/ubi8)
 
 
 ## For advanced users
@@ -63,7 +65,7 @@ This section is usefull if you want :
 1. **Install docker and docker-compose on you environment** 
   1. Check if you have a running docker daemon using `docker --version` If not try to run it using `sudo docker --daemon`. If docker is not installed, follow [docker installation guidelines](https://docs.docker.com/v1.8/installation/)
   2. Check if you have docker-compose installed using `docker-compose --version`. If docker-compose is not installed, follow [docker-compose installation guidelines](https://docs.docker.com/compose/install/)
-  3. Check if you have git installed using `git --version`. If git is not installed, execute `sudo dnf install -y git`
+  3. Check if you have git installed using `git --version`. If git is not installed, execute `sudo yum install -y git`
 2. **Copy repository source locally**
   1. Setup a working directory with `mkdir startx-docker-images; cd startx-docker-images;`
   2. Clone source repository with `git clone https://github.com/startxfr/docker-images.git .`
@@ -97,3 +99,32 @@ If you want to build and run locally all the images provided in this repository,
 2. Run this container 
   1. Interactively with `docker-compose up`. You should see container startup logs and escaping this command will stop the container
   2. As a daemon with `docker-compose up -d`. You can look at your container startup and behaviour with `docker-compose logs`
+
+
+### sx lib release lifecycle
+
+You can run `sx version` to know witch version of the sx-lib you are running. Older environement may not be updated
+and stay stiked to a defined stable release. 
+
+| Release  | Description
+|----------|-------------
+| 0.93.1   | Unstable release with UBI and centos8 added. Prepare first major release
+| 0.40.0   | Stable release with updated images lib packages
+| 0.31.3   | Stable release with images fully compatible with OKD 4.0 (s2i, podman)
+| 0.31.1   | Adding temporize function into sx lib
+| 0.31.0   | Adding support for fedora 31 containers
+| 0.4.16   | Adding support for OKD 3.11 (s2i, docker)
+| 0.4.10   | Adding build and deploy templates for OCP 3.9
+| 0.4.8    | Adding images streams for OCP 3.6
+| 0.4.3    | Adding post-build, pre-deploy, post-deploy hooks extentions in code environement
+| 0.4.0    | Adding build and run s2i support
+| 0.3.0    | Adding support for fedora 30 containers
+| 0.2.0    | Adding support for fedora 29 and alpine containers
+
+sx-lib release is defined with the following rules
+
+| Release  | Name  | Description
+|----------|-------|------
+| x.0.0    | Major | Major change in the sx-lib constitution
+| x.x.0    | Minor | Major change in offered docker image flavour (second numeric coresponding to the fedora release counter. ex: Fedora 31 = x.31.x sx-lib release)
+| x.x.x    | Push  | Evolution, bugfix or security fix related to the sx-lib or image construction

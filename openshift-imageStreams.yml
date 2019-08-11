@@ -1,0 +1,2296 @@
+---
+kind: ImageStreamList
+apiVersion: v1
+metadata: 
+  name: startx
+  annotations:
+    openshift.io/generated-by: STARTX
+  labels:
+    provider: startx
+items:
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: startx-os
+    annotations:
+      openshift.io/display-name: Startx Base OS (S2I)
+      openshift.io/generated-by: STARTX
+    labels:
+      provider: startx
+  spec:
+    tags:
+    - name: fc26
+      annotations:
+        openshift.io/display-name: S2I Startx Fedora 26
+        description: Minimal Fedora 26 OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,fedora
+        supports: fedora
+        version: fc26
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: DockerImage
+        name: startx/fedora:26
+    - name: fc27
+      annotations:
+        openshift.io/display-name: S2I Startx Fedora 27
+        description: Minimal Fedora 27 OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,fedora
+        supports: fedora
+        version: fc27
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: DockerImage
+        name: startx/fedora:27
+    - name: fc28
+      annotations:
+        openshift.io/display-name: S2I Startx Fedora 28
+        description: Minimal Fedora 28 OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,fedora
+        supports: fedora
+        version: fc28
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: DockerImage
+        name: startx/fedora:28
+    - name: fc29
+      annotations:
+        openshift.io/display-name: S2I Startx Fedora 29
+        description: Minimal Fedora 29 OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,fedora
+        supports: fedora
+        version: fc29
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: DockerImage
+        name: startx/fedora:29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: S2I Startx Fedora 30
+        description: Minimal Fedora 30 OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,fedora
+        supports: fedora
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: DockerImage
+        name: startx/fedora:30
+    - name: rawhide
+      annotations:
+        openshift.io/display-name: S2I Startx Fedora (rawhide)
+        description: Minimal Fedora 27 OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,fedora
+        supports: fedora
+        version: rawhide
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: DockerImage
+        name: startx/fedora:latest
+    - name: ubi8
+      annotations:
+        openshift.io/display-name: S2I Startx RedHat UBI 8
+        description: Minimal RedHat UBI 8 OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,ubi
+        supports: ubi
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: DockerImage
+        name: startx/ubi:8
+    - name: centos8
+      annotations:
+        openshift.io/display-name: S2I Startx CentOS 8
+        description: Minimal CentOS 8 OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,centos
+        supports: centos
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: DockerImage
+        name: startx/centos:8
+    - name: centos7
+      annotations:
+        openshift.io/display-name: S2I Startx CentOS 7
+        description: Minimal CentOS 7 OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,centos
+        supports: centos
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: DockerImage
+        name: startx/centos:7
+    - name: centos6
+      annotations:
+        openshift.io/display-name: S2I Startx CentOS 6
+        description: Minimal CentOS 6 OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,centos
+        supports: centos
+        version: '6'
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: DockerImage
+        name: startx/centos:6
+    - name: alpine3
+      annotations:
+        openshift.io/display-name: S2I Startx Alpine 3
+        description: Minimal Alpine 3 OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,alpine
+        supports: alpine
+        version: '3'
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: DockerImage
+        name: startx/alpine:3
+    - name: latest
+      annotations:
+        openshift.io/display-name: S2I Startx Fedora (latest)
+        description: Minimal Fedora OS builder for bash operations
+        iconClass: icon-beaker
+        tags: builder,startx,fedora
+        supports: fedora
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: dev
+      annotations:
+        openshift.io/display-name: S2I Startx Fedora (dev)
+        description: Fedora OS builder for bash operations (developpement)
+        iconClass: icon-beaker
+        tags: builder,startx,fedora
+        supports: fedora
+        version: 'dev'
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: test
+      annotations:
+        openshift.io/display-name: S2I Startx Fedora (test)
+        description: Fedora OS builder for bash operations (testing)
+        iconClass: icon-beaker
+        tags: builder,startx,fedora
+        supports: fedora
+        version: 'test'
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: ImageStreamTag
+        name: centos8
+    - name: preprod
+      annotations:
+        openshift.io/display-name: S2I Startx Fedora (preprod)
+        description: Fedora OS builder for bash operations (pre-production)
+        iconClass: icon-beaker
+        tags: builder,startx,fedora
+        supports: fedora
+        version: 'pre-prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+    - name: prod
+      annotations:
+        openshift.io/display-name: S2I Startx Fedora (prod)
+        description: Fedora OS builder for bash operations (production)
+        iconClass: icon-beaker
+        tags: builder,startx,fedora
+        supports: fedora
+        version: 'prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: startx-apache
+    annotations:
+      openshift.io/display-name: Startx WebServer (S2I)
+      openshift.io/generated-by: STARTX
+    labels:
+      provider: startx
+  spec:
+    tags:
+    - name: fc26
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (Fedora 26)
+        description: Http server builder for simple web application running under
+          Fedora 26
+        iconClass: icon-apache
+        tags: builder,startx,fedora,apache,httpd
+        supports: http
+        version: fc26
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-apache:fc26
+    - name: fc27
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (Fedora 27)
+        description: Http server builder for simple web application running under
+          Fedora 27
+        iconClass: icon-apache
+        tags: builder,startx,fedora,apache,httpd
+        supports: http
+        version: fc27
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-apache:fc27
+    - name: fc28
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (Fedora 28)
+        description: Http server builder for simple web application running under
+          Fedora 28
+        iconClass: icon-apache
+        tags: builder,startx,fedora,apache,httpd
+        supports: http
+        version: fc28
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-apache:fc28
+    - name: fc29
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (Fedora 29)
+        description: Http server builder for simple web application running under
+          Fedora 29
+        iconClass: icon-apache
+        tags: builder,startx,fedora,apache,httpd
+        supports: http
+        version: fc29
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-apache:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (Fedora 30)
+        description: Http server builder for simple web application running under
+          Fedora 30
+        iconClass: icon-apache
+        tags: builder,startx,fedora,apache,httpd
+        supports: http
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-apache:fc30
+    - name: rawhide
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (Fedora rawhide)
+        description: Http server builder for simple web application running under
+          Fedora rawhide
+        iconClass: icon-apache
+        tags: builder,startx,fedora,apache,httpd
+        supports: http
+        version: rawhide
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-apache:latest
+    - name: ubi8
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (RedHat UBI 8)
+        description: Http server builder for simple web application running under
+          RedHat UBI 8
+        iconClass: icon-apache
+        tags: builder,startx,ubi,apache,httpd
+        supports: http
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-apache:ubi8
+    - name: centos8
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (Centos 8)
+        description: Http server builder for simple web application running under
+          Centos 8
+        iconClass: icon-apache
+        tags: builder,startx,centos,apache,httpd
+        supports: http
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-apache:centos8
+    - name: centos7
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (Centos 7)
+        description: Http server builder for simple web application running under
+          Centos 7
+        iconClass: icon-apache
+        tags: builder,startx,centos,apache,httpd
+        supports: http
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-apache:centos7
+    - name: centos6
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (Centos 6)
+        description: Http server builder for simple web application running under
+          Centos 6
+        iconClass: icon-apache
+        tags: builder,startx,centos,apache,httpd
+        supports: http
+        version: '6'
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-apache:centos6
+    - name: alpine3
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (Alpine 3)
+        description: Http server builder for simple web application running under
+          Alpine 3
+        iconClass: icon-apache
+        tags: builder,startx,alpine,apache,httpd
+        supports: http
+        version: '3'
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-apache:alpine3
+    - name: latest
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (latest)
+        description: Http server builder for simple web application running under
+          Fedora latest
+        iconClass: icon-apache
+        tags: builder,startx,alpine,apache,httpd
+        supports: http
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: dev
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (dev)
+        description: Http server builder for simple web application (developpement)
+        iconClass: icon-apache
+        tags: builder,startx,alpine,apache,httpd
+        supports: http
+        version: 'dev'
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: test
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (test)
+        description: Http server builder for simple web application (testing)
+        iconClass: icon-apache
+        tags: builder,startx,alpine,apache,httpd
+        supports: http
+        version: 'test'
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: ImageStreamTag
+        name: centos8
+    - name: preprod
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (preprod)
+        description: Http server builder for simple web application (pre-production)
+        iconClass: icon-apache
+        tags: builder,startx,alpine,apache,httpd
+        supports: http
+        version: 'pre-prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+    - name: prod
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (prod)
+        description: Http server builder for simple web application (production)
+        iconClass: icon-apache
+        tags: builder,startx,alpine,apache,httpd
+        supports: http
+        version: 'prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: startx-couchbase
+    annotations:
+      openshift.io/display-name: Startx Couchbase Database (S2I)
+      openshift.io/generated-by: STARTX
+    labels:
+      base-image: startx-couchbase
+      provider: startx
+  spec:
+    tags:
+    - name: fc27
+      annotations:
+        openshift.io/display-name: S2I Couchbase Database (Fedora 27)
+        description: Couchbase server builder for NoSQL database running under Fedora
+          27
+        iconClass: icon-mysql-database
+        tags: builder,startx,fedora,couchbase,database
+        supports: db
+        version: fc27
+        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+      from:
+        kind: DockerImage
+        name: startx/sv-couchbase:fc27
+    - name: fc28
+      annotations:
+        openshift.io/display-name: S2I Couchbase Database (Fedora 28)
+        description: Couchbase server builder for NoSQL database running under Fedora
+          28
+        iconClass: icon-mysql-database
+        tags: builder,startx,fedora,couchbase,database
+        supports: db
+        version: fc28
+        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+      from:
+        kind: DockerImage
+        name: startx/sv-couchbase:fc28
+    - name: fc29
+      annotations:
+        openshift.io/display-name: S2I Couchbase Database (Fedora 29)
+        description: Couchbase server builder for NoSQL database running under Fedora
+          29
+        iconClass: icon-mysql-database
+        tags: builder,startx,fedora,couchbase,database
+        supports: db
+        version: fc29
+        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+      from:
+        kind: DockerImage
+        name: startx/sv-couchbase:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: S2I Couchbase Database (Fedora 30)
+        description: Couchbase server builder for NoSQL database running under Fedora
+          30
+        iconClass: icon-mysql-database
+        tags: builder,startx,fedora,couchbase,database
+        supports: db
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+      from:
+        kind: DockerImage
+        name: startx/sv-couchbase:fc30
+    - name: latest
+      annotations:
+        openshift.io/display-name: S2I Couchbase Database (Fedora rawhide)
+        description: Couchbase server builder for NoSQL database running under Fedora
+          rawhide
+        iconClass: icon-mysql-database
+        tags: builder,startx,fedora,couchbase,database
+        supports: db
+        version: rawhide
+        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+      from:
+        kind: DockerImage
+        name: startx/sv-couchbase:latest
+    - name: ubi8
+      annotations:
+        openshift.io/display-name: S2I Couchbase Database (RedHat UBI 8)
+        description: Couchbase server builder for NoSQL database running under RedHat UBI
+          8
+        iconClass: icon-mysql-database
+        tags: builder,startx,ubi,couchbase,database
+        supports: db
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+      from:
+        kind: DockerImage
+        name: startx/sv-couchbase:ubi8
+    - name: centos8
+      annotations:
+        openshift.io/display-name: S2I Couchbase Database (Centos 8)
+        description: Couchbase server builder for NoSQL database running under Centos
+          8
+        iconClass: icon-mysql-database
+        tags: builder,startx,centos,couchbase,database
+        supports: db
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+      from:
+        kind: DockerImage
+        name: startx/sv-couchbase:centos8
+    - name: centos7
+      annotations:
+        openshift.io/display-name: S2I Couchbase Database (Centos 7)
+        description: Couchbase server builder for NoSQL database running under Centos
+          7
+        iconClass: icon-mysql-database
+        tags: builder,startx,centos,couchbase,database
+        supports: db
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+      from:
+        kind: DockerImage
+        name: startx/sv-couchbase:centos7
+    - name: centos6
+      annotations:
+        openshift.io/display-name: S2I Couchbase Database (Centos 6)
+        description: Couchbase server builder for NoSQL database running under Centos
+          6
+        iconClass: icon-mysql-database
+        tags: builder,startx,centos,couchbase,database
+        supports: db
+        version: '6'
+        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+      from:
+        kind: DockerImage
+        name: startx/sv-couchbase:centos6
+    - name: alpine3
+      annotations:
+        openshift.io/display-name: S2I Couchbase Database (Alpine 3)
+        description: Couchbase server builder for NoSQL database running under Alpine
+          3
+        iconClass: icon-mysql-database
+        tags: builder,startx,alpine,couchbase,database
+        supports: db
+        version: '3'
+        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+      from:
+        kind: DockerImage
+        name: startx/sv-couchbase:alpine3
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: startx-mariadb
+    annotations:
+      openshift.io/display-name: Startx Mariadb Database (S2I)
+      openshift.io/generated-by: STARTX
+    labels:
+      provider: startx
+  spec:
+    tags:
+    - name: fc26
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 26)
+        description: MariaDB server builder for simple SQL database running under
+          Fedora 26
+        iconClass: icon-mariadb
+        tags: builder,startx,fedora,mariadb,sql
+        supports: mysql
+        version: fc26
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:fc26
+    - name: fc27
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 27)
+        description: MariaDB server builder for simple SQL database running under
+          Fedora 27
+        iconClass: icon-mariadb
+        tags: builder,startx,fedora,mariadb,sql
+        supports: mysql
+        version: fc27
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:fc27
+    - name: fc28
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 28)
+        description: MariaDB server builder for simple SQL database running under
+          Fedora 28
+        iconClass: icon-mariadb
+        tags: builder,startx,fedora,mariadb,sql
+        supports: mysql
+        version: fc28
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:fc28
+    - name: fc29
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 29)
+        description: MariaDB server builder for simple SQL database running under
+          Fedora 29
+        iconClass: icon-mariadb
+        tags: builder,startx,fedora,mariadb,sql
+        supports: mysql
+        version: fc29
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 30)
+        description: MariaDB server builder for simple SQL database running under
+          Fedora 30
+        iconClass: icon-mariadb
+        tags: builder,startx,fedora,mariadb,sql
+        supports: mysql
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:fc30
+    - name: rawhide
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Fedora rawhide)
+        description: MariaDB server builder for simple SQL database running under
+          Fedora rawhide
+        iconClass: icon-mariadb
+        tags: builder,startx,fedora,mariadb,sql
+        supports: mysql
+        version: rawhide
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:latest
+    - name: ubi8
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (RedHat UBI 8)
+        description: MariaDB server builder for simple SQL database running under
+          RedHat UBI 8
+        iconClass: icon-mariadb
+        tags: builder,startx,ubi,mariadb,sql
+        supports: mysql
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:ubi8
+    - name: centos8
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Centos 8)
+        description: MariaDB server builder for simple SQL database running under
+          Centos 8
+        iconClass: icon-mariadb
+        tags: builder,startx,centos,mariadb,sql
+        supports: mysql
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:centos8
+    - name: centos7
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Centos 7)
+        description: MariaDB server builder for simple SQL database running under
+          Centos 7
+        iconClass: icon-mariadb
+        tags: builder,startx,centos,mariadb,sql
+        supports: mysql
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:centos7
+    - name: centos6
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Centos 6)
+        description: MariaDB server builder for simple SQL database running under
+          Centos 6
+        iconClass: icon-mariadb
+        tags: builder,startx,centos,mariadb,sql
+        supports: mysql
+        version: '6'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:centos6
+    - name: alpine3
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Alpine 3)
+        description: MariaDB server builder for simple SQL database running under
+          Alpine 3
+        iconClass: icon-mariadb
+        tags: builder,startx,alpine,mariadb,sql
+        supports: mysql
+        version: '3'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:alpine3
+    - name: latest
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (latest)
+        description: MariaDB server builder for simple SQL database running under
+          Fedora latest
+        iconClass: icon-mariadb
+        tags: builder,startx,alpine,mariadb,sql
+        supports: mysql
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: dev
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (dev)
+        description: MariaDB server builder for simple SQL database (developpement)
+        iconClass: icon-mariadb
+        tags: builder,startx,alpine,mariadb,sql
+        supports: mysql
+        version: 'dev'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: test
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (test)
+        description: MariaDB server builder for simple SQL database (testing)
+        iconClass: icon-mariadb
+        tags: builder,startx,alpine,mariadb,sql
+        supports: mysql
+        version: 'test'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: ImageStreamTag
+        name: centos8
+    - name: preprod
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (preprod)
+        description: MariaDB server builder for simple SQL database (pre-production)
+        iconClass: icon-mariadb
+        tags: builder,startx,alpine,mariadb,sql
+        supports: mysql
+        version: 'pre-prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+    - name: prod
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (prod)
+        description: MariaDB server builder for simple SQL database (production)
+        iconClass: icon-mariadb
+        tags: builder,startx,alpine,mariadb,sql
+        supports: mysql
+        version: 'prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: startx-memcache
+    annotations:
+      openshift.io/display-name: Startx Memcache Backend (S2I)
+      openshift.io/generated-by: STARTX
+    labels:
+      provider: startx
+  spec:
+    tags:
+    - name: fc26
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (Fedora 26)
+        description: Memcache server builder for distributed cache backend running under
+          Fedora 26
+        iconClass: icon-redis
+        tags: builder,startx,fedora,memcache
+        supports: memcache
+        version: fc26
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:fc26
+    - name: fc27
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (Fedora 27)
+        description: Memcache server builder for distributed cache backend running under
+          Fedora 27
+        iconClass: icon-redis
+        tags: builder,startx,fedora,memcache
+        supports: memcache
+        version: fc27
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:fc27
+    - name: fc28
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (Fedora 28)
+        description: Memcache server builder for distributed cache backend running under
+          Fedora 28
+        iconClass: icon-redis
+        tags: builder,startx,fedora,memcache
+        supports: memcache
+        version: fc28
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:fc28
+    - name: fc29
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (Fedora 29)
+        description: Memcache server builder for distributed cache backend running under
+          Fedora 29
+        iconClass: icon-redis
+        tags: builder,startx,fedora,memcache
+        supports: memcache
+        version: fc29
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (Fedora 30)
+        description: Memcache server builder for distributed cache backend running under
+          Fedora 30
+        iconClass: icon-redis
+        tags: builder,startx,fedora,memcache
+        supports: memcache
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:fc30
+    - name: rawhide
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (Fedora rawhide)
+        description: Memcache server builder for distributed cache backend running under
+          Fedora rawhide
+        iconClass: icon-redis
+        tags: builder,startx,fedora,memcache
+        supports: memcache
+        version: rawhide
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:latest
+    - name: ubi8
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (RedHat UBI 8)
+        description: Memcache server builder for distributed cache backend running under
+          RedHat UBI 8
+        iconClass: icon-redis
+        tags: builder,startx,ubi,memcache
+        supports: memcache
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:ubi8
+    - name: centos8
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (Centos 8)
+        description: Memcache server builder for distributed cache backend running under
+          Centos 8
+        iconClass: icon-redis
+        tags: builder,startx,centos,memcache
+        supports: memcache
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:centos8
+    - name: centos7
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (Centos 7)
+        description: Memcache server builder for distributed cache backend running under
+          Centos 7
+        iconClass: icon-redis
+        tags: builder,startx,centos,memcache
+        supports: memcache
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:centos7
+    - name: centos6
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (Centos 6)
+        description: Memcache server builder for distributed cache backend running under
+          Centos 6
+        iconClass: icon-redis
+        tags: builder,startx,centos,memcache
+        supports: memcache
+        version: '6'
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:centos6
+    - name: alpine3
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (Alpine 3)
+        description: Memcache server builder for distributed cache backend running under
+          Alpine 3
+        iconClass: icon-redis
+        tags: builder,startx,alpine,memcache
+        supports: memcache
+        version: '3'
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:alpine3
+    - name: latest
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (latest)
+        description: Memcache server builder for distributed cache backend running under
+          Fedora latest
+        iconClass: icon-redis
+        tags: builder,startx,alpine,memcache
+        supports: memcache
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: dev
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (dev)
+        description: Memcache server builder for distributed cache backend (developpement)
+        iconClass: icon-redis
+        tags: builder,startx,alpine,memcache
+        supports: memcache
+        version: 'dev'
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: test
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (test)
+        description: Memcache server builder for distributed cache backend (testing)
+        iconClass: icon-redis
+        tags: builder,startx,alpine,memcache
+        supports: memcache
+        version: 'test'
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: ImageStreamTag
+        name: centos8
+    - name: preprod
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (preprod)
+        description: Memcache server builder for distributed cache backend (pre-production)
+        iconClass: icon-redis
+        tags: builder,startx,alpine,memcache
+        supports: memcache
+        version: 'pre-prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+    - name: prod
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (prod)
+        description: Memcache server builder for distributed cache backend (production)
+        iconClass: icon-redis
+        tags: builder,startx,alpine,memcache
+        supports: memcache
+        version: 'prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: startx-mongo
+    annotations:
+      openshift.io/display-name: Startx MongoDB Database (S2I)
+      openshift.io/generated-by: STARTX
+    labels:
+      provider: startx
+  spec:
+    tags:
+    - name: fc26
+      annotations:
+        openshift.io/display-name: S2I MongoDB Database (Fedora 26)
+        description: MongoDB server builder for NoSQL database running under Fedora
+          26
+        iconClass: icon-mongodb
+        tags: builder,startx,fedora,mongo,database
+        supports: db
+        version: fc26
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mongo:fc26
+    - name: fc27
+      annotations:
+        openshift.io/display-name: S2I MongoDB Database (Fedora 27)
+        description: MongoDB server builder for NoSQL database running under Fedora
+          27
+        iconClass: icon-mongodb
+        tags: builder,startx,fedora,mongo,database
+        supports: db
+        version: fc27
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mongo:fc27
+    - name: fc28
+      annotations:
+        openshift.io/display-name: S2I MongoDB Database (Fedora 28)
+        description: MongoDB server builder for NoSQL database running under Fedora
+          28
+        iconClass: icon-mongodb
+        tags: builder,startx,fedora,mongo,database
+        supports: db
+        version: fc28
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mongo:fc28
+    - name: fc29
+      annotations:
+        openshift.io/display-name: S2I MongoDB Database (Fedora 29)
+        description: MongoDB server builder for NoSQL database running under Fedora
+          29
+        iconClass: icon-mongodb
+        tags: builder,startx,fedora,mongo,database
+        supports: db
+        version: fc29
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mongo:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: S2I MongoDB Database (Fedora 30)
+        description: MongoDB server builder for NoSQL database running under Fedora
+          30
+        iconClass: icon-mongodb
+        tags: builder,startx,fedora,mongo,database
+        supports: db
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mongo:fc30
+    - name: latest
+      annotations:
+        openshift.io/display-name: S2I MongoDB Database (Fedora rawhide)
+        description: MongoDB server builder for NoSQL database running under Fedora
+          rawhide
+        iconClass: icon-mongodb
+        tags: builder,startx,fedora,mongo,database
+        supports: db
+        version: rawhide
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mongo:latest
+    - name: ubi8
+      annotations:
+        openshift.io/display-name: S2I MongoDB Database (RedHat UBI 8)
+        description: MongoDB server builder for NoSQL database running under RedHat UBI
+          8
+        iconClass: icon-mongodb
+        tags: builder,startx,ubi,mongo,database
+        supports: db
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mongo:ubi8
+    - name: centos8
+      annotations:
+        openshift.io/display-name: S2I MongoDB Database (Centos 8)
+        description: MongoDB server builder for NoSQL database running under Centos
+          8
+        iconClass: icon-mongodb
+        tags: builder,startx,centos,mongo,database
+        supports: db
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mongo:centos8
+    - name: centos7
+      annotations:
+        openshift.io/display-name: S2I MongoDB Database (Centos 7)
+        description: MongoDB server builder for NoSQL database running under Centos
+          7
+        iconClass: icon-mongodb
+        tags: builder,startx,centos,mongo,database
+        supports: db
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mongo:centos7
+    - name: centos6
+      annotations:
+        openshift.io/display-name: S2I MongoDB Database (Centos 6)
+        description: MongoDB server builder for NoSQL database running under Centos
+          6
+        iconClass: icon-mongodb
+        tags: builder,startx,centos,mongo,database
+        supports: db
+        version: '6'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mongo:centos6
+    - name: alpine3
+      annotations:
+        openshift.io/display-name: S2I MongoDB Database (Alpine 3)
+        description: MongoDB server builder for NoSQL database running under Alpine
+          3
+        iconClass: icon-mongodb
+        tags: builder,startx,alpine,mongo,database
+        supports: db
+        version: '3'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mongo:alpine3
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: startx-nodejs
+    annotations:
+      openshift.io/display-name: Startx Micro-WebServer (S2I)
+      openshift.io/generated-by: STARTX
+    labels:
+      provider: startx
+  spec:
+    tags:
+    - name: fc26
+      annotations:
+        openshift.io/display-name: S2I Startx Micro-WebServer (Fedora 26)
+        description: Lightweight Http server builder for micro-web application running under
+          Fedora 26
+        iconClass: icon-nodejs
+        tags: builder,startx,fedora,nodejs,httpd
+        supports: http
+        version: fc26
+        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+      from:
+        kind: DockerImage
+        name: startx/sv-nodejs:fc26
+    - name: fc27
+      annotations:
+        openshift.io/display-name: S2I Startx Micro-WebServer (Fedora 27)
+        description: Lightweight Http server builder for micro-web application running under
+          Fedora 27
+        iconClass: icon-nodejs
+        tags: builder,startx,fedora,nodejs,httpd
+        supports: http
+        version: fc27
+        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+      from:
+        kind: DockerImage
+        name: startx/sv-nodejs:fc27
+    - name: fc28
+      annotations:
+        openshift.io/display-name: S2I Startx Micro-WebServer (Fedora 28)
+        description: Lightweight Http server builder for micro-web application running under
+          Fedora 28
+        iconClass: icon-nodejs
+        tags: builder,startx,fedora,nodejs,httpd
+        supports: http
+        version: fc28
+        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+      from:
+        kind: DockerImage
+        name: startx/sv-nodejs:fc28
+    - name: fc29
+      annotations:
+        openshift.io/display-name: S2I Startx Micro-WebServer (Fedora 29)
+        description: Lightweight Http server builder for micro-web application running under
+          Fedora 29
+        iconClass: icon-nodejs
+        tags: builder,startx,fedora,nodejs,httpd
+        supports: http
+        version: fc29
+        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+      from:
+        kind: DockerImage
+        name: startx/sv-nodejs:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: S2I Startx Micro-WebServer (Fedora 30)
+        description: Lightweight Http server builder for micro-web application running under
+          Fedora 30
+        iconClass: icon-nodejs
+        tags: builder,startx,fedora,nodejs,httpd
+        supports: http
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+      from:
+        kind: DockerImage
+        name: startx/sv-nodejs:fc30
+    - name: rawhide
+      annotations:
+        openshift.io/display-name: S2I Startx Micro-WebServer (Fedora rawhide)
+        description: Lightweight Http server builder for micro-web application running under
+          Fedora rawhide
+        iconClass: icon-nodejs
+        tags: builder,startx,fedora,nodejs,httpd
+        supports: http
+        version: rawhide
+        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+      from:
+        kind: DockerImage
+        name: startx/sv-nodejs:latest
+    - name: ubi8
+      annotations:
+        openshift.io/display-name: S2I Startx Micro-WebServer (RedHat UBI 8)
+        description: Lightweight Http server builder for micro-web application running under
+          RedHat UBI 8
+        iconClass: icon-nodejs
+        tags: builder,startx,ubi,nodejs,httpd
+        supports: http
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+      from:
+        kind: DockerImage
+        name: startx/sv-nodejs:ubi8
+    - name: centos8
+      annotations:
+        openshift.io/display-name: S2I Startx Micro-WebServer (Centos 8)
+        description: Lightweight Http server builder for micro-web application running under
+          Centos 8
+        iconClass: icon-nodejs
+        tags: builder,startx,centos,nodejs,httpd
+        supports: http
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+      from:
+        kind: DockerImage
+        name: startx/sv-nodejs:centos8
+    - name: centos7
+      annotations:
+        openshift.io/display-name: S2I Startx Micro-WebServer (Centos 7)
+        description: Lightweight Http server builder for micro-web application running under
+          Centos 7
+        iconClass: icon-nodejs
+        tags: builder,startx,centos,nodejs,httpd
+        supports: http
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+      from:
+        kind: DockerImage
+        name: startx/sv-nodejs:centos7
+    - name: centos6
+      annotations:
+        openshift.io/display-name: S2I Startx Micro-WebServer (Centos 6)
+        description: Lightweight Http server builder for micro-web application running under
+          Centos 6
+        iconClass: icon-nodejs
+        tags: builder,startx,centos,nodejs,httpd
+        supports: http
+        version: '6'
+        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+      from:
+        kind: DockerImage
+        name: startx/sv-nodejs:centos6
+    - name: alpine3
+      annotations:
+        openshift.io/display-name: S2I Startx Micro-WebServer (Alpine 3)
+        description: Lightweight Http server builder for micro-web application running under
+          Alpine 3
+        iconClass: icon-nodejs
+        tags: builder,startx,alpine,nodejs,httpd
+        supports: http
+        version: '3'
+        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+      from:
+        kind: DockerImage
+        name: startx/sv-nodejs:alpine3
+    - name: latest
+      annotations:
+        openshift.io/display-name: S2I Startx Micro-WebServer (latest)
+        description: Lightweight Http server builder for micro-web application running under
+          Fedora latest
+        iconClass: icon-nodejs
+        tags: builder,startx,alpine,nodejs,httpd
+        supports: http
+        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: dev
+      annotations:
+        openshift.io/display-name: S2I Startx Micro-WebServer (dev)
+        description: Lightweight Http server builder for micro-web application (developpement)
+        iconClass: icon-nodejs
+        tags: builder,startx,alpine,nodejs,httpd
+        supports: http
+        version: 'dev'
+        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: test
+      annotations:
+        openshift.io/display-name: S2I Startx Micro-WebServer (test)
+        description: Lightweight Http server builder for micro-web application (testing)
+        iconClass: icon-nodejs
+        tags: builder,startx,alpine,nodejs,httpd
+        supports: http
+        version: 'test'
+        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+      from:
+        kind: ImageStreamTag
+        name: centos8
+    - name: preprod
+      annotations:
+        openshift.io/display-name: S2I Startx Micro-WebServer (preprod)
+        description: Lightweight Http server builder for micro-web application (pre-production)
+        iconClass: icon-nodejs
+        tags: builder,startx,alpine,nodejs,httpd
+        supports: http
+        version: 'pre-prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+    - name: prod
+      annotations:
+        openshift.io/display-name: S2I Startx Micro-WebServer (prod)
+        description: Lightweight Http server builder for micro-web application (production)
+        iconClass: icon-nodejs
+        tags: builder,startx,alpine,nodejs,httpd
+        supports: http
+        version: 'prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: startx-ooconv
+    annotations:
+      openshift.io/display-name: Startx LibreOffice converter (S2I)
+      openshift.io/generated-by: STARTX
+    labels:
+      provider: startx
+  spec:
+    tags:
+    - name: fc26
+      annotations:
+        openshift.io/display-name: S2I LibreOffice converter (Fedora 26)
+        description: LibreOffice converter builder for document convertion running
+          under Fedora 26
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,ooconv,libreoffice
+        supports: http
+        version: fc26
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:fc26
+    - name: fc27
+      annotations:
+        openshift.io/display-name: S2I LibreOffice converter (Fedora 27)
+        description: LibreOffice converter builder for document convertion running
+          under Fedora 27
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,ooconv,libreoffice
+        supports: http
+        version: fc27
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:fc27
+    - name: fc28
+      annotations:
+        openshift.io/display-name: S2I LibreOffice converter (Fedora 28)
+        description: LibreOffice converter builder for document convertion running
+          under Fedora 28
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,ooconv,libreoffice
+        supports: http
+        version: fc28
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:fc28
+    - name: fc29
+      annotations:
+        openshift.io/display-name: S2I LibreOffice converter (Fedora 29)
+        description: LibreOffice converter builder for document convertion running
+          under Fedora 29
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,ooconv,libreoffice
+        supports: http
+        version: fc29
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: S2I LibreOffice converter (Fedora 30)
+        description: LibreOffice converter builder for document convertion running
+          under Fedora 30
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,ooconv,libreoffice
+        supports: http
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:fc30
+    - name: latest
+      annotations:
+        openshift.io/display-name: S2I LibreOffice converter (Fedora rawhide)
+        description: LibreOffice converter builder for document convertion running
+          under Fedora rawhide
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,ooconv,libreoffice
+        supports: http
+        version: rawhide
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:latest
+    - name: ubi8
+      annotations:
+        openshift.io/display-name: S2I LibreOffice converter (RedHat UBI 8)
+        description: LibreOffice converter builder for document convertion running
+          under RedHat UBI 8
+        iconClass: icon-aerogear
+        tags: builder,startx,ubi,ooconv,libreoffice
+        supports: http
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:ubi8
+    - name: centos8
+      annotations:
+        openshift.io/display-name: S2I LibreOffice converter (Centos 8)
+        description: LibreOffice converter builder for document convertion running
+          under Centos 8
+        iconClass: icon-aerogear
+        tags: builder,startx,centos,ooconv,libreoffice
+        supports: http
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:centos8
+    - name: centos7
+      annotations:
+        openshift.io/display-name: S2I LibreOffice converter (Centos 7)
+        description: LibreOffice converter builder for document convertion running
+          under Centos 7
+        iconClass: icon-aerogear
+        tags: builder,startx,centos,ooconv,libreoffice
+        supports: http
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:centos7
+    - name: centos6
+      annotations:
+        openshift.io/display-name: S2I LibreOffice converter (Centos 6)
+        description: LibreOffice converter builder for document convertion running
+          under Centos 6
+        iconClass: icon-aerogear
+        tags: builder,startx,centos,ooconv,libreoffice
+        supports: http
+        version: '6'
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:centos6
+    - name: alpine3
+      annotations:
+        openshift.io/display-name: S2I LibreOffice converter (Alpine 3)
+        description: LibreOffice converter builder for document convertion running
+          under Alpine 3
+        iconClass: icon-aerogear
+        tags: builder,startx,alpine,ooconv,libreoffice
+        supports: http
+        version: '3'
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:alpine3
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: startx-php
+    annotations:
+      openshift.io/display-name: Startx PHP WebServer (S2I)
+      openshift.io/generated-by: STARTX
+    labels:
+      provider: startx
+  spec:
+    tags:
+    - name: fc26
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (Fedora 26)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
+          Fedora 26
+        iconClass: icon-php
+        tags: builder,startx,fedora,php,httpd
+        supports: http
+        version: fc26
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:fc26
+    - name: fc27
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (Fedora 27)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
+          Fedora 27
+        iconClass: icon-php
+        tags: builder,startx,fedora,php,httpd
+        supports: http
+        version: fc27
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:fc27
+    - name: fc28
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (Fedora 28)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
+          Fedora 28
+        iconClass: icon-php
+        tags: builder,startx,fedora,php,httpd
+        supports: http
+        version: fc28
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:fc28
+    - name: fc29
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (Fedora 29)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
+          Fedora 29
+        iconClass: icon-php
+        tags: builder,startx,fedora,php,httpd
+        supports: http
+        version: fc29
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (Fedora 30)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
+          Fedora 30
+        iconClass: icon-php
+        tags: builder,startx,fedora,php,httpd
+        supports: http
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:fc30
+    - name: rawhide
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (Fedora rawhide)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
+          Fedora rawhide
+        iconClass: icon-php
+        tags: builder,startx,fedora,php,httpd
+        supports: http
+        version: rawhide
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:latest
+    - name: ubi8
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (RedHat UBI 8)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
+          RedHat UBI 8
+        iconClass: icon-php
+        tags: builder,startx,ubi,php,httpd
+        supports: http
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:ubi8
+    - name: centos8
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (Centos 8)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
+          Centos 8
+        iconClass: icon-php
+        tags: builder,startx,centos,php,httpd
+        supports: http
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:centos8
+    - name: centos7
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (Centos 7)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
+          Centos 7
+        iconClass: icon-php
+        tags: builder,startx,centos,php,httpd
+        supports: http
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:centos7
+    - name: centos6
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (Centos 6)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
+          Centos 6
+        iconClass: icon-php
+        tags: builder,startx,centos,php,httpd
+        supports: http
+        version: '6'
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:centos6
+    - name: alpine3
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (Alpine 3)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
+          Alpine 3
+        iconClass: icon-php
+        tags: builder,startx,alpine,php,httpd
+        supports: http
+        version: '3'
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:alpine3
+    - name: latest
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (latest)
+        description: PHP with fpm + apache engine container builder for dynamic web application running under
+          Fedora latest
+        iconClass: icon-php
+        tags: builder,startx,alpine,php,httpd
+        supports: http
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: dev
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (dev)
+        description: PHP with fpm + apache engine container builder for dynamic web application (developpement)
+        iconClass: icon-php
+        tags: builder,startx,alpine,php,httpd
+        supports: http
+        version: 'dev'
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: test
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (test)
+        description: PHP with fpm + apache engine container builder for dynamic web application (testing)
+        iconClass: icon-php
+        tags: builder,startx,alpine,php,httpd
+        supports: http
+        version: 'test'
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: ImageStreamTag
+        name: centos8
+    - name: preprod
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (preprod)
+        description: PHP with fpm + apache engine container builder for dynamic web application (pre-production)
+        iconClass: icon-php
+        tags: builder,startx,alpine,php,httpd
+        supports: http
+        version: 'pre-prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+    - name: prod
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (prod)
+        description: PHP with fpm + apache engine container builder for dynamic web application (production)
+        iconClass: icon-php
+        tags: builder,startx,alpine,php,httpd
+        supports: http
+        version: 'prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: startx-postgres
+    annotations:
+      openshift.io/display-name: Startx PostgreSQL Database (S2I)
+      openshift.io/generated-by: STARTX
+    labels:
+      provider: startx
+  spec:
+    tags:
+    - name: fc26
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 26)
+        description: PostgreSQL server builder for advanced SQL database running under
+          Fedora 26
+        iconClass: icon-postgresql
+        tags: builder,startx,fedora,postgres,sql
+        supports: postgresql
+        version: fc26
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: DockerImage
+        name: startx/sv-postgres:fc26
+    - name: fc27
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 27)
+        description: PostgreSQL server builder for advanced SQL database running under
+          Fedora 27
+        iconClass: icon-postgresql
+        tags: builder,startx,fedora,postgres,sql
+        supports: postgresql
+        version: fc27
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: DockerImage
+        name: startx/sv-postgres:fc27
+    - name: fc28
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 28)
+        description: PostgreSQL server builder for advanced SQL database running under
+          Fedora 28
+        iconClass: icon-postgresql
+        tags: builder,startx,fedora,postgres,sql
+        supports: postgresql
+        version: fc28
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: DockerImage
+        name: startx/sv-postgres:fc28
+    - name: fc29
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 29)
+        description: PostgreSQL server builder for advanced SQL database running under
+          Fedora 29
+        iconClass: icon-postgresql
+        tags: builder,startx,fedora,postgres,sql
+        supports: postgresql
+        version: fc29
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: DockerImage
+        name: startx/sv-postgres:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 30)
+        description: PostgreSQL server builder for advanced SQL database running under
+          Fedora 30
+        iconClass: icon-postgresql
+        tags: builder,startx,fedora,postgres,sql
+        supports: postgresql
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: DockerImage
+        name: startx/sv-postgres:fc30
+    - name: latest
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora latest)
+        description: PostgreSQL server builder for advanced SQL database running under
+          Fedora latest
+        iconClass: icon-postgresql
+        tags: builder,startx,fedora,postgres,sql
+        supports: postgresql
+        version: rawhide
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: DockerImage
+        name: startx/sv-postgres:latest
+    - name: ubi8
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (RedHat UBI 8)
+        description: PostgreSQL server builder for advanced SQL database running under
+          RedHat UBI 8
+        iconClass: icon-postgresql
+        tags: builder,startx,ubi,postgres,sql
+        supports: postgresql
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: DockerImage
+        name: startx/sv-postgres:ubi8
+    - name: centos8
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Centos 8)
+        description: PostgreSQL server builder for advanced SQL database running under
+          Centos 8
+        iconClass: icon-postgresql
+        tags: builder,startx,centos,postgres,sql
+        supports: postgresql
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: DockerImage
+        name: startx/sv-postgres:centos8
+    - name: centos7
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Centos 7)
+        description: PostgreSQL server builder for advanced SQL database running under
+          Centos 7
+        iconClass: icon-postgresql
+        tags: builder,startx,centos,postgres,sql
+        supports: postgresql
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: DockerImage
+        name: startx/sv-postgres:centos7
+    - name: centos6
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Centos 6)
+        description: PostgreSQL server builder for advanced SQL database running under
+          Centos 6
+        iconClass: icon-postgresql
+        tags: builder,startx,centos,postgres,sql
+        supports: postgresql
+        version: '6'
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: DockerImage
+        name: startx/sv-postgres:centos6
+    - name: alpine3
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Alpine 3)
+        description: PostgreSQL server builder for advanced SQL database running under
+          Alpine 3
+        iconClass: icon-postgresql
+        tags: builder,startx,alpine,postgres,sql
+        supports: postgresql
+        version: '3'
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: DockerImage
+        name: startx/sv-postgres:alpine3
+    - name: dev
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (dev)
+        description: Http server builder for advanced SQL database (developpement)
+        iconClass: icon-postgresql
+        tags: builder,startx,alpine,postgres,sql
+        supports: postgresql
+        version: 'dev'
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: ImageStreamTag
+        name: rawhide
+    - name: test
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (test)
+        description: Http server builder for advanced SQL database (testing)
+        iconClass: icon-postgresql
+        tags: builder,startx,alpine,postgres,sql
+        supports: postgresql
+        version: 'test'
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: ImageStreamTag
+        name: centos8
+    - name: preprod
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (preprod)
+        description: Http server builder for advanced SQL database (pre-production)
+        iconClass: icon-postgresql
+        tags: builder,startx,alpine,postgres,sql
+        supports: postgresql
+        version: 'pre-prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+    - name: prod
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (prod)
+        description: Http server builder for advanced SQL database (production)
+        iconClass: icon-postgresql
+        tags: builder,startx,alpine,postgres,sql
+        supports: postgresql
+        version: 'prod'
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: ImageStreamTag
+        name: alpine3
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: startx-chrome
+    annotations:
+      openshift.io/display-name: Startx Chrome Browser (S2I)
+      openshift.io/generated-by: STARTX
+    labels:
+      provider: startx
+  spec:
+    tags:
+    - name: fc27
+      annotations:
+        openshift.io/display-name: VDI Chrome Browser (Fedora 27)
+        description: Container-based desktop Chrome browser for remote internet browsing  under
+          Fedora 27
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,chrome,vnc
+        supports: vnc
+        version: fc27
+        sampleRepo: https://github.com/startxfr/docker-images-example-chrome.git
+      from:
+        kind: DockerImage
+        name: startx/vdi-chrome:fc27
+    - name: fc28
+      annotations:
+        openshift.io/display-name: VDI Chrome Browser (Fedora 28)
+        description: Container-based desktop Chrome browser for remote internet browsing  under
+          Fedora 28
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,chrome,vnc
+        supports: vnc
+        version: fc28
+        sampleRepo: https://github.com/startxfr/docker-images-example-chrome.git
+      from:
+        kind: DockerImage
+        name: startx/vdi-chrome:fc28
+    - name: fc29
+      annotations:
+        openshift.io/display-name: VDI Chrome Browser (Fedora 29)
+        description: Container-based desktop Chrome browser for remote internet browsing  under
+          Fedora 29
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,chrome,vnc
+        supports: vnc
+        version: fc29
+        sampleRepo: https://github.com/startxfr/docker-images-example-chrome.git
+      from:
+        kind: DockerImage
+        name: startx/vdi-chrome:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: VDI Chrome Browser (Fedora 30)
+        description: Container-based desktop Chrome browser for remote internet browsing  under
+          Fedora 30
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,chrome,vnc
+        supports: vnc
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-chrome.git
+      from:
+        kind: DockerImage
+        name: startx/vdi-chrome:fc30
+    - name: latest
+      annotations:
+        openshift.io/display-name: VDI Chrome Browser (Fedora rawhide)
+        description: Container-based desktop Chrome browser for remote internet browsing  under
+          Fedora rawhide
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,chrome,vnc
+        supports: vnc
+        version: rawhide
+        sampleRepo: https://github.com/startxfr/docker-images-example-chrome.git
+      from:
+        kind: DockerImage
+        name: startx/vdi-chrome:latest
+    - name: centos8
+      annotations:
+        openshift.io/display-name: VDI Chrome Browser (Centos 8)
+        description: Container-based desktop Chrome browser for remote internet browsing  under
+          Centos 8
+        iconClass: icon-aerogear
+        tags: builder,startx,centos,chrome,vnc
+        supports: vnc
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-chrome.git
+      from:
+        kind: DockerImage
+        name: startx/vdi-chrome:centos8
+    - name: centos7
+      annotations:
+        openshift.io/display-name: VDI Chrome Browser (Centos 7)
+        description: Container-based desktop Chrome browser for remote internet browsing  under
+          Centos 7
+        iconClass: icon-aerogear
+        tags: builder,startx,centos,chrome,vnc
+        supports: vnc
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-chrome.git
+      from:
+        kind: DockerImage
+        name: startx/vdi-chrome:centos7
+    - name: alpine3
+      annotations:
+        openshift.io/display-name: VDI Chrome Browser (Alpine 3)
+        description: Container-based desktop Chrome browser for remote internet browsing  under
+          Alpine 3
+        iconClass: icon-aerogear
+        tags: builder,startx,alpine,chrome,vnc
+        supports: vnc
+        version: '3'
+        sampleRepo: https://github.com/startxfr/docker-images-example-chrome.git
+      from:
+        kind: DockerImage
+        name: startx/vdi-chrome:alpine3
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: startx-firefox
+    annotations:
+      openshift.io/display-name: Startx Firefox Browser (S2I)
+      openshift.io/generated-by: STARTX
+    labels:
+      provider: startx
+  spec:
+    tags:
+    - name: fc27
+      annotations:
+        openshift.io/display-name: VDI Firefox Browser (Fedora 27)
+        description: Container-based desktop Firefox browser for remote internet browsing  under
+          Fedora 27
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,firefox,vnc
+        supports: vnc
+        version: fc27
+        sampleRepo: https://github.com/startxfr/docker-images-example-firefox.git
+      from:
+        kind: DockerImage
+        name: startx/vdi-firefox:fc27
+    - name: fc28
+      annotations:
+        openshift.io/display-name: VDI Firefox Browser (Fedora 28)
+        description: Container-based desktop Firefox browser for remote internet browsing  under
+          Fedora 28
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,firefox,vnc
+        supports: vnc
+        version: fc28
+        sampleRepo: https://github.com/startxfr/docker-images-example-firefox.git
+      from:
+        kind: DockerImage
+        name: startx/vdi-firefox:fc28
+    - name: fc29
+      annotations:
+        openshift.io/display-name: VDI Firefox Browser (Fedora 29)
+        description: Container-based desktop Firefox browser for remote internet browsing  under
+          Fedora 29
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,firefox,vnc
+        supports: vnc
+        version: fc29
+        sampleRepo: https://github.com/startxfr/docker-images-example-firefox.git
+      from:
+        kind: DockerImage
+        name: startx/vdi-firefox:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: VDI Firefox Browser (Fedora 30)
+        description: Container-based desktop Firefox browser for remote internet browsing  under
+          Fedora 30
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,firefox,vnc
+        supports: vnc
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-firefox.git
+      from:
+        kind: DockerImage
+        name: startx/vdi-firefox:fc30
+    - name: latest
+      annotations:
+        openshift.io/display-name: VDI Firefox Browser (Fedora rawhide)
+        description: Container-based desktop Firefox browser for remote internet browsing  under
+          Fedora rawhide
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,firefox,vnc
+        supports: vnc
+        version: rawhide
+        sampleRepo: https://github.com/startxfr/docker-images-example-firefox.git
+      from:
+        kind: DockerImage
+        name: startx/vdi-firefox:latest
+    - name: centos8
+      annotations:
+        openshift.io/display-name: VDI Firefox Browser (Centos 8)
+        description: Container-based desktop Firefox browser for remote internet browsing  under
+          Centos 8
+        iconClass: icon-aerogear
+        tags: builder,startx,centos,firefox,vnc
+        supports: vnc
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-firefox.git
+      from:
+        kind: DockerImage
+        name: startx/vdi-firefox:centos8
+    - name: centos7
+      annotations:
+        openshift.io/display-name: VDI Firefox Browser (Centos 7)
+        description: Container-based desktop Firefox browser for remote internet browsing  under
+          Centos 7
+        iconClass: icon-aerogear
+        tags: builder,startx,centos,firefox,vnc
+        supports: vnc
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-firefox.git
+      from:
+        kind: DockerImage
+        name: startx/vdi-firefox:centos7
+    - name: alpine3
+      annotations:
+        openshift.io/display-name: VDI Firefox Browser (Alpine 3)
+        description: Container-based desktop Firefox browser for remote internet browsing  under
+          Alpine 3
+        iconClass: icon-aerogear
+        tags: builder,startx,alpine,firefox,vnc
+        supports: vnc
+        version: '3'
+        sampleRepo: https://github.com/startxfr/docker-images-example-firefox.git
+      from:
+        kind: DockerImage
+        name: startx/vdi-firefox:alpine3
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: startx-app-phpmyadmin
+    annotations:
+      openshift.io/display-name: Startx PhpMyAdmin web-console
+      openshift.io/generated-by: STARTX
+    labels:
+      base-image: startx-app-phpmyadmin
+      provider: startx
+  spec:
+    tags:
+    - name: fc26
+      annotations:
+        openshift.io/display-name: PhpMyAdmin web-console (Fedora 26)
+        description: PhpMyAdmin web-console for mariadb running under Fedora 26
+        iconClass: icon-php
+        tags: startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql
+        supports: http
+        version: fc26
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/app-phpmyadmin:fc26
+    - name: fc27
+      annotations:
+        openshift.io/display-name: PhpMyAdmin web-console (Fedora 27)
+        description: PhpMyAdmin web-console for mariadb running under Fedora 27
+        iconClass: icon-php
+        tags: startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql
+        supports: http
+        version: fc27
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/app-phpmyadmin:fc27
+    - name: fc28
+      annotations:
+        openshift.io/display-name: PhpMyAdmin web-console (Fedora 28)
+        description: PhpMyAdmin web-console for mariadb running under Fedora 28
+        iconClass: icon-php
+        tags: startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql
+        supports: http
+        version: fc28
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/app-phpmyadmin:fc28
+    - name: fc29
+      annotations:
+        openshift.io/display-name: PhpMyAdmin web-console (Fedora 29)
+        description: PhpMyAdmin web-console for mariadb running under Fedora 29
+        iconClass: icon-php
+        tags: startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql
+        supports: http
+        version: fc29
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/app-phpmyadmin:fc29
+    - name: fc30
+      annotations:
+        openshift.io/display-name: PhpMyAdmin web-console (Fedora 30)
+        description: PhpMyAdmin web-console for mariadb running under Fedora 30
+        iconClass: icon-php
+        tags: startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql
+        supports: http
+        version: fc30
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/app-phpmyadmin:fc30
+    - name: latest
+      annotations:
+        openshift.io/display-name: PhpMyAdmin web-console (Fedora rawhide)
+        description: PhpMyAdmin web-console for mariadb running under Fedora rawhide
+        iconClass: icon-php
+        tags: startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql
+        supports: http
+        version: rawhide
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/app-phpmyadmin:latest
+    - name: centos8
+      annotations:
+        openshift.io/display-name: PhpMyAdmin web-console (Centos 8)
+        description: PhpMyAdmin web-console for mariadb running under Centos 8
+        iconClass: icon-php
+        tags: startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql
+        supports: http
+        version: '8'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/app-phpmyadmin:centos8
+    - name: centos7
+      annotations:
+        openshift.io/display-name: PhpMyAdmin web-console (Centos 7)
+        description: PhpMyAdmin web-console for mariadb running under Centos 7
+        iconClass: icon-php
+        tags: startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql
+        supports: http
+        version: '7'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/app-phpmyadmin:centos7
+    - name: centos6
+      annotations:
+        openshift.io/display-name: PhpMyAdmin web-console (Centos 6)
+        description: PhpMyAdmin web-console for mariadb running under Centos 6
+        iconClass: icon-php
+        tags: startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql
+        supports: http
+        version: '6'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/app-phpmyadmin:centos6
+    - name: alpine3
+      annotations:
+        openshift.io/display-name: PhpMyAdmin web-console (Alpine 3)
+        description: PhpMyAdmin web-console for mariadb running under Alpine 3
+        iconClass: icon-php
+        tags: startx,alpine,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql
+        supports: http
+        version: '3'
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/app-phpmyadmin:alpine3

@@ -9,7 +9,7 @@ ENV SX_VERSION="fc27" \
     SX_NAME="Startx Chrome service image (fedora 27)" \
     SX_SUMMARY="Startx chrome container-based desktop application based on fedora 27" \
     SX_CHROME_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
-    LOG_PATH=/home/chrome \
+    LOG_PATH=/var/log/chrome \
     APP_PATH=/home/chrome \
     DATA_PATH=/home/chrome \
     SX_CHROME_SCREEN_RES_X=1024x768x24 \
@@ -37,27 +37,28 @@ LABEL name="$SX_ID" \
 USER root
 COPY supervisord.conf $SX_CHROME_SUPERVISOR_CONF/
 COPY sx /tmp/
-RUN wget http://rpmfind.net/linux/fedora-secondary/releases/28/Everything/i386/os/Packages/p/python2-meld3-1.0.2-6.fc28.noarch.rpm && \
-    rpm -ivh python2-meld3-1.0.2-6.fc28.noarch.rpm --nodeps && \
-    dnf --nogpgcheck -y install supervisor xorg-x11-server-Xvfb x11vnc fedora-workstation-repositories dnf-plugins-core pulseaudio python2-meld3  && \
-    dnf config-manager --set-enabled google-chrome && \
-    dnf --nogpgcheck -y install google-chrome-stable && \
-    dnf clean all && \
+RUN wget https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/p/python-meld3-1.0.2-10.fc30.noarch.rpm && \
+    rpm -ivh python-meld3-1.0.2-10.fc30.noarch.rpm --nodeps && \
+    yum --nogpgcheck -y install supervisor xorg-x11-server-Xvfb x11vnc fedora-workstation-repositories pulseaudio  python2-setuptools && \
+    yum config-manager --set-enabled google-chrome && \
+    yum --nogpgcheck -y install google-chrome-stable && \
+    yum clean all && \
     easy_install pip && \
     pip install --upgrade pip && \
     pip install --upgrade --force-reinstall setuptools pip && \
     useradd -s /bin/bash -m -g 0 -u 1001 -G pulse-access $SX_USER && \
-    mkdir -p /s2i $SX_LIBDIR && \
+    mkdir -p /s2i $SX_LIBDIR /.local && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     mkdir -p $DATA_PATH $APP_PATH $LOG_PATH $DATA_PATH/.config && \
-	chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp && \
-    chown -R $SX_USER:0 /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH $DATA_PATH $LOG_PATH $DATA_PATH/.config && \
-    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp && \
+	chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp /.local && \
+    chown -R $SX_USER:0 /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH $DATA_PATH $LOG_PATH $DATA_PATH/.config /.local && \
+    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp /.local && \
     chmod ug+r $SX_CHROME_SUPERVISOR_CONF && \
-    chmod -R ugo+x /bin/sx*
+    chmod -R ugo+x /bin/sx* && \
+    chmod -R ugo+rwx /.local
 
 USER $SX_USER
 

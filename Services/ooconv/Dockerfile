@@ -10,6 +10,7 @@ ENV SX_VERSION="fc27" \
     SX_SUMMARY="Startx unoconv service based on fedora 27" \
     SX_USER=ooconv \
     APP_PATH=/home/ooconv \
+    LOG_PATH=/var/log/ooconv \
     DATA_PATH=/data
 
 LABEL name="$SX_ID" \
@@ -31,8 +32,8 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf --nogpgcheck -y install unoconv libreoffice-writer libreoffice-calc pdfmod ghostscript && \
-    dnf clean all && \
+RUN yum --nogpgcheck -y install unoconv libreoffice-writer libreoffice-calc pdfmod ghostscript && \
+    yum clean all && \
     useradd -s /bin/bash -m -g 0 -u 1001 ooconv && \
     mkdir -p $DATA_PATH /.cache && \
     mv /tmp/s2i/bin/* /s2i/ && \
@@ -52,7 +53,6 @@ WORKDIR $DATA_PATH
 
 EXPOSE 2002
 
-VOLUME $APP_PATH
 VOLUME $DATA_PATH
 
 CMD [ "/bin/sx-ooconv" , "run" ]

@@ -7,7 +7,9 @@ ENV SX_VERSION="fc27" \
     SX_SERVICE="php" \
     SX_ID="startx/sv-php" \
     SX_NAME="Startx Apache-PHP service image (fedora 27)" \
-    SX_SUMMARY="Startx apache-php service based on fedora 27"
+    SX_SUMMARY="Startx apache-php service based on fedora 27" \
+    SX_PHPSESS_PATH="/var/lib/php/session" \
+    SX_PHP_TMPPATH="/tmp"
 
 LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
@@ -21,7 +23,7 @@ LABEL name="$SX_ID" \
       io.openshift.non-scalable="false" \
       io.openshift.min-memory="300Mi" \
       io.openshift.min-cpu="2000m" \
-      io.openshift.expose-services="8080:http" \
+      io.openshift.expose-services="$APP_PORT:http" \
       io.openshift.s2i.destination="/tmp" \
       io.openshift.s2i.scripts-url="image:///s2i" \
       fr.startx.component="$SX_ID:$SX_VERSION"
@@ -29,24 +31,24 @@ LABEL name="$SX_ID" \
 USER root
 COPY httpd.conf $HTTPDCONF
 COPY php.ini /etc/php.d/sx.ini
+COPY php-fpm.conf /etc/php-fpm.d/www.conf
 COPY sx /tmp/
-RUN dnf --nogpgcheck -y install php php-cli php-pear \
+RUN yum --nogpgcheck -y install php php-cli php-pear \
         php-gd php-mcrypt php-mysqlnd php-soap \
         php-pdo php-process php-common php-mbstring \
         php-bcmath php-php-gettext php-tcpdf \
         php-tcpdf-dejavu-sans-fonts php-tidy && \
-    dnf clean all && \
+    yum clean all && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     chmod ug+r $HTTPDCONF && \
-    mkdir -p $APP_PATH $LOG_PATH /run/php-fpm && \
-    sed -i "s/;clear_env = no/clear_env = no/" /etc/php-fpm.d/www.conf && \
-    chgrp -R 0 $APP_PATH $LOG_PATH /run/httpd /bin/sx* /s2i $SX_LIBDIR /tmp /run/php-fpm && \
-    chmod -R ug+rw $APP_PATH $LOG_PATH /run/php-fpm && \
-    chown -R 1001:0 /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH $LOG_PATH /run/php-fpm && \
-    chmod -R g=u $APP_PATH $LOG_PATH /run/httpd /bin/sx* /s2i $SX_LIBDIR /tmp /run/php-fpm && \
+    mkdir -p $APP_PATH $LOG_PATH /run/php-fpm /var/lib/php $SX_PHPSESS_PATH && \
+    chgrp -R 0 $APP_PATH $LOG_PATH $RUN_DIR /bin/sx* /s2i $SX_LIBDIR /tmp /run/php-fpm /var/lib/php $SX_PHPSESS_PATH && \
+    chmod -R ug+rw $APP_PATH $LOG_PATH /run/php-fpm /var/lib/php $SX_PHPSESS_PATH && \
+    chown -R 1001:0 /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH $LOG_PATH /run/php-fpm /var/lib/php $SX_PHPSESS_PATH && \
+    chmod -R g=u $APP_PATH $LOG_PATH $RUN_DIR /bin/sx* /s2i $SX_LIBDIR /tmp /run/php-fpm /var/lib/php $SX_PHPSESS_PATH && \
     chmod -R ugo+x /bin/sx*
 COPY index.php $APP_PATH/index.php
 RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH && rm -rf $APP_PATH/index.html
@@ -55,8 +57,8 @@ USER 1001
 
 WORKDIR $APP_PATH
 
-EXPOSE 8080
+EXPOSE $APP_PORT
 
-VOLUME $APP_PATH
+VOLUME [ $SX_PHPSESS_PATH ]
 
 CMD [ "/bin/sx-php" , "run" ]

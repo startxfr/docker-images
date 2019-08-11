@@ -1,0 +1,263 @@
+kind: Template
+apiVersion: v1
+metadata: 
+  name: startx-mongo-deploy-template
+  annotations:
+    openshift.io/display-name: Startx MongoDB Server (ephemeral deploy workflow)
+    description: Deployement workflow of a MongoDB NoSQL database using ephemeral storage
+      for logs records. Use mongo with various underlying linux distribution. See 
+      https://hub.docker.com/r/startx/sv-mongo
+    iconClass: icon-mongodb
+    tags: startx,os,fedora,mongo,database
+    openshift.io/provider-display-name: STARTX
+    openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-mongo
+    openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
+message: |-
+  Your database ${APP_NAME} is deploying and will be soon deployed.
+  Monitor the deployement for application availability
+
+  Database    : ${APP_NAME}
+  Stage       : ${APP_STAGE}
+  Image       : startx/sv-mongo:${BUILDER_TAG}
+  Volumes     : ${APP_NAME}-log (E), ${APP_NAME}-data (E)
+  
+  Username    : ${MONGO_USER}
+  Password    : ${MONGO_PASSWORD}
+  Store       : ${MONGO_STORES}
+  
+  Connection  : mongodb://${APP_NAME}:27017
+  
+labels:
+  template: startx-mongo-deploy-template
+  provider: startx 
+objects:
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    annotations:
+      openshift.io/display-name: Database ${APP_NAME}
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  spec:
+    tags:
+    - name: ${APP_STAGE}
+      annotations:
+        openshift.io/display-name: Database ${APP_NAME} version ${APP_STAGE}
+        description: ${APP_STAGE} image for the database ${APP_NAME} based on ${BUILDER_TAG}
+        iconClass: icon-mongodb
+        tags: startx,fedora,mongo,sql,database,${APP_NAME},${APP_STAGE},${BUILDER_TAG}
+        supports: mongodb
+        version: ${APP_STAGE}
+      from:
+        kind: DockerImage
+        name: startx/sv-mongo:${BUILDER_TAG}
+- kind: ConfigMap
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}-config"
+    annotations:
+      openshift.io/display-name: Database ${APP_NAME} configuration
+      openshift.io/generated-by: STARTX
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+  data:
+    SX_ID: ${APP_NAME}/${APP_STAGE}
+    SX_TYPE: ${APP_STAGE}
+    SX_SERVICE: ${APP_NAME}
+    SX_NAME: MongoDB database ${APP_NAME}
+    SX_SUMMARY: MongoDB database ${APP_NAME} based on ${BUILDER_TAG} container
+    SX_VERSION: 0.0.1 
+    MONGO_STORES: "${MONGO_STORES}"
+- kind: Secret
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}-auth"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      template.openshift.io/expose-username: "{.data['MONGO_USER']}"
+      template.openshift.io/expose-password: "{.data['MONGO_PASSWORD']}"
+      template.openshift.io/expose-root_password: "{.data['MONGO_PASSWORD']}"
+  stringData:
+    MONGO_ROOT_PASSWORD: "${MONGO_ROOT_PASSWORD}"
+    MONGO_USER: "${MONGO_USER}"
+    MONGO_PASSWORD: "${MONGO_PASSWORD}"
+- kind: DeploymentConfig
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      openshift.io/generated-by: STARTX
+  spec:
+    strategy:
+      type: Recreate
+      recreateParams:
+        timeoutSeconds: 60
+    triggers:
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+        - "${APP_NAME}"
+        from:
+          kind: ImageStreamTag
+          name: "${APP_NAME}:${APP_STAGE}"
+    - type: ConfigChange
+    postCommit:
+      script: "/bin/sx-mongo info"
+    replicas: 1
+    test: false
+    selector:
+      app: "${APP_NAME}"
+      deploymentconfig: "${APP_NAME}"
+    template:
+      metadata:
+        labels:
+          app: "${APP_NAME}"
+          deploymentconfig: "${APP_NAME}"
+        annotations:
+          openshift.io/generated-by: STARTX
+      spec:
+        containers:
+        - name: "${APP_NAME}"
+          image: " "
+          env:
+          - name: SX_VERBOSE
+            value: 'true'
+          - name: SX_DEBUG
+            value: 'true'
+          - name: MONGO_USER
+            valueFrom:
+              secretKeyRef:
+                name: "${APP_NAME}-auth"
+                key: MONGO_USER
+          - name: MONGO_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: "${APP_NAME}-auth"
+                key: MONGO_PASSWORD
+          envFrom:
+            - configMapRef:
+                name: ${APP_NAME}-config
+          command:
+          - "/bin/sx-mongo"
+          args:
+          - run
+          ports:
+          - containerPort: 27017
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 8000m
+              memory: 1024Mi
+            requests:
+              cpu: 200m
+              memory: 512Mi
+          livenessProbe:
+            exec:
+              command:
+              - "/bin/sx-mongo"
+              - isLive
+            initialDelaySeconds: 5
+            timeoutSeconds: 2
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            exec:
+              command:
+              - "/bin/sx-mongo"
+              - isReady
+            initialDelaySeconds: 5
+            timeoutSeconds: 2
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          terminationMessagePath: "/dev/termination-log"
+          imagePullPolicy: Always
+          volumeMounts:
+          - name: "${APP_NAME}-log"
+            mountPath: "/var/log/mongodb"
+          - name: "${APP_NAME}-data"
+            mountPath: "/data"
+        volumes:
+        - name: "${APP_NAME}-log"
+          emptyDir:
+            medium: ''
+        - name: "${APP_NAME}-data"
+          emptyDir:
+            medium: ''
+        restartPolicy: Always
+        terminationGracePeriodSeconds: 30
+        securityContext: {}
+        dnsPolicy: ClusterFirst
+- kind: Service
+  apiVersion: v1
+  metadata:
+    name: "${APP_NAME}"
+    labels:
+      app: "${APP_NAME}"
+      stage: "${APP_STAGE}"
+    annotations:
+      openshift.io/generated-by: STARTX
+  spec:
+    ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+    selector:
+      app: "${APP_NAME}"
+      deploymentconfig: "${APP_NAME}"
+    type: ClusterIP
+    sessionAffinity: None
+parameters:
+- name: APP_NAME
+  displayName: Database name
+  description: The name of the created database
+  value: mongo
+  required: true
+- name: APP_STAGE
+  displayName: Database stage
+  description: "Stage of the database deployed (ex: dev, test, prod, example, demo, poc, ...)"
+  value: example
+  required: true
+- name: BUILDER_TAG
+  displayName: Startx image release
+  description: "Image tag of the startx mongodb image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc30, fc29, fc28 - alpine3 - ubi8 - centos8, centos7, centos6)"
+  value: latest
+  required: true
+- name: WEBHOOK_TOKEN
+  displayName: Webhook token
+  description: Secret token to use for webhook to github or generic
+  generate: expression
+  from: "[a-zA-Z0-9]{24}"
+  required: true
+- name: MONGO_ROOT_PASSWORD
+  displayName: Mongodb root password
+  description: The mongodb root password to use. Generated if not provided
+  from: "[A-Z0-9]{16}"
+  generate: expression
+- name: MONGO_USER
+  displayName: Mongodb user
+  description: Default user to create
+  value: demo
+  from: "[A-Z0-9]{8}"
+  generate: expression
+- name: MONGO_PASSWORD
+  displayName: Mongodb password
+  description: Password of the default user
+  value: demo
+  from: "[A-Z0-9]{16}"
+  generate: expression
+- name: MONGO_STORES
+  displayName: MongoDB store
+  description: list of the default's store to create
+  value: example
