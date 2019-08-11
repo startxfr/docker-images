@@ -2,17 +2,12 @@
 
 # Docker OS Images : RedHat UBI 8
 
-<<<<<<< HEAD
-Startx UBI is a base container used for all startx services and applications published in [Dockerhub registry](https://hub.docker.com/u/startx). 
-=======
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/OS/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/ubi8/OS/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=ubi8)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
  
 [![Dockerhub Registry](https://img.shields.io/docker/build/startx/fedora.svg)](https://hub.docker.com/r/startx/fedora) [![Docker Fedora pulls](https://img.shields.io/docker/pulls/startx/fedora)](https://hub.docker.com/r/startx/fedora) [![Docker Repository on Quay](https://quay.io/repository/startx/fedora/status "Docker Repository on Quay")](https://quay.io/repository/startx/fedora)
 
-
-Startx fedora is a base container used for all startx services and applications published in
+Startx UBI is a base container used for all startx services and applications published in
 [Dockerhub registry](https://hub.docker.com/u/startx) or [Quay registry](https://quay.io/repository/startx). 
->>>>>>> master
 This container contain :
 - Redhat UBI system envelope
 - core OS rpm (kernel, libs) updated every week
@@ -31,11 +26,6 @@ You can use Startx Centos image in many ways :
 
 See more applications builders and sample on [startx docker images repository](https://github.com/startxfr/docker-images/blob/master)
 
-<<<<<<< HEAD
-[![Dockerhub Registry](https://img.shields.io/docker/build/startx/ubi.svg)](https://hub.docker.com/r/startx/ubi) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/OS/) [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) 
-
-=======
->>>>>>> master
 ## Container flavours
 
 | Docker Hub repository                                       | Quay.io repository                                                            | Openshift                                                                                                                                                                                                                                                                                                                                     | Docker-compose                                                                                     | Fedora distribution                        
