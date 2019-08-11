@@ -10,7 +10,7 @@ ENV SX_VERSION="centos6" \
     SX_SUMMARY="Startx mariadb service based on centos 6" \
     MY_CONF=/etc/my.cnf \
     DATA_PATH=/data \
-    LOG_PATH=/var/log/mysql \
+    LOG_PATH=/var/log/mariadb \
     LOADSQL_PATH=/tmp/sql  \
     DB_CHARSET=utf8 \
     LC_MESSAGES=en_US \
@@ -37,7 +37,7 @@ USER root
 COPY sx /tmp/
 COPY my.cnf $MY_CONF
 COPY mariadb.repo /etc/yum.repos.d/mariadb.repo
-RUN yum --nogpgcheck -y install mysql-libs mysql-server mysql && \
+RUN yum --nogpgcheck -y install mariadb-libs mariadb-server mariadb && \
     yum clean all && \
     mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \
