@@ -51,7 +51,7 @@ RUN yum --nogpgcheck -y install mariadb-libs mariadb-server mariadb && \
     chmod -R ugo+x /bin/sx* && \
     chmod ug+rw $MY_CONF
 
-#USER 1001
+USER 1001
 
 WORKDIR $LOADSQL_PATH
 
