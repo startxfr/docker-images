@@ -460,12 +460,8 @@ function config_importsql {
                 for SCHEMAFILE in $SCHEMALIST; do 
                     echo "SET NAMES $DB_CHARSET;"|cat - $LOADSQL_PATH/$SCHEMAFILE > /tmp/tmp.sql
                     echo -n "- schema " $SCHEMAFILE " ... "
-<<<<<<< HEAD
-                    mysql -u root -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -D $MYSQL_DATABASE < $LOADSQL_PATH/$SCHEMAFILE
-=======
                     mysql -uroot -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -D $MYSQL_DATABASE < /tmp/tmp.sql
                     rm -f /tmp/tmp.sql
->>>>>>> master
                     echo " IMPORTED"
                 done
             else
@@ -477,12 +473,8 @@ function config_importsql {
                 for DATAFILE in $DATALIST; do 
                     echo "SET NAMES $DB_CHARSET;"|cat - $LOADSQL_PATH/$DATAFILE > /tmp/tmp.sql
                     echo -n "- data " $DATAFILE " ... "
-<<<<<<< HEAD
-                    mysql -u root -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -D $MYSQL_DATABASE < $LOADSQL_PATH/$DATAFILE
-=======
                     mysql -uroot -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -D $MYSQL_DATABASE < /tmp/tmp.sql
                     rm -f /tmp/tmp.sql
->>>>>>> master
                     echo " IMPORTED"
                 done
             else
