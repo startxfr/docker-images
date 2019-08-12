@@ -42,7 +42,7 @@ RUN echo "keepcache=0" >> /etc/yum.conf  && \
     yum --nogpgcheck -y install epel-release  && \
     yum-config-manager --enable epel-release  && \
     yum upgrade -y && \
-    yum install -y pwgen tar zip hostname \
+    yum install -y pwgen tar unzip zip hostname \
                    psmisc procps findutils iputils net-tools wget \
                    logrotate bash-completion vim && \
     yum --nogpgcheck -y remove dbus-glib && \
