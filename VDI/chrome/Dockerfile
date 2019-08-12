@@ -40,9 +40,11 @@ COPY sx /tmp/
 COPY google-chrome.repo /etc/yum.repos.d/google-chrome.repo
 RUN wget https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/p/python-meld3-1.0.2-10.fc30.noarch.rpm && \
     rpm -ivh python-meld3-1.0.2-10.fc30.noarch.rpm --nodeps && \
-    yum --nogpgcheck -y install supervisor xorg-x11-server-Xvfb x11vnc dnf-plugins-core pulseaudio python2-meld3 google-chrome-stable  && \
-    yum clean all && \
-    rm -rf /var/cache/yum && \
+    yum install -y yum-utils && yum upgrade -y && \
+    yum install -y supervisor xorg-x11-server-Xvfb x11vnc dnf-plugins-core pulseaudio python2-meld3 google-chrome-stable && \
+    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
+    yum remove -y --skip-broken yum-utils && \
+    yum clean all --enablerepo=\* && \
     easy_install pip && \
     pip install --upgrade pip && \
     pip install --upgrade --force-reinstall setuptools pip && \

@@ -37,8 +37,11 @@ USER root
 COPY sx /tmp/
 COPY my.cnf $MY_CONF
 COPY mariadb.repo /etc/yum.repos.d/mariadb.repo
-RUN yum --nogpgcheck -y install mariadb-libs mariadb-server mariadb && \
-    yum clean all && \
+RUN yum install -y yum-utils && yum upgrade -y && \
+    yum install -y mariadb-libs mariadb-server mariadb && \
+    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
+    yum remove -y --skip-broken yum-utils && \
+    yum clean all --enablerepo=\* && \
     mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \

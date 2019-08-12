@@ -32,9 +32,12 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-COPY mongodb-org.repo /etc/yum.repos.d/mongodb.repo
-RUN yum install mongodb-org && \
-    yum clean all  && \
+COPY mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo
+RUN yum install -y yum-utils && yum upgrade -y && \
+    yum install -y mongodb-org && \
+    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
+    yum remove -y --skip-broken yum-utils && \
+    yum clean all --enablerepo=\* && \
     usermod -a -G 0 $MONGO_USER && \
     mkdir -p $DATA_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \

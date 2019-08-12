@@ -38,8 +38,11 @@ COPY supervisord.conf $SX_FIREFOX_SUPERVISOR_CONF/
 COPY sx /tmp/
 RUN wget https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/p/python-meld3-1.0.2-10.fc30.noarch.rpm && \
     rpm -ivh python-meld3-1.0.2-10.fc30.noarch.rpm --nodeps && \
-    dnf --nogpgcheck -y install supervisor xorg-x11-server-Xvfb x11vnc firefox python2-setuptools  && \
-    dnf clean all && \
+    yum install -y yum-utils && yum upgrade -y && \
+    yum install -y supervisor xorg-x11-server-Xvfb x11vnc firefox python2-setuptools && \
+    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
+    yum remove -y --skip-broken yum-utils && \
+    yum clean all --enablerepo=\* && \
     easy_install pip && \
     pip install --upgrade pip && \
     pip install --upgrade --force-reinstall setuptools pip && \

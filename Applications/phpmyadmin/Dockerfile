@@ -28,8 +28,11 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum --nogpgcheck -y install unzip mysql && \
-    yum clean all && \
+RUN yum install -y yum-utils && yum upgrade -y && \
+    yum install -y mysql && \
+    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
+    yum remove -y --skip-broken yum-utils && \
+    yum clean all --enablerepo=\* && \
     cd $APP_PATH && \
     wget -q https://files.phpmyadmin.net/phpMyAdmin/4.8.0.1/phpMyAdmin-4.8.0.1-all-languages.zip && \
     unzip phpMyAdmin-4.8.0.1-all-languages.zip && \

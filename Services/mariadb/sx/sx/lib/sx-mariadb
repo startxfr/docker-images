@@ -6,11 +6,11 @@ MYSQL_SQL_SCHEMA_PREFIX="schema-"
 MYSQL_SQL_DATA_PREFIX="data-"
 
 function check_mariadb_environment {
-    if [ ! -v DATA_PATH ]; then
+    if [ -z "$DATA_PATH" ]; then
         DATA_PATH="/data"
         export DATA_PATH
     fi
-    if [ ! -v LOG_PATH ]; then
+    if [ -z "$LOG_PATH" ]; then
         LOG_PATH="/logs"
         export LOG_PATH
     fi
