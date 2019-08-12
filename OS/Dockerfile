@@ -2,7 +2,7 @@ FROM registry.redhat.io/ubi8/ubi
 
 MAINTAINER Startx <dev@startx.fr>
 
-ENV SX_VERSION="8" \
+ENV SX_VERSION="ubi8" \
     SX_TYPE="OS" \
     SX_SERVICE="ubi" \
     SX_ID="startx/ubi" \
@@ -21,7 +21,7 @@ LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
       description="$SX_SUMMARY. Use for executing application based on bash script or as container mainstream image for your application containers." \
       version="$SX_VERSION" \
-      release="3" \
+      release="$SX_VERSION" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
@@ -36,10 +36,14 @@ LABEL name="$SX_ID" \
 USER root
 
 COPY sx /tmp/
-RUN yum --nogpgcheck -y install yum-utils  && \
-    yum update -y  && \
-    yum --nogpgcheck -y install tar psmisc procps findutils iputils net-tools wget logrotate zip hostname vim  && \
-    yum clean all && \
+
+RUN echo "keepcache=0" >> /etc/dnf/dnf.conf && \
+    dnf install -y yum-utils && dnf upgrade -y --refresh && \
+    dnf install -y tar unzip zip hostname \
+                   psmisc procps findutils iputils net-tools wget \
+                   logrotate vim && \
+    dnf remove -y --skip-broken yum-utils yum && \
+    dnf clean all --enablerepo=\* && \
     mkdir -p $SX_LIBDIR $APP_PATH $LOG_PATH && \
     chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib && \
     mv /tmp/s2i/bin /s2i && \

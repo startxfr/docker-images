@@ -20,7 +20,7 @@ LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
       description="$SX_SUMMARY. Use for executing database based on mariadb or as container mainstream image for your database backend containers." \
       version="$SX_VERSION" \
-      release="1" \
+      release="$SX_VERSION" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
@@ -38,8 +38,10 @@ COPY sx /tmp/
 COPY my.cnf $MY_CONF
 COPY mariadb.repo /etc/yum.repos.d/MariaDB.repo
 RUN rpm --import https://yum.mariadb.org/RPM-GPG-KEY-MariaDB && \
-    yum --nogpgcheck -y install MariaDB-server galera-4 MariaDB-client MariaDB-shared MariaDB-backup MariaDB-common --skip-broken && \
-    yum clean all && \
+    dnf install -y yum-utils && dnf upgrade -y --refresh && \
+    dnf -y install MariaDB-server galera-4 MariaDB-client MariaDB-shared MariaDB-backup MariaDB-common --skip-broken && \
+    dnf remove -y --skip-broken yum-utils yum && \
+    dnf clean all --enablerepo=\* && \
     useradd -s /bin/bash -m -u 1001 mysql && \
     usermod -G 0 mysql && \
     mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH && \

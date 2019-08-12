@@ -34,8 +34,10 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum --nogpgcheck -y install python3-requests python3-urllib3 wget openssl ncurses ncurses-libs && \
-    yum clean all && \
+RUN dnf install -y yum-utils && dnf upgrade -y --refresh && \
+    dnf -y install python3-requests python3-urllib3 wget openssl ncurses ncurses-libs && \
+    dnf remove -y --skip-broken yum-utils yum && \
+    dnf clean all --enablerepo=\* && \
     #echo 0 > /proc/sys/vm/swappiness && \
     echo '' >> /etc/sysctl.conf && \
     echo 'couchbase              soft    nofile                  90000' >> /etc/security/limits.conf && \

@@ -2,19 +2,19 @@
 source $SX_LIBDIR/sx
 
 function check_chrome_environment {
-    if [ ! -v APP_PATH ]; then
+    if [ -z "$APP_PATH" ]; then
         APP_PATH="/home/chrome"
         export APP_PATH
     fi
-    if [ ! -v DATA_PATH ]; then
+    if [ -z "$DATA_PATH" ]; then
         DATA_PATH="/home/chrome"
         export DATA_PATH
     fi
-    if [ ! -v LOG_PATH ]; then
+    if [ -z "$LOG_PATH" ]; then
         LOG_PATH="/var/log/chrome"
         export LOG_PATH
     fi
-    if [ ! -n "$SERVER_NAME" ]; then
+    if [ -z "$SERVER_NAME" ]; then
         SERVER_NAME="localhost"
         export SERVER_NAME
     fi

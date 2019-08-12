@@ -13,7 +13,7 @@ LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
       description="$SX_SUMMARY. Use for executing database based on memcached or as container mainstream image for your database backend containers." \
       version="$SX_VERSION" \
-      release="1" \
+      release="$SX_VERSION" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
@@ -28,14 +28,15 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum --nogpgcheck -y install ncurses ncurses-libs nmap-ncat wget gcc libevent && \
-    yum --nogpgcheck -y install --skip-broken http://rpmfind.net/linux/centos/7.6.1810/os/x86_64/Packages/telnet-0.17-64.el7.x86_64.rpm && \
+RUN dnf install -y yum-utils && dnf upgrade -y --refresh && \
+    dnf --nogpgcheck -y install ncurses ncurses-libs nmap-ncat wget gcc libevent && \
+    dnf --nogpgcheck -y install --skip-broken http://rpmfind.net/linux/centos/7.6.1810/os/x86_64/Packages/telnet-0.17-64.el7.x86_64.rpm && \
     wget http://memcached.org/latest && \
     tar -zxvf latest && \
     cd cd memcached-1.5.16 && \
     ./configure && make && make test && sudo make install && \
-    yum --nogpgcheck -y uninstall wget gcc && \
-    yum clean all && \
+    dnf remove -y --skip-broken yum-utils yum wget gcc && \
+    dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \

@@ -2,15 +2,15 @@
 source $SX_LIBDIR/sx
 
 function check_firefox_environment {
-    if [ ! -v APP_PATH ]; then
+    if [ -z "$APP_PATH" ]; then
         APP_PATH="/home/firefox"
         export APP_PATH
     fi
-    if [ ! -v LOG_PATH ]; then
+    if [ -z "$LOG_PATH" ]; then
         LOG_PATH="/var/log/firefox"
         export LOG_PATH
     fi
-    if [ ! -n "$SERVER_NAME" ]; then
+    if [ -z "$SERVER_NAME" ]; then
         SERVER_NAME="localhost"
         export SERVER_NAME
     fi
