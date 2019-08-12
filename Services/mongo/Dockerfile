@@ -34,7 +34,7 @@ USER root
 COPY sx /tmp/
 COPY mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo
 RUN dnf install -y yum-utils dnf-plugin-system-upgrade && dnf upgrade -y --refresh && \
-    dnf -y install mongodb-org-unstable && \
+    dnf install -y --nogpgcheck mongodb-org-unstable && \
     package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
     dnf remove -y --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
