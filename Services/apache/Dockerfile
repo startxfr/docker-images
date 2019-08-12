@@ -37,7 +37,11 @@ LABEL name="$SX_ID" \
 USER root
 COPY httpd.conf $HTTPDCONF
 COPY sx /tmp/
-RUN yum --nogpgcheck -y install httpd && yum clean all && \
+RUN dnf install -y yum-utils dnf-plugin-system-upgrade && dnf upgrade -y --refresh && \
+    dnf -y install httpd && \
+    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
+    dnf remove -y --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \

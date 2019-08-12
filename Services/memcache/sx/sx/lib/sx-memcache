@@ -2,7 +2,7 @@
 source $SX_LIBDIR/sx
 
 function check_memcache_environment {
-    if [ ! -v LOG_PATH ]; then
+    if [ -z "$LOG_PATH" ]; then
         LOG_PATH="/var/log/sx"
         export LOG_PATH
     fi
