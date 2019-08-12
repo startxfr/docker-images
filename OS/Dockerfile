@@ -56,7 +56,7 @@ RUN echo "keepcache=0" >> /etc/dnf/dnf.conf && \
     chmod -R g=u /bin/sx /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR $APP_PATH $LOG_PATH && \
     chmod -R ugo+wr $SX_S2IDIR $APP_PATH $LOG_PATH
 
-#USER 1001
+USER 1001
 
 WORKDIR $APP_PATH
 
