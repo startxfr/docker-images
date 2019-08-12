@@ -33,12 +33,15 @@ COPY httpd.conf $HTTPDCONF
 COPY php.ini /etc/php.d/sx.ini
 COPY php-fpm.conf /etc/php-fpm.d/www.conf
 COPY sx /tmp/
-RUN dnf --nogpgcheck -y install php php-cli php-pear \
+RUN dnf install -y yum-utils dnf-plugin-system-upgrade && dnf upgrade -y --refresh && \
+    dnf -y install php php-cli php-pear \
         php-gd php-mcrypt php-mysqlnd php-soap \
         php-pdo php-process php-common php-mbstring \
         php-bcmath php-php-gettext php-tcpdf \
         php-tcpdf-dejavu-sans-fonts php-tidy && \
-    dnf clean all && \
+    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
+    dnf remove -y --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \

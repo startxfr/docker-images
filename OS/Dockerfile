@@ -21,7 +21,7 @@ LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
       description="$SX_SUMMARY. Use for executing application based on bash script or as container mainstream image for your application containers." \
       version="$SX_VERSION" \
-      release="3" \
+      release="latest" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
@@ -37,11 +37,14 @@ USER root
 
 COPY sx /tmp/
 
-RUN dnf update -y  && \
-    dnf --nogpgcheck -y install pwgen tar zip hostname && \
-    dnf --nogpgcheck -y install psmisc procps findutils iputils net-tools wget && \
-    dnf --nogpgcheck -y install logrotate bash-completion vim glibc-langpack-fr && \
-    dnf clean all && \
+RUN echo "keepcache=0" >> /etc/dnf/dnf.conf && \
+    dnf install -y yum-utils dnf-plugin-system-upgrade && dnf upgrade -y --refresh && \
+    dnf install -y pwgen tar zip hostname \
+                   psmisc procps findutils iputils net-tools wget \
+                   logrotate bash-completion vim glibc-langpack-fr && \
+    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
+    dnf remove -y --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf clean all --enablerepo=\* && \
     mkdir -p $SX_LIBDIR $APP_PATH $LOG_PATH && \
     chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib && \
     mv /tmp/s2i/bin /s2i && \
@@ -53,7 +56,7 @@ RUN dnf update -y  && \
     chmod -R g=u /bin/sx /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR $APP_PATH $LOG_PATH && \
     chmod -R ugo+wr $SX_S2IDIR $APP_PATH $LOG_PATH
 
-USER 1001
+#USER 1001
 
 WORKDIR $APP_PATH
 
