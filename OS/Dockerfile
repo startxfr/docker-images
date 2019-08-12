@@ -40,7 +40,7 @@ RUN echo "keepcache=0" >> /etc/yum.conf && \
     yum install -y yum-utils epel-release  && \
     yum-config-manager --enable cr epel-release extras centosplus  && \
     yum upgrade -y && \
-    yum install -y pwgen tar zip hostname \
+    yum install -y pwgen tar unzip zip hostname \
                    psmisc procps findutils iputils net-tools wget \
                    logrotate bash-completion vim glibc-langpack-fr && \
     package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \

@@ -34,7 +34,7 @@ USER root
 COPY sx /tmp/
 COPY mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo
 RUN yum install -y yum-utils && yum upgrade -y && \
-    yum install -y mongodb-org && \
+    yum install -y --nogpgcheck mongodb-org-unstable && \
     package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
     yum clean all --enablerepo=\* && \
