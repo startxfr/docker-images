@@ -32,6 +32,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
+COPY *.j* $APP_PATH/
 RUN apk --no-cache add nodejs nodejs-npm python2 make gcc git && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
@@ -43,10 +44,6 @@ RUN apk --no-cache add nodejs nodejs-npm python2 make gcc git && \
     chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /.config /.npm && \
     chmod -R ugo+rwx $LOG_PATH /.config /.npm && \
     chmod -R ugo+x /bin/sx*
-COPY ./ $APP_PATH
-RUN rm -rf $APP_PATH/Dockerfile $APP_PATH/openshift-* $APP_PATH/docker-* $APP_PATH/sx && \
-    chgrp -R 0 $APP_PATH && \
-    chmod -R g=u $APP_PATH
 
 USER 1001
 
