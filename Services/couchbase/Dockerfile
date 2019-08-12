@@ -34,8 +34,11 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf --nogpgcheck -y install python-httplib2 openssl ncurses ncurses-libs ncurses-compat-libs && \
-    dnf clean all && \
+RUN dnf install -y yum-utils dnf-plugin-system-upgrade && dnf upgrade -y --refresh && \
+    dnf -y install python-httplib2 openssl ncurses ncurses-libs ncurses-compat-libs && \
+    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
+    dnf remove -y --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf clean all --enablerepo=\* && \
     #echo 0 > /proc/sys/vm/swappiness && \
     echo '' >> /etc/sysctl.conf && \
     echo 'couchbase              soft    nofile                  90000' >> /etc/security/limits.conf && \
