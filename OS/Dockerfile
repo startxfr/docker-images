@@ -21,7 +21,7 @@ LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
       description="$SX_SUMMARY. Use for executing application based on bash script or as container mainstream image for your application containers." \
       version="$SX_VERSION" \
-      release="3" \
+      release="latest" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
@@ -36,14 +36,19 @@ LABEL name="$SX_ID" \
 USER root
 
 COPY sx /tmp/
-RUN yum --nogpgcheck -y install yum-utils  && \
+RUN echo "keepcache=0" >> /etc/yum.conf  && \
+    yum --nogpgcheck -y install yum-utils  && \
     yum-config-manager --enable cr  && \
     yum --nogpgcheck -y install epel-release  && \
     yum-config-manager --enable epel-release  && \
-    yum update -y  && \
-    yum --nogpgcheck -y install pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip hostname  && \
+    yum upgrade -y && \
+    yum install -y pwgen tar zip hostname \
+                   psmisc procps findutils iputils net-tools wget \
+                   logrotate bash-completion vim && \
     yum --nogpgcheck -y remove dbus-glib && \
-    yum clean all && \
+    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
+    yum remove -y --skip-broken yum-utils && \
+    yum clean all --enablerepo=\* && \
     mkdir -p $SX_LIBDIR $APP_PATH $LOG_PATH && \
     chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib && \
     mv /tmp/s2i/bin /s2i && \

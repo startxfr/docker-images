@@ -32,8 +32,11 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum --nogpgcheck -y install unoconv libreoffice-writer libreoffice-calc pdfmod ghostscript && \
-    yum clean all && \
+RUN yum install -y yum-utils && yum upgrade -y && \
+    yum -y install unoconv libreoffice-writer libreoffice-calc pdfmod ghostscript && \
+    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
+    yum remove -y --skip-broken yum-utils && \
+    yum clean all --enablerepo=\* && \
     useradd -s /bin/bash -m -g 0 -u 1001 ooconv && \
     mkdir -p $DATA_PATH /.cache && \
     mv /tmp/s2i/bin/* /s2i/ && \

@@ -32,7 +32,12 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum --nogpgcheck -y --enablerepo=epel install nodejs npm python make gcc git && yum clean all && \
+COPY *.j* $APP_PATH/
+RUN yum install -y yum-utils && yum upgrade -y && \
+    yum -y install --enablerepo=epel nodejs npm python make gcc git && \
+    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
+    yum remove -y --skip-broken yum-utils && \
+    yum clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
@@ -43,10 +48,6 @@ RUN yum --nogpgcheck -y --enablerepo=epel install nodejs npm python make gcc git
     chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /.config /.npm && \
     chmod -R ugo+rwx $LOG_PATH /.config /.npm && \
     chmod -R ugo+x /bin/sx*
-COPY ./ $APP_PATH
-RUN rm -rf $APP_PATH/Dockerfile $APP_PATH/openshift-* $APP_PATH/docker-* $APP_PATH/sx && \
-    chgrp -R 0 $APP_PATH && \
-    chmod -R g=u $APP_PATH
 
 USER 1001
 

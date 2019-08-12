@@ -32,8 +32,11 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum --nogpgcheck --enablerepo=epel -y install mongodb-server  && \
-    yum clean all  && \
+RUN yum install -y yum-utils && yum upgrade -y && \
+    yum -y install --enablerepo=epel mongodb-server && \
+    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
+    yum remove -y --skip-broken yum-utils && \
+    yum clean all --enablerepo=\* && \
     usermod -a -G 0 $MONGO_USER && \
     mkdir -p $DATA_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \
