@@ -37,8 +37,9 @@ LABEL name="$SX_ID" \
 USER root
 COPY supervisord.conf $SX_CHROME_SUPERVISOR_CONF/
 COPY sx /tmp/
-RUN wget -q https://rpmfind.net/linux/fedora/linux/releases/30/Everything/x86_64/os/Packages/p/python2-meld3-1.0.2-6.fc30.noarch.rpm && \
-    rpm -ivh python2-meld3-1.0.2-6.fc30.noarch.rpm --nodeps && \
+RUN wget -q https://rpmfind.net/linux/fedora/linux/releases/30/Everything/x86_64/os/Packages/p/python3-meld3-1.0.2-10.fc30.noarch.rpm && \
+    rpm -ivh python3-meld3-1.0.2-10.fc30.noarch.rpm --nodeps && \
+    rm -f python3-meld3-1.0.2-10.fc30.noarch.rpm && \
     dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
@@ -48,13 +49,10 @@ RUN wget -q https://rpmfind.net/linux/fedora/linux/releases/30/Everything/x86_64
         fedora-workstation-repositories \
         dnf-plugins-core \
         pulseaudio \
-        python2-setuptools && \
+        python3-setuptools && \
     dnf config-manager --set-enabled google-chrome && \
     dnf install -yq --nogpgcheck google-chrome-stable && \
-    package-cleanup --problems && \
-    package-cleanup --cleandupes; \
-    package-cleanup --orphans && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf remove -yq --skip-broken dnf-plugin-system-upgrade && \
     dnf clean all --enablerepo=\* && \
     easy_install pip && \
     pip install --upgrade pip && \

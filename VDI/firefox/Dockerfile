@@ -36,20 +36,21 @@ LABEL name="$SX_ID" \
 USER root
 COPY supervisord.conf $SX_FIREFOX_SUPERVISOR_CONF/
 COPY sx /tmp/
-RUN wget -q https://rpmfind.net/linux/fedora/linux/releases/30/Everything/x86_64/os/Packages/p/python-meld3-1.0.2-10.fc30.noarch.rpm && \
-    rpm -ivh python-meld3-1.0.2-10.fc30.noarch.rpm --nodeps && \
+RUN wget -q https://rpmfind.net/linux/fedora/linux/releases/30/Everything/x86_64/os/Packages/p/python3-meld3-1.0.2-10.fc30.noarch.rpm && \
+    rpm -ivh python3-meld3-1.0.2-10.fc30.noarch.rpm --nodeps && \
+    rm -f python3-meld3-1.0.2-10.fc30.noarch.rpm && \
     dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     dnf upgrade -yq --refresh && \
-    dnf -y install \
+    dnf install -yq --nogpgcheck \
         supervisor \
         xorg-x11-server-Xvfb \
         x11vnc \
+        fedora-workstation-repositories \
         firefox \
-        python2-setuptools && \
-    package-cleanup --problems && \
-    package-cleanup --cleandupes; \
-    package-cleanup --orphans && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+        python3-setuptools && \
+    dnf config-manager --set-enabled google-chrome && \
+    dnf install -yq --nogpgcheck google-chrome-stable && \
+    dnf remove -yq --skip-broken dnf-plugin-system-upgrade && \
     dnf clean all --enablerepo=\* && \
     easy_install pip && \
     pip install --upgrade pip && \
