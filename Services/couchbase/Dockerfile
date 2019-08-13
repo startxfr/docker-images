@@ -36,8 +36,8 @@ USER root
 COPY sx /tmp/
 RUN dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
-        python3-requests \
-        python3-urllib3 \
+        python2-requests \
+        python2-urllib3 \
         openssl \
         ncurses \
         ncurses-libs && \
