@@ -34,9 +34,17 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum install -y yum-utils && yum upgrade -y && \
-    yum install -y --nogpgcheck python-httplib2 openssl ncurses ncurses-libs ncurses-compat-libs && \
-    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
+RUN yum install -yq yum-utils && \
+    yum upgrade -yq && \
+    yum install -yq --nogpgcheck \
+        python-httplib2 \
+        openssl \
+        ncurses \
+        ncurses-libs \
+        ncurses-compat-libs && \
+    package-cleanup --problems && \
+    package-cleanup --cleandupes; \
+    package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
     yum clean all --enablerepo=\* && \
     #echo 0 > /proc/sys/vm/swappiness && \
@@ -47,7 +55,7 @@ RUN yum install -y yum-utils && yum upgrade -y && \
     echo 'vm.swappiness = 0' >> /etc/sysctl.conf && \
     #echo never > /sys/kernel/mm/transparent_hugepage/enabled && \
     #echo never > /sys/kernel/mm/transparent_hugepage/defrag && \
-    wget $CB_RELEASE_URL/$CB_PACKAGE && \
+    wget -q $CB_RELEASE_URL/$CB_PACKAGE && \
     rpm --install $CB_PACKAGE && \
     rm -rf $CB_PACKAGE && \
     usermod -a -G 0 couchbase && \

@@ -32,9 +32,17 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum install -y yum-utils && yum upgrade -y && \
-    yum install -y --nogpgcheck unoconv libreoffice-writer libreoffice-calc pdfmod ghostscript && \
-    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
+RUN yum install -yq yum-utils && \
+    yum upgrade -yq && \
+    yum install -yq --nogpgcheck \
+        unoconv \
+        libreoffice-writer \
+        libreoffice-calc \
+        pdfmod \
+        ghostscript && \
+    package-cleanup --problems && \
+    package-cleanup --cleandupes; \
+    package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
     yum clean all --enablerepo=\* && \
     useradd -s /bin/bash -m -g 0 -u 1001 ooconv && \

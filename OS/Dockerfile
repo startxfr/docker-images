@@ -36,17 +36,32 @@ LABEL name="$SX_ID" \
 USER root
 
 COPY sx /tmp/
-RUN echo "keepcache=0" >> /etc/yum.conf  && \
-    yum --nogpgcheck -y install yum-utils  && \
-    yum-config-manager --enable cr  && \
-    yum --nogpgcheck -y install epel-release  && \
+RUN echo "keepcache=0" >> /etc/yum.conf && \
+    yum install -yq --nogpgcheck \
+        yum-utils \
+        epel-release && \
+    yum-config-manager --enable cr && \
     yum-config-manager --enable epel-release  && \
-    yum upgrade -y && \
-    yum install -y pwgen tar unzip zip hostname \
-                   psmisc procps findutils iputils net-tools wget \
-                   logrotate bash-completion vim && \
+    yum upgrade -yq && \
+    yum install -yq \
+        pwgen \
+        tar \
+        unzip \
+        zip \
+        hostname \
+        psmisc \
+        procps \
+        findutils \
+        iputils \
+        net-tools \
+        wget \
+        logrotate \
+        bash-completion \
+        vim && \
     yum --nogpgcheck -y remove dbus-glib && \
-    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
+    package-cleanup --problems && \
+    package-cleanup --cleandupes; \
+    package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
     yum clean all --enablerepo=\* && \
     mkdir -p $SX_LIBDIR $APP_PATH $LOG_PATH && \
