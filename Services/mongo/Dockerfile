@@ -9,7 +9,7 @@ ENV SX_VERSION="centos6" \
     SX_NAME="Startx MongoDB service image (centos 6)" \
     SX_SUMMARY="Startx mongo service based on centos 6" \
     LOG_PATH=/var/log/mongodb \
-    MONGO_RUNTIME=/usr/bin/mongod \
+    MONGO_RUNTIME=/usr/bin/mongod \ 
     MONGO_USER=mongodb \
     DATA_PATH=/data
 
@@ -33,7 +33,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 RUN yum install -y yum-utils && yum upgrade -y && \
-    yum -y install --enablerepo=epel mongodb-server && \
+    yum install -y --nogpgcheck --enablerepo=epel mongodb-server && \
     package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
     yum clean all --enablerepo=\* && \

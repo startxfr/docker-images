@@ -29,7 +29,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 RUN yum install -y yum-utils && yum upgrade -y && \
-    yum -y install memcached && \
+    yum install -y --nogpgcheck memcached && \
     package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
     yum clean all --enablerepo=\* && \

@@ -31,7 +31,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 RUN yum install -y yum-utils && yum upgrade -y && \
-    yum -y install postgresql postgresql-libs postgresql-server && \
+    yum install -y --nogpgcheck postgresql postgresql-libs postgresql-server && \
     package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
     yum clean all --enablerepo=\* && \
