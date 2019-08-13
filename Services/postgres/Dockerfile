@@ -31,12 +31,13 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf install -y yum-utils && dnf upgrade -y --refresh && \
-    dnf install -y --nogpgcheck libicu libpq && \
+RUN dnf upgrade -yq --refresh && \
+    dnf install -yq --nogpgcheck \
+        libicu \
+        libpq && \
     rpm -ivh $RPM_REPO/postgresql12-libs-12beta2-1PGDG.rhel8.x86_64.rpm && \
     rpm -ivh $RPM_REPO/postgresql12-12beta2-1PGDG.rhel8.x86_64.rpm && \
     rpm -ivh $RPM_REPO/postgresql12-server-12beta2-1PGDG.rhel8.x86_64.rpm && \
-    dnf remove -y --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \

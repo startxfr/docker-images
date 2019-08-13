@@ -33,9 +33,14 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 COPY *.j* $APP_PATH/
-RUN dnf install -y yum-utils && dnf upgrade -y --refresh && \
-    dnf install -y --nogpgcheck nodejs npm python36 make gcc git && \
-    dnf remove -y --skip-broken yum-utils yum && \
+RUN dnf upgrade -yq --refresh && \
+    dnf install -yq --nogpgcheck \
+        nodejs \
+        npm \
+        python36 \
+        make \
+        gcc \
+        git && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \

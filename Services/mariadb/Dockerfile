@@ -38,10 +38,14 @@ COPY sx /tmp/
 COPY my.cnf $MY_CONF
 COPY mariadb.repo /etc/yum.repos.d/MariaDB.repo
 RUN rpm --import https://yum.mariadb.org/RPM-GPG-KEY-MariaDB && \
-    dnf install -y yum-utils && dnf upgrade -y --refresh && \
-    dnf install -y --nogpgcheck --skip-broken MariaDB-server galera-4 MariaDB-client MariaDB-shared MariaDB-backup MariaDB-common && \
-    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
-    dnf remove -y --skip-broken yum-utils yum && \
+    dnf upgrade -yq --refresh && \
+    dnf install -yq --nogpgcheck --skip-broken \
+        MariaDB-server \
+        galera-4 \
+        MariaDB-client \
+        MariaDB-shared \
+        MariaDB-backup \
+        MariaDB-common && \
     dnf clean all --enablerepo=\* && \
     useradd -s /bin/bash -m -u 1001 mysql && \
     usermod -G 0 mysql && \

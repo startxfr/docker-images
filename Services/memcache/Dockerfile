@@ -28,13 +28,18 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf install -y yum-utils && dnf upgrade -y --refresh && \
-    dnf install -y --nogpgcheck ncurses ncurses-libs nmap-ncat wget gcc libevent && \
-    dnf install -y --nogpgcheck --skip-broken http://rpmfind.net/linux/centos/7.6.1810/os/x86_64/Packages/telnet-0.17-64.el7.x86_64.rpm && \
+RUN dnf upgrade -yq --refresh && \
+    dnf install -yq --nogpgcheck \
+        ncurses \
+        ncurses-libs \
+        nmap-ncat \
+        gcc \
+        libevent && \
+    dnf install -yq --nogpgcheck --skip-broken http://rpmfind.net/linux/centos/7.6.1810/os/x86_64/Packages/telnet-0.17-64.el7.x86_64.rpm && \
     tar -zxvf latest && \
-    cd cd memcached-1.5.16 && \
+    cd memcached-1.5.16 && \
     ./configure && make && make test && sudo make install && \
-    dnf remove -y --skip-broken yum-utils yum wget gcc && \
+    dnf remove -y --skip-broken gcc && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \

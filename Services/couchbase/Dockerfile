@@ -34,9 +34,13 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf install -y yum-utils && dnf upgrade -y --refresh && \
-    dnf install -y --nogpgcheck python3-requests python3-urllib3 wget openssl ncurses ncurses-libs && \
-    dnf remove -y --skip-broken yum-utils yum && \
+RUN dnf upgrade -yq --refresh && \
+    dnf install -yq --nogpgcheck \
+        python3-requests \
+        python3-urllib3 \
+        openssl \
+        ncurses \
+        ncurses-libs && \
     dnf clean all --enablerepo=\* && \
     #echo 0 > /proc/sys/vm/swappiness && \
     echo '' >> /etc/sysctl.conf && \
@@ -46,7 +50,7 @@ RUN dnf install -y yum-utils && dnf upgrade -y --refresh && \
     echo 'vm.swappiness = 0' >> /etc/sysctl.conf && \
     #echo never > /sys/kernel/mm/transparent_hugepage/enabled && \
     #echo never > /sys/kernel/mm/transparent_hugepage/defrag && \
-    wget $CB_RELEASE_URL/$CB_PACKAGE && \
+    wget -q $CB_RELEASE_URL/$CB_PACKAGE && \
     rpm --install $CB_PACKAGE && \
     rm -rf $CB_PACKAGE && \
     usermod -a -G 0 couchbase && \
