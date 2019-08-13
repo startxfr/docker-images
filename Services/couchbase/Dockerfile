@@ -35,7 +35,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 RUN dnf install -y yum-utils dnf-plugin-system-upgrade && dnf upgrade -y --refresh && \
-    dnf -y install python2-httplib2 openssl ncurses ncurses-libs ncurses-compat-libs python2 && \
+    dnf install -y --nogpgcheck python2-httplib2 openssl ncurses ncurses-libs ncurses-compat-libs python2 && \
     package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
     dnf remove -y --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \

@@ -10,7 +10,7 @@ ENV SX_VERSION="latest" \
     SX_SUMMARY="Startx mongo service based on fedora rawhide" \
     LOG_PATH=/var/log/mongodb \
     MONGO_RUNTIME=/usr/bin/mongod \
-    MONGO_USER=mongodb \
+    MONGO_USER=mongo \
     DATA_PATH=/data
 
 LABEL name="$SX_ID" \
@@ -34,7 +34,7 @@ USER root
 COPY sx /tmp/
 COPY mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo
 RUN dnf install -y yum-utils dnf-plugin-system-upgrade && dnf upgrade -y --refresh && \
-    dnf -y install mongodb-org-unstable && \
+    dnf install -y --nogpgcheck mongodb-org-unstable && \
     package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
     dnf remove -y --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
