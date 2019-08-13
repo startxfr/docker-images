@@ -32,7 +32,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 RUN dnf install -y yum-utils && dnf upgrade -y --refresh && \
-    dnf -y install libicu libpq && \
+    dnf install -y --nogpgcheck libicu libpq && \
     rpm -ivh $RPM_REPO/postgresql12-libs-12beta2-1PGDG.rhel8.x86_64.rpm && \
     rpm -ivh $RPM_REPO/postgresql12-12beta2-1PGDG.rhel8.x86_64.rpm && \
     rpm -ivh $RPM_REPO/postgresql12-server-12beta2-1PGDG.rhel8.x86_64.rpm && \

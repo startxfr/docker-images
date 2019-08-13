@@ -33,7 +33,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 RUN dnf install -y yum-utils && dnf upgrade -y --refresh && \
-    dnf -y install unoconv libreoffice-writer libreoffice-calc pdfmod ghostscript && \
+    dnf install -y --nogpgcheck unoconv libreoffice-writer libreoffice-calc pdfmod ghostscript && \
     dnf remove -y --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     useradd -s /bin/bash -m -g 0 -u 1001 ooconv && \

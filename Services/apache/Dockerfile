@@ -38,7 +38,7 @@ USER root
 COPY httpd.conf $HTTPDCONF
 COPY sx /tmp/
 RUN dnf install -y yum-utils && dnf upgrade -y --refresh && \
-    dnf -y install httpd && \
+    dnf install -y --nogpgcheck httpd && \
     dnf remove -y --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \

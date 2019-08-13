@@ -29,7 +29,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 RUN dnf install -y yum-utils && dnf upgrade -y --refresh && \
-    dnf -y install mysql && \
+    dnf install -y --nogpgcheck mysql && \
     dnf remove -y --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     cd $APP_PATH && \

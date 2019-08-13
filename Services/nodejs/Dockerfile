@@ -34,7 +34,7 @@ USER root
 COPY sx /tmp/
 COPY *.j* $APP_PATH/
 RUN dnf install -y yum-utils && dnf upgrade -y --refresh && \
-    dnf -y install nodejs npm python36 make gcc git && \
+    dnf install -y --nogpgcheck nodejs npm python36 make gcc git && \
     dnf remove -y --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \

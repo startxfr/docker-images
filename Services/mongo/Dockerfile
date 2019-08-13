@@ -10,7 +10,7 @@ ENV SX_VERSION="ubi8" \
     SX_SUMMARY="Startx mongo service based on RedHat UBI 8" \
     LOG_PATH=/var/log/mongodb \
     MONGO_RUNTIME=/usr/bin/mongod \
-    MONGO_USER=mongod \
+    MONGO_USER=mongo \
     DATA_PATH=/data
 
 LABEL name="$SX_ID" \
@@ -34,7 +34,7 @@ USER root
 COPY sx /tmp/
 COPY mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo
 RUN dnf install -y yum-utils && dnf upgrade -y --refresh && \
-    dnf -y install mongodb-org-unstable && \
+    dnf install -y --nogpgcheck mongodb-org-unstable && \
     dnf remove -y --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     usermod -a -G 0 $MONGO_USER && \
