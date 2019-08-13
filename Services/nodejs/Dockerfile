@@ -34,7 +34,7 @@ USER root
 COPY sx /tmp/
 COPY *.j* $APP_PATH/
 RUN dnf install -y yum-utils dnf-plugin-system-upgrade && dnf upgrade -y --refresh && \
-    dnf -y install nodejs npm python make gcc git && \
+    dnf install -y --nogpgcheck nodejs npm python make gcc git && \
     package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
     dnf remove -y --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \

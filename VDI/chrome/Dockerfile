@@ -40,9 +40,9 @@ COPY sx /tmp/
 RUN wget https://rpmfind.net/linux/fedora/linux/releases/30/Everything/x86_64/os/Packages/p/python2-meld3-1.0.2-6.fc30.noarch.rpm && \
     rpm -ivh python2-meld3-1.0.2-6.fc30.noarch.rpm --nodeps && \
     dnf install -y yum-utils dnf-plugin-system-upgrade && dnf upgrade -y --refresh && \
-    dnf --nogpgcheck -y install supervisor xorg-x11-server-Xvfb x11vnc fedora-workstation-repositories dnf-plugins-core pulseaudio  python2-setuptools && \
+    dnf install -y --nogpgcheck supervisor xorg-x11-server-Xvfb x11vnc fedora-workstation-repositories dnf-plugins-core pulseaudio  python2-setuptools && \
     dnf config-manager --set-enabled google-chrome && \
-    dnf --nogpgcheck -y install google-chrome-stable && \
+    dnf install -y --nogpgcheck google-chrome-stable && \
     package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
     dnf remove -y --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
