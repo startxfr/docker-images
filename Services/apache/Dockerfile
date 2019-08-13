@@ -37,10 +37,14 @@ LABEL name="$SX_ID" \
 USER root
 COPY httpd.conf $HTTPDCONF
 COPY sx /tmp/
-RUN dnf install -y yum-utils dnf-plugin-system-upgrade && dnf upgrade -y --refresh && \
-    dnf install -y --nogpgcheck httpd && \
-    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
-    dnf remove -y --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
+    dnf upgrade -yq --refresh && \
+    dnf install -yq --nogpgcheck \
+        httpd && \
+    package-cleanup --problems && \
+    package-cleanup --cleandupes; \
+    package-cleanup --orphans && \
+    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
@@ -56,7 +60,8 @@ RUN dnf install -y yum-utils dnf-plugin-system-upgrade && dnf upgrade -y --refre
     chmod -R ugo+x /bin/sx* && \
     chmod -R ugo+rwx $LOG_PATH
 COPY index.html $APP_PATH/index.html
-RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH
+RUN chgrp -R 0 $APP_PATH && \
+    chmod -R g=u $APP_PATH
 
 USER 1001
 
