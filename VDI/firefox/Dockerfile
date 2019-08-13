@@ -36,8 +36,8 @@ LABEL name="$SX_ID" \
 USER root
 COPY supervisord.conf $SX_FIREFOX_SUPERVISOR_CONF/
 COPY sx /tmp/
-RUN wget https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/p/python-meld3-1.0.2-10.fc30.noarch.rpm && \
-    rpm -ivh python-meld3-1.0.2-10.fc30.noarch.rpm --nodeps && \
+RUN wget https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/p/python-meld3-1.0.2-11.fc31.noarch.rpm && \
+    rpm -ivh python-meld3-1.0.2-11.fc31.noarch.rpm --nodeps && \
     dnf install -y yum-utils dnf-plugin-system-upgrade && dnf upgrade -y --refresh && \
     dnf -y install supervisor xorg-x11-server-Xvfb x11vnc firefox python2-setuptools && \
     package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
