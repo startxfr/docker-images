@@ -47,7 +47,7 @@ RUN dnf install -y yum-utils dnf-plugin-system-upgrade && dnf upgrade -y --refre
     echo 'vm.swappiness = 0' >> /etc/sysctl.conf && \
     #echo never > /sys/kernel/mm/transparent_hugepage/enabled && \
     #echo never > /sys/kernel/mm/transparent_hugepage/defrag && \
-    wget $CB_RELEASE_URL/$CB_PACKAGE && \
+    wget -q $CB_RELEASE_URL/$CB_PACKAGE && \
     rpm --install $CB_PACKAGE && \
     rm -rf $CB_PACKAGE && \
     usermod -a -G 0 couchbase && \

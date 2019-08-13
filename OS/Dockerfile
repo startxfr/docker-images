@@ -40,7 +40,7 @@ COPY sx /tmp/
 RUN echo "keepcache=0" >> /etc/dnf/dnf.conf && \
     dnf install -y yum-utils dnf-plugin-system-upgrade && dnf upgrade -y --refresh && \
     dnf install -y pwgen tar unzip zip hostname \
-                   psmisc procps findutils iputils net-tools wget \
+                   psmisc procps findutils iputils net-tools wget curl \
                    logrotate bash-completion vim glibc-langpack-fr && \
     package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
     dnf remove -y --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
