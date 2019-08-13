@@ -38,7 +38,7 @@ COPY sx /tmp/
 COPY my.cnf $MY_CONF
 COPY mariadb.repo /etc/yum.repos.d/mariadb.repo
 RUN yum install -y yum-utils && yum upgrade -y && \
-    yum install -y mariadb-libs mariadb-server mariadb && \
+    yum install -y --nogpgcheck mariadb-libs mariadb-server mariadb && \
     package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
     yum clean all --enablerepo=\* && \

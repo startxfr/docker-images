@@ -35,7 +35,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 RUN yum install -y yum-utils && yum upgrade -y && \
-    yum install -y python-httplib2 openssl ncurses ncurses-libs ncurses-compat-libs && \
+    yum install -y --nogpgcheck python-httplib2 openssl ncurses ncurses-libs ncurses-compat-libs && \
     package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
     yum clean all --enablerepo=\* && \

@@ -33,7 +33,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 RUN yum install -y yum-utils && yum upgrade -y && \
-    yum install -y unoconv libreoffice-writer libreoffice-calc pdfmod ghostscript && \
+    yum install -y --nogpgcheck unoconv libreoffice-writer libreoffice-calc pdfmod ghostscript && \
     package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
     yum clean all --enablerepo=\* && \

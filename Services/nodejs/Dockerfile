@@ -34,7 +34,7 @@ USER root
 COPY sx /tmp/
 COPY *.j* $APP_PATH/
 RUN yum install -y yum-utils && yum upgrade -y && \
-    yum install -y --enablerepo=epel nodejs npm python make gcc git && \
+    yum install -y --nogpgcheck --enablerepo=epel nodejs npm python make gcc git && \
     package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
     yum clean all --enablerepo=\* && \
