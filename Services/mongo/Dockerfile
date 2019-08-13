@@ -32,7 +32,13 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN apk --no-cache add mongodb && \
+RUN echo http://nl.alpinelinux.org/alpine/v3.9/community > /etc/apk/repositories && \
+    echo http://nl.alpinelinux.org/alpine/v3.9/main >> /etc/apk/repositories && \
+    wget -q http://nl.alpinelinux.org/alpine/v3.9/main/x86_64/boost-1.67.0-r2.apk && \
+    wget -q http://nl.alpinelinux.org/alpine/v3.9/main/x86_64/boost-system-1.67.0-r2.apk && \
+    apk --no-cache add boost-1.67.0-r2.apk boost-system-1.67.0-r2.apk && \
+    rm -f boost-1.67.0-r2.apk && \
+    apk --no-cache add mongodb && \
     usermod -a -G 0 $MONGO_USER && \
     mkdir -p $DATA_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \
