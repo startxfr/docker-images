@@ -39,12 +39,22 @@ COPY supervisord.conf $SX_CHROME_SUPERVISOR_CONF/
 COPY sx /tmp/
 RUN wget -q https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/p/python-meld3-1.0.2-11.fc31.noarch.rpm && \
     rpm -ivh python-meld3-1.0.2-11.fc31.noarch.rpm --nodeps && \
-    dnf install -y yum-utils dnf-plugin-system-upgrade && dnf upgrade -y --refresh && \
-    dnf install -y --nogpgcheck supervisor xorg-x11-server-Xvfb x11vnc fedora-workstation-repositories dnf-plugins-core pulseaudio  python2-setuptools && \
+    dnf install -yq yum-utils dnf-plugin-system-upgrade && \
+    dnf upgrade -yq --refresh && \
+    dnf install -yq --nogpgcheck \
+        supervisor \
+        xorg-x11-server-Xvfb \
+        x11vnc \
+        fedora-workstation-repositories \
+        dnf-plugins-core \
+        pulseaudio \
+        python2-setuptools && \
     dnf config-manager --set-enabled google-chrome && \
-    dnf install -y --nogpgcheck google-chrome-stable && \
-    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
-    dnf remove -y --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf install -yq --nogpgcheck google-chrome-stable && \
+    package-cleanup --problems && \
+    package-cleanup --cleandupes; \
+    package-cleanup --orphans && \
+    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     easy_install pip && \
     pip install --upgrade pip && \

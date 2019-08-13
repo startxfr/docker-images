@@ -33,14 +33,30 @@ COPY httpd.conf $HTTPDCONF
 COPY php.ini /etc/php.d/sx.ini
 COPY php-fpm.conf /etc/php-fpm.d/www.conf
 COPY sx /tmp/
-RUN dnf install -y yum-utils dnf-plugin-system-upgrade && dnf upgrade -y --refresh && \
-    dnf install -y --nogpgcheck php php-cli php-pear \
-        php-gd php-mcrypt php-mysqlnd php-soap \
-        php-pdo php-process php-common php-mbstring \
-        php-bcmath php-php-gettext php-tcpdf \
-        php-tcpdf-dejavu-sans-fonts php-tidy && \
-    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
-    dnf remove -y --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+COPY index.php $APP_PATH/index.php
+RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
+    dnf upgrade -yq --refresh && \
+    dnf install -yq --nogpgcheck \
+        php \
+        php-cli \
+        php-pear \
+        php-gd \
+        php-mcrypt \
+        php-mysqlnd \
+        php-soap \
+        php-pdo \
+        php-process \
+        php-common \
+        php-mbstring \
+        php-bcmath \
+        php-php-gettext \
+        php-tcpdf \
+        php-tcpdf-dejavu-sans-fonts \
+        php-tidy && \
+    package-cleanup --problems && \
+    package-cleanup --cleandupes; \
+    package-cleanup --orphans && \
+    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
@@ -52,9 +68,8 @@ RUN dnf install -y yum-utils dnf-plugin-system-upgrade && dnf upgrade -y --refre
     chmod -R ug+rw $APP_PATH $LOG_PATH /run/php-fpm /var/lib/php $SX_PHPSESS_PATH && \
     chown -R 1001:0 /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH $LOG_PATH /run/php-fpm /var/lib/php $SX_PHPSESS_PATH && \
     chmod -R g=u $APP_PATH $LOG_PATH $RUN_DIR /bin/sx* /s2i $SX_LIBDIR /tmp /run/php-fpm /var/lib/php $SX_PHPSESS_PATH && \
-    chmod -R ugo+x /bin/sx*
-COPY index.php $APP_PATH/index.php
-RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH && rm -rf $APP_PATH/index.html
+    chmod -R ugo+x /bin/sx* && \
+    rm -rf $APP_PATH/index.html
 
 USER 1001
 
