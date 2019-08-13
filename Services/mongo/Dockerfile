@@ -10,7 +10,7 @@ ENV SX_VERSION="latest" \
     SX_SUMMARY="Startx mongo service based on fedora rawhide" \
     LOG_PATH=/var/log/mongodb \
     MONGO_RUNTIME=/usr/bin/mongod \
-    MONGO_USER=mongod \
+    MONGO_USER=mongodb \
     DATA_PATH=/data
 
 LABEL name="$SX_ID" \
