@@ -34,10 +34,19 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf install -y yum-utils dnf-plugin-system-upgrade && dnf upgrade -y --refresh && \
-    dnf install -y --nogpgcheck python2-httplib2 openssl ncurses ncurses-libs ncurses-compat-libs python2 && \
-    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
-    dnf remove -y --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
+    dnf upgrade -yq --refresh && \
+    dnf install -yq --nogpgcheck \
+        python2-httplib2 \
+        openssl \
+        ncurses \
+        ncurses-libs \
+        ncurses-compat-libs \
+        python2 && \
+    package-cleanup --problems && \
+    package-cleanup --cleandupes; \
+    package-cleanup --orphans && \
+    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     #echo 0 > /proc/sys/vm/swappiness && \
     echo '' >> /etc/sysctl.conf && \
@@ -47,7 +56,7 @@ RUN dnf install -y yum-utils dnf-plugin-system-upgrade && dnf upgrade -y --refre
     echo 'vm.swappiness = 0' >> /etc/sysctl.conf && \
     #echo never > /sys/kernel/mm/transparent_hugepage/enabled && \
     #echo never > /sys/kernel/mm/transparent_hugepage/defrag && \
-    wget $CB_RELEASE_URL/$CB_PACKAGE && \
+    wget -q $CB_RELEASE_URL/$CB_PACKAGE && \
     rpm --install $CB_PACKAGE && \
     rm -rf $CB_PACKAGE && \
     usermod -a -G 0 couchbase && \

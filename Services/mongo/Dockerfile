@@ -10,7 +10,7 @@ ENV SX_VERSION="fc31" \
     SX_SUMMARY="Startx mongo service based on fedora 31" \
     LOG_PATH=/var/log/mongodb \
     MONGO_RUNTIME=/usr/bin/mongod \
-    MONGO_USER=mongo \
+    MONGO_USER=mongod \
     DATA_PATH=/data
 
 LABEL name="$SX_ID" \
@@ -33,10 +33,14 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 COPY mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo
-RUN dnf install -y yum-utils dnf-plugin-system-upgrade && dnf upgrade -y --refresh && \
-    dnf install -y --nogpgcheck mongodb-org-unstable && \
-    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
-    dnf remove -y --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
+    dnf upgrade -yq --refresh && \
+    dnf install -yq --nogpgcheck \
+        mongodb-org-unstable && \
+    package-cleanup --problems && \
+    package-cleanup --cleandupes; \
+    package-cleanup --orphans && \
+    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     usermod -a -G 0 $MONGO_USER && \
     mkdir -p $DATA_PATH && \

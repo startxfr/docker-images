@@ -38,12 +38,29 @@ USER root
 COPY sx /tmp/
 
 RUN echo "keepcache=0" >> /etc/dnf/dnf.conf && \
-    dnf install -y yum-utils dnf-plugin-system-upgrade && dnf upgrade -y --refresh && \
-    dnf install -y pwgen tar unzip zip hostname \
-                   psmisc procps findutils iputils net-tools wget \
-                   logrotate bash-completion vim glibc-langpack-fr && \
-    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
-    dnf remove -y --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf install -yq yum-utils dnf-plugin-system-upgrade && \
+    dnf upgrade -yq --refresh && \
+    dnf install -yq \
+        pwgen \
+        tar \
+        unzip \
+        zip \
+        hostname \
+        psmisc \
+        procps \
+        findutils \
+        iputils \
+        net-tools \
+        wget \
+        curl \
+        logrotate \
+        bash-completion \
+        glibc-langpack-fr \
+        vim && \
+    package-cleanup --problems && \
+    package-cleanup --cleandupes; \
+    package-cleanup --orphans && \
+    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mkdir -p $SX_LIBDIR $APP_PATH $LOG_PATH && \
     chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib && \
