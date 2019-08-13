@@ -49,9 +49,8 @@ RUN apk --no-cache add php7-apache2 php7 php7-phar php7-json php7-iconv php7-ope
     chmod -R ug+rw $APP_PATH $LOG_PATH /run/php-fpm /var/lib/php $SX_PHPSESS_PATH && \
     chown -R 1001:0 /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH $LOG_PATH /run/php-fpm /var/lib/php $SX_PHPSESS_PATH && \
     chmod -R g=u $APP_PATH $LOG_PATH $RUN_DIR /bin/sx* /s2i $SX_LIBDIR /tmp /run/php-fpm /var/lib/php $SX_PHPSESS_PATH && \
-    chmod -R ugo+x /bin/sx*
-COPY index.php $APP_PATH/index.php
-RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH && rm -rf $APP_PATH/index.html
+    chmod -R ugo+x /bin/sx* && \
+    rm -rf $APP_PATH/index.html
 
 USER 1001
 

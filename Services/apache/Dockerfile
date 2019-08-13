@@ -52,7 +52,8 @@ RUN apk --no-cache add apache2 curl ca-certificates openssl tzdata openntpd && \
     chmod -R ugo+x /bin/sx* && \
     chmod -R ugo+rwx $LOG_PATH
 COPY index.html $APP_PATH/index.html
-RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH
+RUN chgrp -R 0 $APP_PATH && \
+    chmod -R g=u $APP_PATH
 
 USER 1001
 
