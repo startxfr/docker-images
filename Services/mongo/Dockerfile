@@ -10,7 +10,7 @@ ENV SX_VERSION="ubi8" \
     SX_SUMMARY="Startx mongo service based on RedHat UBI 8" \
     LOG_PATH=/var/log/mongodb \
     MONGO_RUNTIME=/usr/bin/mongod \
-    MONGO_USER=mongo \
+    MONGO_USER=mongodb \
     DATA_PATH=/data
 
 LABEL name="$SX_ID" \
