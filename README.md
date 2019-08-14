@@ -137,6 +137,7 @@ and stay stiked to a defined stable release.
 
 | Release  | Description
 |----------|-------------
+| 0.95.3   | Updating docker for better diff and merge. Improve doc structures
 | 0.93.1   | Unstable release with UBI and centos8 added. Prepare first major release
 | 0.40.0   | Stable release with updated images lib packages
 | 0.31.3   | Stable release with images fully compatible with OKD 4.0 (s2i, podman)
