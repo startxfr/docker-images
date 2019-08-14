@@ -8,11 +8,11 @@ set_listen_addresses() {
 
 
 function check_postgres_environment {
-    if [ ! -v DATA_PATH ]; then
+    if [ -z "$DATA_PATH" ]; then
         DATA_PATH="/data"
         export DATA_PATH
     fi
-    if [ ! -v LOG_PATH ]; then
+    if [ -z "$LOG_PATH" ]; then
         LOG_PATH="/var/log/postgres"
         export LOG_PATH
     fi

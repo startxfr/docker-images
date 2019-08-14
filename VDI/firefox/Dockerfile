@@ -20,7 +20,7 @@ LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
       description="$SX_SUMMARY. Use for executing firefox browser as container mainstream image with persistence capabilities" \
       version="$SX_VERSION" \
-      release="1" \
+      release="$SX_VERSION" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
@@ -38,8 +38,19 @@ COPY supervisord.conf $SX_FIREFOX_SUPERVISOR_CONF/
 COPY sx /tmp/
 RUN wget http://rpmfind.net/linux/fedora-secondary/releases/28/Everything/x86_64/os/Packages/p/python-meld3-1.0.2-10.fc30.noarch.rpm && \
     rpm -ivh python-meld3-1.0.2-10.fc30.noarch.rpm --nodeps && \
-    dnf --nogpgcheck -y install supervisor xorg-x11-server-Xvfb x11vnc firefox python2-setuptools  && \
-    dnf clean all && \
+    dnf install -yq yum-utils dnf-plugin-system-upgrade && \
+    dnf upgrade -yq --refresh && \
+    dnf -y install \
+        supervisor \
+        xorg-x11-server-Xvfb \
+        x11vnc \
+        firefox \
+        python2-setuptools && \
+    package-cleanup --problems && \
+    package-cleanup --cleandupes; \
+    package-cleanup --orphans && \
+    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf clean all --enablerepo=\* && \
     easy_install pip && \
     pip install --upgrade pip && \
     pip install --upgrade --force-reinstall setuptools pip && \

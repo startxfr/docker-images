@@ -2,11 +2,11 @@
 source $SX_LIBDIR/sx
 
 function check_mongo_environment {
-    if [ ! -v APP_PATH ]; then
+    if [ -z "$APP_PATH" ]; then
         APP_PATH="/data"
         export APP_PATH
     fi
-    if [ ! -v LOG_PATH ]; then
+    if [ -z "$LOG_PATH" ]; then
         LOG_PATH="/logs"
         export LOG_PATH
     fi
