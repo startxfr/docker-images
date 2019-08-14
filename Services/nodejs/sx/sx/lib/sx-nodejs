@@ -2,19 +2,19 @@
 source $SX_LIBDIR/sx
 
 function check_nodejs_environment {
-    if [ ! -v APP_PATH ]; then
+    if [ -z "$APP_PATH" ]; then
         APP_PATH="/app"
         export APP_PATH
     fi
-    if [ ! -v APP_MAIN ]; then
+    if [ -z "$APP_MAIN" ]; then
         APP_MAIN="app.js"
         export APP_MAIN
     fi
-    if [ ! -v DATA_PATH ]; then
+    if [ -z "$DATA_PATH" ]; then
         DATA_PATH="/data"
         export DATA_PATH
     fi
-    if [ ! -v LOG_PATH ]; then
+    if [ -z "$LOG_PATH" ]; then
         LOG_PATH="/var/log/nodejs"
         export LOG_PATH
     fi

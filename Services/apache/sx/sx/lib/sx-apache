@@ -2,19 +2,19 @@
 source $SX_LIBDIR/sx
 
 function check_apache_environment {
-    if [ ! -v APP_PATH ]; then
+    if [ -z "$APP_PATH" ]; then
         APP_PATH="/app"
         export APP_PATH
     fi
-    if [ ! -v APP_PORT ]; then
+    if [ -z "$APP_PORT" ]; then
         APP_PORT="8080"
         export APP_PORT
     fi
-    if [ ! -v LOG_PATH ]; then
+    if [ -z "$LOG_PATH" ]; then
         LOG_PATH="/var/log/httpd"
         export LOG_PATH
     fi
-    if [ ! -n "$SERVER_NAME" ]; then
+    if [ -z "$SERVER_NAME" ]; then
         SERVER_NAME="localhost"
         export SERVER_NAME
     fi

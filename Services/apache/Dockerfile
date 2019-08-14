@@ -21,7 +21,7 @@ LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
       description="$SX_SUMMARY. Use for executing application based on http or as container mainstream image for your web application containers." \
       version="$SX_VERSION" \
-      release="1" \
+      release="$SX_VERSION" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
@@ -37,7 +37,15 @@ LABEL name="$SX_ID" \
 USER root
 COPY httpd.conf $HTTPDCONF
 COPY sx /tmp/
-RUN dnf --nogpgcheck -y install httpd && dnf clean all && \
+RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
+    dnf upgrade -yq --refresh && \
+    dnf install -yq --nogpgcheck \
+        httpd && \
+    package-cleanup --problems && \
+    package-cleanup --cleandupes; \
+    package-cleanup --orphans && \
+    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
@@ -52,7 +60,8 @@ RUN dnf --nogpgcheck -y install httpd && dnf clean all && \
     chmod -R ugo+x /bin/sx* && \
     chmod -R ugo+rwx $LOG_PATH
 COPY index.html $APP_PATH/index.html
-RUN chgrp -R 0 $APP_PATH && chmod -R g=u $APP_PATH
+RUN chgrp -R 0 $APP_PATH && \
+    chmod -R g=u $APP_PATH
 
 USER 1001
 
