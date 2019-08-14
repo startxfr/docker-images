@@ -13,7 +13,7 @@ LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
       description="$SX_SUMMARY. Use for executing database based on memcached or as container mainstream image for your database backend containers." \
       version="$SX_VERSION" \
-      release="1" \
+      release="$SX_VERSION" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
@@ -28,7 +28,17 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum --nogpgcheck -y install memcached nmap-ncat telnet && yum clean all && \
+RUN yum install -yq yum-utils && \
+    yum upgrade -yq --refresh && \
+    yum install -yq --nogpgcheck \
+        memcached \
+        nmap-ncat \
+        telnet && \
+    package-cleanup --problems && \
+    package-cleanup --cleandupes; \
+    package-cleanup --orphans && \
+    yum remove -yq --skip-broken yum-utils && \
+    yum clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \

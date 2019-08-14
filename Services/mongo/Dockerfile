@@ -17,7 +17,7 @@ LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
       description="$SX_SUMMARY. Use for executing database based on mongo or as container mainstream image for your database backend containers." \
       version="$SX_VERSION" \
-      release="1" \
+      release="$SX_VERSION" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
@@ -32,9 +32,16 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-COPY mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo  
-RUN yum --nogpgcheck -y install mongodb-org-unstable  && \
-    yum clean all  && \
+COPY mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo
+RUN yum install -yq yum-utils && \
+    yum upgrade -yq --refresh && \
+    yum install -yq --nogpgcheck \
+        mongodb-org-unstable && \
+    package-cleanup --problems && \
+    package-cleanup --cleandupes; \
+    package-cleanup --orphans && \
+    yum remove -yq --skip-broken yum-utils && \
+    yum clean all --enablerepo=\* && \
     usermod -a -G 0 $MONGO_USER && \
     mkdir -p $DATA_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \
@@ -52,7 +59,7 @@ USER 1001
 
 WORKDIR $DATA_PATH
 
-EXPOSE 27017
+EXPOSE 27017 28017
 
 VOLUME $DATA_PATH
 

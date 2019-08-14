@@ -21,7 +21,7 @@ LABEL name="$SX_ID" \
       summary="$SX_SUMMARY" \
       description="$SX_SUMMARY. Use for executing chrome browser as container mainstream image with persistence capabilities" \
       version="$SX_VERSION" \
-      release="1" \
+      release="$SX_VERSION" \
       maintainer="Startx <dev@startx.fr>" \
       io.k8s.description="$SX_SUMMARY" \
       io.k8s.display-name="$SX_ID" \
@@ -39,10 +39,23 @@ COPY supervisord.conf $SX_CHROME_SUPERVISOR_CONF/
 COPY sx /tmp/
 RUN wget https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/p/python-meld3-1.0.2-10.fc30.noarch.rpm && \
     rpm -ivh python-meld3-1.0.2-10.fc30.noarch.rpm --nodeps && \
-    yum --nogpgcheck -y install supervisor xorg-x11-server-Xvfb x11vnc fedora-workstation-repositories pulseaudio  python2-setuptools && \
+    yum install -yq yum-utils && \
+    yum upgrade -yq --refresh && \
+    yum install -yq --nogpgcheck \
+        supervisor \
+        xorg-x11-server-Xvfb \
+        x11vnc \
+        fedora-workstation-repositories \
+        yum-plugins-core \
+        pulseaudio \
+        python-setuptools && \
     yum config-manager --set-enabled google-chrome && \
-    yum --nogpgcheck -y install google-chrome-stable && \
-    yum clean all && \
+    yum install -yq --nogpgcheck google-chrome-stable && \
+    package-cleanup --problems && \
+    package-cleanup --cleandupes; \
+    package-cleanup --orphans && \
+    yum remove -yq --skip-broken yum-utils && \
+    yum clean all --enablerepo=\* && \
     easy_install pip && \
     pip install --upgrade pip && \
     pip install --upgrade --force-reinstall setuptools pip && \
