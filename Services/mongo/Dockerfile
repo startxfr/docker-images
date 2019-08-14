@@ -33,9 +33,13 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 COPY mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo
-RUN yum install -y yum-utils && yum upgrade -y && \
-    yum install -y --nogpgcheck mongodb-org-unstable && \
-    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
+RUN yum install -yq yum-utils && \
+    yum upgrade -yq --refresh && \
+    yum install -yq --nogpgcheck \
+        mongodb-org-unstable && \
+    package-cleanup --problems && \
+    package-cleanup --cleandupes; \
+    package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
     yum clean all --enablerepo=\* && \
     usermod -a -G 0 $MONGO_USER && \
@@ -55,7 +59,7 @@ USER 1001
 
 WORKDIR $DATA_PATH
 
-EXPOSE 27017
+EXPOSE 27017 28017
 
 VOLUME $DATA_PATH
 

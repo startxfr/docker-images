@@ -33,9 +33,18 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 COPY *.j* $APP_PATH/
-RUN yum install -y yum-utils && yum upgrade -y && \
-    yum install -y --nogpgcheck --enablerepo=epel nodejs npm python make gcc git && \
-    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
+RUN yum install -yq yum-utils && \
+    yum upgrade -yq --refresh && \
+    yum install -yq --nogpgcheck --enablerepo=epel \
+        nodejs \
+        npm \
+        python \
+        make \
+        gcc \
+        git && \
+    package-cleanup --problems && \
+    package-cleanup --cleandupes; \
+    package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
     yum clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \

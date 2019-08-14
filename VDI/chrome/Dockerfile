@@ -40,9 +40,18 @@ COPY sx /tmp/
 COPY google-chrome.repo /etc/yum.repos.d/google-chrome.repo
 RUN wget https://rpmfind.net/linux/epel/7Server/x86_64/Packages/p/python-meld3-0.6.10-1.el7.x86_64.rpm && \
     rpm -ivh python-meld3-0.6.10-1.el7.x86_64.rpm --nodeps && \
-    yum install -y yum-utils && yum upgrade -y && \
-    yum install -y --nogpgcheck supervisor xorg-x11-server-Xvfb x11vnc dnf-plugins-core pulseaudio python2-meld3 google-chrome-stable && \
-    package-cleanup --problems && package-cleanup --cleandupes; package-cleanup --orphans && \
+    yum install -yq yum-utils && yum upgrade -yq --refresh && \
+    yum install -yq --nogpgcheck \
+        supervisor \
+        xorg-x11-server-Xvfb \
+        x11vnc \
+        dnf-plugins-core \
+        pulseaudio \
+        python2-meld3 \
+        google-chrome-stable && \
+    package-cleanup --problems && \
+    package-cleanup --cleandupes; \
+    package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
     yum clean all --enablerepo=\* && \
     easy_install pip && \
