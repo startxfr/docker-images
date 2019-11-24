@@ -38,21 +38,25 @@ your project and start using stable or experimental services in your application
 
 ## OS, Services and Applications guidelines
 
-| Type                        | Guideline                       | Available                                              | Running sample                                                      | Flavours                                           |
-|-----------------------------|---------------------------------|--------------------------------------------------------|---------------------------------------------------------------------|----------------------------------------------------|
-| **OS**                      | [read](OS)                      | [OS list](OS#container-flavours)                       | [examples](OS#running-from-dockerhub-registry)                      | [list](OS#container-flavours)                      |
-| **Services**                | [read](Services)                | [services list](Services#container-flavours)           | [examples](Services#running-from-dockerhub-registry)                | [list](Services#container-flavours)                |
-| Services/**apache**         | [read](Services/apache)         | [flavours](Services/apache#container-flavours)         | [examples](Services/apache#running-from-dockerhub-registry)         | [list](Services/apache#container-flavours)         |
-| Services/**couchbase**      | [read](Services/couchbase)      | [flavours](Services/couchbase#container-flavours)      | [examples](Services/couchbase#running-from-dockerhub-registry)      | [list](Services/couchbase#container-flavours)      |
-| Services/**mariadb**        | [read](Services/mariadb)        | [flavours](Services/mariadb#container-flavours)        | [examples](Services/mariadb#running-from-dockerhub-registry)        | [list](Services/mariadb#container-flavours)        |
-| Services/**memcache**       | [read](Services/memcache)       | [flavours](Services/memcache#container-flavours)       | [examples](Services/memcache#running-from-dockerhub-registry)       | [list](Services/memcache#container-flavours)       |
-| Services/**mongo**          | [read](Services/mongo)          | [flavours](Services/mongo#container-flavours)          | [examples](Services/mongo#running-from-dockerhub-registry)          | [list](Services/mongo#container-flavours)          |
-| Services/**nodejs**         | [read](Services/nodejs)         | [flavours](Services/nodejs#container-flavours)         | [examples](Services/nodejs#running-from-dockerhub-registry)         | [list](Services/nodejs#container-flavours)         |
-| Services/**ooconv**         | [read](Services/ooconv)         | [flavours](Services/ooconv#container-flavours)         | [examples](Services/ooconv#running-from-dockerhub-registry)         | [list](Services/ooconv#container-flavours)         |
-| Services/**php**            | [read](Services/php)            | [flavours](Services/php#container-flavours)            | [examples](Services/php#running-from-dockerhub-registry)            | [list](Services/php#container-flavours)            |
-| **Applications**            | [read](Applications)            | [applications list](Applications#container-flavours)   | [examples](Applications#running-from-dockerhub-registry)            | [list](Applications#container-flavours)            |
-| Applications/**phpmyadmin** | [read](Applications/phpmyadmin) | [flavours](Applications/phpmyadmin#container-flavours) | [examples](Applications/phpmyadmin#running-from-dockerhub-registry) | [list](Applications/phpmyadmin#container-flavours) |
-| Applications/**rockmongo**  | [read](Applications/rockmongo)  | [flavours](Applications/rockmongo#container-flavours)  | [examples](Applications/rockmongo#running-from-dockerhub-registry)  | [list](Applications/rockmongo#container-flavours)  |
+| Type                        | Guideline                       | Available                                              | Running sample                                         | Registry                                           |
+|-----------------------------|---------------------------------|--------------------------------------------------------|--------------------------------------------------------|----------------------------------------------------|
+| **OS**                      | [guide](OS)                     | [OS list](OS#container-flavours)                       | [examples](OS#running-this-image)                      |
+| **Services**                | [guide](Services)               | [services list](Services#container-flavours)           | [examples](Services#running-this-image)                |
+| Services/**apache**         | [guide](Services/apache)        | [flavours](Services/apache#container-flavours)         | [examples](Services/apache#running-this-image)         | [docker.io](https://hub.docker.com/r/startx/sv-apache) [quay.io](https://quay.io/repository/startx/apache) 
+| Services/**couchbase**      | [guide](Services/couchbase)     | [flavours](Services/couchbase#container-flavours)      | [examples](Services/couchbase#running-this-image)      | [docker.io](https://hub.docker.com/r/startx/sv-couchbase) [quay.io](https://quay.io/repository/startx/couchbase) 
+| Services/**mariadb**        | [guide](Services/mariadb)       | [flavours](Services/mariadb#container-flavours)        | [examples](Services/mariadb#running-this-image)        | [docker.io](https://hub.docker.com/r/startx/sv-mariadb) [quay.io](https://quay.io/repository/startx/mariadb) 
+| Services/**memcache**       | [guide](Services/memcache)      | [flavours](Services/memcache#container-flavours)       | [examples](Services/memcache#running-this-image)       | [docker.io](https://hub.docker.com/r/startx/sv-memcache) [quay.io](https://quay.io/repository/startx/memcache) 
+| Services/**mongo**          | [guide](Services/mongo)         | [flavours](Services/mongo#container-flavours)          | [examples](Services/mongo#running-this-image)          | [docker.io](https://hub.docker.com/r/startx/sv-mongo) [quay.io](https://quay.io/repository/startx/mongo) 
+| Services/**nodejs**         | [guide](Services/nodejs)        | [flavours](Services/nodejs#container-flavours)         | [examples](Services/nodejs#running-this-image)         | [docker.io](https://hub.docker.com/r/startx/sv-nodejs) [quay.io](https://quay.io/repository/startx/nodejs) 
+| Services/**ooconv**         | [guide](Services/ooconv)        | [flavours](Services/ooconv#container-flavours)         | [examples](Services/ooconv#running-this-image)         | [docker.io](https://hub.docker.com/r/startx/sv-ooconv) [quay.io](https://quay.io/repository/startx/ooconv) 
+| Services/**php**            | [guide](Services/php)           | [flavours](Services/php#container-flavours)            | [examples](Services/php#running-this-image)            | [docker.io](https://hub.docker.com/r/startx/sv-php) [quay.io](https://quay.io/repository/startx/php) 
+| Services/**postgres**       | [guide](Services/postgres)      | [flavours](Services/postgres#container-flavours)       | [examples](Services/postgres#running-this-image)       | [docker.io](https://hub.docker.com/r/startx/sv-postgres) [quay.io](https://quay.io/repository/startx/postgres) 
+| **VDI**                     | [guide](VDI)                    | [VDI list](VDI#container-flavours)                     | [examples](VDI#running-this-image)                     | 
+| VDI/**chrome**              | [guide](VDI/chrome)             | [flavours](VDI/chrome#container-flavours)              | [examples](VDI/chrome#running-this-image)              | [docker.io](https://hub.docker.com/r/startx/vdi-chrome) [quay.io](https://quay.io/repository/startx/chrome) 
+| VDI/**firefox**             | [guide](VDI/firefox)            | [flavours](VDI/firefox#container-flavours)             | [examples](VDI/firefox#running-this-image)             | [docker.io](https://hub.docker.com/r/startx/vdi-firefox) [quay.io](https://quay.io/repository/startx/firefox) 
+| **Applications**            | [guide](Applications)           | [applications list](Applications#container-flavours)   | [examples](Applications#running-this-image)            | 
+| Applications/**phpmyadmin** | [guide](Applications/phpmyadmin)| [flavours](Applications/phpmyadmin#container-flavours) | [examples](Applications/phpmyadmin#running-this-image) | [docker.io](https://hub.docker.com/r/startx/app-phpmyadmin) [quay.io](https://quay.io/repository/startx/phpmyadmin) 
+| Applications/**rockmongo**  | [guide](Applications/rockmongo) | [flavours](Applications/rockmongo#container-flavours)  | [examples](Applications/rockmongo#running-this-image)  | [docker.io](https://hub.docker.com/r/startx/app-rockmongo) [quay.io](https://quay.io/repository/startx/rockmongo) 
 
 
 ## Images flavours
@@ -137,6 +141,7 @@ and stay stiked to a defined stable release.
 
 | Release  | Description
 |----------|-------------
+| 0.95.3   | Updating docker for better diff and merge. Improve doc structures
 | 0.93.1   | Unstable release with UBI and centos8 added. Prepare first major release
 | 0.40.0   | Stable release with updated images lib packages
 | 0.31.3   | Stable release with images fully compatible with OKD 4.0 (s2i, podman)
