@@ -90,7 +90,6 @@ function doNodejsPostBuild {
     echoVerbose "+====================================================="
     echoVerbose "| Executing Nodejs post-build logic"
     echoVerbose "+====================================================="
-    npmInstallEnvironement
 }
 
 # function executed when pre-deploy hook is called
