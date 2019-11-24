@@ -1,11 +1,11 @@
-FROM startx/sv-nodejs:latest
+FROM startx/sv-nodejs:fc31
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="fc31" \
     SX_TYPE="runner" \
     SX_SERVICE="nodejs" \
     SX_ID="startx/runner-nodejs" \
-    SX_NAME="Startx Nodejs gitlab runner image (fedora rawhide)" \
-    SX_SUMMARY="Startx nodejs gitlab runner based on fedora rawhide"
+    SX_NAME="Startx Nodejs gitlab runner image (fedora 31)" \
+    SX_SUMMARY="Startx nodejs gitlab runner based on fedora 31"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \
