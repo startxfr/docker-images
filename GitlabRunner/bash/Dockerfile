@@ -22,10 +22,10 @@ USER root
 RUN yum install -yq yum-utils && \
     yum upgrade -yq --refresh && \
     yum install -yq --nogpgcheck \
-    make &&
-package-cleanup --problems &&
-package-cleanup --orphans &&
-yum remove -yq --skip-broken yum-utils && \
+    make && \
+    package-cleanup --problems && \
+    package-cleanup --orphans && \
+    yum remove -yq --skip-broken yum-utils && \
     yum clean all --enablerepo=\*
 
 USER 1001

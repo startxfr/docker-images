@@ -23,10 +23,10 @@ RUN yum install -yq yum-utils && \
     yum upgrade -yq --refresh && \
     yum install -yq --nogpgcheck \
     make \
-    ansible &&
-package-cleanup --problems &&
-package-cleanup --orphans &&
-yum remove -yq --skip-broken yum-utils && \
+    ansible && \
+    package-cleanup --problems && \
+    package-cleanup --orphans && \
+    yum remove -yq --skip-broken yum-utils && \
     yum clean all --enablerepo=\*
 
 USER 1001
