@@ -1,11 +1,11 @@
-FROM startx/sv-php:latest
+FROM startx/sv-php:centos7
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="centos7" \
     SX_TYPE="runner" \
     SX_SERVICE="php" \
     SX_ID="startx/runner-php" \
-    SX_NAME="Startx Apache-PHP gitlab runner image (fedora rawhide)" \
-    SX_SUMMARY="Startx apache-php gitlab runner based on fedora rawhide"
+    SX_NAME="Startx Apache-PHP gitlab runner image (centos 7)" \
+    SX_SUMMARY="Startx apache-php gitlab runner based on centos 7"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \
@@ -19,14 +19,14 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
-RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
-    dnf upgrade -yq --refresh && \
-    dnf install -yq --nogpgcheck \
+RUN yum install -yq yum-utils && \
+    yum upgrade -yq --refresh && \
+    yum install -yq --nogpgcheck \
     make && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
-    dnf clean all --enablerepo=\*
+    yum remove -y --skip-broken yum-utils && \
+    yum clean all --enablerepo=\*
 
 USER 1001
 
