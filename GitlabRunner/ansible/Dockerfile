@@ -1,11 +1,11 @@
-FROM startx/fedora:latest
+FROM startx/centos:8
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="centos8" \
     SX_TYPE="runner" \
     SX_SERVICE="ansible" \
     SX_ID="startx/runner-ansible" \
-    SX_NAME="Startx Ansible gitlab runner image (fedora rawhide)" \
-    SX_SUMMARY="Startx ansible gitlab runner based on fedora rawhide"
+    SX_NAME="Startx Ansible gitlab runner image (centos 8)" \
+    SX_SUMMARY="Startx ansible gitlab runner based on centos 8"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \

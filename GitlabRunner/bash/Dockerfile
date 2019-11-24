@@ -1,11 +1,11 @@
-FROM startx/fedora:latest
+FROM startx/centos:8
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="centos8" \
     SX_TYPE="runner" \
     SX_SERVICE="bash" \
     SX_ID="startx/runner-bash" \
-    SX_NAME="Startx Bash gitlab runner image (fedora rawhide)" \
-    SX_SUMMARY="Startx bash gitlab runner based on fedora rawhide"
+    SX_NAME="Startx Bash gitlab runner image (centos 8)" \
+    SX_SUMMARY="Startx bash gitlab runner based on centos 8"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \
