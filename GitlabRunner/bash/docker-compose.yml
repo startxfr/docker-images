@@ -1,0 +1,11 @@
+bash:
+  build: ./
+  container_name: "startx-runner-bash"
+  mem_limit: 200m
+  memswap_limit: 300m
+  cpu_shares: 2
+#  volumes:
+#    - "/tmp/container/bash/logs:/logs:z"
+#  command:
+#     - "/bin/sx"
+#     - "run"
