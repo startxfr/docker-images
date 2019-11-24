@@ -1,11 +1,11 @@
-FROM startx/sv-php:latest
+FROM startx/sv-php:fc30
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="fc30" \
     SX_TYPE="runner" \
     SX_SERVICE="php" \
     SX_ID="startx/runner-php" \
-    SX_NAME="Startx Apache-PHP gitlab runner image (fedora rawhide)" \
-    SX_SUMMARY="Startx apache-php gitlab runner based on fedora rawhide"
+    SX_NAME="Startx Apache-PHP gitlab runner image (fedora 30)" \
+    SX_SUMMARY="Startx apache-php gitlab runner based on fedora 30"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \
