@@ -1,11 +1,11 @@
-FROM startx/sv-nodejs:latest
+FROM startx/sv-nodejs:centos6
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="centos6" \
     SX_TYPE="runner" \
     SX_SERVICE="nodejs" \
     SX_ID="startx/runner-nodejs" \
-    SX_NAME="Startx Nodejs gitlab runner image (fedora rawhide)" \
-    SX_SUMMARY="Startx nodejs gitlab runner based on fedora rawhide"
+    SX_NAME="Startx Nodejs gitlab runner image (centos 6)" \
+    SX_SUMMARY="Startx nodejs gitlab runner based on centos 6"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \
@@ -19,14 +19,14 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
-RUN dnf install -yq yum-utils dnf-plugin-system-upgrade &&
-dnf upgrade -yq --refresh &&
-dnf install -yq --nogpgcheck \
-    make &&
-package-cleanup --problems &&
-package-cleanup --orphans &&
-dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum &&
-dnf clean all --enablerepo=\*
+RUN yum install -yq yum-utils && \
+    yum upgrade -yq && \
+    yum install -yq --nogpgcheck \
+    make && \
+    package-cleanup --problems && \
+    package-cleanup --orphans && \
+    yum remove -y --skip-broken yum-utils && \
+    yum clean all --enablerepo=\*
 
 USER 1001
 
