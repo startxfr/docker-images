@@ -1,13 +1,12 @@
 [![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-# Docker OS Images : OOCONV
+# Docker gitlab runner : Bash
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/GitlabRunner/bash/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
 
 [![Dockerhub Registry](https://img.shields.io/docker/build/startx/runner-bash.svg)](https://hub.docker.com/r/startx/runner-bash) [![Docker bash pulls](https://img.shields.io/docker/pulls/startx/runner-bash)](https://hub.docker.com/r/startx/runner-bash) [![Docker Repository on Quay](https://quay.io/repository/startx/bash/status "Docker Repository on Quay")](https://quay.io/repository/startx/bash)
 
-Simple container used to document convertion and manipulation tools
-Run [libreoffice](https://www.libreoffice.org/) as a daemon using [dagwieers unoconv](https://github.com/dagwieers/unoconv) under a container
+Simple container used to build & test bash scripts, using gitlabCI runner, under a container
 based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
@@ -97,10 +96,10 @@ You must have a working environment with the source code of this repository. Rea
 ### Build & run a container using `docker`
 
 1. Jump into the container directory with `cd GitlabRunner/bash`
-2. Build the container using `docker build -t sv-bash .`
+2. Build the container using `docker build -t runner-bash .`
 3. Run this container
-4. Interactively with `docker run -p 2002:2002 -v /logs -it sv-bash`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...)
-5. As a daemon with `docker run -p 2002:2002 -v /logs -d sv-bash`
+4. Interactively with `docker run -p 2002:2002 -v /logs -it runner-bash`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...)
+5. As a daemon with `docker run -p 2002:2002 -v /logs -d runner-bash`
 
 ### Build & run a container using `docker-compose`
 
