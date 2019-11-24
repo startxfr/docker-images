@@ -5,7 +5,7 @@ ENV SX_VERSION="centos6" \
     SX_SERVICE="ansible" \
     SX_ID="startx/runner-ansible" \
     SX_NAME="Startx Ansible gitlab runner image (centos 6)" \
-    SX_SUMMARY="Startx ansible gitlab runner based on centos 6"
+    SX_SUMMARY="Startx ansible gitlab runner based on centos 6" 
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \
