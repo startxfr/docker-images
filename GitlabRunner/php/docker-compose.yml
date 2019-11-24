@@ -1,0 +1,15 @@
+php:
+  build: ./
+  container_name: "service-php"
+  mem_limit: 200m
+  memswap_limit: 300m
+  cpu_shares: 4
+  ports:
+    - "9213:8080"
+#  volumes:
+#    - "/tmp/container/php/logs:/var/log/httpd:z"
+#    - "/tmp/container/php/app:/app:z"
+#    - "/tmp/container/php/data:/data:z"
+#  command:
+#     - "/bin/sx-php"
+#     - "run"

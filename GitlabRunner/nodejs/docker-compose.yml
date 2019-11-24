@@ -1,0 +1,14 @@
+nodejs:
+  build: ./
+  container_name: "service-nodejs"
+  mem_limit: 200m
+  memswap_limit: 300m
+  cpu_shares: 2
+  ports:
+    - "9221:8080"
+#  volumes:
+#    - "/tmp/container/nodejs/logs:/logs:z"
+#    - "/tmp/container/nodejs/data:/data:z"
+#  command:
+#     - "/bin/sx-nodejs"
+#     - "run"
