@@ -19,15 +19,15 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
-RUN dnf install -yq yum-utils dnf-plugin-system-upgrade &&
-dnf upgrade -yq --refresh &&
-dnf install -yq --nogpgcheck \
+RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
+    dnf upgrade -yq --refresh && \
+    dnf install -yq --nogpgcheck \
     make \
-    ansible &&
-package-cleanup --problems &&
-package-cleanup --orphans &&
-dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum &&
-dnf clean all --enablerepo=\*
+    ansible && \
+    package-cleanup --problems && \
+    package-cleanup --orphans && \
+    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf clean all --enablerepo=\*
 
 USER 1001
 
