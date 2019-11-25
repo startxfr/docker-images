@@ -1,11 +1,11 @@
-FROM startx/sv-nodejs:latest
+FROM startx/sv-nodejs:alpine3
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="alpine3" \
     SX_TYPE="runner" \
     SX_SERVICE="nodejs" \
     SX_ID="startx/runner-nodejs" \
-    SX_NAME="Startx Nodejs gitlab runner image (fedora rawhide)" \
-    SX_SUMMARY="Startx nodejs gitlab runner based on fedora rawhide"
+    SX_NAME="Startx Nodejs gitlab runner image (alpine 3)" \
+    SX_SUMMARY="Startx nodejs gitlab runner based on alpine 3"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \
@@ -19,14 +19,7 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
-RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
-    dnf upgrade -yq --refresh && \
-    dnf install -yq --nogpgcheck \
-    make && \
-    package-cleanup --problems && \
-    package-cleanup --orphans && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
-    dnf clean all --enablerepo=\*
+RUN apk --no-cache add make
 
 USER 1001
 
