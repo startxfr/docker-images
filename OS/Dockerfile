@@ -1,6 +1,4 @@
-FROM centos:7
-
-MAINTAINER Startx <dev@startx.fr>
+FROM centos:8
 
 ENV SX_VERSION="8" \
     SX_TYPE="OS" \
@@ -18,20 +16,20 @@ ENV SX_VERSION="8" \
     DAEMON_START_INTERVAL=10
 
 LABEL name="$SX_ID" \
-      summary="$SX_SUMMARY" \
-      description="$SX_SUMMARY. Use for executing application based on bash script or as container mainstream image for your application containers." \
-      version="$SX_VERSION" \
-      release="$SX_VERSION" \
-      maintainer="Startx <dev@startx.fr>" \
-      io.k8s.description="$SX_SUMMARY" \
-      io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,centos" \
-      io.openshift.non-scalable="false" \
-      io.openshift.min-memory="128Mi" \
-      io.openshift.min-cpu="500m" \
-      io.openshift.s2i.destination="$SX_S2IDIR" \
-      io.openshift.s2i.scripts-url="image:///s2i" \
-      fr.startx.component="$SX_ID:$SX_VERSION"
+    summary="$SX_SUMMARY" \
+    description="$SX_SUMMARY. Use for executing application based on bash script or as container mainstream image for your application containers." \
+    version="$SX_VERSION" \
+    release="$SX_VERSION" \
+    maintainer="Startx <dev@startx.fr>" \
+    io.k8s.description="$SX_SUMMARY" \
+    io.k8s.display-name="$SX_ID" \
+    io.openshift.tags="startx,os,centos" \
+    io.openshift.non-scalable="false" \
+    io.openshift.min-memory="128Mi" \
+    io.openshift.min-cpu="500m" \
+    io.openshift.s2i.destination="$SX_S2IDIR" \
+    io.openshift.s2i.scripts-url="image:///s2i" \
+    fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
 
@@ -40,22 +38,22 @@ RUN echo "keepcache=0" >> /etc/dnf/dnf.conf && \
     dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     dnf upgrade -yq --refresh && \
     dnf install -yq \
-        pwgen \
-        tar \
-        unzip \
-        zip \
-        hostname \
-        psmisc \
-        procps \
-        findutils \
-        iputils \
-        net-tools \
-        wget \
-        curl \
-        logrotate \
-        bash-completion \
-        glibc-langpack-fr \
-        vim && \
+    pwgen \
+    tar \
+    unzip \
+    zip \
+    hostname \
+    psmisc \
+    procps \
+    findutils \
+    iputils \
+    net-tools \
+    wget \
+    curl \
+    logrotate \
+    bash-completion \
+    glibc-langpack-fr \
+    vim && \
     package-cleanup --problems && \
     package-cleanup --cleandupes; \
     package-cleanup --orphans && \

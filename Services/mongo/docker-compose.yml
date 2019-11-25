@@ -1,6 +1,6 @@
 mongo:
   build: ./
-  container_name: "centos7-service-mongo"
+  container_name: "centos8-service-mongo"
   mem_limit: 2g
   memswap_limit: 2g
   cpu_shares: 10

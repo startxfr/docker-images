@@ -1,6 +1,6 @@
 memcache:
   build: ./
-  container_name: "centos7-service-memcache"
+  container_name: "centos8-service-memcache"
   mem_limit: 2g
   memswap_limit: 3g
   cpu_shares: 2

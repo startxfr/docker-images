@@ -1,64 +1,63 @@
-centos7:
+centos8:
   extends:
     file: OS/docker-compose.yml
-    service: centos7
+    service: centos8
 
-centos7-sv-apache:
+centos8-sv-apache:
   extends:
     file: Services/apache/docker-compose.yml
     service: apache
 
-centos7-sv-chrome:
+centos8-sv-chrome:
   extends:
     file: Services/chrome/docker-compose.yml
     service: chrome
 
-centos7-sv-php:
+centos8-sv-php:
   extends:
     file: Services/php/docker-compose.yml
     service: php
 
-centos7-sv-nodejs:
+centos8-sv-nodejs:
   extends:
     file: Services/nodejs/docker-compose.yml
     service: nodejs
 
-centos7-sv-mariadb:
+centos8-sv-mariadb:
   extends:
     file: Services/mariadb/docker-compose.yml
     service: mariadb
 
-centos7-sv-postgres:
+centos8-sv-postgres:
   extends:
     file: Services/postgres/docker-compose.yml
     service: postgres
 
-centos7-sv-mongo:
+centos8-sv-mongo:
   extends:
     file: Services/mongo/docker-compose.yml
     service: mongo
 
-centos7-sv-ooconv:
+centos8-sv-ooconv:
   extends:
     file: Services/ooconv/docker-compose.yml
     service: ooconv
 
-centos7-sv-memcache:
+centos8-sv-memcache:
   extends:
     file: Services/memcache/docker-compose.yml
     service: memcache
-    
-centos7-sv-couchbase:
+
+centos8-sv-couchbase:
   extends:
     file: Services/couchbase/docker-compose.yml
     service: couchbase
 
-centos7-app-pma:
+centos8-app-pma:
   extends:
     file: Applications/phpmyadmin/docker-compose.yml
     service: phpmyadmin
-
-#centos7-app-rockmongo:
+#centos8-app-rockmongo:
 #  extends:
 #    file: Applications/rockmongo/docker-compose.yml
 #    service: rockmongo

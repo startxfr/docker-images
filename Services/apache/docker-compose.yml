@@ -1,6 +1,6 @@
 apache:
   build: ./
-  container_name: "startx-centos7-apache"
+  container_name: "startx-centos8-apache"
   mem_limit: 200m
   memswap_limit: 300m
   cpu_shares: 2
