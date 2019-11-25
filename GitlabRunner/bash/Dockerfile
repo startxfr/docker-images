@@ -21,7 +21,6 @@ LABEL name="$SX_ID" \
 USER root
 RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     dnf upgrade -yq --refresh && \
-    yum-config-manager --add-repo https://releases.ansible.com/ansible-runner/ansible-runner.el7.repo && \
     dnf install -yq --nogpgcheck \
     make \
     bubblewrap \
