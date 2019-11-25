@@ -1,11 +1,11 @@
-FROM startx/sv-nodejs:latest
+FROM startx/sv-nodejs:ubi8
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="ubi8" \
     SX_TYPE="runner" \
     SX_SERVICE="nodejs" \
     SX_ID="startx/runner-nodejs" \
-    SX_NAME="Startx Nodejs gitlab runner image (fedora rawhide)" \
-    SX_SUMMARY="Startx nodejs gitlab runner based on fedora rawhide"
+    SX_NAME="Startx Nodejs gitlab runner image (UBI 8)" \
+    SX_SUMMARY="Startx nodejs gitlab runner based on UBI 8"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \
