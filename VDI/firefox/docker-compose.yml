@@ -7,7 +7,7 @@ firefox:
   environment:
     SX_FIREFOX_SCREEN_RES_X: "1600x900x24"
     SX_FIREFOX_SCREEN_RES_FIREFOX: "1600,900"
-    SX_VERBOSE: 'true'
+    SX_VERBOSE: "true"
   volumes:
     - "/dev/shm:/dev/shm"
 #    - "/mnt/firefox:/home/firefox:Z"
