@@ -37,6 +37,7 @@ COPY sx /tmp/
 RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     wget -q https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/p/python-meld3-1.0.2-11.fc31.noarch.rpm && \
     rpm -ivh python-meld3-1.0.2-11.fc31.noarch.rpm --nodeps && \
+    dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
     supervisor \
