@@ -1,7 +1,7 @@
-FROM startx/sv-php:centos7
+FROM startx/sv-php:ubi8
 
 # update, install required, clean
-RUN yum -y update && yum install -y httpd php php-devel php-pear gcc-c++ make && yum clean all
+RUN dnf -y update && dnf install -y httpd php php-devel php-pear gcc-c++ make && dnf clean all
 
 # update pecl channels
 RUN pecl update-channels

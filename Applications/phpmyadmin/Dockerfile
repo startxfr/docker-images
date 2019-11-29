@@ -1,4 +1,4 @@
-FROM startx/sv-php:centos7
+FROM startx/sv-php:ubi8
 
 ENV SX_VERSION="ubi8" \
     SX_TYPE="application" \
@@ -26,7 +26,8 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf upgrade -yq --refresh && \
+RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
+    dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
     mysql && \
     package-cleanup --problems && \

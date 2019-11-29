@@ -35,7 +35,8 @@ USER root
 COPY sx /tmp/
 COPY my.cnf $MY_CONF
 COPY mariadb.repo centos.repo /etc/yum.repos.d/
-RUN rpm --import https://yum.mariadb.org/RPM-GPG-KEY-MariaDB && \
+RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
+    rpm --import https://yum.mariadb.org/RPM-GPG-KEY-MariaDB && \
     dnf upgrade -yq --refresh --nobest && \
     dnf install -yq --nogpgcheck boost boost-devel \
     dnf install -yq --nogpgcheck --skip-broken \
