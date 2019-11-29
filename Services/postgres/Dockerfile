@@ -33,9 +33,9 @@ RUN dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
     libicu \
     libpq && \
-    rpm -ivh $RPM_REPO/postgresql12-libs-12beta2-1PGDG.rhel8.x86_64.rpm && \
-    rpm -ivh $RPM_REPO/postgresql12-12beta2-1PGDG.rhel8.x86_64.rpm && \
-    rpm -ivh $RPM_REPO/postgresql12-server-12beta2-1PGDG.rhel8.x86_64.rpm && \
+    rpm -ivh $RPM_REPO/postgresql12-libs-12.1-1PGDG.rhel8.x86_64.rpm && \
+    rpm -ivh $RPM_REPO/postgresql12-12.1-1PGDG.rhel8.x86_64.rpm && \
+    rpm -ivh $RPM_REPO/postgresql12-server-12.1-1PGDG.rhel8.x86_64.rpm && \
     package-cleanup --problems && \
     package-cleanup --cleandupes; \
     package-cleanup --orphans && \
