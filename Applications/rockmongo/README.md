@@ -4,10 +4,10 @@ Container running rockmongo under a centos server.
 
 ## Running from docker registry
 
-	docker run -d -p 80:80 --name="rockmongo" startx/app-rockmongo:centos7
+	docker run -d -p 80:80 --name="rockmongo" startx/app-rockmongo:centos8
 	when linked to another container
-	docker run -d --name="mongo" startx/sv-mongo:centos7
-	docker run -d -p 80:80 --name="rockmongo" --link mongo:mongo startx/app-rockmongo:centos7
+	docker run -d --name="mongo" startx/sv-mongo:centos8
+	docker run -d -p 80:80 --name="rockmongo" --link mongo:mongo startx/app-rockmongo:centos8
 
 ## Build and run from local Dockerfile
 ### Building docker image
@@ -19,11 +19,11 @@ Copy sources in your docker host
 
 Build the container
 
-	docker build -t app-rockmongo:centos7 Applications/rockmongo/
+	docker build -t app-rockmongo:centos8 Applications/rockmongo/
 
 ### Running local image
 
-	docker run -d -p 80:80 --name="rockmongo" app-rockmongo:centos7
+	docker run -d -p 80:80 --name="rockmongo" app-rockmongo:centos8
 
 ## Accessing server
 access to the running webserver
@@ -35,7 +35,7 @@ access to the container itself
 	docker exec -it rockmongo bash
 
 ## Related Resources
-* [Sources files](https://github.com/startxfr/docker-images/tree/centos7/Applications/rockmongo)
+* [Sources files](https://github.com/startxfr/docker-images/tree/centos8/Applications/rockmongo)
 * [Github STARTX profile](https://github.com/startxfr/docker-images)
 * [Docker registry for this container](https://registry.hub.docker.com/u/startx/app-rockmongo/)
 * [Docker registry for Centos](https://registry.hub.docker.com/u/centos/)

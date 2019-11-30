@@ -1,8 +1,6 @@
 FROM startx/centos:8
 
-MAINTAINER Startx <dev@startx.fr>
-
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="centos8" \
     SX_TYPE="desktop" \
     SX_SERVICE="firefox" \
     SX_ID="startx/vdi-firefox" \
@@ -17,37 +15,36 @@ ENV SX_VERSION="latest" \
     SX_FIREFOX_PORT=5900
 
 LABEL name="$SX_ID" \
-      summary="$SX_SUMMARY" \
-      description="$SX_SUMMARY. Use for executing firefox browser as container mainstream image with persistence capabilities" \
-      version="$SX_VERSION" \
-      release="$SX_VERSION" \
-      maintainer="Startx <dev@startx.fr>" \
-      io.k8s.description="$SX_SUMMARY" \
-      io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,centos,firefox,vnc,X11" \
-      io.openshift.non-scalable="false" \
-      io.openshift.min-memory="400Mi" \
-      io.openshift.min-cpu="2000m" \
-      io.openshift.expose-VDI="$SX_FIREFOX_PORT:vnc" \
-      io.openshift.s2i.destination="/tmp" \
-      io.openshift.s2i.scripts-url="image:///s2i" \
-      fr.startx.component="$SX_ID:$SX_VERSION"
+    summary="$SX_SUMMARY" \
+    description="$SX_SUMMARY. Use for executing firefox browser as container mainstream image with persistence capabilities" \
+    version="$SX_VERSION" \
+    release="$SX_VERSION" \
+    maintainer="Startx <dev@startx.fr>" \
+    io.k8s.description="$SX_SUMMARY" \
+    io.k8s.display-name="$SX_ID" \
+    io.openshift.tags="startx,os,fedora,firefox,vnc,X11" \
+    io.openshift.non-scalable="false" \
+    io.openshift.min-memory="400Mi" \
+    io.openshift.min-cpu="2000m" \
+    io.openshift.expose-VDI="$SX_FIREFOX_PORT:vnc" \
+    io.openshift.s2i.destination="/tmp" \
+    io.openshift.s2i.scripts-url="image:///s2i" \
+    fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
 COPY supervisord.conf $SX_FIREFOX_SUPERVISOR_CONF/
 COPY sx /tmp/
-RUN wget -q https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/p/python-meld3-1.0.2-11.fc31.noarch.rpm && \
-    rpm -ivh python-meld3-1.0.2-11.fc31.noarch.rpm --nodeps && \
+RUN wget -q https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/p/python-meld3-2.0.0-2.fc32.noarch.rpm && \
+    rpm -ivh python-meld3-2.0.0-2.fc32.noarch.rpm && \
     dnf install -y yum-utils dnf-plugin-system-upgrade && \
     dnf upgrade -y --refresh && \
     dnf install -y --nogpgcheck \
-        supervisor \
-        xorg-x11-server-Xvfb \
-        x11vnc \
-        firefox \
-        python2-setuptools && \
+    supervisor \
+    xorg-x11-server-Xvfb \
+    x11vnc \
+    firefox \
+    python2-setuptools && \
     package-cleanup --problems && \
-    package-cleanup --cleandupes; \
     package-cleanup --orphans && \
     dnf remove -y --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
@@ -61,7 +58,7 @@ RUN wget -q https://rpmfind.net/linux/fedora/linux/development/rawhide/Everythin
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     mkdir -p $APP_PATH $LOG_PATH && \
-	chgrp -R 0 $APP_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp && \
+    chgrp -R 0 $APP_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp && \
     chown -R $SX_USER:0 /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH $LOG_PATH && \
     chmod -R g=u $APP_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp && \
     chmod ug+r $SX_FIREFOX_SUPERVISOR_CONF && \

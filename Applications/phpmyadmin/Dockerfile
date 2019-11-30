@@ -1,7 +1,5 @@
 FROM startx/sv-php:centos8
 
-MAINTAINER Startx <dev@startx.fr>
-
 ENV SX_VERSION="centos8" \
     SX_TYPE="application" \
     SX_SERVICE="phpmyadmin" \

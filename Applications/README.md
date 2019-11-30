@@ -14,7 +14,7 @@ OS, Services, VDI and application you will find here will be closer to your favo
 Please **read each container manual** for more information on how you can use it in 
 your project and start using stable or experimental applications in your applications
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx) | [Sources](https://github.com/startxfr/docker-images/)             | [STARTX Profile](https://github.com/startxfr) | 
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos8)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx) | [Sources](https://github.com/startxfr/docker-images/)             | [STARTX Profile](https://github.com/startxfr) | 
 |-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------|
 
 ## Available applications
@@ -29,12 +29,12 @@ your project and start using stable or experimental applications in your applica
 
 | Applications        | Command                                                                   |
 |---------------------|---------------------------------------------------------------------------|
-| **PhpMyAdmin**      | `docker run -d -p 80:80 --name="centos7-pma" startx/app-pma:centos8`            | 
-| **RockMongo**       | `docker run -d -p 80:80 --name="centos7-rockmongo" startx/app-rockmongo:centos8`| 
+| **PhpMyAdmin**      | `docker run -d -p 80:80 --name="centos8-pma" startx/app-pma:centos8`            | 
+| **RockMongo**       | `docker run -d -p 80:80 --name="centos8-rockmongo" startx/app-rockmongo:centos8`| 
 
 ## Container flavours
 
 | Service    | Docker Hub repository                                                   | Fedora                                                    | CentOS 
 |------------|-------------------------------------------------------------------------|-----------------------------------------------------------|----------------------
-| PhpMyAdmin | [`startx/app-pma`](https://hub.docker.com/r/startx/app-pma)             | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` | `:centos6` `:centos7` `:centos8` |
-| RockMongo  | [`startx/app-rockmongo`](https://hub.docker.com/r/startx/app-rockmongo) | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` | `:centos6` `:centos7` `:centos8` |
+| PhpMyAdmin | [`startx/app-pma`](https://hub.docker.com/r/startx/app-pma)             | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` | `:centos6` `:centos8` `:centos8` |
+| RockMongo  | [`startx/app-rockmongo`](https://hub.docker.com/r/startx/app-rockmongo) | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` | `:centos6` `:centos8` `:centos8` |

@@ -1,6 +1,6 @@
 FROM centos:8
 
-ENV SX_VERSION="8" \
+ENV SX_VERSION="centos8" \
     SX_TYPE="OS" \
     SX_SERVICE="centos" \
     SX_ID="startx/centos" \
