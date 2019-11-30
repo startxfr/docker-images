@@ -1,0 +1,24 @@
+runner-ansible:
+  extends:
+    file: GitlabRunner/ansible/docker-compose.yml
+    service: ansible
+
+runner-apache:
+  extends:
+    file: GitlabRunner/apache/docker-compose.yml
+    service: apache
+
+runner-bash:
+  extends:
+    file: GitlabRunner/bash/docker-compose.yml
+    service: bash
+
+runner-nodejs:
+  extends:
+    file: GitlabRunner/nodejs/docker-compose.yml
+    service: nodejs
+
+runner-php:
+  extends:
+    file: GitlabRunner/php/docker-compose.yml
+    service: php

@@ -8,11 +8,6 @@ fc30-sv-apache:
     file: Services/apache/docker-compose.yml
     service: apache
 
-fc30-sv-chrome:
-  extends:
-    file: Services/chrome/docker-compose.yml
-    service: chrome
-
 fc30-sv-php:
   extends:
     file: Services/php/docker-compose.yml
@@ -48,11 +43,45 @@ fc30-sv-memcache:
     file: Services/memcache/docker-compose.yml
     service: memcache
 
+fc30-runner-ansible:
+  extends:
+    file: GitlabRunner/ansible/docker-compose.yml
+    service: ansible
+
+fc30-runner-apache:
+  extends:
+    file: GitlabRunner/apache/docker-compose.yml
+    service: apache
+
+fc30-runner-bash:
+  extends:
+    file: GitlabRunner/bash/docker-compose.yml
+    service: bash
+
+fc30-runner-nodejs:
+  extends:
+    file: GitlabRunner/nodejs/docker-compose.yml
+    service: nodejs
+
+fc30-runner-php:
+  extends:
+    file: GitlabRunner/php/docker-compose.yml
+    service: php
+
+fc30-vdi-chrome:
+  extends:
+    file: VDI/chrome/docker-compose.yml
+    service: chrome
+
+fc30-vdi-firefox:
+  extends:
+    file: VDI/firefox/docker-compose.yml
+    service: firefox
+
 fc30-app-pma:
   extends:
     file: Applications/phpmyadmin/docker-compose.yml
     service: phpmyadmin
-
 #fc30-app-rockmongo:
 #  extends:
 #    file: Applications/rockmongo/docker-compose.yml

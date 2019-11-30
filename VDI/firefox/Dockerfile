@@ -1,8 +1,6 @@
 FROM startx/fedora:30
 
-MAINTAINER Startx <dev@startx.fr>
-
-ENV SX_VERSION="30" \
+ENV SX_VERSION="fc30" \
     SX_TYPE="desktop" \
     SX_SERVICE="firefox" \
     SX_ID="startx/vdi-firefox" \
@@ -17,21 +15,21 @@ ENV SX_VERSION="30" \
     SX_FIREFOX_PORT=5900
 
 LABEL name="$SX_ID" \
-      summary="$SX_SUMMARY" \
-      description="$SX_SUMMARY. Use for executing firefox browser as container mainstream image with persistence capabilities" \
-      version="$SX_VERSION" \
-      release="$SX_VERSION" \
-      maintainer="Startx <dev@startx.fr>" \
-      io.k8s.description="$SX_SUMMARY" \
-      io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,fedora,firefox,vnc,X11" \
-      io.openshift.non-scalable="false" \
-      io.openshift.min-memory="400Mi" \
-      io.openshift.min-cpu="2000m" \
-      io.openshift.expose-VDI="$SX_FIREFOX_PORT:vnc" \
-      io.openshift.s2i.destination="/tmp" \
-      io.openshift.s2i.scripts-url="image:///s2i" \
-      fr.startx.component="$SX_ID:$SX_VERSION"
+    summary="$SX_SUMMARY" \
+    description="$SX_SUMMARY. Use for executing firefox browser as container mainstream image with persistence capabilities" \
+    version="$SX_VERSION" \
+    release="$SX_VERSION" \
+    maintainer="Startx <dev@startx.fr>" \
+    io.k8s.description="$SX_SUMMARY" \
+    io.k8s.display-name="$SX_ID" \
+    io.openshift.tags="startx,os,fedora,firefox,vnc,X11" \
+    io.openshift.non-scalable="false" \
+    io.openshift.min-memory="400Mi" \
+    io.openshift.min-cpu="2000m" \
+    io.openshift.expose-VDI="$SX_FIREFOX_PORT:vnc" \
+    io.openshift.s2i.destination="/tmp" \
+    io.openshift.s2i.scripts-url="image:///s2i" \
+    fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
 COPY supervisord.conf $SX_FIREFOX_SUPERVISOR_CONF/
@@ -42,15 +40,14 @@ RUN wget -q https://rpmfind.net/linux/fedora/linux/releases/30/Everything/x86_64
     dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
-        supervisor \
-        xorg-x11-server-Xvfb \
-        x11vnc \
-        fedora-workstation-repositories \
-        firefox \
-        python3-setuptools && \
-    dnf config-manager --set-enabled google-chrome && \
-    dnf install -yq --nogpgcheck google-chrome-stable && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade && \
+    supervisor \
+    xorg-x11-server-Xvfb \
+    x11vnc \
+    firefox \
+    python2-setuptools && \
+    package-cleanup --problems && \
+    package-cleanup --orphans && \
+    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     easy_install pip && \
     pip install --upgrade pip && \
@@ -62,7 +59,7 @@ RUN wget -q https://rpmfind.net/linux/fedora/linux/releases/30/Everything/x86_64
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     mkdir -p $APP_PATH $LOG_PATH && \
-	chgrp -R 0 $APP_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp && \
+    chgrp -R 0 $APP_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp && \
     chown -R $SX_USER:0 /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH $LOG_PATH && \
     chmod -R g=u $APP_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp && \
     chmod ug+r $SX_FIREFOX_SUPERVISOR_CONF && \

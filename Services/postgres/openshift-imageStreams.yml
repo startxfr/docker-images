@@ -7,218 +7,244 @@ metadata:
   labels:
     provider: startx
 items:
-- kind: ImageStream
-  apiVersion: v1
-  metadata:
-    name: startx-postgres
-    annotations:
-      openshift.io/display-name: Startx PostgreSQL Database (S2I)
-      openshift.io/generated-by: STARTX
-    labels:
-      provider: startx
-  spec:
-    tags:
-    - name: fc26
+  - kind: ImageStream
+    apiVersion: v1
+    metadata:
+      name: startx-postgres
       annotations:
-        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 26)
-        description: PostgreSQL server builder for advanced SQL database running under
-          Fedora 26
-        iconClass: icon-postgresql
-        tags: builder,startx,fedora,postgres,sql
-        supports: postgresql
-        version: fc26
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
-      from:
-        kind: DockerImage
-        name: startx/sv-postgres:fc26
-    - name: fc27
-      annotations:
-        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 27)
-        description: PostgreSQL server builder for advanced SQL database running under
-          Fedora 27
-        iconClass: icon-postgresql
-        tags: builder,startx,fedora,postgres,sql
-        supports: postgresql
-        version: fc27
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
-      from:
-        kind: DockerImage
-        name: startx/sv-postgres:fc27
-    - name: fc28
-      annotations:
-        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 28)
-        description: PostgreSQL server builder for advanced SQL database running under
-          Fedora 28
-        iconClass: icon-postgresql
-        tags: builder,startx,fedora,postgres,sql
-        supports: postgresql
-        version: fc28
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
-      from:
-        kind: DockerImage
-        name: startx/sv-postgres:fc28
-    - name: fc29
-      annotations:
-        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 29)
-        description: PostgreSQL server builder for advanced SQL database running under
-          Fedora 29
-        iconClass: icon-postgresql
-        tags: builder,startx,fedora,postgres,sql
-        supports: postgresql
-        version: fc29
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
-      from:
-        kind: DockerImage
-        name: startx/sv-postgres:fc29
-    - name: fc30
-      annotations:
-        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 30)
-        description: PostgreSQL server builder for advanced SQL database running under
-          Fedora 30
-        iconClass: icon-postgresql
-        tags: builder,startx,fedora,postgres,sql
-        supports: postgresql
-        version: fc30
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
-      from:
-        kind: DockerImage
-        name: startx/sv-postgres:fc30
-    - name: fc31
-      annotations:
-        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 31)
-        description: PostgreSQL server builder for advanced SQL database running under
-          Fedora 31
-        iconClass: icon-postgresql
-        tags: builder,startx,fedora,postgres,sql
-        supports: postgresql
-        version: fc31
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
-      from:
-        kind: DockerImage
-        name: startx/sv-postgres:fc31
-    - name: latest
-      annotations:
-        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora latest)
-        description: PostgreSQL server builder for advanced SQL database running under
-          Fedora latest
-        iconClass: icon-postgresql
-        tags: builder,startx,fedora,postgres,sql
-        supports: postgresql
-        version: rawhide
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
-      from:
-        kind: DockerImage
-        name: startx/sv-postgres:latest
-    - name: ubi8
-      annotations:
-        openshift.io/display-name: S2I Startx PostgreSQL Database (RedHat UBI 8)
-        description: PostgreSQL server builder for advanced SQL database running under
-          RedHat UBI 8
-        iconClass: icon-postgresql
-        tags: builder,startx,ubi,postgres,sql
-        supports: postgresql
-        version: '8'
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
-      from:
-        kind: DockerImage
-        name: startx/sv-postgres:ubi8
-    - name: centos8
-      annotations:
-        openshift.io/display-name: S2I Startx PostgreSQL Database (Centos 8)
-        description: PostgreSQL server builder for advanced SQL database running under
-          Centos 8
-        iconClass: icon-postgresql
-        tags: builder,startx,centos,postgres,sql
-        supports: postgresql
-        version: '8'
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
-      from:
-        kind: DockerImage
-        name: startx/sv-postgres:centos8
-    - name: centos7
-      annotations:
-        openshift.io/display-name: S2I Startx PostgreSQL Database (Centos 7)
-        description: PostgreSQL server builder for advanced SQL database running under
-          Centos 7
-        iconClass: icon-postgresql
-        tags: builder,startx,centos,postgres,sql
-        supports: postgresql
-        version: '7'
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
-      from:
-        kind: DockerImage
-        name: startx/sv-postgres:centos7
-    - name: centos6
-      annotations:
-        openshift.io/display-name: S2I Startx PostgreSQL Database (Centos 6)
-        description: PostgreSQL server builder for advanced SQL database running under
-          Centos 6
-        iconClass: icon-postgresql
-        tags: builder,startx,centos,postgres,sql
-        supports: postgresql
-        version: '6'
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
-      from:
-        kind: DockerImage
-        name: startx/sv-postgres:centos6
-    - name: alpine3
-      annotations:
-        openshift.io/display-name: S2I Startx PostgreSQL Database (Alpine 3)
-        description: PostgreSQL server builder for advanced SQL database running under
-          Alpine 3
-        iconClass: icon-postgresql
-        tags: builder,startx,alpine,postgres,sql
-        supports: postgresql
-        version: '3'
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
-      from:
-        kind: DockerImage
-        name: startx/sv-postgres:alpine3
-    - name: dev
-      annotations:
-        openshift.io/display-name: S2I Startx PostgreSQL Database (dev)
-        description: Http server builder for advanced SQL database (developpement)
-        iconClass: icon-postgresql
-        tags: builder,startx,alpine,postgres,sql
-        supports: postgresql
-        version: 'dev'
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
-      from:
-        kind: ImageStreamTag
-        name: rawhide
-    - name: test
-      annotations:
-        openshift.io/display-name: S2I Startx PostgreSQL Database (test)
-        description: Http server builder for advanced SQL database (testing)
-        iconClass: icon-postgresql
-        tags: builder,startx,alpine,postgres,sql
-        supports: postgresql
-        version: 'test'
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
-      from:
-        kind: ImageStreamTag
-        name: centos8
-    - name: preprod
-      annotations:
-        openshift.io/display-name: S2I Startx PostgreSQL Database (preprod)
-        description: Http server builder for advanced SQL database (pre-production)
-        iconClass: icon-postgresql
-        tags: builder,startx,alpine,postgres,sql
-        supports: postgresql
-        version: 'pre-prod'
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
-      from:
-        kind: ImageStreamTag
-        name: alpine3
-    - name: prod
-      annotations:
-        openshift.io/display-name: S2I Startx PostgreSQL Database (prod)
-        description: Http server builder for advanced SQL database (production)
-        iconClass: icon-postgresql
-        tags: builder,startx,alpine,postgres,sql
-        supports: postgresql
-        version: 'prod'
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
-      from:
-        kind: ImageStreamTag
-        name: alpine3
+        openshift.io/display-name: Startx PostgreSQL Database (S2I)
+        openshift.io/generated-by: STARTX
+      labels:
+        provider: startx
+    spec:
+      tags:
+        - name: fc26
+          annotations:
+            openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 26)
+            description:
+              PostgreSQL server builder for advanced SQL database running under
+              Fedora 26
+            iconClass: icon-postgresql
+            tags: builder,startx,fedora,postgres,sql
+            supports: postgresql
+            version: fc26
+            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+          from:
+            kind: DockerImage
+            name: startx/sv-postgres:fc26
+        - name: fc27
+          annotations:
+            openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 27)
+            description:
+              PostgreSQL server builder for advanced SQL database running under
+              Fedora 27
+            iconClass: icon-postgresql
+            tags: builder,startx,fedora,postgres,sql
+            supports: postgresql
+            version: fc27
+            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+          from:
+            kind: DockerImage
+            name: startx/sv-postgres:fc27
+        - name: fc28
+          annotations:
+            openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 28)
+            description:
+              PostgreSQL server builder for advanced SQL database running under
+              Fedora 28
+            iconClass: icon-postgresql
+            tags: builder,startx,fedora,postgres,sql
+            supports: postgresql
+            version: fc28
+            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+          from:
+            kind: DockerImage
+            name: startx/sv-postgres:fc28
+        - name: fc29
+          annotations:
+            openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 29)
+            description:
+              PostgreSQL server builder for advanced SQL database running under
+              Fedora 29
+            iconClass: icon-postgresql
+            tags: builder,startx,fedora,postgres,sql
+            supports: postgresql
+            version: fc29
+            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+          from:
+            kind: DockerImage
+            name: startx/sv-postgres:fc29
+        - name: fc30
+          annotations:
+            openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 30)
+            description:
+              PostgreSQL server builder for advanced SQL database running under
+              Fedora 30
+            iconClass: icon-postgresql
+            tags: builder,startx,fedora,postgres,sql
+            supports: postgresql
+            version: fc30
+            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+          from:
+            kind: DockerImage
+            name: startx/sv-postgres:fc30
+        - name: fc31
+          annotations:
+            openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 31)
+            description:
+              PostgreSQL server builder for advanced SQL database running under
+              Fedora 31
+            iconClass: icon-postgresql
+            tags: builder,startx,fedora,postgres,sql
+            supports: postgresql
+            version: fc31
+            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+          from:
+            kind: DockerImage
+            name: startx/sv-postgres:fc31
+        - name: fc32
+          annotations:
+            openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 32)
+            description:
+              PostgreSQL server builder for advanced SQL database running under
+              Fedora 32
+            iconClass: icon-postgresql
+            tags: builder,startx,fedora,postgres,sql
+            supports: postgresql
+            version: fc32
+            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+          from:
+            kind: DockerImage
+            name: startx/sv-postgres:fc32
+        - name: latest
+          annotations:
+            openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora latest)
+            description:
+              PostgreSQL server builder for advanced SQL database running under
+              Fedora latest
+            iconClass: icon-postgresql
+            tags: builder,startx,fedora,postgres,sql
+            supports: postgresql
+            version: rawhide
+            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+          from:
+            kind: DockerImage
+            name: startx/sv-postgres:latest
+        - name: ubi8
+          annotations:
+            openshift.io/display-name: S2I Startx PostgreSQL Database (RedHat UBI 8)
+            description:
+              PostgreSQL server builder for advanced SQL database running under
+              RedHat UBI 8
+            iconClass: icon-postgresql
+            tags: builder,startx,ubi,postgres,sql
+            supports: postgresql
+            version: "8"
+            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+          from:
+            kind: DockerImage
+            name: startx/sv-postgres:ubi8
+        - name: centos8
+          annotations:
+            openshift.io/display-name: S2I Startx PostgreSQL Database (Centos 8)
+            description:
+              PostgreSQL server builder for advanced SQL database running under
+              Centos 8
+            iconClass: icon-postgresql
+            tags: builder,startx,centos,postgres,sql
+            supports: postgresql
+            version: "8"
+            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+          from:
+            kind: DockerImage
+            name: startx/sv-postgres:centos8
+        - name: centos7
+          annotations:
+            openshift.io/display-name: S2I Startx PostgreSQL Database (Centos 7)
+            description:
+              PostgreSQL server builder for advanced SQL database running under
+              Centos 7
+            iconClass: icon-postgresql
+            tags: builder,startx,centos,postgres,sql
+            supports: postgresql
+            version: "7"
+            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+          from:
+            kind: DockerImage
+            name: startx/sv-postgres:centos7
+        - name: centos6
+          annotations:
+            openshift.io/display-name: S2I Startx PostgreSQL Database (Centos 6)
+            description:
+              PostgreSQL server builder for advanced SQL database running under
+              Centos 6
+            iconClass: icon-postgresql
+            tags: builder,startx,centos,postgres,sql
+            supports: postgresql
+            version: "6"
+            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+          from:
+            kind: DockerImage
+            name: startx/sv-postgres:centos6
+        - name: alpine3
+          annotations:
+            openshift.io/display-name: S2I Startx PostgreSQL Database (Alpine 3)
+            description:
+              PostgreSQL server builder for advanced SQL database running under
+              Alpine 3
+            iconClass: icon-postgresql
+            tags: builder,startx,alpine,postgres,sql
+            supports: postgresql
+            version: "3"
+            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+          from:
+            kind: DockerImage
+            name: startx/sv-postgres:alpine3
+        - name: dev
+          annotations:
+            openshift.io/display-name: S2I Startx PostgreSQL Database (dev)
+            description: Http server builder for advanced SQL database (developpement)
+            iconClass: icon-postgresql
+            tags: builder,startx,alpine,postgres,sql
+            supports: postgresql
+            version: "dev"
+            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+          from:
+            kind: ImageStreamTag
+            name: rawhide
+        - name: test
+          annotations:
+            openshift.io/display-name: S2I Startx PostgreSQL Database (test)
+            description: Http server builder for advanced SQL database (testing)
+            iconClass: icon-postgresql
+            tags: builder,startx,alpine,postgres,sql
+            supports: postgresql
+            version: "test"
+            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+          from:
+            kind: ImageStreamTag
+            name: centos8
+        - name: preprod
+          annotations:
+            openshift.io/display-name: S2I Startx PostgreSQL Database (preprod)
+            description: Http server builder for advanced SQL database (pre-production)
+            iconClass: icon-postgresql
+            tags: builder,startx,alpine,postgres,sql
+            supports: postgresql
+            version: "pre-prod"
+            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+          from:
+            kind: ImageStreamTag
+            name: alpine3
+        - name: prod
+          annotations:
+            openshift.io/display-name: S2I Startx PostgreSQL Database (prod)
+            description: Http server builder for advanced SQL database (production)
+            iconClass: icon-postgresql
+            tags: builder,startx,alpine,postgres,sql
+            supports: postgresql
+            version: "prod"
+            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+          from:
+            kind: ImageStreamTag
+            name: alpine3
