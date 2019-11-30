@@ -9,7 +9,7 @@ ENV SX_VERSION="centos8" \
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \
-    description="$SX_SUMMARY. Use for building ansible playbooks based on fedora and using gitlab CI runners." \
+    description="$SX_SUMMARY. Use for building ansible playbooks based on centos and using gitlab CI runners." \
     version="$SX_VERSION" \
     release="$SX_VERSION" \
     io.k8s.description="$SX_SUMMARY" \
