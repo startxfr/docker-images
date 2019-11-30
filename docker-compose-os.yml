@@ -1,4 +1,4 @@
-centos7:
+ubi8:
   extends:
     file: OS/docker-compose.yml
-    service: centos7
+    service: ubi8

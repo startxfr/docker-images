@@ -1,64 +1,93 @@
-centos7:
+ubi8:
   extends:
     file: OS/docker-compose.yml
-    service: centos7
+    service: ubi8
 
-centos7-sv-apache:
+ubi8-sv-apache:
   extends:
     file: Services/apache/docker-compose.yml
     service: apache
 
-centos7-sv-chrome:
-  extends:
-    file: Services/chrome/docker-compose.yml
-    service: chrome
-
-centos7-sv-php:
+ubi8-sv-php:
   extends:
     file: Services/php/docker-compose.yml
     service: php
 
-centos7-sv-nodejs:
+ubi8-sv-nodejs:
   extends:
     file: Services/nodejs/docker-compose.yml
     service: nodejs
 
-centos7-sv-mariadb:
+ubi8-sv-mariadb:
   extends:
     file: Services/mariadb/docker-compose.yml
     service: mariadb
 
-centos7-sv-postgres:
+ubi8-sv-postgres:
   extends:
     file: Services/postgres/docker-compose.yml
     service: postgres
 
-centos7-sv-mongo:
+ubi8-sv-mongo:
   extends:
     file: Services/mongo/docker-compose.yml
     service: mongo
 
-centos7-sv-ooconv:
+ubi8-sv-ooconv:
   extends:
     file: Services/ooconv/docker-compose.yml
     service: ooconv
 
-centos7-sv-memcache:
+ubi8-sv-memcache:
   extends:
     file: Services/memcache/docker-compose.yml
     service: memcache
-    
-centos7-sv-couchbase:
+
+ubi8-sv-couchbase:
   extends:
     file: Services/couchbase/docker-compose.yml
     service: couchbase
 
-centos7-app-pma:
+ubi8-runner-ansible:
+  extends:
+    file: GitlabRunner/ansible/docker-compose.yml
+    service: ansible
+
+ubi8-runner-apache:
+  extends:
+    file: GitlabRunner/apache/docker-compose.yml
+    service: apache
+
+ubi8-runner-bash:
+  extends:
+    file: GitlabRunner/bash/docker-compose.yml
+    service: bash
+
+ubi8-runner-nodejs:
+  extends:
+    file: GitlabRunner/nodejs/docker-compose.yml
+    service: nodejs
+
+ubi8-runner-php:
+  extends:
+    file: GitlabRunner/php/docker-compose.yml
+    service: php
+
+ubi8-vdi-chrome:
+  extends:
+    file: VDI/chrome/docker-compose.yml
+    service: chrome
+
+ubi8-vdi-firefox:
+  extends:
+    file: VDI/firefox/docker-compose.yml
+    service: firefox
+
+ubi8-app-pma:
   extends:
     file: Applications/phpmyadmin/docker-compose.yml
     service: phpmyadmin
-
-#centos7-app-rockmongo:
+#ubi8-app-rockmongo:
 #  extends:
 #    file: Applications/rockmongo/docker-compose.yml
 #    service: rockmongo
