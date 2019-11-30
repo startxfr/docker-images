@@ -1,4 +1,4 @@
-FROM fedora:32
+FROM fedora:rawhide
 
 ENV SX_VERSION="fc32" \
     SX_TYPE="OS" \
