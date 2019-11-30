@@ -4,8 +4,9 @@ metadata:
   name: startx-apache-build-template
   annotations:
     openshift.io/display-name: Startx Http Server (ephemeral build & deploy workflow)
-    description: Build and deployement workflow of a static web application using ephemeral storage
-      for logs records. Use apache with various underlying linux distribution. See 
+    description:
+      Build and deployement workflow of a static web application using ephemeral storage
+      for logs records. Use apache with various underlying linux distribution. See
       https://hub.docker.com/r/startx/sv-apache
     iconClass: icon-apache
     tags: startx,os,fedora,apache,httpd
@@ -23,512 +24,539 @@ message: |-
   Builder     : ${BUILDER_TAG}
 labels:
   template: startx-apache-build-template
-  provider: startx 
+  provider: startx
 objects:
-- kind: ImageStream
-  apiVersion: v1
-  metadata:
-    name: startx-apache
-    annotations:
-      openshift.io/display-name: Startx WebServer
-      openshift.io/generated-by: STARTX
-    labels:
-      app: "${APP_NAME}"
-      stage: "${APP_STAGE}"
-  spec:
-    tags:
-    - name: fc26
+  - kind: ImageStream
+    apiVersion: v1
+    metadata:
+      name: startx-apache
       annotations:
-        openshift.io/display-name: S2I Startx WebServer (Fedora 26)
-        description: Http server builder for simple web application running under
-          Fedora 26
-        iconClass: icon-apache
-        tags: builder,startx,fedora,apache,httpd
-        supports: http
-        version: fc26
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
-      from:
-        kind: DockerImage
-        name: startx/sv-apache:fc26
-    - name: fc27
-      annotations:
-        openshift.io/display-name: S2I Startx WebServer (Fedora 27)
-        description: Http server builder for simple web application running under
-          Fedora 27
-        iconClass: icon-apache
-        tags: builder,startx,fedora,apache,httpd
-        supports: http
-        version: fc27
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
-      from:
-        kind: DockerImage
-        name: startx/sv-apache:fc27
-    - name: fc28
-      annotations:
-        openshift.io/display-name: S2I Startx WebServer (Fedora 28)
-        description: Http server builder for simple web application running under
-          Fedora 28
-        iconClass: icon-apache
-        tags: builder,startx,fedora,apache,httpd
-        supports: http
-        version: fc28
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
-      from:
-        kind: DockerImage
-        name: startx/sv-apache:fc28
-    - name: fc29
-      annotations:
-        openshift.io/display-name: S2I Startx WebServer (Fedora 29)
-        description: Http server builder for simple web application running under
-          Fedora 29
-        iconClass: icon-apache
-        tags: builder,startx,fedora,apache,httpd
-        supports: http
-        version: fc29
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
-      from:
-        kind: DockerImage
-        name: startx/sv-apache:fc29
-    - name: fc30
-      annotations:
-        openshift.io/display-name: S2I Startx WebServer (Fedora 30)
-        description: Http server builder for simple web application running under
-          Fedora 30
-        iconClass: icon-apache
-        tags: builder,startx,fedora,apache,httpd
-        supports: http
-        version: fc30
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
-      from:
-        kind: DockerImage
-        name: startx/sv-apache:fc30
-    - name: fc31
-      annotations:
-        openshift.io/display-name: S2I Startx WebServer (Fedora 31)
-        description: Http server builder for simple web application running under
-          Fedora 31
-        iconClass: icon-apache
-        tags: builder,startx,fedora,apache,httpd
-        supports: http
-        version: fc31
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
-      from:
-        kind: DockerImage
-        name: startx/sv-apache:fc31
-    - name: rawhide
-      annotations:
-        openshift.io/display-name: S2I Startx WebServer (Fedora rawhide)
-        description: Http server builder for simple web application running under
-          Fedora rawhide
-        iconClass: icon-apache
-        tags: builder,startx,fedora,apache,httpd
-        supports: http
-        version: rawhide
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
-      from:
-        kind: DockerImage
-        name: startx/sv-apache:latest
-    - name: ubi8
-      annotations:
-        openshift.io/display-name: S2I Startx WebServer (RedHat UBI 8)
-        description: Http server builder for simple web application running under
-          RedHat UBI 8
-        iconClass: icon-apache
-        tags: builder,startx,ubi,apache,httpd
-        supports: http
-        version: '8'
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
-      from:
-        kind: DockerImage
-        name: startx/sv-apache:ubi8
-    - name: centos8
-      annotations:
-        openshift.io/display-name: S2I Startx WebServer (Centos 8)
-        description: Http server builder for simple web application running under
-          Centos 8
-        iconClass: icon-apache
-        tags: builder,startx,centos,apache,httpd
-        supports: http
-        version: '8'
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
-      from:
-        kind: DockerImage
-        name: startx/sv-apache:centos8
-    - name: centos7
-      annotations:
-        openshift.io/display-name: S2I Startx WebServer (Centos 7)
-        description: Http server builder for simple web application running under
-          Centos 7
-        iconClass: icon-apache
-        tags: builder,startx,centos,apache,httpd
-        supports: http
-        version: '7'
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
-      from:
-        kind: DockerImage
-        name: startx/sv-apache:centos7
-    - name: centos6
-      annotations:
-        openshift.io/display-name: S2I Startx WebServer (Centos 6)
-        description: Http server builder for simple web application running under
-          Centos 6
-        iconClass: icon-apache
-        tags: builder,startx,centos,apache,httpd
-        supports: http
-        version: '6'
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
-      from:
-        kind: DockerImage
-        name: startx/sv-apache:centos6
-    - name: alpine3
-      annotations:
-        openshift.io/display-name: S2I Startx WebServer (Alpine 3)
-        description: Http server builder for simple web application running under
-          Alpine 3
-        iconClass: icon-apache
-        tags: builder,startx,alpine,apache,httpd
-        supports: http
-        version: '3'
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
-      from:
-        kind: DockerImage
-        name: startx/sv-apache:alpine3
-    - name: latest
-      annotations:
-        openshift.io/display-name: S2I Startx WebServer (latest)
-        description: Http server builder for simple web application running under
-          Fedora latest
-        iconClass: icon-apache
-        tags: builder,startx,alpine,apache,httpd
-        supports: http
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
-      from:
-        kind: ImageStreamTag
-        name: rawhide
-    - name: dev
-      annotations:
-        openshift.io/display-name: S2I Startx WebServer (dev)
-        description: Http server builder for simple web application (developpement)
-        iconClass: icon-apache
-        tags: builder,startx,alpine,apache,httpd
-        supports: http
-        version: 'dev'
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
-      from:
-        kind: ImageStreamTag
-        name: rawhide
-    - name: test
-      annotations:
-        openshift.io/display-name: S2I Startx WebServer (test)
-        description: Http server builder for simple web application (testing)
-        iconClass: icon-apache
-        tags: builder,startx,alpine,apache,httpd
-        supports: http
-        version: 'test'
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
-      from:
-        kind: ImageStreamTag
-        name: centos8
-    - name: preprod
-      annotations:
-        openshift.io/display-name: S2I Startx WebServer (preprod)
-        description: Http server builder for simple web application (pre-production)
-        iconClass: icon-apache
-        tags: builder,startx,alpine,apache,httpd
-        supports: http
-        version: 'pre-prod'
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
-      from:
-        kind: ImageStreamTag
-        name: alpine3
-    - name: prod
-      annotations:
-        openshift.io/display-name: S2I Startx WebServer (prod)
-        description: Http server builder for simple web application (production)
-        iconClass: icon-apache
-        tags: builder,startx,alpine,apache,httpd
-        supports: http
-        version: 'prod'
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
-      from:
-        kind: ImageStreamTag
-        name: alpine3
-- kind: ImageStream
-  apiVersion: v1
-  metadata:
-    name: "${APP_NAME}"
-    annotations:
-      openshift.io/display-name: Application ${APP_NAME}
-      openshift.io/generated-by: STARTX
-    labels:
-      app: "${APP_NAME}"
-      stage: "${APP_STAGE}"
-  spec:
-    tags:
-    - name: latest
+        openshift.io/display-name: Startx WebServer
+        openshift.io/generated-by: STARTX
+      labels:
+        app: "${APP_NAME}"
+        stage: "${APP_STAGE}"
+    spec:
+      tags:
+        - name: fc26
+          annotations:
+            openshift.io/display-name: S2I Startx WebServer (Fedora 26)
+            description:
+              Http server builder for simple web application running under
+              Fedora 26
+            iconClass: icon-apache
+            tags: builder,startx,fedora,apache,httpd
+            supports: http
+            version: fc26
+            sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+          from:
+            kind: DockerImage
+            name: startx/sv-apache:fc26
+        - name: fc27
+          annotations:
+            openshift.io/display-name: S2I Startx WebServer (Fedora 27)
+            description:
+              Http server builder for simple web application running under
+              Fedora 27
+            iconClass: icon-apache
+            tags: builder,startx,fedora,apache,httpd
+            supports: http
+            version: fc27
+            sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+          from:
+            kind: DockerImage
+            name: startx/sv-apache:fc27
+        - name: fc28
+          annotations:
+            openshift.io/display-name: S2I Startx WebServer (Fedora 28)
+            description:
+              Http server builder for simple web application running under
+              Fedora 28
+            iconClass: icon-apache
+            tags: builder,startx,fedora,apache,httpd
+            supports: http
+            version: fc28
+            sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+          from:
+            kind: DockerImage
+            name: startx/sv-apache:fc28
+        - name: fc29
+          annotations:
+            openshift.io/display-name: S2I Startx WebServer (Fedora 29)
+            description:
+              Http server builder for simple web application running under
+              Fedora 29
+            iconClass: icon-apache
+            tags: builder,startx,fedora,apache,httpd
+            supports: http
+            version: fc29
+            sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+          from:
+            kind: DockerImage
+            name: startx/sv-apache:fc29
+        - name: fc30
+          annotations:
+            openshift.io/display-name: S2I Startx WebServer (Fedora 30)
+            description:
+              Http server builder for simple web application running under
+              Fedora 30
+            iconClass: icon-apache
+            tags: builder,startx,fedora,apache,httpd
+            supports: http
+            version: fc30
+            sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+          from:
+            kind: DockerImage
+            name: startx/sv-apache:fc30
+        - name: fc31
+          annotations:
+            openshift.io/display-name: S2I Startx WebServer (Fedora 31)
+            description:
+              Http server builder for simple web application running under
+              Fedora 31
+            iconClass: icon-apache
+            tags: builder,startx,fedora,apache,httpd
+            supports: http
+            version: fc31
+            sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+          from:
+            kind: DockerImage
+            name: startx/sv-apache:fc31
+        - name: fc32
+          annotations:
+            openshift.io/display-name: S2I Startx WebServer (Fedora 32)
+            description:
+              Http server builder for simple web application running under
+              Fedora 32
+            iconClass: icon-apache
+            tags: builder,startx,fedora,apache,httpd
+            supports: http
+            version: fc32
+            sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+          from:
+            kind: DockerImage
+            name: startx/sv-apache:fc32
+        - name: rawhide
+          annotations:
+            openshift.io/display-name: S2I Startx WebServer (Fedora rawhide)
+            description:
+              Http server builder for simple web application running under
+              Fedora rawhide
+            iconClass: icon-apache
+            tags: builder,startx,fedora,apache,httpd
+            supports: http
+            version: rawhide
+            sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+          from:
+            kind: DockerImage
+            name: startx/sv-apache:latest
+        - name: ubi8
+          annotations:
+            openshift.io/display-name: S2I Startx WebServer (RedHat UBI 8)
+            description:
+              Http server builder for simple web application running under
+              RedHat UBI 8
+            iconClass: icon-apache
+            tags: builder,startx,ubi,apache,httpd
+            supports: http
+            version: "8"
+            sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+          from:
+            kind: DockerImage
+            name: startx/sv-apache:ubi8
+        - name: centos8
+          annotations:
+            openshift.io/display-name: S2I Startx WebServer (Centos 8)
+            description:
+              Http server builder for simple web application running under
+              Centos 8
+            iconClass: icon-apache
+            tags: builder,startx,centos,apache,httpd
+            supports: http
+            version: "8"
+            sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+          from:
+            kind: DockerImage
+            name: startx/sv-apache:centos8
+        - name: centos7
+          annotations:
+            openshift.io/display-name: S2I Startx WebServer (Centos 7)
+            description:
+              Http server builder for simple web application running under
+              Centos 7
+            iconClass: icon-apache
+            tags: builder,startx,centos,apache,httpd
+            supports: http
+            version: "7"
+            sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+          from:
+            kind: DockerImage
+            name: startx/sv-apache:centos7
+        - name: centos6
+          annotations:
+            openshift.io/display-name: S2I Startx WebServer (Centos 6)
+            description:
+              Http server builder for simple web application running under
+              Centos 6
+            iconClass: icon-apache
+            tags: builder,startx,centos,apache,httpd
+            supports: http
+            version: "6"
+            sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+          from:
+            kind: DockerImage
+            name: startx/sv-apache:centos6
+        - name: alpine3
+          annotations:
+            openshift.io/display-name: S2I Startx WebServer (Alpine 3)
+            description:
+              Http server builder for simple web application running under
+              Alpine 3
+            iconClass: icon-apache
+            tags: builder,startx,alpine,apache,httpd
+            supports: http
+            version: "3"
+            sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+          from:
+            kind: DockerImage
+            name: startx/sv-apache:alpine3
+        - name: latest
+          annotations:
+            openshift.io/display-name: S2I Startx WebServer (latest)
+            description:
+              Http server builder for simple web application running under
+              Fedora latest
+            iconClass: icon-apache
+            tags: builder,startx,alpine,apache,httpd
+            supports: http
+            sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+          from:
+            kind: ImageStreamTag
+            name: rawhide
+        - name: dev
+          annotations:
+            openshift.io/display-name: S2I Startx WebServer (dev)
+            description: Http server builder for simple web application (developpement)
+            iconClass: icon-apache
+            tags: builder,startx,alpine,apache,httpd
+            supports: http
+            version: "dev"
+            sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+          from:
+            kind: ImageStreamTag
+            name: rawhide
+        - name: test
+          annotations:
+            openshift.io/display-name: S2I Startx WebServer (test)
+            description: Http server builder for simple web application (testing)
+            iconClass: icon-apache
+            tags: builder,startx,alpine,apache,httpd
+            supports: http
+            version: "test"
+            sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+          from:
+            kind: ImageStreamTag
+            name: centos8
+        - name: preprod
+          annotations:
+            openshift.io/display-name: S2I Startx WebServer (preprod)
+            description: Http server builder for simple web application (pre-production)
+            iconClass: icon-apache
+            tags: builder,startx,alpine,apache,httpd
+            supports: http
+            version: "pre-prod"
+            sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+          from:
+            kind: ImageStreamTag
+            name: alpine3
+        - name: prod
+          annotations:
+            openshift.io/display-name: S2I Startx WebServer (prod)
+            description: Http server builder for simple web application (production)
+            iconClass: icon-apache
+            tags: builder,startx,alpine,apache,httpd
+            supports: http
+            version: "prod"
+            sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+          from:
+            kind: ImageStreamTag
+            name: alpine3
+  - kind: ImageStream
+    apiVersion: v1
+    metadata:
+      name: "${APP_NAME}"
       annotations:
         openshift.io/display-name: Application ${APP_NAME}
-        description: Base image for the application ${APP_NAME}
-        iconClass: icon-apache
-        tags: startx,fedora,apache,httpd,application,${APP_NAME}
-        supports: http
-        version: latest
-- kind: ConfigMap
-  apiVersion: v1
-  metadata:
-    name: "${APP_NAME}-config"
-    annotations:
-      openshift.io/display-name: Application ${APP_NAME} configuration
-      openshift.io/generated-by: STARTX
-    labels:
-      app: "${APP_NAME}"
-      stage: "${APP_STAGE}"
-  data:
-    SX_ID: ${APP_NAME}/${APP_STAGE}
-    SX_TYPE: ${APP_STAGE}
-    SX_SERVICE: ${APP_NAME}
-    SX_NAME: Static web application ${APP_NAME}
-    SX_SUMMARY: Static web application ${APP_NAME} based on ${BUILDER_TAG} container
-    SX_VERSION: 0.0.1 
-- kind: BuildConfig
-  apiVersion: v1
-  metadata:
-    name: "${APP_NAME}"
-    labels:
-      app: "${APP_NAME}"
-      stage: "${APP_STAGE}"
-    annotations:
-      openshift.io/generated-by: STARTX
-  spec:
-    triggers:
-    - type: GitHub
-      github:
-        secret: "${WEBHOOK_TOKEN}_${APP_NAME}"
-    - type: Generic
-      generic:
-        secret: "${WEBHOOK_TOKEN}_${APP_NAME}"
-    - type: ImageChange
-      imageChange: {}
-    - type: ConfigChange
-    runPolicy: SerialLatestOnly
-    source:
-      type: Git
-      git:
-        uri: "${SOURCE_GIT}"
-        ref: "${SOURCE_BRANCH}"
-    strategy:
-      type: Source
-      sourceStrategy:
-        from:
-          kind: ImageStreamTag
-          name: startx-apache:${BUILDER_TAG}
-        env:
-        - name: SX_VERBOSE
-          value: 'true'
-    output:
-      to:
-        kind: ImageStreamTag
-        name: "${APP_NAME}:latest"
-    postCommit:
-      command:
-      - "/bin/sx-apache"
-      - post-build
-- kind: DeploymentConfig
-  apiVersion: v1
-  metadata:
-    name: "${APP_NAME}"
-    labels:
-      app: "${APP_NAME}"
-      stage: "${APP_STAGE}"
-    annotations:
-      openshift.io/generated-by: STARTX
-  spec:
-    strategy:
-      type: Rolling
-      rollingParams:
-        updatePeriodSeconds: 1
-        intervalSeconds: 1
-        timeoutSeconds: 30
-        maxUnavailable: 25%
-        maxSurge: 25%
-        pre:
-          failurePolicy: Ignore
-          execNewPod:
-            containerName: "${APP_NAME}"
-            command:
-            - "/bin/sx-apache"
-            - pre-deploy
-            env:
+        openshift.io/generated-by: STARTX
+      labels:
+        app: "${APP_NAME}"
+        stage: "${APP_STAGE}"
+    spec:
+      tags:
+        - name: latest
+          annotations:
+            openshift.io/display-name: Application ${APP_NAME}
+            description: Base image for the application ${APP_NAME}
+            iconClass: icon-apache
+            tags: startx,fedora,apache,httpd,application,${APP_NAME}
+            supports: http
+            version: latest
+  - kind: ConfigMap
+    apiVersion: v1
+    metadata:
+      name: "${APP_NAME}-config"
+      annotations:
+        openshift.io/display-name: Application ${APP_NAME} configuration
+        openshift.io/generated-by: STARTX
+      labels:
+        app: "${APP_NAME}"
+        stage: "${APP_STAGE}"
+    data:
+      SX_ID: ${APP_NAME}/${APP_STAGE}
+      SX_TYPE: ${APP_STAGE}
+      SX_SERVICE: ${APP_NAME}
+      SX_NAME: Static web application ${APP_NAME}
+      SX_SUMMARY: Static web application ${APP_NAME} based on ${BUILDER_TAG} container
+      SX_VERSION: 0.0.1
+  - kind: BuildConfig
+    apiVersion: v1
+    metadata:
+      name: "${APP_NAME}"
+      labels:
+        app: "${APP_NAME}"
+        stage: "${APP_STAGE}"
+      annotations:
+        openshift.io/generated-by: STARTX
+    spec:
+      triggers:
+        - type: GitHub
+          github:
+            secret: "${WEBHOOK_TOKEN}_${APP_NAME}"
+        - type: Generic
+          generic:
+            secret: "${WEBHOOK_TOKEN}_${APP_NAME}"
+        - type: ImageChange
+          imageChange: {}
+        - type: ConfigChange
+      runPolicy: SerialLatestOnly
+      source:
+        type: Git
+        git:
+          uri: "${SOURCE_GIT}"
+          ref: "${SOURCE_BRANCH}"
+      strategy:
+        type: Source
+        sourceStrategy:
+          from:
+            kind: ImageStreamTag
+            name: startx-apache:${BUILDER_TAG}
+          env:
             - name: SX_VERBOSE
-              value: 'true'
-            - name: SX_DEBUG
-              value: 'true'
-            envFrom:
-              - configMapRef:
-                  name: ${APP_NAME}-config
-        post:
-          failurePolicy: Ignore
-          execNewPod:
-            containerName: "${APP_NAME}"
-            command:
-            - "/bin/sx-apache"
-            - post-deploy
-            env:
-            - name: SX_VERBOSE
-              value: 'true'
-            - name: SX_DEBUG
-              value: 'true'
-            envFrom:
-              - configMapRef:
-                  name: ${APP_NAME}-config
-    triggers:
-    - type: ImageChange
-      imageChangeParams:
-        automatic: true
-        containerNames:
-        - "${APP_NAME}"
-        from:
+              value: "true"
+      output:
+        to:
           kind: ImageStreamTag
           name: "${APP_NAME}:latest"
-    - type: ConfigChange
-    postCommit:
-      script: "/bin/sx-apache info"
-    replicas: 1
-    test: false
-    selector:
-      app: "${APP_NAME}"
-      deploymentconfig: "${APP_NAME}"
-    template:
-      metadata:
-        labels:
-          app: "${APP_NAME}"
-          deploymentconfig: "${APP_NAME}"
-        annotations:
-          openshift.io/generated-by: STARTX
-      spec:
-        containers:
-        - name: "${APP_NAME}"
-          image: " "
-          env:
-          - name: SX_VERBOSE
-            value: 'true'
-          envFrom:
-            - configMapRef:
-                name: ${APP_NAME}-config
-          command:
+      postCommit:
+        command:
           - "/bin/sx-apache"
-          args:
-          - run
-          ports:
-          - containerPort: 8080
-            protocol: TCP
-          livenessProbe:
-            exec:
-              command:
-              - "/bin/sx-apache"
-              - isLive
-            initialDelaySeconds: 2
-            timeoutSeconds: 1
-            periodSeconds: 8
-            successThreshold: 1
-            failureThreshold: 2
-          readinessProbe:
-            exec:
-              command:
-              - "/bin/sx-apache"
-              - isReady
-            initialDelaySeconds: 2
-            timeoutSeconds: 1
-            periodSeconds: 8
-            successThreshold: 1
-            failureThreshold: 2
-          resources:
-            limits:
-              cpu: 1000m
-              memory: "${MEMORY_LIMIT}"
-            requests:
-              cpu: 200m
-              memory: "${MEMORY_LIMIT}"
-          terminationMessagePath: "/dev/termination-log"
-          imagePullPolicy: Always
-          volumeMounts:
-          - name: "${APP_NAME}-log"
-            mountPath: "/var/log/httpd"
-        volumes:
-        - name: "${APP_NAME}-log"
-          emptyDir:
-            medium: ''
-        restartPolicy: Always
-        terminationGracePeriodSeconds: 30
-        securityContext: {}
-        dnsPolicy: ClusterFirst
-- kind: Service
-  apiVersion: v1
-  metadata:
-    name: "${APP_NAME}"
-    labels:
-      app: "${APP_NAME}"
-      stage: "${APP_STAGE}"
-    annotations:
-      openshift.io/generated-by: STARTX
-  spec:
-    ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 8080
-    selector:
-      app: "${APP_NAME}"
-      deploymentconfig: "${APP_NAME}"
-    type: ClusterIP
-    sessionAffinity: None
-- kind: Route
-  apiVersion: v1
-  metadata:
-    name: "${APP_NAME}"
-    labels:
-      app: "${APP_NAME}"
-      stage: "${APP_STAGE}"
-    annotations:
-      openshift.io/generated-by: STARTX
-  spec:
-    to:
-      kind: Service
+          - post-build
+  - kind: DeploymentConfig
+    apiVersion: v1
+    metadata:
       name: "${APP_NAME}"
-      weight: 100
+      labels:
+        app: "${APP_NAME}"
+        stage: "${APP_STAGE}"
+      annotations:
+        openshift.io/generated-by: STARTX
+    spec:
+      strategy:
+        type: Rolling
+        rollingParams:
+          updatePeriodSeconds: 1
+          intervalSeconds: 1
+          timeoutSeconds: 30
+          maxUnavailable: 25%
+          maxSurge: 25%
+          pre:
+            failurePolicy: Ignore
+            execNewPod:
+              containerName: "${APP_NAME}"
+              command:
+                - "/bin/sx-apache"
+                - pre-deploy
+              env:
+                - name: SX_VERBOSE
+                  value: "true"
+                - name: SX_DEBUG
+                  value: "true"
+              envFrom:
+                - configMapRef:
+                    name: ${APP_NAME}-config
+          post:
+            failurePolicy: Ignore
+            execNewPod:
+              containerName: "${APP_NAME}"
+              command:
+                - "/bin/sx-apache"
+                - post-deploy
+              env:
+                - name: SX_VERBOSE
+                  value: "true"
+                - name: SX_DEBUG
+                  value: "true"
+              envFrom:
+                - configMapRef:
+                    name: ${APP_NAME}-config
+      triggers:
+        - type: ImageChange
+          imageChangeParams:
+            automatic: true
+            containerNames:
+              - "${APP_NAME}"
+            from:
+              kind: ImageStreamTag
+              name: "${APP_NAME}:latest"
+        - type: ConfigChange
+      postCommit:
+        script: "/bin/sx-apache info"
+      replicas: 1
+      test: false
+      selector:
+        app: "${APP_NAME}"
+        deploymentconfig: "${APP_NAME}"
+      template:
+        metadata:
+          labels:
+            app: "${APP_NAME}"
+            deploymentconfig: "${APP_NAME}"
+          annotations:
+            openshift.io/generated-by: STARTX
+        spec:
+          containers:
+            - name: "${APP_NAME}"
+              image: " "
+              env:
+                - name: SX_VERBOSE
+                  value: "true"
+              envFrom:
+                - configMapRef:
+                    name: ${APP_NAME}-config
+              command:
+                - "/bin/sx-apache"
+              args:
+                - run
+              ports:
+                - containerPort: 8080
+                  protocol: TCP
+              livenessProbe:
+                exec:
+                  command:
+                    - "/bin/sx-apache"
+                    - isLive
+                initialDelaySeconds: 2
+                timeoutSeconds: 1
+                periodSeconds: 8
+                successThreshold: 1
+                failureThreshold: 2
+              readinessProbe:
+                exec:
+                  command:
+                    - "/bin/sx-apache"
+                    - isReady
+                initialDelaySeconds: 2
+                timeoutSeconds: 1
+                periodSeconds: 8
+                successThreshold: 1
+                failureThreshold: 2
+              resources:
+                limits:
+                  cpu: 1000m
+                  memory: "${MEMORY_LIMIT}"
+                requests:
+                  cpu: 200m
+                  memory: "${MEMORY_LIMIT}"
+              terminationMessagePath: "/dev/termination-log"
+              imagePullPolicy: Always
+              volumeMounts:
+                - name: "${APP_NAME}-log"
+                  mountPath: "/var/log/httpd"
+          volumes:
+            - name: "${APP_NAME}-log"
+              emptyDir:
+                medium: ""
+          restartPolicy: Always
+          terminationGracePeriodSeconds: 30
+          securityContext: {}
+          dnsPolicy: ClusterFirst
+  - kind: Service
+    apiVersion: v1
+    metadata:
+      name: "${APP_NAME}"
+      labels:
+        app: "${APP_NAME}"
+        stage: "${APP_STAGE}"
+      annotations:
+        openshift.io/generated-by: STARTX
+    spec:
+      ports:
+        - protocol: TCP
+          port: 8080
+          targetPort: 8080
+      selector:
+        app: "${APP_NAME}"
+        deploymentconfig: "${APP_NAME}"
+      type: ClusterIP
+      sessionAffinity: None
+  - kind: Route
+    apiVersion: v1
+    metadata:
+      name: "${APP_NAME}"
+      labels:
+        app: "${APP_NAME}"
+        stage: "${APP_STAGE}"
+      annotations:
+        openshift.io/generated-by: STARTX
+    spec:
+      to:
+        kind: Service
+        name: "${APP_NAME}"
+        weight: 100
 parameters:
-- name: APP_NAME
-  displayName: Application name
-  description: The name of the created application
-  value: apache
-  required: true
-- name: APP_STAGE
-  displayName: Application stage
-  description: "Stage of the application deployed (ex: dev, test, prod, example, demo, poc, ...)"
-  value: example
-  required: true
-- name: BUILDER_TAG
-  displayName: Builder image stage
-  description: "Image tag of the startx apache builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc30, fc29, fc28 - alpine3 - ubi8 - centos8, centos7, centos6)"
-  value: latest
-  required: true
-- name: SOURCE_GIT
-  displayName: Source repository
-  description: URL to the source code to use during build process
-  value: https://github.com/startxfr/docker-images-example-apache.git
-  required: true
-- name: SOURCE_BRANCH
-  displayName: Source branch
-  description: Name of the default branch
-  value: master
-  required: true
-- name: WEBHOOK_TOKEN
-  displayName: Webhook token
-  description: Secret token to use for webhook to github or generic
-  generate: expression
-  from: "[a-zA-Z0-9]{24}"
-  required: true
-- name: MEMORY_LIMIT
-  displayName: Memory Limit
-  description: Maximum amount of memory the container can use. e.g. 512Mi, 2Gi.
-  value: 256Mi
-  required: true
+  - name: APP_NAME
+    displayName: Application name
+    description: The name of the created application
+    value: apache
+    required: true
+  - name: APP_STAGE
+    displayName: Application stage
+    description: "Stage of the application deployed (ex: dev, test, prod, example, demo, poc, ...)"
+    value: example
+    required: true
+  - name: BUILDER_TAG
+    displayName: Builder image stage
+    description: "Image tag of the startx apache builder image used. Could be : latest, dev, test, preprod, prod - rawhide, fc31, fc30, fc29, fc28 - alpine3 - ubi8 - centos8, centos7, centos6)"
+    value: latest
+    required: true
+  - name: SOURCE_GIT
+    displayName: Source repository
+    description: URL to the source code to use during build process
+    value: https://github.com/startxfr/docker-images-example-apache.git
+    required: true
+  - name: SOURCE_BRANCH
+    displayName: Source branch
+    description: Name of the default branch
+    value: master
+    required: true
+  - name: WEBHOOK_TOKEN
+    displayName: Webhook token
+    description: Secret token to use for webhook to github or generic
+    generate: expression
+    from: "[a-zA-Z0-9]{24}"
+    required: true
+  - name: MEMORY_LIMIT
+    displayName: Memory Limit
+    description: Maximum amount of memory the container can use. e.g. 512Mi, 2Gi.
+    value: 256Mi
+    required: true

@@ -3,39 +3,40 @@
 # Docker OS Images : COUCHBASE on CentOS 7
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/couchbase/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
- 
+
 [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-couchbase.svg)](https://hub.docker.com/r/startx/sv-couchbase) [![Docker couchbase pulls](https://img.shields.io/docker/pulls/startx/sv-couchbase)](https://hub.docker.com/r/startx/sv-couchbase) [![Docker Repository on Quay](https://quay.io/repository/startx/couchbase/status "Docker Repository on Quay")](https://quay.io/repository/startx/couchbase)
 
-
 Simple container used to deliver distributed and low latency document oriented database
-Run [couchbase daemon](https://www.couchbase.org/) under a container 
-based on [startx/centos:7 container](https://hub.docker.com/r/startx/centos)
+Run [couchbase daemon](https://www.couchbase.org/) under a container
+based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-* `:latest` : Fedora rawhide + Couchbase Server 6.0.2-2413
-* `:fc31` : Fedora 31 + Couchbase Server 6.0.2-2413
-* `:fc30` : Fedora 30 + Couchbase Server 6.0.0
-* `:fc29` : Fedora 29 + Couchbase Server 5.5.0-beta
-* `:fc28` : Fedora 28 + Couchbase Server 4.5.0
-* `:fc27` : Fedora 27 + Couchbase Server 4.5.0
-* `:centos7` : Centos 7 + Couchbase Server 6.0.0
-* `:centos8` : Centos 8 + Couchbase Server 6.0.0
-* `:ubi8` : RedHat UBI 8 + Couchbase Server 6.0.0
+- `:latest` : Fedora rawhide + Couchbase Server 6.0.2-2413
+- `:fc32` : Fedora 32 + Couchbase Server 6.0.2-2413
+- `:fc31` : Fedora 31 + Couchbase Server 6.0.2-2413
+- `:fc30` : Fedora 30 + Couchbase Server 6.0.0
+- `:fc29` : Fedora 29 + Couchbase Server 5.5.0-beta
+- `:fc28` : Fedora 28 + Couchbase Server 4.5.0
+- `:fc27` : Fedora 27 + Couchbase Server 4.5.0
+- `:centos7` : Centos 7 + Couchbase Server 6.0.0
+- `:centos8` : Centos 8 + Couchbase Server 6.0.0
+- `:ubi8` : RedHat UBI 8 + Couchbase Server 6.0.0
 
 ## Running from dockerhub registry
 
 If you want to be guided on setting-up and installing various containers engines
 ([docker](https://github.com/startxfr/containers-engines/blob/master/Docker.md),
- [podman](https://github.com/startxfr/containers-engines/blob/master/Podman.md),
- [s2i](https://github.com/startxfr/containers-engines/blob/master/S2I.md),
- [dockerEE](https://github.com/startxfr/containers-engines/blob/master/DockerEE.md),
- [kubernetes](https://github.com/startxfr/containers-engines/blob/master/Kubernetes.md),
- [openshift](https://github.com/startxfr/containers-engines/blob/master/Openshift.md))
+[podman](https://github.com/startxfr/containers-engines/blob/master/Podman.md),
+[s2i](https://github.com/startxfr/containers-engines/blob/master/S2I.md),
+[dockerEE](https://github.com/startxfr/containers-engines/blob/master/DockerEE.md),
+[kubernetes](https://github.com/startxfr/containers-engines/blob/master/Kubernetes.md),
+[openshift](https://github.com/startxfr/containers-engines/blob/master/Openshift.md))
 you can [read ours containers engines guidelines](https://github.com/startxfr/containers-engines).
 
-* with `docker` you can run `docker run -it --name="service-couchbase" startx/sv-couchbase` from any docker host
-* with `docker-compose` you can create a docker-compose.yml file with the following content
+- with `docker` you can run `docker run -it --name="service-couchbase" startx/sv-couchbase` from any docker host
+- with `docker-compose` you can create a docker-compose.yml file with the following content
+
 ```YAML
 service:
   image: startx/sv-couchbase:centos7
@@ -65,7 +66,8 @@ oc process startx-couchbase-build-template | oc create -f -
 
 ### Using this image as S2I builder
 
-You can use this image as an s2i builder image. 
+You can use this image as an s2i builder image.
+
 ```bash
 s2i build https://github.com/startxfr/docker-images-example-couchbase startx/sv-couchbase test-couchbase
 docker run --rm -i -t test-couchbase
@@ -73,7 +75,8 @@ docker run --rm -i -t test-couchbase
 
 ## Docker-compose in various situations
 
-* sample docker-compose.yml linked to host port 1000
+- sample docker-compose.yml linked to host port 1000
+
 ```YAML
 service:
   image: startx/sv-couchbase:centos7
@@ -88,7 +91,9 @@ service:
     - "1006:18091"
     - "1007:18092"
 ```
-* sample docker-compose.yml with port exposed only to linked services
+
+- sample docker-compose.yml with port exposed only to linked services
+
 ```YAML
 service:
   image: startx/sv-couchbase:centos7
@@ -122,6 +127,7 @@ service:
 ### Using this image as base container
 
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
+
 ```Dockerfile
 FROM startx/sv-couchbase:centos7
 #... your container specifications
@@ -130,34 +136,27 @@ CMD ["/bin/sx", "run"]
 
 ## Environment variable
 
-This container is based on [startx centos container](https://hub.docker.com/r/startx/centos) who came with 
+This container is based on [startx fedora container](https://hub.docker.com/r/startx/fedora) who came with
 some [additional environment variable](https://github.com/startxfr/docker-images/tree/master/OS#environment-variable)
 
-| Variable                  | Type     | Mandatory | Description                                                              |
-|---------------------------|----------|-----------|--------------------------------------------------------------------------|
-| <i>base image environement</i> |          |           | [see environment list](https://github.com/startxfr/docker-images/tree/master/OS#environment-variable)
-| HOSTNAME                  | `auto`   | `auto`    | Container unique id automatically assigned by docker daemon at startup
-| LOG_PATH                  | `auto`   | `auto`    | default set to /var/log/couchbase and used as a volume mountpoint
+| Variable                       | Type   | Mandatory | Description                                                                                           |
+| ------------------------------ | ------ | --------- | ----------------------------------------------------------------------------------------------------- |
+| <i>base image environement</i> |        |           | [see environment list](https://github.com/startxfr/docker-images/tree/master/OS#environment-variable) |
+| HOSTNAME                       | `auto` | `auto`    | Container unique id automatically assigned by docker daemon at startup                                |
+| LOG_PATH                       | `auto` | `auto`    | default set to /var/log/couchbase and used as a volume mountpoint                                     |
 
 ## Exposed port
 
-| Port  | Description                                                              |
-|-------|--------------------------------------------------------------------------|
-| 8091  | Web Administration Port
-| 8092  | Couchbase API Port
-| 8093  | N1QL Query
-| 11207 | Internal/External Bucket Port for SSL
-| 11210 | Internal/External Bucket Port
-| 11211 | Client interface (proxy)
-| 18091 | Internal REST HTTPS for SSL
-| 18092 | Internal CAPI HTTPS for SSL
+| Port  | Description                                                 |
+| ----- | ----------------------------------------------------------- |
+| 11211 | standard couchbase network port used for key/value recovery |
 
 ## Exposed volumes
 
-| Container directory  | Description                                                              |
-|----------------------|--------------------------------------------------------------------------|
-| /logs                | log directory used to record container and couchbase logs
-| /data                | data directory served by couchbase. If empty will be filled with app on startup. In other case use content from mountpoint or data volumes
+| Container directory | Description                                                                                                                                |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| /logs               | log directory used to record container and couchbase logs                                                                                  |
+| /data               | data directory served by couchbase. If empty will be filled with app on startup. In other case use content from mountpoint or data volumes |
 
 ## Testing the service
 
@@ -168,8 +167,9 @@ access to the running couchbase daemon with `firefox http://localhost:8091; stat
 You want to use this container and code to build and create locally this container, follow theses instructions.
 
 This section will help you if you want to :
-* Get latest version of this service container
-* Enhance container content by adding instruction in Dockefile before build step
+
+- Get latest version of this service container
+- Enhance container content by adding instruction in Dockefile before build step
 
 You must have a working environment with the source code of this repository. Read and follow [how to setup your working environment](https://github.com/startxfr/docker-images#setup-your-working-environment-mandatory) to get a working directory. The following instructions assume you are at the top level of your working directory.
 
@@ -177,16 +177,15 @@ You must have a working environment with the source code of this repository. Rea
 
 1. Jump into the container directory with `cd Services/couchbase`
 2. Build the container using `docker build -t sv-couchbase .`
-3. Run this container 
-  1. Interactively with `docker run -p 11211:11211 -p 8091:8091 -v /logs -it sv-couchbase-centos7`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...) 
-  2. As a daemon with `docker run -p 11211:11211 -p 8091:8091 -v /logs -d sv-couchbase-centos7`
-
+3. Run this container
+4. Interactively with `docker run -p 11211:11211 -v /logs -it sv-couchbase`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...)
+5. As a daemon with `docker run -p 11211:11211 -v /logs -d sv-couchbase`
 
 ### Build & run a container using `docker-compose`
 
 1. Jump into the container directory with `cd Services/couchbase`
-2. Run this container 
-  1. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
-  2. As a daemon with `docker-compose up -d`. Container startup logs can be read using `docker-compose logs`
+2. Run this container
+3. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
+4. As a daemon with `docker-compose up -d`. Container startup logs can be read using `docker-compose logs`
 
 If you experience trouble with port already used, edit docker-compose.yml file and change port mapping
