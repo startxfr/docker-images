@@ -54,9 +54,6 @@ RUN echo "keepcache=0" >> /etc/dnf/dnf.conf && \
     bash-completion \
     glibc-langpack-fr \
     vim && \
-    package-cleanup --problems && \
-    package-cleanup --cleandupes; \
-    package-cleanup --orphans && \
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mkdir -p $SX_LIBDIR $APP_PATH $LOG_PATH && \

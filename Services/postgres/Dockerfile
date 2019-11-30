@@ -34,9 +34,6 @@ RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     postgresql \
     postgresql-libs \
     postgresql-server && \
-    package-cleanup --problems && \
-    package-cleanup --cleandupes; \
-    package-cleanup --orphans && \
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \

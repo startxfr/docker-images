@@ -41,9 +41,6 @@ RUN dnf install -y yum-utils dnf-plugin-system-upgrade && \
     mariadb-libs \
     mariadb-server \
     mariadb && \
-    package-cleanup --problems && \
-    package-cleanup --cleandupes; \
-    package-cleanup --orphans && \
     dnf remove -y --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH && \

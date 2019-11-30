@@ -38,9 +38,6 @@ RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     libreoffice-calc \
     pdfmod \
     ghostscript && \
-    package-cleanup --problems && \
-    package-cleanup --cleandupes; \
-    package-cleanup --orphans && \
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     useradd -s /bin/bash -m -g 0 -u 1001 ooconv && \

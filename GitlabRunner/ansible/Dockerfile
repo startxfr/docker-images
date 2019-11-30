@@ -32,8 +32,6 @@ RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     rsync \
     openssh-clients \
     sshpass && \
-    package-cleanup --problems && \
-    package-cleanup --orphans && \
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\*
 
