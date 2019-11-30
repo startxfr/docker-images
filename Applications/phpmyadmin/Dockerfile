@@ -26,8 +26,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
-    dnf upgrade -yq --refresh && \
+RUN dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
     mysql && \
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \

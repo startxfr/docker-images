@@ -31,8 +31,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 COPY *.j* $APP_PATH/
-RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
-    dnf upgrade -yq --refresh && \
+RUN dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
     nodejs \
     npm \

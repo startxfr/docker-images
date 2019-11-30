@@ -35,10 +35,9 @@ USER root
 
 COPY sx /tmp/
 RUN echo "keepcache=0" >> /etc/dnf/dnf.conf && \
-    dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     dnf upgrade -yq --refresh && \
     dnf install -yq \
-    pwgen \
+    #pwgen \
     tar \
     unzip \
     zip \
