@@ -7,6 +7,7 @@ This script will help you load and run startx docker images on a local host (usi
 ## Requirements
 
 This script assume :
+
 - You have a Centos/RHEL 8 environment running with all updates applied
 - You have installed docker package (alias for podman, buildhah and much more)
 - You have cloned this repository content (git clone https://github.com/startxfr/docker-images)
@@ -18,9 +19,10 @@ This script assume :
 # setup project
 ./podman-helper.sh setup project startx
 
-# setup flavour (alpine3, ubi8, centos8, centos7, centos6, fc31, fc30, fc29 or fc28)
+# setup flavour (alpine3, ubi8, centos8, centos7, centos6, fc32, fc31, fc30, fc29 or fc28)
 ./podman-helper.sh setup flavour latest
 ```
+
 ## Building images
 
 ### Build image
@@ -72,6 +74,9 @@ This script assume :
 # Start full test for centos 6 containers
 ./podman-helper.sh setup flavour centos6
 ./podman-helper.sh buildrun
+# Start full test for fedora 32 containers
+./podman-helper.sh setup flavour fc32
+./podman-helper.sh buildrun
 # Start full test for fedora 31 containers
 ./podman-helper.sh setup flavour fc31
 ./podman-helper.sh buildrun
@@ -108,6 +113,10 @@ This script assume :
 # Start full test for centos 6 containers (dedicated project)
 ./podman-helper.sh setup project centos-6
 ./podman-helper.sh setup flavour centos6
+./podman-helper.sh buildrun
+# Start full test for fedora 32 containers (dedicated project)
+./podman-helper.sh setup project fedora-32
+./podman-helper.sh setup flavour fc32
 ./podman-helper.sh buildrun
 # Start full test for fedora 31 containers (dedicated project)
 ./podman-helper.sh setup project fedora-31

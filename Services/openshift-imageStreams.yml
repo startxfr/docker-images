@@ -84,6 +84,32 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-apache:fc30
+    - name: fc31
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (Fedora 31)
+        description: Http server builder for simple web application running under
+          Fedora 31
+        iconClass: icon-apache
+        tags: builder,startx,fedora,apache,httpd
+        supports: http
+        version: fc31
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-apache:fc31
+    - name: fc32
+      annotations:
+        openshift.io/display-name: S2I Startx WebServer (Fedora 32)
+        description: Http server builder for simple web application running under
+          Fedora 32
+        iconClass: icon-apache
+        tags: builder,startx,fedora,apache,httpd
+        supports: http
+        version: fc32
+        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-apache:fc32
     - name: rawhide
       annotations:
         openshift.io/display-name: S2I Startx WebServer (Fedora rawhide)
@@ -286,6 +312,32 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-couchbase:fc30
+    - name: fc31
+      annotations:
+        openshift.io/display-name: S2I Couchbase Database (Fedora 31)
+        description: Couchbase server builder for NoSQL database running under Fedora
+          31
+        iconClass: icon-mysql-database
+        tags: builder,startx,fedora,couchbase,database
+        supports: db
+        version: fc31
+        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+      from:
+        kind: DockerImage
+        name: startx/sv-couchbase:fc31
+    - name: fc32
+      annotations:
+        openshift.io/display-name: S2I Couchbase Database (Fedora 32)
+        description: Couchbase server builder for NoSQL database running under Fedora
+          32
+        iconClass: icon-mysql-database
+        tags: builder,startx,fedora,couchbase,database
+        supports: db
+        version: fc32
+        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+      from:
+        kind: DockerImage
+        name: startx/sv-couchbase:fc32
     - name: latest
       annotations:
         openshift.io/display-name: S2I Couchbase Database (Fedora rawhide)
@@ -427,19 +479,34 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-mariadb:fc29
-    - name: fc30
+    - name: fc31
       annotations:
-        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 30)
-        description: MariaDB server builder for simple SQL database running under
-          Fedora 30
+        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 31)
+        description:
+          MariaDB server builder for simple SQL database running under
+          Fedora 31
         iconClass: icon-mariadb
         tags: builder,startx,fedora,mariadb,sql
         supports: mysql
-        version: fc30
+        version: fc31
         sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
       from:
         kind: DockerImage
-        name: startx/sv-mariadb:fc30
+        name: startx/sv-mariadb:fc31
+    - name: fc32
+      annotations:
+        openshift.io/display-name: S2I Startx Mariadb Database (Fedora 32)
+        description:
+          MariaDB server builder for simple SQL database running under
+          Fedora 32
+        iconClass: icon-mariadb
+        tags: builder,startx,fedora,mariadb,sql
+        supports: mysql
+        version: fc32
+        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mariadb:fc32
     - name: rawhide
       annotations:
         openshift.io/display-name: S2I Startx Mariadb Database (Fedora rawhide)
@@ -654,6 +721,34 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-memcache:fc30
+    - name: fc31
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (Fedora 31)
+        description:
+          Memcache server builder for distributed cache backend running under
+          Fedora 31
+        iconClass: icon-redis
+        tags: builder,startx,fedora,memcache
+        supports: memcache
+        version: fc31
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:fc31
+    - name: fc32
+      annotations:
+        openshift.io/display-name: S2I Startx Memcache Backend (Fedora 32)
+        description:
+          Memcache server builder for distributed cache backend running under
+          Fedora 32
+        iconClass: icon-redis
+        tags: builder,startx,fedora,memcache
+        supports: memcache
+        version: fc32
+        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+      from:
+        kind: DockerImage
+        name: startx/sv-memcache:fc32
     - name: rawhide
       annotations:
         openshift.io/display-name: S2I Startx Memcache Backend (Fedora rawhide)
@@ -868,6 +963,34 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-mongo:fc30
+    - name: fc31
+      annotations:
+        openshift.io/display-name: S2I MongoDB Database (Fedora 31)
+        description:
+          MongoDB server builder for NoSQL database running under Fedora
+          31
+        iconClass: icon-mongodb
+        tags: builder,startx,fedora,mongo,database
+        supports: db
+        version: fc31
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mongo:fc31
+    - name: fc32
+      annotations:
+        openshift.io/display-name: S2I MongoDB Database (Fedora 32)
+        description:
+          MongoDB server builder for NoSQL database running under Fedora
+          32
+        iconClass: icon-mongodb
+        tags: builder,startx,fedora,mongo,database
+        supports: db
+        version: fc32
+        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+      from:
+        kind: DockerImage
+        name: startx/sv-mongo:fc32
     - name: latest
       annotations:
         openshift.io/display-name: S2I MongoDB Database (Fedora rawhide)
@@ -1022,6 +1145,34 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-nodejs:fc30
+    - name: fc31
+      annotations:
+        openshift.io/display-name: S2I Startx Micro-WebServer (Fedora 31)
+        description:
+          Lightweight Http server builder for micro-web application running under
+          Fedora 31
+        iconClass: icon-nodejs
+        tags: builder,startx,fedora,nodejs,httpd
+        supports: http
+        version: fc31
+        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+      from:
+        kind: DockerImage
+        name: startx/sv-nodejs:fc31
+    - name: fc32
+      annotations:
+        openshift.io/display-name: S2I Startx Micro-WebServer (Fedora 32)
+        description:
+          Lightweight Http server builder for micro-web application running under
+          Fedora 32
+        iconClass: icon-nodejs
+        tags: builder,startx,fedora,nodejs,httpd
+        supports: http
+        version: fc32
+        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+      from:
+        kind: DockerImage
+        name: startx/sv-nodejs:fc32
     - name: rawhide
       annotations:
         openshift.io/display-name: S2I Startx Micro-WebServer (Fedora rawhide)
@@ -1236,6 +1387,34 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-ooconv:fc30
+    - name: fc31
+      annotations:
+        openshift.io/display-name: S2I LibreOffice converter (Fedora 31)
+        description:
+          LibreOffice converter builder for document convertion running
+          under Fedora 31
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,ooconv,libreoffice
+        supports: http
+        version: fc31
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:fc31
+    - name: fc32
+      annotations:
+        openshift.io/display-name: S2I LibreOffice converter (Fedora 32)
+        description:
+          LibreOffice converter builder for document convertion running
+          under Fedora 32
+        iconClass: icon-aerogear
+        tags: builder,startx,fedora,ooconv,libreoffice
+        supports: http
+        version: fc32
+        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+      from:
+        kind: DockerImage
+        name: startx/sv-ooconv:fc32
     - name: latest
       annotations:
         openshift.io/display-name: S2I LibreOffice converter (Fedora rawhide)
@@ -1403,6 +1582,34 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-php:latest
+    - name: fc31
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (Fedora 31)
+        description:
+          PHP with fpm + apache engine container builder for dynamic web application running under
+          Fedora 31
+        iconClass: icon-php
+        tags: builder,startx,fedora,php,httpd
+        supports: http
+        version: fc31
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:fc31
+    - name: fc32
+      annotations:
+        openshift.io/display-name: S2I Startx PHP WebServer (Fedora 32)
+        description:
+          PHP with fpm + apache engine container builder for dynamic web application running under
+          Fedora 32
+        iconClass: icon-php
+        tags: builder,startx,fedora,php,httpd
+        supports: http
+        version: fc32
+        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+      from:
+        kind: DockerImage
+        name: startx/sv-php:fc32
     - name: ubi8
       annotations:
         openshift.io/display-name: S2I Startx PHP WebServer (RedHat UBI 8)
@@ -1604,6 +1811,34 @@ items:
       from:
         kind: DockerImage
         name: startx/sv-postgres:fc30
+    - name: fc31
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 31)
+        description:
+          PostgreSQL server builder for advanced SQL database running under
+          Fedora 31
+        iconClass: icon-postgresql
+        tags: builder,startx,fedora,postgres,sql
+        supports: postgresql
+        version: fc31
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: DockerImage
+        name: startx/sv-postgres:fc31
+    - name: fc32
+      annotations:
+        openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 32)
+        description:
+          PostgreSQL server builder for advanced SQL database running under
+          Fedora 32
+        iconClass: icon-postgresql
+        tags: builder,startx,fedora,postgres,sql
+        supports: postgresql
+        version: fc32
+        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+      from:
+        kind: DockerImage
+        name: startx/sv-postgres:fc32
     - name: latest
       annotations:
         openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora latest)
