@@ -26,8 +26,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
-    dnf upgrade -yq --refresh && \
+RUN dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
     ncurses \
     ncurses-libs \
@@ -39,10 +38,6 @@ RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     cd memcached-1.5.16 && \
     ./configure && make && make test && sudo make install && \
     dnf remove -y --skip-broken gcc && \
-    package-cleanup --problems && \
-    package-cleanup --cleandupes; \
-    package-cleanup --orphans && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \

@@ -38,7 +38,7 @@ COPY sx /tmp/
 RUN echo "keepcache=0" >> /etc/dnf/dnf.conf && \
     dnf upgrade -yq --refresh && \
     dnf install -yq \
-    pwgen \
+    # pwgen \
     tar \
     unzip \
     zip \
@@ -51,13 +51,9 @@ RUN echo "keepcache=0" >> /etc/dnf/dnf.conf && \
     wget \
     curl \
     logrotate \
-    bash-completion \
-    glibc-langpack-fr \
+    # bash-completion \
+    # glibc-langpack-fr \
     vim && \
-    package-cleanup --problems && \
-    package-cleanup --cleandupes; \
-    package-cleanup --orphans && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mkdir -p $SX_LIBDIR $APP_PATH $LOG_PATH && \
     chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib && \

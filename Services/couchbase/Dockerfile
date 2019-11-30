@@ -32,18 +32,13 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
-    dnf upgrade -yq --refresh && \
+RUN dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
     python2-requests \
     python2-urllib3 \
     openssl \
     ncurses \
     ncurses-libs && \
-    package-cleanup --problems && \
-    package-cleanup --cleandupes; \
-    package-cleanup --orphans && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     #echo 0 > /proc/sys/vm/swappiness && \
     echo '' >> /etc/sysctl.conf && \

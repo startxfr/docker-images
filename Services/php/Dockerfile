@@ -32,8 +32,7 @@ COPY php.ini /etc/php.d/sx.ini
 COPY php-fpm.conf /etc/php-fpm.d/www.conf
 COPY sx /tmp/
 COPY index.php $APP_PATH/index.php
-RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
-    dnf upgrade -yq --refresh && \
+RUN dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
     php \
     php-cli \
@@ -51,10 +50,6 @@ RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     php-tcpdf \
     php-tcpdf-dejavu-sans-fonts \
     php-tidy && \
-    package-cleanup --problems && \
-    package-cleanup --cleandupes; \
-    package-cleanup --orphans && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \

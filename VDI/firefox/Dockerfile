@@ -37,21 +37,15 @@ COPY sx /tmp/
 RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     wget -q https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/p/python-meld3-1.0.2-11.fc31.noarch.rpm && \
     rpm -ivh python-meld3-1.0.2-11.fc31.noarch.rpm --nodeps && \
-    dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
     supervisor \
     xorg-x11-server-Xvfb \
     x11vnc \
     firefox \
-    python2-setuptools && \
-    package-cleanup --problems && \
-    package-cleanup --orphans && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    python3-setuptools \
+    python3-pip && \
     dnf clean all --enablerepo=\* && \
-    easy_install pip && \
-    pip install --upgrade pip && \
-    pip install --upgrade --force-reinstall setuptools pip && \
     useradd -s /bin/bash -m -g 0 -u 1001 $SX_USER && \
     mkdir -p /s2i $SX_LIBDIR && \
     mv /tmp/s2i/bin/* /s2i/ && \

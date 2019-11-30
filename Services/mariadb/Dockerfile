@@ -35,8 +35,7 @@ USER root
 COPY sx /tmp/
 COPY my.cnf $MY_CONF
 COPY mariadb.repo centos.repo /etc/yum.repos.d/
-RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
-    rpm --import https://yum.mariadb.org/RPM-GPG-KEY-MariaDB && \
+RUN rpm --import https://yum.mariadb.org/RPM-GPG-KEY-MariaDB && \
     dnf upgrade -yq --refresh --nobest && \
     dnf install -yq --nogpgcheck boost boost-devel \
     dnf install -yq --nogpgcheck --skip-broken \
@@ -46,10 +45,6 @@ RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     MariaDB-shared \
     MariaDB-backup \
     MariaDB-common && \
-    package-cleanup --problems && \
-    package-cleanup --cleandupes; \
-    package-cleanup --orphans && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     useradd -s /bin/bash -m -u 1001 mysql && \
     usermod -G 0 mysql && \
