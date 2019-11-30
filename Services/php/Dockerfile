@@ -1,7 +1,5 @@
 FROM startx/sv-apache:fc31
 
-MAINTAINER Startx <dev@startx.fr>
-
 ENV SX_VERSION="fc31" \
     SX_TYPE="service" \
     SX_SERVICE="php" \
@@ -12,21 +10,21 @@ ENV SX_VERSION="fc31" \
     SX_PHP_TMPPATH="/tmp"
 
 LABEL name="$SX_ID" \
-      summary="$SX_SUMMARY" \
-      description="$SX_SUMMARY. Use for executing application based on http-php or as container mainstream image for your dynamic web application containers." \
-      version="$SX_VERSION" \
-      release="$SX_VERSION" \
-      maintainer="Startx <dev@startx.fr>" \
-      io.k8s.description="$SX_SUMMARY" \
-      io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,fedora,apache,httpd,php" \
-      io.openshift.non-scalable="false" \
-      io.openshift.min-memory="300Mi" \
-      io.openshift.min-cpu="2000m" \
-      io.openshift.expose-services="$APP_PORT:http" \
-      io.openshift.s2i.destination="/tmp" \
-      io.openshift.s2i.scripts-url="image:///s2i" \
-      fr.startx.component="$SX_ID:$SX_VERSION"
+    summary="$SX_SUMMARY" \
+    description="$SX_SUMMARY. Use for executing application based on http-php or as container mainstream image for your dynamic web application containers." \
+    version="$SX_VERSION" \
+    release="$SX_VERSION" \
+    maintainer="Startx <dev@startx.fr>" \
+    io.k8s.description="$SX_SUMMARY" \
+    io.k8s.display-name="$SX_ID" \
+    io.openshift.tags="startx,os,fedora,apache,httpd,php" \
+    io.openshift.non-scalable="false" \
+    io.openshift.min-memory="300Mi" \
+    io.openshift.min-cpu="2000m" \
+    io.openshift.expose-services="$APP_PORT:http" \
+    io.openshift.s2i.destination="/tmp" \
+    io.openshift.s2i.scripts-url="image:///s2i" \
+    fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
 COPY httpd.conf $HTTPDCONF
@@ -37,22 +35,22 @@ COPY index.php $APP_PATH/index.php
 RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
-        php \
-        php-cli \
-        php-pear \
-        php-gd \
-        php-mcrypt \
-        php-mysqlnd \
-        php-soap \
-        php-pdo \
-        php-process \
-        php-common \
-        php-mbstring \
-        php-bcmath \
-        php-php-gettext \
-        php-tcpdf \
-        php-tcpdf-dejavu-sans-fonts \
-        php-tidy && \
+    php \
+    php-cli \
+    php-pear \
+    php-gd \
+    php-mcrypt \
+    php-mysqlnd \
+    php-soap \
+    php-pdo \
+    php-process \
+    php-common \
+    php-mbstring \
+    php-bcmath \
+    php-php-gettext \
+    php-tcpdf \
+    php-tcpdf-dejavu-sans-fonts \
+    php-tidy && \
     package-cleanup --problems && \
     package-cleanup --cleandupes; \
     package-cleanup --orphans && \
