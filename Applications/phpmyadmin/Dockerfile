@@ -26,9 +26,9 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
-    dnf upgrade -yq --refresh && \
-    dnf install -yq --nogpgcheck \
+RUN yum install -y -q  yum-utils && \
+    yum upgrade -y -q  && \
+    yum install -y -q  --nogpgcheck \
     mysql && \
     package-cleanup --problems && \
     package-cleanup --cleandupes; \

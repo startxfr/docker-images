@@ -31,9 +31,9 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 COPY *.j* $APP_PATH/
-RUN yum install -yq yum-utils && \
-    yum upgrade -yq && \
-    yum install -yq --nogpgcheck --enablerepo=epel \
+RUN yum install -y -q  yum-utils && \
+    yum upgrade -y -q  && \
+    yum install -y -q  --nogpgcheck --enablerepo=epel \
     nodejs \
     npm \
     python \

@@ -31,9 +31,9 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 COPY mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo
-RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
-    dnf upgrade -yq --refresh && \
-    dnf install -yq --nogpgcheck \
+RUN yum install -y -q  yum-utils && \
+    yum upgrade -y -q  && \
+    yum install -y -q  --nogpgcheck \
     mongodb-org-unstable && \
     package-cleanup --problems && \
     package-cleanup --cleandupes; \

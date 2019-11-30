@@ -19,9 +19,9 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
-RUN yum install -yq yum-utils && \
-    yum upgrade -yq && \
-    yum install -yq --nogpgcheck \
+RUN yum install -y -q  yum-utils && \
+    yum upgrade -y -q  && \
+    yum install -y -q  --nogpgcheck \
     make && \
     package-cleanup --problems && \
     package-cleanup --orphans && \

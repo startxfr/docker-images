@@ -32,9 +32,9 @@ COPY php.ini /etc/php.d/sx.ini
 COPY php-fpm.conf /etc/php-fpm.d/www.conf
 COPY sx /tmp/
 COPY index.php $APP_PATH/index.php
-RUN yum install -yq yum-utils && \
-    yum upgrade -yq && \
-    yum install -yq --nogpgcheck \
+RUN yum install -y -q  yum-utils && \
+    yum upgrade -y -q  && \
+    yum install -y -q  --nogpgcheck \
     php \
     php-cli \
     php-pear \

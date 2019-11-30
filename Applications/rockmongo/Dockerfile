@@ -1,7 +1,7 @@
 FROM startx/sv-php:centos6
 
 # update, install required, clean
-RUN yum -y update && yum install -yq httpd php php-devel php-pear gcc-c++ make && yum clean all
+RUN yum -y update && yum install -y -q  httpd php php-devel php-pear gcc-c++ make && yum clean all
 
 # update pecl channels
 RUN pecl update-channels

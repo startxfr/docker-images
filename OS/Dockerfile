@@ -35,13 +35,13 @@ USER root
 
 COPY sx /tmp/
 RUN echo "keepcache=0" >> /etc/yum.conf && \
-    yum install -yq --nogpgcheck \
+    yum install -y -q  --nogpgcheck \
     yum-utils \
     epel-release && \
     yum-config-manager --enable cr && \
     yum-config-manager --enable epel-release  && \
-    yum upgrade -yq && \
-    yum install -yq \
+    yum upgrade -y -q  && \
+    yum install -y -q  \
     pwgen \
     tar \
     unzip \

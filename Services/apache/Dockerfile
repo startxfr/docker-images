@@ -35,9 +35,9 @@ LABEL name="$SX_ID" \
 USER root
 COPY httpd.conf $HTTPDCONF
 COPY sx /tmp/
-RUN yum install -yq yum-utils && \
-    yum upgrade -yq && \
-    yum install -yq --nogpgcheck \
+RUN yum install -y -q  yum-utils && \
+    yum upgrade -y -q  && \
+    yum install -y -q  --nogpgcheck \
     httpd && \
     package-cleanup --problems && \
     package-cleanup --cleandupes; \

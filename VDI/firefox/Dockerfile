@@ -37,9 +37,9 @@ COPY sx /tmp/
 RUN wget -q http://download-ib01.fedoraproject.org/pub/epel/6/x86_64/Packages/p/python-meld3-0.6.7-1.el6.x86_64.rpm && \
     rpm -ivh python-meld3-0.6.7-1.el6.x86_64.rpm && \
     rm -f python-meld3-0.6.7-1.el6.x86_64.rpm && \
-    dnf install -yq yum-utils dnf-plugin-system-upgrade && \
-    dnf upgrade -yq --refresh && \
-    dnf install -yq --nogpgcheck \
+    yum install -y -q  yum-utils && \
+    yum upgrade -y -q  && \
+    yum install -y -q  --nogpgcheck \
     supervisor \
     xorg-x11-server-Xvfb \
     x11vnc \
@@ -47,8 +47,8 @@ RUN wget -q http://download-ib01.fedoraproject.org/pub/epel/6/x86_64/Packages/p/
     python2-setuptools && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
-    dnf clean all --enablerepo=\* && \
+    yum remove -y -q  --skip-broken yum-utils yum && \
+    yum clean all --enablerepo=\* && \
     easy_install pip && \
     pip install --upgrade pip && \
     pip install --upgrade --force-reinstall setuptools pip && \
