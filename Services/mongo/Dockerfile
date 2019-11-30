@@ -1,11 +1,11 @@
-FROM startx/fedora:31
+FROM startx/fedora:32
 
 ENV SX_VERSION="fc32" \
     SX_TYPE="service" \
     SX_SERVICE="mongo" \
     SX_ID="startx/sv-mongo" \
-    SX_NAME="Startx MongoDB service image (fedora 31)" \
-    SX_SUMMARY="Startx mongo service based on fedora 31" \
+    SX_NAME="Startx MongoDB service image (fedora 32)" \
+    SX_SUMMARY="Startx mongo service based on fedora 32" \
     LOG_PATH=/var/log/mongodb \
     MONGO_RUNTIME=/usr/bin/mongod \
     MONGO_USER=mongod \

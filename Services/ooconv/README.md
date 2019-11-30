@@ -1,6 +1,6 @@
 [![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-# Docker OS Images : OOCONV on Fedora 31
+# Docker OS Images : OOCONV on Fedora 32
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/fc32/Services/ooconv/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc32)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
 
@@ -8,12 +8,12 @@
 
 Simple container used to document convertion and manipulation tools
 Run [libreoffice](https://www.libreoffice.org/) as a daemon using [dagwieers unoconv](https://github.com/dagwieers/unoconv) under a container
-based on [startx/fedora:31 container](https://hub.docker.com/r/startx/fedora)
+based on [startx/fedora:32 container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
 - `:latest` : Fedora core rawhide + unoconv 0.7 + LibreOffice 6.2.4.2.0
-- `:fc32` : Fedora core 31 + unoconv 0.7 + LibreOffice 5.0.3.2
+- `:fc32` : Fedora core 32 + unoconv 0.7 + LibreOffice 5.0.3.2
 - `:fc30` : Fedora core 30 + unoconv 0.7 + LibreOffice 5.0.3.2
 - `:fc29` : Fedora core 29 + unoconv 0.7 + LibreOffice 6.1.6.3
 - `:fc28` : Fedora core 28 + unoconv 0.7 + LibreOffice 5.0.3.2

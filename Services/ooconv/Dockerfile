@@ -1,11 +1,11 @@
-FROM startx/fedora:31
+FROM startx/fedora:32
 
 ENV SX_VERSION="fc32" \
     SX_TYPE="service" \
     SX_SERVICE="ooconv" \
     SX_ID="startx/sv-ooconv" \
-    SX_NAME="Startx LibreOffice converter service image (fedora 31)" \
-    SX_SUMMARY="Startx unoconv service based on fedora 31" \
+    SX_NAME="Startx LibreOffice converter service image (fedora 32)" \
+    SX_SUMMARY="Startx unoconv service based on fedora 32" \
     SX_USER=ooconv \
     APP_PATH=/home/ooconv \
     LOG_PATH=/var/log/ooconv \

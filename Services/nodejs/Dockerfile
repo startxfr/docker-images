@@ -1,11 +1,11 @@
-FROM startx/fedora:31
+FROM startx/fedora:32
 
 ENV SX_VERSION="fc32" \
     SX_TYPE="service" \
     SX_SERVICE="nodejs" \
     SX_ID="startx/sv-nodejs" \
-    SX_NAME="Startx Nodejs service image (fedora 31)" \
-    SX_SUMMARY="Startx nodejs service based on fedora 31" \
+    SX_NAME="Startx Nodejs service image (fedora 32)" \
+    SX_SUMMARY="Startx nodejs service based on fedora 32" \
     LOG_PATH=/var/log/nodejs \
     APP_PATH=/app \
     DATA_PATH=/data \

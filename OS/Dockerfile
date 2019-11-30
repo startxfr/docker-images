@@ -1,11 +1,11 @@
-FROM fedora:31
+FROM fedora:32
 
 ENV SX_VERSION="fc32" \
     SX_TYPE="OS" \
     SX_SERVICE="fedora" \
     SX_ID="startx/fedora" \
-    SX_NAME="Startx OS base image (fedora 31)" \
-    SX_SUMMARY="Startx OS base image based on fedora 31" \
+    SX_NAME="Startx OS base image (fedora 32)" \
+    SX_SUMMARY="Startx OS base image based on fedora 32" \
     SX_VERBOSE=true \
     SX_DEBUG=false \
     APP_PATH="/app" \

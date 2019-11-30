@@ -1,7 +1,7 @@
-fedora31:
+fedora32:
   extends:
     file: OS/docker-compose.yml
-    service: fedora31
+    service: fedora32
 
 fc32-sv-apache:
   extends:

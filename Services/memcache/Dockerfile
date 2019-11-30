@@ -1,11 +1,11 @@
-FROM startx/fedora:31
+FROM startx/fedora:32
 
 ENV SX_VERSION="fc32" \
     SX_TYPE="service" \
     SX_SERVICE="memcache" \
     SX_ID="startx/sv-memcache" \
-    SX_NAME="Startx Memcached service image (fedora 31)" \
-    SX_SUMMARY="Startx Memcached service based on fedora 31" \
+    SX_NAME="Startx Memcached service image (fedora 32)" \
+    SX_SUMMARY="Startx Memcached service based on fedora 32" \
     LOG_PATH=/logs
 
 LABEL name="$SX_ID" \

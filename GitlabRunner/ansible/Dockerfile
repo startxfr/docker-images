@@ -1,11 +1,11 @@
-FROM startx/fedora:31
+FROM startx/fedora:32
 
 ENV SX_VERSION="fc32" \
     SX_TYPE="runner" \
     SX_SERVICE="ansible" \
     SX_ID="startx/runner-ansible" \
-    SX_NAME="Startx Ansible gitlab runner image (fedora 31)" \
-    SX_SUMMARY="Startx ansible gitlab runner based on fedora 31"
+    SX_NAME="Startx Ansible gitlab runner image (fedora 32)" \
+    SX_SUMMARY="Startx ansible gitlab runner based on fedora 32"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \

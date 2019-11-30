@@ -4,8 +4,8 @@ ENV SX_VERSION="fc32" \
     SX_TYPE="application" \
     SX_SERVICE="phpmyadmin" \
     SX_ID="startx/app-phpmyadmin" \
-    SX_NAME="Startx PhpMyAdmin service image (fedora 31)" \
-    SX_SUMMARY="Startx phpmyadmin service based on fedora 31" \
+    SX_NAME="Startx PhpMyAdmin service image (fedora 32)" \
+    SX_SUMMARY="Startx phpmyadmin service based on fedora 32" \
     MYSQL_LANG=fr_FR
 
 LABEL name="$SX_ID" \

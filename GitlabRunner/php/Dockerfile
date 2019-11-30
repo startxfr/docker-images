@@ -4,8 +4,8 @@ ENV SX_VERSION="fc32" \
     SX_TYPE="runner" \
     SX_SERVICE="php" \
     SX_ID="startx/runner-php" \
-    SX_NAME="Startx Apache-PHP gitlab runner image (fedora 31)" \
-    SX_SUMMARY="Startx apache-php gitlab runner based on fedora 31"
+    SX_NAME="Startx Apache-PHP gitlab runner image (fedora 32)" \
+    SX_SUMMARY="Startx apache-php gitlab runner based on fedora 32"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \

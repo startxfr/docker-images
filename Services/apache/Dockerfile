@@ -1,11 +1,11 @@
-FROM startx/fedora:31
+FROM startx/fedora:32
 
 ENV SX_VERSION="fc32" \
     SX_TYPE="service" \
     SX_SERVICE="apache" \
     SX_ID="startx/sv-apache" \
-    SX_NAME="Startx Apache service image (fedora 31)" \
-    SX_SUMMARY="Startx apache service based on fedora 31" \
+    SX_NAME="Startx Apache service image (fedora 32)" \
+    SX_SUMMARY="Startx apache service based on fedora 32" \
     HTTPDCONF=/etc/httpd/conf.d/app.conf \
     LOG_PATH=/var/log/httpd \
     APP_PATH=/app \

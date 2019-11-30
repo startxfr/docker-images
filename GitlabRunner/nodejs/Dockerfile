@@ -4,8 +4,8 @@ ENV SX_VERSION="fc32" \
     SX_TYPE="runner" \
     SX_SERVICE="nodejs" \
     SX_ID="startx/runner-nodejs" \
-    SX_NAME="Startx Nodejs gitlab runner image (fedora 31)" \
-    SX_SUMMARY="Startx nodejs gitlab runner based on fedora 31"
+    SX_NAME="Startx Nodejs gitlab runner image (fedora 32)" \
+    SX_SUMMARY="Startx nodejs gitlab runner based on fedora 32"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \

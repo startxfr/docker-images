@@ -1,6 +1,6 @@
 [![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-# Docker OS Images : MONGO on Fedora 31
+# Docker OS Images : MONGO on Fedora 32
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/fc32/Services/mongo/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc32)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
 
@@ -8,12 +8,12 @@
 
 Simple container used to deliver document-oriented database
 Run [mongodb daemon](https://www.mongodb.org/) under a container
-based on [startx/fedora:31 container](https://hub.docker.com/r/startx/fedora)
+based on [startx/fedora:32 container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
 - `:latest` : Fedora core rawhide + MongoDB 4.1.13
-- `:fc32` : Fedora core 31 + MongoDB 4.1.13
+- `:fc32` : Fedora core 32 + MongoDB 4.1.13
 - `:fc30` : Fedora core 30 + MongoDB 4.0.3
 - `:fc29` : Fedora core 29 + MongoDB 4.0.3
 - `:fc28` : Fedora core 28 + MongoDB 3.6

@@ -26,7 +26,7 @@
         <div class="jumbotron">
             <div class="container">
                 <h1>Congratulation !</h1>
-                <p>You are actually running an apache webserver + php <?php echo phpversion(); ?>  running under fedora 31. For more information about this container and how to add your content instead of this message, please read the following links.</p>
+                <p>You are actually running an apache webserver + php <?php echo phpversion(); ?>  running under fedora 32. For more information about this container and how to add your content instead of this message, please read the following links.</p>
                 <p>
                     <a class="btn btn-primary btn-lg"href="https://github.com/startxfr/docker-images/tree/fc32/Services/php" target="_blank" role="button">See this container Dockerfile</a>
                     <a class="btn btn-primary btn-lg"href="https://github.com/startxfr/docker-images" target="_blank" role="button">STARTX github docker images repository</a>

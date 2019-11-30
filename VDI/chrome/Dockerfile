@@ -1,11 +1,11 @@
-FROM startx/fedora:31
+FROM startx/fedora:32
 
 ENV SX_VERSION="fc32" \
     SX_TYPE="desktop" \
     SX_SERVICE="chrome" \
     SX_ID="startx/vdi-chrome" \
-    SX_NAME="Startx Chrome VDI image (fedora 31)" \
-    SX_SUMMARY="Startx chrome container-based desktop application based on fedora 31" \
+    SX_NAME="Startx Chrome VDI image (fedora 32)" \
+    SX_SUMMARY="Startx chrome container-based desktop application based on fedora 32" \
     SX_CHROME_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
     LOG_PATH=/var/log/chrome \
     APP_PATH=/home/chrome \

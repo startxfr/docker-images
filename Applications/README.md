@@ -1,4 +1,4 @@
-# STARTX Docker-Images Applications based on Fedora 31
+# STARTX Docker-Images Applications based on Fedora 32
 
 This directory host various Open Source applications into docker containers based on [startx/fedora:31 container](https://hub.docker.com/r/startx/fedora)
 

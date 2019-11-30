@@ -1,6 +1,6 @@
 [![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-# Docker OS Images : COUCHBASE on Fedora 31
+# Docker OS Images : COUCHBASE on Fedora 32
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/fc32/Services/couchbase/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc32)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
 
@@ -13,7 +13,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 ## Available flavours
 
 - `:latest` : Fedora rawhide + Couchbase Server 6.0.2-2413
-- `:fc32` : Fedora 31 + Couchbase Server 6.0.2-2413
+- `:fc32` : Fedora 32 + Couchbase Server 6.0.2-2413
 - `:fc30` : Fedora 30 + Couchbase Server 6.0.0
 - `:fc29` : Fedora 29 + Couchbase Server 5.5.0-beta
 - `:fc28` : Fedora 28 + Couchbase Server 4.5.0
