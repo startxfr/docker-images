@@ -8,11 +8,6 @@ centos6-sv-apache:
     file: Services/apache/docker-compose.yml
     service: apache
 
-centos6-sv-chrome:
-  extends:
-    file: Services/chrome/docker-compose.yml
-    service: chrome
-
 centos6-sv-php:
   extends:
     file: Services/php/docker-compose.yml
@@ -47,17 +42,51 @@ centos6-sv-memcache:
   extends:
     file: Services/memcache/docker-compose.yml
     service: memcache
-    
+
 centos6-sv-couchbase:
   extends:
     file: Services/couchbase/docker-compose.yml
     service: couchbase
 
+centos6-runner-ansible:
+  extends:
+    file: GitlabRunner/ansible/docker-compose.yml
+    service: ansible
+
+centos6-runner-apache:
+  extends:
+    file: GitlabRunner/apache/docker-compose.yml
+    service: apache
+
+centos6-runner-bash:
+  extends:
+    file: GitlabRunner/bash/docker-compose.yml
+    service: bash
+
+centos6-runner-nodejs:
+  extends:
+    file: GitlabRunner/nodejs/docker-compose.yml
+    service: nodejs
+
+centos6-runner-php:
+  extends:
+    file: GitlabRunner/php/docker-compose.yml
+    service: php
+
+centos6-vdi-chrome:
+  extends:
+    file: VDI/chrome/docker-compose.yml
+    service: chrome
+
+centos6-vdi-firefox:
+  extends:
+    file: VDI/firefox/docker-compose.yml
+    service: firefox
+
 centos6-app-pma:
   extends:
     file: Applications/phpmyadmin/docker-compose.yml
     service: phpmyadmin
-
 #centos6-app-rockmongo:
 #  extends:
 #    file: Applications/rockmongo/docker-compose.yml
