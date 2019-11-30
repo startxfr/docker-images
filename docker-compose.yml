@@ -8,11 +8,6 @@ fedora-sv-apache:
     file: Services/apache/docker-compose.yml
     service: apache
 
-fedora-sv-chrome:
-  extends:
-    file: Services/chrome/docker-compose.yml
-    service: chrome
-
 fedora-sv-php:
   extends:
     file: Services/php/docker-compose.yml
@@ -48,11 +43,45 @@ fedora-sv-memcache:
     file: Services/memcache/docker-compose.yml
     service: memcache
 
+fedora-runner-ansible:
+  extends:
+    file: GitlabRunner/ansible/docker-compose.yml
+    service: ansible
+
+fedora-runner-apache:
+  extends:
+    file: GitlabRunner/apache/docker-compose.yml
+    service: apache
+
+fedora-runner-bash:
+  extends:
+    file: GitlabRunner/bash/docker-compose.yml
+    service: bash
+
+fedora-runner-nodejs:
+  extends:
+    file: GitlabRunner/nodejs/docker-compose.yml
+    service: nodejs
+
+fedora-runner-php:
+  extends:
+    file: GitlabRunner/php/docker-compose.yml
+    service: php
+
+fedora-vdi-chrome:
+  extends:
+    file: VDI/chrome/docker-compose.yml
+    service: chrome
+
+fedora-vdi-firefox:
+  extends:
+    file: VDI/firefox/docker-compose.yml
+    service: firefox
+
 fedora-app-pma:
   extends:
     file: Applications/phpmyadmin/docker-compose.yml
     service: phpmyadmin
-
 #fedora-app-rockmongo:
 #  extends:
 #    file: Applications/rockmongo/docker-compose.yml
