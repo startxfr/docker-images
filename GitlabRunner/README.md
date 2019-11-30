@@ -22,18 +22,20 @@ your project and start using stable or experimental gitlab-runner's in your pipe
 
 ## Available runner's
 
-| Runner | Docker Hub repository                                                   | Fedora flavours                                                                           | CentOS flavours                  | Doc                        |
-| ------ | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | -------------------------------- | -------------------------- |
-| Apache | [`startx/runner-apache`](https://hub.docker.com/r/startx/runner-apache) | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` | `:centos6` `:centos7` `:centos8` | [manual](apache/README.md) |
-| nodejs | [`startx/runner-nodejs`](https://hub.docker.com/r/startx/runner-nodejs) | `:latest` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31`         | `:centos6` `:centos7` `:centos8` | [manual](nodejs/README.md) |
-| bash | [`startx/runner-bash`](https://hub.docker.com/r/startx/runner-bash) | `:latest` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31`         | `:centos6` `:centos7` `:centos8` | [manual](bash/README.md) |
-| php    | [`startx/runner-php`](https://hub.docker.com/r/startx/runner-php)       | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` | `:centos6` `:centos7` `:centos8` | [manual](php/README.md)    |
+| Runner  | Docker Hub repository                                                     | Fedora flavours                                                                           | CentOS flavours                  | Doc                         |
+| ------- | ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | -------------------------------- | --------------------------- |
+| Ansible | [`startx/runner-ansible`](https://hub.docker.com/r/startx/runner-ansible) | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` | `:centos6` `:centos7` `:centos8` | [manual](ansible/README.md) |
+| Apache  | [`startx/runner-apache`](https://hub.docker.com/r/startx/runner-apache)   | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` | `:centos6` `:centos7` `:centos8` | [manual](apache/README.md)  |
+| nodejs  | [`startx/runner-nodejs`](https://hub.docker.com/r/startx/runner-nodejs)   | `:latest` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31`         | `:centos6` `:centos7` `:centos8` | [manual](nodejs/README.md)  |
+| bash    | [`startx/runner-bash`](https://hub.docker.com/r/startx/runner-bash)       | `:latest` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31`         | `:centos6` `:centos7` `:centos8` | [manual](bash/README.md)    |
+| php     | [`startx/runner-php`](https://hub.docker.com/r/startx/runner-php)         | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` | `:centos6` `:centos7` `:centos8` | [manual](php/README.md)     |
 
 ## Running from dockerhub registry
 
-| Runner     | Command                                                           |
-| ---------- | ----------------------------------------------------------------- |
-| **Apache** | `docker run -d -p 80:80 --name="apache" startx/runner-apache`     |
-| **nodejs** | `docker run -d -p 8000:8000 --name="nodejs" startx/runner-nodejs` |
-| **bash** | `docker run -d -p XXX:XXX --name="bash" startx/runner-bash`   |
-| **php**    | `docker run -d -p 80:80 --name="php" startx/runner-php`           |
+| Runner      | Command                                                                  |
+| ----------- | ------------------------------------------------------------------------ |
+| **Ansible** | `docker run -d -p 80:80 --name="runner-ansible" startx/runner-apache`    |
+| **Apache**  | `docker run -d -p 80:80 --name="runner-apache" startx/runner-apache`     |
+| **nodejs**  | `docker run -d -p 8000:8000 --name="runner-nodejs" startx/runner-nodejs` |
+| **bash**    | `docker run -d -p XXX:XXX --name="runner-bash" startx/runner-bash`       |
+| **php**     | `docker run -d -p 80:80 --name="runner-php" startx/runner-php`           |
