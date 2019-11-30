@@ -1,7 +1,5 @@
 FROM startx/alpine:3
 
-MAINTAINER Startx <dev@startx.fr>
-
 ENV SX_VERSION="alpine3" \
     SX_TYPE="desktop" \
     SX_SERVICE="chrome" \
@@ -18,27 +16,27 @@ ENV SX_VERSION="alpine3" \
     SX_CHROME_PORT=5900
 
 LABEL name="$SX_ID" \
-      summary="$SX_SUMMARY" \
-      description="$SX_SUMMARY. Use for executing chrome browser as container mainstream image with persistence capabilities" \
-      version="$SX_VERSION" \
-      release="$SX_VERSION" \
-      maintainer="Startx <dev@startx.fr>" \
-      io.k8s.description="$SX_SUMMARY" \
-      io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,alpine,chrome,vnc,X11" \
-      io.openshift.non-scalable="false" \
-      io.openshift.min-memory="400Mi" \
-      io.openshift.min-cpu="2000m" \
-      io.openshift.expose-VDI="$SX_CHROME_PORT:vnc" \
-      io.openshift.s2i.destination="/tmp" \
-      io.openshift.s2i.scripts-url="image:///s2i" \
-      fr.startx.component="$SX_ID:$SX_VERSION"
+    summary="$SX_SUMMARY" \
+    description="$SX_SUMMARY. Use for executing chrome browser as container mainstream image with persistence capabilities" \
+    version="$SX_VERSION" \
+    release="$SX_VERSION" \
+    maintainer="Startx <dev@startx.fr>" \
+    io.k8s.description="$SX_SUMMARY" \
+    io.k8s.display-name="$SX_ID" \
+    io.openshift.tags="startx,os,fedora,chrome,vnc,X11" \
+    io.openshift.non-scalable="false" \
+    io.openshift.min-memory="400Mi" \
+    io.openshift.min-cpu="2000m" \
+    io.openshift.expose-VDI="$SX_CHROME_PORT:vnc" \
+    io.openshift.s2i.destination="/tmp" \
+    io.openshift.s2i.scripts-url="image:///s2i" \
+    fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
 COPY supervisord.conf $SX_CHROME_SUPERVISOR_CONF/
 COPY sx /tmp/
 RUN apk update && apk upgrade && \
-	echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
+    echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
     echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
     apk add --no-cache --update --purge -uU -f x11vnc xvfb supervisor inotify-tools python py-pip chromium@edge nss@edge && \
     rm -rf /var/lib/apt/lists/* /var/cache/apk/* /usr/share/man && \
@@ -50,7 +48,7 @@ RUN apk update && apk upgrade && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/* && \
     mkdir -p $DATA_PATH $APP_PATH $LOG_PATH $DATA_PATH/.config && \
-	chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp /.local && \
+    chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp /.local && \
     chown -R $SX_USER:0 /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH $DATA_PATH $LOG_PATH $DATA_PATH/.config /.local && \
     chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp /.local && \
     chmod ug+r $SX_CHROME_SUPERVISOR_CONF && \

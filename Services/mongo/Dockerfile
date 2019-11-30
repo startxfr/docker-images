@@ -1,7 +1,5 @@
 FROM startx/alpine:3
 
-MAINTAINER Startx <dev@startx.fr>
-
 ENV SX_VERSION="alpine3" \
     SX_TYPE="service" \
     SX_SERVICE="mongo" \
@@ -14,31 +12,34 @@ ENV SX_VERSION="alpine3" \
     DATA_PATH=/data
 
 LABEL name="$SX_ID" \
-      summary="$SX_SUMMARY" \
-      description="$SX_SUMMARY. Use for executing database based on mongo or as container mainstream image for your database backend containers." \
-      version="$SX_VERSION" \
-      release="$SX_VERSION" \
-      maintainer="Startx <dev@startx.fr>" \
-      io.k8s.description="$SX_SUMMARY" \
-      io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,alpine,database,mongo" \
-      io.openshift.non-scalable="true" \
-      io.openshift.min-memory="1Gi" \
-      io.openshift.min-cpu="8000m" \
-      io.openshift.expose-services="27017:mongodb" \
-      io.openshift.s2i.destination="/tmp" \
-      io.openshift.s2i.scripts-url="image:///s2i" \
-      fr.startx.component="$SX_ID:$SX_VERSION"
+    summary="$SX_SUMMARY" \
+    description="$SX_SUMMARY. Use for executing database based on mongo or as container mainstream image for your database backend containers." \
+    version="$SX_VERSION" \
+    release="$SX_VERSION" \
+    maintainer="Startx <dev@startx.fr>" \
+    io.k8s.description="$SX_SUMMARY" \
+    io.k8s.display-name="$SX_ID" \
+    io.openshift.tags="startx,os,fedora,database,mongo" \
+    io.openshift.non-scalable="true" \
+    io.openshift.min-memory="1Gi" \
+    io.openshift.min-cpu="8000m" \
+    io.openshift.expose-services="27017:mongodb" \
+    io.openshift.s2i.destination="/tmp" \
+    io.openshift.s2i.scripts-url="image:///s2i" \
+    fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
 COPY sx /tmp/
-RUN echo http://nl.alpinelinux.org/alpine/v3.9/community > /etc/apk/repositories && \
-    echo http://nl.alpinelinux.org/alpine/v3.9/main >> /etc/apk/repositories && \
-    wget -q http://nl.alpinelinux.org/alpine/v3.9/main/x86_64/boost-1.67.0-r2.apk && \
-    wget -q http://nl.alpinelinux.org/alpine/v3.9/main/x86_64/boost-system-1.67.0-r2.apk && \
-    apk --no-cache add boost-1.67.0-r2.apk boost-system-1.67.0-r2.apk && \
-    rm -f boost-1.67.0-r2.apk && \
-    apk --no-cache add mongodb && \
+COPY mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo
+RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
+    dnf upgrade -yq --refresh && \
+    dnf install -yq --nogpgcheck \
+    mongodb-org-unstable && \
+    package-cleanup --problems && \
+    package-cleanup --cleandupes; \
+    package-cleanup --orphans && \
+    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf clean all --enablerepo=\* && \
     usermod -a -G 0 $MONGO_USER && \
     mkdir -p $DATA_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \

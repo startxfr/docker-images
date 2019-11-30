@@ -1,7 +1,5 @@
 FROM startx/alpine:3
 
-MAINTAINER Startx <dev@startx.fr>
-
 ENV SX_VERSION="alpine3" \
     SX_TYPE="service" \
     SX_SERVICE="memcache" \
@@ -10,25 +8,35 @@ ENV SX_VERSION="alpine3" \
     SX_SUMMARY="Startx Memcached service based on alpine 3.10"
 
 LABEL name="$SX_ID" \
-      summary="$SX_SUMMARY" \
-      description="$SX_SUMMARY. Use for executing database based on memcached or as container mainstream image for your database backend containers." \
-      version="$SX_VERSION" \
-      release="$SX_VERSION" \
-      maintainer="Startx <dev@startx.fr>" \
-      io.k8s.description="$SX_SUMMARY" \
-      io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,alpine,memcached,database" \
-      io.openshift.non-scalable="true" \
-      io.openshift.min-memory="600Mi" \
-      io.openshift.min-cpu="1500m" \
-      io.openshift.expose-services="11211:memcached" \
-      io.openshift.s2i.destination="/tmp" \
-      io.openshift.s2i.scripts-url="image:///s2i" \
-      fr.startx.component="$SX_ID:$SX_VERSION"
+    summary="$SX_SUMMARY" \
+    description="$SX_SUMMARY. Use for executing database based on memcached or as container mainstream image for your database backend containers." \
+    version="$SX_VERSION" \
+    release="$SX_VERSION" \
+    maintainer="Startx <dev@startx.fr>" \
+    io.k8s.description="$SX_SUMMARY" \
+    io.k8s.display-name="$SX_ID" \
+    io.openshift.tags="startx,os,fedora,memcached,database" \
+    io.openshift.non-scalable="true" \
+    io.openshift.min-memory="600Mi" \
+    io.openshift.min-cpu="1500m" \
+    io.openshift.expose-services="11211:memcached" \
+    io.openshift.s2i.destination="/tmp" \
+    io.openshift.s2i.scripts-url="image:///s2i" \
+    fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
 COPY sx /tmp/
-RUN apk --no-cache add memcached nmap-ncat && \
+RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
+    dnf upgrade -yq --refresh && \
+    dnf install -yq --nogpgcheck \
+    memcached \
+    nmap-ncat \
+    telnet && \
+    package-cleanup --problems && \
+    package-cleanup --cleandupes; \
+    package-cleanup --orphans && \
+    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
