@@ -19,7 +19,7 @@ LABEL name="$SX_ID" \
     maintainer="Startx <dev@startx.fr>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
-    io.openshift.tags="startx,os,fedora,database,mongo" \
+    io.openshift.tags="startx,os,centos,database,mongo" \
     io.openshift.non-scalable="true" \
     io.openshift.min-memory="1Gi" \
     io.openshift.min-cpu="8000m" \
@@ -31,9 +31,9 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 COPY mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo
-RUN yum install -yq yum-utils && \
-    yum upgrade -yq --refresh && \
-    yum install -yq --nogpgcheck \
+RUN yum install -y -q yum-utils && \
+    yum upgrade -y -q  && \
+    yum install -y -q --nogpgcheck \
     mongodb-org-unstable && \
     package-cleanup --problems && \
     package-cleanup --cleandupes; \

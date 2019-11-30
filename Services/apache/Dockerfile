@@ -23,7 +23,7 @@ LABEL name="$SX_ID" \
     maintainer="Startx <dev@startx.fr>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
-    io.openshift.tags="startx,os,fedora,apache,httpd" \
+    io.openshift.tags="startx,os,centos,apache,httpd" \
     io.openshift.non-scalable="false" \
     io.openshift.min-memory="200Mi" \
     io.openshift.min-cpu="1000m" \
@@ -35,9 +35,9 @@ LABEL name="$SX_ID" \
 USER root
 COPY httpd.conf $HTTPDCONF
 COPY sx /tmp/
-RUN yum install -yq yum-utils && \
-    yum upgrade -yq --refresh && \
-    yum install -yq --nogpgcheck \
+RUN yum install -y -q yum-utils && \
+    yum upgrade -y -q  && \
+    yum install -y -q --nogpgcheck \
     httpd && \
     package-cleanup --problems && \
     package-cleanup --cleandupes; \

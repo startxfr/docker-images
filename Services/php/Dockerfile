@@ -17,7 +17,7 @@ LABEL name="$SX_ID" \
     maintainer="Startx <dev@startx.fr>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
-    io.openshift.tags="startx,os,fedora,apache,httpd,php" \
+    io.openshift.tags="startx,os,centos,apache,httpd,php" \
     io.openshift.non-scalable="false" \
     io.openshift.min-memory="300Mi" \
     io.openshift.min-cpu="2000m" \
@@ -31,9 +31,9 @@ COPY httpd.conf $HTTPDCONF
 COPY php.ini /etc/php.d/sx.ini
 COPY php-fpm.conf /etc/php-fpm.d/www.conf
 COPY sx /tmp/
-RUN yum install -yq yum-utils && \
-    yum upgrade -yq --refresh && \
-    yum install -yq --nogpgcheck \
+RUN yum install -y -q yum-utils && \
+    yum upgrade -y -q  && \
+    yum install -y -q --nogpgcheck \
     php \
     php-cli \
     php-pear \

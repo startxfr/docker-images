@@ -15,7 +15,7 @@ LABEL name="$SX_ID" \
     maintainer="Startx <dev@startx.fr>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
-    io.openshift.tags="startx,os,fedora,memcached,database" \
+    io.openshift.tags="startx,os,centos,memcached,database" \
     io.openshift.non-scalable="true" \
     io.openshift.min-memory="600Mi" \
     io.openshift.min-cpu="1500m" \
@@ -26,9 +26,9 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
-    dnf upgrade -yq --refresh && \
-    dnf install -yq --nogpgcheck \
+RUN yum install -y -q yum-utils && \
+    yum upgrade -y -q  && \
+    yum install -y -q --nogpgcheck \
     memcached \
     nmap-ncat \
     telnet && \

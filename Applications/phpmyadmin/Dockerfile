@@ -16,7 +16,7 @@ LABEL name="$SX_ID" \
     maintainer="Startx <dev@startx.fr>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
-    io.openshift.tags="startx,os,fedora,apache,httpd,php,phpmyadmin,mysql,mariadb" \
+    io.openshift.tags="startx,os,centos,apache,httpd,php,phpmyadmin,mysql,mariadb" \
     io.openshift.non-scalable="false" \
     io.openshift.wants="mysql" \
     io.openshift.min-memory="300Mi" \
@@ -26,9 +26,9 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
-    dnf upgrade -yq --refresh && \
-    dnf install -yq --nogpgcheck \
+RUN yum install -y -q yum-utils && \
+    yum upgrade -y -q  && \
+    yum install -y -q --nogpgcheck \
     mysql && \
     package-cleanup --problems && \
     package-cleanup --cleandupes; \

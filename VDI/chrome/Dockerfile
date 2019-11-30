@@ -23,7 +23,7 @@ LABEL name="$SX_ID" \
     maintainer="Startx <dev@startx.fr>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
-    io.openshift.tags="startx,os,fedora,chrome,vnc,X11" \
+    io.openshift.tags="startx,os,centos,chrome,vnc,X11" \
     io.openshift.non-scalable="false" \
     io.openshift.min-memory="400Mi" \
     io.openshift.min-cpu="2000m" \
@@ -38,12 +38,11 @@ COPY sx /tmp/
 COPY google-chrome.repo /etc/yum.repos.d/google-chrome.repo
 RUN wget https://rpmfind.net/linux/epel/7Server/x86_64/Packages/p/python-meld3-0.6.10-1.el7.x86_64.rpm && \
     rpm -ivh python-meld3-0.6.10-1.el7.x86_64.rpm --nodeps && \
-    yum install -yq yum-utils && yum upgrade -yq --refresh && \
-    yum install -yq --nogpgcheck \
+    yum install -y -q yum-utils && yum upgrade -y -q  && \
+    yum install -y -q --nogpgcheck \
     supervisor \
     xorg-x11-server-Xvfb \
     x11vnc \
-    dnf-plugins-core \
     pulseaudio \
     python2-meld3 \
     google-chrome-stable && \

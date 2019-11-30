@@ -19,7 +19,7 @@ LABEL name="$SX_ID" \
     maintainer="Startx <dev@startx.fr>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
-    io.openshift.tags="startx,os,fedora,nodejs,httpd" \
+    io.openshift.tags="startx,os,centos,nodejs,httpd" \
     io.openshift.non-scalable="false" \
     io.openshift.min-memory="200Mi" \
     io.openshift.min-cpu="1000m" \
@@ -31,9 +31,9 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 COPY *.j* $APP_PATH/
-RUN yum install -yq yum-utils && \
-    yum upgrade -yq --refresh && \
-    yum install -yq --nogpgcheck --enablerepo=epel \
+RUN yum install -y -q yum-utils && \
+    yum upgrade -y -q  && \
+    yum install -y -q --nogpgcheck --enablerepo=epel \
     nodejs \
     npm \
     python \

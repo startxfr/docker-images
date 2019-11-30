@@ -23,7 +23,7 @@ LABEL name="$SX_ID" \
     maintainer="Startx <dev@startx.fr>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
-    io.openshift.tags="startx,os,fedora" \
+    io.openshift.tags="startx,os,centos" \
     io.openshift.non-scalable="false" \
     io.openshift.min-memory="128Mi" \
     io.openshift.min-cpu="500m" \
@@ -35,10 +35,10 @@ USER root
 
 COPY sx /tmp/
 RUN echo "keepcache=0" >> /etc/yum.conf && \
-    yum install -yq yum-utils epel-release  && \
+    yum install -y -q yum-utils epel-release  && \
     yum-config-manager --enable cr epel-release extras centosplus  && \
-    yum upgrade -yq --refresh && \
-    yum install -yq \
+    yum upgrade -y -q  && \
+    yum install -y -q \
     pwgen \
     tar \
     unzip \

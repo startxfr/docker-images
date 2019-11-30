@@ -30,9 +30,9 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum install -yq yum-utils && \
-    yum upgrade -yq --refresh && \
-    yum install -yq --nogpgcheck \
+RUN yum install -y -q yum-utils && \
+    yum upgrade -y -q  && \
+    yum install -y -q --nogpgcheck \
     unoconv \
     libreoffice-writer \
     libreoffice-calc \
