@@ -1,8 +1,6 @@
 FROM startx/centos:7
 
-MAINTAINER Startx <dev@startx.fr>
-
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="centos7" \
     SX_TYPE="desktop" \
     SX_SERVICE="chrome" \
     SX_ID="startx/vdi-chrome" \
@@ -18,21 +16,21 @@ ENV SX_VERSION="latest" \
     SX_CHROME_PORT=5900
 
 LABEL name="$SX_ID" \
-      summary="$SX_SUMMARY" \
-      description="$SX_SUMMARY. Use for executing chrome browser as container mainstream image with persistence capabilities" \
-      version="$SX_VERSION" \
-      release="$SX_VERSION" \
-      maintainer="Startx <dev@startx.fr>" \
-      io.k8s.description="$SX_SUMMARY" \
-      io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,centos,chrome,vnc,X11" \
-      io.openshift.non-scalable="false" \
-      io.openshift.min-memory="400Mi" \
-      io.openshift.min-cpu="2000m" \
-      io.openshift.expose-VDI="$SX_CHROME_PORT:vnc" \
-      io.openshift.s2i.destination="/tmp" \
-      io.openshift.s2i.scripts-url="image:///s2i" \
-      fr.startx.component="$SX_ID:$SX_VERSION"
+    summary="$SX_SUMMARY" \
+    description="$SX_SUMMARY. Use for executing chrome browser as container mainstream image with persistence capabilities" \
+    version="$SX_VERSION" \
+    release="$SX_VERSION" \
+    maintainer="Startx <dev@startx.fr>" \
+    io.k8s.description="$SX_SUMMARY" \
+    io.k8s.display-name="$SX_ID" \
+    io.openshift.tags="startx,os,fedora,chrome,vnc,X11" \
+    io.openshift.non-scalable="false" \
+    io.openshift.min-memory="400Mi" \
+    io.openshift.min-cpu="2000m" \
+    io.openshift.expose-VDI="$SX_CHROME_PORT:vnc" \
+    io.openshift.s2i.destination="/tmp" \
+    io.openshift.s2i.scripts-url="image:///s2i" \
+    fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
 COPY supervisord.conf $SX_CHROME_SUPERVISOR_CONF/
@@ -42,15 +40,14 @@ RUN wget https://rpmfind.net/linux/epel/7Server/x86_64/Packages/p/python-meld3-0
     rpm -ivh python-meld3-0.6.10-1.el7.x86_64.rpm --nodeps && \
     yum install -yq yum-utils && yum upgrade -yq --refresh && \
     yum install -yq --nogpgcheck \
-        supervisor \
-        xorg-x11-server-Xvfb \
-        x11vnc \
-        dnf-plugins-core \
-        pulseaudio \
-        python2-meld3 \
-        google-chrome-stable && \
+    supervisor \
+    xorg-x11-server-Xvfb \
+    x11vnc \
+    dnf-plugins-core \
+    pulseaudio \
+    python2-meld3 \
+    google-chrome-stable && \
     package-cleanup --problems && \
-    package-cleanup --cleandupes; \
     package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
     yum clean all --enablerepo=\* && \
@@ -64,7 +61,7 @@ RUN wget https://rpmfind.net/linux/epel/7Server/x86_64/Packages/p/python-meld3-0
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     mkdir -p $DATA_PATH $APP_PATH $LOG_PATH $DATA_PATH/.config && \
-	chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp /.local && \
+    chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp /.local && \
     chown -R $SX_USER:0 /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH $DATA_PATH $LOG_PATH $DATA_PATH/.config /.local && \
     chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i $SX_LIBDIR /tmp /.local && \
     chmod ug+r $SX_CHROME_SUPERVISOR_CONF && \

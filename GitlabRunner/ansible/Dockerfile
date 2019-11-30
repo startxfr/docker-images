@@ -23,7 +23,13 @@ RUN yum install -yq yum-utils && \
     yum upgrade -yq --refresh && \
     yum install -yq --nogpgcheck \
     make \
-    ansible && \
+    python-pip \
+    ansible \
+    ansible-runner \
+    bubblewrap \
+    rsync \
+    openssh-clients \
+    sshpass && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
