@@ -1,7 +1,5 @@
 FROM startx/centos:6
 
-MAINTAINER Startx <dev@startx.fr>
-
 ENV SX_VERSION="centos6" \
     SX_TYPE="service" \
     SX_SERVICE="mongo" \
@@ -14,28 +12,29 @@ ENV SX_VERSION="centos6" \
     DATA_PATH=/data
 
 LABEL name="$SX_ID" \
-      summary="$SX_SUMMARY" \
-      description="$SX_SUMMARY. Use for executing database based on mongo or as container mainstream image for your database backend containers." \
-      version="$SX_VERSION" \
-      release="$SX_VERSION" \
-      maintainer="Startx <dev@startx.fr>" \
-      io.k8s.description="$SX_SUMMARY" \
-      io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,centos,database,mongo" \
-      io.openshift.non-scalable="true" \
-      io.openshift.min-memory="1Gi" \
-      io.openshift.min-cpu="8000m" \
-      io.openshift.expose-services="27017:mongodb" \
-      io.openshift.s2i.destination="/tmp" \
-      io.openshift.s2i.scripts-url="image:///s2i" \
-      fr.startx.component="$SX_ID:$SX_VERSION"
+    summary="$SX_SUMMARY" \
+    description="$SX_SUMMARY. Use for executing database based on mongo or as container mainstream image for your database backend containers." \
+    version="$SX_VERSION" \
+    release="$SX_VERSION" \
+    maintainer="Startx <dev@startx.fr>" \
+    io.k8s.description="$SX_SUMMARY" \
+    io.k8s.display-name="$SX_ID" \
+    io.openshift.tags="startx,os,fedora,database,mongo" \
+    io.openshift.non-scalable="true" \
+    io.openshift.min-memory="1Gi" \
+    io.openshift.min-cpu="8000m" \
+    io.openshift.expose-services="27017:mongodb" \
+    io.openshift.s2i.destination="/tmp" \
+    io.openshift.s2i.scripts-url="image:///s2i" \
+    fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
 COPY sx /tmp/
-RUN yum install -yq yum-utils && \
-    yum upgrade -yq && \
-    yum install -yq --nogpgcheck --enablerepo=epel \
-        mongodb-server && \
+COPY mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo
+RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
+    dnf upgrade -yq --refresh && \
+    dnf install -yq --nogpgcheck \
+    mongodb-org-unstable && \
     package-cleanup --problems && \
     package-cleanup --cleandupes; \
     package-cleanup --orphans && \
