@@ -2,7 +2,7 @@
 
 # STARTX Application docker-images : PHPMyAdmin
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/centos8/Services/phpmyadmin/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos8)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/phpmyadmin/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
 
 [![Dockerhub Registry](https://img.shields.io/docker/build/startx/app-phpmyadmin.svg)](https://hub.docker.com/r/startx/app-phpmyadmin) [![Docker phpmyadmin pulls](https://img.shields.io/docker/pulls/startx/app-phpmyadmin)](https://hub.docker.com/r/startx/app-phpmyadmin) [![Docker Repository on Quay](https://quay.io/repository/startx/phpmyadmin/status "Docker Repository on Quay")](https://quay.io/repository/startx/phpmyadmin)
 
@@ -19,10 +19,10 @@ you can [read ours containers engines guidelines](https://github.com/startxfr/co
 
 ## Running from docker registry
 
-    docker run -d -p 80:80 --name="pma" startx/app-pma:centos8
+    docker run -d -p 80:80 --name="pma" startx/app-pma
     when linked to another container
-    docker run -d --name="mariadb" startx/sv-mariadb:centos8
-    docker run -d -p 80:80 --name="pma" --link mariadb:mariadb startx/app-pma:centos8
+    docker run -d --name="mariadb" startx/sv-mariadb
+    docker run -d -p 80:80 --name="pma" --link mariadb:mariadb startx/app-pma
 
 ## Build and run from local Dockerfile
 
@@ -36,11 +36,11 @@ Copy sources in your docker host
 
 Build the container
 
-    docker build -t app-pma:centos8 Applications/phpmyadmin/
+    docker build -t startx/app-pma Applications/phpmyadmin/
 
 ### Running local image
 
-    docker run -d -p 80:80 --name="pma" app-pma:centos8
+    docker run -d -p 80:80 --name="pma" startx/app-pma
 
 ## Accessing server
 
@@ -54,7 +54,7 @@ access to the container itself
 
 ## Related Resources
 
-- [Sources files](https://github.com/startxfr/docker-images/tree/centos8/Applications/phpmyadmin)
+- [Sources files](https://github.com/startxfr/docker-images/tree/master/Applications/phpmyadmin)
 - [Github STARTX profile](https://github.com/startxfr/docker-images)
 - [Docker registry for this container](https://registry.hub.docker.com/u/startx/app-phpmyadmin/)
-- [Docker registry for Centos](https://registry.hub.docker.com/u/centos/)
+- [Docker registry for Fedora](https://registry.hub.docker.com/u/fedora/)
