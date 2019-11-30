@@ -2,7 +2,7 @@
 
 # Docker OS Images : COUCHBASE on Fedora 32
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/fc32/Services/couchbase/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc32)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/couchbase/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
 
 [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-couchbase.svg)](https://hub.docker.com/r/startx/sv-couchbase) [![Docker couchbase pulls](https://img.shields.io/docker/pulls/startx/sv-couchbase)](https://hub.docker.com/r/startx/sv-couchbase) [![Docker Repository on Quay](https://quay.io/repository/startx/couchbase/status "Docker Repository on Quay")](https://quay.io/repository/startx/couchbase)
 
@@ -14,6 +14,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 - `:latest` : Fedora rawhide + Couchbase Server 6.0.2-2413
 - `:fc32` : Fedora 32 + Couchbase Server 6.0.2-2413
+- `:fc31` : Fedora 31 + Couchbase Server 6.0.2-2413
 - `:fc30` : Fedora 30 + Couchbase Server 6.0.0
 - `:fc29` : Fedora 29 + Couchbase Server 5.5.0-beta
 - `:fc28` : Fedora 28 + Couchbase Server 4.5.0
@@ -107,13 +108,13 @@ CMD ["/bin/sx", "run"]
 ## Environment variable
 
 This container is based on [startx fedora container](https://hub.docker.com/r/startx/fedora) who came with
-some [additional environment variable](https://github.com/startxfr/docker-images/tree/fc28/OS#environment-variable)
+some [additional environment variable](https://github.com/startxfr/docker-images/tree/master/OS#environment-variable)
 
-| Variable                       | Type   | Mandatory | Description                                                                                         |
-| ------------------------------ | ------ | --------- | --------------------------------------------------------------------------------------------------- |
-| <i>base image environement</i> |        |           | [see environment list](https://github.com/startxfr/docker-images/tree/fc28/OS#environment-variable) |
-| HOSTNAME                       | `auto` | `auto`    | Container unique id automatically assigned by docker daemon at startup                              |
-| LOG_PATH                       | `auto` | `auto`    | default set to /var/log/couchbase and used as a volume mountpoint                                   |
+| Variable                       | Type   | Mandatory | Description                                                                                           |
+| ------------------------------ | ------ | --------- | ----------------------------------------------------------------------------------------------------- |
+| <i>base image environement</i> |        |           | [see environment list](https://github.com/startxfr/docker-images/tree/master/OS#environment-variable) |
+| HOSTNAME                       | `auto` | `auto`    | Container unique id automatically assigned by docker daemon at startup                                |
+| LOG_PATH                       | `auto` | `auto`    | default set to /var/log/couchbase and used as a volume mountpoint                                     |
 
 ## Exposed port
 

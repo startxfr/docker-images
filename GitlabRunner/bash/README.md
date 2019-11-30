@@ -13,6 +13,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 - `:latest` : Fedora core rawhide + bash + make
 - `:fc32` : Fedora core 32 + bash + make
+- `:fc31` : Fedora core 31 + bash + make
 - `:fc30` : Fedora core 30 + bash + make
 - `:fc29` : Fedora core 29 + bash + make
 - `:fc28` : Fedora core 28 + bash + make

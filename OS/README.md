@@ -17,7 +17,7 @@ This container contain :
 
 You can use Startx Fedora image in many ways :
 
-- [Docker OS Images : Fedora 32](#docker-os-images--fedora-32)
+- [Docker OS Images : FEDORA](#docker-os-images--fedora)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
@@ -40,7 +40,7 @@ See more applications builders and sample on [startx docker images repository](h
 | Docker Hub repository                                            | Quay.io repository                                                                  | Openshift                                                                                                                                                                                                                                                                                                                                    | Docker-compose                                                                                     | Fedora distribution         |
 | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | --------------------------- |
 | [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora) | [`quay.io/startx/fedora:latest`](https://quay.io/repository/startx/fedora?tab=tags) | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora rawhide + bash 5.0.7 |
-| [`startx/fedora:32`](https://hub.docker.com/r/startx/fedora)     | [`quay.io/startx/fedora:32`](https://quay.io/repository/startx/fedora?tab=tags)     | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora 32 + bash 5.0.7      |
+| [`startx/fedora:31`](https://hub.docker.com/r/startx/fedora)     | [`quay.io/startx/fedora:31`](https://quay.io/repository/startx/fedora?tab=tags)     | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora 31 + bash 5.0.7      |
 | [`startx/fedora:30`](https://hub.docker.com/r/startx/fedora)     | [`quay.io/startx/fedora:30`](https://quay.io/repository/startx/fedora?tab=tags)     | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora 30 + bash 5.0.7      |
 | [`startx/fedora:29`](https://hub.docker.com/r/startx/fedora)     | [`quay.io/startx/fedora:29`](https://quay.io/repository/startx/fedora?tab=tags)     | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora 29 + bash 4.4.23     |
 | [`startx/fedora:28`](https://hub.docker.com/r/startx/fedora)     | [`quay.io/startx/fedora:28`](https://quay.io/repository/startx/fedora?tab=tags)     | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora 28 + bash 4.3.12     |
@@ -198,7 +198,7 @@ FROM startx/fedora:32
 
 | Variable              | Type     | Default         | Description                                                              |
 | --------------------- | -------- | --------------- | ------------------------------------------------------------------------ |
-| SX_VERSION            | `string` | `32`            | container version                                                        |
+| SX_VERSION            | `string` | `latest`        | container version                                                        |
 | SX_TYPE               | `string` | `OS`            | Container family (os, service, application). could be enhanced           |
 | SX_SERVICE            | `string` | `fedora`        | Define the type of service or application provided                       |
 | SX_ID                 | `auto`   | `startx/fedora` | Container ID coresponding to the image repository                        |
@@ -224,10 +224,10 @@ This section will help you if you want to :
 ### Build & run a container using `docker`
 
 1. Jump into the container directory with `cd OS`
-2. Build the container using `docker build -t startx-fedora32 .`
+2. Build the container using `docker build -t startx-fedora .`
 3. Run this container
-   - Interactively with `docker run -it startx-fedora32`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...)
-   - As a daemon with `docker run -d startx-fedora32`
+   - Interactively with `docker run -it startx-fedora`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...)
+   - As a daemon with `docker run -d startx-fedora`
 
 ### Build & run a container using `docker-compose`
 

@@ -2,7 +2,7 @@
 
 # STARTX Application docker-images : PHPMyAdmin
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/fc32/Services/phpmyadmin/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc32)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/phpmyadmin/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
 
 [![Dockerhub Registry](https://img.shields.io/docker/build/startx/app-phpmyadmin.svg)](https://hub.docker.com/r/startx/app-phpmyadmin) [![Docker phpmyadmin pulls](https://img.shields.io/docker/pulls/startx/app-phpmyadmin)](https://hub.docker.com/r/startx/app-phpmyadmin) [![Docker Repository on Quay](https://quay.io/repository/startx/phpmyadmin/status "Docker Repository on Quay")](https://quay.io/repository/startx/phpmyadmin)
 
@@ -54,7 +54,7 @@ access to the container itself
 
 ## Related Resources
 
-- [Sources files](https://github.com/startxfr/docker-images/tree/fc28/Applications/phpmyadmin)
+- [Sources files](https://github.com/startxfr/docker-images/tree/master/Applications/phpmyadmin)
 - [Github STARTX profile](https://github.com/startxfr/docker-images)
 - [Docker registry for this container](https://registry.hub.docker.com/u/startx/app-phpmyadmin/)
 - [Docker registry for Fedora](https://registry.hub.docker.com/u/fedora/)

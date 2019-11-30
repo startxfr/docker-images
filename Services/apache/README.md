@@ -2,7 +2,7 @@
 
 # Docker OS Images : APACHE on Fedora 32
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/fc32/Services/apache/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc32)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/apache/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
 
 [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-apache.svg)](https://hub.docker.com/r/startx/sv-apache) [![Docker apache pulls](https://img.shields.io/docker/pulls/startx/sv-apache)](https://hub.docker.com/r/startx/sv-apache) [![Docker Repository on Quay](https://quay.io/repository/startx/apache/status "Docker Repository on Quay")](https://quay.io/repository/startx/apache)
 
@@ -17,7 +17,8 @@ This container contain :
 
 You can use Startx Apache image in many ways :
 
-- [Docker OS Images : APACHE on Fedora 32](#docker-os-images--apache-on-fedora-32)
+- [Docker OS Images : APACHE](#docker-os-images--apache)
+  - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
     - [Running using docker-compose](#running-using-docker-compose)
@@ -34,10 +35,12 @@ You can use Startx Apache image in many ways :
 
 See more applications builders and sample on [startx docker images repository](https://github.com/startxfr/docker-images/blob/master)
 
+## Container flavours
+
 | Docker Hub repository                                                   | Openshift                                                                                                                                                                                                                                                                                                                                                                           | Docker-compose                                                                                                  | Fedora distribution                 |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
 | [`startx/sv-apache:latest`](https://hub.docker.com/r/startx/sv-apache)  | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/docker-compose.yml) | Fedora core rawhide + Apache 2.4.39 |
-| [`startx/sv-apache:32`](https://hub.docker.com/r/startx/sv-apache)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/docker-compose.yml) | Fedora core 32 + Apache 2.4.39      |
+| [`startx/sv-apache:31`](https://hub.docker.com/r/startx/sv-apache)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/docker-compose.yml) | Fedora core 31 + Apache 2.4.39      |
 | [`startx/sv-apache:30`](https://hub.docker.com/r/startx/sv-apache)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/docker-compose.yml) | Fedora core 30 + Apache 2.4.39      |
 | [`startx/sv-apache:29`](https://hub.docker.com/r/startx/sv-apache)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/docker-compose.yml) | Fedora core 29 + Apache 2.4.39      |
 | [`startx/sv-apache:28`](https://hub.docker.com/r/startx/sv-apache)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/docker-compose.yml) | Fedora core 28 + Apache 2.4.17      |
@@ -238,8 +241,8 @@ This section will help you if you want to :
 
 0. Switch to the flavour branch with `git branch fc28`
 1. Jump into the container directory with `cd Services/apache`
-1. Build the container using `docker build -t startx-apache .`
-1. Run this container
+2. Build the container using `docker build -t startx-apache .`
+3. Run this container
    - Interactively with `docker run -it startx-apache`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...)
    - As a daemon with `docker run -d -p 9201:8080 startx-apache`
 

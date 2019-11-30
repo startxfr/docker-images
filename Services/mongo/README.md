@@ -2,18 +2,19 @@
 
 # Docker OS Images : MONGO on Fedora 32
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/fc32/Services/mongo/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc32)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/mongo/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
 
 [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-mongo.svg)](https://hub.docker.com/r/startx/sv-mongo) [![Docker mongo pulls](https://img.shields.io/docker/pulls/startx/sv-mongo)](https://hub.docker.com/r/startx/sv-mongo) [![Docker Repository on Quay](https://quay.io/repository/startx/mongo/status "Docker Repository on Quay")](https://quay.io/repository/startx/mongo)
 
 Simple container used to deliver document-oriented database
 Run [mongodb daemon](https://www.mongodb.org/) under a container
-based on [startx/fedora:32 container](https://hub.docker.com/r/startx/fedora)
+based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
 - `:latest` : Fedora core rawhide + MongoDB 4.1.13
 - `:fc32` : Fedora core 32 + MongoDB 4.1.13
+- `:fc31` : Fedora core 31 + MongoDB 4.1.13
 - `:fc30` : Fedora core 30 + MongoDB 4.0.3
 - `:fc29` : Fedora core 29 + MongoDB 4.0.3
 - `:fc28` : Fedora core 28 + MongoDB 3.6
@@ -126,14 +127,14 @@ CMD ["/bin/sx", "run"]
 ## Environment variable
 
 This container is based on [startx fedora container](https://hub.docker.com/r/startx/fedora) who came with
-some [additional environment variable](https://github.com/startxfr/docker-images/tree/fc28/OS#environment-variable)
+some [additional environment variable](https://github.com/startxfr/docker-images/tree/master/OS#environment-variable)
 
-| Variable                       | Type   | Mandatory | Description                                                                                         |
-| ------------------------------ | ------ | --------- | --------------------------------------------------------------------------------------------------- |
-| <i>base image environement</i> |        |           | [see environment list](https://github.com/startxfr/docker-images/tree/fc28/OS#environment-variable) |
-| HOSTNAME                       | `auto` | `auto`    | Container unique id automatically assigned by docker daemon at startup                              |
-| LOG_PATH                       | `auto` | `auto`    | default set to /var/log/mongodb and used as a volume mountpoint                                     |
-| DATA_PATH                      | `auto` | `auto`    | default set to /data and used as a volume mountpoint                                                |
+| Variable                       | Type   | Mandatory | Description                                                                                           |
+| ------------------------------ | ------ | --------- | ----------------------------------------------------------------------------------------------------- |
+| <i>base image environement</i> |        |           | [see environment list](https://github.com/startxfr/docker-images/tree/master/OS#environment-variable) |
+| HOSTNAME                       | `auto` | `auto`    | Container unique id automatically assigned by docker daemon at startup                                |
+| LOG_PATH                       | `auto` | `auto`    | default set to /var/log/mongodb and used as a volume mountpoint                                       |
+| DATA_PATH                      | `auto` | `auto`    | default set to /data and used as a volume mountpoint                                                  |
 
 ## Exposed port
 
@@ -165,19 +166,17 @@ You must have a working environment with the source code of this repository. Rea
 
 ### Build & run a container using `docker`
 
-1. Switch to the flavour branch with `git branch fc28`
-2. Jump into the container directory with `cd Services/mongo`
-3. Build the container using `docker build -t sv-mongo .`
-4. Run this container
-5. Interactively with `docker run -p 27017:27017 -v /logs -it sv-mongo`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...)
-6. As a daemon with `docker run -p 27017:27017 -v /logs -d sv-mongo`
+1. Jump into the container directory with `cd Services/mongo`
+2. Build the container using `docker build -t sv-mongo .`
+3. Run this container
+4. Interactively with `docker run -p 27017:27017 -v /logs -it sv-mongo`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...)
+5. As a daemon with `docker run -p 27017:27017 -v /logs -d sv-mongo`
 
 ### Build & run a container using `docker-compose`
 
-1. Switch to the flavour branch with `git branch fc28`
-2. Jump into the container directory with `cd Services/mongo`
-3. Run this container
-4. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
-5. As a daemon with `docker-compose up -d`. Container startup logs can be read using `docker-compose logs`
+1. Jump into the container directory with `cd Services/mongo`
+2. Run this container
+3. Interactively with `docker-compose up` Startup logs appears and escaping this command stop the container
+4. As a daemon with `docker-compose up -d`. Container startup logs can be read using `docker-compose logs`
 
 If you experience trouble with port already used, edit docker-compose.yml file and change port mapping
