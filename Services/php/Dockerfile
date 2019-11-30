@@ -1,6 +1,6 @@
-FROM startx/sv-apache:fc31
+FROM startx/sv-apache:fc32
 
-ENV SX_VERSION="fc31" \
+ENV SX_VERSION="fc32" \
     SX_TYPE="service" \
     SX_SERVICE="php" \
     SX_ID="startx/sv-php" \

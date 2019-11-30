@@ -1,6 +1,6 @@
 FROM fedora:31
 
-ENV SX_VERSION="fc31" \
+ENV SX_VERSION="fc32" \
     SX_TYPE="OS" \
     SX_SERVICE="fedora" \
     SX_ID="startx/fedora" \

@@ -1,6 +1,6 @@
-FROM startx/sv-apache:fc31
+FROM startx/sv-apache:fc32
 
-ENV SX_VERSION="fc31" \
+ENV SX_VERSION="fc32" \
     SX_TYPE="runner" \
     SX_SERVICE="apache" \
     SX_ID="startx/runner-apache" \

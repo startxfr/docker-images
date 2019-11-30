@@ -1,6 +1,6 @@
 FROM startx/fedora:31
 
-ENV SX_VERSION="fc31" \
+ENV SX_VERSION="fc32" \
     SX_TYPE="runner" \
     SX_SERVICE="ansible" \
     SX_ID="startx/runner-ansible" \

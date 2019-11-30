@@ -1,6 +1,6 @@
 ooconv:
   build: ./
-  container_name: "fc31-service-ooconv"
+  container_name: "fc32-service-ooconv"
   mem_limit: 2g
   memswap_limit: 2g
   cpu_shares: 8

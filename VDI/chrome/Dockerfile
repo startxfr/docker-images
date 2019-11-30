@@ -1,6 +1,6 @@
 FROM startx/fedora:31
 
-ENV SX_VERSION="fc31" \
+ENV SX_VERSION="fc32" \
     SX_TYPE="desktop" \
     SX_SERVICE="chrome" \
     SX_ID="startx/vdi-chrome" \

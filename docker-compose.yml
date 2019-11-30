@@ -3,86 +3,86 @@ fedora31:
     file: OS/docker-compose.yml
     service: fedora31
 
-fc31-sv-apache:
+fc32-sv-apache:
   extends:
     file: Services/apache/docker-compose.yml
     service: apache
 
-fc31-sv-php:
+fc32-sv-php:
   extends:
     file: Services/php/docker-compose.yml
     service: php
 
-fc31-sv-nodejs:
+fc32-sv-nodejs:
   extends:
     file: Services/nodejs/docker-compose.yml
     service: nodejs
 
-fc31-sv-mariadb:
+fc32-sv-mariadb:
   extends:
     file: Services/mariadb/docker-compose.yml
     service: mariadb
 
-fc31-sv-postgres:
+fc32-sv-postgres:
   extends:
     file: Services/postgres/docker-compose.yml
     service: postgres
 
-fc31-sv-mongo:
+fc32-sv-mongo:
   extends:
     file: Services/mongo/docker-compose.yml
     service: mongo
 
-fc31-sv-ooconv:
+fc32-sv-ooconv:
   extends:
     file: Services/ooconv/docker-compose.yml
     service: ooconv
 
-fc31-sv-memcache:
+fc32-sv-memcache:
   extends:
     file: Services/memcache/docker-compose.yml
     service: memcache
 
-fc31-runner-ansible:
+fc32-runner-ansible:
   extends:
     file: GitlabRunner/ansible/docker-compose.yml
     service: ansible
 
-fc31-runner-apache:
+fc32-runner-apache:
   extends:
     file: GitlabRunner/apache/docker-compose.yml
     service: apache
 
-fc31-runner-bash:
+fc32-runner-bash:
   extends:
     file: GitlabRunner/bash/docker-compose.yml
     service: bash
 
-fc31-runner-nodejs:
+fc32-runner-nodejs:
   extends:
     file: GitlabRunner/nodejs/docker-compose.yml
     service: nodejs
 
-fc31-runner-php:
+fc32-runner-php:
   extends:
     file: GitlabRunner/php/docker-compose.yml
     service: php
 
-fc31-vdi-chrome:
+fc32-vdi-chrome:
   extends:
     file: VDI/chrome/docker-compose.yml
     service: chrome
 
-fc31-vdi-firefox:
+fc32-vdi-firefox:
   extends:
     file: VDI/firefox/docker-compose.yml
     service: firefox
 
-fc31-app-pma:
+fc32-app-pma:
   extends:
     file: Applications/phpmyadmin/docker-compose.yml
     service: phpmyadmin
-#fc31-app-rockmongo:
+#fc32-app-rockmongo:
 #  extends:
 #    file: Applications/rockmongo/docker-compose.yml
 #    service: rockmongo
