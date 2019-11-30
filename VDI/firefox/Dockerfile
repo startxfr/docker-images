@@ -1,11 +1,11 @@
-FROM startx/fedora:latest
+FROM startx/centos:6
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="centos6" \
     SX_TYPE="desktop" \
     SX_SERVICE="firefox" \
     SX_ID="startx/vdi-firefox" \
-    SX_NAME="Startx Firefox VDI image (fedora rawhide)" \
-    SX_SUMMARY="Startx firefox container-based desktop application based on fedora rawhide" \
+    SX_NAME="Startx Firefox VDI image (Centos 6)" \
+    SX_SUMMARY="Startx firefox container-based desktop application based on Centos 6" \
     SX_FIREFOX_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
     LOG_PATH=/var/log/firefox \
     APP_PATH=/home/firefox \
@@ -22,7 +22,7 @@ LABEL name="$SX_ID" \
     maintainer="Startx <dev@startx.fr>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
-    io.openshift.tags="startx,os,fedora,firefox,vnc,X11" \
+    io.openshift.tags="startx,os,centos,firefox,vnc,X11" \
     io.openshift.non-scalable="false" \
     io.openshift.min-memory="400Mi" \
     io.openshift.min-cpu="2000m" \

@@ -1,11 +1,11 @@
-FROM startx/fedora:latest
+FROM startx/centos:6
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="centos6" \
     SX_TYPE="desktop" \
     SX_SERVICE="chrome" \
     SX_ID="startx/vdi-chrome" \
-    SX_NAME="Startx Chrome VDI image (fedora rawhide)" \
-    SX_SUMMARY="Startx chrome container-based desktop application based on fedora rawhide" \
+    SX_NAME="Startx Chrome VDI image (Centos 6)" \
+    SX_SUMMARY="Startx chrome container-based desktop application based on Centos 6" \
     SX_CHROME_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
     LOG_PATH=/var/log/chrome \
     APP_PATH=/home/chrome \
@@ -23,7 +23,7 @@ LABEL name="$SX_ID" \
     maintainer="Startx <dev@startx.fr>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
-    io.openshift.tags="startx,os,fedora,chrome,vnc,X11" \
+    io.openshift.tags="startx,os,centos,chrome,vnc,X11" \
     io.openshift.non-scalable="false" \
     io.openshift.min-memory="400Mi" \
     io.openshift.min-cpu="2000m" \

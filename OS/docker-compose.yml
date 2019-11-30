@@ -5,8 +5,8 @@ centos6:
   memswap_limit: 200m
   cpu_shares: 2
 #  volumes:
-#    - "/tmp/container/fedora/logs:/logs:z"
-#    - "/tmp/container/fedora/app:/app:z"
+#    - "/tmp/container/centos/logs:/logs:z"
+#    - "/tmp/container/centos/app:/app:z"
 #  command:
 #     - "/bin/sx"
 #     - "run"
