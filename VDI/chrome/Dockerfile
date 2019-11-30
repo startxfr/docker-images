@@ -35,10 +35,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY supervisord.conf $SX_CHROME_SUPERVISOR_CONF/
 COPY sx /tmp/
-RUN wget -q https://rpmfind.net/linux/fedora/linux/releases/30/Everything/x86_64/os/Packages/p/python3-meld3-1.0.2-10.fc30.noarch.rpm && \
-    rpm -ivh ython3-meld3-1.0.2-10.fc30.noarch.rpm && \
-    rm -f python3-meld3-1.0.2-10.fc30.noarch.rpm && \
-    dnf install -yq yum-utils dnf-plugin-system-upgrade && \
+RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
     supervisor \
@@ -47,16 +44,14 @@ RUN wget -q https://rpmfind.net/linux/fedora/linux/releases/30/Everything/x86_64
     fedora-workstation-repositories \
     dnf-plugins-core \
     pulseaudio \
-    python2-setuptools && \
+    python3-pip  \
+    python3-setuptools && \
     dnf config-manager --set-enabled google-chrome && \
     dnf install -yq --nogpgcheck google-chrome-stable && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
-    easy_install pip && \
-    pip install --upgrade pip && \
-    pip install --upgrade --force-reinstall setuptools pip && \
     useradd -s /bin/bash -m -g 0 -u 1001 -G pulse-access $SX_USER && \
     mkdir -p /s2i $SX_LIBDIR /.local && \
     mv /tmp/s2i/bin/* /s2i/ && \
