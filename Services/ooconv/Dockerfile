@@ -1,7 +1,5 @@
 FROM startx/fedora:29
 
-MAINTAINER Startx <dev@startx.fr>
-
 ENV SX_VERSION="fc29" \
     SX_TYPE="service" \
     SX_SERVICE="ooconv" \
@@ -14,32 +12,32 @@ ENV SX_VERSION="fc29" \
     DATA_PATH=/data
 
 LABEL name="$SX_ID" \
-      summary="$SX_SUMMARY" \
-      description="$SX_SUMMARY. Use for executing OpenOffice document converter or as container mainstream image for your document convertion backend containers." \
-      version="$SX_VERSION" \
-      release="$SX_VERSION" \
-      maintainer="Startx <dev@startx.fr>" \
-      io.k8s.description="$SX_SUMMARY" \
-      io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,fedora,document,libreoffice" \
-      io.openshift.non-scalable="false" \
-      io.openshift.min-memory="1500Mi" \
-      io.openshift.min-cpu="8000m" \
-      io.openshift.expose-services="2002:unoconv" \
-      io.openshift.s2i.destination="/tmp" \
-      io.openshift.s2i.scripts-url="image:///s2i" \
-      fr.startx.component="$SX_ID:$SX_VERSION"
+    summary="$SX_SUMMARY" \
+    description="$SX_SUMMARY. Use for executing OpenOffice document converter or as container mainstream image for your document convertion backend containers." \
+    version="$SX_VERSION" \
+    release="$SX_VERSION" \
+    maintainer="Startx <dev@startx.fr>" \
+    io.k8s.description="$SX_SUMMARY" \
+    io.k8s.display-name="$SX_ID" \
+    io.openshift.tags="startx,os,fedora,document,libreoffice" \
+    io.openshift.non-scalable="false" \
+    io.openshift.min-memory="1500Mi" \
+    io.openshift.min-cpu="8000m" \
+    io.openshift.expose-services="2002:unoconv" \
+    io.openshift.s2i.destination="/tmp" \
+    io.openshift.s2i.scripts-url="image:///s2i" \
+    fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
 COPY sx /tmp/
 RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
-        unoconv \
-        libreoffice-writer \
-        libreoffice-calc \
-        pdfmod \
-        ghostscript && \
+    unoconv \
+    libreoffice-writer \
+    libreoffice-calc \
+    pdfmod \
+    ghostscript && \
     package-cleanup --problems && \
     package-cleanup --cleandupes; \
     package-cleanup --orphans && \

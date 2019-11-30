@@ -12,6 +12,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 ## Available flavours
 
 - `:latest` : Fedora core rawhide + ansible + make
+- `:fc32` : Fedora core 32 + ansible + make
 - `:fc31` : Fedora core 31 + ansible + make
 - `:fc30` : Fedora core 30 + ansible + make
 - `:fc29` : Fedora core 29 + ansible + make

@@ -7,6 +7,7 @@ This script will help you load and run startx docker images in an OKD cluster
 ## Requirements
 
 This script assume :
+
 - You have an openshift cluster running
 - You have installed openshift client v3.11 minimum
 - You are logged to you openshift cluster (oc login)
@@ -19,7 +20,7 @@ This script assume :
 # setup project
 ./okd-helper.sh setup project fedora
 
-# setup flavour (alpine3, ubi8, centos8, centos7, centos6, fc31, fc30, fc29 or fc28)
+# setup flavour (alpine3, ubi8, centos8, centos7, centos6, fc32, fc31, fc30, fc29 or fc28)
 ./okd-helper.sh setup flavour latest
 
 # setup stage
@@ -93,6 +94,9 @@ This script assume :
 # Start full test for centos 6 containers
 ./okd-helper.sh setup flavour centos6
 ./okd-helper.sh test
+# Start full test for fedora 32 containers
+./okd-helper.sh setup flavour fc32
+./okd-helper.sh test
 # Start full test for fedora 31 containers
 ./okd-helper.sh setup flavour fc31
 ./okd-helper.sh test
@@ -130,6 +134,10 @@ This script assume :
 # Start full test for centos 6 containers (dedicated project)
 ./okd-helper.sh setup project centos-6
 ./okd-helper.sh setup flavour centos6
+./okd-helper.sh test
+# Start full test for fedora 32 containers (dedicated project)
+./okd-helper.sh setup project fedora-32
+./okd-helper.sh setup flavour fc32
 ./okd-helper.sh test
 # Start full test for fedora 31 containers (dedicated project)
 ./okd-helper.sh setup project fedora-31
