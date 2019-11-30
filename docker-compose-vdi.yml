@@ -1,0 +1,9 @@
+vdi-chrome:
+  extends:
+    file: VDI/chrome/docker-compose.yml
+    service: chrome
+
+vdi-firefox:
+  extends:
+    file: VDI/firefox/docker-compose.yml
+    service: firefox
