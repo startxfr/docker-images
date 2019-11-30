@@ -8,11 +8,6 @@ alpine3-sv-apache:
     file: Services/apache/docker-compose.yml
     service: apache
 
-alpine3-sv-chrome:
-  extends:
-    file: Services/chrome/docker-compose.yml
-    service: chrome
-
 alpine3-sv-php:
   extends:
     file: Services/php/docker-compose.yml
@@ -48,11 +43,45 @@ alpine3-sv-memcache:
     file: Services/memcache/docker-compose.yml
     service: memcache
 
+alpine3-runner-ansible:
+  extends:
+    file: GitlabRunner/ansible/docker-compose.yml
+    service: ansible
+
+alpine3-runner-apache:
+  extends:
+    file: GitlabRunner/apache/docker-compose.yml
+    service: apache
+
+alpine3-runner-bash:
+  extends:
+    file: GitlabRunner/bash/docker-compose.yml
+    service: bash
+
+alpine3-runner-nodejs:
+  extends:
+    file: GitlabRunner/nodejs/docker-compose.yml
+    service: nodejs
+
+alpine3-runner-php:
+  extends:
+    file: GitlabRunner/php/docker-compose.yml
+    service: php
+
+alpine3-vdi-chrome:
+  extends:
+    file: VDI/chrome/docker-compose.yml
+    service: chrome
+
+alpine3-vdi-firefox:
+  extends:
+    file: VDI/firefox/docker-compose.yml
+    service: firefox
+
 alpine3-app-pma:
   extends:
     file: Applications/phpmyadmin/docker-compose.yml
     service: phpmyadmin
-
 #alpine3-app-rockmongo:
 #  extends:
 #    file: Applications/rockmongo/docker-compose.yml
