@@ -4,8 +4,9 @@ metadata:
   name: startx-memcache-deploy-template
   annotations:
     openshift.io/display-name: Startx Memcache Server (ephemeral deploy workflow)
-    description: Deployement workflow of a Memcache SQL database using ephemeral storage
-      for data and logs records. Use memcache with various underlying linux distribution. See 
+    description:
+      Deployement workflow of a Memcache SQL database using ephemeral storage
+      for data and logs records. Use memcache with various underlying linux distribution. See
       https://hub.docker.com/r/startx/sv-memcache
     iconClass: icon-redis
     tags: startx,os,fedora,memcache
@@ -20,176 +21,176 @@ message: |-
   Backend     : ${APP_NAME}
   Stage       : ${APP_STAGE}
   Image       : startx/sv-memcache:${BUILDER_TAG}
-  
+
   Connection  : memcache://${APP_NAME}:11211
-  
+
 labels:
   template: startx-memcache-deploy-template
-  provider: startx 
+  provider: startx
 objects:
-- kind: ImageStream
-  apiVersion: v1
-  metadata:
-    name: "${APP_NAME}"
-    annotations:
-      openshift.io/display-name: Backend ${APP_NAME}
-      openshift.io/generated-by: STARTX
-    labels:
-      app: "${APP_NAME}"
-      stage: "${APP_STAGE}"
-  spec:
-    tags:
-    - name: ${APP_STAGE}
+  - kind: ImageStream
+    apiVersion: v1
+    metadata:
+      name: "${APP_NAME}"
       annotations:
-        openshift.io/display-name: Backend ${APP_NAME} version ${APP_STAGE}
-        description: ${APP_STAGE} image for the database ${APP_NAME} based on ${BUILDER_TAG}
-        iconClass: icon-redis
-        tags: startx,fedora,memcache,database,${APP_NAME},${APP_STAGE},${BUILDER_TAG}
-        supports: memcache
-        version: ${APP_STAGE}
-      from:
-        kind: DockerImage
-        name: startx/sv-memcache:${BUILDER_TAG}
-- kind: ConfigMap
-  apiVersion: v1
-  metadata:
-    name: "${APP_NAME}-config"
-    annotations:
-      openshift.io/display-name: Backend ${APP_NAME} configuration
-      openshift.io/generated-by: STARTX
-    labels:
-      app: "${APP_NAME}"
-      stage: "${APP_STAGE}"
-  data:
-    SX_ID: ${APP_NAME}/${APP_STAGE}
-    SX_TYPE: ${APP_STAGE}
-    SX_SERVICE: ${APP_NAME}
-    SX_NAME: Memcache database ${APP_NAME}
-    SX_SUMMARY: Memcache database ${APP_NAME} based on ${BUILDER_TAG} container
-    SX_VERSION: 0.0.1 
-- kind: DeploymentConfig
-  apiVersion: v1
-  metadata:
-    name: "${APP_NAME}"
-    labels:
-      app: "${APP_NAME}"
-      stage: "${APP_STAGE}"
-    annotations:
-      openshift.io/generated-by: STARTX
-  spec:
-    strategy:
-      type: Rolling
-      rollingParams:
-        updatePeriodSeconds: 1
-        intervalSeconds: 1
-        timeoutSeconds: 30
-        maxUnavailable: 25%
-        maxSurge: 25%
-    triggers:
-    - type: ImageChange
-      imageChangeParams:
-        automatic: true
-        containerNames:
-        - "${APP_NAME}"
-        from:
-          kind: ImageStreamTag
-          name: "${APP_NAME}:${APP_STAGE}"
-    - type: ConfigChange
-    postCommit:
-      script: "/bin/sx-memcache info"
-    replicas: 1
-    test: false
-    selector:
-      app: "${APP_NAME}"
-      deploymentconfig: "${APP_NAME}"
-    template:
-      metadata:
-        labels:
-          app: "${APP_NAME}"
-          deploymentconfig: "${APP_NAME}"
-        annotations:
-          openshift.io/generated-by: STARTX
-      spec:
-        containers:
-        - name: "${APP_NAME}"
-          image: " "
-          env:
-          - name: SX_VERBOSE
-            value: 'true'
-          envFrom:
-            - configMapRef:
-                name: ${APP_NAME}-config
-          command:
-          - "/bin/sx-memcache"
-          args:
-          - run
-          resources:
-            limits:
-              cpu: 4000m
-              memory: 1024Mi
-            requests:
-              cpu: 200m
-              memory: 512Mi
-          ports:
-          - containerPort: 11211
-            protocol: TCP
-          livenessProbe:
-            exec:
+        openshift.io/display-name: Backend ${APP_NAME}
+        openshift.io/generated-by: STARTX
+      labels:
+        app: "${APP_NAME}"
+        stage: "${APP_STAGE}"
+    spec:
+      tags:
+        - name: ${APP_STAGE}
+          annotations:
+            openshift.io/display-name: Backend ${APP_NAME} version ${APP_STAGE}
+            description: ${APP_STAGE} image for the database ${APP_NAME} based on ${BUILDER_TAG}
+            iconClass: icon-redis
+            tags: startx,fedora,memcache,database,${APP_NAME},${APP_STAGE},${BUILDER_TAG}
+            supports: memcache
+            version: ${APP_STAGE}
+          from:
+            kind: DockerImage
+            name: startx/sv-memcache:${BUILDER_TAG}
+  - kind: ConfigMap
+    apiVersion: v1
+    metadata:
+      name: "${APP_NAME}-config"
+      annotations:
+        openshift.io/display-name: Backend ${APP_NAME} configuration
+        openshift.io/generated-by: STARTX
+      labels:
+        app: "${APP_NAME}"
+        stage: "${APP_STAGE}"
+    data:
+      SX_ID: ${APP_NAME}/${APP_STAGE}
+      SX_TYPE: ${APP_STAGE}
+      SX_SERVICE: ${APP_NAME}
+      SX_NAME: Memcache database ${APP_NAME}
+      SX_SUMMARY: Memcache database ${APP_NAME} based on ${BUILDER_TAG} container
+      SX_VERSION: 0.0.1
+  - kind: DeploymentConfig
+    apiVersion: v1
+    metadata:
+      name: "${APP_NAME}"
+      labels:
+        app: "${APP_NAME}"
+        stage: "${APP_STAGE}"
+      annotations:
+        openshift.io/generated-by: STARTX
+    spec:
+      strategy:
+        type: Rolling
+        rollingParams:
+          updatePeriodSeconds: 1
+          intervalSeconds: 1
+          timeoutSeconds: 30
+          maxUnavailable: 25%
+          maxSurge: 25%
+      triggers:
+        - type: ImageChange
+          imageChangeParams:
+            automatic: true
+            containerNames:
+              - "${APP_NAME}"
+            from:
+              kind: ImageStreamTag
+              name: "${APP_NAME}:${APP_STAGE}"
+        - type: ConfigChange
+      postCommit:
+        script: "/bin/sx-memcache info"
+      replicas: 1
+      test: false
+      selector:
+        app: "${APP_NAME}"
+        deploymentconfig: "${APP_NAME}"
+      template:
+        metadata:
+          labels:
+            app: "${APP_NAME}"
+            deploymentconfig: "${APP_NAME}"
+          annotations:
+            openshift.io/generated-by: STARTX
+        spec:
+          containers:
+            - name: "${APP_NAME}"
+              image: " "
+              env:
+                - name: SX_VERBOSE
+                  value: "true"
+              envFrom:
+                - configMapRef:
+                    name: ${APP_NAME}-config
               command:
-              - "/bin/sx-memcache"
-              - isLive
-            initialDelaySeconds: 2
-            timeoutSeconds: 1
-            periodSeconds: 5
-            successThreshold: 1
-            failureThreshold: 2
-          readinessProbe:
-            exec:
-              command:
-              - "/bin/sx-memcache"
-              - isReady
-            initialDelaySeconds: 2
-            timeoutSeconds: 1
-            periodSeconds: 5
-            successThreshold: 1
-            failureThreshold: 2
-          terminationMessagePath: "/dev/termination-log"
-          imagePullPolicy: Always
-        restartPolicy: Always
-        terminationGracePeriodSeconds: 2
-        dnsPolicy: ClusterFirst
-- kind: Service
-  apiVersion: v1
-  metadata:
-    name: "${APP_NAME}"
-    labels:
-      app: "${APP_NAME}"
-      stage: "${APP_STAGE}"
-    annotations:
-      openshift.io/generated-by: STARTX
-  spec:
-    ports:
-    - protocol: TCP
-      port: 11211
-      targetPort: 11211
-    selector:
-      app: "${APP_NAME}"
-      deploymentconfig: "${APP_NAME}"
-    type: ClusterIP
-    sessionAffinity: None
+                - "/bin/sx-memcache"
+              args:
+                - run
+              resources:
+                limits:
+                  cpu: 4000m
+                  memory: 1024Mi
+                requests:
+                  cpu: 200m
+                  memory: 512Mi
+              ports:
+                - containerPort: 11211
+                  protocol: TCP
+              livenessProbe:
+                exec:
+                  command:
+                    - "/bin/sx-memcache"
+                    - isLive
+                initialDelaySeconds: 2
+                timeoutSeconds: 1
+                periodSeconds: 5
+                successThreshold: 1
+                failureThreshold: 2
+              readinessProbe:
+                exec:
+                  command:
+                    - "/bin/sx-memcache"
+                    - isReady
+                initialDelaySeconds: 2
+                timeoutSeconds: 1
+                periodSeconds: 5
+                successThreshold: 1
+                failureThreshold: 2
+              terminationMessagePath: "/dev/termination-log"
+              imagePullPolicy: Always
+          restartPolicy: Always
+          terminationGracePeriodSeconds: 2
+          dnsPolicy: ClusterFirst
+  - kind: Service
+    apiVersion: v1
+    metadata:
+      name: "${APP_NAME}"
+      labels:
+        app: "${APP_NAME}"
+        stage: "${APP_STAGE}"
+      annotations:
+        openshift.io/generated-by: STARTX
+    spec:
+      ports:
+        - protocol: TCP
+          port: 11211
+          targetPort: 11211
+      selector:
+        app: "${APP_NAME}"
+        deploymentconfig: "${APP_NAME}"
+      type: ClusterIP
+      sessionAffinity: None
 parameters:
-- name: APP_NAME
-  displayName: Backend name
-  description: The name of the created application
-  value: memcache
-  required: true
-- name: APP_STAGE
-  displayName: Backend stage
-  description: "Stage of the application deployed (ex: dev, test, prod, example, demo, poc, ...)"
-  value: example
-  required: true
-- name: BUILDER_TAG
-  displayName: Startx image release
-  description: "Image tag of the startx memcache image used. Could be : latest, fc31, fc30, fc29, fc28, alpine3, ubi8, centos8, centos7, centos6"
-  value: latest
-  required: true
+  - name: APP_NAME
+    displayName: Backend name
+    description: The name of the created application
+    value: memcache
+    required: true
+  - name: APP_STAGE
+    displayName: Backend stage
+    description: "Stage of the application deployed (ex: dev, test, prod, example, demo, poc, ...)"
+    value: example
+    required: true
+  - name: BUILDER_TAG
+    displayName: Startx image release
+    description: "Image tag of the startx memcache image used. Could be : latest, fc32, fc31, fc30, fc29, fc28, alpine3, ubi8, centos8, centos7, centos6"
+    value: latest
+    required: true

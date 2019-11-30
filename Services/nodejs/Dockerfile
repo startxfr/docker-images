@@ -1,7 +1,5 @@
 FROM startx/fedora:28
 
-MAINTAINER Startx <dev@startx.fr>
-
 ENV SX_VERSION="fc28" \
     SX_TYPE="service" \
     SX_SERVICE="nodejs" \
@@ -14,21 +12,21 @@ ENV SX_VERSION="fc28" \
     APP_MAIN=/app/app.js
 
 LABEL name="$SX_ID" \
-      summary="$SX_SUMMARY" \
-      description="$SX_SUMMARY. Use for executing application based on nodejs or as container mainstream image for your micro-service containers." \
-      version="$SX_VERSION" \
-      release="$SX_VERSION" \
-      maintainer="Startx <dev@startx.fr>" \
-      io.k8s.description="$SX_SUMMARY" \
-      io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,fedora,nodejs,httpd" \
-      io.openshift.non-scalable="false" \
-      io.openshift.min-memory="200Mi" \
-      io.openshift.min-cpu="1000m" \
-      io.openshift.expose-services="8080:http" \
-      io.openshift.s2i.destination="/tmp" \
-      io.openshift.s2i.scripts-url="image:///s2i" \
-      fr.startx.component="$SX_ID:$SX_VERSION"
+    summary="$SX_SUMMARY" \
+    description="$SX_SUMMARY. Use for executing application based on nodejs or as container mainstream image for your micro-service containers." \
+    version="$SX_VERSION" \
+    release="$SX_VERSION" \
+    maintainer="Startx <dev@startx.fr>" \
+    io.k8s.description="$SX_SUMMARY" \
+    io.k8s.display-name="$SX_ID" \
+    io.openshift.tags="startx,os,fedora,nodejs,httpd" \
+    io.openshift.non-scalable="false" \
+    io.openshift.min-memory="200Mi" \
+    io.openshift.min-cpu="1000m" \
+    io.openshift.expose-services="8080:http" \
+    io.openshift.s2i.destination="/tmp" \
+    io.openshift.s2i.scripts-url="image:///s2i" \
+    fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
 COPY sx /tmp/
@@ -36,12 +34,12 @@ COPY *.j* $APP_PATH/
 RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
-        nodejs \
-        npm \
-        python \
-        make \
-        gcc \
-        git && \
+    nodejs \
+    npm \
+    python \
+    make \
+    gcc \
+    git && \
     package-cleanup --problems && \
     package-cleanup --cleandupes; \
     package-cleanup --orphans && \

@@ -1,5 +1,4 @@
 FROM startx/sv-php
-MAINTAINER startx dev@startx.fr
 
 # update, install required, clean
 RUN yum -y update && yum install -y httpd php php-devel php-pear gcc-c++ make && yum clean all

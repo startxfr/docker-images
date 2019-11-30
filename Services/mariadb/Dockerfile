@@ -1,7 +1,5 @@
 FROM startx/fedora:28
 
-MAINTAINER Startx <dev@startx.fr>
-
 ENV SX_VERSION="fc28" \
     SX_TYPE="service" \
     SX_SERVICE="mariadb" \
@@ -17,21 +15,21 @@ ENV SX_VERSION="fc28" \
     RUN_BIN="mysqld_safe"
 
 LABEL name="$SX_ID" \
-      summary="$SX_SUMMARY" \
-      description="$SX_SUMMARY. Use for executing database based on mariadb or as container mainstream image for your database backend containers." \
-      version="$SX_VERSION" \
-      release="$SX_VERSION" \
-      maintainer="Startx <dev@startx.fr>" \
-      io.k8s.description="$SX_SUMMARY" \
-      io.k8s.display-name="$SX_ID" \
-      io.openshift.tags="startx,os,fedora,database,mariadb" \
-      io.openshift.non-scalable="true" \
-      io.openshift.min-memory="400Mi" \
-      io.openshift.min-cpu="3000m" \
-      io.openshift.expose-services="3306:mysql" \
-      io.openshift.s2i.destination="/tmp" \
-      io.openshift.s2i.scripts-url="image:///s2i" \
-      fr.startx.component="$SX_ID:$SX_VERSION"
+    summary="$SX_SUMMARY" \
+    description="$SX_SUMMARY. Use for executing database based on mariadb or as container mainstream image for your database backend containers." \
+    version="$SX_VERSION" \
+    release="$SX_VERSION" \
+    maintainer="Startx <dev@startx.fr>" \
+    io.k8s.description="$SX_SUMMARY" \
+    io.k8s.display-name="$SX_ID" \
+    io.openshift.tags="startx,os,fedora,database,mariadb" \
+    io.openshift.non-scalable="true" \
+    io.openshift.min-memory="400Mi" \
+    io.openshift.min-cpu="3000m" \
+    io.openshift.expose-services="3306:mysql" \
+    io.openshift.s2i.destination="/tmp" \
+    io.openshift.s2i.scripts-url="image:///s2i" \
+    fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
 COPY sx /tmp/
@@ -39,22 +37,22 @@ COPY my.cnf $MY_CONF
 RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
-        mariadb-tokudb-engine \
-        mariadb-connect-engine \
-        mariadb-rocksdb-engine \
-        mariadb-oqgraph-engine \
-        mariadb-connector-c \
-        mariadb-connector-odbc \
-        mariadb-server-utils \
-        mariadb-java-client \
-        mariadb-backup \
-        mariadb-common \
-        mariadb-errmsg \
-        mariadb-gssapi-server \
-        mariadb-cracklib-password-check \
-        glibc-langpack-fr \
-        mariadb \
-        maria* && \
+    mariadb-tokudb-engine \
+    mariadb-connect-engine \
+    mariadb-rocksdb-engine \
+    mariadb-oqgraph-engine \
+    mariadb-connector-c \
+    mariadb-connector-odbc \
+    mariadb-server-utils \
+    mariadb-java-client \
+    mariadb-backup \
+    mariadb-common \
+    mariadb-errmsg \
+    mariadb-gssapi-server \
+    mariadb-cracklib-password-check \
+    glibc-langpack-fr \
+    mariadb \
+    maria* && \
     package-cleanup --problems && \
     package-cleanup --cleandupes; \
     package-cleanup --orphans && \
