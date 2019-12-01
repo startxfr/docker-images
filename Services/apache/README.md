@@ -2,7 +2,8 @@
 
 # Docker OS Images : APACHE
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/apache/) -
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/apache/)
+
 [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
 
 [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-apache.svg)](https://hub.docker.com/r/startx/sv-apache) [![Docker apache pulls](https://img.shields.io/docker/pulls/startx/sv-apache)](https://hub.docker.com/r/startx/sv-apache) [![Docker Repository on Quay](https://quay.io/repository/startx/apache/status "Docker Repository on Quay")](https://quay.io/repository/startx/apache)
@@ -27,6 +28,7 @@ You can use Startx Apache image in many ways :
     - [Using this image as S2I builder](#using-this-image-as-s2i-builder)
     - [Using this image as base container](#using-this-image-as-base-container)
   - [Environment variable](#environment-variable)
+  - [Container command](#container-command)
   - [For advanced users](#for-advanced-users)
     - [Build & run a container using `docker`](#build--run-a-container-using-docker)
     - [Build & run a container using `docker-compose`](#build--run-a-container-using-docker-compose)
@@ -225,6 +227,21 @@ FROM startx/sv-apache:latest
 | APP_PORT   | `string` | `8080`             | Port to the application                                        |
 | LOG_PATH   | `string` | `/var/log/httpd`   | Destination path to the log produced by the webserver          |
 | SX_S2IDIR  | `string` | `/tmp`             | Destination path to the application pushed via s2i process     |
+
+## Container command
+
+| Variable    | Description                                        |
+| ----------- | -------------------------------------------------- |
+| assemble    | Execute the build script on \$APP_PATH application |
+| post-build  | Execute the post-build script                      |
+| pre-deploy  | Execute the pre-deployment script                  |
+| post-deploy | Execute the post-deployment script                 |
+| run         | Start the application                              |
+| isLive      | Execute the liveness-probe script                  |
+| isReady     | Execute the readyness-probe script                 |
+| info        | Get information about the sx-apache script         |
+| usage       | Get the usage message                              |
+| version     | Get information about the sx-apache version        |
 
 ## For advanced users
 
