@@ -20,17 +20,19 @@ LABEL name="$SX_ID" \
 
 USER root
 RUN dnf upgrade -yq --refresh && \
-    dnf install 'dnf-command(config-manager)' && \
+    dnf install -y 'dnf-command(config-manager)' && \
     dnf config-manager --enable --add-repo https://releases.ansible.com/ansible-runner/ansible-runner.el7.repo && \
     dnf install -yq --nogpgcheck \
     make \
-    python-pip \
+    python2-pip \
+    python2-jinja2 \
     ansible \
     ansible-runner \
-    bubblewrap \
+    # bubblewrap \
     rsync \
     openssh-clients \
     sshpass && \
+    rpm -ivh https://releases.ansible.com/ansible/rpm/release/epel-7-x86_64/ansible-2.9.1-1.el7.ans.noarch.rpm  && \
     dnf clean all --enablerepo=\*
 
 USER 1001
