@@ -8,14 +8,16 @@
 
 [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-apache.svg)](https://hub.docker.com/r/startx/sv-apache) [![Docker apache pulls](https://img.shields.io/docker/pulls/startx/sv-apache)](https://hub.docker.com/r/startx/sv-apache) [![Docker Repository on Quay](https://quay.io/repository/startx/apache/status "Docker Repository on Quay")](https://quay.io/repository/startx/apache)
 
-Startx apache is a base container used for web services and applications published in [Dockerhub registry](https://hub.docker.com/u/startx).
+Startx apache is a base container used for web services and applications published in [Dockerhub registry](https://hub.docker.com/u/startx)
+and [Quay registry](https://quay.io/repository/startx).
 This container contain :
 
-- fedora system envelope
-- core OS rpm (kernel, libs) updated every week
+- fedora / centos /alpine /ubi operating system
+- core OS packages (kernel, libs) updated every week
 - fundamentals tools (ex: pwgen, tar, zip) updated every week
-- Apache webserver and fundamentals modules (apache release depend on the flavour you use, read down for more information)
-- usefull tools (psmisc, procps, coreutils, findutils, wget, curl, vi, bash-completion) only for the `:latest` and `:devel` flavour.
+- usefull tools (psmisc, procps, coreutils, findutils, wget, curl, vi, bash-completion) only for the `:latest` flavour.
+- Apache webserver and fundamentals modules (apache release depend on the flavour you use, see [container flavours](#container-flavours)
+  for more information)
 
 You can use Startx Apache image in many ways :
 
