@@ -39,6 +39,7 @@ RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     python \
     make \
     gcc \
+    gcc-c++ \
     git && \
     package-cleanup --problems && \
     package-cleanup --cleandupes; \

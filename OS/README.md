@@ -2,33 +2,36 @@
 
 # Docker OS Images : FEDORA 30
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/OS/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/OS/)
 
-[![Dockerhub Registry](https://img.shields.io/docker/build/startx/fedora.svg)](https://hub.docker.com/r/startx/fedora) [![Docker Fedora pulls](https://img.shields.io/docker/pulls/startx/fedora)](https://hub.docker.com/r/startx/fedora) [![Docker Repository on Quay](https://quay.io/repository/startx/fedora/status "Docker Repository on Quay")](https://quay.io/repository/startx/fedora)
+[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
+
+[![Dockerhub Registry](https://img.shields.io/docker/build/startx/fedora.svg)](https://hub.docker.com/r/startx/fedora) [![Docker apache pulls](https://img.shields.io/docker/pulls/startx/fedora)](https://hub.docker.com/r/startx/fedora) [![Docker Repository on Quay](https://quay.io/repository/startx/apache/status "Docker Repository on Quay")](https://quay.io/repository/startx/apache)
 
 Startx fedora is a base container used for all startx services and applications published in
 [Dockerhub registry](https://hub.docker.com/u/startx) or [Quay registry](https://quay.io/repository/startx).
 This container contain :
 
-- fedora system envelope
-- core OS rpm (kernel, libs) updated every week
+- fedora / centos /alpine /ubi operating system
+- core OS packages (kernel, libs) updated every week
 - fundamentals tools (ex: pwgen, tar, zip) updated every week
-- usefull tools (psmisc, procps, coreutils, findutils, wget, curl, vi, bash-completion) only for the `:latest` and `:devel` flavour.
+- usefull tools (psmisc, procps, coreutils, findutils, wget, curl, vi, bash-completion) only for the `:latest` flavour.
 
-You can use Startx Fedora image in many ways :
+You can use Startx Apache image in many ways :
 
 - [Docker OS Images : FEDORA](#docker-os-images--fedora)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
     - [Running using docker-compose](#running-using-docker-compose)
-    - [Using this image as Openshift Build image](#using-this-image-as-openshift-build-image)
+    - [Running using Openshift](#running-using-openshift)
       - [Openshift images streams](#openshift-images-streams)
       - [Openshift builder template](#openshift-builder-template)
       - [Openshift deploy template](#openshift-deploy-template)
     - [Using this image as S2I builder](#using-this-image-as-s2i-builder)
     - [Using this image as base container](#using-this-image-as-base-container)
   - [Environment variable](#environment-variable)
+  - [Container command](#container-command)
   - [For advanced users](#for-advanced-users)
     - [Build & run a container using `docker`](#build--run-a-container-using-docker)
     - [Build & run a container using `docker-compose`](#build--run-a-container-using-docker-compose)
@@ -37,19 +40,25 @@ See more applications builders and sample on [startx docker images repository](h
 
 ## Container flavours
 
-| Docker Hub repository                                            | Quay.io repository                                                                  | Openshift                                                                                                                                                                                                                                                                                                                                    | Docker-compose                                                                                     | Fedora distribution         |
-| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | --------------------------- |
-| [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora) | [`quay.io/startx/fedora:latest`](https://quay.io/repository/startx/fedora?tab=tags) | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora rawhide + bash 5.0.7 |
-| [`startx/fedora:31`](https://hub.docker.com/r/startx/fedora)     | [`quay.io/startx/fedora:31`](https://quay.io/repository/startx/fedora?tab=tags)     | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora 31 + bash 5.0.7      |
-| [`startx/fedora:30`](https://hub.docker.com/r/startx/fedora)     | [`quay.io/startx/fedora:30`](https://quay.io/repository/startx/fedora?tab=tags)     | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora 30 + bash 5.0.7      |
-| [`startx/fedora:29`](https://hub.docker.com/r/startx/fedora)     | [`quay.io/startx/fedora:29`](https://quay.io/repository/startx/fedora?tab=tags)     | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora 29 + bash 4.4.23     |
-| [`startx/fedora:28`](https://hub.docker.com/r/startx/fedora)     | [`quay.io/startx/fedora:28`](https://quay.io/repository/startx/fedora?tab=tags)     | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora 28 + bash 4.3.12     |
-| [`startx/fedora:27`](https://hub.docker.com/r/startx/fedora)     | [`quay.io/startx/fedora:27`](https://quay.io/repository/startx/fedora?tab=tags)     | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora 27 + bash 4.2.4      |
-| [`startx/fedora:26`](https://hub.docker.com/r/startx/fedora)     | [`quay.io/startx/fedora:26`](https://quay.io/repository/startx/fedora?tab=tags)     | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/OS/docker-compose.yml) | Fedora 26 + bash 4.0.9      |
-| [`startx/fedora:23`](https://hub.docker.com/r/startx/fedora)     | **N/A**                                                                             | **N/A**                                                                                                                                                                                                                                                                                                                                      | **N/A**                                                                                            | Fedora 23                   |
-| [`startx/fedora:22`](https://hub.docker.com/r/startx/fedora)     | **N/A**                                                                             | **N/A**                                                                                                                                                                                                                                                                                                                                      | **N/A**                                                                                            | Fedora 22                   |
-| [`startx/fedora:21`](https://hub.docker.com/r/startx/fedora)     | **N/A**                                                                             | **N/A**                                                                                                                                                                                                                                                                                                                                      | **N/A**                                                                                            | Fedora 21                   |
-| [`startx/fedora:20`](https://hub.docker.com/r/startx/fedora)     | **N/A**                                                                             | **N/A**                                                                                                                                                                                                                                                                                                                                      | **N/A**                                                                                            | Fedora 20                   |
+| Docker Hub repository                                            | Content                          |
+| ---------------------------------------------------------------- | -------------------------------- |
+| [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora) | Fedora core rawhide + bash 5.0.7 |
+| [`startx/fedora:32`](https://hub.docker.com/r/startx/fedora)     | Fedora core 32 + bash 5.0.7      |
+| [`startx/fedora:31`](https://hub.docker.com/r/startx/fedora)     | Fedora core 31 + bash 5.0.7      |
+| [`startx/fedora:30`](https://hub.docker.com/r/startx/fedora)     | Fedora core 30 + bash 5.0.7      |
+| [`startx/fedora:29`](https://hub.docker.com/r/startx/fedora)     | Fedora core 29 + bash 4.4.23     |
+| [`startx/fedora:28`](https://hub.docker.com/r/startx/fedora)     | Fedora core 28 + bash 4.3.12     |
+| [`startx/fedora:27`](https://hub.docker.com/r/startx/fedora)     | Fedora core 27 + bash 4.2.4      |
+| [`startx/fedora:26`](https://hub.docker.com/r/startx/fedora)     | Fedora core 26 + bash 4.0.9      |
+| [`startx/fedora:23`](https://hub.docker.com/r/startx/fedora)     | Fedora core 23                   |
+| [`startx/fedora:22`](https://hub.docker.com/r/startx/fedora)     | Fedora core 22                   |
+| [`startx/fedora:21`](https://hub.docker.com/r/startx/fedora)     | Fedora core 21                   |
+| [`startx/fedora:20`](https://hub.docker.com/r/startx/fedora)     | Fedora core 20                   |
+| [`startx/centos:8`](https://hub.docker.com/r/startx/centos)      | Centos 8                         |
+| [`startx/centos:7`](https://hub.docker.com/r/startx/centos)      | Centos 7                         |
+| [`startx/centos:6`](https://hub.docker.com/r/startx/centos)      | Centos 6                         |
+| [`startx/ubi:8`](https://hub.docker.com/r/startx/ubi)            | RedHat UBI 8                     |
+| [`startx/alpine:3`](https://hub.docker.com/r/startx/alpine)      | Alpine 3.10                      |
 
 ## Running this image
 
@@ -85,7 +94,7 @@ docker-compose up -d
 docker-compose logs
 ```
 
-### Using this image as Openshift Build image
+### Running using Openshift
 
 #### Openshift images streams
 
@@ -210,6 +219,22 @@ FROM startx/fedora:30
 | SX_S2IDIR             | `string` | `/tmp`          | Destination path to the application pushed via s2i process               |
 | DAEMON_STOP_TIMEOUT   | `int`    | 3               | Number of second before stopping when smooth shutdown signal is received |
 | DAEMON_START_INTERVAL | `int`    | 10              | Hearthbeat rythm (in second) for the startx default daemeon              |
+
+## Container command
+
+| Variable    | Description                                        |
+| ----------- | -------------------------------------------------- |
+| assemble    | Execute the build script on \$APP_PATH application |
+| post-build  | Execute the post-build script                      |
+| pre-deploy  | Execute the pre-deployment script                  |
+| post-deploy | Execute the post-deployment script                 |
+| run         | Start the application                              |
+| daemon      | Start container as a daemon                        |
+| isLive      | Execute the liveness-probe script                  |
+| isReady     | Execute the readyness-probe script                 |
+| info        | Get information about the sx-os script             |
+| usage       | Get the usage message                              |
+| version     | Get information about the sx-os version            |
 
 ## For advanced users
 
