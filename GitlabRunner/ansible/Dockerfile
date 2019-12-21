@@ -26,13 +26,17 @@ RUN dnf upgrade -yq --refresh && \
     make \
     python-pip \
     ansible \
-    ansible-runner \
     bubblewrap \
     rsync \
     openssh-clients \
     sshpass && \
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
-    dnf clean all --enablerepo=\*
+    dnf clean all --enablerepo=\* && \
+    useradd -s /bin/bash -m -g 0 -u 1001 ansible && \
+    mkdir -p /.ansible && \
+    chgrp -R 0 /.ansible && \
+    chown -R 1001:0 /.ansible && \
+    chmod -R g=u /.ansible
 
 USER 1001
 

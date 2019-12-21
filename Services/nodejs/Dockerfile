@@ -38,6 +38,7 @@ RUN dnf upgrade -yq --refresh && \
     python \
     make \
     gcc \
+    gcc-c++ \
     git && \
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \

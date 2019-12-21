@@ -2,59 +2,62 @@
 
 # Docker OS Images : MARIADB on CentOS 8
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/mariadb/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/mariadb/)
+
+[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
 
 [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-mariadb.svg)](https://hub.docker.com/r/startx/sv-mariadb) [![Docker mariadb pulls](https://img.shields.io/docker/pulls/startx/sv-mariadb)](https://hub.docker.com/r/startx/sv-mariadb) [![Docker Repository on Quay](https://quay.io/repository/startx/mariadb/status "Docker Repository on Quay")](https://quay.io/repository/startx/mariadb)
 
-Startx mariadb is a base container used for database services published in [Dockerhub registry](https://hub.docker.com/u/startx).
+Startx mariadb is a base container used for database services published in [Dockerhub registry](https://hub.docker.com/u/startx)
+and [Quay registry](https://quay.io/repository/startx).
 This container contain :
 
-- fedora system envelope
-- core OS rpm (kernel, libs) updated every week
+- fedora / centos /alpine /ubi operating system
+- core OS packages (kernel, libs) updated every week
 - fundamentals tools (ex: pwgen, tar, zip) updated every week
-- Mariadb SQL server and fundamentals modules (mariadb release depend on the flavour you use, read down for more information)
-- usefull tools (psmisc, procps, coreutils, findutils, wget, curl, vi, bash-completion) only for the `:latest` and `:devel` flavour.
+- usefull tools (psmisc, procps, coreutils, findutils, wget, curl, vi, bash-completion) only for the `:latest` flavour.
+- Mariadb SQL server and fundamentals modules (mariadb release depend on the flavour you use, see [container flavours](#container-flavours)
+  for more information)
 
-You can use Startx Mariadb image in many ways :
+You can use Startx mariadb image in many ways :
 
 - [Docker OS Images : MARIADB](#docker-os-images--mariadb)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
     - [Running using docker-compose](#running-using-docker-compose)
-    - [Using this image as Openshift Build image](#using-this-image-as-openshift-build-image)
-      - [Openshift images streams](#openshift-images-streams)
-      - [Openshift builder template](#openshift-builder-template)
-      - [Openshift deploy template](#openshift-deploy-template)
+    - [Running using Openshift](#running-using-openshift)
     - [Using this image as S2I builder](#using-this-image-as-s2i-builder)
     - [Using this image as base container](#using-this-image-as-base-container)
   - [Environment variable](#environment-variable)
+  - [Container command](#container-command)
   - [For advanced users](#for-advanced-users)
     - [Build & run a container using `docker`](#build--run-a-container-using-docker)
     - [Build & run a container using `docker-compose`](#build--run-a-container-using-docker-compose)
 
-See more databases builders and sample on [startx docker images repository](https://github.com/startxfr/docker-images/blob/master)
+See more applications builders and sample on [startx docker images repository](https://github.com/startxfr/docker-images/blob/master)
 
 ## Container flavours
 
-| Docker Hub repository                                                     | Openshift                                                                                                                                                                                                                                                                                                                                                                              | Docker-compose                                                                                                   | Fedora distribution                                       |
-| ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| [`startx/sv-mariadb:latest`](https://hub.docker.com/r/startx/sv-mariadb)  | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/docker-compose.yml) | Fedora core rawhide + MariaDB 10.3.16 (compat mysql 15.1) |
-| [`startx/sv-mariadb:31`](https://hub.docker.com/r/startx/sv-mariadb)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/docker-compose.yml) | Fedora core 31 + MariaDB 10.3.16 (compat mysql 15.1)      |
-| [`startx/sv-mariadb:30`](https://hub.docker.com/r/startx/sv-mariadb)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/docker-compose.yml) | Fedora core 30 + MariaDB 10.3.12 (compat mysql 15.1)      |
-| [`startx/sv-mariadb:29`](https://hub.docker.com/r/startx/sv-mariadb)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/docker-compose.yml) | Fedora core 29 + MariaDB 10.3.12 (compat mysql 15.1)      |
-| [`startx/sv-mariadb:28`](https://hub.docker.com/r/startx/sv-mariadb)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/docker-compose.yml) | Fedora core 28 + MariaDB 10.0.21 (compat mysql 15.1)      |
-| [`startx/sv-mariadb:27`](https://hub.docker.com/r/startx/sv-mariadb)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/docker-compose.yml) | Fedora core 27 + MariaDB 10.0.21 (compat mysql 15.1)      |
-| [`startx/sv-mariadb:26`](https://hub.docker.com/r/startx/sv-mariadb)      | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/docker-compose.yml) | Fedora core 26 + MariaDB 10.0.21 (compat mysql 15.1)      |
-| [`startx/sv-mariadb:23`](https://hub.docker.com/r/startx/sv-mariadb)      | **N/A**                                                                                                                                                                                                                                                                                                                                                                                | **N/A**                                                                                                          | Fedora 23                                                 |
-| [`startx/sv-mariadb:22`](https://hub.docker.com/r/startx/sv-mariadb)      | **N/A**                                                                                                                                                                                                                                                                                                                                                                                | **N/A**                                                                                                          | Fedora 22                                                 |
-| [`startx/sv-mariadb:21`](https://hub.docker.com/r/startx/sv-mariadb)      | **N/A**                                                                                                                                                                                                                                                                                                                                                                                | **N/A**                                                                                                          | Fedora 21                                                 |
-| [`startx/sv-mariadb:20`](https://hub.docker.com/r/startx/sv-mariadb)      | **N/A**                                                                                                                                                                                                                                                                                                                                                                                | **N/A**                                                                                                          | Fedora 20                                                 |
-| [`startx/sv-mariadb:centos8`](https://hub.docker.com/r/startx/sv-mariadb) | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/docker-compose.yml) | Centos 8                                                  |
-| [`startx/sv-mariadb:centos7`](https://hub.docker.com/r/startx/sv-mariadb) | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/docker-compose.yml) | Centos 7                                                  |
-| [`startx/sv-mariadb:centos6`](https://hub.docker.com/r/startx/sv-mariadb) | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/docker-compose.yml) | Centos 6                                                  |
-| [`startx/sv-mariadb:alpine3`](https://hub.docker.com/r/startx/sv-mariadb) | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/docker-compose.yml) | Alpine 3.10 + MariaDB 10.2.14                             |
-| [`startx/sv-mariadb:ubi8`](https://hub.docker.com/r/startx/sv-mariadb)    | [`imageStreams`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-imageStreams.yml) [`build`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-build.yml) [`deployement`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-deploy.yml) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/docker-compose.yml) | RedHat UBI 8                                              |
+| Docker Hub repository                                                     | Content                                                   |
+| ------------------------------------------------------------------------- | --------------------------------------------------------- |
+| [`startx/sv-mariadb:latest`](https://hub.docker.com/r/startx/sv-mariadb)  | Fedora core rawhide + MariaDB 10.3.16 (compat mysql 15.1) |
+| [`startx/sv-mariadb:32`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 31 + MariaDB 10.3.16 (compat mysql 15.1)      |
+| [`startx/sv-mariadb:31`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 31 + MariaDB 10.3.16 (compat mysql 15.1)      |
+| [`startx/sv-mariadb:30`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 30 + MariaDB 10.3.12 (compat mysql 15.1)      |
+| [`startx/sv-mariadb:29`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 29 + MariaDB 10.3.12 (compat mysql 15.1)      |
+| [`startx/sv-mariadb:28`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 28 + MariaDB 10.0.21 (compat mysql 15.1)      |
+| [`startx/sv-mariadb:27`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 27 + MariaDB 10.0.21 (compat mysql 15.1)      |
+| [`startx/sv-mariadb:26`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 26 + MariaDB 10.0.21 (compat mysql 15.1)      |
+| [`startx/sv-mariadb:23`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 23 + MariaDB x.x.x                            |
+| [`startx/sv-mariadb:22`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 22 + MariaDB x.x.x                            |
+| [`startx/sv-mariadb:21`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 21 + MariaDB x.x.x                            |
+| [`startx/sv-mariadb:20`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 20 + MariaDB x.x.x                            |
+| [`startx/sv-mariadb:centos8`](https://hub.docker.com/r/startx/sv-mariadb) | Centos 8 + MariaDB x.x.x                                  |
+| [`startx/sv-mariadb:centos7`](https://hub.docker.com/r/startx/sv-mariadb) | Centos 7 + MariaDB x.x.x                                  |
+| [`startx/sv-mariadb:centos6`](https://hub.docker.com/r/startx/sv-mariadb) | Centos 6 + MariaDB x.x.x                                  |
+| [`startx/sv-mariadb:ubi8`](https://hub.docker.com/r/startx/sv-mariadb)    | RedHat UBI 8 + MariaDB x.x.x                              |
+| [`startx/sv-mariadb:alpine3`](https://hub.docker.com/r/startx/sv-mariadb) | Alpine 3.10 + MariaDB 10.2.14                             |
 
 ## Running this image
 
@@ -102,9 +105,9 @@ docker-compose up -d
 docker-compose logs
 ```
 
-### Using this image as Openshift Build image
+### Running using Openshift
 
-#### Openshift images streams
+- Openshift images streams
 
 Openshift cluster administrator can offer this image and all its flavour to all consumers.
 You can import our [openshift images stream](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-imageStreams.yml)
@@ -120,7 +123,7 @@ oc project openshift
 oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-imageStreams.yml
 ```
 
-#### Openshift builder template
+- Openshift builder template
 
 Openshift cluster administrator can add 2 build and deploy template to their consumers.
 As an administrator, you can import our [openshift ephemeral builder template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-build.yml)
@@ -154,7 +157,7 @@ oc process -f startx-mariadb-build-persist-template \
 | oc create -f -
 ```
 
-#### Openshift deploy template
+- Openshift deploy template
 
 Openshift cluster administrator can add a deploy template to their consumers.
 As an administrator, you can import our [openshift deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-deploy.yml)
@@ -243,6 +246,21 @@ FROM startx/sv-mariadb:centos7
 | LOG_PATH     | `string` | `/var/log/httpd`    | Destination path to the log produced by the webserver          |
 | LOADSQL_PATH | `string` | `/tmp/sql`          | Path for sql script to use when initializing database          |
 | SX_S2IDIR    | `string` | `/tmp`              | Destination path to the application pushed via s2i process     |
+
+## Container command
+
+| Variable    | Description                                        |
+| ----------- | -------------------------------------------------- |
+| assemble    | Execute the build script on \$APP_PATH application |
+| post-build  | Execute the post-build script                      |
+| pre-deploy  | Execute the pre-deployment script                  |
+| post-deploy | Execute the post-deployment script                 |
+| run         | Start the application                              |
+| isLive      | Execute the liveness-probe script                  |
+| isReady     | Execute the readyness-probe script                 |
+| info        | Get information about the sx-mariadb script        |
+| usage       | Get the usage message                              |
+| version     | Get information about the sx-mariadb version       |
 
 ## For advanced users
 
