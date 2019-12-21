@@ -19,7 +19,14 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
-RUN apk --no-cache add make ansible
+RUN apk --no-cache add \
+    make \
+    ansible && \
+    useradd -s /bin/bash -m -g 0 -u 1001 ansible && \
+    mkdir -p /.ansible && \
+    chgrp -R 0 /.ansible && \
+    chown -R 1001:0 /.ansible && \
+    chmod -R g=u /.ansible
 
 USER 1001
 
