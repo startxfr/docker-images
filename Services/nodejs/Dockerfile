@@ -31,7 +31,14 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 COPY *.j* $APP_PATH/
-RUN apk --no-cache add nodejs nodejs-npm python2 make gcc git && \
+RUN apk --no-cache add \
+    nodejs \
+    nodejs-npm \
+    python2 \
+    make \
+    gcc \
+    g++ \
+    git && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
