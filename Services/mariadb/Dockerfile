@@ -51,8 +51,7 @@ RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     mariadb-gssapi-server \
     mariadb-cracklib-password-check \
     glibc-langpack-fr \
-    mariadb \
-    maria* && \
+    mariadb && \
     package-cleanup --problems && \
     package-cleanup --cleandupes; \
     package-cleanup --orphans && \
