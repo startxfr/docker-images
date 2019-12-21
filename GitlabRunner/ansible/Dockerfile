@@ -33,7 +33,12 @@ RUN dnf upgrade -yq --refresh && \
     openssh-clients \
     sshpass && \
     rpm -ivh https://releases.ansible.com/ansible/rpm/release/epel-7-x86_64/ansible-2.9.1-1.el7.ans.noarch.rpm  && \
-    dnf clean all --enablerepo=\*
+    dnf clean all --enablerepo=\* && \
+    useradd -s /bin/bash -m -g 0 -u 1001 ansible && \
+    mkdir -p /.ansible && \
+    chgrp -R 0 /.ansible && \
+    chown -R 1001:0 /.ansible && \
+    chmod -R g=u /.ansible
 
 USER 1001
 

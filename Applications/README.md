@@ -1,6 +1,12 @@
-# STARTX Docker-Images Applications based on CentOS 7
+<img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
-This directory host various Open Source applications into docker containers based on [startx/centos:7 container](https://hub.docker.com/r/startx/centos)
+# STARTX Docker-Images Application Repository
+
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/)
+
+[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
+
+This directory host various Open Source applications into docker containers based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 You can use it to instanciate new container from the dockerhub public registry
 or as a parent container in your own container's.
@@ -14,16 +20,19 @@ OS, Services, VDI and application you will find here will be closer to your favo
 Please **read each container manual** for more information on how you can use it in
 your project and start using stable or experimental applications in your applications
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx) | [Sources](https://github.com/startxfr/docker-images/) | [STARTX Profile](https://github.com/startxfr) |
-| ------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | --------------------------------------------- |
+## Available services
 
+| Service        | Docker.io                                                               | Quay.io                                                           | Docs                          |
+| -------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------- |
+| **PhpMyAdmin** | [`startx/app-pma`](https://hub.docker.com/r/startx/app-pma)             | [`startx/pma`](https://quay.io/repository/startx/pma)             | [manual](pma/README.md)       |
+| **RockMongo**  | [`startx/app-rockmongo`](https://hub.docker.com/r/startx/app-rockmongo) | [`startx/rockmongo`](https://quay.io/repository/startx/rockmongo) | [manual](rockmongo/README.md) |
 
-## Available applications
+## Available Flavours
 
-| Service    | Docker Hub repository                                                   | Fedora flavours                                                             | CentOS flavours | Doc                           |
-| ---------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------- | ----------------------------- |
-| PhpMyAdmin | [`startx/app-pma`](https://hub.docker.com/r/startx/app-pma)             | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` `:28` `:29` `:30` `:31` `:32` | `:6` `:7` `:8`  | [manual](pma/README.md)       |
-| RockMongo  | [`startx/app-rockmongo`](https://hub.docker.com/r/startx/app-rockmongo) | `:latest` `:20` `:21` `:22` `:23` `:26` `:27` `:28` `:29` `:30` `:31` `:32` | `:6` `:7` `:8`  | [manual](rockmongo/README.md) |
+| Service        | Fedora flavours                                                                                                                                      | CentOS flavours | Alpine | UBI |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- | ------ | --- |
+| **PhpMyAdmin** | `:latest` `:fc23` ` :fc24``:fc25 ` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
+| **RockMongo**  | `:latest` `:fc23` ` :fc24``:fc25 ` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
 
 ## Running from dockerhub registry
 
@@ -31,10 +40,3 @@ your project and start using stable or experimental applications in your applica
 | -------------- | ---------------------------------------------------------------- |
 | **PhpMyAdmin** | `docker run -d -p 80:80 --name="pma" startx/app-pma`             |
 | **RockMongo**  | `docker run -d -p 80:80 --name="rockmongo" startx/app-rockmongo` |
-
-## Container flavours
-
-| Service    | Docker Hub repository                                                   | Fedora                                                                                            | CentOS                           |
-| ---------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | -------------------------------- |
-| PhpMyAdmin | [`startx/app-pma`](https://hub.docker.com/r/startx/app-pma)             | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos6` `:centos7` `:centos8` |
-| RockMongo  | [`startx/app-rockmongo`](https://hub.docker.com/r/startx/app-rockmongo) | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos6` `:centos7` `:centos8` |

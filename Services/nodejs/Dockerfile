@@ -38,6 +38,7 @@ RUN dnf upgrade -yq --refresh && \
     python36 \
     make \
     gcc \
+    gcc-c++ \
     git && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \
