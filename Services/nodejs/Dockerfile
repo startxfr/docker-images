@@ -39,6 +39,7 @@ RUN yum install -y -q yum-utils && \
     python \
     make \
     gcc \
+    gcc-c++ \
     git && \
     package-cleanup --problems && \
     package-cleanup --cleandupes; \

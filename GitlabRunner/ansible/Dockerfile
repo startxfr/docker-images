@@ -25,15 +25,22 @@ RUN yum install -y -q yum-utils && \
     make \
     python-pip \
     ansible \
-    ansible-runner \
     bubblewrap \
     rsync \
     openssh-clients \
     sshpass && \
+    dnf install -yq 'dnf-command(config-manager)' && \
+    dnf config-manager --enable --add-repo https://releases.ansible.com/ansible-runner/ansible-runner.el7.repo && \
+    dnf install -yq --nogpgcheck ansible-runner && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
-    yum clean all --enablerepo=\*
+    yum clean all --enablerepo=\* && \
+    useradd -s /bin/bash -m -g 0 -u 1001 ansible && \
+    mkdir -p /.ansible && \
+    chgrp -R 0 /.ansible && \
+    chown -R 1001:0 /.ansible && \
+    chmod -R g=u /.ansible
 
 USER 1001
 
