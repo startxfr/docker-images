@@ -24,6 +24,7 @@ LABEL name="$SX_ID" \
     io.openshift.expose-services="$APP_PORT:http" \
     io.openshift.s2i.destination="/tmp" \
     io.openshift.s2i.scripts-url="image:///s2i" \
+    io.s2i.scripts-url="image:///s2i" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
@@ -35,19 +36,19 @@ RUN apk --no-cache add php7-apache2 php7 php7-phar php7-json php7-iconv php7-ope
     php7-ftp php7-xdebug php7-mcrypt php7-mbstring php7-soap php7-gmp php7-pdo_odbc \
     php7-dom php7-pdo php7-zip php7-mysqli php7-sqlite3 php7-pdo_pgsql php7-bcmath \
     php7-gd php7-odbc php7-pdo_mysql php7-gettext php7-xmlreader php7-xmlwriter \
-    php7-tokenizer php7-xmlrpc php7-bz2 php7-curl php7-ctype php7-session php7-redis php7-exif && \
-    cp /usr/bin/php7 /usr/bin/php && rm -f /var/cache/apk/* && \
-    mv /tmp/s2i/bin/* /s2i/ && \
-    mv /tmp/sx/bin/* /bin/ && \
-    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
-    rm -rf /tmp/sx /tmp/s2i && \
-    chmod ug+r $HTTPDCONF && \
-    mkdir -p $APP_PATH $LOG_PATH /run/php-fpm /var/lib/php $SX_PHPSESS_PATH && \
-    chgrp -R 0 $APP_PATH $LOG_PATH $RUN_DIR /bin/sx* /s2i $SX_LIBDIR /tmp /run/php-fpm /var/lib/php $SX_PHPSESS_PATH && \
-    chmod -R ug+rw $APP_PATH $LOG_PATH /run/php-fpm /var/lib/php $SX_PHPSESS_PATH && \
-    chown -R 1001:0 /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH $LOG_PATH /run/php-fpm /var/lib/php $SX_PHPSESS_PATH && \
-    chmod -R g=u $APP_PATH $LOG_PATH $RUN_DIR /bin/sx* /s2i $SX_LIBDIR /tmp /run/php-fpm /var/lib/php $SX_PHPSESS_PATH && \
-    chmod -R ugo+x /bin/sx* && \
+    php7-tokenizer php7-xmlrpc php7-bz2 php7-curl php7-ctype php7-session php7-redis php7-exif &&
+    cp /usr/bin/php7 /usr/bin/php && rm -f /var/cache/apk/* &&
+    mv /tmp/s2i/bin/* /s2i/ &&
+    mv /tmp/sx/bin/* /bin/ &&
+    mv /tmp/sx/lib/* $SX_LIBDIR/ &&
+    rm -rf /tmp/sx /tmp/s2i &&
+    chmod ug+r $HTTPDCONF &&
+    mkdir -p $APP_PATH $LOG_PATH /run/php-fpm /var/lib/php $SX_PHPSESS_PATH &&
+    chgrp -R 0 $APP_PATH $LOG_PATH $RUN_DIR /bin/sx* /s2i $SX_LIBDIR /tmp /run/php-fpm /var/lib/php $SX_PHPSESS_PATH &&
+    chmod -R ug+rw $APP_PATH $LOG_PATH /run/php-fpm /var/lib/php $SX_PHPSESS_PATH &&
+    chown -R 1001:0 /bin/sx* /s2i $SX_LIBDIR /tmp $APP_PATH $LOG_PATH /run/php-fpm /var/lib/php $SX_PHPSESS_PATH &&
+    chmod -R g=u $APP_PATH $LOG_PATH $RUN_DIR /bin/sx* /s2i $SX_LIBDIR /tmp /run/php-fpm /var/lib/php $SX_PHPSESS_PATH &&
+    chmod -R ugo+x /bin/sx* &&
     rm -rf $APP_PATH/index.html
 
 USER 1001

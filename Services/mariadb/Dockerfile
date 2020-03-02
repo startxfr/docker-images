@@ -9,7 +9,7 @@ ENV SX_VERSION="alpine3" \
     MY_CONF=/etc/my.cnf \
     DATA_PATH=/data \
     LOG_PATH=/var/log/mariadb \
-    LOADSQL_PATH=/tmp/sql  \
+    LOADSQL_PATH=/tmp/sql \
     DB_CHARSET=utf8 \
     LC_MESSAGES=en_US \
     RUN_BIN=/usr/bin/mysqld
@@ -29,22 +29,23 @@ LABEL name="$SX_ID" \
     io.openshift.expose-services="3306:mysql" \
     io.openshift.s2i.destination="/tmp" \
     io.openshift.s2i.scripts-url="image:///s2i" \
+    io.s2i.scripts-url="image:///s2i" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
 COPY sx /tmp/
 COPY my.cnf $MY_CONF
-RUN apk --no-cache add mariadb mariadb-client mysql && \
-    mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH /run/mysqld && \
-    mv /tmp/s2i/bin/* /s2i/ && \
-    mv /tmp/sx/bin/* /bin/ && \
-    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
-    rm -rf /tmp/sx /tmp/s2i && \
-    touch $DATA_PATH/.keep && \
-    chown -R mysql:mysql $LOG_PATH $DATA_PATH $LOADSQL_PATH && \
-    chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* /var/lib/mysql $RUN_BIN /run/mysqld $MY_CONF && \
-    chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* /var/lib/mysql $RUN_BIN /run/mysqld $MY_CONF && \
-    chmod -R ugo+x /bin/sx* && \
+RUN apk --no-cache add mariadb mariadb-client mysql &&
+    mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH /run/mysqld &&
+    mv /tmp/s2i/bin/* /s2i/ &&
+    mv /tmp/sx/bin/* /bin/ &&
+    mv /tmp/sx/lib/* $SX_LIBDIR/ &&
+    rm -rf /tmp/sx /tmp/s2i &&
+    touch $DATA_PATH/.keep &&
+    chown -R mysql:mysql $LOG_PATH $DATA_PATH $LOADSQL_PATH &&
+    chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* /var/lib/mysql $RUN_BIN /run/mysqld $MY_CONF &&
+    chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* /var/lib/mysql $RUN_BIN /run/mysqld $MY_CONF &&
+    chmod -R ugo+x /bin/sx* &&
     chmod ug+rw $MY_CONF
 
 USER 1001

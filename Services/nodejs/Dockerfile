@@ -26,7 +26,8 @@ LABEL name="$SX_ID" \
     io.openshift.expose-services="8080:http" \
     io.openshift.s2i.destination="/tmp" \
     io.openshift.s2i.scripts-url="image:///s2i" \
-    fr.startx.component="$SX_ID:$SX_VERSION"
+    io.s2i.scripts-url="image:///s2i" \ 
+fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
 COPY sx /tmp/
@@ -38,16 +39,16 @@ RUN apk --no-cache add \
     make \
     gcc \
     g++ \
-    git && \
-    mv /tmp/s2i/bin/* /s2i/ && \
-    mv /tmp/sx/bin/* /bin/ && \
-    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
-    rm -rf /tmp/sx /tmp/s2i && \
-    mkdir -p $DATA_PATH $APP_PATH $LOG_PATH /.npm /.config  && \
-    chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /.config /.npm && \
-    chown -R 1001:0 /bin/sx* /s2i && \
-    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /.config /.npm && \
-    chmod -R ugo+rwx $LOG_PATH /.config /.npm && \
+    git &&
+    mv /tmp/s2i/bin/* /s2i/ &&
+    mv /tmp/sx/bin/* /bin/ &&
+    mv /tmp/sx/lib/* $SX_LIBDIR/ &&
+    rm -rf /tmp/sx /tmp/s2i &&
+    mkdir -p $DATA_PATH $APP_PATH $LOG_PATH /.npm /.config &&
+    chgrp -R 0 $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /.config /.npm &&
+    chown -R 1001:0 /bin/sx* /s2i &&
+    chmod -R g=u $APP_PATH $DATA_PATH $LOG_PATH /bin/sx* /s2i /.config /.npm &&
+    chmod -R ugo+rwx $LOG_PATH /.config /.npm &&
     chmod -R ugo+x /bin/sx*
 
 USER 1001
