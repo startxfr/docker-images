@@ -260,7 +260,14 @@ function init_logDir {
 function init_sqlloadDir {
     if [[ -d $LOADSQL_PATH ]]; then
         echoVerbose "sql directory $LOADSQL_PATH EXIST"
-        chmod 0774 $LOADSQL_PATH;
+        chmod 0774 $LOADSQL_PATH &>/dev/null;
+        if [[ $? == 0 ]]; then
+            echoVerbose "sql directory $LOADSQL_PATH premissions are updated"
+        else
+            echoVerbose "sql directory $LOADSQL_PATH premissions could not be updated"
+        fi
+    else
+        echoVerbose "sql directory $LOADSQL_PATH DOESN'T EXIST"
     fi
 }
 
@@ -418,6 +425,7 @@ function config_createuser {
 
 function config_resetdatabase {
     if [[ -n "$MYSQL_DATABASE" ]]; then
+        echoVerbose "Remove database $MYSQL_DATABASE previously created on $HOSTNAME"
         mysql -uroot -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -e "DROP DATABASE IF EXISTS $MYSQL_DATABASE;"
         config_createdatabase
     else
