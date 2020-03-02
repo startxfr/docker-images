@@ -52,7 +52,6 @@ RUN yum install -y -q yum-utils &&
         php-tcpdf-dejavu-sans-fonts \
         php-tidy &&
     package-cleanup --problems &&
-    package-cleanup --cleandupes &&
     package-cleanup --orphans &&
     yum remove -y --skip-broken yum-utils &&
     yum clean all --enablerepo=\* &&

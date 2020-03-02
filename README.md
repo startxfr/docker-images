@@ -1,16 +1,8 @@
 [![docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-<<<<<<< HEAD
 # STARTX Docker-Images Repository CentOS 7
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/centos7/OS/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
- 
-[![Dockerhub Registry](https://img.shields.io/docker/build/startx/fedora.svg)](https://hub.docker.com/r/startx/fedora) [![Docker Fedora pulls](https://img.shields.io/docker/pulls/startx/fedora)](https://hub.docker.com/r/startx/fedora) [![Docker Repository on Quay](https://quay.io/repository/startx/fedora/status "Docker Repository on Quay")](https://quay.io/repository/startx/fedora)
-=======
-# STARTX Docker-Images Repository
-
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/OS/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
->>>>>>> master
 
 [![Dockerhub Registry](https://img.shields.io/docker/build/startx/fedora.svg)](https://hub.docker.com/r/startx/fedora) [![Docker Fedora pulls](https://img.shields.io/docker/pulls/startx/fedora)](https://hub.docker.com/r/startx/fedora) [![Docker Repository on Quay](https://quay.io/repository/startx/fedora/status "Docker Repository on Quay")](https://quay.io/repository/startx/fedora)
 
@@ -93,16 +85,6 @@ If you want to be guided on setting-up and installing various containers engines
 [openshift](https://github.com/startxfr/containers-engines/blob/master/Openshift.md))
 you can [read ours containers engines guidelines](https://github.com/startxfr/containers-engines).
 
-<<<<<<< HEAD
-1. **Install docker and docker-compose on your environment** 
-  1. Check if you have a running docker daemon using `docker --version` If not try to run it using `sudo docker --daemon`. If docker is not installed, follow [docker installation guidelines](https://docs.docker.com/v1.8/installation/)
-  2. Check if you have docker-compose installed using `docker-compose --version`. If docker-compose is not installed, follow [docker-compose installation guidelines](https://docs.docker.com/compose/install/)
-  3. Check if you have git installed using `git --version`. If git is not installed, execute `sudo yum install -yq git`
-2. **Copy repository source locally**
-  1. Setup a working directory with `mkdir startx-docker-images; cd startx-docker-images;`
-  2. Clone source repository with `git clone https://github.com/startxfr/docker-images.git .`
-
-=======
 1. **Install docker and docker-compose on your environment**
 1. Check if you have a running docker daemon using `docker --version` If not try to run it using `sudo docker --daemon`. If docker is not installed, follow [docker installation guidelines](https://docs.docker.com/v1.8/installation/)
 1. Check if you have docker-compose installed using `docker-compose --version`. If docker-compose is not installed, follow [docker-compose installation guidelines](https://docs.docker.com/compose/install/)
@@ -110,7 +92,6 @@ you can [read ours containers engines guidelines](https://github.com/startxfr/co
 1. **Copy repository source locally**
 1. Setup a working directory with `mkdir startx-docker-images; cd startx-docker-images;`
 1. Clone source repository with `git clone https://github.com/startxfr/docker-images.git .`
->>>>>>> master
 
 ### Build all containers using `docker-compose`
 

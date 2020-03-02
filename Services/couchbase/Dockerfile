@@ -43,7 +43,6 @@ RUN yum install -y -q yum-utils &&
         ncurses-compat-libs \
         python2 &&
     package-cleanup --problems &&
-    package-cleanup --cleandupes &&
     package-cleanup --orphans &&
     yum remove -y --skip-broken yum-utils &&
     yum clean all --enablerepo=\* &&

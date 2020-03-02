@@ -37,7 +37,6 @@ RUN yum install -y -q yum-utils &&
     yum install -y -q --nogpgcheck \
         mongodb-org-unstable &&
     package-cleanup --problems &&
-    package-cleanup --cleandupes &&
     package-cleanup --orphans &&
     yum remove -y --skip-broken yum-utils &&
     yum clean all --enablerepo=\* &&

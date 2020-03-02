@@ -34,7 +34,6 @@ RUN yum install -y -q yum-utils &&
         nmap-ncat \
         telnet &&
     package-cleanup --problems &&
-    package-cleanup --cleandupes &&
     package-cleanup --orphans &&
     yum remove -y --skip-broken yum-utils &&
     yum clean all --enablerepo=\* &&
