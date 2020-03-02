@@ -54,8 +54,7 @@ RUN dnf install -yq yum-utils dnf-plugin-system-upgrade &&
         glibc-langpack-fr \
         mariadb &&
     package-cleanup --problems &&
-    package-cleanup --cleandupes
-package-cleanup --orphans &&
+    package-cleanup --orphans &&
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum &&
     dnf clean all --enablerepo=\* &&
     mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH &&
