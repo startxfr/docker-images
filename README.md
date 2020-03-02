@@ -2,7 +2,7 @@
 
 # STARTX Docker-Images Repository Fedora 32
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/fc32/OS/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc32)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/OS/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
 
 [![Dockerhub Registry](https://img.shields.io/docker/build/startx/fedora.svg)](https://hub.docker.com/r/startx/fedora) [![Docker Fedora pulls](https://img.shields.io/docker/pulls/startx/fedora)](https://hub.docker.com/r/startx/fedora) [![Docker Repository on Quay](https://quay.io/repository/startx/fedora/status "Docker Repository on Quay")](https://quay.io/repository/startx/fedora)
 
@@ -136,12 +136,14 @@ and stay stiked to a defined stable release.
 
 | Release | Description                                                                      |
 | ------- | -------------------------------------------------------------------------------- |
+| 0.95.7  | Add s2i label for s2i compat                                                     |
+| 0.95.5  | Add _.data.sql and _.schema.sql dump support for mariadb                         |
 | 0.95.3  | Updating docker for better diff and merge. Improve doc structures                |
 | 0.93.1  | Unstable release with UBI and centos8 added. Prepare first major release         |
 | 0.40.0  | Stable release with updated images lib packages                                  |
-| 0.32.3  | Stable release with images fully compatible with OKD 4.0 (s2i, podman)           |
-| 0.32.1  | Adding temporize function into sx lib                                            |
-| 0.32.0  | Adding support for fedora 32 containers                                          |
+| 0.31.3  | Stable release with images fully compatible with OKD 4.0 (s2i, podman)           |
+| 0.31.1  | Adding temporize function into sx lib                                            |
+| 0.31.0  | Adding support for fedora 31 containers                                          |
 | 0.4.16  | Adding support for OKD 3.11 (s2i, docker)                                        |
 | 0.4.10  | Adding build and deploy templates for OCP 3.9                                    |
 | 0.4.8   | Adding images streams for OCP 3.6                                                |
@@ -155,5 +157,5 @@ sx-lib release is defined with the following rules
 | Release | Name  | Description                                                                                                                                     |
 | ------- | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | x.0.0   | Major | Major change in the sx-lib constitution                                                                                                         |
-| x.x.0   | Minor | Major change in offered docker image flavour (second numeric coresponding to the fedora release counter. ex: Fedora 32 = x.32.x sx-lib release) |
+| x.x.0   | Minor | Major change in offered docker image flavour (second numeric coresponding to the fedora release counter. ex: Fedora 31 = x.31.x sx-lib release) |
 | x.x.x   | Push  | Evolution, bugfix or security fix related to the sx-lib or image construction                                                                   |
