@@ -37,8 +37,7 @@ RUN dnf install -yq yum-utils dnf-plugin-system-upgrade &&
     dnf install -yq --nogpgcheck \
         mongodb-org-unstable &&
     package-cleanup --problems &&
-    package-cleanup --cleandupes
-package-cleanup --orphans &&
+    package-cleanup --orphans &&
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum &&
     dnf clean all --enablerepo=\* &&
     usermod -a -G 0 $MONGO_USER &&
