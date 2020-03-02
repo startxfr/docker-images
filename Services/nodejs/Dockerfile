@@ -27,7 +27,7 @@ LABEL name="$SX_ID" \
     io.openshift.s2i.destination="/tmp" \
     io.openshift.s2i.scripts-url="image:///s2i" \
     io.s2i.scripts-url="image:///s2i" \ 
-    fr.startx.component="$SX_ID:$SX_VERSION"
+fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
 COPY sx /tmp/
@@ -43,7 +43,6 @@ RUN dnf install -yq yum-utils dnf-plugin-system-upgrade &&
         gcc-c++ \
         git &&
     package-cleanup --problems &&
-    package-cleanup --cleandupes
     package-cleanup --orphans &&
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum &&
     dnf clean all --enablerepo=\* &&
