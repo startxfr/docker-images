@@ -26,34 +26,35 @@ LABEL name="$SX_ID" \
     io.openshift.expose-services="2002:unoconv" \
     io.openshift.s2i.destination="/tmp" \
     io.openshift.s2i.scripts-url="image:///s2i" \
+    io.s2i.scripts-url="image:///s2i" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
 COPY sx /tmp/
-RUN yum install -y -q yum-utils && \
-    yum upgrade -y -q  && \
+RUN yum install -y -q yum-utils &&
+    yum upgrade -y -q &&
     yum install -y -q --nogpgcheck \
-    unoconv \
-    libreoffice-writer \
-    libreoffice-calc \
-    pdfmod \
-    ghostscript && \
-    package-cleanup --problems && \
-    package-cleanup --cleandupes; \
-    package-cleanup --orphans && \
-    yum remove -y --skip-broken yum-utils && \
-    yum clean all --enablerepo=\* && \
-    useradd -s /bin/bash -m -g 0 -u 1001 ooconv && \
-    mkdir -p $DATA_PATH /.cache && \
-    mv /tmp/s2i/bin/* /s2i/ && \
-    mv /tmp/sx/bin/* /bin/ && \
-    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
-    rm -rf /tmp/sx /tmp/s2i && \
-    touch $DATA_PATH/.keep && \
-    chgrp -R 0 $DATA_PATH /bin/sx-* /s2i $SX_LIBDIR* /.cache && \
-    chown -R 1001:0 /bin/sx-* /s2i $SX_LIBDIR* /.cache && \
-    chmod -R g=u $DATA_PATH /bin/sx-* /s2i $SX_LIBDIR* /.cache && \
-    chmod -R ugo+x /bin/sx* && \
+        unoconv \
+        libreoffice-writer \
+        libreoffice-calc \
+        pdfmod \
+        ghostscript &&
+    package-cleanup --problems &&
+    package-cleanup --cleandupes &&
+    package-cleanup --orphans &&
+    yum remove -y --skip-broken yum-utils &&
+    yum clean all --enablerepo=\* &&
+    useradd -s /bin/bash -m -g 0 -u 1001 ooconv &&
+    mkdir -p $DATA_PATH /.cache &&
+    mv /tmp/s2i/bin/* /s2i/ &&
+    mv /tmp/sx/bin/* /bin/ &&
+    mv /tmp/sx/lib/* $SX_LIBDIR/ &&
+    rm -rf /tmp/sx /tmp/s2i &&
+    touch $DATA_PATH/.keep &&
+    chgrp -R 0 $DATA_PATH /bin/sx-* /s2i $SX_LIBDIR* /.cache &&
+    chown -R 1001:0 /bin/sx-* /s2i $SX_LIBDIR* /.cache &&
+    chmod -R g=u $DATA_PATH /bin/sx-* /s2i $SX_LIBDIR* /.cache &&
+    chmod -R ugo+x /bin/sx* &&
     chmod -R ugo+wx /.cache
 
 USER 1001
