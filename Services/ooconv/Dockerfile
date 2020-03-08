@@ -31,25 +31,25 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf upgrade -yq --refresh &&
+RUN dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
-        unoconv \
-        libreoffice-writer \
-        libreoffice-calc \
-        pdfmod \
-        ghostscript &&
-    dnf clean all --enablerepo=\* &&
-    useradd -s /bin/bash -m -g 0 -u 1001 ooconv &&
-    mkdir -p $DATA_PATH /.cache &&
-    mv /tmp/s2i/bin/* /s2i/ &&
-    mv /tmp/sx/bin/* /bin/ &&
-    mv /tmp/sx/lib/* $SX_LIBDIR/ &&
-    rm -rf /tmp/sx /tmp/s2i &&
-    touch $DATA_PATH/.keep &&
-    chgrp -R 0 $DATA_PATH /bin/sx-* /s2i $SX_LIBDIR* /.cache &&
-    chown -R 1001:0 /bin/sx-* /s2i $SX_LIBDIR* /.cache &&
-    chmod -R g=u $DATA_PATH /bin/sx-* /s2i $SX_LIBDIR* /.cache &&
-    chmod -R ugo+x /bin/sx* &&
+    unoconv \
+    libreoffice-writer \
+    libreoffice-calc \
+    pdfmod \
+    ghostscript && \
+    dnf clean all --enablerepo=\* && \
+    useradd -s /bin/bash -m -g 0 -u 1001 ooconv && \
+    mkdir -p $DATA_PATH /.cache && \
+    mv /tmp/s2i/bin/* /s2i/ && \
+    mv /tmp/sx/bin/* /bin/ && \
+    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
+    rm -rf /tmp/sx /tmp/s2i && \
+    touch $DATA_PATH/.keep && \
+    chgrp -R 0 $DATA_PATH /bin/sx-* /s2i $SX_LIBDIR* /.cache && \
+    chown -R 1001:0 /bin/sx-* /s2i $SX_LIBDIR* /.cache && \
+    chmod -R g=u $DATA_PATH /bin/sx-* /s2i $SX_LIBDIR* /.cache && \
+    chmod -R ugo+x /bin/sx* && \
     chmod -R ugo+wx /.cache
 
 USER 1001

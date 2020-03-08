@@ -27,28 +27,28 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf upgrade -yq --refresh &&
+RUN dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
-        ncurses \
-        ncurses-libs \
-        nmap-ncat \
-        gcc \
-        libevent &&
-    dnf install -yq --nogpgcheck --skip-broken http://rpmfind.net/linux/centos/7.6.1810/os/x86_64/Packages/telnet-0.17-64.el7.x86_64.rpm &&
-    tar -zxvf latest &&
-    cd memcached-1.5.16 &&
-    ./configure && make && make test && sudo make install &&
-    dnf remove -y --skip-broken gcc &&
-    dnf clean all --enablerepo=\* &&
-    mv /tmp/s2i/bin/* /s2i/ &&
-    mv /tmp/sx/bin/* /bin/ &&
-    mv /tmp/sx/lib/* $SX_LIBDIR/ &&
-    rm -rf /tmp/sx /tmp/s2i &&
-    mkdir -p $LOG_PATH &&
-    chgrp -R 0 $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* &&
-    chown -R 1001:0 /bin/sx-* /s2i $SX_LIBDIR* &&
-    chmod -R g=u $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* &&
-    chmod -R ugo+x /bin/sx* &&
+    ncurses \
+    ncurses-libs \
+    nmap-ncat \
+    gcc \
+    libevent && \
+    dnf install -yq --nogpgcheck --skip-broken http://rpmfind.net/linux/centos/7.6.1810/os/x86_64/Packages/telnet-0.17-64.el7.x86_64.rpm && \
+    tar -zxvf latest && \
+    cd memcached-1.5.16 && \
+    ./configure && make && make test && sudo make install && \
+    dnf remove -y --skip-broken gcc && \
+    dnf clean all --enablerepo=\* && \
+    mv /tmp/s2i/bin/* /s2i/ && \
+    mv /tmp/sx/bin/* /bin/ && \
+    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
+    rm -rf /tmp/sx /tmp/s2i && \
+    mkdir -p $LOG_PATH && \
+    chgrp -R 0 $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
+    chown -R 1001:0 /bin/sx-* /s2i $SX_LIBDIR* && \
+    chmod -R g=u $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
+    chmod -R ugo+x /bin/sx* && \
     chmod -R ugo+rwx $LOG_PATH
 
 USER 1001

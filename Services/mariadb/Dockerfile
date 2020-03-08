@@ -36,29 +36,29 @@ USER root
 COPY sx /tmp/
 COPY my.cnf $MY_CONF
 COPY mariadb.repo centos.repo /etc/yum.repos.d/
-RUN rpm --import https://yum.mariadb.org/RPM-GPG-KEY-MariaDB &&
-    dnf upgrade -yq --refresh --nobest &&
+RUN rpm --import https://yum.mariadb.org/RPM-GPG-KEY-MariaDB && \
+    dnf upgrade -yq --refresh --nobest && \
     dnf install -yq --nogpgcheck boost boost-devel \
-        dnf install -yq --nogpgcheck --skip-broken \
-        MariaDB-server \
-        galera-4 \
-        MariaDB-client \
-        MariaDB-shared \
-        MariaDB-backup \
-        MariaDB-common &&
-    dnf clean all --enablerepo=\* &&
-    useradd -s /bin/bash -m -u 1001 mysql &&
-    usermod -G 0 mysql &&
-    mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH &&
-    mv /tmp/s2i/bin/* /s2i/ &&
-    mv /tmp/sx/bin/* /bin/ &&
-    mv /tmp/sx/lib/* $SX_LIBDIR/ &&
-    rm -rf /tmp/sx /tmp/s2i &&
-    touch $DATA_PATH/.keep &&
-    chown -R mysql:mysql $LOG_PATH $DATA_PATH $LOADSQL_PATH &&
-    chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* $MY_CONF &&
-    chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* $MY_CONF &&
-    chmod -R ugo+x /bin/sx* &&
+    dnf install -yq --nogpgcheck --skip-broken \
+    MariaDB-server \
+    galera-4 \
+    MariaDB-client \
+    MariaDB-shared \
+    MariaDB-backup \
+    MariaDB-common && \
+    dnf clean all --enablerepo=\* && \
+    useradd -s /bin/bash -m -u 1001 mysql && \
+    usermod -G 0 mysql && \
+    mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH && \
+    mv /tmp/s2i/bin/* /s2i/ && \
+    mv /tmp/sx/bin/* /bin/ && \
+    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
+    rm -rf /tmp/sx /tmp/s2i && \
+    touch $DATA_PATH/.keep && \
+    chown -R mysql:mysql $LOG_PATH $DATA_PATH $LOADSQL_PATH && \
+    chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* $MY_CONF && \
+    chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* $MY_CONF && \
+    chmod -R ugo+x /bin/sx* && \
     chmod ug+rw $MY_CONF
 
 USER 1001

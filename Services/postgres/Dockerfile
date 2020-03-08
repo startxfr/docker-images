@@ -30,24 +30,24 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf upgrade -yq --refresh &&
+RUN dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
-        libicu \
-        libpq &&
-    rpm -ivh $RPM_REPO/postgresql12-libs-12.1-1PGDG.rhel8.x86_64.rpm &&
-    rpm -ivh $RPM_REPO/postgresql12-12.1-1PGDG.rhel8.x86_64.rpm &&
-    rpm -ivh $RPM_REPO/postgresql12-server-12.1-1PGDG.rhel8.x86_64.rpm &&
-    dnf clean all --enablerepo=\* &&
-    mv /tmp/s2i/bin/* /s2i/ &&
-    mv /tmp/sx/bin/* /bin/ &&
-    mv /tmp/sx/lib/* $SX_LIBDIR/ &&
-    rm -rf /tmp/sx /tmp/s2i &&
-    mkdir -p $DATA_PATH $LOG_PATH &&
-    touch $DATA_PATH/.keep &&
-    chmod -R ug+rwx $LOG_PATH $DATA_PATH &&
-    chgrp -R 0 $DATA_PATH $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* &&
-    chown -R 1001:0 /bin/sx-* /s2i $SX_LIBDIR* &&
-    chmod -R g=u $DATA_PATH $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* &&
+    libicu \
+    libpq && \
+    rpm -ivh $RPM_REPO/postgresql12-libs-12.1-1PGDG.rhel8.x86_64.rpm && \
+    rpm -ivh $RPM_REPO/postgresql12-12.1-1PGDG.rhel8.x86_64.rpm && \
+    rpm -ivh $RPM_REPO/postgresql12-server-12.1-1PGDG.rhel8.x86_64.rpm && \
+    dnf clean all --enablerepo=\* && \
+    mv /tmp/s2i/bin/* /s2i/ && \
+    mv /tmp/sx/bin/* /bin/ && \
+    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
+    rm -rf /tmp/sx /tmp/s2i && \
+    mkdir -p $DATA_PATH $LOG_PATH && \
+    touch $DATA_PATH/.keep && \
+    chmod -R ug+rwx $LOG_PATH $DATA_PATH && \
+    chgrp -R 0 $DATA_PATH $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
+    chown -R 1001:0 /bin/sx-* /s2i $SX_LIBDIR* && \
+    chmod -R g=u $DATA_PATH $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
     chmod -R ugo+x /bin/sx*
 
 USER 1001
