@@ -72,10 +72,9 @@ function checkReadyForRun {
 
 # merge master into a target branch
 function exectuteMerge {
-    if [ $1 != "" ]; then
+    if [ $1 == "" ]; then
         echo "You must give a tag name"
         echo "please run 'masterToBranch-helper.sh run fc32' first"
-        git status
         exit 5;
     fi
     git checkout $1 && git merge master && git checkout master
@@ -108,8 +107,8 @@ checkReadyForRun
 
 # Dispatch input arguments
 case $1 in
-    simulate)               simulateMerge $2 ;;
-    run|exec)               exectuteMerge $2 ;;
+    simulate)               simulateMerge $@ ;;
+    run|exec|merge)         exectuteMerge $@ ;;
     *)                      menuUsage $@ ;;
 esac
 
