@@ -72,12 +72,12 @@ function checkReadyForRun {
 
 # merge master into a target branch
 function exectuteMerge {
-    if [ $1 == "" ]; then
+    if [ $2 == "" ]; then
         echo "You must give a tag name"
         echo "please run 'masterToBranch-helper.sh run fc32' first"
         exit 5;
     fi
-    git checkout $1 && git merge master && git checkout master
+    git checkout $2 && git merge master && git checkout master
 }
 
 
