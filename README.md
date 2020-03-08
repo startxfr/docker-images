@@ -1,6 +1,6 @@
-[![docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true)](https://github.com/startxfr/docker-images)
-
 # STARTX Docker-Images Repository Alpine 3
+
+[![docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/alpine/OS/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=alpine)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
 
@@ -136,6 +136,7 @@ and stay stiked to a defined stable release.
 
 | Release | Description                                                                      |
 | ------- | -------------------------------------------------------------------------------- |
+| 0.95.9  | debug and stabilize dockerfiles                                                  |
 | 0.95.7  | Add s2i label for s2i compat                                                     |
 | 0.95.5  | Add _.data.sql and _.schema.sql dump support for mariadb                         |
 | 0.95.3  | Updating docker for better diff and merge. Improve doc structures                |

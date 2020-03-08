@@ -27,17 +27,17 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN apk --no-cache add memcached nmap busybox-extras &&
-    busybox-extras telnet &&
-    mv /tmp/s2i/bin/* /s2i/ &&
-    mv /tmp/sx/bin/* /bin/ &&
-    mv /tmp/sx/lib/* $SX_LIBDIR/ &&
-    rm -rf /tmp/sx /tmp/s2i &&
-    mkdir -p $LOG_PATH &&
-    chgrp -R 0 $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* &&
-    chown -R 1001:0 /bin/sx-* /s2i $SX_LIBDIR* &&
-    chmod -R g=u $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* &&
-    chmod -R ugo+x /bin/sx* &&
+RUN apk --no-cache add memcached nmap busybox-extras && \
+    busybox-extras telnet && \
+    mv /tmp/s2i/bin/* /s2i/ && \
+    mv /tmp/sx/bin/* /bin/ && \
+    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
+    rm -rf /tmp/sx /tmp/s2i && \
+    mkdir -p $LOG_PATH && \
+    chgrp -R 0 $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
+    chown -R 1001:0 /bin/sx-* /s2i $SX_LIBDIR* && \
+    chmod -R g=u $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
+    chmod -R ugo+x /bin/sx* && \
     chmod -R ugo+rwx $LOG_PATH
 
 USER 1001
