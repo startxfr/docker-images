@@ -70,16 +70,48 @@ function checkReadyForRun {
 }
 
 
+# merge master into a target branch
+function exectuteMerge {
+    if [ $1 != "" ]; then
+        echo "You must give a tag name"
+        echo "please run 'masterToBranch-helper.sh run fc32' first"
+        git status
+        exit 5;
+    fi
+    git checkout $1 && git merge master && git checkout master
+}
 
+
+
+
+# Display general usage
+function menuUsage {
+cat <<EOF
+
+merge master to image tag helper
+
+Usage:
+  masterToBranch-helper.sh [command]
+
+- General commands:
+  simulate  ≤name>       simulate a merge to the target branch
+  run ≤name>             execute a merge to the target branch
+  usage                  this message
+
+EOF
+}
 
 
 
 
 checkReadyForRun
 
-
-
-
+# Dispatch input arguments
+case $1 in
+    simulate)               simulateMerge $2 ;;
+    run|exec)               exectuteMerge $2 ;;
+    *)                      menuUsage $@ ;;
+esac
 
 
 
