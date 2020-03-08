@@ -32,25 +32,25 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 COPY mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo
-RUN yum install -y -q yum-utils &&
-    yum upgrade -y -q &&
+RUN yum install -y -q yum-utils && \
+    yum upgrade -y -q && \
     yum install -y -q --nogpgcheck \
-        mongodb-org-unstable &&
-    package-cleanup --problems &&
-    package-cleanup --orphans &&
-    yum remove -y --skip-broken yum-utils &&
-    yum clean all --enablerepo=\* &&
-    usermod -a -G 0 $MONGO_USER &&
-    mkdir -p $DATA_PATH &&
-    mv /tmp/s2i/bin/* /s2i/ &&
-    mv /tmp/sx/bin/* /bin/ &&
-    mv /tmp/sx/lib/* $SX_LIBDIR/ &&
-    rm -rf /tmp/sx /tmp/s2i &&
-    mkdir -p $DATA_PATH $LOG_PATH &&
-    chown -R $MONGO_USER:$MONGO_USER $DATA_PATH $LOG_PATH &&
-    chgrp -R 0 $DATA_PATH $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* &&
-    chown -R 1001:0 /bin/sx-* /s2i $SX_LIBDIR* &&
-    chmod -R g=u $DATA_PATH $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* &&
+    mongodb-org-unstable && \
+    package-cleanup --problems && \
+    package-cleanup --orphans && \
+    yum remove -y --skip-broken yum-utils && \
+    yum clean all --enablerepo=\* && \
+    usermod -a -G 0 $MONGO_USER && \
+    mkdir -p $DATA_PATH && \
+    mv /tmp/s2i/bin/* /s2i/ && \
+    mv /tmp/sx/bin/* /bin/ && \
+    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
+    rm -rf /tmp/sx /tmp/s2i && \
+    mkdir -p $DATA_PATH $LOG_PATH && \
+    chown -R $MONGO_USER:$MONGO_USER $DATA_PATH $LOG_PATH && \
+    chgrp -R 0 $DATA_PATH $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
+    chown -R 1001:0 /bin/sx-* /s2i $SX_LIBDIR* && \
+    chmod -R g=u $DATA_PATH $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
     chmod -R ugo+x /bin/sx*
 
 USER 1001

@@ -33,48 +33,48 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum install -y -q yum-utils &&
-    yum upgrade -y -q &&
+RUN yum install -y -q yum-utils && \
+    yum upgrade -y -q && \
     yum install -y -q --nogpgcheck \
-        python2-httplib2 \
-        openssl \
-        ncurses \
-        ncurses-libs \
-        ncurses-compat-libs \
-        python2 &&
-    package-cleanup --problems &&
-    package-cleanup --orphans &&
-    yum remove -y --skip-broken yum-utils &&
-    yum clean all --enablerepo=\* &&
+    python2-httplib2 \
+    openssl \
+    ncurses \
+    ncurses-libs \
+    ncurses-compat-libs \
+    python2 && \
+    package-cleanup --problems && \
+    package-cleanup --orphans && \
+    yum remove -y --skip-broken yum-utils && \
+    yum clean all --enablerepo=\* && \
     #echo 0 > /proc/sys/vm/swappiness && \
-    echo '' >>/etc/sysctl.conf &&
-    echo 'couchbase              soft    nofile                  90000' >>/etc/security/limits.conf &&
-    echo 'couchbase              hard    nofile                  unlimited' >>/etc/security/limits.conf &&
-    echo '#Set swappiness to 0 to avoid swapping' >>/etc/sysctl.conf &&
-    echo 'vm.swappiness = 0' >>/etc/sysctl.conf &&
+    echo '' >>/etc/sysctl.conf && \
+    echo 'couchbase              soft    nofile                  90000' >>/etc/security/limits.conf && \
+    echo 'couchbase              hard    nofile                  unlimited' >>/etc/security/limits.conf && \
+    echo '#Set swappiness to 0 to avoid swapping' >>/etc/sysctl.conf && \
+    echo 'vm.swappiness = 0' >>/etc/sysctl.conf && \
     #echo never > /sys/kernel/mm/transparent_hugepage/enabled && \
     #echo never > /sys/kernel/mm/transparent_hugepage/defrag && \
-    wget -q $CB_RELEASE_URL/$CB_PACKAGE &&
-    rpm --install $CB_PACKAGE &&
-    rm -rf $CB_PACKAGE &&
-    usermod -a -G 0 couchbase &&
-    mkdir -p $SX_LIBDIR /s2i &&
+    wget -q $CB_RELEASE_URL/$CB_PACKAGE && \
+    rpm --install $CB_PACKAGE && \
+    rm -rf $CB_PACKAGE && \
+    usermod -a -G 0 couchbase && \
+    mkdir -p $SX_LIBDIR /s2i && \
     mkdir -p $DATA_PATH/lib/couchbase \
-        $DATA_PATH/lib/couchbase/config \
-        $DATA_PATH/lib/couchbase/data \
-        $DATA_PATH/lib/couchbase/stats \
-        $DATA_PATH/lib/couchbase/logs \
-        $DATA_PATH/lib/moxi &&
-    mv /tmp/s2i/bin/* /s2i/ &&
-    mv /tmp/sx/bin/* /bin/ &&
-    mv /tmp/sx/lib/* $SX_LIBDIR/ &&
-    rm -rf /tmp/sx /tmp/s2i &&
-    touch $DATA_PATH/.keep &&
-    chmod g=u / &&
-    chown -R couchbase:couchbase $DATA_PATH &&
-    chgrp -R 0 $CB_PATH /bin/sx-* /s2i $SX_LIBDIR* &&
-    chown -R 1001:0 /bin/sx-* /s2i $SX_LIBDIR* &&
-    chmod -R g=u $CB_PATH /bin/sx-* /s2i $SX_LIBDIR* &&
+    $DATA_PATH/lib/couchbase/config \
+    $DATA_PATH/lib/couchbase/data \
+    $DATA_PATH/lib/couchbase/stats \
+    $DATA_PATH/lib/couchbase/logs \
+    $DATA_PATH/lib/moxi && \
+    mv /tmp/s2i/bin/* /s2i/ && \
+    mv /tmp/sx/bin/* /bin/ && \
+    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
+    rm -rf /tmp/sx /tmp/s2i && \
+    touch $DATA_PATH/.keep && \
+    chmod g=u / && \
+    chown -R couchbase:couchbase $DATA_PATH && \
+    chgrp -R 0 $CB_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
+    chown -R 1001:0 /bin/sx-* /s2i $SX_LIBDIR* && \
+    chmod -R g=u $CB_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
     chmod -R ugo+x /bin/sx*
 
 USER 1001

@@ -35,39 +35,39 @@ LABEL name="$SX_ID" \
 USER root
 
 COPY sx /tmp/
-RUN echo "keepcache=0" >>/etc/yum.conf &&
-    yum install -y -q yum-utils epel-release &&
-    yum-config-manager --enable cr epel-release extras centosplus &&
-    yum upgrade -y -q &&
+RUN echo "keepcache=0" >>/etc/yum.conf && \
+    yum install -y -q yum-utils epel-release && \
+    yum-config-manager --enable cr epel-release extras centosplus && \
+    yum upgrade -y -q && \
     yum install -y -q \
-        pwgen \
-        tar \
-        unzip \
-        zip \
-        hostname \
-        psmisc \
-        procps \
-        findutils \
-        iputils \
-        net-tools \
-        wget \
-        logrotate \
-        bash-completion \
-        vim \
-        glibc-langpack-fr &&
-    package-cleanup --problems &&
-    package-cleanup --orphans &&
-    yum remove -y --skip-broken yum-utils &&
-    yum clean all --enablerepo=\* &&
-    mkdir -p $SX_LIBDIR $APP_PATH $LOG_PATH &&
-    chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib &&
-    mv /tmp/s2i/bin /s2i &&
-    mv /tmp/sx/bin/* /bin/ &&
-    mv /tmp/sx/lib/* $SX_LIBDIR/ &&
-    rm -rf /tmp/sx /tmp/s2i &&
-    chgrp -R 0 /bin/sx /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR $APP_PATH $LOG_PATH &&
-    chown -R 1001:0 /bin/sx /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR $APP_PATH $LOG_PATH &&
-    chmod -R g=u /bin/sx /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR $APP_PATH $LOG_PATH &&
+    pwgen \
+    tar \
+    unzip \
+    zip \
+    hostname \
+    psmisc \
+    procps \
+    findutils \
+    iputils \
+    net-tools \
+    wget \
+    logrotate \
+    bash-completion \
+    vim \
+    glibc-langpack-fr && \
+    package-cleanup --problems && \
+    package-cleanup --orphans && \
+    yum remove -y --skip-broken yum-utils && \
+    yum clean all --enablerepo=\* && \
+    mkdir -p $SX_LIBDIR $APP_PATH $LOG_PATH && \
+    chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib && \
+    mv /tmp/s2i/bin /s2i && \
+    mv /tmp/sx/bin/* /bin/ && \
+    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
+    rm -rf /tmp/sx /tmp/s2i && \
+    chgrp -R 0 /bin/sx /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR $APP_PATH $LOG_PATH && \
+    chown -R 1001:0 /bin/sx /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR $APP_PATH $LOG_PATH && \
+    chmod -R g=u /bin/sx /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR $APP_PATH $LOG_PATH && \
     chmod -R ugo+wr $SX_S2IDIR $APP_PATH $LOG_PATH
 
 USER 1001
