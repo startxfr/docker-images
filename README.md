@@ -53,6 +53,12 @@ your project and start using stable or experimental services in your application
 | **VDI**                     | [guide](VDI)                     | [VDI list](VDI#container-flavours)                     | [examples](VDI#running-this-image)                     |
 | VDI/**chrome**              | [guide](VDI/chrome)              | [flavours](VDI/chrome#container-flavours)              | [examples](VDI/chrome#running-this-image)              | [docker.io](https://hub.docker.com/r/startx/vdi-chrome) [quay.io](https://quay.io/repository/startx/chrome)         |
 | VDI/**firefox**             | [guide](VDI/firefox)             | [flavours](VDI/firefox#container-flavours)             | [examples](VDI/firefox#running-this-image)             | [docker.io](https://hub.docker.com/r/startx/vdi-firefox) [quay.io](https://quay.io/repository/startx/firefox)       |
+| **GitlabRunner**            | [guide](GitlabRunner)            | [GitlabRunner list](GitlabRunner#container-flavours)   | [examples](GitlabRunner#running-this-image)            |
+| GitlabRunner/**ansible**    | [guide](GitlabRunner/ansible)    | [flavours](GitlabRunner/ansible#container-flavours)    | [examples](GitlabRunner/ansible#running-this-image)    | [docker.io](https://hub.docker.com/r/startx/runner-ansible) [quay.io](https://quay.io/repository/startx/ansible)    |
+| GitlabRunner/**apache**     | [guide](GitlabRunner/apache)     | [flavours](GitlabRunner/apache#container-flavours)     | [examples](GitlabRunner/apache#running-this-image)     | [docker.io](https://hub.docker.com/r/startx/runner-apache) [quay.io](https://quay.io/repository/startx/apache)      |
+| GitlabRunner/**bash**       | [guide](GitlabRunner/bash)       | [flavours](GitlabRunner/bash#container-flavours)       | [examples](GitlabRunner/bash#running-this-image)       | [docker.io](https://hub.docker.com/r/startx/runner-bash) [quay.io](https://quay.io/repository/startx/bash)          |
+| GitlabRunner/**nodejs**     | [guide](GitlabRunner/nodejs)     | [flavours](GitlabRunner/nodejs#container-flavours)     | [examples](GitlabRunner/nodejs#running-this-image)     | [docker.io](https://hub.docker.com/r/startx/runner-nodejs) [quay.io](https://quay.io/repository/startx/nodejs)      |
+| GitlabRunner/**php**        | [guide](GitlabRunner/php)        | [flavours](GitlabRunner/php#container-flavours)        | [examples](GitlabRunner/php#running-this-image)        | [docker.io](https://hub.docker.com/r/startx/runner-php) [quay.io](https://quay.io/repository/startx/php)            |
 | **Applications**            | [guide](Applications)            | [applications list](Applications#container-flavours)   | [examples](Applications#running-this-image)            |
 | Applications/**phpmyadmin** | [guide](Applications/phpmyadmin) | [flavours](Applications/phpmyadmin#container-flavours) | [examples](Applications/phpmyadmin#running-this-image) | [docker.io](https://hub.docker.com/r/startx/app-phpmyadmin) [quay.io](https://quay.io/repository/startx/phpmyadmin) |
 | Applications/**rockmongo**  | [guide](Applications/rockmongo)  | [flavours](Applications/rockmongo#container-flavours)  | [examples](Applications/rockmongo#running-this-image)  | [docker.io](https://hub.docker.com/r/startx/app-rockmongo) [quay.io](https://quay.io/repository/startx/rockmongo)   |
@@ -60,6 +66,7 @@ your project and start using stable or experimental services in your application
 ## Images flavours
 
 - `latest` based on fedora rawhide [see detail](https://github.com/startxfr/docker-images/tree/master)
+- `fc32` based on fedora core 32 [see detail](https://github.com/startxfr/docker-images/tree/fc32)
 - `fc31` based on fedora core 31 [see detail](https://github.com/startxfr/docker-images/tree/fc31)
 - `fc30` based on fedora core 30 [see detail](https://github.com/startxfr/docker-images/tree/fc30)
 - `fc29` based on fedora core 29 [see detail](https://github.com/startxfr/docker-images/tree/fc29)
