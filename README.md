@@ -143,6 +143,7 @@ and stay stiked to a defined stable release.
 
 | Release | Description                                                                      |
 | ------- | -------------------------------------------------------------------------------- |
+| 0.95.11 | improve verbose display                                                          |
 | 0.95.9  | debug and stabilize dockerfiles                                                  |
 | 0.95.7  | Add s2i label for s2i compat                                                     |
 | 0.95.5  | Add _.data.sql and _.schema.sql dump support for mariadb                         |
