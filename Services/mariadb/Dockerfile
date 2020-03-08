@@ -36,24 +36,24 @@ USER root
 COPY sx /tmp/
 COPY my.cnf $MY_CONF
 COPY mariadb.repo /etc/yum.repos.d/mariadb.repo
-RUN dnf install -y yum-utils dnf-plugin-system-upgrade &&
-    dnf upgrade -y --refresh &&
+RUN dnf install -y yum-utils dnf-plugin-system-upgrade && \
+    dnf upgrade -y --refresh && \
     dnf install -y --nogpgcheck \
-        mariadb-libs \
-        mariadb-server \
-        mariadb &&
-    dnf remove -y --skip-broken dnf-plugin-system-upgrade yum-utils yum &&
-    dnf clean all --enablerepo=\* &&
-    mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH &&
-    mv /tmp/s2i/bin/* /s2i/ &&
-    mv /tmp/sx/bin/* /bin/ &&
-    mv /tmp/sx/lib/* $SX_LIBDIR/ &&
-    rm -rf /tmp/sx /tmp/s2i &&
-    touch $DATA_PATH/.keep &&
-    chown -R mysql:mysql $LOG_PATH $DATA_PATH $LOADSQL_PATH &&
-    chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* /var/lib/mysql $MY_CONF &&
-    chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* /var/lib/mysql $MY_CONF &&
-    chmod -R ugo+x /bin/sx* &&
+    mariadb-libs \
+    mariadb-server \
+    mariadb && \
+    dnf remove -y --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf clean all --enablerepo=\* && \
+    mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH && \
+    mv /tmp/s2i/bin/* /s2i/ && \
+    mv /tmp/sx/bin/* /bin/ && \
+    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
+    rm -rf /tmp/sx /tmp/s2i && \
+    touch $DATA_PATH/.keep && \
+    chown -R mysql:mysql $LOG_PATH $DATA_PATH $LOADSQL_PATH && \
+    chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* /var/lib/mysql $MY_CONF && \
+    chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* /var/lib/mysql $MY_CONF && \
+    chmod -R ugo+x /bin/sx* && \
     chmod ug+rw $MY_CONF
 
 USER 1001
