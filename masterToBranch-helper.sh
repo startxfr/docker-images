@@ -42,8 +42,8 @@ function checkGitBranchIsMaster {
         if [[ `cat /tmp/aaa` != '* master' ]]; then
             echo "your are not in the master branch"
             echo "please run 'git checkout master' first"
+            exit 4;
         fi
-        exit 4;
     fi
     rm -f /tmp/aaa
 }
