@@ -37,7 +37,12 @@ function checkGitBranchIsMaster {
     if [[ `cat /tmp/aaa` != '* master' ]]; then
         echo "your are not in the master branch"
         echo "please run 'git checkout master' first"
-        git branch
+        git checkout master
+        git branch | grep '* master' &> /tmp/aaa
+        if [[ `cat /tmp/aaa` != '* master' ]]; then
+            echo "your are not in the master branch"
+            echo "please run 'git checkout master' first"
+        fi
         exit 4;
     fi
     rm -f /tmp/aaa
@@ -55,17 +60,22 @@ function checkGitBranchIsCommited {
 }
 
 
+# check if git branch has no file to commit
+function checkReadyForRun {
+    checkGitInstalled
+    checkDirectoryIsGit
+    checkGitRepoIsOrigin
+    checkGitBranchIsMaster
+    checkGitBranchIsCommited
+}
 
 
 
-checkGitInstalled
-checkDirectoryIsGit
-checkGitRepoIsOrigin
-checkGitBranchIsMaster
-checkGitBranchIsCommited
 
 
 
+
+checkReadyForRun
 
 
 
