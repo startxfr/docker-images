@@ -323,7 +323,10 @@ function init_installDb {
     if [[ ! -d $VOLUME_HOME ]]; then
         echoVerbose "mariadb $VOLUME_HOME directory is empty or uninitialized"
         echo "Installing MariaDB in $DATA_PATH ..."
-        mysql_install_db --defaults-file=$MY_CONF --datadir=$DATA_PATH > /dev/null 2>&1
+        mysql_install_db --defaults-file=$MY_CONF \
+        --datadir=$DATA_PATH \
+        --auth-root-authentication-method=normal \
+        --auth-root-socket-user=1000 > /dev/null 2>&1
         echoVerbose "Installing MariaDB in $DATA_PATH is DONE !"
     else
         echoVerbose "mariadb directory is initialized"
