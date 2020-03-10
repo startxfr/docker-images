@@ -85,7 +85,7 @@ function exectuteMerge {
 function exectutePush {
     type=$2
     if [ $2 == "" ]; then
-        type= "all"
+        type="all"
     fi
     if [ $type == "all" ]; then
         git checkout master && git push origin master fc32 fc31 fc30 ubi8 alpine centos8 centos7 centos6
