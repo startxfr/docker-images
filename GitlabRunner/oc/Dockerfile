@@ -20,8 +20,8 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
-RUN dnf install -yq jq && \
-    pip install yq && \
+RUN dnf install -yq python3-pip jq && \
+    pip3 install yq && \
     cd /tmp && \
     wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$SX_OC_VERSION/openshift-client-linux-$SX_OC_VERSION.tar.gz && \
     tar xzvf openshift-client-linux-$SX_OC_VERSION.tar.gz && \
