@@ -59,6 +59,7 @@ your project and start using stable or experimental services in your application
 | GitlabRunner/**bash**       | [guide](GitlabRunner/bash)       | [flavours](GitlabRunner/bash#container-flavours)       | [examples](GitlabRunner/bash#running-this-image)       | [docker.io](https://hub.docker.com/r/startx/runner-bash) [quay.io](https://quay.io/repository/startx/bash)          |
 | GitlabRunner/**nodejs**     | [guide](GitlabRunner/nodejs)     | [flavours](GitlabRunner/nodejs#container-flavours)     | [examples](GitlabRunner/nodejs#running-this-image)     | [docker.io](https://hub.docker.com/r/startx/runner-nodejs) [quay.io](https://quay.io/repository/startx/nodejs)      |
 | GitlabRunner/**php**        | [guide](GitlabRunner/php)        | [flavours](GitlabRunner/php#container-flavours)        | [examples](GitlabRunner/php#running-this-image)        | [docker.io](https://hub.docker.com/r/startx/runner-php) [quay.io](https://quay.io/repository/startx/php)            |
+| GitlabRunner/**oc**         | [guide](GitlabRunner/oc)         | [flavours](GitlabRunner/oc#container-flavours)         | [examples](GitlabRunner/oc#running-this-image)         | [docker.io](https://hub.docker.com/r/startx/runner-oc) [quay.io](https://quay.io/repository/startx/oc)              |
 | **Applications**            | [guide](Applications)            | [applications list](Applications#container-flavours)   | [examples](Applications#running-this-image)            |
 | Applications/**phpmyadmin** | [guide](Applications/phpmyadmin) | [flavours](Applications/phpmyadmin#container-flavours) | [examples](Applications/phpmyadmin#running-this-image) | [docker.io](https://hub.docker.com/r/startx/app-phpmyadmin) [quay.io](https://quay.io/repository/startx/phpmyadmin) |
 | Applications/**rockmongo**  | [guide](Applications/rockmongo)  | [flavours](Applications/rockmongo#container-flavours)  | [examples](Applications/rockmongo#running-this-image)  | [docker.io](https://hub.docker.com/r/startx/app-rockmongo) [quay.io](https://quay.io/repository/startx/rockmongo)   |
@@ -134,6 +135,7 @@ and stay stiked to a defined stable release.
 
 | Release | Description                                                                      |
 | ------- | -------------------------------------------------------------------------------- |
+| 0.95.15 | debug mariadb configuration on buidl or run                                      |
 | 0.95.11 | improve verbose display                                                          |
 | 0.95.9  | debug and stabilize dockerfiles                                                  |
 | 0.95.7  | Add s2i label for s2i compat                                                     |

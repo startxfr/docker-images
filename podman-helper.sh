@@ -180,7 +180,8 @@ function menuBuild {
         runner-apache)             testBuild GitlabRunner/apache runner-apache $SXDC_FLAVOUR;;
         runner-bash)               testBuild GitlabRunner/bash runner-bash $SXDC_FLAVOUR;;
         runner-nodejs)             testBuild GitlabRunner/nodejs runner-nodejs $SXDC_FLAVOUR;;
-        runner-php)                testBuild GitlabRunner/php runner-nodejs $SXDC_FLAVOUR;;
+        runner-php)                testBuild GitlabRunner/php runner-php $SXDC_FLAVOUR;;
+        runner-oc)                 testBuild GitlabRunner/oc runner-oc $SXDC_FLAVOUR;;
         chrome)                    testBuild VDI/chrome chrome $SXDC_FLAVOUR;;
         firefox)                   testBuild VDI/firefox firefox $SXDC_FLAVOUR;;
         all)

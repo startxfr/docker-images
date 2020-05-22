@@ -68,6 +68,11 @@ centos8-runner-php:
     file: GitlabRunner/php/docker-compose.yml
     service: php
 
+centos8-runner-oc:
+  extends:
+    file: GitlabRunner/oc/docker-compose.yml
+    service: oc
+
 centos8-vdi-chrome:
   extends:
     file: VDI/chrome/docker-compose.yml
