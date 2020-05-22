@@ -35,7 +35,8 @@ script:
   - "./travis/test    GitlabRunner/bash    runner-bash    ubi8 runner-bash"
   - "./travis/test    GitlabRunner/apache  runner-apache  ubi8 runner-apache"
   - "./travis/test    GitlabRunner/nodejs  runner-nodejs  ubi8 runner-nodejs"
-  - "./travis/test    GitlabRunner/php     runner-ansible ubi8 runner-php"
+  - "./travis/test    GitlabRunner/php     runner-php     ubi8 runner-php"
+  - "./travis/test    GitlabRunner/oc      runner-oc      ubi8 runner-oc"
 after_success:
   - "./travis/publish OS                 ubi           latest ubi"
   - "./travis/publish OS                 ubi           8      ubi"
@@ -52,4 +53,5 @@ after_success:
   - "./travis/publish GitlabRunner/bash    runner-bash    ubi8 runner-bash"
   - "./travis/publish GitlabRunner/apache  runner-apache  ubi8 runner-apache"
   - "./travis/publish GitlabRunner/nodejs  runner-nodejs  ubi8 runner-nodejs"
-  - "./travis/publish GitlabRunner/php     runner-ansible ubi8 runner-php"
+  - "./travis/publish GitlabRunner/php     runner-php     ubi8 runner-php"
+  - "./travis/publish GitlabRunner/oc      runner-oc      ubi8 runner-oc"
