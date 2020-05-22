@@ -29,6 +29,7 @@ your project and start using stable or experimental gitlab-runner's in your pipe
 | **bash**    | [`startx/runner-bash`](https://hub.docker.com/r/startx/runner-bash)       | [`startx/runner-bash`](https://quay.io/repository/startx/runner-bash)       | [manual](bash/README.md)    |
 | **nodejs**  | [`startx/runner-nodejs`](https://hub.docker.com/r/startx/runner-nodejs)   | [`startx/runner-nodejs`](https://quay.io/repository/startx/runner-nodejs)   | [manual](nodejs/README.md)  |
 | **php**     | [`startx/runner-php`](https://hub.docker.com/r/startx/runner-php)         | [`startx/runner-php`](https://quay.io/repository/startx/runner-php)         | [manual](php/README.md)     |
+| **oc**      | [`startx/runner-oc`](https://hub.docker.com/r/startx/runner-oc)           | [`startx/runner-oc`](https://quay.io/repository/startx/runner-oc)           | [manual](oc/README.md)      |
 
 ## Available Flavours
 
@@ -39,6 +40,7 @@ your project and start using stable or experimental gitlab-runner's in your pipe
 | **bash**    | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
 | **nodejs**  | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
 | **php**     | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
+| **oc**      | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
 
 ## Running from dockerhub registry
 
@@ -49,3 +51,4 @@ your project and start using stable or experimental gitlab-runner's in your pipe
 | **bash**    | `docker run -d -p XXX:XXX --name="runner-bash" startx/runner-bash`       |
 | **nodejs**  | `docker run -d -p 8000:8000 --name="runner-nodejs" startx/runner-nodejs` |
 | **php**     | `docker run -d -p 80:80 --name="runner-php" startx/runner-php`           |
+| **oc**      | `docker run --name="runner-oc" startx/runner-oc`                         |
