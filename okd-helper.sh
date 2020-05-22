@@ -240,6 +240,7 @@ function menuLoadIs {
         runner-bash)               importImages GitlabRunner/bash;;
         runner-nodejs)             importImages GitlabRunner/nodejs;;
         runner-php)                importImages GitlabRunner/php;;
+        runner-oc)                 importImages GitlabRunner/oc;;
         chrome)                    importImages VDI/chrome;;
         firefox)                   importImages VDI/firefox;;
         all)
@@ -282,6 +283,7 @@ function menuLoadTemplateDeploy {
         runner-bash)               importDeploy GitlabRunner/bash;;
         runner-nodejs)             importDeploy GitlabRunner/nodejs;;
         runner-php)                importDeploy GitlabRunner/php;;
+        runner-oc)                 importDeploy GitlabRunner/oc;;
         chrome)                    importDeploy VDI/chrome;;
         firefox)                   importDeploy VDI/firefox;;
         all)
@@ -324,6 +326,7 @@ function menuLoadTemplateBuild {
         runner-bash)               importBuild GitlabRunner/bash;;
         runner-nodejs)             importBuild GitlabRunner/nodejs;;
         runner-php)                importBuild GitlabRunner/php;;
+        runner-oc)                 importBuild GitlabRunner/oc;;
         chrome)                    importBuild VDI/chrome;;
         firefox)                   importBuild VDI/firefox;;
         all)
@@ -366,6 +369,7 @@ function menuTestBuild {
         runner-bash)               testBuild GitlabRunner/bash runner-bash $SXDC_FLAVOUR;;
         runner-nodejs)             testBuild GitlabRunner/nodejs runner-nodejs $SXDC_FLAVOUR;;
         runner-php)                testBuild GitlabRunner/php runner-php $SXDC_FLAVOUR;;
+        runner-oc)                 testBuild GitlabRunner/oc runner-oc $SXDC_FLAVOUR;;
         chrome)                    testBuild VDI/chrome chrome $SXDC_FLAVOUR;;
         firefox)                   testBuild VDI/firefox firefox $SXDC_FLAVOUR;;
         all)
@@ -384,6 +388,7 @@ function menuTestBuild {
             testBuild GitlabRunner/bash runner-bash $SXDC_FLAVOUR
             testBuild GitlabRunner/nodejs runner-nodejs $SXDC_FLAVOUR
             testBuild GitlabRunner/php runner-php $SXDC_FLAVOUR
+            testBuild GitlabRunner/oc runner-oc $SXDC_FLAVOUR
             testBuild VDI/chrome chrome $SXDC_FLAVOUR
         testBuild VDI/firefox firefox $SXDC_FLAVOUR;;
         *)                         menuUsage;;
@@ -408,6 +413,7 @@ function menuTestDeploy {
         runner-bash)               testBuild GitlabRunner/bash runner-bash $SXDC_FLAVOUR;;
         runner-nodejs)             testBuild GitlabRunner/nodejs runner-nodejs $SXDC_FLAVOUR;;
         runner-php)                testBuild GitlabRunner/php runner-php $SXDC_FLAVOUR;;
+        runner-oc)                 testBuild GitlabRunner/oc runner-oc $SXDC_FLAVOUR;;
         chrome)                    testBuild VDI/chrome chrome $SXDC_FLAVOUR;;
         firefox)                   testBuild VDI/firefox firefox $SXDC_FLAVOUR;;
         all)
@@ -426,6 +432,7 @@ function menuTestDeploy {
             testDeploy GitlabRunner/bash runner-bash $SXDC_FLAVOUR
             testDeploy GitlabRunner/nodejs runner-nodejs $SXDC_FLAVOUR
             testDeploy GitlabRunner/php runner-php $SXDC_FLAVOUR
+            testDeploy GitlabRunner/oc runner-oc $SXDC_FLAVOUR
             testDeploy VDI/chrome chrome $SXDC_FLAVOUR
         testDeploy VDI/firefox firefox $SXDC_FLAVOUR;;
         *)                         menuUsage;;

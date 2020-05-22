@@ -68,6 +68,11 @@ alpine3-runner-php:
     file: GitlabRunner/php/docker-compose.yml
     service: php
 
+alpine3-runner-oc:
+  extends:
+    file: GitlabRunner/oc/docker-compose.yml
+    service: oc
+
 alpine3-vdi-chrome:
   extends:
     file: VDI/chrome/docker-compose.yml
