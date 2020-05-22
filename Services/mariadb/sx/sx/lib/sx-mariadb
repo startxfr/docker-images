@@ -196,6 +196,11 @@ function doMariadbRun {
 
 # Display liveness status
 function mariadbIsLive {
+    genericIsLive
+}
+
+# Display readyness status
+function mariadbIsReady {
     if [[ -n "$MYSQL_USER" && -n "$MYSQL_PASSWORD" ]]; then
         R=`mysql -h 127.0.0.1 -u $MYSQL_USER -p$MYSQL_PASSWORD -e 'SELECT 1'`
         elif [[ -n "$MYSQL_ROOT_PASSWORD" ]]; then
@@ -210,11 +215,6 @@ function mariadbIsLive {
         echo "Not OK";
         exit 1;
     fi;
-}
-
-# Display readyness status
-function mariadbIsReady {
-    genericIsReady
 }
 
 

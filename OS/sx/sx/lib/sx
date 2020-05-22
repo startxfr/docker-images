@@ -360,10 +360,10 @@ EOF
 # Display general header
 function genericHeader {
     if [[ "$SX_VERBOSE" == true || "$SX_VERBOSE" == "true" ]] ; then
-cat <<EOF
-|  ____  _                                image : $SX_ID:SX_VERSION
-| / ___|| |_ __ _ _ __| |___  __          sxlib : $SXLIB_VERSION
-| \___ \| __/ _` | '__| __\ \/ /         system : $OS
+cat <<"EOF"
+|  ____  _
+| / ___|| |_ __ _ _ __| |___  __
+| \___ \| __/ _` | '__| __\ \/ /
 |  ___) | || (_| | |  | |_ >  <
 | |____/ \__\__,_|_|_  \__/_/\_\       _
 | |  _ \  ___   ___| | _____ _ __     (_)_ __ ___   __ _  __ _  ___  ___

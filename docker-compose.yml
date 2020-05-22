@@ -68,6 +68,11 @@ fc32-runner-php:
     file: GitlabRunner/php/docker-compose.yml
     service: php
 
+fc32-runner-oc:
+  extends:
+    file: GitlabRunner/oc/docker-compose.yml
+    service: oc
+
 fc32-vdi-chrome:
   extends:
     file: VDI/chrome/docker-compose.yml
