@@ -1,11 +1,11 @@
-FROM startx/fedora:latest
+FROM startx/fedora:30
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="fc30" \
     SX_TYPE="runner" \
     SX_SERVICE="oc" \
     SX_ID="startx/runner-oc" \
-    SX_NAME="Startx OCP/K8S client gitlab runner image (fedora rawhide)" \
-    SX_SUMMARY="Startx ocp/k8s gitlab runner based on fedora rawhide" \
+    SX_NAME="Startx OCP/K8S client gitlab runner image (fedora 30)" \
+    SX_SUMMARY="Startx ocp/k8s gitlab runner based on fedora 30" \
     SX_OC_VERSION="4.4.5"
 
 LABEL name="$SX_ID" \
@@ -20,7 +20,8 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
-RUN pip install yq && \
+RUN dnf install -yq jq && \
+    pip install yq && \
     cd /tmp && \
     wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$SX_OC_VERSION/openshift-client-linux-$SX_OC_VERSION.tar.gz && \
     tar xzvf openshift-client-linux-$SX_OC_VERSION.tar.gz && \
