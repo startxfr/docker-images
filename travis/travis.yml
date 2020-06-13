@@ -32,7 +32,7 @@ script:
   - "./travis/test    GitlabRunner/bash    runner-bash    centos6 runner-bash"
   - "./travis/test    GitlabRunner/apache  runner-apache  centos6 runner-apache"
   - "./travis/test    GitlabRunner/nodejs  runner-nodejs  centos6 runner-nodejs"
-  - "./travis/test    GitlabRunner/php     runner-ansible centos6 runner-php"
+  - "./travis/test    GitlabRunner/php     runner-php     centos6 runner-php"
   - "./travis/test    Applications/phpmyadmin  app-phpmyadmin   centos6 phpmyadmin"
 after_success:
   - "./travis/publish OS                 centos        6       centos"
@@ -49,5 +49,5 @@ after_success:
   - "./travis/publish GitlabRunner/bash    runner-bash    centos6 runner-bash"
   - "./travis/publish GitlabRunner/apache  runner-apache  centos6 runner-apache"
   - "./travis/publish GitlabRunner/nodejs  runner-nodejs  centos6 runner-nodejs"
-  - "./travis/publish GitlabRunner/php     runner-ansible centos6 runner-php"
+  - "./travis/publish GitlabRunner/php     runner-php     centos6 runner-php"
   - "./travis/publish Applications/phpmyadmin  app-phpmyadmin   centos6 phpmyadmin"
