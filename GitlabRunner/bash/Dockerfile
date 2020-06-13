@@ -24,8 +24,7 @@ RUN dnf upgrade -yq --refresh && \
     make \
     bubblewrap \
     rsync \
-    openssh-clients \
-    sshpass && \
+    openssh-clients && \
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\*
 
