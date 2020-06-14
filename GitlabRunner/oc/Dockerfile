@@ -23,11 +23,11 @@ USER root
 RUN apk --no-cache add py-pip jq && \
     pip install yq && \
     cd /tmp && \
-    wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$SX_OC_VERSION/openshift-client-linux-$SX_OC_VERSION.tar.gz && \
+    wget -q https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$SX_OC_VERSION/openshift-client-linux-$SX_OC_VERSION.tar.gz && \
     tar xzvf openshift-client-linux-$SX_OC_VERSION.tar.gz && \
     mv oc kubectl /usr/bin/ && \
     rm -f openshift-client-linux-$SX_OC_VERSION.tar.gz && \
-    wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$SX_OC_VERSION/openshift-install-linux-$SX_OC_VERSION.tar.gz && \
+    wget -q https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$SX_OC_VERSION/openshift-install-linux-$SX_OC_VERSION.tar.gz && \
     tar xzvf openshift-install-linux-$SX_OC_VERSION.tar.gz && \
     mv openshift-install /usr/bin/ && \
     rm -f openshift-install-linux-$SX_OC_VERSION.tar.gz && \
