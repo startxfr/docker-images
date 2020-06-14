@@ -1,4 +1,4 @@
-FROM startx/sv-apache:latest
+FROM quay.io/startx/apache:latest
 
 ENV SX_VERSION="latest" \
     SX_TYPE="runner" \

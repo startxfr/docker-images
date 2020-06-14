@@ -1,4 +1,4 @@
-FROM startx/fedora:latest
+FROM quay.io/startx/fedora:latest
 
 ENV SX_VERSION="latest" \
     SX_TYPE="runner" \

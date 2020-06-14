@@ -1,4 +1,4 @@
-FROM startx/sv-php:latest
+FROM quay.io/startx/php:latest
 
 ENV SX_VERSION="latest" \
     SX_TYPE="runner" \

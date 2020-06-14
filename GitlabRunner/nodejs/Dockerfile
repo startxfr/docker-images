@@ -1,4 +1,4 @@
-FROM startx/sv-nodejs:latest
+FROM quay.io/startx/nodejs:latest
 
 ENV SX_VERSION="latest" \
     SX_TYPE="runner" \
