@@ -19,7 +19,7 @@ This container contain :
 
 You can use Startx Apache image in many ways :
 
-- [Docker OS Images : FEDORA](#docker-os-images--fedora)
+- [Docker OS Images : Fedora 32](#docker-os-images--fedora-32)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
@@ -199,7 +199,7 @@ docker run --rm -i -t startx-bash-sample
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/fedora:32
+FROM quay.io/startx/fedora:32
 #... your container specifications
 ```
 

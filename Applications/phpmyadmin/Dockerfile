@@ -1,4 +1,4 @@
-FROM startx/sv-php:fc32
+FROM quay.io/startx/php:fc32
 
 ENV SX_VERSION="fc32" \
     SX_TYPE="application" \

@@ -17,7 +17,7 @@ This container contain :
 
 You can use Startx Nodejs image in many ways :
 
-- [Docker OS Images : NODEJS](#docker-os-images--nodejs)
+- [Docker OS Images : NODEJS on Fedora 32](#docker-os-images--nodejs-on-fedora-32)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
@@ -212,7 +212,7 @@ docker run --rm -d -p 9221:8080 startx-nodejs-sample
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/sv-nodejs:fc32
+FROM quay.io/startx/nodejs:fc32
 #... your container specifications
 ```
 

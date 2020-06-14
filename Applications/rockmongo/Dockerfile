@@ -1,4 +1,4 @@
-FROM startx/sv-php
+FROM quay.io/startx/php
 
 # update, install required, clean
 RUN yum -y update && yum install -y httpd php php-devel php-pear gcc-c++ make && yum clean all

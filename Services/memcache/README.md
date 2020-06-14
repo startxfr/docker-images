@@ -17,7 +17,7 @@ This container contain :
 
 You can use Startx Memcache image in many ways :
 
-- [Docker OS Images : MEMCACHE](#docker-os-images--memcache)
+- [Docker OS Images : MEMCACHE on Fedora 32](#docker-os-images--memcache-on-fedora-32)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
@@ -193,7 +193,7 @@ docker run --rm -d -p 9278:11211 startx-memcache-sample
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/sv-memcache:fc28
+FROM quay.io/startx/memcache:fc32
 #... your container specifications
 ```
 

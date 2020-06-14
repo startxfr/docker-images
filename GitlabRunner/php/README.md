@@ -100,7 +100,7 @@ firefox http://localhost:9213
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/runner-php:latest
+FROM quay.io/startx/runner-php:latest
 #... your container specifications
 ```
 

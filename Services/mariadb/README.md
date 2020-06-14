@@ -21,7 +21,7 @@ This container contain :
 
 You can use Startx mariadb image in many ways :
 
-- [Docker OS Images : MARIADB](#docker-os-images--mariadb)
+- [Docker OS Images : MARIADB on Fedora 32](#docker-os-images--mariadb-on-fedora-32)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
@@ -226,7 +226,7 @@ docker run --rm -d -p 9231:3306 startx-mariadb-sample
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/sv-mariadb:fc32
+FROM quay.io/startx/mariadb:fc32
 #... your container specifications
 ```
 
