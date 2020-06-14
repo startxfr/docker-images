@@ -2,7 +2,7 @@
 kind: Template
 apiVersion: v1
 metadata:
-  name: sxapi-demo-openshift-couchbase-build-template
+  name: startx-couchbase2-build-template
   annotations:
     openshift.io/display-name: SXAPI Demo Couchbase (Ephemeral)
     description:
@@ -17,7 +17,7 @@ message:
   Your couchbase demo stack started to be deployed in your project. You can
   use openshift console to observe deployment.
 labels:
-  template: sxapi-demo-openshift-couchbase-build-template
+  template: startx-couchbase2-build-template
 objects:
   - kind: ImageStream
     apiVersion: v1
@@ -30,7 +30,7 @@ objects:
         base-image: couchbase-operator
         type: backend
         provider: startx
-        template: sxapi-demo-openshift-couchbase-build-template
+        template: startx-couchbase2-build-template
     spec:
       tags:
         - name: latest
@@ -52,7 +52,7 @@ objects:
       labels:
         type: backend
         provider: startx
-        template: sxapi-demo-openshift-couchbase-build-template
+        template: startx-couchbase2-build-template
     stringData:
       username: "${COUCHBASE_USER}"
       password: "${COUCHBASE_PASSWORD}"
@@ -60,10 +60,10 @@ objects:
     apiVersion: v1
     metadata:
       name: couchbase-operator
-      labels:
+      labels: 
         type: backend
         provider: startx
-        template: sxapi-demo-openshift-couchbase-build-template
+        template: startx-couchbase2-build-template
       annotations:
         openshift.io/generated-by: STARTX
     spec:
@@ -96,7 +96,7 @@ objects:
             app: couchbase-operator
             type: backend
             provider: startx
-            template: sxapi-demo-openshift-couchbase-build-template
+            template: startx-couchbase2-build-template
             deploymentconfig: couchbase-operator
           annotations:
             openshift.io/generated-by: STARTX
@@ -141,7 +141,7 @@ objects:
         couchbase_cluster: couchbase-node
         type: backend
         provider: startx
-        template: sxapi-demo-openshift-couchbase-build-template
+        template: startx-couchbase2-build-template
       annotations:
         openshift.io/generated-by: STARTX
     spec:
