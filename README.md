@@ -66,7 +66,18 @@ your project and start using stable or experimental services in your application
 
 ## Images flavours
 
-- `latest` based on RedHat UBI 8 [see detail](https://github.com/startxfr/docker-images/tree/ubi8)
+- `latest` based on fedora rawhide [see detail](https://github.com/startxfr/docker-images/tree/master)
+- `fc32` based on fedora core 32 [see detail](https://github.com/startxfr/docker-images/tree/fc32)
+- `fc31` based on fedora core 31 [see detail](https://github.com/startxfr/docker-images/tree/fc31)
+- `fc30` based on fedora core 30 [see detail](https://github.com/startxfr/docker-images/tree/fc30)
+- `fc29` based on fedora core 29 [see detail](https://github.com/startxfr/docker-images/tree/fc29)
+- `fc28` based on fedora core 28 [see detail](https://github.com/startxfr/docker-images/tree/fc28)
+- `fc27` based on fedora core 27 [see detail](https://github.com/startxfr/docker-images/tree/fc27)
+- `fc26` based on fedora core 26 [see detail](https://github.com/startxfr/docker-images/tree/fc26)
+- `centos8` based on Centos 8 [see detail](https://github.com/startxfr/docker-images/tree/centos8)
+- `centos7` based on Centos 7 [see detail](https://github.com/startxfr/docker-images/tree/centos7)
+- `centos6` based on Centos 6 [see detail](https://github.com/startxfr/docker-images/tree/centos6)
+- `alpine3` based on Alpine 3.12 [see detail](https://github.com/startxfr/docker-images/tree/alpine3)
 - `ubi8` based on RedHat UBI 8 [see detail](https://github.com/startxfr/docker-images/tree/ubi8)
 
 ## For advanced users
