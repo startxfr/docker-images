@@ -36,7 +36,7 @@ USER root
 COPY supervisord.conf $SX_CHROME_SUPERVISOR_CONF/
 COPY sx /tmp/
 COPY google-chrome.repo /etc/yum.repos.d/google-chrome.repo
-RUN wget https://rpmfind.net/linux/epel/7Server/x86_64/Packages/p/python-meld3-0.6.10-1.el7.x86_64.rpm && \
+RUN wget -q https://rpmfind.net/linux/epel/7Server/x86_64/Packages/p/python-meld3-0.6.10-1.el7.x86_64.rpm && \
     rpm -ivh python-meld3-0.6.10-1.el7.x86_64.rpm --nodeps && \
     rm -f python-meld3-0.6.10-1.el7.x86_64.rpm && \
     yum install -y -q yum-utils && yum upgrade -y -q  && \
