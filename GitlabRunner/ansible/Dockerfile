@@ -14,8 +14,8 @@ LABEL name="$SX_ID" \
     release="$SX_VERSION" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
-    io.openshift.min-memory="500Mi" \
-    io.openshift.min-cpu="800m" \
+    io.openshift.min-memory="128Mi" \
+    io.openshift.min-cpu="200m" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
