@@ -4,8 +4,8 @@ ENV SX_VERSION="alpine3" \
     SX_TYPE="service" \
     SX_SERVICE="php" \
     SX_ID="startx/sv-php" \
-    SX_NAME="Startx Apache-PHP service image (alpine 3.10)" \
-    SX_SUMMARY="Startx apache-php service based on alpine 3.10" \
+    SX_NAME="Startx Apache-PHP service image (alpine 3.12)" \
+    SX_SUMMARY="Startx apache-php service based on alpine 3.12" \
     SX_PHPSESS_PATH="/var/lib/php/session" \
     SX_PHP_TMPPATH="/tmp"
 

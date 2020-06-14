@@ -1,6 +1,6 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/alpine/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : alpine 3.10
+# Docker OS Images : alpine 3.12
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/OS/)
 
@@ -19,7 +19,7 @@ This container contain :
 
 You can use Startx Apache image in many ways :
 
-- [Docker OS Images : alpine 3.10](#docker-os-images--alpine-310)
+- [Docker OS Images : alpine 3.12](#docker-os-images--alpine-310)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
@@ -58,7 +58,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/centos:7`](https://hub.docker.com/r/startx/centos)      | Centos 7                         |
 | [`startx/centos:6`](https://hub.docker.com/r/startx/centos)      | Centos 6                         |
 | [`startx/ubi:8`](https://hub.docker.com/r/startx/ubi)            | RedHat UBI 8                     |
-| [`startx/alpine:3`](https://hub.docker.com/r/startx/alpine)      | Alpine 3.10                      |
+| [`startx/alpine:3`](https://hub.docker.com/r/startx/alpine)      | Alpine 3.12                      |
 
 ## Running this image
 

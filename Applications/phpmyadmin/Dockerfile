@@ -4,8 +4,8 @@ ENV SX_VERSION="alpine3" \
     SX_TYPE="application" \
     SX_SERVICE="phpmyadmin" \
     SX_ID="startx/app-phpmyadmin" \
-    SX_NAME="Startx PhpMyAdmin service image (alpine 3.10)" \
-    SX_SUMMARY="Startx phpmyadmin service based on alpine 3.10" \
+    SX_NAME="Startx PhpMyAdmin service image (alpine 3.12)" \
+    SX_SUMMARY="Startx phpmyadmin service based on alpine 3.12" \
     MYSQL_LANG=fr_FR
 
 LABEL name="$SX_ID" \

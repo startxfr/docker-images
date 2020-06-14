@@ -22,8 +22,8 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "PhpMyAdmin web-console (alpine 3.10)",
-                            "description": "PhpMyAdmin web-console for mariadb running under alpine 3.10",
+                            "openshift.io/display-name": "PhpMyAdmin web-console (alpine 3.12)",
+                            "description": "PhpMyAdmin web-console for mariadb running under alpine 3.12",
                             "iconClass": "icon-php",
                             "tags": "startx,alpine,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
@@ -38,8 +38,8 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "PhpMyAdmin web-console (alpine 3.10)",
-                            "description": "PhpMyAdmin web-console for mariadb running under alpine 3.10",
+                            "openshift.io/display-name": "PhpMyAdmin web-console (alpine 3.12)",
+                            "description": "PhpMyAdmin web-console for mariadb running under alpine 3.12",
                             "iconClass": "icon-php",
                             "tags": "startx,alpine,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
@@ -54,8 +54,8 @@
                     {
                         "name": "alpine3",
                         "annotations": {
-                            "openshift.io/display-name": "PhpMyAdmin web-console (alpine 3.10)",
-                            "description": "PhpMyAdmin web-console for mariadb running under alpine 3.10",
+                            "openshift.io/display-name": "PhpMyAdmin web-console (alpine 3.12)",
+                            "description": "PhpMyAdmin web-console for mariadb running under alpine 3.12",
                             "iconClass": "icon-php",
                             "tags": "startx,alpine,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",

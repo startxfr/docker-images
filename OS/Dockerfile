@@ -1,11 +1,11 @@
-FROM alpine:3.10
+FROM alpine:3.12
 
 ENV SX_VERSION="alpine3" \
     SX_TYPE="OS" \
     SX_SERVICE="alpine" \
     SX_ID="startx/alpine" \
-    SX_NAME="Startx OS base image (alpine 3.10)" \
-    SX_SUMMARY="Startx OS base image based on alpine 3.10" \
+    SX_NAME="Startx OS base image (alpine 3.12)" \
+    SX_SUMMARY="Startx OS base image based on alpine 3.12" \
     SX_VERBOSE=true \
     SX_DEBUG=false \
     APP_PATH="/app" \

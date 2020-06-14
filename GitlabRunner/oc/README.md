@@ -21,7 +21,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 - `:centos8` : CentOS 8 + oc + kubectl + tools
 - `:centos7` : CentOS 7 + oc + kubectl + tools
 - `:centos6` : Centos 6 + oc + kubectl + tools
-- `:alpine3` : Alpine 3.10 + oc + kubectl + tools
+- `:alpine3` : Alpine 3.12 + oc + kubectl + tools
 - `:ubi8` : RedHat UBI 8 + oc + kubectl + tools
 
 ## Running from dockerhub registry

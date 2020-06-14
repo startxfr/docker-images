@@ -4,8 +4,8 @@ ENV SX_VERSION="alpine3" \
     SX_TYPE="service" \
     SX_SERVICE="postgres" \
     SX_ID="startx/sv-postgres" \
-    SX_NAME="Startx Postgres service image (alpine 3.10)" \
-    SX_SUMMARY="Startx postgres service based on alpine 3.10" \
+    SX_NAME="Startx Postgres service image (alpine 3.12)" \
+    SX_SUMMARY="Startx postgres service based on alpine 3.12" \
     DATA_PATH=/data \
     LOG_PATH=/var/log/postgres
 
