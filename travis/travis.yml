@@ -39,8 +39,8 @@ script:
   - "./travis/test    VDI/firefox        vdi-firefox   centos8 firefox"
   - "./travis/test    Applications/phpmyadmin  app-phpmyadmin   centos8 phpmyadmin"
 after_success:
-  - "./travis/test    OS                 centos        latest  centos"
-  - "./travis/test    OS                 centos        8       centos"
+  - "./travis/publish OS                 centos        latest  centos"
+  - "./travis/publish OS                 centos        8       centos"
   - "./travis/publish Services/apache    sv-apache     centos8 apache"
   - "./travis/publish Services/couchbase sv-couchbase  centos8 couchbase"
   - "./travis/publish Services/mariadb   sv-mariadb    centos8 mariadb"
