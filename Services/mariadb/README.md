@@ -57,7 +57,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/sv-mariadb:centos7`](https://hub.docker.com/r/startx/sv-mariadb) | Centos 7 + MariaDB x.x.x                                  |
 | [`startx/sv-mariadb:centos6`](https://hub.docker.com/r/startx/sv-mariadb) | Centos 6 + MariaDB x.x.x                                  |
 | [`startx/sv-mariadb:ubi8`](https://hub.docker.com/r/startx/sv-mariadb)    | RedHat UBI 8 + MariaDB x.x.x                              |
-| [`startx/sv-mariadb:alpine3`](https://hub.docker.com/r/startx/sv-mariadb) | Alpine 3.10 + MariaDB 10.2.14                             |
+| [`startx/sv-mariadb:alpine3`](https://hub.docker.com/r/startx/sv-mariadb) | Alpine 3.12 + MariaDB 10.2.14                             |
 
 ## Running this image
 

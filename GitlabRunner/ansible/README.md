@@ -21,7 +21,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 - `:centos8` : CentOS 8 + ansible + make
 - `:centos7` : CentOS 7 + ansible + make
 - `:centos6` : Centos 6 + ansible + make
-- `:alpine3` : Alpine 3.10 + ansible + make
+- `:alpine3` : Alpine 3.12 + ansible + make
 - `:ubi8` : RedHat UBI 8 + ansible + make
 
 ## Running from dockerhub registry
