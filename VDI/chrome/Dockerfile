@@ -36,7 +36,7 @@ USER root
 COPY supervisord.conf $SX_CHROME_SUPERVISOR_CONF/
 COPY sx /tmp/
 # COPY google-chrome.repo /etc/yum.repos.d/google-chrome.repo
-# RUN wget https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/p/python-meld3-1.0.2-11.fc31.noarch.rpm && \
+# RUN wget -q https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/p/python-meld3-1.0.2-11.fc31.noarch.rpm && \
 #     rpm -ivh python-meld3-1.0.2-11.fc31.noarch.rpm --nodeps && \
 RUN dnf install -y yum-utils && \
     dnf install -yq epel-release && \
