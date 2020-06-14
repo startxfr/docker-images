@@ -1,4 +1,4 @@
-FROM startx/centos:7
+FROM quay.io/startx/centos:7
 
 ENV SX_VERSION="centos7" \
     SX_TYPE="desktop" \

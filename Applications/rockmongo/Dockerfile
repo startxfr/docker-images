@@ -1,4 +1,4 @@
-FROM startx/sv-php:centos7
+FROM quay.io/startx/php:centos7
 
 # update, install required, clean
 RUN yum -y update && yum install -y -q httpd php php-devel php-pear gcc-c++ make && yum clean all

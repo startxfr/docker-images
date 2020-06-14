@@ -1,4 +1,4 @@
-FROM startx/sv-php:centos7
+FROM quay.io/startx/php:centos7
 
 ENV SX_VERSION="centos7" \
     SX_TYPE="runner" \

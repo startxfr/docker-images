@@ -1,4 +1,4 @@
-FROM startx/sv-apache:centos7
+FROM quay.io/startx/apache:centos7
 
 ENV SX_VERSION="centos7" \
     SX_TYPE="runner" \

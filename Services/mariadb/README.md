@@ -226,7 +226,7 @@ docker run --rm -d -p 9231:3306 startx-mariadb-sample
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/sv-mariadb:centos7
+FROM quay.io/startx/mariadb:centos7
 #... your container specifications
 ```
 

@@ -212,7 +212,7 @@ docker run --rm -d -p 9221:8080 startx-nodejs-sample
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/sv-nodejs:latest
+FROM quay.io/startx/nodejs:latest
 #... your container specifications
 ```
 
