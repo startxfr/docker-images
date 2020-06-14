@@ -43,7 +43,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/runner-nodejs:centos8`](https://hub.docker.com/r/startx/runner-nodejs) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/nodejs/docker-compose.yml) | Centos 8                                         |
 | [`startx/runner-nodejs:centos7`](https://hub.docker.com/r/startx/runner-nodejs) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/nodejs/docker-compose.yml) | Centos 7                                         |
 | [`startx/runner-nodejs:centos6`](https://hub.docker.com/r/startx/runner-nodejs) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/nodejs/docker-compose.yml) | Centos 6                                         |
-| [`startx/runner-nodejs:alpine3`](https://hub.docker.com/r/startx/runner-nodejs) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/nodejs/docker-compose.yml) | Alpine 3.10 + NodeJS 8.11.1                      |
+| [`startx/runner-nodejs:alpine3`](https://hub.docker.com/r/startx/runner-nodejs) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/nodejs/docker-compose.yml) | Alpine 3.12 + NodeJS 8.11.1                      |
 | [`startx/runner-nodejs:ubi8`](https://hub.docker.com/r/startx/runner-nodejs)    | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/nodejs/docker-compose.yml) | RedHat UBI 8                                     |
 
 ## Running this image
