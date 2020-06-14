@@ -33,11 +33,9 @@ RUN dnf upgrade -yq --refresh && \
     ncurses-libs \
     nmap-ncat \
     gcc \
-    libevent && \
-    dnf install -yq --nogpgcheck --skip-broken http://rpmfind.net/linux/centos/7.6.1810/os/x86_64/Packages/telnet-0.17-64.el7.x86_64.rpm && \
-    tar -zxvf latest && \
-    cd memcached-1.5.16 && \
-    ./configure && make && make test && sudo make install && \
+    libevent \
+    memcached && \
+    dnf install -yq --nogpgcheck --skip-broken http://mirror.centos.org/centos/8/AppStream/x86_64/os/Packages/telnet-0.17-73.el8.x86_64.rpm && \
     dnf remove -y --skip-broken gcc && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \

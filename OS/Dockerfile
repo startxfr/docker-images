@@ -51,9 +51,10 @@ RUN echo "keepcache=0" >>/etc/dnf/dnf.conf && \
     wget \
     curl \
     logrotate \
-    vim && # pwgen \
+    vim && \
     # bash-completion \
     # glibc-langpack-fr \
+    rpm -ivh https://download-ib01.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/p/pwgen-2.08-3.el8.x86_64.rpm && \
     dnf clean all --enablerepo=\* && \
     mkdir -p $SX_LIBDIR $APP_PATH $LOG_PATH && \
     chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib && \

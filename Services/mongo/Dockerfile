@@ -33,17 +33,18 @@ USER root
 COPY sx /tmp/
 COPY mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo
 RUN dnf upgrade -yq --refresh && \
+    dnf install -yq http://mirror.centos.org/centos/8/AppStream/x86_64/os/Packages/compat-openssl10-1.0.2o-3.el8.x86_64.rpm  && \
     dnf install -yq --nogpgcheck \
     mongodb-org-unstable && \
     dnf clean all --enablerepo=\* && \
-    usermod -a -G 0 $MONGO_USER && \
+    useradd -u 1001 -G 0 $MONGO_USER && \
     mkdir -p $DATA_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     mkdir -p $DATA_PATH $LOG_PATH && \
-    chown -R $MONGO_USER:$MONGO_USER $DATA_PATH $LOG_PATH && \
+    chown -R 1001:0 $DATA_PATH $LOG_PATH && \
     chgrp -R 0 $DATA_PATH $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* && \
     chown -R 1001:0 /bin/sx-* /s2i $SX_LIBDIR* && \
     chmod -R g=u $DATA_PATH $LOG_PATH /bin/sx-* /s2i $SX_LIBDIR* && \

@@ -21,18 +21,17 @@ LABEL name="$SX_ID" \
 USER root
 RUN dnf upgrade -yq --refresh && \
     dnf install -y 'dnf-command(config-manager)' && \
-    dnf config-manager --enable --add-repo https://releases.ansible.com/ansible-runner/ansible-runner.el7.repo && \
+    dnf config-manager --enable --add-repo https://releases.ansible.com/ansible-runner/ansible-runner.el8.repo && \
     dnf install -yq --nogpgcheck \
     make \
-    python2-pip \
-    python2-jinja2 \
-    ansible \
-    ansible-runner \
-    # bubblewrap \
+    python3-pip \
+    python3-jinja2 \
+    http://mirror.centos.org/centos/8/BaseOS/x86_64/os/Packages/bubblewrap-0.3.0-1.el8.x86_64.rpm \
     rsync \
     openssh-clients \
-    sshpass && \
-    rpm -ivh https://releases.ansible.com/ansible/rpm/release/epel-7-x86_64/ansible-2.9.1-1.el7.ans.noarch.rpm  && \
+    https://download-ib01.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/s/sshpass-1.06-9.el8.x86_64.rpm && \
+    dnf install -yq --nogpgcheck --skip-broken python3-ansible-runner ansible-runner && \
+    pip3 install --user ansible && \
     dnf clean all --enablerepo=\* && \
     useradd -s /bin/bash -m -g 0 -u 1001 ansible && \
     mkdir -p /.ansible && \

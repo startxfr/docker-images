@@ -22,10 +22,10 @@ USER root
 RUN dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
     make \
-    bubblewrap \
+    http://mirror.centos.org/centos/8/BaseOS/x86_64/os/Packages/bubblewrap-0.3.0-1.el8.x86_64.rpm \
     rsync \
     openssh-clients \
-    sshpass && \
+    https://download-ib01.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/s/sshpass-1.06-9.el8.x86_64.rpm  && \
     dnf clean all --enablerepo=\*
 
 USER 1001
