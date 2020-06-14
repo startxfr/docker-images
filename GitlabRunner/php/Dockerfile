@@ -1,4 +1,4 @@
-FROM startx/sv-php:ubi8
+FROM quay.io/startx/php:ubi8
 
 ENV SX_VERSION="ubi8" \
     SX_TYPE="runner" \

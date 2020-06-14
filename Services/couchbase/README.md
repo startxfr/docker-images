@@ -95,8 +95,8 @@ firefox http://localhost:9201
 
 ```YAML
 service:
-  image: startx/sv-couchbase:centos7
-  container_name: "service-couchbase-centos7"
+  image: startx/sv-couchbase:ubi8
+  container_name: "service-couchbase-ubi8"
   volumes:
     - "/tmp/container/couchbase/logs:/logs:z"
     - "/tmp/container/couchbase/data:/data:z"
@@ -202,8 +202,8 @@ docker run --rm -i -t test-couchbase
 
 ```YAML
 service:
-  image: startx/sv-couchbase:centos7
-  container_name: "service-couchbase-centos7"
+  image: startx/sv-couchbase:ubi8
+  container_name: "service-couchbase-ubi8"
   ports:
     - "1000:8091"
     - "1001:8092"
@@ -219,8 +219,8 @@ service:
 
 ```YAML
 service:
-  image: startx/sv-couchbase:centos7
-  container_name: "service-couchbase-centos7"
+  image: startx/sv-couchbase:ubi8
+  container_name: "service-couchbase-ubi8"
   expose:
     - "8091"
     - "8092"
@@ -237,14 +237,14 @@ service:
 ```
 data:
   image: startx/centos:7
-  container_name: "service-couchbase-data-centos7"
+  container_name: "service-couchbase-data-ubi8"
   environment:
     CONTAINER_INSTANCE: "service-couchbase-data"
 service:
-  image: startx/sv-couchbase:centos7
-  container_name: "service-couchbase-centos7"
+  image: startx/sv-couchbase:ubi8
+  container_name: "service-couchbase-ubi8"
   environment:
-    CONTAINER_INSTANCE: "service-couchbase-centos7"
+    CONTAINER_INSTANCE: "service-couchbase-ubi8"
   volume_from:
     - data:rw
 ```
@@ -254,7 +254,7 @@ service:
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/sv-couchbase:centos7
+FROM quay.io/startx/couchbase:ubi8
 #... your container specifications
 CMD ["/bin/sx", "run"]
 ```

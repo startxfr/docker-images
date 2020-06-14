@@ -1,4 +1,4 @@
-FROM startx/sv-apache:ubi8
+FROM quay.io/startx/apache:ubi8
 
 ENV SX_VERSION="ubi8" \
     SX_TYPE="service" \
