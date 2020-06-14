@@ -36,7 +36,7 @@ RUN dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
     nodejs \
     npm \
-    python \
+    python3 \
     make \
     gcc \
     gcc-c++ \

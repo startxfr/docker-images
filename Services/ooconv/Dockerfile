@@ -32,11 +32,11 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 RUN dnf upgrade -yq --refresh && \
+    dnf install -yq epel-release && \
     dnf install -yq --nogpgcheck \
     unoconv \
     libreoffice-writer \
     libreoffice-calc \
-    pdfmod \
     ghostscript && \
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \

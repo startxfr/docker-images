@@ -8,9 +8,9 @@ ENV SX_VERSION="centos8" \
     SX_SUMMARY="Startx couchbase service based on centos 8" \
     CB_PATH=/opt/couchbase \
     DATA_PATH=/opt/couchbase/var \
-    CB_VERSION=6.0.2 \
-    CB_RELEASE_URL=https://packages.couchbase.com/releases/6.0.2 \
-    CB_PACKAGE=couchbase-server-enterprise-6.0.2-rhel8.x86_64.rpm \
+    CB_VERSION=6.5.1 \
+    CB_RELEASE_URL=https://packages.couchbase.com/releases/6.5.1 \
+    CB_PACKAGE=couchbase-server-enterprise-6.5.1-centos8.x86_64.rpm \
     PATH=$PATH:/opt/couchbase/bin:/opt/couchbase/bin/tools:/opt/couchbase/bin/install
 
 LABEL name="$SX_ID" \
@@ -34,7 +34,13 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 RUN dnf upgrade -yq --refresh && \
-    dnf install -yq --nogpgcheck \
+    dnf install -yq epel-release && \
+    dnf install -yq https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm && \
+    rpm -ivh https://forensics.cert.org/cert-forensics-tools-release-el8.rpm && \
+     && \
+    dnf install -yq 'dnf-command(config-manager)' && \
+    dnf config-manager --set-enabled PowerTools && \
+    dnf install -y --nogpgcheck \
     python2-httplib2 \
     openssl \
     ncurses \
@@ -42,6 +48,7 @@ RUN dnf upgrade -yq --refresh && \
     ncurses-compat-libs \
     python2 && \
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf remove -yq 'dnf-command(config-manager)' && \
     dnf clean all --enablerepo=\* && \
     #echo 0 > /proc/sys/vm/swappiness && \
     echo '' >>/etc/sysctl.conf && \
