@@ -58,7 +58,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/centos:7`](https://hub.docker.com/r/startx/centos)      | Centos 7                         |
 | [`startx/centos:6`](https://hub.docker.com/r/startx/centos)      | Centos 6                         |
 | [`startx/ubi:8`](https://hub.docker.com/r/startx/ubi)            | RedHat UBI 8                     |
-| [`startx/alpine:3`](https://hub.docker.com/r/startx/alpine)      | Alpine 3.10                      |
+| [`startx/alpine:3`](https://hub.docker.com/r/startx/alpine)      | Alpine 3.12                      |
 
 ## Running this image
 

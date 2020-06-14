@@ -135,6 +135,7 @@ and stay stiked to a defined stable release.
 
 | Release | Description                                                                      |
 | ------- | -------------------------------------------------------------------------------- |
+| 0.95.17 | stable ubi8, centos7, centos8, fc32, fc31 and fc30 branch                        |
 | 0.95.15 | debug mariadb configuration on build or run                                      |
 | 0.95.11 | improve verbose display                                                          |
 | 0.95.9  | debug and stabilize dockerfiles                                                  |

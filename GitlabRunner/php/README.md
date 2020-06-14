@@ -44,7 +44,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/runner-php:centos8`](https://hub.docker.com/r/startx/runner-php) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/php/docker-compose.yml) | Centos 8                                        |
 | [`startx/runner-php:centos7`](https://hub.docker.com/r/startx/runner-php) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/php/docker-compose.yml) | Centos 7                                        |
 | [`startx/runner-php:centos6`](https://hub.docker.com/r/startx/runner-php) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/php/docker-compose.yml) | Centos 6                                        |
-| [`startx/runner-php:alpine3`](https://hub.docker.com/r/startx/runner-php) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/php/docker-compose.yml) | Alpine 3.10 + Apache 2.4.33 + PHP 7.2.5         |
+| [`startx/runner-php:alpine3`](https://hub.docker.com/r/startx/runner-php) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/php/docker-compose.yml) | Alpine 3.12 + Apache 2.4.33 + PHP 7.2.5         |
 | [`startx/runner-php:ubi8`](https://hub.docker.com/r/startx/runner-php)    | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/php/docker-compose.yml) | RedHat UBI 8                                    |
 
 ## Running this image
