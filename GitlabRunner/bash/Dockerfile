@@ -25,7 +25,7 @@ RUN dnf upgrade -yq --refresh && \
     bubblewrap \
     rsync \
     openssh-clients && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils && \
     dnf clean all --enablerepo=\*
 
 USER 1001

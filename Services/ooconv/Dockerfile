@@ -38,7 +38,7 @@ RUN dnf upgrade -yq --refresh && \
     libreoffice-writer \
     libreoffice-calc \
     ghostscript && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils && \
     dnf clean all --enablerepo=\* && \
     useradd -s /bin/bash -m -g 0 -u 1001 ooconv && \
     mkdir -p $DATA_PATH /.cache && \

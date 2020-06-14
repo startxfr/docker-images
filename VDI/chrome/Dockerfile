@@ -58,7 +58,7 @@ RUN dnf install -y yum-utils && \
     # dnf install -yq --nogpgcheck google-chrome-stable && \
     # package-cleanup --problems && \
     # package-cleanup --orphans && \
-    # dnf remove -yq --skip-broken yum-utils yum && \
+    # dnf remove -yq --skip-broken yum-utils && \
     # dnf remove -yq 'dnf-command(config-manager)' && \
     # dnf clean all --enablerepo=\* && \
     # easy_install pip && \

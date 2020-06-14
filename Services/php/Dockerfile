@@ -53,7 +53,7 @@ RUN dnf upgrade -yq --refresh && \
     php-common \
     php-mbstring \
     php-bcmath && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils && \
     dnf remove -yq 'dnf-command(config-manager)' && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \

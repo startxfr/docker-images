@@ -26,7 +26,7 @@ RUN dnf upgrade -yq --refresh && \
     rsync \
     openssh-clients \
     sshpass && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils && \
     dnf clean all --enablerepo=\*
 
 USER 1001
