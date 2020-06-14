@@ -73,6 +73,11 @@ centos6-runner-php:
     file: GitlabRunner/php/docker-compose.yml
     service: php
 
+centos6-runner-oc:
+  extends:
+    file: GitlabRunner/oc/docker-compose.yml
+    service: oc
+
 centos6-vdi-chrome:
   extends:
     file: VDI/chrome/docker-compose.yml

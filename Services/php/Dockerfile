@@ -19,11 +19,12 @@ LABEL name="$SX_ID" \
     io.k8s.display-name="$SX_ID" \
     io.openshift.tags="startx,os,centos,apache,httpd,php" \
     io.openshift.non-scalable="false" \
-    io.openshift.min-memory="300Mi" \
-    io.openshift.min-cpu="2000m" \
+    io.openshift.min-memory="256Mi" \
+    io.openshift.min-cpu="300m" \
     io.openshift.expose-services="$APP_PORT:http" \
     io.openshift.s2i.destination="/tmp" \
     io.openshift.s2i.scripts-url="image:///s2i" \
+    io.s2i.scripts-url="image:///s2i" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
@@ -52,7 +53,6 @@ RUN yum install -y -q  yum-utils && \
     php-tcpdf-dejavu-sans-fonts \
     php-tidy && \
     package-cleanup --problems && \
-    package-cleanup --cleandupes; \
     package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
     yum clean all --enablerepo=\* && \

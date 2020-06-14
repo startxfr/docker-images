@@ -21,11 +21,12 @@ LABEL name="$SX_ID" \
     io.k8s.display-name="$SX_ID" \
     io.openshift.tags="startx,os,centos,document,libreoffice" \
     io.openshift.non-scalable="false" \
-    io.openshift.min-memory="1500Mi" \
-    io.openshift.min-cpu="8000m" \
+    io.openshift.min-memory="512Mi" \
+    io.openshift.min-cpu="500m" \
     io.openshift.expose-services="2002:unoconv" \
     io.openshift.s2i.destination="/tmp" \
     io.openshift.s2i.scripts-url="image:///s2i" \
+    io.s2i.scripts-url="image:///s2i" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
@@ -39,7 +40,6 @@ RUN yum install -y -q  yum-utils && \
     pdfmod \
     ghostscript && \
     package-cleanup --problems && \
-    package-cleanup --cleandupes; \
     package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
     yum clean all --enablerepo=\* && \

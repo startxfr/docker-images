@@ -14,8 +14,8 @@ LABEL name="$SX_ID" \
     release="$SX_VERSION" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
-    io.openshift.min-memory="500Mi" \
-    io.openshift.min-cpu="800m" \
+    io.openshift.min-memory="128Mi" \
+    io.openshift.min-cpu="200m" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
@@ -25,15 +25,19 @@ RUN yum install -y -q  yum-utils && \
     make \
     python-pip \
     ansible \
-    ansible-runner \
     bubblewrap \
     rsync \
     openssh-clients \
     sshpass && \
-    package-cleanup --problems && \
-    package-cleanup --orphans && \
+    yum repo --add-repo https://releases.ansible.com/ansible-runner/ansible-runner.el6.repo && \
+    yum install -yq --nogpgcheck ansible-runner && \
     yum remove -y --skip-broken yum-utils && \
     yum clean all --enablerepo=\*
+    useradd -s /bin/bash -m -g 0 -u 1001 ansible && \
+    mkdir -p /.ansible && \
+    chgrp -R 0 /.ansible && \
+    chown -R 1001:0 /.ansible && \
+    chmod -R g=u /.ansible
 
 USER 1001
 

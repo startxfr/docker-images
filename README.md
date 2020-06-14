@@ -1,8 +1,8 @@
+# STARTX Docker-Images Repository
+
 [![docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-# STARTX Docker-Images Repository Centos 6
-
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/centos6/OS/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos6)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/OS/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
 
 [![Dockerhub Registry](https://img.shields.io/docker/build/startx/fedora.svg)](https://hub.docker.com/r/startx/fedora) [![Docker Fedora pulls](https://img.shields.io/docker/pulls/startx/fedora)](https://hub.docker.com/r/startx/fedora) [![Docker Repository on Quay](https://quay.io/repository/startx/fedora/status "Docker Repository on Quay")](https://quay.io/repository/startx/fedora)
 
@@ -53,6 +53,13 @@ your project and start using stable or experimental services in your application
 | **VDI**                     | [guide](VDI)                     | [VDI list](VDI#container-flavours)                     | [examples](VDI#running-this-image)                     |
 | VDI/**chrome**              | [guide](VDI/chrome)              | [flavours](VDI/chrome#container-flavours)              | [examples](VDI/chrome#running-this-image)              | [docker.io](https://hub.docker.com/r/startx/vdi-chrome) [quay.io](https://quay.io/repository/startx/chrome)         |
 | VDI/**firefox**             | [guide](VDI/firefox)             | [flavours](VDI/firefox#container-flavours)             | [examples](VDI/firefox#running-this-image)             | [docker.io](https://hub.docker.com/r/startx/vdi-firefox) [quay.io](https://quay.io/repository/startx/firefox)       |
+| **GitlabRunner**            | [guide](GitlabRunner)            | [GitlabRunner list](GitlabRunner#container-flavours)   | [examples](GitlabRunner#running-this-image)            |
+| GitlabRunner/**ansible**    | [guide](GitlabRunner/ansible)    | [flavours](GitlabRunner/ansible#container-flavours)    | [examples](GitlabRunner/ansible#running-this-image)    | [docker.io](https://hub.docker.com/r/startx/runner-ansible) [quay.io](https://quay.io/repository/startx/ansible)    |
+| GitlabRunner/**apache**     | [guide](GitlabRunner/apache)     | [flavours](GitlabRunner/apache#container-flavours)     | [examples](GitlabRunner/apache#running-this-image)     | [docker.io](https://hub.docker.com/r/startx/runner-apache) [quay.io](https://quay.io/repository/startx/apache)      |
+| GitlabRunner/**bash**       | [guide](GitlabRunner/bash)       | [flavours](GitlabRunner/bash#container-flavours)       | [examples](GitlabRunner/bash#running-this-image)       | [docker.io](https://hub.docker.com/r/startx/runner-bash) [quay.io](https://quay.io/repository/startx/bash)          |
+| GitlabRunner/**nodejs**     | [guide](GitlabRunner/nodejs)     | [flavours](GitlabRunner/nodejs#container-flavours)     | [examples](GitlabRunner/nodejs#running-this-image)     | [docker.io](https://hub.docker.com/r/startx/runner-nodejs) [quay.io](https://quay.io/repository/startx/nodejs)      |
+| GitlabRunner/**php**        | [guide](GitlabRunner/php)        | [flavours](GitlabRunner/php#container-flavours)        | [examples](GitlabRunner/php#running-this-image)        | [docker.io](https://hub.docker.com/r/startx/runner-php) [quay.io](https://quay.io/repository/startx/php)            |
+| GitlabRunner/**oc**         | [guide](GitlabRunner/oc)         | [flavours](GitlabRunner/oc#container-flavours)         | [examples](GitlabRunner/oc#running-this-image)         | [docker.io](https://hub.docker.com/r/startx/runner-oc) [quay.io](https://quay.io/repository/startx/oc)              |
 | **Applications**            | [guide](Applications)            | [applications list](Applications#container-flavours)   | [examples](Applications#running-this-image)            |
 | Applications/**phpmyadmin** | [guide](Applications/phpmyadmin) | [flavours](Applications/phpmyadmin#container-flavours) | [examples](Applications/phpmyadmin#running-this-image) | [docker.io](https://hub.docker.com/r/startx/app-phpmyadmin) [quay.io](https://quay.io/repository/startx/phpmyadmin) |
 | Applications/**rockmongo**  | [guide](Applications/rockmongo)  | [flavours](Applications/rockmongo#container-flavours)  | [examples](Applications/rockmongo#running-this-image)  | [docker.io](https://hub.docker.com/r/startx/app-rockmongo) [quay.io](https://quay.io/repository/startx/rockmongo)   |
@@ -60,6 +67,7 @@ your project and start using stable or experimental services in your application
 ## Images flavours
 
 - `latest` based on fedora rawhide [see detail](https://github.com/startxfr/docker-images/tree/master)
+- `fc32` based on fedora core 32 [see detail](https://github.com/startxfr/docker-images/tree/fc32)
 - `fc31` based on fedora core 31 [see detail](https://github.com/startxfr/docker-images/tree/fc31)
 - `fc30` based on fedora core 30 [see detail](https://github.com/startxfr/docker-images/tree/fc30)
 - `fc29` based on fedora core 29 [see detail](https://github.com/startxfr/docker-images/tree/fc29)
@@ -136,6 +144,11 @@ and stay stiked to a defined stable release.
 
 | Release | Description                                                                      |
 | ------- | -------------------------------------------------------------------------------- |
+| 0.95.15 | debug mariadb configuration on build or run                                      |
+| 0.95.11 | improve verbose display                                                          |
+| 0.95.9  | debug and stabilize dockerfiles                                                  |
+| 0.95.7  | Add s2i label for s2i compat                                                     |
+| 0.95.5  | Add \*.data.sql and \*.schema.sql dump support for mariadb                       |
 | 0.95.3  | Updating docker for better diff and merge. Improve doc structures                |
 | 0.93.1  | Unstable release with UBI and centos8 added. Prepare first major release         |
 | 0.40.0  | Stable release with updated images lib packages                                  |

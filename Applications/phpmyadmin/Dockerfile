@@ -19,8 +19,8 @@ LABEL name="$SX_ID" \
     io.openshift.tags="startx,os,centos,apache,httpd,php,phpmyadmin,mysql,mariadb" \
     io.openshift.non-scalable="false" \
     io.openshift.wants="mysql" \
-    io.openshift.min-memory="300Mi" \
-    io.openshift.min-cpu="2000m" \
+    io.openshift.min-memory="128Mi" \
+    io.openshift.min-cpu="200m" \
     io.openshift.expose-services="8080:http" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 

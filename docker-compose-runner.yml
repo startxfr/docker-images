@@ -22,3 +22,8 @@ runner-php:
   extends:
     file: GitlabRunner/php/docker-compose.yml
     service: php
+
+runner-oc:
+  extends:
+    file: GitlabRunner/oc/docker-compose.yml
+    service: oc

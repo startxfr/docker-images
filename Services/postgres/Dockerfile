@@ -19,11 +19,12 @@ LABEL name="$SX_ID" \
     io.k8s.display-name="$SX_ID" \
     io.openshift.tags="startx,os,centos,database,postgresql" \
     io.openshift.non-scalable="true" \
-    io.openshift.min-memory="1Gi" \
-    io.openshift.min-cpu="8000m" \
+    io.openshift.min-memory="512Mi" \
+    io.openshift.min-cpu="600m" \
     io.openshift.expose-services="5432:postgresql" \
     io.openshift.s2i.destination="/tmp" \
     io.openshift.s2i.scripts-url="image:///s2i" \
+    io.s2i.scripts-url="image:///s2i" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
@@ -35,7 +36,6 @@ RUN yum install -y -q  yum-utils && \
     postgresql-libs \
     postgresql-server && \
     package-cleanup --problems && \
-    package-cleanup --cleandupes; \
     package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
     yum clean all --enablerepo=\* && \

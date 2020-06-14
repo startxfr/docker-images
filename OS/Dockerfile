@@ -25,10 +25,11 @@ LABEL name="$SX_ID" \
     io.k8s.display-name="$SX_ID" \
     io.openshift.tags="startx,os,centos" \
     io.openshift.non-scalable="false" \
-    io.openshift.min-memory="128Mi" \
-    io.openshift.min-cpu="500m" \
+    io.openshift.min-memory="32Mi" \
+    io.openshift.min-cpu="50m" \
     io.openshift.s2i.destination="$SX_S2IDIR" \
     io.openshift.s2i.scripts-url="image:///s2i" \
+    io.s2i.scripts-url="image:///s2i" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
@@ -58,7 +59,6 @@ RUN echo "keepcache=0" >> /etc/yum.conf && \
     vim && \
     yum --nogpgcheck -y remove dbus-glib && \
     package-cleanup --problems && \
-    package-cleanup --cleandupes; \
     package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
     yum clean all --enablerepo=\* && \

@@ -24,10 +24,11 @@ LABEL name="$SX_ID" \
     io.openshift.tags="startx,os,centos,database,couchbase" \
     io.openshift.non-scalable="true" \
     io.openshift.min-memory="1Gi" \
-    io.openshift.min-cpu="8000m" \
+    io.openshift.min-cpu="2000m" \
     io.openshift.expose-services="8091:console,8092:xdcr,8093:query,8094:fts,11207:scd-ssl,11210:scd-moxy,11211:data,18091:console-ssl,18092:xdcr-ssl,18093:query-ssl,18094:fts-ssl" \
     io.openshift.s2i.destination="/tmp" \
     io.openshift.s2i.scripts-url="image:///s2i" \
+    io.s2i.scripts-url="image:///s2i" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
@@ -42,16 +43,15 @@ RUN yum install -y -q  yum-utils && \
     ncurses-compat-libs \
     python2 && \
     package-cleanup --problems && \
-    package-cleanup --cleandupes; \
     package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
     yum clean all --enablerepo=\* && \
     #echo 0 > /proc/sys/vm/swappiness && \
-    echo '' >> /etc/sysctl.conf && \
-    echo 'couchbase              soft    nofile                  90000' >> /etc/security/limits.conf && \
-    echo 'couchbase              hard    nofile                  unlimited' >> /etc/security/limits.conf && \
-    echo '#Set swappiness to 0 to avoid swapping' >> /etc/sysctl.conf && \
-    echo 'vm.swappiness = 0' >> /etc/sysctl.conf && \
+    echo '' >>/etc/sysctl.conf && \
+    echo 'couchbase              soft    nofile                  90000' >>/etc/security/limits.conf && \
+    echo 'couchbase              hard    nofile                  unlimited' >>/etc/security/limits.conf && \
+    echo '#Set swappiness to 0 to avoid swapping' >>/etc/sysctl.conf && \
+    echo 'vm.swappiness = 0' >>/etc/sysctl.conf && \
     #echo never > /sys/kernel/mm/transparent_hugepage/enabled && \
     #echo never > /sys/kernel/mm/transparent_hugepage/defrag && \
     wget -q $CB_RELEASE_URL/$CB_PACKAGE && \
