@@ -1,4 +1,4 @@
-FROM startx/sv-php
+FROM quay.io/startx/php
 
 # update, install required, clean
 RUN apk --no-cache add apache2 curl php7-apache2 php7 php7-phar php7-json php7-iconv php7-openssl \

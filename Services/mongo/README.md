@@ -119,7 +119,7 @@ service:
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/sv-mongo:alpine3
+FROM quay.io/startx/mongo:alpine3
 #... your container specifications
 CMD ["/bin/sx", "run"]
 ```

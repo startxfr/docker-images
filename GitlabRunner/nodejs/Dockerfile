@@ -1,4 +1,4 @@
-FROM startx/sv-nodejs:alpine3
+FROM quay.io/startx/nodejs:alpine3
 
 ENV SX_VERSION="alpine3" \
     SX_TYPE="runner" \

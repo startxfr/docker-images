@@ -1,4 +1,4 @@
-FROM startx/alpine:3
+FROM quay.io/startx/alpine:3
 
 ENV SX_VERSION="alpine3" \
     SX_TYPE="runner" \

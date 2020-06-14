@@ -1,4 +1,4 @@
-FROM startx/sv-php:alpine3
+FROM quay.io/startx/php:alpine3
 
 ENV SX_VERSION="alpine3" \
     SX_TYPE="runner" \

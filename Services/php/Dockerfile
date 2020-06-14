@@ -1,4 +1,4 @@
-FROM startx/sv-apache:alpine3
+FROM quay.io/startx/apache:alpine3
 
 ENV SX_VERSION="alpine3" \
     SX_TYPE="service" \
