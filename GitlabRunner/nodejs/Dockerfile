@@ -1,4 +1,4 @@
-FROM startx/sv-nodejs:fc31
+FROM quay.io/startx/nodejs:fc31
 
 ENV SX_VERSION="fc31" \
     SX_TYPE="runner" \

@@ -21,7 +21,7 @@ This container contain :
 
 You can use Startx Apache image in many ways :
 
-- [Docker OS Images : APACHE](#docker-os-images--apache)
+- [Docker OS Images : APACHE on Fedora 31](#docker-os-images--apache-on-fedora-31)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
@@ -209,7 +209,7 @@ docker run --rm -d -p 9201:8080 startx-apache-sample
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/sv-apache:fc31
+FROM quay.io/startx/apache:fc31
 #... your container specifications
 ```
 
@@ -257,7 +257,7 @@ This section will help you if you want to :
 
 ### Build & run a container using `docker`
 
-0. Switch to the flavour branch with `git branch fc28`
+0. Switch to the flavour branch with `git branch fc31`
 1. Jump into the container directory with `cd Services/apache`
 2. Build the container using `docker build -t startx-apache .`
 3. Run this container

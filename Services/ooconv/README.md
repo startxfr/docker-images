@@ -17,7 +17,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 - `:fc31` : Fedora core 31 + unoconv 0.7 + LibreOffice 5.0.3.2
 - `:fc30` : Fedora core 30 + unoconv 0.7 + LibreOffice 5.0.3.2
 - `:fc29` : Fedora core 29 + unoconv 0.7 + LibreOffice 6.1.6.3
-- `:fc28` : Fedora core 28 + unoconv 0.7 + LibreOffice 5.0.3.2
+- `:fc31` : Fedora core 28 + unoconv 0.7 + LibreOffice 5.0.3.2
 - `:fc27` : Fedora core 27 + unoconv 0.7 + LibreOffice 5.0.3.2
 - `:fc26` : Fedora core 26 + unoconv 0.7 + LibreOffice 5.0.3.2
 - `:fc23` : Fedora core 23 + unoconv 0.7 + LibreOffice 5.0.3.2
@@ -45,8 +45,8 @@ you can [read ours containers engines guidelines](https://github.com/startxfr/co
 
 ```YAML
 service:
-  image: startx/sv-ooconv:fc28
-  container_name: "fc28-service-ooconv"
+  image: startx/sv-ooconv:fc31
+  container_name: "fc31-service-ooconv"
   volumes:
     - "/tmp/container/ooconv/logs:/logs:z"
 ```
@@ -84,8 +84,8 @@ docker run --rm -i -t test-ooconv
 
 ```YAML
 service:
-  image: startx/sv-ooconv:fc28
-  container_name: "service-ooconv-fc28"
+  image: startx/sv-ooconv:fc31
+  container_name: "service-ooconv-fc31"
   ports:
     - "1000:2002"
 ```
@@ -94,8 +94,8 @@ service:
 
 ```YAML
 service:
-  image: startx/sv-ooconv:fc28
-  container_name: "service-ooconv-fc28"
+  image: startx/sv-ooconv:fc31
+  container_name: "service-ooconv-fc31"
   expose:
     - "2002"
 ```
@@ -105,7 +105,7 @@ service:
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/sv-ooconv:fc28
+FROM quay.io/startx/ooconv:fc31
 #... your container specifications
 CMD ["/bin/sx", "run"]
 ```

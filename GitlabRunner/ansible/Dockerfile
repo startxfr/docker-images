@@ -1,4 +1,4 @@
-FROM startx/fedora:31
+FROM quay.io/startx/fedora:31
 
 ENV SX_VERSION="fc31" \
     SX_TYPE="runner" \

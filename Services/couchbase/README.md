@@ -25,7 +25,7 @@ This container contain :
 
 You can use Startx couchbase image in many ways :
 
-- [Docker OS Images : COUCHBASE](#docker-os-images--couchbase)
+- [Docker OS Images : COUCHBASE on Fedora 31](#docker-os-images--couchbase-on-fedora-31)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
@@ -95,8 +95,8 @@ firefox http://localhost:9201
 
 ```YAML
 service:
-  image: startx/sv-couchbase:fc28
-  container_name: "fc28-service-couchbase"
+  image: startx/sv-couchbase:fc31
+  container_name: "fc31-service-couchbase"
   volumes:
     - "/tmp/container/couchbase/logs:/logs:z"
     - "/tmp/container/couchbase/data:/data:z"
@@ -202,8 +202,8 @@ docker run --rm -i -t test-couchbase
 
 ```YAML
 service:
-  image: startx/sv-couchbase:fc28
-  container_name: "service-couchbase-fc28"
+  image: startx/sv-couchbase:fc31
+  container_name: "service-couchbase-fc31"
   ports:
     - "1000:11211"
 ```
@@ -212,8 +212,8 @@ service:
 
 ```YAML
 service:
-  image: startx/sv-couchbase:fc28
-  container_name: "service-couchbase-fc28"
+  image: startx/sv-couchbase:fc31
+  container_name: "service-couchbase-fc31"
   expose:
     - "11211"
 ```
@@ -223,7 +223,7 @@ service:
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/sv-couchbase:fc28
+FROM quay.io/startx/couchbase:fc31
 #... your container specifications
 CMD ["/bin/sx", "run"]
 ```

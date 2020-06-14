@@ -18,7 +18,7 @@ This container contain :
 
 You can use Startx Apache image in many ways :
 
-- [Docker OS Images : APACHE + PHP](#docker-os-images--apache--php)
+- [Docker OS Images : APACHE + PHP on Fedora 31](#docker-os-images--apache--php-on-fedora-31)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
@@ -207,7 +207,7 @@ docker run --rm -d -p 9213:8080 startx-php-sample
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/sv-php:fc31
+FROM quay.io/startx/php:fc31
 #... your container specifications
 ```
 
