@@ -383,15 +383,9 @@ function config_createadmin {
     PASS=${MYSQL_ROOT_PASSWORD:-$(pwgen -s $MYSQL_ROOT_PASSWORD_LENGTH 1)}
     _word=$( [ ${MYSQL_ROOT_PASSWORD} ] && echo "preset" || echo "random" )
     echoVerbose "Creating MariaDB admin user with ${_word} password"
-<<<<<<< HEAD
-    mysql -u root -h 127.0.0.1 -e         "DROP USER IF EXISTS 'root'@'$HOSTNAME'; CREATE USER 'root'@'$HOSTNAME' IDENTIFIED BY '$PASS'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'$HOSTNAME' WITH GRANT OPTION; FLUSH PRIVILEGES;"
-    mysql -u root -h $HOSTNAME -p$PASS -e "DROP USER IF EXISTS 'root'@'localhost'; CREATE USER 'root'@'localhost' IDENTIFIED BY '$PASS'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION; FLUSH PRIVILEGES;"
-    mysql -u root -h $HOSTNAME -p$PASS -e "DROP USER IF EXISTS 'root'@'%';         CREATE USER 'root'@'%' IDENTIFIED BY '$PASS';         GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;         FLUSH PRIVILEGES;"
-=======
     mysql -uroot -h 127.0.0.1 -e         "DROP USER IF EXISTS 'root'@'$HOSTNAME'; FLUSH PRIVILEGES; CREATE USER 'root'@'$HOSTNAME' IDENTIFIED BY '$PASS'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'$HOSTNAME' WITH GRANT OPTION; FLUSH PRIVILEGES;"
     mysql -uroot -h $HOSTNAME -p$PASS -e "DROP USER IF EXISTS 'root'@'localhost'; FLUSH PRIVILEGES; CREATE USER 'root'@'localhost' IDENTIFIED BY '$PASS'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION; FLUSH PRIVILEGES;"
     mysql -uroot -h $HOSTNAME -p$PASS -e "DROP USER IF EXISTS 'root'@'%'; FLUSH PRIVILEGES;         CREATE USER 'root'@'%' IDENTIFIED BY '$PASS';         GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;         FLUSH PRIVILEGES;"
->>>>>>> master
     MYSQL_ROOT_PASSWORD=$PASS
     export MYSQL_ROOT_PASSWORD=$PASS
     echo ""
@@ -412,13 +406,8 @@ function config_createuser {
         PASS=${MYSQL_PASSWORD:-$(pwgen -s $MYSQL_PASSWORD_LENGTH 1)}
         _word=$( [ ${MYSQL_PASSWORD} ] && echo "preset" || echo "random" )
         echoVerbose "Creating MariaDB $MYSQL_USER user with ${_word} password"
-<<<<<<< HEAD
-        mysql -u root -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -e "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$PASS'; GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%' WITH GRANT OPTION; FLUSH PRIVILEGES;"
-        mysql -u root -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -e "CREATE USER '$MYSQL_USER'@'localhost' IDENTIFIED BY '$PASS'; GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'localhost' WITH GRANT OPTION; FLUSH PRIVILEGES;"
-=======
         mysql -uroot -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -e "DROP USER IF EXISTS '$MYSQL_USER'@'%'; FLUSH PRIVILEGES;         CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$PASS'; GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%' WITH GRANT OPTION; FLUSH PRIVILEGES;"
         mysql -uroot -h $HOSTNAME -p$MYSQL_ROOT_PASSWORD -e "DROP USER IF EXISTS '$MYSQL_USER'@'localhost'; FLUSH PRIVILEGES; CREATE USER '$MYSQL_USER'@'localhost' IDENTIFIED BY '$PASS'; GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'localhost' WITH GRANT OPTION; FLUSH PRIVILEGES;"
->>>>>>> master
         MYSQL_PASSWORD=$PASS
         export MYSQL_PASSWORD=$PASS
         echo ""

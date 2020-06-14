@@ -45,8 +45,8 @@ you can [read ours containers engines guidelines](https://github.com/startxfr/co
 
 ```YAML
 service:
-  image: startx/sv-mongo:centos7
-  container_name: "service-mongo-centos7"
+  image: startx/sv-mongo:centos8
+  container_name: "service-mongo-centos8"
   volumes:
     - "/tmp/container/mongo/logs:/logs:z"
     - "/tmp/container/mongo/data:/data:z"
@@ -85,8 +85,8 @@ docker run --rm -i -t test-mongo
 
 ```YAML
 service:
-  image: startx/sv-mongo:centos7
-  container_name: "service-mongo-centos7"
+  image: startx/sv-mongo:centos8
+  container_name: "service-mongo-centos8"
   ports:
     - "1000:27017"
 ```
@@ -95,8 +95,8 @@ service:
 
 ```YAML
 service:
-  image: startx/sv-mongo:centos7
-  container_name: "service-mongo-centos7"
+  image: startx/sv-mongo:centos8
+  container_name: "service-mongo-centos8"
   expose:
     - "27017"
 ```
@@ -106,10 +106,10 @@ service:
 ```YAML
 data:
   image: startx/centos:7
-  container_name: "service-mongo-data-centos7"
+  container_name: "service-mongo-data-centos8"
 service:
-  image: startx/sv-mongo:centos7
-  container_name: "service-mongo-centos7"
+  image: startx/sv-mongo:centos8
+  container_name: "service-mongo-centos8"
   volume_from:
     - data:rw
 ```
@@ -119,7 +119,7 @@ service:
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/sv-mongo:centos7
+FROM quay.io/startx/mongo:centos8
 #... your container specifications
 CMD ["/bin/sx", "run"]
 ```

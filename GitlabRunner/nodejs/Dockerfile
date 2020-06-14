@@ -1,4 +1,4 @@
-FROM startx/sv-nodejs:centos8
+FROM quay.io/startx/nodejs:centos8
 
 ENV SX_VERSION="centos8" \
     SX_TYPE="runner" \

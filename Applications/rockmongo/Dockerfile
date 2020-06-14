@@ -1,4 +1,4 @@
-FROM startx/sv-php:centos8
+FROM quay.io/startx/php:centos8
 
 # update, install required, clean
 RUN dnf -y update && dnf install -y httpd php php-devel php-pear gcc-c++ make && dnf clean all --enablerepo=\*

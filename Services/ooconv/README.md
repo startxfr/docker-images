@@ -45,8 +45,8 @@ you can [read ours containers engines guidelines](https://github.com/startxfr/co
 
 ```YAML
 service:
-  image: startx/sv-ooconv:centos7
-  container_name: "service-ooconv-centos7"
+  image: startx/sv-ooconv:centos8
+  container_name: "service-ooconv-centos8"
   volumes:
     - "/tmp/container/ooconv/logs:/logs:z"
 ```
@@ -84,8 +84,8 @@ docker run --rm -i -t test-ooconv
 
 ```YAML
 service:
-  image: startx/sv-ooconv:centos7
-  container_name: "service-ooconv-centos7"
+  image: startx/sv-ooconv:centos8
+  container_name: "service-ooconv-centos8"
   ports:
     - "1000:2002"
 ```
@@ -94,8 +94,8 @@ service:
 
 ```YAML
 service:
-  image: startx/sv-ooconv:centos7
-  container_name: "service-ooconv-centos7"
+  image: startx/sv-ooconv:centos8
+  container_name: "service-ooconv-centos8"
   expose:
     - "2002"
 ```
@@ -105,7 +105,7 @@ service:
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/sv-ooconv:centos7
+FROM quay.io/startx/ooconv:centos8
 #... your container specifications
 CMD ["/bin/sx", "run"]
 ```

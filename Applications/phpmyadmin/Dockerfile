@@ -1,4 +1,4 @@
-FROM startx/sv-php:centos8
+FROM quay.io/startx/php:centos8
 
 ENV SX_VERSION="centos8" \
     SX_TYPE="application" \
