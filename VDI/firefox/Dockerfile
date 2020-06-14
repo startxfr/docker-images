@@ -1,4 +1,4 @@
-FROM startx/fedora:30
+FROM quay.io/startx/fedora:30
 
 ENV SX_VERSION="fc30" \
     SX_TYPE="desktop" \

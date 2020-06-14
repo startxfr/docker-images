@@ -17,7 +17,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 - `:fc31` : Fedora core 31 + MongoDB 4.1.13
 - `:fc30` : Fedora core 30 + MongoDB 4.0.3
 - `:fc29` : Fedora core 29 + MongoDB 4.0.3
-- `:fc28` : Fedora core 28 + MongoDB 3.6
+- `:fc30` : Fedora core 28 + MongoDB 3.6
 - `:fc27` : Fedora core 27 + MongoDB 3.4
 - `:fc26` : Fedora core 26 + MongoDB 3.4
 - `:fc23` : Fedora core 23 + MongoDB 3.0.7
@@ -45,8 +45,8 @@ you can [read ours containers engines guidelines](https://github.com/startxfr/co
 
 ```YAML
 service:
-  image: startx/sv-mongo:fc28
-  container_name: "fc28-service-mongo"
+  image: startx/sv-mongo:fc30
+  container_name: "fc30-service-mongo"
   volumes:
     - "/tmp/container/mongo/logs:/logs:z"
     - "/tmp/container/mongo/data:/data:z"
@@ -85,8 +85,8 @@ docker run --rm -i -t test-mongo
 
 ```YAML
 service:
-  image: startx/sv-mongo:fc28
-  container_name: "service-mongo-fc28"
+  image: startx/sv-mongo:fc30
+  container_name: "service-mongo-fc30"
   ports:
     - "1000:27017"
 ```
@@ -95,8 +95,8 @@ service:
 
 ```YAML
 service:
-  image: startx/sv-mongo:fc28
-  container_name: "service-mongo-fc28"
+  image: startx/sv-mongo:fc30
+  container_name: "service-mongo-fc30"
   expose:
     - "27017"
 ```
@@ -106,10 +106,10 @@ service:
 ```YAML
 data:
   image: startx/fedora:28
-  container_name: "service-mongo-data-fc28"
+  container_name: "service-mongo-data-fc30"
 service:
-  image: startx/sv-mongo:fc28
-  container_name: "service-mongo-fc28"
+  image: startx/sv-mongo:fc30
+  container_name: "service-mongo-fc30"
   volume_from:
     - data:rw
 ```
@@ -119,7 +119,7 @@ service:
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/sv-mongo:fc28
+FROM quay.io/startx/mongo:fc30
 #... your container specifications
 CMD ["/bin/sx", "run"]
 ```

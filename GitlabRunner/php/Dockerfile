@@ -1,4 +1,4 @@
-FROM startx/sv-php:fc30
+FROM quay.io/startx/php:fc30
 
 ENV SX_VERSION="fc30" \
     SX_TYPE="runner" \

@@ -1,4 +1,4 @@
-FROM startx/sv-apache:fc30
+FROM quay.io/startx/apache:fc30
 
 ENV SX_VERSION="fc30" \
     SX_TYPE="runner" \
