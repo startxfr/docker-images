@@ -40,8 +40,8 @@ RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
-    dnf clean all --enablerepo=\*
-RUN cd /tmp && \
+    dnf clean all --enablerepo=\* && \
+    cd /tmp && \
     wget -q https://github.com/gohugoio/hugo/releases/download/v${SX_HUGO_RELEASE}/hugo_${SX_HUGO_RELEASE}_Linux-64bit.tar.gz && \
     tar xzvf hugo_${SX_HUGO_RELEASE}_Linux-64bit.tar.gz && \
     mv hugo /usr/bin/ && \
