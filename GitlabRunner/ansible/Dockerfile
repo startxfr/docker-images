@@ -5,7 +5,8 @@ ENV SX_VERSION="fc30" \
     SX_SERVICE="ansible" \
     SX_ID="startx/runner-ansible" \
     SX_NAME="Startx Ansible gitlab runner image (fedora 30)" \
-    SX_SUMMARY="Startx ansible gitlab runner based on fedora 30"
+    SX_SUMMARY="Startx ansible gitlab runner based on fedora 30" \
+    SX_HUGO_RELEASE="0.72.0"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \
@@ -19,6 +20,10 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
+
+
+    
+
 RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
@@ -36,6 +41,11 @@ RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     package-cleanup --orphans && \
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
+    cd /tmp && \
+    wget -q https://github.com/gohugoio/hugo/releases/download/v${SX_HUGO_RELEASE}/hugo_${SX_HUGO_RELEASE}_Linux-64bit.tar.gz && \
+    tar xzvf hugo_${SX_HUGO_RELEASE}_Linux-64bit.tar.gz && \
+    mv hugo /usr/bin/ && \
+    cd - && \
     useradd -s /bin/bash -m -g 0 -u 1001 ansible && \
     mkdir -p /.ansible && \
     chgrp -R 0 /.ansible && \

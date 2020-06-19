@@ -41,23 +41,23 @@ See more applications builders and sample on [startx docker images repository](h
 
 | Docker Hub repository                                                     | Content                                                   |
 | ------------------------------------------------------------------------- | --------------------------------------------------------- |
-| [`startx/sv-mariadb:latest`](https://hub.docker.com/r/startx/sv-mariadb)  | Fedora core rawhide + MariaDB 10.3.16 (compat mysql 15.1) |
-| [`startx/sv-mariadb:32`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 31 + MariaDB 10.3.16 (compat mysql 15.1)      |
-| [`startx/sv-mariadb:31`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 31 + MariaDB 10.3.16 (compat mysql 15.1)      |
-| [`startx/sv-mariadb:30`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 30 + MariaDB 10.3.12 (compat mysql 15.1)      |
-| [`startx/sv-mariadb:29`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 29 + MariaDB 10.3.12 (compat mysql 15.1)      |
-| [`startx/sv-mariadb:28`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 28 + MariaDB 10.0.21 (compat mysql 15.1)      |
-| [`startx/sv-mariadb:27`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 27 + MariaDB 10.0.21 (compat mysql 15.1)      |
-| [`startx/sv-mariadb:26`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 26 + MariaDB 10.0.21 (compat mysql 15.1)      |
-| [`startx/sv-mariadb:23`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 23 + MariaDB x.x.x                            |
-| [`startx/sv-mariadb:22`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 22 + MariaDB x.x.x                            |
+| [`startx/sv-mariadb:latest`](https://hub.docker.com/r/startx/sv-mariadb)  | Fedora core rawhide + MariaDB 10.4.12 (compat mysql 15.1) |
+| [`startx/sv-mariadb:32`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 31 + MariaDB 10.4.12 (compat mysql 15.1)      |
+| [`startx/sv-mariadb:31`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 31 + MariaDB 10.3.22 (compat mysql 15.1)      |
+| [`startx/sv-mariadb:30`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 30 + MariaDB 10.3.21 (compat mysql 15.1)      |
+| [`startx/sv-mariadb:29`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 29 + MariaDB 10.3.18 (compat mysql 15.1)      |
+| [`startx/sv-mariadb:28`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 28 + MariaDB 10.2.22 (compat mysql 15.1)      |
+| [`startx/sv-mariadb:27`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 27 + MariaDB 10.2.19 (compat mysql 15.1)      |
+| [`startx/sv-mariadb:26`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 26 + MariaDB 10.1.30 (compat mysql 15.1)      |
+| [`startx/sv-mariadb:23`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 23 + MariaDB 10.0.21 (compat mysql 15.1)      |
+| [`startx/sv-mariadb:22`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 22 + MariaDB 10.0.21 (compat mysql 15.1)      |
 | [`startx/sv-mariadb:21`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 21 + MariaDB x.x.x                            |
 | [`startx/sv-mariadb:20`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 20 + MariaDB x.x.x                            |
 | [`startx/sv-mariadb:centos8`](https://hub.docker.com/r/startx/sv-mariadb) | Centos 8 + MariaDB x.x.x                                  |
-| [`startx/sv-mariadb:centos7`](https://hub.docker.com/r/startx/sv-mariadb) | Centos 7 + MariaDB x.x.x                                  |
-| [`startx/sv-mariadb:centos6`](https://hub.docker.com/r/startx/sv-mariadb) | Centos 6 + MariaDB x.x.x                                  |
-| [`startx/sv-mariadb:ubi8`](https://hub.docker.com/r/startx/sv-mariadb)    | RedHat UBI 8 + MariaDB x.x.x                              |
-| [`startx/sv-mariadb:alpine3`](https://hub.docker.com/r/startx/sv-mariadb) | Alpine 3.12 + MariaDB 10.2.14                             |
+| [`startx/sv-mariadb:centos7`](https://hub.docker.com/r/startx/sv-mariadb) | Centos 7 + MariaDB 10.4.7 (compat mysql 15.1)             |
+| [`startx/sv-mariadb:centos6`](https://hub.docker.com/r/startx/sv-mariadb) | Centos 6 + MariaDB 10.0.38 (compat mysql 15.1)            |
+| [`startx/sv-mariadb:ubi8`](https://hub.docker.com/r/startx/sv-mariadb)    | RedHat UBI 8 + MariaDB 10.4.13 (compat mysql 15.1)        |
+| [`startx/sv-mariadb:alpine3`](https://hub.docker.com/r/startx/sv-mariadb) | Alpine 3.12 + MariaDB 10.4.13 (compat mysql 15.1)         |
 
 ## Running this image
 
