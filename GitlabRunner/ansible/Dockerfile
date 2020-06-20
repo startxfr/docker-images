@@ -6,6 +6,7 @@ ENV SX_VERSION="ubi8" \
     SX_ID="startx/runner-ansible" \
     SX_NAME="Startx Ansible gitlab runner image (UBI 8)" \
     SX_SUMMARY="Startx ansible gitlab runner based on UBI 8"
+    SX_HUGO_RELEASE="0.72.0"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \
@@ -33,6 +34,11 @@ RUN dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck --skip-broken python3-ansible-runner ansible-runner && \
     pip3 install --user ansible && \
     dnf clean all --enablerepo=\* && \
+    cd /tmp && \
+    wget -q https://github.com/gohugoio/hugo/releases/download/v${SX_HUGO_RELEASE}/hugo_${SX_HUGO_RELEASE}_Linux-64bit.tar.gz && \
+    tar xzvf hugo_${SX_HUGO_RELEASE}_Linux-64bit.tar.gz && \
+    mv hugo /usr/bin/ && \
+    cd - && \
     useradd -s /bin/bash -m -g 0 -u 1001 ansible && \
     mkdir -p /.ansible && \
     chgrp -R 0 /.ansible && \
