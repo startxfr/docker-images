@@ -5,7 +5,8 @@ ENV SX_VERSION="alpine3" \
     SX_SERVICE="ansible" \
     SX_ID="startx/runner-ansible" \
     SX_NAME="Startx Ansible gitlab runner image (alpine 3)" \
-    SX_SUMMARY="Startx ansible gitlab runner based on alpine 3"
+    SX_SUMMARY="Startx ansible gitlab runner based on alpine 3" \
+    SX_HUGO_RELEASE="0.72.0"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \
@@ -22,6 +23,11 @@ USER root
 RUN apk --no-cache add \
     make \
     ansible && \
+    cd /tmp && \
+    wget -q https://github.com/gohugoio/hugo/releases/download/v${SX_HUGO_RELEASE}/hugo_${SX_HUGO_RELEASE}_Linux-64bit.tar.gz && \
+    tar xzvf hugo_${SX_HUGO_RELEASE}_Linux-64bit.tar.gz && \
+    mv hugo /usr/bin/ && \
+    cd - && \
     useradd -s /bin/bash -m -g 0 -u 1001 ansible && \
     mkdir -p /.ansible && \
     chgrp -R 0 /.ansible && \
