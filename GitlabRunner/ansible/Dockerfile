@@ -5,7 +5,7 @@ ENV SX_VERSION="centos8" \
     SX_SERVICE="ansible" \
     SX_ID="startx/runner-ansible" \
     SX_NAME="Startx Ansible gitlab runner image (centos 8)" \
-    SX_SUMMARY="Startx ansible gitlab runner based on centos 8"
+    SX_SUMMARY="Startx ansible gitlab runner based on centos 8" \
     SX_HUGO_RELEASE="0.72.0"
 
 LABEL name="$SX_ID" \
@@ -21,17 +21,24 @@ LABEL name="$SX_ID" \
 
 USER root
 RUN dnf upgrade -yq --refresh && \
-    dnf install -yq 'dnf-command(config-manager)' && \
-    dnf config-manager --enable --add-repo https://releases.ansible.com/ansible-runner/ansible-runner.el7.repo && \
+    dnf install -yq 'dnf-command(config-manager)' epel-release && \
+    dnf makecache  && \
+    dnf config-manager --enable --add-repo https://releases.ansible.com/ansible-runner/ansible-runner.el8.repo && \
     dnf install -yq --nogpgcheck \
     make \
+    ansible \
     python3-pip \
-    python3-ansible-runner \
-    ansible-runner \
     bubblewrap \
     rsync \
+    gcc python3-devel \
+    curl \
+    npm nodejs \
     openssh-clients && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils && \
+    alternatives --set python /usr/bin/python3 && \
+    echo "alias pip=pip3" >> /etc/bashrc && \
+    pip3 install -q ansible-runner && \
+    pip3 install -q openshift && \
+    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils gcc python3-devel epel-release && \
     dnf clean all --enablerepo=\* && \
     cd /tmp && \
     wget -q https://github.com/gohugoio/hugo/releases/download/v${SX_HUGO_RELEASE}/hugo_${SX_HUGO_RELEASE}_Linux-64bit.tar.gz && \
