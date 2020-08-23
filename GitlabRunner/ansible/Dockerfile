@@ -1,11 +1,11 @@
-FROM quay.io/startx/fedora:centos7
+FROM quay.io/startx/centos:7
 
 ENV SX_VERSION="centos7" \
     SX_TYPE="runner" \
     SX_SERVICE="ansible" \
     SX_ID="startx/runner-ansible" \
     SX_NAME="Startx Ansible gitlab runner image (centos 7)" \
-    SX_SUMMARY="Startx ansible gitlab runner based on centos 7"
+    SX_SUMMARY="Startx ansible gitlab runner based on centos 7" \
     SX_HUGO_RELEASE="0.72.0"
 
 LABEL name="$SX_ID" \
@@ -20,22 +20,25 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
-RUN yum install -y -q yum-utils && \
+
+RUN yum install -y -q yum-utils epel-release && \
     yum upgrade -y -q  && \
     yum install -y -q --nogpgcheck \
     make \
-    python-pip \
+    python3-pip \
     ansible \
+    gcc python-devel \
     bubblewrap \
     rsync \
+    curl \
+    npm nodejs \
     openssh-clients \
     sshpass && \
-    dnf install -yq 'dnf-command(config-manager)' && \
-    dnf config-manager --enable --add-repo https://releases.ansible.com/ansible-runner/ansible-runner.el7.repo && \
-    dnf install -yq --nogpgcheck ansible-runner && \
-    package-cleanup --problems && \
-    package-cleanup --orphans && \
-    yum remove -y --skip-broken yum-utils && \
+    alternatives --set python /usr/bin/python3 && \
+    echo "alias pip=pip3" >> /etc/bashrc && \
+    pip3 install -q ansible-runner &> /dev/null && \
+    pip3 install -q openshift && \
+    yum remove -y --skip-broken yum-utils epel-release gcc python-devel && \
     yum clean all --enablerepo=\* && \
     cd /tmp && \
     wget -q https://github.com/gohugoio/hugo/releases/download/v${SX_HUGO_RELEASE}/hugo_${SX_HUGO_RELEASE}_Linux-64bit.tar.gz && \

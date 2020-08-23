@@ -6,7 +6,7 @@ ENV SX_VERSION="centos7" \
     SX_ID="startx/runner-oc" \
     SX_NAME="Startx OCP/K8S client gitlab runner image (centos 7)" \
     SX_SUMMARY="Startx ocp/k8s gitlab runner based on centos 7" \
-    SX_OC_VERSION="4.4.5"
+    SX_OC_VERSION="4.5.7"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \
