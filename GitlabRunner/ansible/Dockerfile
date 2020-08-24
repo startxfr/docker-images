@@ -5,7 +5,7 @@ ENV SX_VERSION="ubi8" \
     SX_SERVICE="ansible" \
     SX_ID="startx/runner-ansible" \
     SX_NAME="Startx Ansible gitlab runner image (UBI 8)" \
-    SX_SUMMARY="Startx ansible gitlab runner based on UBI 8"
+    SX_SUMMARY="Startx ansible gitlab runner based on UBI 8" \
     SX_HUGO_RELEASE="0.72.0"
 
 LABEL name="$SX_ID" \
@@ -21,18 +21,21 @@ LABEL name="$SX_ID" \
 
 USER root
 RUN dnf upgrade -yq --refresh && \
-    dnf install -y 'dnf-command(config-manager)' && \
-    dnf config-manager --enable --add-repo https://releases.ansible.com/ansible-runner/ansible-runner.el8.repo && \
+    dnf install -yq 'dnf-command(config-manager)' && \
     dnf install -yq --nogpgcheck \
     make \
     python3-pip \
     python3-jinja2 \
-    http://mirror.centos.org/centos/8/BaseOS/x86_64/os/Packages/bubblewrap-0.3.0-1.el8.x86_64.rpm \
+    http://mirror.centos.org/centos/8/BaseOS/x86_64/os/Packages/bubblewrap-0.4.0-1.el8.x86_64.rpm \
     rsync \
+    curl \
+    npm nodejs \
     openssh-clients \
     https://download-ib01.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/s/sshpass-1.06-9.el8.x86_64.rpm && \
-    dnf install -yq --nogpgcheck --skip-broken python3-ansible-runner ansible-runner && \
-    pip3 install --user ansible && \
+    pip3 -q install ansible && \
+    pip3 -q install ansible-runner &>/dev/null && \
+    pip3 -q install openshift && \
+    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     cd /tmp && \
     wget -q https://github.com/gohugoio/hugo/releases/download/v${SX_HUGO_RELEASE}/hugo_${SX_HUGO_RELEASE}_Linux-64bit.tar.gz && \
