@@ -1,6 +1,6 @@
 mariadb:
   build: ./
-  container_name: "fc32-service-mariadb"
+  container_name: "fc33-service-mariadb"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 8

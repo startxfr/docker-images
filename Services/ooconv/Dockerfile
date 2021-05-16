@@ -1,11 +1,11 @@
-FROM quay.io/startx/fedora:32
+FROM quay.io/startx/fedora:33
 
-ENV SX_VERSION="fc32" \
+ENV SX_VERSION="fc33" \
     SX_TYPE="service" \
     SX_SERVICE="ooconv" \
     SX_ID="startx/sv-ooconv" \
-    SX_NAME="Startx LibreOffice converter service image (fedora 32)" \
-    SX_SUMMARY="Startx unoconv service based on fedora 32" \
+    SX_NAME="Startx LibreOffice converter service image (fedora 33)" \
+    SX_SUMMARY="Startx unoconv service based on fedora 33" \
     SX_USER=ooconv \
     APP_PATH=/home/ooconv \
     LOG_PATH=/var/log/ooconv \

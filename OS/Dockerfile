@@ -1,11 +1,11 @@
-FROM fedora:rawhide
+FROM fedora:33
 
-ENV SX_VERSION="fc32" \
+ENV SX_VERSION="fc33" \
     SX_TYPE="OS" \
     SX_SERVICE="fedora" \
     SX_ID="startx/fedora" \
-    SX_NAME="Startx OS base image (fedora 32)" \
-    SX_SUMMARY="Startx OS base image based on fedora 32" \
+    SX_NAME="Startx OS base image (fedora 33)" \
+    SX_SUMMARY="Startx OS base image based on fedora 33" \
     SX_VERBOSE=true \
     SX_DEBUG=false \
     APP_PATH="/app" \
