@@ -139,6 +139,34 @@ objects:
           from:
             kind: DockerImage
             name: startx/sv-ooconv:fc32
+        - name: fc33
+          annotations:
+            openshift.io/display-name: S2I LibreOffice converter (Fedora 33)
+            description:
+              LibreOffice converter builder for document convertion running
+              under Fedora 33
+            iconClass: icon-aerogear
+            tags: builder,startx,fedora,ooconv,libreoffice
+            supports: http
+            version: fc33
+            sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+          from:
+            kind: DockerImage
+            name: startx/sv-ooconv:fc33
+        - name: fc34
+          annotations:
+            openshift.io/display-name: S2I LibreOffice converter (Fedora 34)
+            description:
+              LibreOffice converter builder for document convertion running
+              under Fedora 34
+            iconClass: icon-aerogear
+            tags: builder,startx,fedora,ooconv,libreoffice
+            supports: http
+            version: fc34
+            sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+          from:
+            kind: DockerImage
+            name: startx/sv-ooconv:fc34
         - name: rawhide
           annotations:
             openshift.io/display-name: S2I Startx LibreOffice converter (Fedora rawhide)

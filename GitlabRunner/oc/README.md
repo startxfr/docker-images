@@ -12,7 +12,9 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 ## Available flavours
 
 - `:latest` : Fedora core rawhide + oc + kubectl + tools
-- `:fc32` : Fedora core 32 + oc + kubectl + tools
+- `:fc34` : Fedora core 34 + oc + kubectl + tools  
+- `:fc33` : Fedora core 33 + oc + kubectl + tools  
+- `:fc32` : Fedora core 32 + oc + kubectl + tools  
 - `:fc31` : Fedora core 31 + oc + kubectl + tools
 - `:fc30` : Fedora core 30 + oc + kubectl + tools
 - `:fc29` : Fedora core 29 + oc + kubectl + tools
