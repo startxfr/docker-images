@@ -1,13 +1,13 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : MARIADB on Fedora 32
+# Docker OS Images : MARIADB
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/mariadb/)
 
 [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-mariadb.svg)](https://hub.docker.com/r/startx/sv-mariadb) [![Docker mariadb pulls](https://img.shields.io/docker/pulls/startx/sv-mariadb)](https://hub.docker.com/r/startx/sv-mariadb) [![Docker Repository on Quay](https://quay.io/repository/startx/mariadb/status "Docker Repository on Quay")](https://quay.io/repository/startx/mariadb)
 
 Startx mariadb is a base container used for database services published in [Dockerhub registry](https://hub.docker.com/u/startx)
-and [Quay registry](https://quay.io/repository/startx).
+and [Quay registry](https://quay.io/user/startx).
 This container contain :
 
 - fedora / centos /alpine /ubi operating system
@@ -19,7 +19,7 @@ This container contain :
 
 You can use Startx mariadb image in many ways :
 
-- [Docker OS Images : MARIADB on Fedora 32](#docker-os-images--mariadb-on-fedora-32)
+- [Docker OS Images : MARIADB](#docker-os-images--mariadb)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
@@ -71,7 +71,7 @@ you can [read ours containers engines guidelines](https://github.com/startxfr/co
 ### Running using docker
 
 ```bash
-docker run -it -p 9231:3306 --name="example-mariadb" startx/sv-mariadb:fc32
+docker run -it -p 9231:3306 --name="example-mariadb" startx/sv-mariadb
 ```
 
 - Connect to your local database
@@ -86,7 +86,7 @@ mysql -h localhost -P 9231
 
 ```yaml
 mariadb:
-  image: startx/sv-mariadb:fc32
+  image: startx/sv-mariadb:latest
   container_name: "example-mariadb"
 ```
 
@@ -212,10 +212,10 @@ Then you can use this image as an s2i builder image
 
 ```bash
 # With your current directory database code
-s2i build . startx/sv-mariadb:fc32 startx-mariadb-mydb
+s2i build . startx/sv-mariadb:latest startx-mariadb-mydb
 docker run --rm -d -p 9231:3306 startx-mariadb-mydb
 # With startx database sample code repository
-s2i build https://github.com/startxfr/docker-images-example-mariadb startx/sv-mariadb:fc32 startx-mariadb-sample
+s2i build https://github.com/startxfr/docker-images-example-mariadb startx/sv-mariadb startx-mariadb-sample
 docker run --rm -d -p 9231:3306 startx-mariadb-sample
 ```
 
@@ -224,7 +224,7 @@ docker run --rm -d -p 9231:3306 startx-mariadb-sample
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM quay.io/startx/mariadb:fc32
+FROM quay.io/startx/mariadb:latest
 #... your container specifications
 ```
 

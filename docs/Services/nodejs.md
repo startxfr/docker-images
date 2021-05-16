@@ -1,6 +1,6 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : NODEJS on Fedora 32
+# Docker OS Images : NODEJS
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/nodejs/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-nodejs.svg)](https://hub.docker.com/r/startx/sv-nodejs) [![Docker nodejs pulls](https://img.shields.io/docker/pulls/startx/sv-nodejs)](https://hub.docker.com/r/startx/sv-nodejs) [![Docker Repository on Quay](https://quay.io/repository/startx/nodejs/status "Docker Repository on Quay")](https://quay.io/repository/startx/nodejs)
 
@@ -15,7 +15,7 @@ This container contain :
 
 You can use Startx Nodejs image in many ways :
 
-- [Docker OS Images : NODEJS on Fedora 32](#docker-os-images--nodejs-on-fedora-32)
+- [Docker OS Images : NODEJS](#docker-os-images--nodejs)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
@@ -68,7 +68,7 @@ you can [read ours containers engines guidelines](https://github.com/startxfr/co
 ### Running using docker
 
 ```bash
-docker run -it -p 9221:8080 --name="example-nodejs" startx/sv-nodejs:fc32
+docker run -it -p 9221:8080 --name="example-nodejs" startx/sv-nodejs
 ```
 
 - Connect to your local application
@@ -83,7 +83,7 @@ firefox http://localhost:9221
 
 ```yaml
 nodejs:
-  image: startx/sv-nodejs:fc32
+  image: startx/sv-nodejs:latest
   container_name: "example-nodejs"
   ports:
     - "9221:8080"
@@ -198,10 +198,10 @@ Then you can use this image as an s2i builder image
 
 ```bash
 # With your current directory application code
-s2i build . startx/sv-nodejs:fc32 startx-nodejs-myapp
+s2i build . startx/sv-nodejs:latest startx-nodejs-myapp
 docker run --rm -d -p 9221:8080 startx-nodejs-myapp
 # With startx application sample code repository
-s2i build https://github.com/startxfr/docker-images-example-nodejs startx/sv-nodejs:fc32 startx-nodejs-sample
+s2i build https://github.com/startxfr/docker-images-example-nodejs startx/sv-nodejs startx-nodejs-sample
 docker run --rm -d -p 9221:8080 startx-nodejs-sample
 ```
 
@@ -210,7 +210,7 @@ docker run --rm -d -p 9221:8080 startx-nodejs-sample
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM quay.io/startx/nodejs:fc32
+FROM quay.io/startx/nodejs:latest
 #... your container specifications
 ```
 
