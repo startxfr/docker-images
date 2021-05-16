@@ -1,6 +1,6 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : COUCHBASE on CentOS 7
+# Docker OS Images : COUCHBASE
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/couchbase/)
 
@@ -11,7 +11,7 @@ Run [couchbase daemon](https://www.couchbase.org/) under a container
 based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 Startx couchbase is a base container used for deliver distributed and low latency document oriented database published in [Dockerhub registry](https://hub.docker.com/u/startx)
-and [Quay registry](https://quay.io/repository/startx).
+and [Quay registry](https://quay.io/user/startx).
 This container contain :
 
 - fedora / centos /alpine /ubi operating system
@@ -23,7 +23,7 @@ This container contain :
 
 You can use Startx couchbase image in many ways :
 
-- [Docker OS Images : COUCHBASE on CentOS 7](#docker-os-images--couchbase-on-centos-7)
+- [Docker OS Images : COUCHBASE](#docker-os-images--couchbase)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
@@ -38,8 +38,8 @@ You can use Startx couchbase image in many ways :
   - [Exposed volumes](#exposed-volumes)
   - [Container command](#container-command)
   - [For advanced users](#for-advanced-users)
-    - [Build &amp; run a container using docker](#build-amp-run-a-container-using-docker)
-    - [Build &amp; run a container using docker-compose](#build-amp-run-a-container-using-docker-compose)
+    - [Build & run a container using `docker`](#build--run-a-container-using-docker)
+    - [Build & run a container using `docker-compose`](#build--run-a-container-using-docker-compose)
 
 See more applications builders and sample on [startx docker images repository](https://github.com/startxfr/docker-images/blob/master)
 
@@ -93,8 +93,8 @@ firefox http://localhost:9201
 
 ```YAML
 service:
-  image: startx/sv-couchbase:ubi8
-  container_name: "service-couchbase-ubi8"
+  image: startx/sv-couchbase:latest
+  container_name: "service-couchbase"
   volumes:
     - "/tmp/container/couchbase/logs:/logs:z"
     - "/tmp/container/couchbase/data:/data:z"
@@ -200,51 +200,20 @@ docker run --rm -i -t test-couchbase
 
 ```YAML
 service:
-  image: startx/sv-couchbase:ubi8
-  container_name: "service-couchbase-ubi8"
+  image: startx/sv-couchbase:latest
+  container_name: "service-couchbase"
   ports:
-    - "1000:8091"
-    - "1001:8092"
-    - "1002:8093"
-    - "1003:11207"
-    - "1004:11210"
-    - "1005:11211"
-    - "1006:18091"
-    - "1007:18092"
+    - "1000:11211"
 ```
 
 - sample docker-compose.yml with port exposed only to linked services
 
 ```YAML
 service:
-  image: startx/sv-couchbase:ubi8
-  container_name: "service-couchbase-ubi8"
+  image: startx/sv-couchbase:latest
+  container_name: "service-couchbase"
   expose:
-    - "8091"
-    - "8092"
-    - "8093"
-    - "11207"
-    - "11210"
     - "11211"
-    - "18091"
-    - "18092"
-```
-
-- sample docker-compose.yml using data container
-
-```
-data:
-  image: startx/centos:7
-  container_name: "service-couchbase-data-ubi8"
-  environment:
-    CONTAINER_INSTANCE: "service-couchbase-data"
-service:
-  image: startx/sv-couchbase:ubi8
-  container_name: "service-couchbase-ubi8"
-  environment:
-    CONTAINER_INSTANCE: "service-couchbase-ubi8"
-  volume_from:
-    - data:rw
 ```
 
 ### Using this image as base container
@@ -252,7 +221,7 @@ service:
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM quay.io/startx/couchbase:ubi8
+FROM quay.io/startx/couchbase:latest
 #... your container specifications
 CMD ["/bin/sx", "run"]
 ```

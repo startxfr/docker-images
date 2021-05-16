@@ -1,6 +1,6 @@
 [![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-# Docker OS Images : OOCONV on RedHat UBI 8
+# Docker OS Images : OOCONV
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/ooconv/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-ooconv.svg)](https://hub.docker.com/r/startx/sv-ooconv) [![Docker ooconv pulls](https://img.shields.io/docker/pulls/startx/sv-ooconv)](https://hub.docker.com/r/startx/sv-ooconv) [![Docker Repository on Quay](https://quay.io/repository/startx/ooconv/status "Docker Repository on Quay")](https://quay.io/repository/startx/ooconv)
 
@@ -45,8 +45,8 @@ you can [read ours containers engines guidelines](https://github.com/startxfr/co
 
 ```YAML
 service:
-  image: startx/sv-ooconv:centos7
-  container_name: "service-ooconv-centos7"
+  image: startx/sv-ooconv:latest
+  container_name: "service-ooconv"
   volumes:
     - "/tmp/container/ooconv/logs:/logs:z"
 ```
@@ -84,8 +84,8 @@ docker run --rm -i -t test-ooconv
 
 ```YAML
 service:
-  image: startx/sv-ooconv:centos7
-  container_name: "service-ooconv-centos7"
+  image: startx/sv-ooconv:latest
+  container_name: "service-ooconv"
   ports:
     - "1000:2002"
 ```
@@ -94,8 +94,8 @@ service:
 
 ```YAML
 service:
-  image: startx/sv-ooconv:centos7
-  container_name: "service-ooconv-centos7"
+  image: startx/sv-ooconv:latest
+  container_name: "service-ooconv"
   expose:
     - "2002"
 ```
@@ -105,7 +105,7 @@ service:
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM quay.io/startx/ooconv:ubi8
+FROM quay.io/startx/ooconv:latest
 #... your container specifications
 CMD ["/bin/sx", "run"]
 ```
