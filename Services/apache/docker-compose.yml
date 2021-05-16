@@ -1,6 +1,6 @@
 apache:
   build: ./
-  container_name: "startx-apache-fc32"
+  container_name: "startx-apache-fc34"
   mem_limit: 200m
   memswap_limit: 300m
   cpu_shares: 2

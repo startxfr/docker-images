@@ -1,11 +1,11 @@
-FROM quay.io/startx/apache:fc32
+FROM quay.io/startx/apache:fc34
 
-ENV SX_VERSION="fc32" \
+ENV SX_VERSION="fc34" \
     SX_TYPE="runner" \
     SX_SERVICE="apache" \
     SX_ID="startx/runner-apache" \
-    SX_NAME="Startx Apache gitlab runner image (fedora 32)" \
-    SX_SUMMARY="Startx apache gitlab runner based on fedora 32"
+    SX_NAME="Startx Apache gitlab runner image (fedora 34)" \
+    SX_SUMMARY="Startx apache gitlab runner based on fedora 34"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \

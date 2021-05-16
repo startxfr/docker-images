@@ -1,6 +1,6 @@
-fedora32:
+fedora34:
   build: ./
-  container_name: "startx-fedora32"
+  container_name: "startx-fedora34"
   mem_limit: 100m
   memswap_limit: 200m
   cpu_shares: 2

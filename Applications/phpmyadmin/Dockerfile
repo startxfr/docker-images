@@ -1,11 +1,11 @@
-FROM quay.io/startx/php:fc32
+FROM quay.io/startx/php:fc34
 
-ENV SX_VERSION="fc32" \
+ENV SX_VERSION="fc34" \
     SX_TYPE="application" \
     SX_SERVICE="phpmyadmin" \
     SX_ID="startx/app-phpmyadmin" \
-    SX_NAME="Startx PhpMyAdmin service image (fedora 32)" \
-    SX_SUMMARY="Startx phpmyadmin service based on fedora 32" \
+    SX_NAME="Startx PhpMyAdmin service image (fedora 34)" \
+    SX_SUMMARY="Startx phpmyadmin service based on fedora 34" \
     MYSQL_LANG=fr_FR
 
 LABEL name="$SX_ID" \

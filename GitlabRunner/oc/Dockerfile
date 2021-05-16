@@ -1,6 +1,6 @@
-FROM quay.io/startx/fedora:32
+FROM quay.io/startx/fedora:34
 
-ENV SX_VERSION="fc32" \
+ENV SX_VERSION="fc34" \
     SX_TYPE="runner" \
     SX_SERVICE="oc" \
     SX_ID="startx/runner-oc" \
