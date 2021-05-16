@@ -13,6 +13,8 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 ## Available flavours
 
 - `:latest` : Fedora core rawhide + Chrome 70.0.3538.77
+- `:fc34` : Fedora core 34 + Chrome 70.0.3538.77
+- `:fc33` : Fedora core 33 + Chrome 70.0.3538.77
 - `:fc32` : Fedora core 32 + Chrome 70.0.3538.77
 - `:fc31` : Fedora core 31 + Chrome 70.0.3538.77
 - `:fc30` : Fedora core 30 + Chrome 70.0.3538.77

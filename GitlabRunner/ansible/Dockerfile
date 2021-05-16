@@ -40,6 +40,7 @@ RUN yum install -y -q yum-utils epel-release && \
     pip3 install -q openshift && \
     yum remove -y --skip-broken yum-utils epel-release gcc python-devel && \
     yum clean all --enablerepo=\* && \
+    npm install uuid && \
     cd /tmp && \
     wget -q https://github.com/gohugoio/hugo/releases/download/v${SX_HUGO_RELEASE}/hugo_${SX_HUGO_RELEASE}_Linux-64bit.tar.gz && \
     tar xzvf hugo_${SX_HUGO_RELEASE}_Linux-64bit.tar.gz && \

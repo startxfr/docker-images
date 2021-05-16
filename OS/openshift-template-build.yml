@@ -123,6 +123,30 @@ objects:
           from:
             kind: DockerImage
             name: startx/fedora:32
+        - name: fc33
+          annotations:
+            openshift.io/display-name: S2I Startx Fedora 33
+            description: Minimal Fedora 33 OS builder for bash operations
+            iconClass: icon-beaker
+            tags: builder,startx,fedora
+            supports: fedora
+            version: fc33
+            sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+          from:
+            kind: DockerImage
+            name: startx/fedora:33
+        - name: fc34
+          annotations:
+            openshift.io/display-name: S2I Startx Fedora 34
+            description: Minimal Fedora 34 OS builder for bash operations
+            iconClass: icon-beaker
+            tags: builder,startx,fedora
+            supports: fedora
+            version: fc34
+            sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+          from:
+            kind: DockerImage
+            name: startx/fedora:34
         - name: rawhide
           annotations:
             openshift.io/display-name: S2I Startx Fedora (rawhide)
