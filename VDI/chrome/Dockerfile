@@ -49,7 +49,7 @@ RUN dnf install -y yum-utils && \
     pip3 install supervisor && \
     dnf install -y --nogpgcheck \
     xorg-x11-server-Xvfb \
-    x11vnc \ \
+    x11vnc \
     dnf-plugins-core \
     pulseaudio \
     python2-setuptools && \

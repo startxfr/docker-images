@@ -34,8 +34,8 @@ LABEL name="$SX_ID" \
 USER root
 COPY supervisord.conf $SX_FIREFOX_SUPERVISOR_CONF/
 COPY sx /tmp/
-RUN wget -q https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/p/python-meld3-2.0.0-2.fc32.noarch.rpm && \
-    rpm -ivh python-meld3-2.0.0-2.fc32.noarch.rpm && \
+RUN wget -q https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/p/python-meld3-2.0.0-2.centos8.noarch.rpm && \
+    rpm -ivh python-meld3-2.0.0-2.centos8.noarch.rpm && \
     dnf install -y yum-utils dnf-plugin-system-upgrade && \
     dnf upgrade -y --refresh && \
     dnf install -y --nogpgcheck \

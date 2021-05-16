@@ -35,12 +35,12 @@ your project and start using stable or experimental gitlab-runner's in your pipe
 
 | Service     | Fedora flavours                           | CentOS flavours                  | Alpine     | UBI     |
 | ----------- | ----------------------------------------- | -------------------------------- | ---------- | ------- |
-| **Ansible** | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
-| **Apache**  | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
-| **bash**    | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
-| **nodejs**  | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
-| **php**     | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
-| **oc**      | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
+| **Ansible** | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` `:fc33` `:fc34` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
+| **Apache**  | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` `:fc33` `:fc34` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
+| **bash**    | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` `:fc33` `:fc34` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
+| **nodejs**  | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` `:fc33` `:fc34` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
+| **php**     | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` `:fc33` `:fc34` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
+| **oc**      | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` `:fc33` `:fc34` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
 
 ## Running from dockerhub registry
 

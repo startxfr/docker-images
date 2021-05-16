@@ -143,6 +143,34 @@ objects:
           from:
             kind: DockerImage
             name: startx/sv-postgres:fc32
+        - name: fc33
+          annotations:
+            openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 33)
+            description:
+              PostgreSQL server builder for advanced SQL database running under
+              Fedora 33
+            iconClass: icon-postgresql
+            tags: builder,startx,fedora,postgres,sql
+            supports: postgresql
+            version: fc33
+            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+          from:
+            kind: DockerImage
+            name: startx/sv-postgres:fc33
+        - name: fc34
+          annotations:
+            openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 34)
+            description:
+              PostgreSQL server builder for advanced SQL database running under
+              Fedora 34
+            iconClass: icon-postgresql
+            tags: builder,startx,fedora,postgres,sql
+            supports: postgresql
+            version: fc34
+            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+          from:
+            kind: DockerImage
+            name: startx/sv-postgres:fc34
         - name: rawhide
           annotations:
             openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora rawhide)
