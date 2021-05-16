@@ -13,6 +13,8 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 ## Available flavours
 
 - `:latest` : Fedora core rawhide + unoconv 0.7 + LibreOffice 6.2.4.2.0
+- `:fc34` : Fedora core 34 + unoconv 0.7 + LibreOffice 5.0.3.2
+- `:fc33` : Fedora core 33 + unoconv 0.7 + LibreOffice 5.0.3.2
 - `:fc32` : Fedora core 32 + unoconv 0.7 + LibreOffice 5.0.3.2
 - `:fc31` : Fedora core 31 + unoconv 0.7 + LibreOffice 5.0.3.2
 - `:fc30` : Fedora core 30 + unoconv 0.7 + LibreOffice 5.0.3.2

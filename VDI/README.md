@@ -24,8 +24,8 @@ your project and start using stable or experimental Container-based desktop appl
 
 | Application | Docker Hub repository                                               | Fedora flavours                                                   | CentOS flavours       | Doc                         |
 | ----------- | ------------------------------------------------------------------- | ----------------------------------------------------------------- | --------------------- | --------------------------- |
-| Chrome      | [`startx/vdi-chrome`](https://hub.docker.com/r/startx/vdi-chrome)   | `:latest` `:fc28` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos7` `:centos8` | [manual](chrome/README.md)  |
-| Firefox     | [`startx/vdi-firefox`](https://hub.docker.com/r/startx/vdi-firefox) | `:latest` `:fc28` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos7` `:centos8` | [manual](firefox/README.md) |
+| Chrome      | [`startx/vdi-chrome`](https://hub.docker.com/r/startx/vdi-chrome)   | `:latest` `:fc28` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32``:fc33``:fc34` | `:centos7` `:centos8` | [manual](chrome/README.md)  |
+| Firefox     | [`startx/vdi-firefox`](https://hub.docker.com/r/startx/vdi-firefox) | `:latest` `:fc28` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32``:fc33``:fc34` | `:centos7` `:centos8` | [manual](firefox/README.md) |
 
 ## Running from dockerhub registry
 
@@ -38,5 +38,5 @@ your project and start using stable or experimental Container-based desktop appl
 
 | Application | Docker Hub repository                                               | Fedora                                                            | CentOS                |
 | ----------- | ------------------------------------------------------------------- | ----------------------------------------------------------------- | --------------------- |
-| Chrome      | [`startx/vdi-chrome`](https://hub.docker.com/r/startx/vdi-chrome)   | `:latest` `:fc28` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos7` `:centos8` |
-| Chrome      | [`startx/vdi-firefox`](https://hub.docker.com/r/startx/vdi-firefox) | `:latest` `:fc28` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos7` `:centos8` |
+| Chrome      | [`startx/vdi-chrome`](https://hub.docker.com/r/startx/vdi-chrome)   | `:latest` `:fc28` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32``:fc33``:fc34` | `:centos7` `:centos8` |
+| Chrome      | [`startx/vdi-firefox`](https://hub.docker.com/r/startx/vdi-firefox) | `:latest` `:fc28` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32``:fc33``:fc34` | `:centos7` `:centos8` |

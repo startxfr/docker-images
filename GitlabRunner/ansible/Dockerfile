@@ -39,6 +39,7 @@ RUN dnf install -yq --nogpgcheck yum-utils dnf-plugin-system-upgrade && \
     dnf install -yq --nogpgcheck ansible-runner && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
+    npm install uuid && \
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     cd /tmp && \
