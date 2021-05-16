@@ -67,6 +67,8 @@ your project and start using stable or experimental services in your application
 ## Images flavours
 
 - `latest` based on fedora rawhide [see detail](https://github.com/startxfr/docker-images/tree/master)
+- `fc34` based on fedora core 34 [see detail](https://github.com/startxfr/docker-images/tree/fc34)
+- `fc33` based on fedora core 33 [see detail](https://github.com/startxfr/docker-images/tree/fc33)
 - `fc32` based on fedora core 32 [see detail](https://github.com/startxfr/docker-images/tree/fc32)
 - `fc31` based on fedora core 31 [see detail](https://github.com/startxfr/docker-images/tree/fc31)
 - `fc30` based on fedora core 30 [see detail](https://github.com/startxfr/docker-images/tree/fc30)
@@ -144,7 +146,7 @@ and stay stiked to a defined stable release.
 
 | Release | Description                                                                      |
 | ------- | -------------------------------------------------------------------------------- |
-| 0.95.17 | stable ubi8, centos7, centos8, fc32, fc31 and fc30 branch                        |
+| 0.95.17 | stable ubi8, centos7, centos8, fc32, fc31 and fc30 branch                        | 
 | 0.95.15 | debug mariadb configuration on build or run                                      |
 | 0.95.11 | improve verbose display                                                          |
 | 0.95.9  | debug and stabilize dockerfiles                                                  |

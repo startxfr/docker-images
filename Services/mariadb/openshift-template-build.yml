@@ -143,6 +143,34 @@ objects:
           from:
             kind: DockerImage
             name: startx/sv-mariadb:fc32
+        - name: fc33
+          annotations:
+            openshift.io/display-name: S2I Startx Mariadb Database (Fedora 33)
+            description:
+              MariaDB server builder for simple SQL database running under
+              Fedora 33
+            iconClass: icon-mariadb
+            tags: builder,startx,fedora,mariadb,sql
+            supports: mysql
+            version: fc33
+            sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+          from:
+            kind: DockerImage
+            name: startx/sv-mariadb:fc33
+        - name: fc34
+          annotations:
+            openshift.io/display-name: S2I Startx Mariadb Database (Fedora 34)
+            description:
+              MariaDB server builder for simple SQL database running under
+              Fedora 34
+            iconClass: icon-mariadb
+            tags: builder,startx,fedora,mariadb,sql
+            supports: mysql
+            version: fc34
+            sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+          from:
+            kind: DockerImage
+            name: startx/sv-mariadb:fc34
         - name: rawhide
           annotations:
             openshift.io/display-name: S2I Startx Mariadb Database (Fedora rawhide)
