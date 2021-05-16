@@ -21,24 +21,25 @@ LABEL name="$SX_ID" \
 
 USER root
 
-
-    
-
-RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
-    dnf upgrade -yq --refresh && \
+RUN dnf install -yq --nogpgcheck yum-utils dnf-plugin-system-upgrade && \
+    dnf upgrade -yq --nogpgcheck --refresh && \
     dnf install -yq --nogpgcheck \
     make \
     python-pip \
     ansible \
     bubblewrap \
     rsync \
+    curl \
+    npm nodejs \
     openssh-clients \
     sshpass && \
-    dnf install -yq 'dnf-command(config-manager)' && \
+    pip install openshift && \
+    dnf install -yq --nogpgcheck 'dnf-command(config-manager)' && \
     dnf config-manager --enable --add-repo https://releases.ansible.com/ansible-runner/ansible-runner.el7.repo && \
     dnf install -yq --nogpgcheck ansible-runner && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
+    npm install uuid && \
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     cd /tmp && \

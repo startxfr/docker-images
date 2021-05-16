@@ -3,7 +3,7 @@
 # STARTX Docker-Images Application Repository
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/)
-
+ 
 [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
 
 This directory host various Open Source applications into docker containers based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
@@ -31,8 +31,8 @@ your project and start using stable or experimental applications in your applica
 
 | Service        | Fedora flavours                                                                                                                                      | CentOS flavours | Alpine | UBI |
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- | ------ | --- |
-| **PhpMyAdmin** | `:latest` `:fc23` ` :fc24``:fc25 ` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
-| **RockMongo**  | `:latest` `:fc23` ` :fc24``:fc25 ` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
+| **PhpMyAdmin** | `:latest` `:fc23` ` :fc24``:fc25 ` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32` `:fc33` `:fc34` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
+| **RockMongo**  | `:latest` `:fc23` ` :fc24``:fc25 ` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32` `:fc33` `:fc34` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
 
 ## Running from dockerhub registry
 
