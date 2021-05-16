@@ -1,13 +1,13 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : APACHE on Fedora 32
+# Docker OS Images : APACHE
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/apache/)
 
 [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-apache.svg)](https://hub.docker.com/r/startx/sv-apache) [![Docker apache pulls](https://img.shields.io/docker/pulls/startx/sv-apache)](https://hub.docker.com/r/startx/sv-apache) [![Docker Repository on Quay](https://quay.io/repository/startx/apache/status "Docker Repository on Quay")](https://quay.io/repository/startx/apache)
 
 Startx apache is a base container used for web services and applications published in [Dockerhub registry](https://hub.docker.com/u/startx)
-and [Quay registry](https://quay.io/repository/startx).
+and [Quay registry](https://quay.io/user/startx).
 This container contain :
 
 - fedora / centos /alpine /ubi operating system
@@ -19,7 +19,7 @@ This container contain :
 
 You can use Startx Apache image in many ways :
 
-- [Docker OS Images : APACHE on Fedora 32](#docker-os-images--apache-on-fedora-32)
+- [Docker OS Images : APACHE](#docker-os-images--apache)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
@@ -71,7 +71,7 @@ you can [read ours containers engines guidelines](https://github.com/startxfr/co
 ### Running using docker
 
 ```bash
-docker run -it -p 9201:8080 --name="example-apache" startx/sv-apache:fc32
+docker run -it -p 9201:8080 --name="example-apache" startx/sv-apache
 ```
 
 - Connect to your local application
@@ -86,7 +86,7 @@ firefox http://localhost:9201
 
 ```yaml
 apache:
-  image: startx/sv-apache:fc32
+  image: startx/sv-apache:latest
   container_name: "example-apache"
   ports:
     - "9201:8080"
@@ -195,10 +195,10 @@ Then you can use this image as an s2i builder image
 
 ```bash
 # With your current directory application code
-s2i build . startx/sv-apache:fc32 startx-apache-myapp
+s2i build . startx/sv-apache:latest startx-apache-myapp
 docker run --rm -d -p 9201:8080 startx-apache-myapp
 # With startx application sample code repository
-s2i build https://github.com/startxfr/docker-images-example-apache startx/sv-apache:fc32 startx-apache-sample
+s2i build https://github.com/startxfr/docker-images-example-apache startx/sv-apache startx-apache-sample
 docker run --rm -d -p 9201:8080 startx-apache-sample
 ```
 
@@ -207,7 +207,7 @@ docker run --rm -d -p 9201:8080 startx-apache-sample
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM quay.io/startx/apache:fc32
+FROM quay.io/startx/apache:latest
 #... your container specifications
 ```
 
@@ -255,7 +255,6 @@ This section will help you if you want to :
 
 ### Build & run a container using `docker`
 
-0. Switch to the flavour branch with `git branch fc28`
 1. Jump into the container directory with `cd Services/apache`
 2. Build the container using `docker build -t startx-apache .`
 3. Run this container
