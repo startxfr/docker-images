@@ -1,6 +1,6 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : APACHE + PHP on Fedora 31
+# Docker OS Images : APACHE + PHP
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/php/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-php.svg)](https://hub.docker.com/r/startx/sv-php) [![Docker php pulls](https://img.shields.io/docker/pulls/startx/sv-php)](https://hub.docker.com/r/startx/sv-php) [![Docker Repository on Quay](https://quay.io/repository/startx/php/status "Docker Repository on Quay")](https://quay.io/repository/startx/php)
 
@@ -16,7 +16,7 @@ This container contain :
 
 You can use Startx Apache image in many ways :
 
-- [Docker OS Images : APACHE + PHP on Fedora 31](#docker-os-images--apache--php-on-fedora-31)
+- [Docker OS Images : APACHE + PHP](#docker-os-images--apache--php)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
@@ -69,7 +69,7 @@ you can [read ours containers engines guidelines](https://github.com/startxfr/co
 ### Running using docker
 
 ```bash
-docker run -it -p 9213:8080 --name="example-php" startx/sv-php:fc31
+docker run -it -p 9213:8080 --name="example-php" startx/sv-php
 ```
 
 - Connect to your local application
@@ -84,7 +84,7 @@ firefox http://localhost:9213
 
 ```yaml
 php:
-  image: startx/sv-php:fc31
+  image: startx/sv-php:latest
   container_name: "example-php"
   ports:
     - "9213:8080"
@@ -193,10 +193,10 @@ Then you can use this image as an s2i builder image
 
 ```bash
 # With your current directory application code
-s2i build . startx/sv-php:fc31 startx-php-myapp
+s2i build . startx/sv-php:latest startx-php-myapp
 docker run --rm -d -p 9213:8080 startx-php-myapp
 # With startx application sample code repository
-s2i build https://github.com/startxfr/docker-images-example-php startx/sv-php:fc31 startx-php-sample
+s2i build https://github.com/startxfr/docker-images-example-php startx/sv-php startx-php-sample
 docker run --rm -d -p 9213:8080 startx-php-sample
 ```
 
@@ -205,7 +205,7 @@ docker run --rm -d -p 9213:8080 startx-php-sample
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM quay.io/startx/php:fc31
+FROM quay.io/startx/php:latest
 #... your container specifications
 ```
 

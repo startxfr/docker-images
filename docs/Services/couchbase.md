@@ -1,6 +1,6 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : COUCHBASE on Fedora 31
+# Docker OS Images : COUCHBASE
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/couchbase/)
 
@@ -11,7 +11,7 @@ Run [couchbase daemon](https://www.couchbase.org/) under a container
 based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 Startx couchbase is a base container used for deliver distributed and low latency document oriented database published in [Dockerhub registry](https://hub.docker.com/u/startx)
-and [Quay registry](https://quay.io/repository/startx).
+and [Quay registry](https://quay.io/user/startx).
 This container contain :
 
 - fedora / centos /alpine /ubi operating system
@@ -23,7 +23,7 @@ This container contain :
 
 You can use Startx couchbase image in many ways :
 
-- [Docker OS Images : COUCHBASE on Fedora 31](#docker-os-images--couchbase-on-fedora-31)
+- [Docker OS Images : COUCHBASE](#docker-os-images--couchbase)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
@@ -93,8 +93,8 @@ firefox http://localhost:9201
 
 ```YAML
 service:
-  image: startx/sv-couchbase:fc31
-  container_name: "fc31-service-couchbase"
+  image: startx/sv-couchbase:latest
+  container_name: "service-couchbase"
   volumes:
     - "/tmp/container/couchbase/logs:/logs:z"
     - "/tmp/container/couchbase/data:/data:z"
@@ -200,8 +200,8 @@ docker run --rm -i -t test-couchbase
 
 ```YAML
 service:
-  image: startx/sv-couchbase:fc31
-  container_name: "service-couchbase-fc31"
+  image: startx/sv-couchbase:latest
+  container_name: "service-couchbase"
   ports:
     - "1000:11211"
 ```
@@ -210,8 +210,8 @@ service:
 
 ```YAML
 service:
-  image: startx/sv-couchbase:fc31
-  container_name: "service-couchbase-fc31"
+  image: startx/sv-couchbase:latest
+  container_name: "service-couchbase"
   expose:
     - "11211"
 ```
@@ -221,7 +221,7 @@ service:
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM quay.io/startx/couchbase:fc31
+FROM quay.io/startx/couchbase:latest
 #... your container specifications
 CMD ["/bin/sx", "run"]
 ```
