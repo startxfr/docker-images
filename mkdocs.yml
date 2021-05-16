@@ -1,0 +1,9 @@
+site_name: STARTX Docker images repository
+docs_dir: ./docs
+theme:
+  name: readthedocs
+  highlightjs: true
+  hljs_languages:
+    - yaml
+    - bash
+  include_homepage_in_sidebar: false

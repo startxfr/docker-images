@@ -1,6 +1,6 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : POSTGRESQL on CentOS 7x
+# Docker OS Images : POSTGRESQL
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/postgres/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-postgres.svg)](https://hub.docker.com/r/startx/sv-postgres) [![Docker postgres pulls](https://img.shields.io/docker/pulls/startx/sv-postgres)](https://hub.docker.com/r/startx/sv-postgres) [![Docker Repository on Quay](https://quay.io/repository/startx/postgres/status "Docker Repository on Quay")](https://quay.io/repository/startx/postgres)
 
@@ -15,7 +15,7 @@ This container contain :
 
 You can use Startx Postgresql image in many ways :
 
-- [Docker OS Images : POSTGRESQL on CentOS 7x](#docker-os-images--postgresql-on-centos-7x)
+- [Docker OS Images : POSTGRESQL](#docker-os-images--postgresql)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
@@ -224,7 +224,7 @@ docker run --rm -d -p 9241:5432 startx-postgres-sample
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM quay.io/startx/postgres:centos7
+FROM quay.io/startx/postgres:latest
 #... your container specifications
 ```
 

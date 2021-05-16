@@ -1,13 +1,13 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : CentOS 7
+# Docker OS Images : FEDORA
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/OS/)
 
 [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/fedora.svg)](https://hub.docker.com/r/startx/fedora) [![Docker apache pulls](https://img.shields.io/docker/pulls/startx/fedora)](https://hub.docker.com/r/startx/fedora) [![Docker Repository on Quay](https://quay.io/repository/startx/apache/status "Docker Repository on Quay")](https://quay.io/repository/startx/apache)
 
 Startx fedora is a base container used for all startx services and applications published in
-[Dockerhub registry](https://hub.docker.com/u/startx) or [Quay registry](https://quay.io/repository/startx).
+[Dockerhub registry](https://hub.docker.com/u/startx) or [Quay registry](https://quay.io/user/startx).
 This container contain :
 
 - fedora / centos /alpine /ubi operating system
@@ -72,7 +72,7 @@ you can [read ours containers engines guidelines](https://github.com/startxfr/co
 ### Running using docker
 
 ```bash
-docker run -it --name="example-centos" startx/centos
+docker run -it --name="example-fedora" startx/fedora
 ```
 
 ### Running using docker-compose
@@ -80,9 +80,9 @@ docker run -it --name="example-centos" startx/centos
 - Create a `docker-compose.yml` file with the following content
 
 ```yaml
-centos:
-  image: startx/centos:latest
-  container_name: "example-centos"
+fedora:
+  image: startx/fedora:latest
+  container_name: "example-fedora"
 ```
 
 - Execute the following command
@@ -185,10 +185,10 @@ Then you can use this image as an s2i builder image
 
 ```bash
 # With your current directory application code
-s2i build . startx/centos:latest startx-bash-myapp
+s2i build . startx/fedora:latest startx-bash-myapp
 docker run --rm -i -t startx-bash-myapp
 # With startx application sample code repository
-s2i build https://github.com/startxfr/docker-images-example-bash startx/centos startx-bash-sample
+s2i build https://github.com/startxfr/docker-images-example-bash startx/fedora startx-bash-sample
 docker run --rm -i -t startx-bash-sample
 ```
 
@@ -197,7 +197,7 @@ docker run --rm -i -t startx-bash-sample
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM quay.io/startx/centos:7
+FROM quay.io/startx/fedora:latest
 #... your container specifications
 ```
 

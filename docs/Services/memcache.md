@@ -1,6 +1,6 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : MEMCACHE on CentOS 7
+# Docker OS Images : MEMCACHE
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/memcache/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-memcache.svg)](https://hub.docker.com/r/startx/sv-memcache) [![Docker memcache pulls](https://img.shields.io/docker/pulls/startx/sv-memcache)](https://hub.docker.com/r/startx/sv-memcache) [![Docker Repository on Quay](https://quay.io/repository/startx/memcache/status "Docker Repository on Quay")](https://quay.io/repository/startx/memcache)
 
@@ -191,7 +191,7 @@ docker run --rm -d -p 9278:11211 startx-memcache-sample
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM quay.io/startx/memcache:centos7
+FROM quay.io/startx/memcache:latest
 #... your container specifications
 ```
 
