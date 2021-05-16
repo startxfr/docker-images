@@ -189,24 +189,24 @@ function menuBuild {
         chrome)                    testBuild VDI/chrome chrome $SXDC_FLAVOUR;;
         firefox)                   testBuild VDI/firefox firefox $SXDC_FLAVOUR;;
         all)
-            testBuild OS $SXDC_OS_FLAVOUR latest
-            testBuild Services/apache apache $SXDC_FLAVOUR
-            testBuild Services/couchbase couchbase $SXDC_FLAVOUR
-            testBuild Services/mariadb mariadb $SXDC_FLAVOUR
-            testBuild Services/memcache memcache $SXDC_FLAVOUR
-            testBuild Services/mongo mongo $SXDC_FLAVOUR
-            testBuild Services/nodejs nodejs $SXDC_FLAVOUR
-            testBuild Services/ooconv ooconv $SXDC_FLAVOUR
-            testBuild Services/php php $SXDC_FLAVOUR
-            testBuild Services/postgres postgres $SXDC_FLAVOUR
-        testBuild GitlabRunner/ansible runner-ansible $SXDC_FLAVOUR;;
-    testBuild GitlabRunner/apache runner-apache $SXDC_FLAVOUR;;
-    testBuild GitlabRunner/bash runner-bash $SXDC_FLAVOUR
-    testBuild GitlabRunner/nodejs runner-nodejs $SXDC_FLAVOUR
-    testBuild GitlabRunner/php runner-nodejs $SXDC_FLAVOUR
-    testBuild VDI/chrome chrome $SXDC_FLAVOUR
-testBuild VDI/firefox firefox $SXDC_FLAVOUR;;
-*)                         menuUsage;;
+            testBuild              OS $SXDC_OS_FLAVOUR latest
+            testBuild              Services/apache apache $SXDC_FLAVOUR
+            testBuild              Services/couchbase couchbase $SXDC_FLAVOUR
+            testBuild              Services/mariadb mariadb $SXDC_FLAVOUR
+            testBuild              Services/memcache memcache $SXDC_FLAVOUR
+            testBuild              Services/mongo mongo $SXDC_FLAVOUR
+            testBuild              Services/nodejs nodejs $SXDC_FLAVOUR
+            testBuild              Services/ooconv ooconv $SXDC_FLAVOUR
+            testBuild              Services/php php $SXDC_FLAVOUR
+            testBuild              Services/postgres postgres $SXDC_FLAVOUR
+            testBuild              GitlabRunner/ansible runner-ansible $SXDC_FLAVOUR
+            testBuild              GitlabRunner/apache runner-apache $SXDC_FLAVOUR
+            testBuild              GitlabRunner/bash runner-bash $SXDC_FLAVOUR
+            testBuild              GitlabRunner/nodejs runner-nodejs $SXDC_FLAVOUR
+            testBuild              GitlabRunner/php runner-nodejs $SXDC_FLAVOUR
+            testBuild              VDI/chrome chrome $SXDC_FLAVOUR
+            testBuild              VDI/firefox firefox $SXDC_FLAVOUR;;
+        *)                         menuUsage
 esac
 }
 
@@ -231,24 +231,24 @@ function menuRun {
         chrome)                    testDeploy VDI/chrome chrome $SXDC_FLAVOUR;;
         firefox)                   testDeploy VDI/firefox firefox $SXDC_FLAVOUR;;
         all)
-            testDeploy OS $SXDC_OS_FLAVOUR latest
-            testDeploy Services/apache apache $SXDC_FLAVOUR
-            testDeploy Services/couchbase couchbase $SXDC_FLAVOUR
-            testDeploy Services/mariadb mariadb $SXDC_FLAVOUR
-            testDeploy Services/memcache memcache $SXDC_FLAVOUR
-            testDeploy Services/mongo mongo $SXDC_FLAVOUR
-            testDeploy Services/nodejs nodejs $SXDC_FLAVOUR
-            testDeploy Services/ooconv ooconv $SXDC_FLAVOUR
-            testDeploy Services/php php $SXDC_FLAVOUR
-            testDeploy Services/postgres postgres $SXDC_FLAVOUR
-        testDeploy GitlabRunner/ansible runner-ansible $SXDC_FLAVOUR;;
-    testDeploy GitlabRunner/apache runner-apache $SXDC_FLAVOUR;;
-    testDeploy GitlabRunner/bash runner-bash $SXDC_FLAVOUR
-    testDeploy GitlabRunner/nodejs runner-nodejs $SXDC_FLAVOUR
-    testDeploy GitlabRunner/php runner-nodejs $SXDC_FLAVOUR
-    testDeploy VDI/chrome chrome $SXDC_FLAVOUR
-testDeploy VDI/firefox firefox $SXDC_FLAVOUR;;
-*)                         menuUsage;;
+             testDeploy            OS $SXDC_OS_FLAVOUR latest
+             testDeploy            Services/apache apache $SXDC_FLAVOUR
+             testDeploy            Services/couchbase couchbase $SXDC_FLAVOUR
+             testDeploy            Services/mariadb mariadb $SXDC_FLAVOUR
+             testDeploy            Services/memcache memcache $SXDC_FLAVOUR
+             testDeploy            Services/mongo mongo $SXDC_FLAVOUR
+             testDeploy            Services/nodejs nodejs $SXDC_FLAVOUR
+             testDeploy            Services/ooconv ooconv $SXDC_FLAVOUR
+             testDeploy            Services/php php $SXDC_FLAVOUR
+             testDeploy            Services/postgres postgres $SXDC_FLAVOUR
+             testDeploy            GitlabRunner/ansible runner-ansible $SXDC_FLAVOUR
+             testDeploy            GitlabRunner/apache runner-apache $SXDC_FLAVOUR
+             testDeploy            GitlabRunner/bash runner-bash $SXDC_FLAVOUR
+             testDeploy            GitlabRunner/nodejs runner-nodejs $SXDC_FLAVOUR
+             testDeploy            GitlabRunner/php runner-nodejs $SXDC_FLAVOUR
+             testDeploy            VDI/chrome chrome $SXDC_FLAVOUR
+             testDeploy            VDI/firefox firefox $SXDC_FLAVOUR;;
+         *)                        menuUsage
 esac
 }
 
