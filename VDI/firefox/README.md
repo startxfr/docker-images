@@ -13,6 +13,8 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 ## Available flavours
 
 - `:latest` : Fedora core rawhide + Firefox 50.0.2661.102
+- `:fc34` : Fedora core 34 + Firefox 50.0.2661.102
+- `:fc33` : Fedora core 33 + Firefox 50.0.2661.102
 - `:fc32` : Fedora core 32 + Firefox 50.0.2661.102
 - `:fc31` : Fedora core 31 + Firefox 50.0.2661.102
 - `:fc30` : Fedora core 30 + Firefox 50.0.2661.102

@@ -16,16 +16,16 @@ This script assume :
 ## simulate a merge
 
 ```bash
-# simulate merge from master to fc33 branch (default)
-./masterToBranch.sh fc33
+# simulate merge from master to  fc33 branch (default)
+./masterToBranch.sh  fc33
 
-# simulate merge from master to centos8 branch with specified command
-./masterToBranch.sh fc33 simulate
+# simulate merge from master to fc33 branch with specified command
+./masterToBranch.sh  fc33 simulate
 ```
 
 ## execute a merge
 
 ```bash
-# execute a merge from master to fc33 branch
-./masterToBranch.sh fc33 run
+# execute a merge from master to  fc33 branch
+./masterToBranch.sh  fc33 run
 ```
