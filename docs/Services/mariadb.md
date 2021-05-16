@@ -7,7 +7,7 @@
 [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-mariadb.svg)](https://hub.docker.com/r/startx/sv-mariadb) [![Docker mariadb pulls](https://img.shields.io/docker/pulls/startx/sv-mariadb)](https://hub.docker.com/r/startx/sv-mariadb) [![Docker Repository on Quay](https://quay.io/repository/startx/mariadb/status "Docker Repository on Quay")](https://quay.io/repository/startx/mariadb)
 
 Startx mariadb is a base container used for database services published in [Dockerhub registry](https://hub.docker.com/u/startx)
-and [Quay registry](https://quay.io/repository/startx).
+and [Quay registry](https://quay.io/user/startx).
 This container contain :
 
 - fedora / centos /alpine /ubi operating system

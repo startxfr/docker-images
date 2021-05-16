@@ -1,4 +1,8 @@
+[![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
+
 # STARTX Application docker-images : Rockmongo
+
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/rockmongo/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/app-rockmongo.svg)](https://hub.docker.com/r/startx/app-rockmongo) [![Docker rockmongo pulls](https://img.shields.io/docker/pulls/startx/app-rockmongo)](https://hub.docker.com/r/startx/app-rockmongo) [![Docker Repository on Quay](https://quay.io/repository/startx/rockmongo/status "Docker Repository on Quay")](https://quay.io/repository/startx/rockmongo)
 
 Container running rockmongo under a fedora server.
 

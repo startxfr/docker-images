@@ -7,7 +7,7 @@
 [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-apache.svg)](https://hub.docker.com/r/startx/sv-apache) [![Docker apache pulls](https://img.shields.io/docker/pulls/startx/sv-apache)](https://hub.docker.com/r/startx/sv-apache) [![Docker Repository on Quay](https://quay.io/repository/startx/apache/status "Docker Repository on Quay")](https://quay.io/repository/startx/apache)
 
 Startx apache is a base container used for web services and applications published in [Dockerhub registry](https://hub.docker.com/u/startx)
-and [Quay registry](https://quay.io/repository/startx).
+and [Quay registry](https://quay.io/user/startx).
 This container contain :
 
 - fedora / centos /alpine /ubi operating system

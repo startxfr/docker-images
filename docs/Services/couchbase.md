@@ -11,7 +11,7 @@ Run [couchbase daemon](https://www.couchbase.org/) under a container
 based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 Startx couchbase is a base container used for deliver distributed and low latency document oriented database published in [Dockerhub registry](https://hub.docker.com/u/startx)
-and [Quay registry](https://quay.io/repository/startx).
+and [Quay registry](https://quay.io/user/startx).
 This container contain :
 
 - fedora / centos /alpine /ubi operating system
