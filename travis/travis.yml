@@ -12,13 +12,13 @@ sudo: required
 services:
   - docker
 before_install:
-  - "./travis/prepare-begin              fedora        32 rawhide"
-  - "./travis/prepare-docker             fedora        32 rawhide"
-  - "./travis/prepare-cache              fedora        32 rawhide"
-  - "./travis/prepare-dockerhub          fedora        32 rawhide"
-  - "./travis/prepare-end                fedora        32 rawhide"
+  - "./travis/prepare-begin              fedora        33 rawhide"
+  - "./travis/prepare-docker             fedora        33 rawhide"
+  - "./travis/prepare-cache              fedora        33 rawhide"
+  - "./travis/prepare-dockerhub          fedora        33 rawhide"
+  - "./travis/prepare-end                fedora        33 rawhide"
 script:
-  - "./travis/test    OS                 fedora        32 fedora"
+  - "./travis/test    OS                 fedora        33 fedora"
   - "./travis/test    Services/apache    sv-apache     fc33 apache"
   - "./travis/test    Services/couchbase sv-couchbase  fc33 couchbase"
   - "./travis/test    Services/mariadb   sv-mariadb    fc33 mariadb"
@@ -38,7 +38,7 @@ script:
   - "./travis/test    VDI/firefox        vdi-firefox   fc33 firefox"
   - "./travis/test    Applications/phpmyadmin  app-phpmyadmin   fc33 phpmyadmin"
 after_success:
-  - "./travis/publish OS                 fedora        32 fedora"
+  - "./travis/publish OS                 fedora        33 fedora"
   - "./travis/publish Services/apache    sv-apache     fc33 apache"
   - "./travis/publish Services/couchbase sv-couchbase  fc33 couchbase"
   - "./travis/publish Services/mariadb   sv-mariadb    fc33 mariadb"
