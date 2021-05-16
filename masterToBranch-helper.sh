@@ -74,7 +74,7 @@ function checkReadyForRun {
 function exectuteMerge {
     if [ $2 == "" ]; then
         echo "You must give a tag name"
-        echo "please run 'masterToBranch-helper.sh run fc32' first"
+        echo "please run 'masterToBranch-helper.sh run fc33' first"
         exit 5;
     fi
     git checkout $2 && git merge master && git checkout master
@@ -88,7 +88,7 @@ function exectutePush {
         type="all"
     fi
     if [ $type == "all" ]; then
-        git checkout master && git push origin master fc32 fc31 fc30 ubi8 alpine centos8 centos7 centos6
+        git checkout master && git push origin master fc33 fc31 fc30 ubi8 alpine centos8 centos7 centos6
     else
         git checkout master && git push origin $2
     fi

@@ -3,91 +3,91 @@ fedora32:
     file: OS/docker-compose.yml
     service: fedora32
 
-fc32-sv-apache:
+fc33-sv-apache:
   extends:
     file: Services/apache/docker-compose.yml
     service: apache
 
-fc32-sv-php:
+fc33-sv-php:
   extends:
     file: Services/php/docker-compose.yml
     service: php
 
-fc32-sv-nodejs:
+fc33-sv-nodejs:
   extends:
     file: Services/nodejs/docker-compose.yml
     service: nodejs
 
-fc32-sv-mariadb:
+fc33-sv-mariadb:
   extends:
     file: Services/mariadb/docker-compose.yml
     service: mariadb
 
-fc32-sv-postgres:
+fc33-sv-postgres:
   extends:
     file: Services/postgres/docker-compose.yml
     service: postgres
 
-fc32-sv-mongo:
+fc33-sv-mongo:
   extends:
     file: Services/mongo/docker-compose.yml
     service: mongo
 
-fc32-sv-ooconv:
+fc33-sv-ooconv:
   extends:
     file: Services/ooconv/docker-compose.yml
     service: ooconv
 
-fc32-sv-memcache:
+fc33-sv-memcache:
   extends:
     file: Services/memcache/docker-compose.yml
     service: memcache
 
-fc32-runner-ansible:
+fc33-runner-ansible:
   extends:
     file: GitlabRunner/ansible/docker-compose.yml
     service: ansible
 
-fc32-runner-apache:
+fc33-runner-apache:
   extends:
     file: GitlabRunner/apache/docker-compose.yml
     service: apache
 
-fc32-runner-bash:
+fc33-runner-bash:
   extends:
     file: GitlabRunner/bash/docker-compose.yml
     service: bash
 
-fc32-runner-nodejs:
+fc33-runner-nodejs:
   extends:
     file: GitlabRunner/nodejs/docker-compose.yml
     service: nodejs
 
-fc32-runner-php:
+fc33-runner-php:
   extends:
     file: GitlabRunner/php/docker-compose.yml
     service: php
 
-fc32-runner-oc:
+fc33-runner-oc:
   extends:
     file: GitlabRunner/oc/docker-compose.yml
     service: oc
 
-fc32-vdi-chrome:
+fc33-vdi-chrome:
   extends:
     file: VDI/chrome/docker-compose.yml
     service: chrome
 
-fc32-vdi-firefox:
+fc33-vdi-firefox:
   extends:
     file: VDI/firefox/docker-compose.yml
     service: firefox
 
-fc32-app-pma:
+fc33-app-pma:
   extends:
     file: Applications/phpmyadmin/docker-compose.yml
     service: phpmyadmin
-#fc32-app-rockmongo:
+#fc33-app-rockmongo:
 #  extends:
 #    file: Applications/rockmongo/docker-compose.yml
 #    service: rockmongo
