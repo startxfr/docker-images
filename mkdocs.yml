@@ -1,4 +1,5 @@
 site_name: STARTX Docker images repository
+docs_dir: ./
 theme:
   name: readthedocs
   highlightjs: true
