@@ -1,11 +1,11 @@
-FROM quay.io/startx/fedora:32
+FROM quay.io/startx/fedora:34
 
-ENV SX_VERSION="fc32" \
+ENV SX_VERSION="fc34" \
     SX_TYPE="service" \
     SX_SERVICE="postgres" \
     SX_ID="startx/sv-postgres" \
-    SX_NAME="Startx Postgres service image (fedora 32)" \
-    SX_SUMMARY="Startx postgres service based on fedora 32" \
+    SX_NAME="Startx Postgres service image (fedora 34)" \
+    SX_SUMMARY="Startx postgres service based on fedora 34" \
     DATA_PATH=/data \
     LOG_PATH=/var/log/postgres
 

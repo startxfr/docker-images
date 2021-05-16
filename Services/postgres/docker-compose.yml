@@ -1,13 +1,13 @@
 postgres:
   build: ./
-  container_name: "fc32-service-postgres"
+  container_name: "fc34-service-postgres"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 8
   restart: "on-failure:2"
   privileged: true
   ports:
-    - "9241:5432"
+    - "9241:5434"
   environment:
     CONTAINER_TYPE: "service"
     CONTAINER_SERVICE: "postgresql"

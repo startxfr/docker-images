@@ -1,11 +1,11 @@
-FROM quay.io/startx/fedora:32
+FROM quay.io/startx/fedora:34
 
-ENV SX_VERSION="fc32" \
+ENV SX_VERSION="fc34" \
     SX_TYPE="desktop" \
     SX_SERVICE="firefox" \
     SX_ID="startx/vdi-firefox" \
-    SX_NAME="Startx Firefox VDI image (fedora 32)" \
-    SX_SUMMARY="Startx firefox container-based desktop application based on fedora 32" \
+    SX_NAME="Startx Firefox VDI image (fedora 34)" \
+    SX_SUMMARY="Startx firefox container-based desktop application based on fedora 34" \
     SX_FIREFOX_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
     LOG_PATH=/var/log/firefox \
     APP_PATH=/home/firefox \

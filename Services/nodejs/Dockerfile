@@ -1,11 +1,11 @@
-FROM quay.io/startx/fedora:32
+FROM quay.io/startx/fedora:34
 
-ENV SX_VERSION="fc32" \
+ENV SX_VERSION="fc34" \
     SX_TYPE="service" \
     SX_SERVICE="nodejs" \
     SX_ID="startx/sv-nodejs" \
-    SX_NAME="Startx Nodejs service image (fedora 32)" \
-    SX_SUMMARY="Startx nodejs service based on fedora 32" \
+    SX_NAME="Startx Nodejs service image (fedora 34)" \
+    SX_SUMMARY="Startx nodejs service based on fedora 34" \
     LOG_PATH=/var/log/nodejs \
     APP_PATH=/app \
     DATA_PATH=/data \
