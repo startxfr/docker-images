@@ -31,19 +31,22 @@ See more applications builders and sample on [startx docker images repository](h
 
 ## Container flavours
 
-| Docker Hub repository                                                     |                                                                                                                  | Docker-compose                                  | Fedora distribution |
-| ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- | ------------------- |
-| [`startx/runner-php:latest`](https://hub.docker.com/r/startx/runner-php)  | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/php/docker-compose.yml) | Fedora core rawhide + Apache 2.4.39 + PHP 7.3.8 |
-| [`startx/runner-php:31`](https://hub.docker.com/r/startx/runner-php)      | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/php/docker-compose.yml) | Fedora core 31 + Apache 2.4.39 + PHP 7.3.1      |
-| [`startx/runner-php:30`](https://hub.docker.com/r/startx/runner-php)      | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/php/docker-compose.yml) | Fedora core 30 + Apache 2.4.39 + PHP 7.3.1      |
-| [`startx/runner-php:29`](https://hub.docker.com/r/startx/runner-php)      | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/php/docker-compose.yml) | Fedora core 29 + Apache 2.4.39 + PHP 7.2.20     |
-| [`startx/runner-php:28`](https://hub.docker.com/r/startx/runner-php)      | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/php/docker-compose.yml) | Fedora core 28 + Apache 2.4.17 + PHP 5.6.16     |
-| [`startx/runner-php:27`](https://hub.docker.com/r/startx/runner-php)      | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/php/docker-compose.yml) | Fedora core 27 + Apache 2.4.17 + PHP 5.6.16     |
-| [`startx/runner-php:centos8`](https://hub.docker.com/r/startx/runner-php) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/php/docker-compose.yml) | Centos 8                                        |
-| [`startx/runner-php:centos7`](https://hub.docker.com/r/startx/runner-php) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/php/docker-compose.yml) | Centos 7                                        |
-| [`startx/runner-php:centos6`](https://hub.docker.com/r/startx/runner-php) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/php/docker-compose.yml) | Centos 6                                        |
-| [`startx/runner-php:alpine3`](https://hub.docker.com/r/startx/runner-php) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/php/docker-compose.yml) | Alpine 3.12 + Apache 2.4.33 + PHP 7.2.5         |
-| [`startx/runner-php:ubi8`](https://hub.docker.com/r/startx/runner-php)    | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/php/docker-compose.yml) | RedHat UBI 8                                    |
+| Docker Hub repository                                                           | Content             | Ansible | PHP    | Apache |
+| ------------------------------------------------------------------------------- | ------------------- | ------- | ------ | ------ |
+| [`startx/runner-nodejs:latest`](https://hub.docker.com/r/startx/runner-nodejs)  | Fedora core rawhide |         |        |
+| [`startx/runner-nodejs:34`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 34      |         |        |
+| [`startx/runner-nodejs:33`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 33      |         |        |
+| [`startx/runner-nodejs:32`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 32      |         | 7.3.8  | 2.4.39 |
+| [`startx/runner-nodejs:31`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 31      |         | 7.3.1  | 2.4.39 |
+| [`startx/runner-nodejs:30`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 30      |         | 7.3.1  | 2.4.39 |
+| [`startx/runner-nodejs:29`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 29      |         | 7.2.20 | 2.4.39 |
+| [`startx/runner-nodejs:28`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 28      |         | 5.6.16 | 2.4.17 |
+| [`startx/runner-nodejs:27`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 27      |         | 5.6.16 | 2.4.17 |
+| [`startx/runner-nodejs:centos8`](https://hub.docker.com/r/startx/runner-nodejs) | Centos 8            |         |        |
+| [`startx/runner-nodejs:centos7`](https://hub.docker.com/r/startx/runner-nodejs) | Centos 7            |         |        |
+| [`startx/runner-nodejs:centos6`](https://hub.docker.com/r/startx/runner-nodejs) | Centos 6            |         |        |
+| [`startx/runner-nodejs:ubi8`](https://hub.docker.com/r/startx/runner-nodejs)    | RedHat UBI 8        |         |        |
+| [`startx/runner-nodejs:alpine3`](https://hub.docker.com/r/startx/runner-nodejs) | Alpine 3.12         |         | 7.2.5  | 2.4.33 |
 
 ## Running this image
 
