@@ -1,23 +1,23 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : FEDORA
+# Docker OS Images : CENTOS
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/OS/)
 
-[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/fedora.svg)](https://hub.docker.com/r/startx/fedora) [![Docker apache pulls](https://img.shields.io/docker/pulls/startx/fedora)](https://hub.docker.com/r/startx/fedora) [![Docker Repository on Quay](https://quay.io/repository/startx/apache/status "Docker Repository on Quay")](https://quay.io/repository/startx/apache)
+[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/centos.svg)](https://hub.docker.com/r/startx/centos) [![Docker apache pulls](https://img.shields.io/docker/pulls/startx/centos)](https://hub.docker.com/r/startx/centos) [![Docker Repository on Quay](https://quay.io/repository/startx/apache/status "Docker Repository on Quay")](https://quay.io/repository/startx/apache)
 
-Startx fedora is a base container used for all startx services and applications published in
+Startx centos is a base container used for all startx services and applications published in
 [Dockerhub registry](https://hub.docker.com/u/startx) or [Quay registry](https://quay.io/user/startx).
 This container contain :
 
-- fedora operating system
+- centos operating system
 - core OS packages (kernel, libs) updated every week
 - fundamentals tools (ex: pwgen, tar, zip) updated every week
 - usefull tools (psmisc, procps, coreutils, findutils, wget, curl, vi, bash-completion) only for the `:latest` flavour.
 
 You can use Startx Apache image in many ways :
 
-- [Docker OS Images : FEDORA](#docker-os-images--fedora)
+- [Docker OS Images : CENTOS](#docker-os-images--centos)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
@@ -40,20 +40,11 @@ See more applications builders and sample on [startx docker images repository](h
 
 | Docker Hub repository                                            | Distribution        | Bash   | Kernel      |
 | ---------------------------------------------------------------- | ------------------- | ------ | ----------- |
-| [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora) | Fedora core rawhide | 5.1.4  | 5.11.15-200 |
-| [`startx/fedora:34`](https://hub.docker.com/r/startx/fedora)     | Fedora core 34      | 5.1.0 |  5.11.15-200  |
-| [`startx/fedora:33`](https://hub.docker.com/r/startx/fedora)     | Fedora core 33      | 5.0.17 |             |
-| [`startx/fedora:32`](https://hub.docker.com/r/startx/fedora)     | Fedora core 32      | 5.0.17 |             |
-| [`startx/fedora:31`](https://hub.docker.com/r/startx/fedora)     | Fedora core 31      | 5.0.11 |             |
-| [`startx/fedora:30`](https://hub.docker.com/r/startx/fedora)     | Fedora core 30      | 5.0.11 |             |
-| [`startx/fedora:29`](https://hub.docker.com/r/startx/fedora)     | Fedora core 29      | 4.4.23 |             |
-| [`startx/fedora:28`](https://hub.docker.com/r/startx/fedora)     | Fedora core 28      | 4.4.23 |             |
-| [`startx/fedora:27`](https://hub.docker.com/r/startx/fedora)     | Fedora core 27      | 4.4.23 |             |
-| [`startx/fedora:26`](https://hub.docker.com/r/startx/fedora)     | Fedora core 26      | 4.4.12 |             |
-| [`startx/fedora:23`](https://hub.docker.com/r/startx/fedora)     | Fedora core 23      | 4.3.42 |             |
-| [`startx/fedora:22`](https://hub.docker.com/r/startx/fedora)     | Fedora core 22      | 4.3.42 |             |
-| [`startx/fedora:21`](https://hub.docker.com/r/startx/fedora)     | Fedora core 21      |        |             |
-| [`startx/fedora:20`](https://hub.docker.com/r/startx/fedora)     | Fedora core 20      |        |             |
+| [`startx/centos:8`](https://hub.docker.com/r/startx/centos)      | Centos 8            | 4.4.19 |             |
+| [`startx/centos:7`](https://hub.docker.com/r/startx/centos)      | Centos 7            | 4.2.46 |             |
+| [`startx/centos:6`](https://hub.docker.com/r/startx/centos)      | Centos 6            | 4.1.2  |             |
+| [`startx/ubi:8`](https://hub.docker.com/r/startx/ubi)            | RedHat UBI 8        | 4.4.19 |             |
+| [`startx/alpine:3`](https://hub.docker.com/r/startx/alpine)      | Alpine 3.12         | 5.0.17 |             |
 
 ## Running this image
 
@@ -69,7 +60,7 @@ you can [read ours containers engines guidelines](https://github.com/startxfr/co
 ### Running using docker
 
 ```bash
-docker run -it --name="example-fedora" startx/fedora
+docker run -it --name="example-centos" startx/centos
 ```
 
 ### Running using docker-compose
@@ -77,9 +68,9 @@ docker run -it --name="example-fedora" startx/fedora
 - Create a `docker-compose.yml` file with the following content
 
 ```yaml
-fedora:
-  image: startx/fedora:latest
-  container_name: "example-fedora"
+centos:
+  image: startx/centos:latest
+  container_name: "example-centos"
 ```
 
 - Execute the following command
@@ -182,10 +173,10 @@ Then you can use this image as an s2i builder image
 
 ```bash
 # With your current directory application code
-s2i build . startx/fedora:latest startx-bash-myapp
+s2i build . startx/centos:latest startx-bash-myapp
 docker run --rm -i -t startx-bash-myapp
 # With startx application sample code repository
-s2i build https://github.com/startxfr/docker-images-example-bash startx/fedora startx-bash-sample
+s2i build https://github.com/startxfr/docker-images-example-bash startx/centos startx-bash-sample
 docker run --rm -i -t startx-bash-sample
 ```
 
@@ -194,7 +185,7 @@ docker run --rm -i -t startx-bash-sample
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM quay.io/startx/fedora:latest
+FROM quay.io/startx/centos:latest
 #... your container specifications
 ```
 
@@ -204,8 +195,8 @@ FROM quay.io/startx/fedora:latest
 | --------------------- | -------- | --------------- | ------------------------------------------------------------------------ |
 | SX_VERSION            | `string` | `latest`        | container version                                                        |
 | SX_TYPE               | `string` | `OS`            | Container family (os, service, application). could be enhanced           |
-| SX_SERVICE            | `string` | `fedora`        | Define the type of service or application provided                       |
-| SX_ID                 | `auto`   | `startx/fedora` | Container ID coresponding to the image repository                        |
+| SX_SERVICE            | `string` | `centos`        | Define the type of service or application provided                       |
+| SX_ID                 | `auto`   | `startx/centos` | Container ID coresponding to the image repository                        |
 | SX_NAME               | `auto`   | `yes`           | Container name                                                           |
 | SX_SUMMARY            | `auto`   | `yes`           | Container purpose description                                            |
 | SX_VERBOSE            | `bool`   | `no`            | Display information about the execution                                  |
@@ -244,10 +235,10 @@ This section will help you if you want to :
 ### Build & run a container using `docker`
 
 1. Jump into the container directory with `cd OS`
-2. Build the container using `docker build -t startx-fedora .`
+2. Build the container using `docker build -t startx-centos .`
 3. Run this container
-   - Interactively with `docker run -it startx-fedora`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...)
-   - As a daemon with `docker run -d startx-fedora`
+   - Interactively with `docker run -it startx-centos`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...)
+   - As a daemon with `docker run -d startx-centos`
 
 ### Build & run a container using `docker-compose`
 
