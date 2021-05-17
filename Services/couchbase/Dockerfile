@@ -8,9 +8,9 @@ ENV SX_VERSION="fc33" \
     SX_SUMMARY="Startx couchbase service based on fedora 33" \
     CB_PATH=/opt/couchbase \
     DATA_PATH=/opt/couchbase/var \
-    CB_VERSION=6.6.2 \
-    CB_RELEASE_URL=https://packages.couchbase.com/releases/6.6.2 \
-    CB_PACKAGE=couchbase-server-enterprise-6.6.2-centos8.x86_64.rpm \
+    CB_VERSION=6.6.0 \
+    CB_RELEASE_URL=https://packages.couchbase.com/releases/6.6.0 \
+    CB_PACKAGE=couchbase-server-enterprise-6.6.0-centos8.x86_64.rpm \
     PATH=$PATH:/opt/couchbase/bin:/opt/couchbase/bin/tools:/opt/couchbase/bin/install
 
 LABEL name="$SX_ID" \
