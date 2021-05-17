@@ -38,25 +38,27 @@ See more applications builders and sample on [startx docker images repository](h
 
 ## Container flavours
 
-| Docker Hub repository                                            | Content                          |
-| ---------------------------------------------------------------- | -------------------------------- |
-| [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora) | Fedora core rawhide + bash 5.0.17|
-| [`startx/fedora:32`](https://hub.docker.com/r/startx/fedora)     | Fedora core 32 + bash 5.0.17     |
-| [`startx/fedora:31`](https://hub.docker.com/r/startx/fedora)     | Fedora core 31 + bash 5.0.11     |
-| [`startx/fedora:30`](https://hub.docker.com/r/startx/fedora)     | Fedora core 30 + bash 5.0.11     |
-| [`startx/fedora:29`](https://hub.docker.com/r/startx/fedora)     | Fedora core 29 + bash 4.4.23     |
-| [`startx/fedora:28`](https://hub.docker.com/r/startx/fedora)     | Fedora core 28 + bash 4.4.23     |
-| [`startx/fedora:27`](https://hub.docker.com/r/startx/fedora)     | Fedora core 27 + bash 4.4.23     |
-| [`startx/fedora:26`](https://hub.docker.com/r/startx/fedora)     | Fedora core 26 + bash 4.4.12     |
-| [`startx/fedora:23`](https://hub.docker.com/r/startx/fedora)     | Fedora core 23 + bash 4.3.42     |
-| [`startx/fedora:22`](https://hub.docker.com/r/startx/fedora)     | Fedora core 22 + bash 4.3.42     |
-| [`startx/fedora:21`](https://hub.docker.com/r/startx/fedora)     | Fedora core 21                   |
-| [`startx/fedora:20`](https://hub.docker.com/r/startx/fedora)     | Fedora core 20                   |
-| [`startx/centos:8`](https://hub.docker.com/r/startx/centos)      | Centos 8 + bash 4.4.19           |
-| [`startx/centos:7`](https://hub.docker.com/r/startx/centos)      | Centos 7 + bash 4.2.46           |
-| [`startx/centos:6`](https://hub.docker.com/r/startx/centos)      | Centos 6 + bash 4.1.2            |
-| [`startx/ubi:8`](https://hub.docker.com/r/startx/ubi)            | RedHat UBI 8 + bash 4.4.19       |
-| [`startx/alpine:3`](https://hub.docker.com/r/startx/alpine)      | Alpine 3.12 + bash 5.0.17        |
+| Docker Hub repository                                            | Distribution        | Bash   | Kernel      |
+| ---------------------------------------------------------------- | ------------------- | ------ | ----------- |
+| [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora) | Fedora core rawhide | 5.1.4  | 5.11.15-200 |
+| [`startx/fedora:34`](https://hub.docker.com/r/startx/fedora)     | Fedora core 34      | 5.0.17 |             |
+| [`startx/fedora:33`](https://hub.docker.com/r/startx/fedora)     | Fedora core 33      | 5.0.17 |             |
+| [`startx/fedora:32`](https://hub.docker.com/r/startx/fedora)     | Fedora core 32      | 5.0.17 |             |
+| [`startx/fedora:31`](https://hub.docker.com/r/startx/fedora)     | Fedora core 31      | 5.0.11 |             |
+| [`startx/fedora:30`](https://hub.docker.com/r/startx/fedora)     | Fedora core 30      | 5.0.11 |             |
+| [`startx/fedora:29`](https://hub.docker.com/r/startx/fedora)     | Fedora core 29      | 4.4.23 |             |
+| [`startx/fedora:28`](https://hub.docker.com/r/startx/fedora)     | Fedora core 28      | 4.4.23 |             |
+| [`startx/fedora:27`](https://hub.docker.com/r/startx/fedora)     | Fedora core 27      | 4.4.23 |             |
+| [`startx/fedora:26`](https://hub.docker.com/r/startx/fedora)     | Fedora core 26      | 4.4.12 |             |
+| [`startx/fedora:23`](https://hub.docker.com/r/startx/fedora)     | Fedora core 23      | 4.3.42 |             |
+| [`startx/fedora:22`](https://hub.docker.com/r/startx/fedora)     | Fedora core 22      | 4.3.42 |             |
+| [`startx/fedora:21`](https://hub.docker.com/r/startx/fedora)     | Fedora core 21      |        |             |
+| [`startx/fedora:20`](https://hub.docker.com/r/startx/fedora)     | Fedora core 20      |        |             |
+| [`startx/centos:8`](https://hub.docker.com/r/startx/centos)      | Centos 8            | 4.4.19 |             |
+| [`startx/centos:7`](https://hub.docker.com/r/startx/centos)      | Centos 7            | 4.2.46 |             |
+| [`startx/centos:6`](https://hub.docker.com/r/startx/centos)      | Centos 6            | 4.1.2  |             |
+| [`startx/ubi:8`](https://hub.docker.com/r/startx/ubi)            | RedHat UBI 8        | 4.4.19 |             |
+| [`startx/alpine:3`](https://hub.docker.com/r/startx/alpine)      | Alpine 3.12         | 5.0.17 |             |
 
 ## Running this image
 
