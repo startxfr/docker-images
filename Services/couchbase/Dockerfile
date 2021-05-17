@@ -8,9 +8,9 @@ ENV SX_VERSION="latest" \
     SX_SUMMARY="Startx couchbase service based on fedora rawhide" \
     CB_PATH=/opt/couchbase \
     DATA_PATH=/opt/couchbase/var \
-    CB_VERSION=6.0.2 \
-    CB_RELEASE_URL=https://packages.couchbase.com/releases/6.0.2 \
-    CB_PACKAGE=couchbase-server-enterprise-6.0.2-rhel8.x86_64.rpm \
+    CB_VERSION=6.6.2 \
+    CB_RELEASE_URL=https://packages.couchbase.com/releases/6.6.2 \
+    CB_PACKAGE=couchbase-server-enterprise-6.6.2-centos8.x86_64.rpm \
     PATH=$PATH:/opt/couchbase/bin:/opt/couchbase/bin/tools:/opt/couchbase/bin/install
 
 LABEL name="$SX_ID" \
@@ -33,15 +33,16 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
-    dnf upgrade -yq --refresh && \
+RUN dnf install -yq --nogpgcheck yum-utils dnf-plugin-system-upgrade && \
+    dnf upgrade -yq --nogpgcheck --refresh && \
     dnf install -yq --nogpgcheck \
-    python2-httplib2 \
+    python3-httplib2 \
     openssl \
     ncurses \
     ncurses-libs \
     ncurses-compat-libs \
-    python2 && \
+    python3 \
+    bzip2 && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \

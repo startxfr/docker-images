@@ -9,20 +9,22 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-- `:latest` : Fedora core rawhide + oc + kubectl + tools
-- `:fc34` : Fedora core 34 + oc + kubectl + tools  
-- `:fc33` : Fedora core 33 + oc + kubectl + tools  
-- `:fc32` : Fedora core 32 + oc + kubectl + tools  
-- `:fc31` : Fedora core 31 + oc + kubectl + tools
-- `:fc30` : Fedora core 30 + oc + kubectl + tools
-- `:fc29` : Fedora core 29 + oc + kubectl + tools
-- `:fc28` : Fedora core 28 + oc + kubectl + tools
-- `:fc27` : Fedora core 27 + oc + kubectl + tools
-- `:centos8` : CentOS 8 + oc + kubectl + tools
-- `:centos7` : CentOS 7 + oc + kubectl + tools
-- `:centos6` : Centos 6 + oc + kubectl + tools
-- `:alpine3` : Alpine 3.12 + oc + kubectl + tools
-- `:ubi8` : RedHat UBI 8 + oc + kubectl + tools
+| Docker Hub repository                                                   | Content             | Ansible | Kubectl | OC  |
+| ----------------------------------------------------------------------- | ------------------- | ------- | ------- | --- |
+| [`startx/runner-oc:latest`](https://hub.docker.com/r/startx/runner-oc)  | Fedora core rawhide |         |         |     |
+| [`startx/runner-oc:34`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 34      |         |         |     |
+| [`startx/runner-oc:33`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 33      |         |         |     |
+| [`startx/runner-oc:32`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 32      |         |         |     |
+| [`startx/runner-oc:31`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 31      |         |         |     |
+| [`startx/runner-oc:30`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 30      |         |         |     |
+| [`startx/runner-oc:29`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 29      |         |         |     |
+| [`startx/runner-oc:28`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 28      |         |         |     |
+| [`startx/runner-oc:27`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 27      |         |         |     |
+| [`startx/runner-oc:centos8`](https://hub.docker.com/r/startx/runner-oc) | Centos 8            |         |         |     |
+| [`startx/runner-oc:centos7`](https://hub.docker.com/r/startx/runner-oc) | Centos 7            |         |         |     |
+| [`startx/runner-oc:centos6`](https://hub.docker.com/r/startx/runner-oc) | Centos 6            |         |         |     |
+| [`startx/runner-oc:ubi8`](https://hub.docker.com/r/startx/runner-oc)    | RedHat UBI 8        |         |         |     |
+| [`startx/runner-oc:alpine3`](https://hub.docker.com/r/startx/runner-oc) | Alpine 3.12         |         |         |     |
 
 ## Running from dockerhub registry
 
@@ -65,7 +67,7 @@ some [additional environment variable](https://github.com/startxfr/docker-images
 | ------------------------------ | ------ | --------- | ----------------------------------------------------------------------------------------------------- |
 | <i>base image environement</i> |        |           | [see environment list](https://github.com/startxfr/docker-images/tree/master/OS#environment-variable) |
 | HOSTNAME                       | `auto` | `auto`    | Container unique id automatically assigned by docker daemon at startup                                |
-| LOG_PATH                       | `auto` | `auto`    | default set to /var/log/oc and used as a volume mountpoint                                          |
+| LOG_PATH                       | `auto` | `auto`    | default set to /var/log/oc and used as a volume mountpoint                                            |
 
 ## Exposed port
 
@@ -75,8 +77,8 @@ some [additional environment variable](https://github.com/startxfr/docker-images
 
 ## Exposed volumes
 
-| Container directory | Description                                          |
-| ------------------- | ---------------------------------------------------- |
+| Container directory | Description                                        |
+| ------------------- | -------------------------------------------------- |
 | /logs               | log directory used to record container and oc logs |
 
 ## Testing the service

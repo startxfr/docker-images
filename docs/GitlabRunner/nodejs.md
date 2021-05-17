@@ -30,19 +30,23 @@ See more applications builders and sample on [startx docker images repository](h
 
 ## Container flavours
 
-| Docker Hub repository                                                           | Docker-compose                                                                                                      | Fedora distribution                              |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
-| [`startx/runner-nodejs:latest`](https://hub.docker.com/r/startx/runner-nodejs)  | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/nodejs/docker-compose.yml) | Fedora core rawhide + NodeJS v12.4.0 + npm 6.9.0 |
-| [`startx/runner-nodejs:31`](https://hub.docker.com/r/startx/runner-nodejs)      | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/nodejs/docker-compose.yml) | Fedora core 31 + NodeJS v10.15.0                 |
-| [`startx/runner-nodejs:30`](https://hub.docker.com/r/startx/runner-nodejs)      | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/nodejs/docker-compose.yml) | Fedora core 30 + NodeJS v10.15.0                 |
-| [`startx/runner-nodejs:29`](https://hub.docker.com/r/startx/runner-nodejs)      | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/nodejs/docker-compose.yml) | Fedora core 29 + NodeJS v10.16.0 + npm 6.9.0     |
-| [`startx/runner-nodejs:28`](https://hub.docker.com/r/startx/runner-nodejs)      | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/nodejs/docker-compose.yml) | Fedora core 28 + NodeJS v0.10.36                 |
-| [`startx/runner-nodejs:27`](https://hub.docker.com/r/startx/runner-nodejs)      | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/nodejs/docker-compose.yml) | Fedora core 27 + NodeJS v0.10.36                 |
-| [`startx/runner-nodejs:centos8`](https://hub.docker.com/r/startx/runner-nodejs) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/nodejs/docker-compose.yml) | Centos 8                                         |
-| [`startx/runner-nodejs:centos7`](https://hub.docker.com/r/startx/runner-nodejs) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/nodejs/docker-compose.yml) | Centos 7                                         |
-| [`startx/runner-nodejs:centos6`](https://hub.docker.com/r/startx/runner-nodejs) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/nodejs/docker-compose.yml) | Centos 6                                         |
-| [`startx/runner-nodejs:alpine3`](https://hub.docker.com/r/startx/runner-nodejs) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/nodejs/docker-compose.yml) | Alpine 3.12 + NodeJS 8.11.1                      |
-| [`startx/runner-nodejs:ubi8`](https://hub.docker.com/r/startx/runner-nodejs)    | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/nodejs/docker-compose.yml) | RedHat UBI 8                                     |
+| Docker Hub repository                                                           | Content             | Ansible | NodeJS  |
+| ------------------------------------------------------------------------------- | ------------------- | ------- | ------- |
+| [`startx/runner-nodejs:latest`](https://hub.docker.com/r/startx/runner-nodejs)  | Fedora core rawhide |         |         |
+| [`startx/runner-nodejs:34`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 34      |         |         |
+| [`startx/runner-nodejs:33`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 33      |         |         |
+| [`startx/runner-nodejs:32`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 32      |         | 12.4.0  |
+| [`startx/runner-nodejs:31`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 31      |         | 10.15.0 |
+| [`startx/runner-nodejs:30`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 30      |         | 10.15.0 |
+| [`startx/runner-nodejs:29`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 29      |         | 10.16.0 |
+| [`startx/runner-nodejs:28`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 28      |         | 0.10.36 |
+| [`startx/runner-nodejs:27`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 27      |         | 0.10.36 |
+| [`startx/runner-nodejs:26`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 26      |         |         |
+| [`startx/runner-nodejs:centos8`](https://hub.docker.com/r/startx/runner-nodejs) | Centos 8            |         |         |
+| [`startx/runner-nodejs:centos7`](https://hub.docker.com/r/startx/runner-nodejs) | Centos 7            |         |         |
+| [`startx/runner-nodejs:centos6`](https://hub.docker.com/r/startx/runner-nodejs) | Centos 6            |         |         |
+| [`startx/runner-nodejs:ubi8`](https://hub.docker.com/r/startx/runner-nodejs)    | RedHat UBI 8        |         |         |
+| [`startx/runner-nodejs:alpine3`](https://hub.docker.com/r/startx/runner-nodejs) | Alpine 3.12         |         | 8.11.1  |
 
 ## Running this image
 
@@ -57,7 +61,7 @@ you can [read ours containers engines guidelines](https://github.com/startxfr/co
 
 ### Running using docker
 
-```bash
+```nodejs
 docker run -it -p 9221:8080 --name="example-nodejs" startx/runner-nodejs
 ```
 
