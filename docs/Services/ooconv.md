@@ -10,24 +10,27 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-- `:latest` : Fedora core rawhide + unoconv 0.7 + LibreOffice 6.2.4.2.0
-- `:fc34` : Fedora core 34 + unoconv 0.7 + LibreOffice 5.0.3.2
-- `:fc33` : Fedora core 33 + unoconv 0.7 + LibreOffice 5.0.3.2
-- `:fc32` : Fedora core 32 + unoconv 0.7 + LibreOffice 5.0.3.2
-- `:fc31` : Fedora core 31 + unoconv 0.7 + LibreOffice 5.0.3.2
-- `:fc30` : Fedora core 30 + unoconv 0.7 + LibreOffice 5.0.3.2
-- `:fc29` : Fedora core 29 + unoconv 0.7 + LibreOffice 6.1.6.3
-- `:fc28` : Fedora core 28 + unoconv 0.7 + LibreOffice 5.0.3.2
-- `:fc27` : Fedora core 27 + unoconv 0.7 + LibreOffice 5.0.3.2
-- `:fc26` : Fedora core 26 + unoconv 0.7 + LibreOffice 5.0.3.2
-- `:fc23` : Fedora core 23 + unoconv 0.7 + LibreOffice 5.0.3.2
-- `:fc22` : Fedora core 22 + unoconv
-- `:fc21` : Fedora core 21 + unoconv
-- `:centos8` : CentOS 8 + unoconv
-- `:centos7` : CentOS 7 + unoconv
-- `:centos6` : Centos 6 + unoconv
-- `:alpine3` : Alpine 3.12 + unoconv 0.8 + LibreOffice 5.4.5.1
-- `:ubi8` : RedHat UBI 8 + unoconv
+| Docker Hub repository                                                   | Content             | Libreoffice | Unoconv |
+| ----------------------------------------------------------------------- | ------------------- | ----------- | ------- |
+| [`startx/sv-ooconv:latest`](https://hub.docker.com/r/startx/sv-ooconv)  | Fedora core rawhide | 7.1.3.2     | 0.7     |
+| [`startx/sv-ooconv:34`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 34      | 6.2.4.2.0   | 0.7     |
+| [`startx/sv-ooconv:33`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 33      | 6.2.4.2.0   | 0.7     |
+| [`startx/sv-ooconv:32`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 32      | 6.2.4.2.0   | 0.7     |
+| [`startx/sv-ooconv:31`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 31      | 6.1.6.3     | 0.7     |
+| [`startx/sv-ooconv:30`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 30      | 6.1.6.3     | 0.7     |
+| [`startx/sv-ooconv:29`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 29      | 6.1.6.3     | 0.7     |
+| [`startx/sv-ooconv:28`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 28      | 5.0.3.2     | 0.7     |
+| [`startx/sv-ooconv:27`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 27      | 5.0.3.2     | 0.7     |
+| [`startx/sv-ooconv:26`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 26      | 5.0.3.2     | 0.7     |
+| [`startx/sv-ooconv:23`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 23      | 5.0.3.2     | 0.7     |
+| [`startx/sv-ooconv:22`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 22      |             |         |
+| [`startx/sv-ooconv:21`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 21      |             |         |
+| [`startx/sv-ooconv:20`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 20      |             |         |
+| [`startx/sv-ooconv:centos8`](https://hub.docker.com/r/startx/sv-ooconv) | Centos 8            |             | 0.7     |
+| [`startx/sv-ooconv:centos7`](https://hub.docker.com/r/startx/sv-ooconv) | Centos 7            |             | 0.7     |
+| [`startx/sv-ooconv:centos6`](https://hub.docker.com/r/startx/sv-ooconv) | Centos 6            |             | 0.7     |
+| [`startx/sv-ooconv:ubi8`](https://hub.docker.com/r/startx/sv-ooconv)    | RedHat UBI 8        |             | 0.7     |
+| [`startx/sv-ooconv:alpine3`](https://hub.docker.com/r/startx/sv-ooconv) | Alpine 3.12         | 5.4.5.1     | 0.8     |
 
 ## Running from dockerhub registry
 

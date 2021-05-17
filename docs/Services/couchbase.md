@@ -45,24 +45,21 @@ See more applications builders and sample on [startx docker images repository](h
 
 ## Container flavours
 
-| Docker Hub repository                                                         | Content                                      |
-| ----------------------------------------------------------------------------- | -------------------------------------------- |
-| [`startx/sv-couchbase:latest`](https://hub.docker.com/r/startx/sv-couchbase)  | Fedora rawhide + Couchbase Server 6.0.2-2413 |
-| [`startx/sv-couchbase:32`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora 32 + Couchbase Server 6.0.2-2413      |
-| [`startx/sv-couchbase:31`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora 31 + Couchbase Server 6.0.2-2413      |
-| [`startx/sv-couchbase:30`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora 30 + Couchbase Server 6.0.0           |
-| [`startx/sv-couchbase:29`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora 29 + Couchbase Server 5.5.0-beta      |
-| [`startx/sv-couchbase:28`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora 28 + Couchbase Server 4.5.0           |
-| [`startx/sv-couchbase:27`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora 27 + Couchbase Server 4.5.0           |
-| [`startx/sv-couchbase:26`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 26 + couchbase 2.4.17            |
-| [`startx/sv-couchbase:23`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 23 + couchbase x.x.x             |
-| [`startx/sv-couchbase:22`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 22 + couchbase x.x.x             |
-| [`startx/sv-couchbase:21`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 21 + couchbase x.x.x             |
-| [`startx/sv-couchbase:20`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 20 + couchbase x.x.x             |
-| [`startx/sv-couchbase:centos8`](https://hub.docker.com/r/startx/sv-couchbase) | Centos 8 + Couchbase Server 6.0.0            |
-| [`startx/sv-couchbase:centos7`](https://hub.docker.com/r/startx/sv-couchbase) | Centos 7 + Couchbase Server 6.0.0            |
-| [`startx/sv-couchbase:centos6`](https://hub.docker.com/r/startx/sv-couchbase) | Centos 6 + couchbase x.x.x                   |
-| [`startx/sv-couchbase:ubi8`](https://hub.docker.com/r/startx/sv-couchbase)    | RedHat UBI 8 + Couchbase Server 6.0.0        |
+| Docker Hub repository                                                         | Content             | Couchbase  |
+| ----------------------------------------------------------------------------- | ------------------- | ---------- |
+| [`startx/sv-couchbase:latest`](https://hub.docker.com/r/startx/sv-couchbase)  | Fedora core rawhide | 6.6.2      |
+| [`startx/sv-couchbase:34`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 34      | 6.6.1      |
+| [`startx/sv-couchbase:33`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 33      | 6.6.0      |
+| [`startx/sv-couchbase:32`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 32      | 6.0.2-2413 |
+| [`startx/sv-couchbase:31`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 31      | 6.0.2-2413 |
+| [`startx/sv-couchbase:30`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 30      | 6.0.0      |
+| [`startx/sv-couchbase:29`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 29      | 5.5.0-beta |
+| [`startx/sv-couchbase:28`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 28      | 4.5.0      |
+| [`startx/sv-couchbase:27`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 27      | 4.5.0      |
+| [`startx/sv-couchbase:26`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 26      | 2.4.17     |
+| [`startx/sv-couchbase:centos8`](https://hub.docker.com/r/startx/sv-couchbase) | Centos 8            | 6.0.0      |
+| [`startx/sv-couchbase:centos7`](https://hub.docker.com/r/startx/sv-couchbase) | Centos 7            | 6.0.0      |
+| [`startx/sv-couchbase:ubi8`](https://hub.docker.com/r/startx/sv-couchbase)    | RedHat UBI 8        | 6.0.0      |
 
 ## Running this image
 

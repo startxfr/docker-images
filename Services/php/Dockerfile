@@ -33,8 +33,8 @@ COPY php.ini /etc/php.d/sx.ini
 COPY php-fpm.conf /etc/php-fpm.d/www.conf
 COPY sx /tmp/
 COPY index.php $APP_PATH/index.php
-RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
-    dnf upgrade -yq --refresh && \
+RUN dnf install -yq --nogpgcheck yum-utils dnf-plugin-system-upgrade && \
+    dnf upgrade -yq --nogpgcheck --refresh && \
     dnf install -yq --nogpgcheck \
     php \
     php-cli \
