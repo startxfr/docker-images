@@ -36,13 +36,13 @@ COPY sx /tmp/
 RUN dnf install -yq --nogpgcheck yum-utils dnf-plugin-system-upgrade && \
     dnf upgrade -yq --nogpgcheck --refresh && \
     dnf install -yq --nogpgcheck \
-    python3-httplib2 \
-    openssl \
-    ncurses \
-    ncurses-libs \
-    ncurses-compat-libs \
-    python3 \
-    bzip2 && \
+        python3-httplib2 \
+        openssl \
+        ncurses \
+        ncurses-libs \
+        ncurses-compat-libs \
+        python3 \
+        bzip2 && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
