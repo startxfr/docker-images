@@ -27,12 +27,12 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
-    dnf upgrade -yq --refresh && \
+RUN dnf install -yq --nogpgcheck yum-utils dnf-plugin-system-upgrade && \
+    dnf upgrade -yq --nogpgcheck --refresh && \
     dnf install -yq --nogpgcheck \
-    memcached \
-    nmap-ncat \
-    telnet && \
+        memcached \
+        nmap-ncat \
+        telnet && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \

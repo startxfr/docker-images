@@ -37,25 +37,25 @@ USER root
 COPY sx /tmp/
 
 RUN echo "keepcache=0" >>/etc/dnf/dnf.conf && \
-    dnf install -yq yum-utils dnf-plugin-system-upgrade && \
-    dnf upgrade -yq --refresh && \
-    dnf install -yq \
-    pwgen \
-    tar \
-    unzip \
-    zip \
-    hostname \
-    psmisc \
-    procps \
-    findutils \
-    iputils \
-    net-tools \
-    wget \
-    curl \
-    logrotate \
-    bash-completion \
-    glibc-langpack-fr \
-    vim && \
+    dnf install -yq --nogpgcheck yum-utils dnf-plugin-system-upgrade && \
+    dnf upgrade -yq --nogpgcheck --refresh && \
+    dnf install -yq --nogpgcheck \
+        pwgen \
+        tar \
+        unzip \
+        zip \
+        hostname \
+        psmisc \
+        procps \
+        findutils \
+        iputils \
+        net-tools \
+        wget \
+        curl \
+        logrotate \
+        bash-completion \
+        glibc-langpack-fr \
+        vim && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
