@@ -37,8 +37,8 @@ COPY supervisord.conf $SX_CHROME_SUPERVISOR_CONF/
 COPY sx /tmp/
 RUN wget -q https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/p/python-meld3-2.0.0-2.fc34.noarch.rpm && \
     rpm -ivh python-meld3-2.0.0-2.fc34.noarch.rpm && \
-    dnf install -yq yum-utils dnf-plugin-system-upgrade && \
-    dnf upgrade -yq --refresh && \
+    dnf install -yq --nogpgcheck yum-utils dnf-plugin-system-upgrade && \
+    dnf upgrade -yq --nogpgcheck --refresh && \
     dnf install -yq --nogpgcheck \
     supervisor \
     xorg-x11-server-Xvfb \
