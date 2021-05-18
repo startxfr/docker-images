@@ -12,7 +12,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 | Docker Hub repository                                                 | Content             | MongoDB |
 | --------------------------------------------------------------------- | ------------------- | ------- |
-| [`startx/sv-mongo:latest`](https://hub.docker.com/r/startx/sv-mongo)  | Fedora core rawhide | 4.1.13  |
+| [`startx/sv-mongo:latest`](https://hub.docker.com/r/startx/sv-mongo)  | Fedora core rawhide | 4.4.4   |
 | [`startx/sv-mongo:34`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 34      | 4.1.13  |
 | [`startx/sv-mongo:33`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 33      | 4.1.13  |
 | [`startx/sv-mongo:32`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 32      | 4.1.13  |

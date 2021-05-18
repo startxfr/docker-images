@@ -9,9 +9,9 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-| Docker Hub repository                                                       | Content             | Ansible | Bash |
+| Docker Hub repository                                                       | Content             | Ansible | Make |
 | --------------------------------------------------------------------------- | ------------------- | ------- | ---- |
-| [`startx/runner-bash:latest`](https://hub.docker.com/r/startx/runner-bash)  | Fedora core rawhide |         |      |
+| [`startx/runner-bash:latest`](https://hub.docker.com/r/startx/runner-bash)  | Fedora core rawhide |         | 4.3  |
 | [`startx/runner-bash:34`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 34      |         |      |
 | [`startx/runner-bash:33`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 33      |         |      |
 | [`startx/runner-bash:32`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 32      |         |      |

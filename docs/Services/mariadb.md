@@ -39,7 +39,7 @@ See more applications builders and sample on [startx docker images repository](h
 
 | Docker Hub repository                                                     | Content             | MariaDB | Compat |
 | ------------------------------------------------------------------------- | ------------------- | ------- | ------ |
-| [`startx/sv-mariadb:latest`](https://hub.docker.com/r/startx/sv-mariadb)  | Fedora core rawhide |         | 15.1   |
+| [`startx/sv-mariadb:latest`](https://hub.docker.com/r/startx/sv-mariadb)  | Fedora core rawhide | 10.5.10 | 15.1   |
 | [`startx/sv-mariadb:34`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 34      |         | 15.1   |
 | [`startx/sv-mariadb:33`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 33      |         | 15.1   |
 | [`startx/sv-mariadb:32`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 32      | 10.4.12 | 15.1   |

@@ -1,0 +1,8 @@
+#!/bin/bash
+source $SX_LIBDIR/sx
+
+# Display generic information
+function runnerBashInformation {
+    genericInformation $1
+    echoVerbose $1 "runner make : " `make --version | head -n 1`
+}
