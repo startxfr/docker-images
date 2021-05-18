@@ -11,7 +11,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 | Docker Hub repository                                                             | Content             | Ansible | Make |
 | --------------------------------------------------------------------------------- | ------------------- | ------- | ---- |
-| [`startx/runner-ansible:latest`](https://hub.docker.com/r/startx/runner-ansible)  | Fedora core rawhide |         |      |
+| [`startx/runner-ansible:latest`](https://hub.docker.com/r/startx/runner-ansible)  | Fedora core rawhide |         | 4.3  |
 | [`startx/runner-ansible:34`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 34      |         |      |
 | [`startx/runner-ansible:33`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 33      |         |      |
 | [`startx/runner-ansible:32`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 32      |         |      |
@@ -20,11 +20,6 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | [`startx/runner-ansible:29`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 29      |         |      |
 | [`startx/runner-ansible:28`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 28      |         |      |
 | [`startx/runner-ansible:27`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 27      |         |      |
-| [`startx/runner-ansible:26`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 26      |         |      |
-| [`startx/runner-ansible:23`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 23      |         |      |
-| [`startx/runner-ansible:22`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 22      |         |      |
-| [`startx/runner-ansible:21`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 21      |         |      |
-| [`startx/runner-ansible:20`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 20      |         |      |
 | [`startx/runner-ansible:centos8`](https://hub.docker.com/r/startx/runner-ansible) | Centos 8            |         |      |
 | [`startx/runner-ansible:centos7`](https://hub.docker.com/r/startx/runner-ansible) | Centos 7            |         |      |
 | [`startx/runner-ansible:centos6`](https://hub.docker.com/r/startx/runner-ansible) | Centos 6            |         |      |
