@@ -1,0 +1,9 @@
+#!/bin/bash
+source $SX_LIBDIR/sx
+
+# Display apache information
+function runnerOcInformation {
+    genericInformation $1 
+    echoVerbose $1 "runner oc  : " `oc --version`
+    echoVerbose $1 "runner make : " `make --version | head -n 1`
+}

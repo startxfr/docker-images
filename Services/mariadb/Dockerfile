@@ -38,26 +38,26 @@ COPY my.cnf $MY_CONF
 RUN dnf install -yq --nogpgcheck yum-utils dnf-plugin-system-upgrade && \
     dnf upgrade -yq --nogpgcheck --refresh && \
     dnf install -yq --nogpgcheck \
-    mariadb-connect-engine \
-    mariadb-connector-odbc \
-    mariadb-embedded \
-    mariadb-pam \
-    mariadb-rocksdb-engine \
-    mariadb-s3-engine \
-    mariadb-server \
-    mariadb-server-utils \
-    mariadb-sphinx-engine \
-    mariadb-backup \
-    mariadb-common \
-    mariadb-cracklib-password-check \
-    mariadb-errmsg \
-    mariadb-gssapi-server \
-    mariadb-server-galera \
-    mysql-selinux \
-    percona-xtrabackup \
-    python3-mysqlclient \
-    glibc-langpack-fr \
-    mariadb && \
+        mariadb-connect-engine \
+        mariadb-connector-odbc \
+        mariadb-embedded \
+        mariadb-pam \
+        mariadb-rocksdb-engine \
+        mariadb-s3-engine \
+        mariadb-server \
+        mariadb-server-utils \
+        mariadb-sphinx-engine \
+        mariadb-backup \
+        mariadb-common \
+        mariadb-cracklib-password-check \
+        mariadb-errmsg \
+        mariadb-gssapi-server \
+        mariadb-server-galera \
+        mysql-selinux \
+        percona-xtrabackup \
+        python3-mysqlclient \
+        glibc-langpack-fr \
+        mariadb && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
