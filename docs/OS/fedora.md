@@ -38,22 +38,22 @@ See more applications builders and sample on [startx docker images repository](h
 
 ## Container flavours
 
-| Docker Hub repository                                            | Distribution        | Bash   | Kernel      |
-| ---------------------------------------------------------------- | ------------------- | ------ | ----------- |
-| [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora) | Fedora core rawhide | 5.1.4  | 5.11.15-200 |
-| [`startx/fedora:34`](https://hub.docker.com/r/startx/fedora)     | Fedora core 34      | 5.0.17 |             |
-| [`startx/fedora:33`](https://hub.docker.com/r/startx/fedora)     | Fedora core 33      | 5.0.17 |             |
-| [`startx/fedora:32`](https://hub.docker.com/r/startx/fedora)     | Fedora core 32      | 5.0.17 |             |
-| [`startx/fedora:31`](https://hub.docker.com/r/startx/fedora)     | Fedora core 31      | 5.0.11 |             |
-| [`startx/fedora:30`](https://hub.docker.com/r/startx/fedora)     | Fedora core 30      | 5.0.11 |             |
-| [`startx/fedora:29`](https://hub.docker.com/r/startx/fedora)     | Fedora core 29      | 4.4.23 |             |
-| [`startx/fedora:28`](https://hub.docker.com/r/startx/fedora)     | Fedora core 28      | 4.4.23 |             |
-| [`startx/fedora:27`](https://hub.docker.com/r/startx/fedora)     | Fedora core 27      | 4.4.23 |             |
-| [`startx/fedora:26`](https://hub.docker.com/r/startx/fedora)     | Fedora core 26      | 4.4.12 |             |
-| [`startx/fedora:23`](https://hub.docker.com/r/startx/fedora)     | Fedora core 23      | 4.3.42 |             |
-| [`startx/fedora:22`](https://hub.docker.com/r/startx/fedora)     | Fedora core 22      | 4.3.42 |             |
-| [`startx/fedora:21`](https://hub.docker.com/r/startx/fedora)     | Fedora core 21      |        |             |
-| [`startx/fedora:20`](https://hub.docker.com/r/startx/fedora)     | Fedora core 20      |        |             |
+| Docker Hub repository                                            | Distribution        | Bash   | Kernel     |
+| ---------------------------------------------------------------- | ------------------- | ------ | ---------- |
+| [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora) | Fedora core rawhide | 5.1.4  | 5.8.15-301 |
+| [`startx/fedora:34`](https://hub.docker.com/r/startx/fedora)     | Fedora core 34      | 5.1.0  | 5.8.15-301 |
+| [`startx/fedora:33`](https://hub.docker.com/r/startx/fedora)     | Fedora core 33      | 5.1.4  | 5.8.15-301 |
+| [`startx/fedora:32`](https://hub.docker.com/r/startx/fedora)     | Fedora core 32      | 5.0.17 |            |
+| [`startx/fedora:31`](https://hub.docker.com/r/startx/fedora)     | Fedora core 31      | 5.0.11 |            |
+| [`startx/fedora:30`](https://hub.docker.com/r/startx/fedora)     | Fedora core 30      | 5.0.11 |            |
+| [`startx/fedora:29`](https://hub.docker.com/r/startx/fedora)     | Fedora core 29      | 4.4.23 |            |
+| [`startx/fedora:28`](https://hub.docker.com/r/startx/fedora)     | Fedora core 28      | 4.4.23 |            |
+| [`startx/fedora:27`](https://hub.docker.com/r/startx/fedora)     | Fedora core 27      | 4.4.23 |            |
+| [`startx/fedora:26`](https://hub.docker.com/r/startx/fedora)     | Fedora core 26      | 4.4.12 |            |
+| [`startx/fedora:23`](https://hub.docker.com/r/startx/fedora)     | Fedora core 23      | 4.3.42 |            |
+| [`startx/fedora:22`](https://hub.docker.com/r/startx/fedora)     | Fedora core 22      | 4.3.42 |            |
+| [`startx/fedora:21`](https://hub.docker.com/r/startx/fedora)     | Fedora core 21      |        |            |
+| [`startx/fedora:20`](https://hub.docker.com/r/startx/fedora)     | Fedora core 20      |        |            |
 
 ## Running this image
 
