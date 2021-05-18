@@ -38,7 +38,7 @@ See more cache nodes builders and sample on [startx docker images repository](ht
 | Docker Hub repository                                                       | Content             | Memcache |
 | --------------------------------------------------------------------------- | ------------------- | -------- |
 | [`startx/sv-memcache:latest`](https://hub.docker.com/r/startx/sv-memcache)  | Fedora core rawhide | 1.6.9    |
-| [`startx/sv-memcache:34`](https://hub.docker.com/r/startx/sv-memcache)      | Fedora core 34      |          |
+| [`startx/sv-memcache:34`](https://hub.docker.com/r/startx/sv-memcache)      | Fedora core 34      | 1.6.9    |
 | [`startx/sv-memcache:33`](https://hub.docker.com/r/startx/sv-memcache)      | Fedora core 33      |          |
 | [`startx/sv-memcache:32`](https://hub.docker.com/r/startx/sv-memcache)      | Fedora core 32      |          |
 | [`startx/sv-memcache:31`](https://hub.docker.com/r/startx/sv-memcache)      | Fedora core 31      | 1.5.16   |
