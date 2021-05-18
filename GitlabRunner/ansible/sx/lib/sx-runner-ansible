@@ -3,6 +3,6 @@ source $SX_LIBDIR/sx
 
 # Display ansible information
 function runnerAnsibleInformation {
-    genericInformation $1
+    genericAllInformation $1
     echoVerbose $1 "runner make : " `make --version | head -n 1`
 }
