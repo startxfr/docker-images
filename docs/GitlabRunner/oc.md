@@ -9,22 +9,22 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-| Docker Hub repository                                                   | Content             | Ansible | Kubectl | OC  |
-| ----------------------------------------------------------------------- | ------------------- | ------- | ------- | --- |
-| [`startx/runner-oc:latest`](https://hub.docker.com/r/startx/runner-oc)  | Fedora core rawhide |         |         |     |
-| [`startx/runner-oc:34`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 34      |         |         |     |
-| [`startx/runner-oc:33`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 33      |         |         |     |
-| [`startx/runner-oc:32`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 32      |         |         |     |
-| [`startx/runner-oc:31`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 31      |         |         |     |
-| [`startx/runner-oc:30`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 30      |         |         |     |
-| [`startx/runner-oc:29`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 29      |         |         |     |
-| [`startx/runner-oc:28`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 28      |         |         |     |
-| [`startx/runner-oc:27`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 27      |         |         |     |
-| [`startx/runner-oc:centos8`](https://hub.docker.com/r/startx/runner-oc) | Centos 8            |         |         |     |
-| [`startx/runner-oc:centos7`](https://hub.docker.com/r/startx/runner-oc) | Centos 7            |         |         |     |
-| [`startx/runner-oc:centos6`](https://hub.docker.com/r/startx/runner-oc) | Centos 6            |         |         |     |
-| [`startx/runner-oc:ubi8`](https://hub.docker.com/r/startx/runner-oc)    | RedHat UBI 8        |         |         |     |
-| [`startx/runner-oc:alpine3`](https://hub.docker.com/r/startx/runner-oc) | Alpine 3.12         |         |         |     |
+| Docker Hub repository                                                   | Content             | Kubectl | OC  |
+| ----------------------------------------------------------------------- | ------------------- | ------- | --- |
+| [`startx/runner-oc:latest`](https://hub.docker.com/r/startx/runner-oc)  | Fedora core rawhide |         |     |
+| [`startx/runner-oc:34`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 34      |         |     |
+| [`startx/runner-oc:33`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 33      |         |     |
+| [`startx/runner-oc:32`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 32      |         |     |
+| [`startx/runner-oc:31`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 31      |         |     |
+| [`startx/runner-oc:30`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 30      |         |     |
+| [`startx/runner-oc:29`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 29      |         |     |
+| [`startx/runner-oc:28`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 28      |         |     |
+| [`startx/runner-oc:27`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 27      |         |     |
+| [`startx/runner-oc:centos8`](https://hub.docker.com/r/startx/runner-oc) | Centos 8            |         |     |
+| [`startx/runner-oc:centos7`](https://hub.docker.com/r/startx/runner-oc) | Centos 7            |         |     |
+| [`startx/runner-oc:centos6`](https://hub.docker.com/r/startx/runner-oc) | Centos 6            |         |     |
+| [`startx/runner-oc:ubi8`](https://hub.docker.com/r/startx/runner-oc)    | RedHat UBI 8        |         |     |
+| [`startx/runner-oc:alpine3`](https://hub.docker.com/r/startx/runner-oc) | Alpine 3.12         |         |     |
 
 ## Running from dockerhub registry
 

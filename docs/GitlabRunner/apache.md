@@ -23,23 +23,23 @@ See more applications builders and sample on [startx docker images repository](h
 
 ## Container flavours
 
-| Docker Hub repository                                                           | Content             | Ansible | Apache |
-| ------------------------------------------------------------------------------- | ------------------- | ------- | ------ |
-| [`startx/runner-apache:latest`](https://hub.docker.com/r/startx/runner-apache)  | Fedora core rawhide |         | 2.4.46 |
-| [`startx/runner-apache:34`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 34      |         |        |
-| [`startx/runner-apache:33`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 33      |         |        |
-| [`startx/runner-apache:32`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 32      |         | 2.4.39 |
-| [`startx/runner-apache:31`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 31      |         | 2.4.39 |
-| [`startx/runner-apache:30`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 30      |         | 2.4.39 |
-| [`startx/runner-apache:29`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 29      |         | 2.4.39 |
-| [`startx/runner-apache:28`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 28      |         | 2.4.17 |
-| [`startx/runner-apache:27`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 27      |         | 2.4.17 |
-| [`startx/runner-apache:26`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 26      |         | 2.4.17 |
-| [`startx/runner-apache:centos8`](https://hub.docker.com/r/startx/runner-apache) | Centos 8            |         |        |
-| [`startx/runner-apache:centos7`](https://hub.docker.com/r/startx/runner-apache) | Centos 7            |         |        |
-| [`startx/runner-apache:centos6`](https://hub.docker.com/r/startx/runner-apache) | Centos 6            |         |        |
-| [`startx/runner-apache:ubi8`](https://hub.docker.com/r/startx/runner-apache)    | RedHat UBI 8        |         | 2.4.33 |
-| [`startx/runner-apache:alpine3`](https://hub.docker.com/r/startx/runner-apache) | Alpine 3.12         |         | 2.4.33 |
+| Docker Hub repository                                                           | Content             | Apache |
+| ------------------------------------------------------------------------------- | ------------------- | ------ |
+| [`startx/runner-apache:latest`](https://hub.docker.com/r/startx/runner-apache)  | Fedora core rawhide | 2.4.46 |
+| [`startx/runner-apache:34`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 34      | 2.4.46 |
+| [`startx/runner-apache:33`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 33      | 2.4.46 |
+| [`startx/runner-apache:32`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 32      | 2.4.39 |
+| [`startx/runner-apache:31`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 31      | 2.4.39 |
+| [`startx/runner-apache:30`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 30      | 2.4.39 |
+| [`startx/runner-apache:29`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 29      | 2.4.39 |
+| [`startx/runner-apache:28`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 28      | 2.4.17 |
+| [`startx/runner-apache:27`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 27      | 2.4.17 |
+| [`startx/runner-apache:26`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 26      | 2.4.17 |
+| [`startx/runner-apache:centos8`](https://hub.docker.com/r/startx/runner-apache) | Centos 8            |        |
+| [`startx/runner-apache:centos7`](https://hub.docker.com/r/startx/runner-apache) | Centos 7            |        |
+| [`startx/runner-apache:centos6`](https://hub.docker.com/r/startx/runner-apache) | Centos 6            |        |
+| [`startx/runner-apache:ubi8`](https://hub.docker.com/r/startx/runner-apache)    | RedHat UBI 8        | 2.4.33 |
+| [`startx/runner-apache:alpine3`](https://hub.docker.com/r/startx/runner-apache) | Alpine 3.12         | 2.4.33 |
 
 ## Running this image
 
