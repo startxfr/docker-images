@@ -1,0 +1,8 @@
+#!/bin/bash
+source $SX_LIBDIR/sx-nodejs
+
+# Display nodejs information
+function runnerNodejsInformation {
+    nodejsInformation $1 
+    echoVerbose $1 "runner make : " `make --version | head -n 1`
+}

@@ -20,7 +20,7 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
-
+COPY sx /tmp/
 RUN yum install -y -q yum-utils epel-release && \
     yum upgrade -y -q  && \
     yum install -y -q --nogpgcheck \
@@ -41,6 +41,9 @@ RUN yum install -y -q yum-utils epel-release && \
     yum remove -y --skip-broken yum-utils epel-release gcc python-devel && \
     yum clean all --enablerepo=\* && \
     npm install uuid && \
+    mv /tmp/bin/* /bin/ && \
+    mv /tmp/lib/* $SX_LIBDIR/ && \
+    rm -rf /tmp/bin /tmp/bin && \
     cd /tmp && \
     wget -q https://github.com/gohugoio/hugo/releases/download/v${SX_HUGO_RELEASE}/hugo_${SX_HUGO_RELEASE}_Linux-64bit.tar.gz && \
     tar xzvf hugo_${SX_HUGO_RELEASE}_Linux-64bit.tar.gz && \

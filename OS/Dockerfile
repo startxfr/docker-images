@@ -33,7 +33,6 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
-
 COPY sx /tmp/
 RUN echo "keepcache=0" >>/etc/yum.conf && \
     yum install -y -q yum-utils epel-release && \

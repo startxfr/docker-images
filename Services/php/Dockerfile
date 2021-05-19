@@ -32,6 +32,7 @@ COPY httpd.conf $HTTPDCONF
 COPY php.ini /etc/php.d/sx.ini
 COPY php-fpm.conf /etc/php-fpm.d/www.conf
 COPY sx /tmp/
+COPY index.php $APP_PATH/index.php
 RUN yum install -y -q yum-utils && \
     yum upgrade -y -q && \
     yum install -y -q --nogpgcheck \
@@ -74,6 +75,6 @@ WORKDIR $APP_PATH
 
 EXPOSE $APP_PORT
 
-VOLUME [ $SX_PHPSESS_PATH ]
+VOLUME $SX_PHPSESS_PATH
 
 CMD [ "/bin/sx-php" , "run" ]

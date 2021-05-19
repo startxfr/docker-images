@@ -10,24 +10,27 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-- `:latest` : Fedora core rawhide + MongoDB 4.1.13
-- `:fc34` : Fedora core 34 + MongoDB 4.1.13
-- `:fc33` : Fedora core 33 + MongoDB 4.1.13
-- `:fc32` : Fedora core 32 + MongoDB 4.1.13
-- `:fc31` : Fedora core 31 + MongoDB 4.1.13
-- `:fc30` : Fedora core 30 + MongoDB 4.0.3
-- `:fc29` : Fedora core 29 + MongoDB 4.0.3
-- `:fc28` : Fedora core 28 + MongoDB 3.6
-- `:fc27` : Fedora core 27 + MongoDB 3.4
-- `:fc26` : Fedora core 26 + MongoDB 3.4
-- `:fc23` : Fedora core 23 + MongoDB 3.0.7
-- `:fc22` : Fedora core 22 + MongoDB
-- `:fc21` : Fedora core 21 + MongoDB
-- `:centos8` : CentOS 8 + MongoDB 4.1
-- `:centos7` : CentOS 7 + MongoDB 4.1
-- `:centos6` : Centos 6 + MongoDB 3.7
-- `:alpine3` : Alpine 3.12 + MongoDB 4.1
-- `:ubi8` : RedHat UBI 8 + MongoDB 4.1
+| Docker Hub repository                                                 | Content             | MongoDB |
+| --------------------------------------------------------------------- | ------------------- | ------- |
+| [`startx/sv-mongo:latest`](https://hub.docker.com/r/startx/sv-mongo)  | Fedora core rawhide | 4.4.4   |
+| [`startx/sv-mongo:34`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 34      | 4.4.4   |
+| [`startx/sv-mongo:33`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 33      | 4.4.4   |
+| [`startx/sv-mongo:32`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 32      | 4.1.13  |
+| [`startx/sv-mongo:31`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 31      | 4.1.13  |
+| [`startx/sv-mongo:30`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 30      | 4.0.3   |
+| [`startx/sv-mongo:29`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 29      | 4.0.3   |
+| [`startx/sv-mongo:28`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 28      | 3.6     |
+| [`startx/sv-mongo:27`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 27      | 3.4     |
+| [`startx/sv-mongo:26`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 26      | 3.4     |
+| [`startx/sv-mongo:23`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 23      | 3.0.7   |
+| [`startx/sv-mongo:22`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 22      |         |
+| [`startx/sv-mongo:21`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 21      |         |
+| [`startx/sv-mongo:20`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 20      |         |
+| [`startx/sv-mongo:centos8`](https://hub.docker.com/r/startx/sv-mongo) | Centos 8            | 4.1     |
+| [`startx/sv-mongo:centos7`](https://hub.docker.com/r/startx/sv-mongo) | Centos 7            | 4.1     |
+| [`startx/sv-mongo:centos6`](https://hub.docker.com/r/startx/sv-mongo) | Centos 6            | 3.7     |
+| [`startx/sv-mongo:ubi8`](https://hub.docker.com/r/startx/sv-mongo)    | RedHat UBI 8        | 4.1     |
+| [`startx/sv-mongo:alpine3`](https://hub.docker.com/r/startx/sv-mongo) | Alpine 3.12         | 4.1     |
 
 ## Running from dockerhub registry
 

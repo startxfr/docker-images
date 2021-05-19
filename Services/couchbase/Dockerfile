@@ -8,9 +8,9 @@ ENV SX_VERSION="centos7" \
     SX_SUMMARY="Startx couchbase service based on centos 7" \
     CB_PATH=/opt/couchbase \
     DATA_PATH=/opt/couchbase/var \
-    CB_VERSION=6.0.2 \
-    CB_RELEASE_URL=https://packages.couchbase.com/releases/6.0.2 \
-    CB_PACKAGE=couchbase-server-enterprise-6.0.2-rhel8.x86_64.rpm \
+    CB_VERSION=6.6.2 \
+    CB_RELEASE_URL=https://packages.couchbase.com/releases/6.6.2 \
+    CB_PACKAGE=couchbase-server-enterprise-6.6.2-centos8.x86_64.rpm \
     PATH=$PATH:/opt/couchbase/bin:/opt/couchbase/bin/tools:/opt/couchbase/bin/install
 
 LABEL name="$SX_ID" \
@@ -81,7 +81,7 @@ USER 1001
 
 WORKDIR $DATA_PATH
 
-EXPOSE 8091 8092 8093 8094 11207 11210 11211 18091 18092 18093 18094
+EXPOSE 8091-8096 11207-11211 18091-18096 9100-9140 19130 21100-21300 9998-9999 
 
 VOLUME $DATA_PATH
 

@@ -2,7 +2,7 @@
 
 # Docker OS Images : Chrome
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/chrome/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/vdi-chrome.svg)](https://hub.docker.com/r/startx/vdi-chrome) [![Docker chrome pulls](https://img.shields.io/docker/pulls/startx/vdi-chrome)](https://hub.docker.com/r/startx/vdi-chrome) [![Docker Repository on Quay](https://quay.io/repository/startx/chrome/status "Docker Repository on Quay")](https://quay.io/repository/startx/chrome)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/VDI/chrome/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/vdi-chrome.svg)](https://hub.docker.com/r/startx/vdi-chrome) [![Docker chrome pulls](https://img.shields.io/docker/pulls/startx/vdi-chrome)](https://hub.docker.com/r/startx/vdi-chrome) [![Docker Repository on Quay](https://quay.io/repository/startx/chrome/status "Docker Repository on Quay")](https://quay.io/repository/startx/chrome)
 
 Simple container used to server VNC based chrome browser.
 Run [chrome browser application](https://httpd.chrome.org/) under a container
@@ -10,17 +10,19 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-- `:latest` : Fedora core rawhide + Chrome 70.0.3538.77
-- `:fc34` : Fedora core 34 + Chrome 70.0.3538.77
-- `:fc33` : Fedora core 33 + Chrome 70.0.3538.77
-- `:fc32` : Fedora core 32 + Chrome 70.0.3538.77
-- `:fc31` : Fedora core 31 + Chrome 70.0.3538.77
-- `:fc30` : Fedora core 30 + Chrome 70.0.3538.77
-- `:fc29` : Fedora core 29 + Chrome 70.0.3538.77
-- `:fc28` : Fedora core 28 + Chrome 50.0.2661.102
-- `:centos8` : CentOS 8 + Chrome
-- `:centos7` : CentOS 7 + Chrome
-- `:alpine3` : Alpine 3.12 + Chrome 50.0.2661.102
+| Docker Hub repository                                                     | Content             | Firefox       |
+| ------------------------------------------------------------------------- | ------------------- | ------------- |
+| [`startx/vdi-chrome:latest`](https://hub.docker.com/r/startx/vdi-chrome)  | Fedora core rawhide | 90.0.4430.212 |
+| [`startx/vdi-chrome:fc34`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 34      | 90.0.4430.212 |
+| [`startx/vdi-chrome:fc33`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 33      | 90.0.4430.212 |
+| [`startx/vdi-chrome:fc32`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 32      | 70.0.3538.77  |
+| [`startx/vdi-chrome:fc31`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 31      | 70.0.3538.77  |
+| [`startx/vdi-chrome:fc30`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 30      | 70.0.3538.77  |
+| [`startx/vdi-chrome:fc29`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 29      | 70.0.3538.77  |
+| [`startx/vdi-chrome:fc28`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 28      | 50.0.2661.102 |
+| [`startx/vdi-chrome:centos8`](https://hub.docker.com/r/startx/vdi-chrome) | Centos 8            |               |
+| [`startx/vdi-chrome:centos7`](https://hub.docker.com/r/startx/vdi-chrome) | Centos 7            |               |
+| [`startx/vdi-chrome:alpine3`](https://hub.docker.com/r/startx/vdi-chrome) | Alpine 3.12         |               |
 
 ## Running from dockerhub registry
 
