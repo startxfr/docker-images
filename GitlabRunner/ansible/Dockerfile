@@ -27,15 +27,15 @@ RUN yum install -y -q yum-utils epel-release && \
     make \
     python3-pip \
     ansible \
-    gcc python-devel \
+    gcc python-devel python3-devel \
     bubblewrap \
     rsync \
     curl \
     npm nodejs \
     openssh-clients \
     sshpass && \
-    alternatives --set python /usr/bin/python3 && \
-    echo "alias pip=pip3" >> /etc/bashrc && \
+#    alternatives --set python /usr/bin/python3 && \
+#    echo "alias pip=pip3" >> /etc/bashrc && \
     pip3 install -q ansible-runner &> /dev/null && \
     pip3 install -q openshift && \
     yum remove -y --skip-broken yum-utils epel-release gcc python-devel && \

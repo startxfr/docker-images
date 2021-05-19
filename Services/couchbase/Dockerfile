@@ -8,9 +8,9 @@ ENV SX_VERSION="centos7" \
     SX_SUMMARY="Startx couchbase service based on centos 7" \
     CB_PATH=/opt/couchbase \
     DATA_PATH=/opt/couchbase/var \
-    CB_VERSION=6.6.2 \
-    CB_RELEASE_URL=https://packages.couchbase.com/releases/6.6.2 \
-    CB_PACKAGE=couchbase-server-enterprise-6.6.2-centos8.x86_64.rpm \
+    CB_VERSION=6.0.5 \
+    CB_RELEASE_URL=https://packages.couchbase.com/releases/6.0.5 \
+    CB_PACKAGE=couchbase-server-enterprise-6.0.5-centos7.x86_64.rpm \
     PATH=$PATH:/opt/couchbase/bin:/opt/couchbase/bin/tools:/opt/couchbase/bin/install
 
 LABEL name="$SX_ID" \
@@ -41,7 +41,8 @@ RUN yum install -y -q yum-utils && \
     ncurses \
     ncurses-libs \
     ncurses-compat-libs \
-    python2 && \
+    python2 \
+    bzip2 && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \

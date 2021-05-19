@@ -39,7 +39,7 @@ COPY google-chrome.repo /etc/yum.repos.d/google-chrome.repo
 RUN wget -q https://rpmfind.net/linux/epel/7Server/x86_64/Packages/p/python-meld3-0.6.10-1.el7.x86_64.rpm && \
     rpm -ivh python-meld3-0.6.10-1.el7.x86_64.rpm --nodeps && \
     rm -f python-meld3-0.6.10-1.el7.x86_64.rpm && \
-    yum install -y -q yum-utils && yum upgrade -y -q  && \
+    yum install -y -q python3-pip yum-utils && yum upgrade -y -q  && \
     yum install -y -q --nogpgcheck \
     supervisor \
     xorg-x11-server-Xvfb \
@@ -51,9 +51,8 @@ RUN wget -q https://rpmfind.net/linux/epel/7Server/x86_64/Packages/p/python-meld
     package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
     yum clean all --enablerepo=\* && \
-    easy_install pip && \
-    pip install --upgrade pip && \
-    pip install --upgrade --force-reinstall setuptools pip && \
+    pip3 install --upgrade pip && \
+    pip3 install --upgrade --force-reinstall setuptools pip && \
     useradd -s /bin/bash -m -g 0 -u 1001 -G pulse-access $SX_USER && \
     mkdir -p /s2i $SX_LIBDIR /.local && \
     mv /tmp/s2i/bin/* /s2i/ && \

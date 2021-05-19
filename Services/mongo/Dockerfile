@@ -35,7 +35,7 @@ COPY mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo
 RUN yum install -y -q yum-utils && \
     yum upgrade -y -q && \
     yum install -y -q --nogpgcheck \
-    mongodb-org-unstable && \
+    mongodb-org && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \

@@ -1,4 +1,4 @@
-FROM quay.io/startx/fedora:centos7
+FROM quay.io/startx/centos:7
 
 ENV SX_VERSION="centos7" \
     SX_TYPE="runner" \
@@ -20,7 +20,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum install -y -q yum-utils && \
+RUN yum install -y -q yum-utils python3-pip && \
     yum upgrade -y -q  && \
     yum install -y -q --nogpgcheck \
     make && \
