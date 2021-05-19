@@ -33,7 +33,6 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
-
 COPY sx /tmp/
 RUN apk --no-cache update -v && apk --no-cache upgrade -v && \
     apk --no-cache add -v bash pwgen tar psmisc procps findutils iputils net-tools wget logrotate zip shadow vim && \

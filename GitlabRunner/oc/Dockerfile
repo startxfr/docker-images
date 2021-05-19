@@ -20,6 +20,7 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
+COPY sx /tmp/
 RUN apk --no-cache add py-pip jq && \
     pip install yq && \
     cd /tmp && \
@@ -31,7 +32,10 @@ RUN apk --no-cache add py-pip jq && \
     tar xzvf openshift-install-linux-$SX_OC_VERSION.tar.gz && \
     mv openshift-install /usr/bin/ && \
     rm -f openshift-install-linux-$SX_OC_VERSION.tar.gz && \
-    cd -
+    cd - && \
+    mv /tmp/bin/* /bin/ && \
+    mv /tmp/lib/* $SX_LIBDIR/ && \
+    rm -rf /tmp/bin /tmp/bin
 
 USER 1001
 
