@@ -39,7 +39,7 @@ See more applications builders and sample on [startx docker images repository](h
 | ----------------------------------------------------------------------- | ------------------- | ------- | ------- |
 | [`startx/sv-nodejs:latest`](https://hub.docker.com/r/startx/sv-nodejs)  | Fedora core rawhide | 14.16.1 | 6.14.12 |
 | [`startx/sv-nodejs:34`](https://hub.docker.com/r/startx/sv-nodejs)      | Fedora core 34      | 14.16.1 | 6.14.12 |
-| [`startx/sv-nodejs:33`](https://hub.docker.com/r/startx/sv-nodejs)      | Fedora core 33      |         |         |
+| [`startx/sv-nodejs:33`](https://hub.docker.com/r/startx/sv-nodejs)      | Fedora core 33      | 14.16.1 | 6.14.12 |
 | [`startx/sv-nodejs:32`](https://hub.docker.com/r/startx/sv-nodejs)      | Fedora core 32      |         |         |
 | [`startx/sv-nodejs:31`](https://hub.docker.com/r/startx/sv-nodejs)      | Fedora core 31      |         |         |
 | [`startx/sv-nodejs:30`](https://hub.docker.com/r/startx/sv-nodejs)      | Fedora core 30      |         |         |

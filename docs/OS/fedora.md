@@ -18,7 +18,7 @@ This container contain :
 You can use Startx Apache image in many ways :
 
 - [Docker OS Images : FEDORA](#docker-os-images--fedora)
-  - [Container flavours](#container-flavours)
+  - [Container flavours= Display informations on fedora in latest version](#container-flavours-display-informations-on-fedora-in-latest-version)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
     - [Running using docker-compose](#running-using-docker-compose)
@@ -36,13 +36,13 @@ You can use Startx Apache image in many ways :
 
 See more applications builders and sample on [startx docker images repository](https://github.com/startxfr/docker-images/blob/master)
 
-## Container flavours
+## Container flavours= Display informations on fedora in latest version
 
 | Docker Hub repository                                            | Distribution        | Bash   | Kernel     |
 | ---------------------------------------------------------------- | ------------------- | ------ | ---------- |
 | [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora) | Fedora core rawhide | 5.1.4  | 5.8.15-301 |
 | [`startx/fedora:34`](https://hub.docker.com/r/startx/fedora)     | Fedora core 34      | 5.1.0  | 5.8.15-301 |
-| [`startx/fedora:33`](https://hub.docker.com/r/startx/fedora)     | Fedora core 33      | 5.1.4  | 5.8.15-301 |
+| [`startx/fedora:33`](https://hub.docker.com/r/startx/fedora)     | Fedora core 33      | 5.0.17 | 5.8.15-301 |
 | [`startx/fedora:32`](https://hub.docker.com/r/startx/fedora)     | Fedora core 32      | 5.0.17 |            |
 | [`startx/fedora:31`](https://hub.docker.com/r/startx/fedora)     | Fedora core 31      | 5.0.11 |            |
 | [`startx/fedora:30`](https://hub.docker.com/r/startx/fedora)     | Fedora core 30      | 5.0.11 |            |
