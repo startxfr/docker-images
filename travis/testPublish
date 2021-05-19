@@ -1,0 +1,49 @@
+#!/bin/bash
+
+
+
+IMAGE_TAG=docker.io/${NAMESPACE}/$2:$3
+IMAGE_QUAYTAG=quay.io/${NAMESPACE}/$4:$3
+TEST_NAME=${NAMESPACE}_$2
+echo "========> BUILD Container image $IMAGE_TAG"
+cd $1/
+RESULT=$(docker build --squash -t $IMAGE_TAG .)
+if [[ $? = "0" ]]; then
+    echo "========> Builded container image $IMAGE_TAG"
+else
+    echo $RESULT
+    echo "========> !! Could not build container image $IMAGE_TAG"
+    exit 1;
+fi
+cd -
+echo "========> TEST Container instance $TEST_NAME based on image $IMAGE_TAG"
+RESULT=$(docker run -d --name $TEST_NAME $IMAGE_TAG)
+if [[ $? = "0" ]]; then
+    echo "========> Container instance $TEST_NAME STARTED"
+    touch /tmp/istested_$2
+else
+    echo $RESULT
+    echo "!! Could not start container instance $TEST_NAME"
+    exit 1;
+fi
+echo "========> PUBLISH Container $IMAGE_TAG"
+if [ -f /tmp/istested_$2 ] ; then
+    rm -f /tmp/istested_$2
+    RESULT=$(docker push $IMAGE_TAG)
+    if [ "$SX_DEBUG" = true ] ; then
+        echo $RESULT
+    fi
+    if [[ $? = "0" ]]; then
+        echo "========> PUBLISHED Container image $IMAGE_TAG"
+        echo "========> PUBLISH Container image $IMAGE_QUAYTAG"
+        docker push $IMAGE_QUAYTAG &>/dev/null
+        echo "========> PUBLISHED Container image $IMAGE_QUAYTAG"
+        exit 0;
+    else
+        echo "!! Could not publish container image $IMAGE_TAG"
+        exit 1;
+    fi
+else
+    echo "========> PUBLISHING Container image $IMAGE_TAG skipped because test failed"
+    exit 2;
+fi
