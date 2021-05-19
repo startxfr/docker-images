@@ -31,14 +31,18 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf upgrade -yq --refresh && \
-    dnf install -yq epel-release && \
-    dnf install -yq --nogpgcheck \
-    unoconv \
-    libreoffice-writer \
-    libreoffice-calc \
-    ghostscript && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils && \
+RUN dnf install -yq --nogpgcheck yum-utils dnf-plugin-system-upgrade && \
+    dnf upgrade -yq --nogpgcheck --refresh
+RUN dnf install -yq --nogpgcheck \
+        unoconv \
+        libreoffice-writer \
+        libreoffice-calc \
+        libreoffice-postgresql \
+        pdfmod \
+        ghostscript
+RUN package-cleanup --problems && \
+    package-cleanup --orphans && \
+    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     useradd -s /bin/bash -m -g 0 -u 1001 ooconv && \
     mkdir -p $DATA_PATH /.cache && \

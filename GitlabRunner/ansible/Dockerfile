@@ -20,6 +20,7 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
+COPY sx /tmp/
 RUN dnf upgrade -yq --refresh && \
     dnf install -yq 'dnf-command(config-manager)' epel-release && \
     dnf makecache  && \
@@ -39,7 +40,17 @@ RUN dnf upgrade -yq --refresh && \
     pip3 install -q ansible-runner && \
     pip3 install -q openshift && \
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils gcc python3-devel epel-release && \
+    dnf install -yq --nogpgcheck 'dnf-command(config-manager)' && \
+    dnf config-manager --enable --add-repo https://releases.ansible.com/ansible-runner/ansible-runner.el7.repo && \
+    dnf install -yq --nogpgcheck ansible-runner && \
+    package-cleanup --problems && \
+    package-cleanup --orphans && \
+    npm install uuid && \
+    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
     dnf clean all --enablerepo=\* && \
+    mv /tmp/bin/* /bin/ && \
+    mv /tmp/lib/* $SX_LIBDIR/ && \
+    rm -rf /tmp/bin /tmp/bin && \
     cd /tmp && \
     wget -q https://github.com/gohugoio/hugo/releases/download/v${SX_HUGO_RELEASE}/hugo_${SX_HUGO_RELEASE}_Linux-64bit.tar.gz && \
     tar xzvf hugo_${SX_HUGO_RELEASE}_Linux-64bit.tar.gz && \

@@ -48,7 +48,6 @@ RUN wget -q https://rpmfind.net/linux/fedora/linux/development/rawhide/Everythin
     package-cleanup --orphans && \
     dnf remove -y --skip-broken dnf-plugin-system-upgrade yum-utils && \
     dnf clean all --enablerepo=\* && \
-    easy_install pip && \
     pip install --upgrade pip && \
     pip install --upgrade --force-reinstall setuptools pip && \
     useradd -s /bin/bash -m -g 0 -u 1001 $SX_USER && \

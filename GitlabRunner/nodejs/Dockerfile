@@ -19,6 +19,7 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
+COPY sx /tmp/
 RUN dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
     make \
@@ -27,7 +28,10 @@ RUN dnf upgrade -yq --refresh && \
     openssh-clients \
     sshpass && \
     dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils && \
-    dnf clean all --enablerepo=\*
+    dnf clean all --enablerepo=\* && \
+    mv /tmp/bin/* /bin/ && \
+    mv /tmp/lib/* $SX_LIBDIR/ && \
+    rm -rf /tmp/bin /tmp/bin
 
 USER 1001
 
