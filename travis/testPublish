@@ -9,24 +9,16 @@ echo "========> BUILD Container image $IMAGE_TAG"
 cd $1/
 RESULT=$(docker build --squash -t $IMAGE_TAG .)
 if [[ $? = "0" ]]; then
-    docker build --squash -t $IMAGE_QUAYTAG .
-    cd -
-    if [ "$SX_DEBUG" = true ] ; then
-        echo $RESULT
-    fi
     echo "========> Builded container image $IMAGE_TAG"
 else
-    cd -
     echo $RESULT
     echo "========> !! Could not build container image $IMAGE_TAG"
-    exit 0;
+    exit 1;
 fi
+cd -
 echo "========> TEST Container instance $TEST_NAME based on image $IMAGE_TAG"
 RESULT=$(docker run -d --name $TEST_NAME $IMAGE_TAG)
 if [[ $? = "0" ]]; then
-    if [ "$SX_DEBUG" = true ] ; then
-        echo $RESULT
-    fi
     echo "========> Container instance $TEST_NAME STARTED"
     touch /tmp/istested_$2
 else
@@ -44,7 +36,7 @@ if [ -f /tmp/istested_$2 ] ; then
     if [[ $? = "0" ]]; then
         echo "========> PUBLISHED Container image $IMAGE_TAG"
         echo "========> PUBLISH Container image $IMAGE_QUAYTAG"
-        docker push $IMAGE_QUAYTAG
+        docker push $IMAGE_QUAYTAG &>/dev/null
         echo "========> PUBLISHED Container image $IMAGE_QUAYTAG"
         exit 0;
     else
