@@ -41,9 +41,9 @@ RUN dnf install -yq --nogpgcheck yum-utils dnf-plugin-system-upgrade && \
         mariadb-connect-engine \
         mariadb-connector-odbc \
         mariadb-embedded \
-        mariadb-pam \
+#        mariadb-pam \
         mariadb-rocksdb-engine \
-        mariadb-s3-engine \
+#        mariadb-s3-engine \
         mariadb-server \
         mariadb-server-utils \
         mariadb-sphinx-engine \
