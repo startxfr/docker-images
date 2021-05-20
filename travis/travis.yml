@@ -37,6 +37,7 @@ script:
   - "./travis/testPublish        VDI/chrome               vdi-chrome     latest chrome"
   - "./travis/testPublish        VDI/firefox              vdi-firefox    latest firefox"
   - "./travis/testPublish        Applications/phpmyadmin  app-phpmyadmin latest phpmyadmin"
+after_success:
   - "./travis/prepare-end"
 # script:
 #   - "./travis/test    OS                 fedora        latest fedora"
