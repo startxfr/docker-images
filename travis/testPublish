@@ -4,7 +4,7 @@
 
 IMAGE_TAG=docker.io/${NAMESPACE}/$2:$3
 IMAGE_QUAYTAG=quay.io/${NAMESPACE}/$4:$3
-TEST_NAME=${NAMESPACE}_$2
+TEST_NAME=${NAMESPACE}_$4_$2
 echo "========> BUILD Container image $IMAGE_TAG"
 cd $1/
 RESULT=$(docker build --squash -t $IMAGE_TAG .)
@@ -12,13 +12,17 @@ if [[ $? = "0" ]]; then
     if [ "$SX_DEBUG" = true ] ; then
         echo $RESULT
     fi
-    echo "========> Builded container image $IMAGE_TAG"
+    echo "========> BUILDED container image $IMAGE_TAG"
 else
     echo $RESULT
-    echo "!!!!!!!!! Could not build container image $IMAGE_TAG"
-    exit 1;
+    echo "!!!!!!!!> Could not build container image $IMAGE_TAG"
+    if [[ "$ISFATAL" = "true" ]]; then
+        exit 10;
+    else
+        exit 0;
+    fi
 fi
-cd -
+cd - &>/dev/null
 echo "========> TEST Container instance $TEST_NAME based on image $IMAGE_TAG"
 docker rm -f $TEST_NAME $IMAGE_TAG &>/dev/null
 RESULT=$(docker run -d --name $TEST_NAME $IMAGE_TAG)
@@ -26,16 +30,20 @@ if [[ $? = "0" ]]; then
     if [ "$SX_DEBUG" = true ] ; then
         echo $RESULT
     fi
-    echo "========> Container instance $TEST_NAME STARTED"
-    touch /tmp/istested_$2
+    echo "========> TESTED Container instance $TEST_NAME STARTED"
+    echo "$TEST_NAME" > /tmp/istested_$4
 else
     echo $RESULT
-    echo "!!!!!!!!! Could not start container instance $TEST_NAME"
-    exit 1;
+    echo "!!!!!!!!> Could not start container instance $TEST_NAME"
+    if [[ "$ISFATAL" = "true" ]]; then
+        exit 20;
+    else
+        exit 0;
+    fi
 fi
 echo "========> PUBLISH Container $IMAGE_TAG"
-if [ -f /tmp/istested_$2 ] ; then
-    rm -f /tmp/istested_$2
+if [ -f /tmp/istested_$4 ] ; then
+    rm -f /tmp/istested_$4
     RESULT=$(docker push $IMAGE_TAG)
     if [ "$SX_DEBUG" = true ] ; then
         echo $RESULT
@@ -43,14 +51,23 @@ if [ -f /tmp/istested_$2 ] ; then
     if [[ $? = "0" ]]; then
         echo "========> PUBLISHED Container image $IMAGE_TAG"
         echo "========> PUBLISH Container image $IMAGE_QUAYTAG"
+        docker tag $IMAGE_TAG $IMAGE_QUAYTAG &>/dev/null
         docker push $IMAGE_QUAYTAG &>/dev/null
         echo "========> PUBLISHED Container image $IMAGE_QUAYTAG"
         exit 0;
     else
-        echo "!!!!!!!!! Could not publish container image $IMAGE_TAG"
-        exit 1;
+        echo "!!!!!!!!> Could not publish container image $IMAGE_TAG"
+        if [[ "$ISFATAL" = "true" ]]; then
+            exit 31;
+        else
+            exit 0;
+        fi
     fi
 else
     echo "========> PUBLISHING Container image $IMAGE_TAG skipped because test failed"
-    exit 2;
+    if [[ "$ISFATAL" = "true" ]]; then
+        exit 30;
+    else
+        exit 0;
+    fi
 fi
