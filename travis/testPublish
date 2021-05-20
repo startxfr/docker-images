@@ -9,6 +9,9 @@ echo "========> BUILD Container image $IMAGE_TAG"
 cd $1/
 RESULT=$(docker build --squash -t $IMAGE_TAG .)
 if [[ $? = "0" ]]; then
+    if [ "$SX_DEBUG" = true ] ; then
+        echo $RESULT
+    fi
     echo "========> Builded container image $IMAGE_TAG"
 else
     echo $RESULT
@@ -20,6 +23,9 @@ echo "========> TEST Container instance $TEST_NAME based on image $IMAGE_TAG"
 docker rm -f $TEST_NAME $IMAGE_TAG &>/dev/null
 RESULT=$(docker run -d --name $TEST_NAME $IMAGE_TAG)
 if [[ $? = "0" ]]; then
+    if [ "$SX_DEBUG" = true ] ; then
+        echo $RESULT
+    fi
     echo "========> Container instance $TEST_NAME STARTED"
     touch /tmp/istested_$2
 else
