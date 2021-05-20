@@ -36,13 +36,13 @@ LABEL name="$SX_ID" \
 USER root
 COPY httpd.conf $HTTPDCONF
 COPY sx /tmp/
-RUN dnf install -yq --nogpgcheck yum-utils dnf-plugin-system-upgrade && \
+RUN dnf install -yq --nogpgcheck yum-utils && \
     dnf upgrade -yq --nogpgcheck --refresh && \
     dnf install -yq --nogpgcheck \
         httpd && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \

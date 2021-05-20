@@ -37,7 +37,7 @@ USER root
 COPY sx /tmp/
 
 RUN echo "keepcache=0" >>/etc/dnf/dnf.conf && \
-    dnf install -yq --nogpgcheck yum-utils dnf-plugin-system-upgrade && \
+    dnf install -yq --nogpgcheck yum-utils && \
     dnf upgrade -yq --nogpgcheck --refresh && \
     dnf install -yq --nogpgcheck \
         pwgen \
@@ -58,7 +58,7 @@ RUN echo "keepcache=0" >>/etc/dnf/dnf.conf && \
         vim && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mkdir -p $SX_LIBDIR $APP_PATH $LOG_PATH && \
     chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib && \

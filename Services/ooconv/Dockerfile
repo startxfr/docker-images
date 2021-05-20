@@ -31,7 +31,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf install -yq --nogpgcheck yum-utils dnf-plugin-system-upgrade && \
+RUN dnf install -yq --nogpgcheck yum-utils && \
     dnf upgrade -yq --nogpgcheck --refresh
 RUN dnf install -yq --nogpgcheck \
         unoconv \
@@ -42,7 +42,7 @@ RUN dnf install -yq --nogpgcheck \
         ghostscript
 RUN package-cleanup --problems && \
     package-cleanup --orphans && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     useradd -s /bin/bash -m -g 0 -u 1001 ooconv && \
     mkdir -p $DATA_PATH /.cache && \

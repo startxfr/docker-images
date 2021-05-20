@@ -35,7 +35,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 COPY my.cnf $MY_CONF
-RUN dnf install -yq --nogpgcheck yum-utils dnf-plugin-system-upgrade && \
+RUN dnf install -yq --nogpgcheck yum-utils && \
     dnf upgrade -yq --nogpgcheck --refresh && \
     dnf install -yq --nogpgcheck \
         mariadb-connect-engine \
@@ -60,7 +60,7 @@ RUN dnf install -yq --nogpgcheck yum-utils dnf-plugin-system-upgrade && \
         mariadb && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \
