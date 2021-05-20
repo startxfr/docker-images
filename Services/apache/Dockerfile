@@ -39,7 +39,7 @@ COPY sx /tmp/
 RUN dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
     httpd && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils && \
+    dnf remove -yq --skip-broken yum-utils && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \

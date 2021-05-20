@@ -20,7 +20,6 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-<<<<<<< HEAD
 RUN dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
     make \
@@ -28,7 +27,7 @@ RUN dnf upgrade -yq --refresh && \
     rsync \
     openssh-clients \
     sshpass && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils && \
+    dnf remove -yq --skip-broken yum-utils && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/bin/* /bin/ && \
     mv /tmp/lib/* $SX_LIBDIR/ && \

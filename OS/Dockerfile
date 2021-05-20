@@ -54,7 +54,7 @@ RUN echo "keepcache=0" >>/etc/dnf/dnf.conf && \
     bash-completion \
     glibc-langpack-fr \
     vim && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils && \
+    dnf remove -yq --skip-broken yum-utils && \
     dnf clean all --enablerepo=\* && \
     mkdir -p $SX_LIBDIR $APP_PATH $LOG_PATH && \
     chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib && \

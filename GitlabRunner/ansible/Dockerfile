@@ -39,14 +39,14 @@ RUN dnf upgrade -yq --refresh && \
     echo "alias pip=pip3" >> /etc/bashrc && \
     pip3 install -q ansible-runner && \
     pip3 install -q openshift && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils gcc python3-devel epel-release && \
+    dnf remove -yq --skip-broken yum-utils gcc python3-devel epel-release && \
     dnf install -yq --nogpgcheck 'dnf-command(config-manager)' && \
     dnf config-manager --enable --add-repo https://releases.ansible.com/ansible-runner/ansible-runner.el7.repo && \
     dnf install -yq --nogpgcheck ansible-runner && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     npm install uuid && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/bin/* /bin/ && \
     mv /tmp/lib/* $SX_LIBDIR/ && \

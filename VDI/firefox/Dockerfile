@@ -46,7 +46,7 @@ RUN wget -q https://rpmfind.net/linux/fedora/linux/development/rawhide/Everythin
     python2-setuptools && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
-    dnf remove -y --skip-broken dnf-plugin-system-upgrade yum-utils && \
+    dnf remove -y --skip-broken yum-utils && \
     dnf clean all --enablerepo=\* && \
     pip install --upgrade pip && \
     pip install --upgrade --force-reinstall setuptools pip && \
