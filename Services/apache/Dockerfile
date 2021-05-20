@@ -43,11 +43,14 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     dnf remove -yq --skip-broken yum-utils yum && \
-    dnf clean all --enablerepo=\* && \
-    mv /tmp/s2i/bin/* /s2i/ && \
+    dnf clean all --enablerepo=\*
+RUN ls -la /tmp/sx
+RUN ls -la /tmp/s2i
+RUN mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/
-RUN ls -la /tmp/sx /tmp/s2i
+RUN ls -la /tmp/sx
+RUN ls -la /tmp/s2i
 RUN rm -rf /tmp/sx /tmp/s2i
 RUN ls -la $RUN_CONF
 RUN ls . && \
