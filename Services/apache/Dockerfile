@@ -44,14 +44,11 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
     package-cleanup --orphans && \
     dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\*
-RUN ls -la /
-RUN ls -la /tmp
-RUN ls -la /sxx
 RUN mv /sxx/s2i/bin/* /s2i/ ; \
     mv /sxx/sx/bin/* /bin/ ; \
     mv /sxx/sx/lib/* $SX_LIBDIR/ ; \
-    rm -rf /sxx ; \
-    [ -w $RUN_CONF ] && sed -i "s/Listen 80/#Listen 80/" $RUN_CONF && \
+    rm -rf /sxx
+RUN [ -w $RUN_CONF ] && sed -i "s/Listen 80/#Listen 80/" $RUN_CONF && \
     rm -f $RUN_CONF_DIR/autoindex.conf $RUN_CONF_DIR/userdir.conf $RUN_CONF_DIR/welcome.conf $RUN_DIR/httpd.pid && \
     mkdir -p $APP_PATH $LOG_PATH && \
     chgrp -R 0 $APP_PATH $LOG_PATH $RUN_DIR /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR && \
