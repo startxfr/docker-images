@@ -2,7 +2,7 @@
 
 IMAGE_TAG=docker.io/${NAMESPACE}/$2:$3
 IMAGE_QUAYTAG=quay.io/${NAMESPACE}/$4:$3
-TEST_NAME=${NAMESPACE}_$4_$2
+TEST_NAME=${NAMESPACE}_$4_$3
 echo "========> BUILD Container image $IMAGE_TAG"
 cd $1/
 RESULT=$(docker build --squash -t $IMAGE_TAG .)

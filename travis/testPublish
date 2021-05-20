@@ -4,7 +4,7 @@
 
 IMAGE_TAG=docker.io/${NAMESPACE}/$2:$3
 IMAGE_QUAYTAG=quay.io/${NAMESPACE}/$4:$3
-TEST_NAME=${NAMESPACE}_$4_$2
+TEST_NAME=${NAMESPACE}_$4_$3
 echo "========> BUILD Container image $IMAGE_TAG"
 cd $1/
 RESULT=$(docker build --squash -t $IMAGE_TAG .)
@@ -24,7 +24,7 @@ else
 fi
 cd - &>/dev/null
 echo "========> TEST Container instance $TEST_NAME based on image $IMAGE_TAG"
-docker rm -f $TEST_NAME $IMAGE_TAG &>/dev/null
+docker rm -f $TEST_NAME &>/dev/null
 RESULT=$(docker run -d --name $TEST_NAME $IMAGE_TAG)
 if [[ $? = "0" ]]; then
     if [ "$SX_DEBUG" = true ] ; then
