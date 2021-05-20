@@ -44,6 +44,7 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
     package-cleanup --orphans && \
     dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\*
+RUN ls -la /tmp && exit 1
 RUN mv /tmp/s2i/bin/* /s2i/ ; \
     mv /tmp/sx/bin/* /bin/ ; \
     mv /tmp/sx/lib/* $SX_LIBDIR/ ; \
