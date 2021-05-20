@@ -6,7 +6,7 @@
  
 [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images)
 
-This directory host various Open Source applications into docker containers based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
+This directory host various Open Source applications into docker containers based on [startx/alpine container](https://hub.docker.com/r/startx/alpine)
 
 You can use it to instanciate new container from the dockerhub public registry
 or as a parent container in your own container's.

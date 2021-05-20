@@ -1,11 +1,11 @@
-FROM quay.io/startx/fedora:latest
+FROM quay.io/startx/alpine:latest
 
 ENV SX_VERSION="latest" \
     SX_TYPE="service" \
     SX_SERVICE="couchbase" \
     SX_ID="startx/sv-couchbase" \
-    SX_NAME="Startx Couchbase service image (fedora rawhide)" \
-    SX_SUMMARY="Startx couchbase service based on fedora rawhide" \
+    SX_NAME="Startx Couchbase service image (Alpine 3)" \
+    SX_SUMMARY="Startx couchbase service based on Alpine 3" \
     CB_PATH=/opt/couchbase \
     DATA_PATH=/opt/couchbase/var \
     CB_VERSION=6.6.2 \
@@ -21,7 +21,7 @@ LABEL name="$SX_ID" \
     maintainer="Startx <dev@startx.fr>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
-    io.openshift.tags="startx,os,fedora,database,couchbase" \
+    io.openshift.tags="startx,os,alpine,database,couchbase" \
     io.openshift.non-scalable="true" \
     io.openshift.min-memory="1Gi" \
     io.openshift.min-cpu="2000m" \

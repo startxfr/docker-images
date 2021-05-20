@@ -1,11 +1,11 @@
-FROM quay.io/startx/fedora:latest
+FROM quay.io/startx/alpine:latest
 
 ENV SX_VERSION="latest" \
     SX_TYPE="service" \
     SX_SERVICE="ooconv" \
     SX_ID="startx/sv-ooconv" \
-    SX_NAME="Startx LibreOffice converter service image (fedora rawhide)" \
-    SX_SUMMARY="Startx unoconv service based on fedora rawhide" \
+    SX_NAME="Startx LibreOffice converter service image (alpine 3)" \
+    SX_SUMMARY="Startx unoconv service based on alpine 3" \
     SX_USER=ooconv \
     APP_PATH=/home/ooconv \
     LOG_PATH=/var/log/ooconv \
@@ -19,7 +19,7 @@ LABEL name="$SX_ID" \
     maintainer="Startx <dev@startx.fr>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
-    io.openshift.tags="startx,os,fedora,document,libreoffice" \
+    io.openshift.tags="startx,os,alpine,document,libreoffice" \
     io.openshift.non-scalable="false" \
     io.openshift.min-memory="512Mi" \
     io.openshift.min-cpu="500m" \
