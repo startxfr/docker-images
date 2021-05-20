@@ -35,7 +35,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY httpd.conf $HTTPDCONF
-COPY sx /tmp/
+COPY sx /tmp/sxx/
 RUN dnf install -yq --nogpgcheck yum-utils && \
     dnf upgrade -yq --nogpgcheck --refresh && \
     dnf install -yq --nogpgcheck \
@@ -44,11 +44,11 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
     package-cleanup --orphans && \
     dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\*
-RUN ls -la /tmp && exit 1
-RUN mv /tmp/s2i/bin/* /s2i/ ; \
-    mv /tmp/sx/bin/* /bin/ ; \
-    mv /tmp/sx/lib/* $SX_LIBDIR/ ; \
-    rm -rf /tmp/sx /tmp/s2i ; \
+RUN ls -la /tmp/sxx && exit 1
+RUN mv /tmp/sxx/s2i/bin/* /s2i/ ; \
+    mv /tmp/sxx/sx/bin/* /bin/ ; \
+    mv /tmp/sxx/sx/lib/* $SX_LIBDIR/ ; \
+    rm -rf /tmp/sxx ; \
     [ -w $RUN_CONF ] && sed -i "s/Listen 80/#Listen 80/" $RUN_CONF && \
     rm -f $RUN_CONF_DIR/autoindex.conf $RUN_CONF_DIR/userdir.conf $RUN_CONF_DIR/welcome.conf $RUN_DIR/httpd.pid && \
     mkdir -p $APP_PATH $LOG_PATH && \
