@@ -44,6 +44,7 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
     package-cleanup --orphans && \
     dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\*
+RUN ls -la /tmp
 RUN ls -la /tmp/sx
 RUN ls -la /tmp/s2i
 RUN mv /tmp/s2i/bin/* /s2i/ && \
