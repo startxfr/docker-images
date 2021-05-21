@@ -14,8 +14,8 @@ services:
 before_install:
   - "./travis/prepare-begin      fedora                   latest         rawhide"
   - "./travis/prepare-docker     fedora                   latest         rawhide"
-  - "./travis/prepare-cache      fedora                   latest         rawhide"
   - "./travis/prepare-dockerhub  fedora                   latest         rawhide"
+  - "./travis/prepare-cache      fedora                   latest         rawhide"
   - "./travis/prepare-end        fedora                   latest         rawhide"
 script:
   - "./travis/testPublish        OS                       fedora         latest fedora"
