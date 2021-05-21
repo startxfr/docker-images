@@ -172,3 +172,4 @@ sx-lib release is defined with the following rules
 | x.0.0   | Major | Major change in the sx-lib constitution                                                                                                         |
 | x.x.0   | Minor | Major change in offered docker image flavour (second numeric coresponding to the fedora release counter. ex: Fedora 31 = x.31.x sx-lib release) |
 | x.x.x   | Push  | Evolution, bugfix or security fix related to the sx-lib or image construction                                                                   |
+
