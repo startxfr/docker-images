@@ -26,7 +26,7 @@ RUN dnf upgrade -yq --refresh && \
     bubblewrap \
     rsync \
     openssh-clients && \
-    dnf remove -yq --skip-broken yum-utils && \
+    dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/bin/* /bin/ && \
     mv /tmp/lib/* $SX_LIBDIR/ && \

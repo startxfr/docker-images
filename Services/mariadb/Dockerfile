@@ -43,7 +43,7 @@ RUN dnf install -y yum-utils && \
     MariaDB-backup \
     MariaDB-client \
     MariaDB-common && \
-    dnf remove -y --skip-broken yum-utils && \
+    dnf remove -y --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \
