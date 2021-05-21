@@ -35,7 +35,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY httpd.conf $HTTPDCONF
-COPY sx /sxx
+COPY sx /tmp/sx
 RUN dnf install -yq --nogpgcheck yum-utils && \
     dnf upgrade -yq --nogpgcheck --refresh && \
     dnf install -yq --nogpgcheck \
@@ -44,19 +44,19 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
     package-cleanup --orphans && \
     dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\*
-RUN mv /sxx/s2i/bin/* /s2i/ ; \
-    mv /sxx/sx/bin/* /bin/ ; \
-    mv /sxx/sx/lib/* $SX_LIBDIR/ ; \
-    rm -rf /sxx
-RUN [ -w $RUN_CONF ] && sed -i "s/Listen 80/#Listen 80/" $RUN_CONF && \
-    rm -f $RUN_CONF_DIR/autoindex.conf $RUN_CONF_DIR/userdir.conf $RUN_CONF_DIR/welcome.conf $RUN_DIR/httpd.pid && \
-    mkdir -p $APP_PATH $LOG_PATH && \
-    chgrp -R 0 $APP_PATH $LOG_PATH $RUN_DIR /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR && \
-    chown -R 1001:0 /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR $APP_PATH $LOG_PATH && \
-    chmod -R g=u $APP_PATH $LOG_PATH $RUN_DIR /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR && \
-    chmod ug+r $HTTPDCONF && \
-    chmod -R ugo+x /bin/sx* && \
-    chmod -R ugo+rwx $LOG_PATH
+RUN mv /tmp/sx/s2i/bin/* /s2i/ && \
+    mv /tmp/sx/sx/bin/* /bin/ && \
+    mv /tmp/sx/sx/lib/* $SX_LIBDIR/ && \
+    rm -rf /tmp/sx
+RUN [ -w $RUN_CONF ] && sed -i "s/Listen 80/#Listen 80/" $RUN_CONF
+RUN rm -f $RUN_CONF_DIR/autoindex.conf $RUN_CONF_DIR/userdir.conf $RUN_CONF_DIR/welcome.conf $RUN_DIR/httpd.pid
+RUN mkdir -p $APP_PATH $LOG_PATH
+RUN chgrp -R 0 $APP_PATH $LOG_PATH $RUN_DIR /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR
+RUN chown -R 1001:0 /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR $APP_PATH $LOG_PATH
+RUN chmod -R g=u $APP_PATH $LOG_PATH $RUN_DIR /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR
+RUN chmod ug+r $HTTPDCONF
+RUN chmod -R ugo+x /bin/sx*
+RUN chmod -R ugo+rwx $LOG_PATH
 COPY index.html $APP_PATH/index.html
 RUN chgrp -R 0 $APP_PATH && \
     chmod -R g=u $APP_PATH
