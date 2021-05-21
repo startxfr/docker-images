@@ -37,6 +37,8 @@ script:
   - "./travis/testPublish        VDI/chrome               vdi-chrome     fc34 chrome"
   - "./travis/testPublish        VDI/firefox              vdi-firefox    fc34 firefox"
   - "./travis/testPublish        Applications/phpmyadmin  app-phpmyadmin fc34 phpmyadmin"
+after_success:
+  - "./travis/finish-end true"
 # script:
 #   - "./travis/test    OS                 fedora        34 fedora"
 #   - "./travis/test    Services/apache    sv-apache     fc34 apache"
