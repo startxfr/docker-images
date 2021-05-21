@@ -5,17 +5,17 @@ env:
     - secure: peY7/WOA4cQiVctIp+qGBQ3pQzUNwOwLwV+XB/aCYz/8r3yEGTUcn8hE50WLhM4e44gqM7Tp2SXx0v/xALkhQEpxqK2I38P4JHoWaQrm7J1bOK34U037fQLZyazIC5k6jzAhL0KmkMV7B/b0fhQ39bjhSIWmAdQIcue+r4WWyEk=
     - secure: qOXEYL1PT+6bymWCXDSXhI6w00o4Ep2+f7rAVpQkNFc4U68/aygvHViDqKp9hXzLY4rS3j/KFriTnySRt8YK8IaQhBIjtcAzH5tpJXo4dXUEtvwtc3EsZXIDwt8QA6hcA7KBBgkn557NavnX4PP+dqIRgrEs2j2nqffJ8R0DLZs=
     - secure: LOzTNPUbkMkwCo/pzP2+tzlN9ix8KNFAFR1iNHGFBN+X4SlPfcU/EGUomJX99rb9DJxSOZVW1mXMiv0qLvwRSqeXbrFA26NV+iVbVZXXZzl9zHv1Lpo4o6mk4J8WOqZvaMlQZKYC3i1Ty+nMsCZpCh5c/lCptlM9oNSWAtNHfyE=
-    - SX_DEBUG=true
+    - SX_DEBUG=false
     - NAMESPACE=startx
-    - ISFATAL=false
+    - ISFATAL=true
 sudo: required
 services:
   - docker
 before_install:
   - "./travis/prepare-begin      fedora                   33         33"
   - "./travis/prepare-docker     fedora                   33         33"
-  - "./travis/prepare-cache      fedora                   33         33"
   - "./travis/prepare-dockerhub  fedora                   33         33"
+  - "./travis/prepare-cache      fedora                   33         33"
   - "./travis/prepare-end        fedora                   latest     33"
 script:
   - "./travis/testPublish        OS                       fedora         33 fedora"
@@ -37,6 +37,8 @@ script:
   - "./travis/testPublish        VDI/chrome               vdi-chrome     fc33 chrome"
   - "./travis/testPublish        VDI/firefox              vdi-firefox    fc33 firefox"
   - "./travis/testPublish        Applications/phpmyadmin  app-phpmyadmin fc33 phpmyadmin"
+after_success:
+  - "./travis/finish-end true"
 # script:
 #   - "./travis/test    OS                 fedora        33 fedora"
 #   - "./travis/test    Services/apache    sv-apache     fc33 apache"
