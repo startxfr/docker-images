@@ -47,9 +47,9 @@ RUN package-cleanup --problems && \
     mv /tmp/sx/s2i/bin/* /s2i/ && \
     mv /tmp/sx/sx/bin/* /bin/ && \
     mv /tmp/sx/sx/lib/* $SX_LIBDIR/ && \
-    rm -rf /tmp/sx && \
-    [ -w $RUN_CONF ] && sed -i "s/Listen 80/#Listen 80/" $RUN_CONF && \
-    rm -f $RUN_CONF_DIR/autoindex.conf $RUN_CONF_DIR/userdir.conf $RUN_CONF_DIR/welcome.conf $RUN_DIR/httpd.pid && \
+    rm -rf /tmp/sx
+RUN [ -w $RUN_CONF ] && sed -i "s/Listen 80/#Listen 80/" $RUN_CONF
+RUN rm -f $RUN_CONF_DIR/autoindex.conf $RUN_CONF_DIR/userdir.conf $RUN_CONF_DIR/welcome.conf $RUN_DIR/httpd.pid && \
     mkdir -p $APP_PATH $LOG_PATH && \
     chgrp -R 0 $APP_PATH $LOG_PATH $RUN_DIR /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR && \
     chown -R 1001:0 /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR $APP_PATH $LOG_PATH && \
