@@ -7,15 +7,15 @@ env:
     - secure: LOzTNPUbkMkwCo/pzP2+tzlN9ix8KNFAFR1iNHGFBN+X4SlPfcU/EGUomJX99rb9DJxSOZVW1mXMiv0qLvwRSqeXbrFA26NV+iVbVZXXZzl9zHv1Lpo4o6mk4J8WOqZvaMlQZKYC3i1Ty+nMsCZpCh5c/lCptlM9oNSWAtNHfyE=
     - SX_DEBUG=false
     - NAMESPACE=startx
-    - ISFATAL=false
+    - ISFATAL=true
 sudo: required
 services:
   - docker
 before_install:
   - "./travis/prepare-begin      centos                   7         7"
   - "./travis/prepare-docker     centos                   7         7"
-  - "./travis/prepare-cache      centos                   7         7"
   - "./travis/prepare-dockerhub  centos                   7         7"
+  - "./travis/prepare-cache      centos                   7         7"
   - "./travis/prepare-end        centos                   7         7"
 script:
   - "./travis/testPublish        OS                       centos         7 centos"
@@ -37,7 +37,8 @@ script:
   - "./travis/testPublish        VDI/chrome               vdi-chrome     centos7 chrome"
   - "./travis/testPublish        VDI/firefox              vdi-firefox    centos7 firefox"
   - "./travis/testPublish        Applications/phpmyadmin  app-phpmyadmin centos7 phpmyadmin"
-  - "./travis/prepare-end"
+after_success:
+  - "./travis/finish-end true"
 # script:
 #   - "./travis/test    OS                 centos        7       centos"
 #   - "./travis/test    Services/apache    sv-apache     centos7 apache"
