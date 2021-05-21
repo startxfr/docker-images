@@ -32,7 +32,7 @@ RUN dnf upgrade -yq --refresh && \
     memcached \
     nmap-ncat \
     telnet && \
-    dnf remove -yq --skip-broken yum-utils yum && \
+    dnf remove -yq --skip-broken yum-utils && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \

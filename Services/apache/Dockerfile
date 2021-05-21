@@ -40,7 +40,7 @@ RUN dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck yum-utils && \
     dnf install -yq --nogpgcheck \
     httpd && \
-    dnf remove -yq --skip-broken yum-utils yum && \
+    dnf remove -yq --skip-broken yum-utils && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/sx/s2i/bin/* /s2i/ && \
     mv /tmp/sx/sx/bin/* /bin/ && \

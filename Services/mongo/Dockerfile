@@ -35,7 +35,7 @@ COPY mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo
 RUN dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
     mongodb-org-unstable && \
-    dnf remove -yq --skip-broken yum-utils yum && \
+    dnf remove -yq --skip-broken yum-utils && \
     dnf clean all --enablerepo=\* && \
     usermod -a -G 0 $MONGO_USER && \
     mkdir -p $DATA_PATH && \
