@@ -48,6 +48,8 @@ RUN mv /tmp/sx/s2i/bin/* /s2i/ && \
     mv /tmp/sx/sx/bin/* /bin/ && \
     mv /tmp/sx/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx
+RUN ls -la /etc/httpd/conf
+RUN cat $RUN_CONF
 RUN [ -w $RUN_CONF ] && sed -i "s/Listen 80/#Listen 80/" $RUN_CONF
 RUN rm -f $RUN_CONF_DIR/autoindex.conf $RUN_CONF_DIR/userdir.conf $RUN_CONF_DIR/welcome.conf $RUN_DIR/httpd.pid
 RUN mkdir -p $APP_PATH $LOG_PATH
