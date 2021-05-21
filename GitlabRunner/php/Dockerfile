@@ -19,6 +19,7 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
+COPY sx /tmp/
 RUN dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
     make \
@@ -26,7 +27,10 @@ RUN dnf upgrade -yq --refresh && \
     rsync \
     openssh-clients \
     https://download-ib01.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/s/sshpass-1.06-9.el8.x86_64.rpm  && \
-    dnf clean all --enablerepo=\*
+    dnf clean all --enablerepo=\* && \
+    mv /tmp/bin/* /bin/ && \
+    mv /tmp/lib/* $SX_LIBDIR/ && \
+    rm -rf /tmp/bin /tmp/bin
 
 USER 1001
 

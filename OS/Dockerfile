@@ -33,9 +33,7 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
-
 COPY sx /tmp/
-
 RUN echo "keepcache=0" >>/etc/dnf/dnf.conf && \
     dnf upgrade -yq --refresh && \
     dnf install -yq \
