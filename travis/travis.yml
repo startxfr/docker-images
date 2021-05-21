@@ -7,15 +7,15 @@ env:
     - secure: LOzTNPUbkMkwCo/pzP2+tzlN9ix8KNFAFR1iNHGFBN+X4SlPfcU/EGUomJX99rb9DJxSOZVW1mXMiv0qLvwRSqeXbrFA26NV+iVbVZXXZzl9zHv1Lpo4o6mk4J8WOqZvaMlQZKYC3i1Ty+nMsCZpCh5c/lCptlM9oNSWAtNHfyE=
     - SX_DEBUG=false
     - NAMESPACE=startx
-    - ISFATAL=false
+    - ISFATAL=true
 sudo: required
 services:
   - docker
 before_install:
   - "./travis/prepare-begin              alpine        3 3"
   - "./travis/prepare-docker             alpine        3 3"
-  - "./travis/prepare-cache              alpine        3 3"
   - "./travis/prepare-dockerhub          alpine        3 3"
+  - "./travis/prepare-cache              alpine        3 3"
   - "./travis/prepare-end                alpine        3 3"
 script:
   - "./travis/test    OS                                  alpine         3      alpine"
@@ -38,7 +38,8 @@ script:
   - "./travis/testPublish        VDI/chrome               vdi-chrome     alpine3 chrome"
   - "./travis/testPublish        VDI/firefox              vdi-firefox    alpine3 firefox"
   - "./travis/testPublish        Applications/phpmyadmin  app-phpmyadmin alpine3 phpmyadmin"
-  - "./travis/prepare-end"
+after_success:
+  - "./travis/finish-end true"
 # script:
 #   - "./travis/test    OS                 alpine        3       alpine"
 #   - "./travis/test    OS                 alpine        latest  alpine"

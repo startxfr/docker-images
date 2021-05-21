@@ -35,13 +35,13 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY httpd.conf $HTTPDCONF
-COPY sx /tmp/
+COPY sx /tmp/sx
 RUN apk --no-cache add apache2 curl ca-certificates openssl tzdata openntpd && \
-    mv /tmp/s2i/bin/* /s2i/ && \
-    mv /tmp/sx/bin/* /bin/ && \
-    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
-    rm -rf /tmp/sx /tmp/s2i && \
-    [ -w $RUN_CONF ] && sed -i "s/Listen 80/#Listen 80/" $RUN_CONF && \
+    mv /tmp/sx/s2i/bin/* /s2i/ && \
+    mv /tmp/sx/sx/bin/* /bin/ && \
+    mv /tmp/sx/sx/lib/* $SX_LIBDIR/ && \
+    rm -rf /tmp/sx && \
+    sed -i "s/Listen 80/#Listen 80/" $RUN_CONF && \
     rm -f $RUN_CONF_DIR/autoindex.conf $RUN_CONF_DIR/userdir.conf $RUN_CONF_DIR/welcome.conf $RUN_DIR/httpd.pid && \
     mkdir -p $APP_PATH $LOG_PATH $RUN_DIR && \
     chgrp -R 0 $APP_PATH $LOG_PATH $RUN_DIR /bin/sx* /s2i $SX_LIBDIR $SX_S2IDIR && \

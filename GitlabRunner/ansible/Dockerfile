@@ -24,8 +24,10 @@ COPY sx /tmp/
 RUN apk --no-cache add \
     make \
     py3-pip \
+    npm nodejs \
     ansible && \
-    pip install jmespath && \
+    pip install jmespath openshift && \
+    npm install uuid && \
     mv /tmp/bin/* /bin/ && \
     mv /tmp/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/bin /tmp/bin && \

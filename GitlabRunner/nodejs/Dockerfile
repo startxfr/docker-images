@@ -20,7 +20,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN apk --no-cache add make&& \
+RUN apk --no-cache add make && \
     mv /tmp/bin/* /bin/ && \
     mv /tmp/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/bin /tmp/bin
