@@ -14,8 +14,8 @@ services:
 before_install:
   - "./travis/prepare-begin              fedora        30 30"
   - "./travis/prepare-docker             fedora        30 30"
-  - "./travis/prepare-cache              fedora        30 30"
   - "./travis/prepare-dockerhub          fedora        30 30"
+  - "./travis/prepare-cache              fedora        30 30"
   - "./travis/prepare-end                fedora        30 30"
 script:
   - "./travis/test    OS                 fedora        30 fedora"
