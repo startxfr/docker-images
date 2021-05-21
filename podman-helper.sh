@@ -142,7 +142,7 @@ function menuSetupFlavour {
         fi
     fi
     case $flavour in
-        alpine3)  appendConf SXDC_FLAVOUR alpine3
+        alpine)  appendConf SXDC_FLAVOUR alpine
         appendConf SXDC_OS_FLAVOUR 'alpine';;
         ubi8)     appendConf SXDC_FLAVOUR ubi8
         appendConf SXDC_OS_FLAVOUR 'ubi';;
