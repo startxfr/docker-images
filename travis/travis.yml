@@ -14,8 +14,8 @@ services:
 before_install:
   - "./travis/prepare-begin              centos        6 6"
   - "./travis/prepare-docker             centos        6 6"
-  - "./travis/prepare-cache              centos        6 6"
   - "./travis/prepare-dockerhub          centos        6 6"
+  - "./travis/prepare-cache              centos        6 6"
   - "./travis/prepare-end                centos        6 6"
 script:
   - "./travis/test    OS                 centos        6       centos"
