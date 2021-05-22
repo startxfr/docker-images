@@ -6,7 +6,7 @@
 [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Docker apache pulls](https://img.shields.io/docker/pulls/startx/sv-apache)](https://hub.docker.com/r/startx/sv-fedora) [![Docker Repository on Quay](https://quay.io/repository/startx/apache/status "Docker Repository on Quay")](https://quay.io/repository/startx/apache)
 
 Startx apache is a base container used for web services and applications published in
-[Dockerhub registry](https://hub.docker.com/u/startx) or [Quay registry](https://quay.io/repository/startx).
+[Dockerhub registry](https://hub.docker.com/u/startx) or [Quay registry](https://quay.io/startx).
 
 You can use [Startx apache container image](https://docker-images.readthedocs.io/en/latest/Services/apache/) in many ways :
 

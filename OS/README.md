@@ -6,7 +6,7 @@
 [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Docker apache pulls](https://img.shields.io/docker/pulls/startx/fedora)](https://hub.docker.com/r/startx/fedora) [![Docker Repository on Quay](https://quay.io/repository/startx/fedora/status "Docker Repository on Quay")](https://quay.io/repository/startx/fedora)
 
 Startx fedora container image is a basic image used for all startx services and applications published in
-[Dockerhub registry](https://hub.docker.com/u/startx) or [Quay registry](https://quay.io/repository/startx).
+[Dockerhub registry](https://hub.docker.com/u/startx) or [Quay registry](https://quay.io/startx).
 
 You can use [Startx fedora container image](https://docker-images.readthedocs.io/en/latest/OS/fedora) in many ways :
 
