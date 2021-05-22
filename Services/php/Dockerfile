@@ -33,7 +33,7 @@ COPY php.ini /etc/php.d/sx.ini
 COPY php-fpm.conf /etc/php-fpm.d/www.conf
 COPY sx /tmp/
 COPY index.php $APP_PATH/index.php
-RUN dnf install -yq --nogpgcheck yum-utils dnf-plugin-system-upgrade && \
+RUN dnf install -yq --nogpgcheck yum-utils && \
     dnf upgrade -yq --nogpgcheck --refresh && \
     dnf install -yq --nogpgcheck \
         php \
@@ -54,7 +54,7 @@ RUN dnf install -yq --nogpgcheck yum-utils dnf-plugin-system-upgrade && \
         php-tidy && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \

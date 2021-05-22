@@ -21,7 +21,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf install -yq --nogpgcheck yum-utils dnf-plugin-system-upgrade && \
+RUN dnf install -yq --nogpgcheck yum-utils && \
     dnf upgrade -yq --nogpgcheck --refresh && \
     dnf install -yq --nogpgcheck \
         make \
@@ -40,7 +40,7 @@ RUN dnf install -yq --nogpgcheck yum-utils dnf-plugin-system-upgrade && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     npm install uuid && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/bin/* /bin/ && \
     mv /tmp/lib/* $SX_LIBDIR/ && \
