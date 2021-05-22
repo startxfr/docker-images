@@ -24,7 +24,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | [`startx/runner-bash:centos8`](https://hub.docker.com/r/startx/runner-bash) | Centos 8            |        |      |
 | [`startx/runner-bash:centos7`](https://hub.docker.com/r/startx/runner-bash) | Centos 7            |        |      |
 | [`startx/runner-bash:centos6`](https://hub.docker.com/r/startx/runner-bash) | Centos 6            |        |      |
-| [`startx/runner-bash:ubi8`](https://hub.docker.com/r/startx/runner-bash)    | RedHat UBI 8        |        |      |
+| [`startx/runner-bash:ubi8`](https://hub.docker.com/r/startx/runner-bash)    | RedHat UBI 8        | 4.4.20 | 4.3  |
 | [`startx/runner-bash:alpine3`](https://hub.docker.com/r/startx/runner-bash) | Alpine 3.12         |        |      |
 
 ## Running from dockerhub registry
