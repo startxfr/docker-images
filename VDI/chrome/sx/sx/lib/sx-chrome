@@ -26,7 +26,11 @@ function chromeInformation {
     echoVerbose $1 "app path  : $APP_PATH"
     echoVerbose $1 "log path  : $LOG_PATH"
     echoVerbose $1 "data path : $DATA_PATH"
-    echoVerbose $1 "chrome    : $(google-chrome --version)" 
+    local INFO=`google-chrome --version`
+    if [ $? != 0 ]; then
+        INFO=`google-chrome-stable --version`
+    fi
+    echoVerbose $1 "chrome    : $INFO" 
     echoVerbose $1 "resolution: $SX_CHROME_SCREEN_RES_X" 
 }
 

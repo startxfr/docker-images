@@ -9,20 +9,22 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-- `:latest` : Fedora core rawhide + ansible + make
-- `:fc34` : Fedora core 34 + ansible + make
-- `:fc33` : Fedora core 33 + ansible + make
-- `:fc32` : Fedora core 32 + ansible + make
-- `:fc31` : Fedora core 31 + ansible + make
-- `:fc30` : Fedora core 30 + ansible + make
-- `:fc29` : Fedora core 29 + ansible + make
-- `:fc28` : Fedora core 28 + ansible + make
-- `:fc27` : Fedora core 27 + ansible + make
-- `:centos8` : CentOS 8 + ansible + make
-- `:centos7` : CentOS 7 + ansible + make
-- `:centos6` : Centos 6 + ansible + make
-- `:alpine3` : Alpine 3.12 + ansible + make
-- `:ubi8` : RedHat UBI 8 + ansible + make
+| Docker Hub repository                                                             | Content             | Ansible | Python | Make |
+| --------------------------------------------------------------------------------- | ------------------- | ------- | ------ | ---- |
+| [`startx/runner-ansible:latest`](https://hub.docker.com/r/startx/runner-ansible)  | Fedora core rawhide | 2.9.21  | 3.9.5  | 4.3  |
+| [`startx/runner-ansible:34`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 34      |         |        | 4.3  |
+| [`startx/runner-ansible:33`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 33      |         |        | 4.3  |
+| [`startx/runner-ansible:32`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 32      |         |        |      |
+| [`startx/runner-ansible:31`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 31      |         |        |      |
+| [`startx/runner-ansible:30`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 30      |         |        |      |
+| [`startx/runner-ansible:29`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 29      |         |        |      |
+| [`startx/runner-ansible:28`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 28      |         |        |      |
+| [`startx/runner-ansible:27`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 27      |         |        |      |
+| [`startx/runner-ansible:centos8`](https://hub.docker.com/r/startx/runner-ansible) | Centos 8            |         |        |      |
+| [`startx/runner-ansible:centos7`](https://hub.docker.com/r/startx/runner-ansible) | Centos 7            |         |        |      |
+| [`startx/runner-ansible:centos6`](https://hub.docker.com/r/startx/runner-ansible) | Centos 6            |         |        |      |
+| [`startx/runner-ansible:ubi8`](https://hub.docker.com/r/startx/runner-ansible)    | RedHat UBI 8        |         |        | 4.3  |
+| [`startx/runner-ansible:alpine3`](https://hub.docker.com/r/startx/runner-ansible) | Alpine 3.12         |         |        |      |
 
 ## Running from dockerhub registry
 

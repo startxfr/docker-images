@@ -1,0 +1,10 @@
+#!/bin/bash
+source $SX_LIBDIR/sx
+
+# Display ansible information
+function runnerAnsibleInformation {
+    genericAllInformation $1
+    echoVerbose $1 "runner make : " `make --version | head -n 1`
+    echoVerbose $1 "ansible     : " `ansible --version | head -n 1 | cut -d " " -f 2`
+    echoVerbose $1 "python      : " `python --version |cut -d " " -f 2`
+}

@@ -37,25 +37,27 @@ See more applications builders and sample on [startx docker images repository](h
 
 ## Container flavours
 
-| Docker Hub repository                                                   | Content                             |
-| ----------------------------------------------------------------------- | ----------------------------------- |
-| [`startx/sv-apache:latest`](https://hub.docker.com/r/startx/sv-apache)  | Fedora core rawhide + Apache 2.4.43 |
-| [`startx/sv-apache:32`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 32 + Apache 2.4.43      |
-| [`startx/sv-apache:31`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 31 + Apache 2.4.43      |
-| [`startx/sv-apache:30`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 30 + Apache 2.4.41      |
-| [`startx/sv-apache:29`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 29 + Apache 2.4.41      |
-| [`startx/sv-apache:28`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 28 + Apache 2.4.39      |
-| [`startx/sv-apache:27`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 27 + Apache 2.4.34      |
-| [`startx/sv-apache:26`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 26 + Apache 2.4.33      |
-| [`startx/sv-apache:23`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 23 + Apache 2.4.23      |
-| [`startx/sv-apache:22`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 22 + Apache 2.4.18      |
-| [`startx/sv-apache:21`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 21 + Apache x.x.x       |
-| [`startx/sv-apache:20`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 20 + Apache x.x.x       |
-| [`startx/sv-apache:centos8`](https://hub.docker.com/r/startx/sv-apache) | Centos 8 + Apache 2.4.37            |
-| [`startx/sv-apache:centos7`](https://hub.docker.com/r/startx/sv-apache) | Centos 7 + Apache 2.4.6             |
-| [`startx/sv-apache:centos6`](https://hub.docker.com/r/startx/sv-apache) | Centos 6 + Apache 2.2.15            |
-| [`startx/sv-apache:ubi8`](https://hub.docker.com/r/startx/sv-apache)    | RedHat UBI 8 + Apache 2.4.37        |
-| [`startx/sv-apache:alpine3`](https://hub.docker.com/r/startx/sv-apache) | Alpine 3.12 + Apache 2.4.43         |
+| Docker Hub repository                                                   | Content             | Apache |
+| ----------------------------------------------------------------------- | ------------------- | ------ |
+| [`startx/sv-apache:latest`](https://hub.docker.com/r/startx/sv-apache)  | Fedora core rawhide | 2.4.46 |
+| [`startx/sv-apache:34`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 34      | 2.4.46 |
+| [`startx/sv-apache:33`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 33      | 2.4.46 |
+| [`startx/sv-apache:32`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 32      | 2.4.43 |
+| [`startx/sv-apache:31`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 31      | 2.4.43 |
+| [`startx/sv-apache:30`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 30      | 2.4.41 |
+| [`startx/sv-apache:29`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 29      | 2.4.41 |
+| [`startx/sv-apache:28`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 28      | 2.4.39 |
+| [`startx/sv-apache:27`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 27      | 2.4.34 |
+| [`startx/sv-apache:26`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 26      | 2.4.33 |
+| [`startx/sv-apache:23`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 23      | 2.4.23 |
+| [`startx/sv-apache:22`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 22      | 2.4.18 |
+| [`startx/sv-apache:21`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 21      |        |
+| [`startx/sv-apache:20`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 20      |        |
+| [`startx/sv-apache:centos8`](https://hub.docker.com/r/startx/sv-apache) | Centos 8            | 2.4.37 |
+| [`startx/sv-apache:centos7`](https://hub.docker.com/r/startx/sv-apache) | Centos 7            | 2.4.6  |
+| [`startx/sv-apache:centos6`](https://hub.docker.com/r/startx/sv-apache) | Centos 6            | 2.2.15 |
+| [`startx/sv-apache:ubi8`](https://hub.docker.com/r/startx/sv-apache)    | RedHat UBI 8        | 2.4.37 |
+| [`startx/sv-apache:alpine3`](https://hub.docker.com/r/startx/sv-apache) | Alpine 3.12         | 2.4.43 |
 
 ## Running this image
 

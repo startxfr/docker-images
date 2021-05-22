@@ -35,25 +35,23 @@ LABEL name="$SX_ID" \
 USER root
 COPY supervisord.conf $SX_CHROME_SUPERVISOR_CONF/
 COPY sx /tmp/
-RUN wget -q https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/p/python-meld3-2.0.0-2.fc34.noarch.rpm && \
-    rpm -ivh python-meld3-2.0.0-2.fc34.noarch.rpm && \
-    dnf install -yq yum-utils dnf-plugin-system-upgrade && \
-    dnf upgrade -yq --refresh && \
+RUN dnf install -yq --nogpgcheck yum-utils && \
+    dnf upgrade -yq --nogpgcheck --refresh && \
     dnf install -yq --nogpgcheck \
-    supervisor \
-    xorg-x11-server-Xvfb \
-    x11vnc \
-    fedora-workstation-repositories \
-    dnf-plugins-core \
-    pulseaudio \
-    python2-setuptools && \
+        supervisor \
+        python3-pip \
+        xorg-x11-server-Xvfb \
+        x11vnc \
+        fedora-workstation-repositories \
+        dnf-plugins-core \
+        pulseaudio \
+        python2-setuptools && \
     dnf config-manager --set-enabled google-chrome && \
     dnf install -yq --nogpgcheck google-chrome-stable && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
-    easy_install pip && \
     pip install --upgrade pip && \
     pip install --upgrade --force-reinstall setuptools pip && \
     useradd -s /bin/bash -m -g 0 -u 1001 -G pulse-access $SX_USER && \

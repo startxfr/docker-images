@@ -20,19 +20,19 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
-
-RUN dnf install -yq --nogpgcheck yum-utils dnf-plugin-system-upgrade && \
+COPY sx /tmp/
+RUN dnf install -yq --nogpgcheck yum-utils && \
     dnf upgrade -yq --nogpgcheck --refresh && \
     dnf install -yq --nogpgcheck \
-    make \
-    python-pip \
-    ansible \
-    bubblewrap \
-    rsync \
-    curl \
-    npm nodejs \
-    openssh-clients \
-    sshpass && \
+        make \
+        python-pip \
+        ansible \
+        bubblewrap \
+        rsync \
+        curl \
+        npm nodejs \
+        openssh-clients \
+        sshpass && \
     pip install openshift && \
     dnf install -yq --nogpgcheck 'dnf-command(config-manager)' && \
     dnf config-manager --enable --add-repo https://releases.ansible.com/ansible-runner/ansible-runner.el7.repo && \
@@ -40,8 +40,11 @@ RUN dnf install -yq --nogpgcheck yum-utils dnf-plugin-system-upgrade && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     npm install uuid && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
+    mv /tmp/bin/* /bin/ && \
+    mv /tmp/lib/* $SX_LIBDIR/ && \
+    rm -rf /tmp/bin /tmp/bin && \
     cd /tmp && \
     wget -q https://github.com/gohugoio/hugo/releases/download/v${SX_HUGO_RELEASE}/hugo_${SX_HUGO_RELEASE}_Linux-64bit.tar.gz && \
     tar xzvf hugo_${SX_HUGO_RELEASE}_Linux-64bit.tar.gz && \

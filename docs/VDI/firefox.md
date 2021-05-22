@@ -2,7 +2,7 @@
 
 # Docker OS Images : Firefox
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/firefox/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/vdi-firefox.svg)](https://hub.docker.com/r/startx/vdi-firefox) [![Docker firefox pulls](https://img.shields.io/docker/pulls/startx/vdi-firefox)](https://hub.docker.com/r/startx/vdi-firefox) [![Docker Repository on Quay](https://quay.io/repository/startx/firefox/status "Docker Repository on Quay")](https://quay.io/repository/startx/firefox)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/VDI/firefox/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/vdi-firefox.svg)](https://hub.docker.com/r/startx/vdi-firefox) [![Docker firefox pulls](https://img.shields.io/docker/pulls/startx/vdi-firefox)](https://hub.docker.com/r/startx/vdi-firefox) [![Docker Repository on Quay](https://quay.io/repository/startx/firefox/status "Docker Repository on Quay")](https://quay.io/repository/startx/firefox)
 
 Simple container used to server VNC based firefox browser.
 Run [firefox browser application](https://httpd.firefox.org/) under a container
@@ -10,17 +10,19 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-- `:latest` : Fedora core rawhide + Firefox 50.0.2661.102
-- `:fc34` : Fedora core 34 + Firefox 50.0.2661.102
-- `:fc33` : Fedora core 33 + Firefox 50.0.2661.102
-- `:fc32` : Fedora core 32 + Firefox 50.0.2661.102
-- `:fc31` : Fedora core 31 + Firefox 50.0.2661.102
-- `:fc30` : Fedora core 30 + Firefox 50.0.2661.102
-- `:fc29` : Fedora core 29 + Firefox 50.0.2661.102
-- `:fc28` : Fedora core 28 + Firefox 50.0.2661.102
-- `:centos8` : CentOS 8 + Firefox
-- `:centos7` : CentOS 7 + Firefox
-- `:alpine3` : Alpine 3.12 + Firefox 50.0.2661.102
+| Docker Hub repository                                                       | Content             | Firefox |
+| --------------------------------------------------------------------------- | ------------------- | ------- |
+| [`startx/vdi-firefox:latest`](https://hub.docker.com/r/startx/vdi-firefox)  | Fedora core rawhide | 88.0    |
+| [`startx/vdi-firefox:fc34`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 34      | 88.0.1  |
+| [`startx/vdi-firefox:fc33`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 33      | 88.0.1  |
+| [`startx/vdi-firefox:fc32`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 32      |         |
+| [`startx/vdi-firefox:fc31`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 31      |         |
+| [`startx/vdi-firefox:fc30`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 30      |         |
+| [`startx/vdi-firefox:fc29`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 29      |         |
+| [`startx/vdi-firefox:fc28`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 28      |         |
+| [`startx/vdi-firefox:centos8`](https://hub.docker.com/r/startx/vdi-firefox) | Centos 8            |         |
+| [`startx/vdi-firefox:centos7`](https://hub.docker.com/r/startx/vdi-firefox) | Centos 7            |         |
+| [`startx/vdi-firefox:alpine3`](https://hub.docker.com/r/startx/vdi-firefox) | Alpine 3.12         |         |
 
 ## Running from dockerhub registry
 
