@@ -25,7 +25,6 @@ script:
   - "./travis/testPublish        Services/memcache        sv-memcache    alpine3 memcache"
   - "./travis/testPublish        Services/mongo           sv-mongo       alpine3 mongo"
   - "./travis/testPublish        Services/nodejs          sv-nodejs      alpine3 nodejs"
-  - "./travis/testPublish        Services/ooconv          sv-ooconv      alpine3 ooconv"
   - "./travis/testPublish        Services/php             sv-php         alpine3 php"
   - "./travis/testPublish        Services/postgres        sv-postgres    alpine3 postgres"
   - "./travis/testPublish        GitlabRunner/ansible     runner-ansible alpine3 runner-ansible"
