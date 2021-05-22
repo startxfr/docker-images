@@ -35,7 +35,7 @@ COPY mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo
 RUN dnf upgrade -yq --refresh && \
     dnf install -yq http://mirror.centos.org/centos/8/AppStream/x86_64/os/Packages/compat-openssl10-1.0.2o-3.el8.x86_64.rpm  && \
     dnf install -yq --nogpgcheck \
-    mongodb-org-unstable && \
+    mongodb-org && \
     dnf clean all --enablerepo=\* && \
     useradd -u 1001 -G 0 $MONGO_USER && \
     mkdir -p $DATA_PATH && \

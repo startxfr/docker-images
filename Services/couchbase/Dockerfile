@@ -38,6 +38,7 @@ RUN dnf upgrade -yq --refresh && \
     python2-requests \
     python2-urllib3 \
     openssl \
+    bzip2 \
     ncurses \
     ncurses-libs && \
     dnf clean all --enablerepo=\* && \
