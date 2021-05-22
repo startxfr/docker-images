@@ -1,10 +1,6 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/fc31/travis/logo-small.svg?sanitize=true">
 
-<<<<<<< HEAD
-# Docker OS Images : Fedora 31
-=======
 # Fedora container image
->>>>>>> master
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startx-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/fc31/OS/)
 [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc31)](https://travis-ci.org/startxfr/docker-images) [![Docker apache pulls](https://img.shields.io/docker/pulls/startx/fedora)](https://hub.docker.com/r/startx/fedora) [![Docker Repository on Quay](https://quay.io/repository/startx/fedora/status "Docker Repository on Quay")](https://quay.io/repository/startx/fedora)
