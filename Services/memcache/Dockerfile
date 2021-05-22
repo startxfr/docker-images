@@ -28,7 +28,6 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 RUN apk --no-cache add memcached nmap busybox-extras && \
-    busybox-extras telnet && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
