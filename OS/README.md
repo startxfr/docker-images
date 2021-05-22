@@ -1,29 +1,27 @@
-<img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
+<img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/centos8/travis/logo-small.svg?sanitize=true">
 
 # Docker OS Images : CentOS 8
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/OS/)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startx-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/centos8/OS/)
+[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos8)](https://travis-ci.org/startxfr/docker-images) [![Docker apache pulls](https://img.shields.io/docker/pulls/startx/centos)](https://hub.docker.com/r/startx/centos) [![Docker Repository on Quay](https://quay.io/repository/startx/apache/status "Docker Repository on Quay")](https://quay.io/repository/startx/apache)
 
-[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/centos.svg)](https://hub.docker.com/r/startx/centos) [![Docker apache pulls](https://img.shields.io/docker/pulls/startx/centos)](https://hub.docker.com/r/startx/centos) [![Docker Repository on Quay](https://quay.io/repository/startx/apache/status "Docker Repository on Quay")](https://quay.io/repository/startx/apache)
-
-Startx centos is a base container used for all startx services and applications published in
+Startx centos is a basic container used for all startx services and applications published in
 [Dockerhub registry](https://hub.docker.com/u/startx) or [Quay registry](https://quay.io/repository/startx).
 
-You can use Startx centos image in many ways :
+You can use [Startx centos container image](https://docker-images.readthedocs.io/en/latest/OS/centos) in many ways :
 
-- [Docker OS Images : FEDORA](https://docker-images.readthedocs.io/en/latest/OS/centos#docker-os-images--centos)
-  - [Container flavours](https://docker-images.readthedocs.io/en/latest/OS/centos#container-flavours)
-  - [Running this image](https://docker-images.readthedocs.io/en/latest/OS/centos#running-this-image)
-    - [Running using docker](https://docker-images.readthedocs.io/en/latest/OS/centos#running-using-docker)
-    - [Running using docker-compose](https://docker-images.readthedocs.io/en/latest/OS/centos#running-using-docker-compose)
-    - [Running using Openshift](https://docker-images.readthedocs.io/en/latest/OS/centos#running-using-openshift)
-      - [Openshift images streams](https://docker-images.readthedocs.io/en/latest/OS/centos#openshift-images-streams)
-      - [Openshift builder template](https://docker-images.readthedocs.io/en/latest/OS/centos#openshift-builder-template)
-      - [Openshift deploy template](https://docker-images.readthedocs.io/en/latest/OS/centos#openshift-deploy-template)
-    - [Using this image as S2I builder](https://docker-images.readthedocs.io/en/latest/OS/centos#using-this-image-as-s2i-builder)
-    - [Using this image as base container](https://docker-images.readthedocs.io/en/latest/OS/centos#using-this-image-as-base-container)
-  - [Environment variable](https://docker-images.readthedocs.io/en/latest/OS/centos#environment-variable)
-  - [Container command](https://docker-images.readthedocs.io/en/latest/OS/centos#container-command)
-  - [For advanced users](https://docker-images.readthedocs.io/en/latest/OS/centos#for-advanced-users)
-    - [Build & run a container using `docker`](https://docker-images.readthedocs.io/en/latest/OS/centos#build--run-a-container-using-docker)
-    - [Build & run a container using `docker-compose`](https://docker-images.readthedocs.io/en/latest/OS/centos#build--run-a-container-using-docker-compose)
+- [Container flavours](https://docker-images.readthedocs.io/en/latest/OS/centos#container-flavours)
+- [Running this image](https://docker-images.readthedocs.io/en/latest/OS/centos#running-this-image)
+  - [Running using docker](https://docker-images.readthedocs.io/en/latest/OS/centos#running-using-docker)
+  - [Running using docker-compose](https://docker-images.readthedocs.io/en/latest/OS/centos#running-using-docker-compose)
+  - [Running using Openshift](https://docker-images.readthedocs.io/en/latest/OS/centos#running-using-openshift)
+    - [Openshift images streams](https://docker-images.readthedocs.io/en/latest/OS/centos#openshift-images-streams)
+    - [Openshift builder template](https://docker-images.readthedocs.io/en/latest/OS/centos#openshift-builder-template)
+    - [Openshift deploy template](https://docker-images.readthedocs.io/en/latest/OS/centos#openshift-deploy-template)
+  - [Using this image as S2I builder](https://docker-images.readthedocs.io/en/latest/OS/centos#using-this-image-as-s2i-builder)
+  - [Using this image as base container](https://docker-images.readthedocs.io/en/latest/OS/centos#using-this-image-as-base-container)
+- [Environment variable](https://docker-images.readthedocs.io/en/latest/OS/centos#environment-variable)
+- [Container command](https://docker-images.readthedocs.io/en/latest/OS/centos#container-command)
+- [For advanced users](https://docker-images.readthedocs.io/en/latest/OS/centos#for-advanced-users)
+  - [Build & run a container using `docker`](https://docker-images.readthedocs.io/en/latest/OS/centos#build--run-a-container-using-docker)
+  - [Build & run a container using `docker-compose`](https://docker-images.readthedocs.io/en/latest/OS/centos#build--run-a-container-using-docker-compose)
