@@ -34,9 +34,9 @@ RUN dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
     libicu \
     libpq && \
-    rpm -ivh $RPM_REPO/postgresql12-libs-12.1-1PGDG.rhel8.x86_64.rpm && \
-    rpm -ivh $RPM_REPO/postgresql12-12.1-1PGDG.rhel8.x86_64.rpm && \
-    rpm -ivh $RPM_REPO/postgresql12-server-12.1-1PGDG.rhel8.x86_64.rpm && \
+    rpm -ivh $RPM_REPO/postgresql12-libs-12.3-5PGDG.rhel8.x86_64.rpm && \
+    rpm -ivh $RPM_REPO/postgresql12-12.3-5PGDG.rhel8.x86_64.rpm && \
+    rpm -ivh $RPM_REPO/postgresql12-server-12.3-5PGDG.rhel8.x86_64.rpm && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \

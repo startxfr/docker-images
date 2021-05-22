@@ -22,6 +22,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 RUN dnf install -yq python3-pip && \
+    pip3 -q install --upgrade pip && \
     pip3 install yq jq && \
     cd /tmp && \
     wget -q https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$SX_OC_VERSION/openshift-client-linux-$SX_OC_VERSION.tar.gz && \
