@@ -2,9 +2,7 @@
 
 # Docker gitlab runner : Bash
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/GitlabRunner/bash/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
-
-[![Dockerhub Registry](https://img.shields.io/docker/build/startx/runner-bash.svg)](https://hub.docker.com/r/startx/runner-bash) [![Docker bash pulls](https://img.shields.io/docker/pulls/startx/runner-bash)](https://hub.docker.com/r/startx/runner-bash) [![Docker Repository on Quay](https://quay.io/repository/startx/bash/status "Docker Repository on Quay")](https://quay.io/repository/startx/bash)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/GitlabRunner/bash/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/runner-bash.svg)](https://hub.docker.com/r/startx/runner-bash) [![Docker bash pulls](https://img.shields.io/docker/pulls/startx/runner-bash)](https://hub.docker.com/r/startx/runner-bash) [![Docker Repository on Quay](https://quay.io/repository/startx/bash/status "Docker Repository on Quay")](https://quay.io/repository/startx/bash)
 
 Simple container used to build & test bash scripts, using gitlabCI runner, under a container
 based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
@@ -12,6 +10,8 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 ## Available flavours
 
 - `:latest` : Fedora core rawhide + bash + make
+- `:fc34` : Fedora core 34 + bash + make
+- `:fc33` : Fedora core 33 + bash + make
 - `:fc32` : Fedora core 32 + bash + make
 - `:fc31` : Fedora core 31 + bash + make
 - `:fc30` : Fedora core 30 + bash + make
@@ -21,7 +21,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 - `:centos8` : CentOS 8 + bash + make
 - `:centos7` : CentOS 7 + bash + make
 - `:centos6` : Centos 6 + bash + make
-- `:alpine3` : Alpine 3.10 + bash + make
+- `:alpine3` : Alpine 3.12 + bash + make
 - `:ubi8` : RedHat UBI 8 + bash + make
 
 ## Running from dockerhub registry
@@ -51,7 +51,7 @@ service:
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/runner-bash:latest
+FROM quay.io/startx/runner-bash:latest
 #... your container specifications
 CMD ["/bin/sx", "run"]
 ```

@@ -7,20 +7,31 @@ SXDC_PROJECT=$DEFAULT_PROJECT
 SXDC_FLAVOUR=$DEFAULT_FLAVOUR
 SXDC_OS_FLAVOUR=$DEFAULT_OS_FLAVOUR
 
-# config file
-touch $CONF_FILE
-source $CONF_FILE
-
-
 # Create lib
 function testBuild {
     podman build -t $SXDC_PROJECT/$2:$3 $1
 }
 
 function testDeploy {
-    podman stop $SXDC_PROJECT-$2-$3
-    podman rm -vf $SXDC_PROJECT-$2-$3
-    podman run -d --name $SXDC_PROJECT-$2-$3 $SXDC_PROJECT/$2:$3
+    podman stop ${SXDC_PROJECT}_$2_$3
+    podman rm -vf ${SXDC_PROJECT}_$2_$3
+    podman run -d --name ${SXDC_PROJECT}_$2_$3 $SXDC_PROJECT/$2:$3
+}
+
+function testVersion {
+    podman stop ${SXDC_PROJECT}_$2_$3-version &>/dev/null
+    podman rm -f ${SXDC_PROJECT}_$2_$3-version &>/dev/null
+    echo -e "== Display informations on \e[1m$2\e[0m in \e[1m$3\e[0m version"
+    podman run --name ${SXDC_PROJECT}_$2_$3-version $SXDC_PROJECT/$2:$3 /bin/sx-$2 info
+    podman rm -f ${SXDC_PROJECT}_$2_$3-version &>/dev/null
+}
+
+function testOSVersion {
+    podman stop ${SXDC_PROJECT}_$2_$3-version &>/dev/null
+    podman rm -f ${SXDC_PROJECT}_$2_$3-version &>/dev/null
+    echo -e "== Display informations on \e[1m$2\e[0m in \e[1m$3\e[0m version"
+    podman run --name ${SXDC_PROJECT}_$2_$3-version $SXDC_PROJECT/$2:$3 /bin/sx info
+    podman rm -f ${SXDC_PROJECT}_$2_$3-version &>/dev/null
 }
 
 function temporize {
@@ -79,6 +90,9 @@ Usage:
   run all                Run all containers with defined flavour
   build ≤name>           Build one container with defined flavour
   build all              Build all containers with defined flavour
+  version ≤name>         Run (and build) container to extract application informations
+  version all            Run (and build) all container to extract application informations
+  versions               Alias of the previous command
 
   Using podman $ov
 EOF
@@ -128,7 +142,7 @@ function menuSetupFlavour {
         fi
     fi
     case $flavour in
-        alpine3)  appendConf SXDC_FLAVOUR alpine3
+        alpine)  appendConf SXDC_FLAVOUR alpine
         appendConf SXDC_OS_FLAVOUR 'alpine';;
         ubi8)     appendConf SXDC_FLAVOUR ubi8
         appendConf SXDC_OS_FLAVOUR 'ubi';;
@@ -138,6 +152,10 @@ function menuSetupFlavour {
         appendConf SXDC_OS_FLAVOUR 'centos';;
         centos6)  appendConf SXDC_FLAVOUR centos6
         appendConf SXDC_OS_FLAVOUR 'centos';;
+        fc34)     appendConf SXDC_FLAVOUR fc34
+        appendConf SXDC_OS_FLAVOUR 'fedora';;
+        fc33)     appendConf SXDC_FLAVOUR fc33
+        appendConf SXDC_OS_FLAVOUR 'fedora';;
         fc32)     appendConf SXDC_FLAVOUR fc32
         appendConf SXDC_OS_FLAVOUR 'fedora';;
         fc31)     appendConf SXDC_FLAVOUR fc31
@@ -165,6 +183,7 @@ function menuSetupFlavour {
 
 # Display menu test build templates
 function menuBuild {
+    reloadConf
     case $2 in
         os|fedora|centos|alpine)   testBuild OS $SXDC_OS_FLAVOUR latest;;
         apache|http)               testBuild Services/apache apache $SXDC_FLAVOUR;;
@@ -185,29 +204,30 @@ function menuBuild {
         chrome)                    testBuild VDI/chrome chrome $SXDC_FLAVOUR;;
         firefox)                   testBuild VDI/firefox firefox $SXDC_FLAVOUR;;
         all)
-            testBuild OS $SXDC_OS_FLAVOUR latest
-            testBuild Services/apache apache $SXDC_FLAVOUR
-            testBuild Services/couchbase couchbase $SXDC_FLAVOUR
-            testBuild Services/mariadb mariadb $SXDC_FLAVOUR
-            testBuild Services/memcache memcache $SXDC_FLAVOUR
-            testBuild Services/mongo mongo $SXDC_FLAVOUR
-            testBuild Services/nodejs nodejs $SXDC_FLAVOUR
-            testBuild Services/ooconv ooconv $SXDC_FLAVOUR
-            testBuild Services/php php $SXDC_FLAVOUR
-            testBuild Services/postgres postgres $SXDC_FLAVOUR
-        testBuild GitlabRunner/ansible runner-ansible $SXDC_FLAVOUR;;
-    testBuild GitlabRunner/apache runner-apache $SXDC_FLAVOUR;;
-    testBuild GitlabRunner/bash runner-bash $SXDC_FLAVOUR
-    testBuild GitlabRunner/nodejs runner-nodejs $SXDC_FLAVOUR
-    testBuild GitlabRunner/php runner-nodejs $SXDC_FLAVOUR
-    testBuild VDI/chrome chrome $SXDC_FLAVOUR
-testBuild VDI/firefox firefox $SXDC_FLAVOUR;;
-*)                         menuUsage;;
+            testBuild              OS $SXDC_OS_FLAVOUR latest
+            testBuild              Services/apache apache $SXDC_FLAVOUR
+            testBuild              Services/couchbase couchbase $SXDC_FLAVOUR
+            testBuild              Services/mariadb mariadb $SXDC_FLAVOUR
+            testBuild              Services/memcache memcache $SXDC_FLAVOUR
+            testBuild              Services/mongo mongo $SXDC_FLAVOUR
+            testBuild              Services/nodejs nodejs $SXDC_FLAVOUR
+            testBuild              Services/ooconv ooconv $SXDC_FLAVOUR
+            testBuild              Services/php php $SXDC_FLAVOUR
+            testBuild              Services/postgres postgres $SXDC_FLAVOUR
+            testBuild              GitlabRunner/ansible runner-ansible $SXDC_FLAVOUR
+            testBuild              GitlabRunner/apache runner-apache $SXDC_FLAVOUR
+            testBuild              GitlabRunner/bash runner-bash $SXDC_FLAVOUR
+            testBuild              GitlabRunner/nodejs runner-nodejs $SXDC_FLAVOUR
+            testBuild              GitlabRunner/php runner-nodejs $SXDC_FLAVOUR
+            testBuild              VDI/chrome chrome $SXDC_FLAVOUR
+            testBuild              VDI/firefox firefox $SXDC_FLAVOUR;;
+        *)                         menuUsage
 esac
 }
 
 # Display menu test deploy templates
 function menuRun {
+    reloadConf
     case $2 in
         os|fedora|centos|alpine)   testDeploy OS $SXDC_OS_FLAVOUR latest;;
         apache|http)               testDeploy Services/apache apache $SXDC_FLAVOUR;;
@@ -227,24 +247,67 @@ function menuRun {
         chrome)                    testDeploy VDI/chrome chrome $SXDC_FLAVOUR;;
         firefox)                   testDeploy VDI/firefox firefox $SXDC_FLAVOUR;;
         all)
-            testDeploy OS $SXDC_OS_FLAVOUR latest
-            testDeploy Services/apache apache $SXDC_FLAVOUR
-            testDeploy Services/couchbase couchbase $SXDC_FLAVOUR
-            testDeploy Services/mariadb mariadb $SXDC_FLAVOUR
-            testDeploy Services/memcache memcache $SXDC_FLAVOUR
-            testDeploy Services/mongo mongo $SXDC_FLAVOUR
-            testDeploy Services/nodejs nodejs $SXDC_FLAVOUR
-            testDeploy Services/ooconv ooconv $SXDC_FLAVOUR
-            testDeploy Services/php php $SXDC_FLAVOUR
-            testDeploy Services/postgres postgres $SXDC_FLAVOUR
-        testDeploy GitlabRunner/ansible runner-ansible $SXDC_FLAVOUR;;
-    testDeploy GitlabRunner/apache runner-apache $SXDC_FLAVOUR;;
-    testDeploy GitlabRunner/bash runner-bash $SXDC_FLAVOUR
-    testDeploy GitlabRunner/nodejs runner-nodejs $SXDC_FLAVOUR
-    testDeploy GitlabRunner/php runner-nodejs $SXDC_FLAVOUR
-    testDeploy VDI/chrome chrome $SXDC_FLAVOUR
-testDeploy VDI/firefox firefox $SXDC_FLAVOUR;;
-*)                         menuUsage;;
+             testDeploy            OS $SXDC_OS_FLAVOUR latest
+             testDeploy            Services/apache apache $SXDC_FLAVOUR
+             testDeploy            Services/couchbase couchbase $SXDC_FLAVOUR
+             testDeploy            Services/mariadb mariadb $SXDC_FLAVOUR
+             testDeploy            Services/memcache memcache $SXDC_FLAVOUR
+             testDeploy            Services/mongo mongo $SXDC_FLAVOUR
+             testDeploy            Services/nodejs nodejs $SXDC_FLAVOUR
+             testDeploy            Services/ooconv ooconv $SXDC_FLAVOUR
+             testDeploy            Services/php php $SXDC_FLAVOUR
+             testDeploy            Services/postgres postgres $SXDC_FLAVOUR
+             testDeploy            GitlabRunner/ansible runner-ansible $SXDC_FLAVOUR
+             testDeploy            GitlabRunner/apache runner-apache $SXDC_FLAVOUR
+             testDeploy            GitlabRunner/bash runner-bash $SXDC_FLAVOUR
+             testDeploy            GitlabRunner/nodejs runner-nodejs $SXDC_FLAVOUR
+             testDeploy            GitlabRunner/php runner-nodejs $SXDC_FLAVOUR
+             testDeploy            VDI/chrome chrome $SXDC_FLAVOUR
+             testDeploy            VDI/firefox firefox $SXDC_FLAVOUR;;
+         *)                        menuUsage
+esac
+}
+
+# Display menu test deploy templates
+function menuVersion {
+    reloadConf
+    case $2 in
+        os|fedora|centos|alpine)   testOSVersion OS $SXDC_OS_FLAVOUR latest;;
+        apache|http)               testVersion Services/apache apache $SXDC_FLAVOUR;;
+        couchbase)                 testVersion Services/couchbase couchbase $SXDC_FLAVOUR;;
+        mariadb|mysql)             testVersion Services/mariadb mariadb $SXDC_FLAVOUR;;
+        memcache)                  testVersion Services/memcache memcache $SXDC_FLAVOUR;;
+        mongo)                     testVersion Services/mongo mongo $SXDC_FLAVOUR;;
+        nodejs)                    testVersion Services/nodejs nodejs $SXDC_FLAVOUR;;
+        ooconv)                    testVersion Services/ooconv ooconv $SXDC_FLAVOUR;;
+        php)                       testVersion Services/php php $SXDC_FLAVOUR;;
+        postgres)                  testVersion Services/postgres postgres $SXDC_FLAVOUR;;
+        runner-ansible)            testVersion GitlabRunner/ansible runner-ansible $SXDC_FLAVOUR;;
+        runner-apache)             testVersion GitlabRunner/apache runner-apache $SXDC_FLAVOUR;;
+        runner-bash)               testVersion GitlabRunner/bash runner-bash $SXDC_FLAVOUR;;
+        runner-nodejs)             testVersion GitlabRunner/nodejs runner-nodejs $SXDC_FLAVOUR;;
+        runner-php)                testVersion GitlabRunner/php runner-nodejs $SXDC_FLAVOUR;;
+        chrome)                    testVersion VDI/chrome chrome $SXDC_FLAVOUR;;
+        firefox)                   testVersion VDI/firefox firefox $SXDC_FLAVOUR;;
+        all)
+             testOSVersion          OS $SXDC_OS_FLAVOUR latest
+             testVersion            Services/apache apache $SXDC_FLAVOUR
+             testVersion            Services/couchbase couchbase $SXDC_FLAVOUR
+             testVersion            Services/mariadb mariadb $SXDC_FLAVOUR
+             testVersion            Services/memcache memcache $SXDC_FLAVOUR
+             testVersion            Services/mongo mongo $SXDC_FLAVOUR
+             testVersion            Services/nodejs nodejs $SXDC_FLAVOUR
+             testVersion            Services/ooconv ooconv $SXDC_FLAVOUR
+             testVersion            Services/php php $SXDC_FLAVOUR
+             testVersion            Services/postgres postgres $SXDC_FLAVOUR
+             testVersion            GitlabRunner/ansible runner-ansible $SXDC_FLAVOUR
+             testVersion            GitlabRunner/apache runner-apache $SXDC_FLAVOUR
+             testVersion            GitlabRunner/bash runner-bash $SXDC_FLAVOUR
+             testVersion            GitlabRunner/nodejs runner-nodejs $SXDC_FLAVOUR
+             testVersion            GitlabRunner/php runner-nodejs $SXDC_FLAVOUR
+             testVersion            VDI/chrome chrome $SXDC_FLAVOUR
+             testVersion            VDI/firefox firefox $SXDC_FLAVOUR;;
+         *)                        menuUsage
 esac
 }
 
@@ -256,8 +319,14 @@ function menuBuildRun {
     temporize 30 5
 }
 
+# Display menu test all
+function menuAllVersions {
+    menuVersion version all
+}
+
 # Display menu delete
 function menuDelete {
+    reloadConf
     podman stop $(podman ps -q -f label=$SXDC_PROJECT)
     podman container prune
     podman image prune
@@ -266,9 +335,11 @@ function menuDelete {
 # Dispatch input arguments
 case $1 in
     setup)                  menuSetup $@ ;;
-    buildrun)               menuBuildRun $@ ;;
-    run)                    menuRun $@ ;;
     build)                  menuBuild $@ ;;
+    run)                    menuRun $@ ;;
+    buildrun)               menuBuildRun $@ ;;
+    version)                menuVersion $@ ;;
+    versions)               menuAllVersions $@ ;;
     delete)                 menuDelete $@ ;;
     usage|help|--help)      menuUsage $@ ;;
     *)                      menuUsage $@ ;;

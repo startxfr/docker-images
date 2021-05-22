@@ -1,4 +1,4 @@
-FROM startx/sv-nodejs:centos6
+FROM quay.io/startx/nodejs:centos6
 
 ENV SX_VERSION="centos6" \
     SX_TYPE="runner" \
@@ -19,6 +19,7 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
+COPY sx /tmp/
 RUN yum install -y -q  yum-utils && \
     yum upgrade -y -q  && \
     yum install -y -q  --nogpgcheck \
@@ -26,7 +27,10 @@ RUN yum install -y -q  yum-utils && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
-    yum clean all --enablerepo=\*
+    yum clean all --enablerepo=\* && \
+    mv /tmp/bin/* /bin/ && \
+    mv /tmp/lib/* $SX_LIBDIR/ && \
+    rm -rf /tmp/bin /tmp/bin
 
 USER 1001
 

@@ -2,9 +2,7 @@
 
 # Docker gitlab runner : PHP
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/GitlabRunner/php/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
-
-[![Dockerhub Registry](https://img.shields.io/docker/build/startx/runner-php.svg)](https://hub.docker.com/r/startx/runner-php) [![Docker php pulls](https://img.shields.io/docker/pulls/startx/runner-php)](https://hub.docker.com/r/startx/runner-php) [![Docker Repository on Quay](https://quay.io/repository/startx/php/status "Docker Repository on Quay")](https://quay.io/repository/startx/php)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/GitlabRunner/php/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/runner-php.svg)](https://hub.docker.com/r/startx/runner-php) [![Docker php pulls](https://img.shields.io/docker/pulls/startx/runner-php)](https://hub.docker.com/r/startx/runner-php) [![Docker Repository on Quay](https://quay.io/repository/startx/php/status "Docker Repository on Quay")](https://quay.io/repository/startx/php)
 
 Startx php is a base container used for dynamic web services and applications published in [Dockerhub registry](https://hub.docker.com/u/startx).
 This container contain :
@@ -44,7 +42,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/runner-php:centos8`](https://hub.docker.com/r/startx/runner-php) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/php/docker-compose.yml) | Centos 8                                        |
 | [`startx/runner-php:centos7`](https://hub.docker.com/r/startx/runner-php) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/php/docker-compose.yml) | Centos 7                                        |
 | [`startx/runner-php:centos6`](https://hub.docker.com/r/startx/runner-php) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/php/docker-compose.yml) | Centos 6                                        |
-| [`startx/runner-php:alpine3`](https://hub.docker.com/r/startx/runner-php) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/php/docker-compose.yml) | Alpine 3.10 + Apache 2.4.33 + PHP 7.2.5         |
+| [`startx/runner-php:alpine3`](https://hub.docker.com/r/startx/runner-php) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/php/docker-compose.yml) | Alpine 3.12 + Apache 2.4.33 + PHP 7.2.5         |
 | [`startx/runner-php:ubi8`](https://hub.docker.com/r/startx/runner-php)    | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/php/docker-compose.yml) | RedHat UBI 8                                    |
 
 ## Running this image
@@ -100,7 +98,7 @@ firefox http://localhost:9213
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/runner-php:latest
+FROM quay.io/startx/runner-php:latest
 #... your container specifications
 ```
 

@@ -2,9 +2,7 @@
 
 # Docker gitlab runner : Ansible
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/GitlabRunner/ansible/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
-
-[![Dockerhub Registry](https://img.shields.io/docker/build/startx/runner-ansible.svg)](https://hub.docker.com/r/startx/runner-ansible) [![Docker ansible pulls](https://img.shields.io/docker/pulls/startx/runner-ansible)](https://hub.docker.com/r/startx/runner-ansible) [![Docker Repository on Quay](https://quay.io/repository/startx/ansible/status "Docker Repository on Quay")](https://quay.io/repository/startx/ansible)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/GitlabRunner/ansible/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/runner-ansible.svg)](https://hub.docker.com/r/startx/runner-ansible) [![Docker ansible pulls](https://img.shields.io/docker/pulls/startx/runner-ansible)](https://hub.docker.com/r/startx/runner-ansible) [![Docker Repository on Quay](https://quay.io/repository/startx/ansible/status "Docker Repository on Quay")](https://quay.io/repository/startx/ansible)
 
 Simple container used to build & test ansible playbooks, using gitlabCI runner, under a container
 based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
@@ -12,6 +10,8 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 ## Available flavours
 
 - `:latest` : Fedora core rawhide + ansible + make
+- `:fc34` : Fedora core 34 + ansible + make
+- `:fc33` : Fedora core 33 + ansible + make
 - `:fc32` : Fedora core 32 + ansible + make
 - `:fc31` : Fedora core 31 + ansible + make
 - `:fc30` : Fedora core 30 + ansible + make
@@ -21,7 +21,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 - `:centos8` : CentOS 8 + ansible + make
 - `:centos7` : CentOS 7 + ansible + make
 - `:centos6` : Centos 6 + ansible + make
-- `:alpine3` : Alpine 3.10 + ansible + make
+- `:alpine3` : Alpine 3.12 + ansible + make
 - `:ubi8` : RedHat UBI 8 + ansible + make
 
 ## Running from dockerhub registry
@@ -51,7 +51,7 @@ service:
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/runner-ansible:latest
+FROM quay.io/startx/runner-ansible:latest
 #... your container specifications
 CMD ["/bin/sx", "run"]
 ```

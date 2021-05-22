@@ -116,6 +116,34 @@ items:
           from:
             kind: DockerImage
             name: startx/sv-nodejs:fc32
+        - name: fc33
+          annotations:
+            openshift.io/display-name: S2I Startx Micro-WebServer (Fedora 33)
+            description:
+              Lightweight Http server builder for micro-web application running under
+              Fedora 33
+            iconClass: icon-nodejs
+            tags: builder,startx,fedora,nodejs,httpd
+            supports: http
+            version: fc33
+            sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+          from:
+            kind: DockerImage
+            name: startx/sv-nodejs:fc33
+        - name: fc34
+          annotations:
+            openshift.io/display-name: S2I Startx Micro-WebServer (Fedora 34)
+            description:
+              Lightweight Http server builder for micro-web application running under
+              Fedora 34
+            iconClass: icon-nodejs
+            tags: builder,startx,fedora,nodejs,httpd
+            supports: http
+            version: fc34
+            sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+          from:
+            kind: DockerImage
+            name: startx/sv-nodejs:fc34
         - name: rawhide
           annotations:
             openshift.io/display-name: S2I Startx Micro-WebServer (Fedora rawhide)

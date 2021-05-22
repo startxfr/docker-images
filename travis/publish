@@ -1,27 +1,35 @@
 #!/bin/bash
 
-echo "========> PUBLISH Container image docker.io/$NAMESPACE/$2:$3"
-if [ -f /tmp/istested_$2 ] ; then
-    rm -f /tmp/istested_$2
-    RESULT=$(docker push docker.io/$NAMESPACE/$2)
-    if [ "$SX_DEBUG" = true ] ; then
-        echo $RESULT
-    fi
+IMAGE_TAG=docker.io/${NAMESPACE}/$2:$3
+IMAGE_QUAYTAG=quay.io/${NAMESPACE}/$4:$3
+echo "========> PUBLISH Container image $IMAGE_TAG"
+if [ -f /tmp/istested_$4 ] ; then
+    RESULT=$(docker push $IMAGE_TAG)
     if [[ $? = "0" ]]; then
-        echo "========> PUBLISHED Container image docker.io/$NAMESPACE/$2:$3"
-        echo "========> PUBLISH Container image quay.io/$NAMESPACE/$4:$3"
-        docker push quay.io/$NAMESPACE/$4
-        echo "========> PUBLISHED Container image quay.io/$NAMESPACE/$4:$3"
+        echo "========> PUBLISHED Container image $IMAGE_TAG"
+        if [ "$SX_DEBUG" = true ] ; then
+            echo $RESULT
+        fi
+        echo "========> PUBLISH Container image $IMAGE_QUAYTAG"
+        docker tag $IMAGE_TAG $IMAGE_QUAYTAG &>/dev/null
+        RESULT=$(docker push $IMAGE_QUAYTAG)
+        echo "========> PUBLISHED Container image $IMAGE_QUAYTAG"
+        if [ "$SX_DEBUG" = true ] ; then
+            echo $RESULT
+        fi
         exit 0;
     else
-        echo "!! Could not publish container image docker.io/$NAMESPACE/$2:$3"
+        echo "!!!!!!!!> Could not publish container image $IMAGE_TAG"
+        if [ "$SX_DEBUG" = true ] ; then
+            echo $RESULT
+        fi
         if [[ "$ISFATAL" = "true" ]]; then
-            exit 1;
+            exit 31;
         else
             exit 0;
         fi
     fi
 else
-    echo "========> PUBLISHING Container image docker.io/$NAMESPACE/$2:$3 skipped because test failed"
+    echo "--------> PUBLISHING Container image $IMAGE_TAG skipped because already tested"
     exit 0;
 fi

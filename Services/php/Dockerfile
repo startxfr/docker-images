@@ -1,4 +1,4 @@
-FROM startx/sv-apache:centos6
+FROM quay.io/startx/apache:centos6
 
 ENV SX_VERSION="centos6" \
     SX_TYPE="service" \
@@ -75,6 +75,6 @@ WORKDIR $APP_PATH
 
 EXPOSE $APP_PORT
 
-VOLUME [ $SX_PHPSESS_PATH ]
+VOLUME $SX_PHPSESS_PATH
 
 CMD [ "/bin/sx-php" , "run" ]

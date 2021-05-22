@@ -4,9 +4,7 @@
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/couchbase/)
 
-[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
-
-[![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-couchbase.svg)](https://hub.docker.com/r/startx/sv-couchbase) [![Docker couchbase pulls](https://img.shields.io/docker/pulls/startx/sv-couchbase)](https://hub.docker.com/r/startx/sv-couchbase) [![Docker Repository on Quay](https://quay.io/repository/startx/couchbase/status "Docker Repository on Quay")](https://quay.io/repository/startx/couchbase)
+[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-couchbase.svg)](https://hub.docker.com/r/startx/sv-couchbase) [![Docker couchbase pulls](https://img.shields.io/docker/pulls/startx/sv-couchbase)](https://hub.docker.com/r/startx/sv-couchbase) [![Docker Repository on Quay](https://quay.io/repository/startx/couchbase/status "Docker Repository on Quay")](https://quay.io/repository/startx/couchbase)
 
 Simple container used to deliver distributed and low latency document oriented database
 Run [couchbase daemon](https://www.couchbase.org/) under a container
@@ -252,7 +250,7 @@ service:
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/sv-couchbase:centos6
+FROM quay.io/startx/couchbase:centos6
 #... your container specifications
 CMD ["/bin/sx", "run"]
 ```

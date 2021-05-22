@@ -2,9 +2,7 @@
 
 # Docker OS Images : Chrome
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/chrome/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
-
-[![Dockerhub Registry](https://img.shields.io/docker/build/startx/vdi-chrome.svg)](https://hub.docker.com/r/startx/vdi-chrome) [![Docker chrome pulls](https://img.shields.io/docker/pulls/startx/vdi-chrome)](https://hub.docker.com/r/startx/vdi-chrome) [![Docker Repository on Quay](https://quay.io/repository/startx/chrome/status "Docker Repository on Quay")](https://quay.io/repository/startx/chrome)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/chrome/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/vdi-chrome.svg)](https://hub.docker.com/r/startx/vdi-chrome) [![Docker chrome pulls](https://img.shields.io/docker/pulls/startx/vdi-chrome)](https://hub.docker.com/r/startx/vdi-chrome) [![Docker Repository on Quay](https://quay.io/repository/startx/chrome/status "Docker Repository on Quay")](https://quay.io/repository/startx/chrome)
 
 Simple container used to server VNC based chrome browser.
 Run [chrome browser application](https://httpd.chrome.org/) under a container
@@ -13,6 +11,8 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 ## Available flavours
 
 - `:latest` : Fedora core rawhide + Chrome 70.0.3538.77
+- `:fc34` : Fedora core 34 + Chrome 70.0.3538.77
+- `:fc33` : Fedora core 33 + Chrome 70.0.3538.77
 - `:fc32` : Fedora core 32 + Chrome 70.0.3538.77
 - `:fc31` : Fedora core 31 + Chrome 70.0.3538.77
 - `:fc30` : Fedora core 30 + Chrome 70.0.3538.77
@@ -20,7 +20,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 - `:fc28` : Fedora core 28 + Chrome 50.0.2661.102
 - `:centos8` : CentOS 8 + Chrome
 - `:centos7` : CentOS 7 + Chrome
-- `:alpine3` : Alpine 3.10 + Chrome 50.0.2661.102
+- `:alpine3` : Alpine 3.12 + Chrome 50.0.2661.102
 
 ## Running from dockerhub registry
 
@@ -112,7 +112,7 @@ service:
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/vdi-chrome:latest
+FROM quay.io/startx/vdi-chrome:latest
 #... your container specifications
 CMD ["/bin/sx", "run"]
 ```

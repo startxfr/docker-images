@@ -1,4 +1,4 @@
-FROM startx/sv-php:centos6
+FROM quay.io/startx/php:centos6
 
 ENV SX_VERSION="centos6" \
     SX_TYPE="application" \

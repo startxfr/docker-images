@@ -4,9 +4,7 @@
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/OS/)
 
-[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
-
-[![Dockerhub Registry](https://img.shields.io/docker/build/startx/fedora.svg)](https://hub.docker.com/r/startx/fedora) [![Docker apache pulls](https://img.shields.io/docker/pulls/startx/fedora)](https://hub.docker.com/r/startx/fedora) [![Docker Repository on Quay](https://quay.io/repository/startx/apache/status "Docker Repository on Quay")](https://quay.io/repository/startx/apache)
+[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/fedora.svg)](https://hub.docker.com/r/startx/fedora) [![Docker apache pulls](https://img.shields.io/docker/pulls/startx/fedora)](https://hub.docker.com/r/startx/fedora) [![Docker Repository on Quay](https://quay.io/repository/startx/apache/status "Docker Repository on Quay")](https://quay.io/repository/startx/apache)
 
 Startx fedora is a base container used for all startx services and applications published in
 [Dockerhub registry](https://hub.docker.com/u/startx) or [Quay registry](https://quay.io/repository/startx).
@@ -42,23 +40,23 @@ See more applications builders and sample on [startx docker images repository](h
 
 | Docker Hub repository                                            | Content                          |
 | ---------------------------------------------------------------- | -------------------------------- |
-| [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora) | Fedora core rawhide + bash 5.0.7 |
-| [`startx/fedora:32`](https://hub.docker.com/r/startx/fedora)     | Fedora core 32 + bash 5.0.7      |
-| [`startx/fedora:31`](https://hub.docker.com/r/startx/fedora)     | Fedora core 31 + bash 5.0.7      |
-| [`startx/fedora:30`](https://hub.docker.com/r/startx/fedora)     | Fedora core 30 + bash 5.0.7      |
+| [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora) | Fedora core rawhide + bash 5.0.17|
+| [`startx/fedora:32`](https://hub.docker.com/r/startx/fedora)     | Fedora core 32 + bash 5.0.17     |
+| [`startx/fedora:31`](https://hub.docker.com/r/startx/fedora)     | Fedora core 31 + bash 5.0.11     |
+| [`startx/fedora:30`](https://hub.docker.com/r/startx/fedora)     | Fedora core 30 + bash 5.0.11     |
 | [`startx/fedora:29`](https://hub.docker.com/r/startx/fedora)     | Fedora core 29 + bash 4.4.23     |
-| [`startx/fedora:28`](https://hub.docker.com/r/startx/fedora)     | Fedora core 28 + bash 4.3.12     |
-| [`startx/fedora:27`](https://hub.docker.com/r/startx/fedora)     | Fedora core 27 + bash 4.2.4      |
-| [`startx/fedora:26`](https://hub.docker.com/r/startx/fedora)     | Fedora core 26 + bash 4.0.9      |
-| [`startx/fedora:23`](https://hub.docker.com/r/startx/fedora)     | Fedora core 23                   |
-| [`startx/fedora:22`](https://hub.docker.com/r/startx/fedora)     | Fedora core 22                   |
+| [`startx/fedora:28`](https://hub.docker.com/r/startx/fedora)     | Fedora core 28 + bash 4.4.23     |
+| [`startx/fedora:27`](https://hub.docker.com/r/startx/fedora)     | Fedora core 27 + bash 4.4.23     |
+| [`startx/fedora:26`](https://hub.docker.com/r/startx/fedora)     | Fedora core 26 + bash 4.4.12     |
+| [`startx/fedora:23`](https://hub.docker.com/r/startx/fedora)     | Fedora core 23 + bash 4.3.42     |
+| [`startx/fedora:22`](https://hub.docker.com/r/startx/fedora)     | Fedora core 22 + bash 4.3.42     |
 | [`startx/fedora:21`](https://hub.docker.com/r/startx/fedora)     | Fedora core 21                   |
 | [`startx/fedora:20`](https://hub.docker.com/r/startx/fedora)     | Fedora core 20                   |
-| [`startx/centos:8`](https://hub.docker.com/r/startx/centos)      | Centos 8                         |
-| [`startx/centos:7`](https://hub.docker.com/r/startx/centos)      | Centos 7                         |
-| [`startx/centos:6`](https://hub.docker.com/r/startx/centos)      | Centos 6                         |
-| [`startx/ubi:8`](https://hub.docker.com/r/startx/ubi)            | RedHat UBI 8                     |
-| [`startx/alpine:3`](https://hub.docker.com/r/startx/alpine)      | Alpine 3.10                      |
+| [`startx/centos:8`](https://hub.docker.com/r/startx/centos)      | Centos 8 + bash 4.4.19           |
+| [`startx/centos:7`](https://hub.docker.com/r/startx/centos)      | Centos 7 + bash 4.2.46           |
+| [`startx/centos:6`](https://hub.docker.com/r/startx/centos)      | Centos 6 + bash 4.1.2            |
+| [`startx/ubi:8`](https://hub.docker.com/r/startx/ubi)            | RedHat UBI 8 + bash 4.4.19       |
+| [`startx/alpine:3`](https://hub.docker.com/r/startx/alpine)      | Alpine 3.12 + bash 5.0.17        |
 
 ## Running this image
 
@@ -199,7 +197,7 @@ docker run --rm -i -t startx-bash-sample
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/centos:6
+FROM quay.io/startx/centos:6
 #... your container specifications
 ```
 

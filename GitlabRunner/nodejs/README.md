@@ -2,9 +2,7 @@
 
 # Docker gitlab runner : NodeJS
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/GitlabRunner/nodejs/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
-
-[![Dockerhub Registry](https://img.shields.io/docker/build/startx/runner-nodejs.svg)](https://hub.docker.com/r/startx/runner-nodejs) [![Docker nodejs pulls](https://img.shields.io/docker/pulls/startx/runner-nodejs)](https://hub.docker.com/r/startx/runner-nodejs) [![Docker Repository on Quay](https://quay.io/repository/startx/nodejs/status "Docker Repository on Quay")](https://quay.io/repository/startx/nodejs)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/GitlabRunner/nodejs/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/runner-nodejs.svg)](https://hub.docker.com/r/startx/runner-nodejs) [![Docker nodejs pulls](https://img.shields.io/docker/pulls/startx/runner-nodejs)](https://hub.docker.com/r/startx/runner-nodejs) [![Docker Repository on Quay](https://quay.io/repository/startx/nodejs/status "Docker Repository on Quay")](https://quay.io/repository/startx/nodejs)
 
 Startx nodejs is a base container used for web services and applications published in [Dockerhub registry](https://hub.docker.com/u/startx).
 This container contain :
@@ -43,7 +41,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/runner-nodejs:centos8`](https://hub.docker.com/r/startx/runner-nodejs) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/nodejs/docker-compose.yml) | Centos 8                                         |
 | [`startx/runner-nodejs:centos7`](https://hub.docker.com/r/startx/runner-nodejs) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/nodejs/docker-compose.yml) | Centos 7                                         |
 | [`startx/runner-nodejs:centos6`](https://hub.docker.com/r/startx/runner-nodejs) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/nodejs/docker-compose.yml) | Centos 6                                         |
-| [`startx/runner-nodejs:alpine3`](https://hub.docker.com/r/startx/runner-nodejs) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/nodejs/docker-compose.yml) | Alpine 3.10 + NodeJS 8.11.1                      |
+| [`startx/runner-nodejs:alpine3`](https://hub.docker.com/r/startx/runner-nodejs) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/nodejs/docker-compose.yml) | Alpine 3.12 + NodeJS 8.11.1                      |
 | [`startx/runner-nodejs:ubi8`](https://hub.docker.com/r/startx/runner-nodejs)    | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/nodejs/docker-compose.yml) | RedHat UBI 8                                     |
 
 ## Running this image
@@ -99,7 +97,7 @@ firefox http://localhost:9221
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/runner-nodejs:latest
+FROM quay.io/startx/runner-nodejs:latest
 #... your container specifications
 ```
 

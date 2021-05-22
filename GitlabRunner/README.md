@@ -2,9 +2,7 @@
 
 # STARTX Docker-Images GitlabRunner Repository
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/)
-
-[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images)
 
 This directory host various Open Source gitlab runner into docker containers based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
@@ -35,12 +33,12 @@ your project and start using stable or experimental gitlab-runner's in your pipe
 
 | Service     | Fedora flavours                           | CentOS flavours                  | Alpine     | UBI     |
 | ----------- | ----------------------------------------- | -------------------------------- | ---------- | ------- |
-| **Ansible** | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
-| **Apache**  | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
-| **bash**    | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
-| **nodejs**  | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
-| **php**     | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
-| **oc**      | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
+| **Ansible** | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` `:fc33` `:fc34` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
+| **Apache**  | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` `:fc33` `:fc34` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
+| **bash**    | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` `:fc33` `:fc34` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
+| **nodejs**  | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` `:fc33` `:fc34` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
+| **php**     | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` `:fc33` `:fc34` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
+| **oc**      | `:latest` `:fc29` `:fc30` `:fc31` `:fc32` `:fc33` `:fc34` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
 
 ## Running from dockerhub registry
 

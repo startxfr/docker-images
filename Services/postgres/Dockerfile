@@ -1,4 +1,4 @@
-FROM startx/centos:6
+FROM quay.io/startx/centos:6
 
 ENV SX_VERSION="centos6" \
     SX_TYPE="service" \

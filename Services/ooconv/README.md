@@ -2,9 +2,7 @@
 
 # Docker OS Images : OOCONV on CentOS 6
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/ooconv/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
-
-[![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-ooconv.svg)](https://hub.docker.com/r/startx/sv-ooconv) [![Docker ooconv pulls](https://img.shields.io/docker/pulls/startx/sv-ooconv)](https://hub.docker.com/r/startx/sv-ooconv) [![Docker Repository on Quay](https://quay.io/repository/startx/ooconv/status "Docker Repository on Quay")](https://quay.io/repository/startx/ooconv)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/ooconv/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-ooconv.svg)](https://hub.docker.com/r/startx/sv-ooconv) [![Docker ooconv pulls](https://img.shields.io/docker/pulls/startx/sv-ooconv)](https://hub.docker.com/r/startx/sv-ooconv) [![Docker Repository on Quay](https://quay.io/repository/startx/ooconv/status "Docker Repository on Quay")](https://quay.io/repository/startx/ooconv)
 
 Simple container used to document convertion and manipulation tools
 Run [libreoffice](https://www.libreoffice.org/) as a daemon using [dagwieers unoconv](https://github.com/dagwieers/unoconv) under a container
@@ -13,6 +11,8 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 ## Available flavours
 
 - `:latest` : Fedora core rawhide + unoconv 0.7 + LibreOffice 6.2.4.2.0
+- `:fc34` : Fedora core 34 + unoconv 0.7 + LibreOffice 5.0.3.2
+- `:fc33` : Fedora core 33 + unoconv 0.7 + LibreOffice 5.0.3.2
 - `:fc32` : Fedora core 32 + unoconv 0.7 + LibreOffice 5.0.3.2
 - `:fc31` : Fedora core 31 + unoconv 0.7 + LibreOffice 5.0.3.2
 - `:fc30` : Fedora core 30 + unoconv 0.7 + LibreOffice 5.0.3.2
@@ -26,7 +26,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 - `:centos8` : CentOS 8 + unoconv
 - `:centos7` : CentOS 7 + unoconv
 - `:centos6` : Centos 6 + unoconv
-- `:alpine3` : Alpine 3.10 + unoconv 0.8 + LibreOffice 5.4.5.1
+- `:alpine3` : Alpine 3.12 + unoconv 0.8 + LibreOffice 5.4.5.1
 - `:ubi8` : RedHat UBI 8 + unoconv
 
 ## Running from dockerhub registry
@@ -105,7 +105,7 @@ service:
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named Dockerfile in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/sv-ooconv:centos6
+FROM quay.io/startx/ooconv:centos6
 #... your container specifications
 CMD ["/bin/sx", "run"]
 ```

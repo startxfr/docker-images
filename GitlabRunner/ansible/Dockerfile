@@ -1,11 +1,12 @@
-FROM startx/centos:6
+FROM quay.io/startx/centos:6
 
 ENV SX_VERSION="centos6" \
     SX_TYPE="runner" \
     SX_SERVICE="ansible" \
     SX_ID="startx/runner-ansible" \
     SX_NAME="Startx Ansible gitlab runner image (centos 6)" \
-    SX_SUMMARY="Startx ansible gitlab runner based on centos 6" 
+    SX_SUMMARY="Startx ansible gitlab runner based on centos 6" \
+    SX_HUGO_RELEASE="0.72.0"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \
@@ -19,6 +20,7 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
+COPY sx /tmp/
 RUN yum install -y -q  yum-utils && \
     yum upgrade -y -q  && \
     yum install -y -q  --nogpgcheck \
@@ -29,10 +31,19 @@ RUN yum install -y -q  yum-utils && \
     rsync \
     openssh-clients \
     sshpass && \
+    pip install openshift && \
     yum repo --add-repo https://releases.ansible.com/ansible-runner/ansible-runner.el6.repo && \
     yum install -yq --nogpgcheck ansible-runner && \
     yum remove -y --skip-broken yum-utils && \
-    yum clean all --enablerepo=\*
+    yum clean all --enablerepo=\* && \
+    mv /tmp/bin/* /bin/ && \
+    mv /tmp/lib/* $SX_LIBDIR/ && \
+    rm -rf /tmp/bin /tmp/bin && \
+    cd /tmp && \
+    wget -q https://github.com/gohugoio/hugo/releases/download/v${SX_HUGO_RELEASE}/hugo_${SX_HUGO_RELEASE}_Linux-64bit.tar.gz && \
+    tar xzvf hugo_${SX_HUGO_RELEASE}_Linux-64bit.tar.gz && \
+    mv hugo /usr/bin/ && \
+    cd - && \
     useradd -s /bin/bash -m -g 0 -u 1001 ansible && \
     mkdir -p /.ansible && \
     chgrp -R 0 /.ansible && \

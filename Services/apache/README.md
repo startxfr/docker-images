@@ -4,9 +4,7 @@
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/apache/)
 
-[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
-
-[![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-apache.svg)](https://hub.docker.com/r/startx/sv-apache) [![Docker apache pulls](https://img.shields.io/docker/pulls/startx/sv-apache)](https://hub.docker.com/r/startx/sv-apache) [![Docker Repository on Quay](https://quay.io/repository/startx/apache/status "Docker Repository on Quay")](https://quay.io/repository/startx/apache)
+[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-apache.svg)](https://hub.docker.com/r/startx/sv-apache) [![Docker apache pulls](https://img.shields.io/docker/pulls/startx/sv-apache)](https://hub.docker.com/r/startx/sv-apache) [![Docker Repository on Quay](https://quay.io/repository/startx/apache/status "Docker Repository on Quay")](https://quay.io/repository/startx/apache)
 
 Startx apache is a base container used for web services and applications published in [Dockerhub registry](https://hub.docker.com/u/startx)
 and [Quay registry](https://quay.io/repository/startx).
@@ -41,23 +39,23 @@ See more applications builders and sample on [startx docker images repository](h
 
 | Docker Hub repository                                                   | Content                             |
 | ----------------------------------------------------------------------- | ----------------------------------- |
-| [`startx/sv-apache:latest`](https://hub.docker.com/r/startx/sv-apache)  | Fedora core rawhide + Apache 2.4.39 |
-| [`startx/sv-apache:32`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 32 + Apache 2.4.39      |
-| [`startx/sv-apache:31`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 31 + Apache 2.4.39      |
-| [`startx/sv-apache:30`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 30 + Apache 2.4.39      |
-| [`startx/sv-apache:29`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 29 + Apache 2.4.39      |
-| [`startx/sv-apache:28`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 28 + Apache 2.4.17      |
-| [`startx/sv-apache:27`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 27 + Apache 2.4.17      |
-| [`startx/sv-apache:26`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 26 + Apache 2.4.17      |
-| [`startx/sv-apache:23`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 23 + Apache x.x.x       |
-| [`startx/sv-apache:22`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 22 + Apache x.x.x       |
+| [`startx/sv-apache:latest`](https://hub.docker.com/r/startx/sv-apache)  | Fedora core rawhide + Apache 2.4.43 |
+| [`startx/sv-apache:32`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 32 + Apache 2.4.43      |
+| [`startx/sv-apache:31`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 31 + Apache 2.4.43      |
+| [`startx/sv-apache:30`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 30 + Apache 2.4.41      |
+| [`startx/sv-apache:29`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 29 + Apache 2.4.41      |
+| [`startx/sv-apache:28`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 28 + Apache 2.4.39      |
+| [`startx/sv-apache:27`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 27 + Apache 2.4.34      |
+| [`startx/sv-apache:26`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 26 + Apache 2.4.33      |
+| [`startx/sv-apache:23`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 23 + Apache 2.4.23      |
+| [`startx/sv-apache:22`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 22 + Apache 2.4.18      |
 | [`startx/sv-apache:21`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 21 + Apache x.x.x       |
 | [`startx/sv-apache:20`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 20 + Apache x.x.x       |
-| [`startx/sv-apache:centos8`](https://hub.docker.com/r/startx/sv-apache) | Centos 8 + Apache x.x.x             |
-| [`startx/sv-apache:centos7`](https://hub.docker.com/r/startx/sv-apache) | Centos 7 + Apache x.x.x             |
-| [`startx/sv-apache:centos6`](https://hub.docker.com/r/startx/sv-apache) | Centos 6 + Apache x.x.x             |
-| [`startx/sv-apache:ubi8`](https://hub.docker.com/r/startx/sv-apache)    | RedHat UBI 8 + Apache x.x.x         |
-| [`startx/sv-apache:alpine3`](https://hub.docker.com/r/startx/sv-apache) | Alpine 3.10 + Apache x.x.x          |
+| [`startx/sv-apache:centos8`](https://hub.docker.com/r/startx/sv-apache) | Centos 8 + Apache 2.4.37            |
+| [`startx/sv-apache:centos7`](https://hub.docker.com/r/startx/sv-apache) | Centos 7 + Apache 2.4.6             |
+| [`startx/sv-apache:centos6`](https://hub.docker.com/r/startx/sv-apache) | Centos 6 + Apache 2.2.15            |
+| [`startx/sv-apache:ubi8`](https://hub.docker.com/r/startx/sv-apache)    | RedHat UBI 8 + Apache 2.4.37        |
+| [`startx/sv-apache:alpine3`](https://hub.docker.com/r/startx/sv-apache) | Alpine 3.12 + Apache 2.4.43         |
 
 ## Running this image
 
@@ -209,7 +207,7 @@ docker run --rm -d -p 9201:8080 startx-apache-sample
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/sv-apache:centos6
+FROM quay.io/startx/apache:centos6
 #... your container specifications
 ```
 

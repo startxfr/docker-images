@@ -1,4 +1,4 @@
-FROM startx/centos:6
+FROM quay.io/startx/centos:6
 
 ENV SX_VERSION="centos6" \
     SX_TYPE="runner" \
@@ -20,6 +20,7 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
+COPY sx /tmp/
 RUN yum install -yq python-pip jq && \
     pip install yq && \
     cd /tmp && \
@@ -27,7 +28,10 @@ RUN yum install -yq python-pip jq && \
     tar xzvf oc.tar.gz && \
     mv oc /usr/bin/ && \
     rm -f oc.tar.gz && \
-    cd -
+    cd - && \
+    mv /tmp/bin/* /bin/ && \
+    mv /tmp/lib/* $SX_LIBDIR/ && \
+    rm -rf /tmp/bin /tmp/bin
 
 USER 1001
 

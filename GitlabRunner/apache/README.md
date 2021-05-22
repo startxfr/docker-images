@@ -2,9 +2,7 @@
 
 # Docker gitlab runner : Apache
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/GitlabRunner/apache/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Top language](https://img.shields.io/github/languages/count/startxfr/docker-images)](https://github.com/startxfr/docker-images) [![Code size](https://img.shields.io/github/languages/code-size/startxfr/docker-images)](https://github.com/startxfr/docker-images)
-
-[![Dockerhub Registry](https://img.shields.io/docker/build/startx/runner-apache.svg)](https://hub.docker.com/r/startx/runner-apache) [![Docker apache pulls](https://img.shields.io/docker/pulls/startx/runner-apache)](https://hub.docker.com/r/startx/runner-apache) [![Docker Repository on Quay](https://quay.io/repository/startx/apache/status "Docker Repository on Quay")](https://quay.io/repository/startx/apache)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/GitlabRunner/apache/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/runner-apache.svg)](https://hub.docker.com/r/startx/runner-apache) [![Docker apache pulls](https://img.shields.io/docker/pulls/startx/runner-apache)](https://hub.docker.com/r/startx/runner-apache) [![Docker Repository on Quay](https://quay.io/repository/startx/apache/status "Docker Repository on Quay")](https://quay.io/repository/startx/apache)
 
 Startx apache is a base container used for web services and applications published in [Dockerhub registry](https://hub.docker.com/u/startx).
 This container contain :
@@ -41,7 +39,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/runner-apache:centos8`](https://hub.docker.com/r/startx/runner-apache) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/apache/docker-compose.yml) | Centos 8                            |
 | [`startx/runner-apache:centos7`](https://hub.docker.com/r/startx/runner-apache) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/apache/docker-compose.yml) | Centos 7                            |
 | [`startx/runner-apache:centos6`](https://hub.docker.com/r/startx/runner-apache) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/apache/docker-compose.yml) | Centos 6                            |
-| [`startx/runner-apache:alpine3`](https://hub.docker.com/r/startx/runner-apache) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/apache/docker-compose.yml) | Alpine 3.10 + Apache 2.4.33         |
+| [`startx/runner-apache:alpine3`](https://hub.docker.com/r/startx/runner-apache) | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/apache/docker-compose.yml) | Alpine 3.12 + Apache 2.4.33         |
 | [`startx/runner-apache:ubi8`](https://hub.docker.com/r/startx/runner-apache)    | [`compose`](https://raw.githubusercontent.com/startxfr/docker-images/master/GitlabRunner/apache/docker-compose.yml) | RedHat UBI 8 + Apache 2.4.33        |
 
 ## Running this image
@@ -97,7 +95,7 @@ firefox http://localhost:9201
 You can use this Dockerfile template to start a new personalized container based on this container. Create a file named `Dockerfile` in your project directory and copy this content inside. See [docker guide](http://docs.docker.com/engine/reference/builder/) for instructions on how to use this file.
 
 ```Dockerfile
-FROM startx/runner-apache:latest
+FROM quay.io/startx/runner-apache:latest
 #... your container specifications
 ```
 
