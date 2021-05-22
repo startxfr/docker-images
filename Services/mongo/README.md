@@ -3,7 +3,7 @@
 # STARTX MongoDB container image
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startx-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/mongo/)
-[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Docker mongo pulls](https://img.shields.io/docker/pulls/startx/sv-mongo)](https://hub.docker.com/r/startx/sv-fedora) [![Docker Repository on Quay](https://quay.io/repository/startx/mongo/status "Docker Repository on Quay")](https://quay.io/repository/startx/mongo)
+[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Docker mongo pulls](https://img.shields.io/docker/pulls/startx/sv-mongo)](https://hub.docker.com/r/startx/sv-mongo) [![Docker Repository on Quay](https://quay.io/repository/startx/mongo/status "Docker Repository on Quay")](https://quay.io/repository/startx/mongo)
 
 Startx mongo is a base container used for web services and applications published in
 [Dockerhub registry](https://hub.docker.com/u/startx) or [Quay registry](https://quay.io/startx).
