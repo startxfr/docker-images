@@ -38,9 +38,10 @@ See more applications builders and sample on [startx docker images repository](h
 
 ## Container flavours
 
-| Docker Hub repository                                            | Distribution        | Bash   | Kernel      |
-| ---------------------------------------------------------------- | ------------------- | ------ | ----------- |
-| [`startx/ubi:8`](https://hub.docker.com/r/startx/ubi)            | RedHat UBI 8        | 4.4.19 |             |
+| Docker Hub repository                                      | Distribution | Bash   |
+| ---------------------------------------------------------- | ------------ | ------ |
+| [`startx/ubi:latest`](https://hub.docker.com/r/startx/ubi) | RedHat UBI 8 | 4.4.20 |
+| [`startx/ubi:8`](https://hub.docker.com/r/startx/ubi)      | RedHat UBI 8 | 4.4.20 |
 
 ## Running this image
 
