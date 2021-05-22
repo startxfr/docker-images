@@ -218,7 +218,8 @@ function menuBuild {
             testBuild              GitlabRunner/apache runner-apache $SXDC_FLAVOUR
             testBuild              GitlabRunner/bash runner-bash $SXDC_FLAVOUR
             testBuild              GitlabRunner/nodejs runner-nodejs $SXDC_FLAVOUR
-            testBuild              GitlabRunner/php runner-nodejs $SXDC_FLAVOUR
+            testBuild              GitlabRunner/php runner-php $SXDC_FLAVOUR
+            testBuild              GitlabRunner/oc runner-oc $SXDC_FLAVOUR
             testBuild              VDI/chrome chrome $SXDC_FLAVOUR
             testBuild              VDI/firefox firefox $SXDC_FLAVOUR;;
         *)                         menuUsage
@@ -286,7 +287,8 @@ function menuVersion {
         runner-apache)             testVersion GitlabRunner/apache runner-apache $SXDC_FLAVOUR;;
         runner-bash)               testVersion GitlabRunner/bash runner-bash $SXDC_FLAVOUR;;
         runner-nodejs)             testVersion GitlabRunner/nodejs runner-nodejs $SXDC_FLAVOUR;;
-        runner-php)                testVersion GitlabRunner/php runner-nodejs $SXDC_FLAVOUR;;
+        runner-php)                testVersion GitlabRunner/php runner-php $SXDC_FLAVOUR;;
+        runner-oc)                 testVersion GitlabRunner/oc runner-oc $SXDC_FLAVOUR;;
         chrome)                    testVersion VDI/chrome chrome $SXDC_FLAVOUR;;
         firefox)                   testVersion VDI/firefox firefox $SXDC_FLAVOUR;;
         all)
@@ -304,7 +306,8 @@ function menuVersion {
              testVersion            GitlabRunner/apache runner-apache $SXDC_FLAVOUR
              testVersion            GitlabRunner/bash runner-bash $SXDC_FLAVOUR
              testVersion            GitlabRunner/nodejs runner-nodejs $SXDC_FLAVOUR
-             testVersion            GitlabRunner/php runner-nodejs $SXDC_FLAVOUR
+             testVersion            GitlabRunner/php runner-php $SXDC_FLAVOUR
+             testVersion            GitlabRunner/oc runner-oc $SXDC_FLAVOUR
              testVersion            VDI/chrome chrome $SXDC_FLAVOUR
              testVersion            VDI/firefox firefox $SXDC_FLAVOUR;;
          *)                        menuUsage
