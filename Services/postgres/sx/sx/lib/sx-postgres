@@ -22,7 +22,6 @@ function postgresInformation {
     displayInformation $1
     echoVerbose $1 "version   : $SX_VERSION"
     echoVerbose $1 "engine    : $(postgres -V | head -1)"
-    echoVerbose $1 "sql path  : $LOADSQL_PATH"
     echoVerbose $1 "log path  : $LOG_PATH"
     echoVerbose $1 "data path : $DATA_PATH"
 }
