@@ -19,6 +19,7 @@ LABEL name="$SX_ID" \
     io.openshift.min-cpu="100m" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
+USER root
 COPY sx /tmp/
 RUN dnf install -yq --nogpgcheck \
         jq \
