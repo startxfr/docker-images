@@ -142,7 +142,7 @@ function menuSetupFlavour {
         fi
     fi
     case $flavour in
-        alpine3)  appendConf SXDC_FLAVOUR alpine3
+        alpine)  appendConf SXDC_FLAVOUR alpine
         appendConf SXDC_OS_FLAVOUR 'alpine';;
         ubi8)     appendConf SXDC_FLAVOUR ubi8
         appendConf SXDC_OS_FLAVOUR 'ubi';;
@@ -183,6 +183,7 @@ function menuSetupFlavour {
 
 # Display menu test build templates
 function menuBuild {
+    reloadConf
     case $2 in
         os|fedora|centos|alpine)   testBuild OS $SXDC_OS_FLAVOUR latest;;
         apache|http)               testBuild Services/apache apache $SXDC_FLAVOUR;;
@@ -226,6 +227,7 @@ esac
 
 # Display menu test deploy templates
 function menuRun {
+    reloadConf
     case $2 in
         os|fedora|centos|alpine)   testDeploy OS $SXDC_OS_FLAVOUR latest;;
         apache|http)               testDeploy Services/apache apache $SXDC_FLAVOUR;;
@@ -268,6 +270,7 @@ esac
 
 # Display menu test deploy templates
 function menuVersion {
+    reloadConf
     case $2 in
         os|fedora|centos|alpine)   testOSVersion OS $SXDC_OS_FLAVOUR latest;;
         apache|http)               testVersion Services/apache apache $SXDC_FLAVOUR;;
@@ -323,6 +326,7 @@ function menuAllVersions {
 
 # Display menu delete
 function menuDelete {
+    reloadConf
     podman stop $(podman ps -q -f label=$SXDC_PROJECT)
     podman container prune
     podman image prune
