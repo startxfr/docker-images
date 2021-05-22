@@ -32,15 +32,15 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 RUN dnf install -yq --nogpgcheck yum-utils && \
-    dnf upgrade -yq --nogpgcheck --refresh
-RUN dnf install -yq --nogpgcheck \
+    dnf upgrade -yq --nogpgcheck --refresh && \
+    dnf install -yq https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm && \
+    dnf config-manager --set-enabled epel && \
+    dnf install -yq --nogpgcheck \
         unoconv \
         libreoffice-writer \
         libreoffice-calc \
-        libreoffice-postgresql \
-        pdfmod \
-        ghostscript
-RUN package-cleanup --problems && \
+        ghostscript && \
+    package-cleanup --problems && \
     package-cleanup --orphans && \
     dnf remove -yq --skip-broken yum-utils && \
     dnf clean all --enablerepo=\* && \

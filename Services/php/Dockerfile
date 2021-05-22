@@ -38,21 +38,20 @@ RUN dnf upgrade -yq --refresh && \
     dnf install -yq https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm && \
     dnf install -yq https://rpms.remirepo.net/enterprise/remi-release-8.rpm && \
     dnf install -yq 'dnf-command(config-manager)' && \
-    dnf config-manager --set-enabled PowerTools && \
     dnf config-manager --set-enabled remi && \
     dnf config-manager --set-enabled epel && \
     dnf install -yq --nogpgcheck \
-    php \
-    php-cli \
-    php-pear \
-    php-gd \
-    php-mysqlnd \
-    php-soap \
-    php-pdo \
-    php-process \
-    php-common \
-    php-mbstring \
-    php-bcmath && \
+        php \
+        php-cli \
+        php-pear \
+        php-gd \
+        php-mysqlnd \
+        php-soap \
+        php-pdo \
+        php-process \
+        php-common \
+        php-mbstring \
+        php-bcmath && \
     dnf remove -yq --skip-broken yum-utils && \
     dnf remove -yq 'dnf-command(config-manager)' && \
     dnf clean all --enablerepo=\* && \

@@ -34,22 +34,22 @@ LABEL name="$SX_ID" \
 USER root
 COPY supervisord.conf $SX_FIREFOX_SUPERVISOR_CONF/
 COPY sx /tmp/
-RUN wget -q https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/p/python-meld3-2.0.0-2.centos8.noarch.rpm && \
-    rpm -ivh python-meld3-2.0.0-2.centos8.noarch.rpm && \
-    dnf install -y yum-utils dnf-plugin-system-upgrade && \
+RUN dnf install -y yum-utils && \
+    dnf install -yq https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm && \
+    dnf config-manager --set-enabled epel && \
     dnf upgrade -y --refresh && \
     dnf install -y --nogpgcheck \
     supervisor \
     xorg-x11-server-Xvfb \
     x11vnc \
     firefox \
-    python2-setuptools && \
+    python3-setuptools && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     dnf remove -y --skip-broken yum-utils && \
     dnf clean all --enablerepo=\* && \
-    pip install --upgrade pip && \
-    pip install --upgrade --force-reinstall setuptools pip && \
+    pip3 install --upgrade pip && \
+    pip3 install --upgrade --force-reinstall setuptools pip && \
     useradd -s /bin/bash -m -g 0 -u 1001 $SX_USER && \
     mkdir -p /s2i $SX_LIBDIR && \
     mv /tmp/s2i/bin/* /s2i/ && \

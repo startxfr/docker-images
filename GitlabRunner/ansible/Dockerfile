@@ -40,11 +40,8 @@ RUN dnf upgrade -yq --refresh && \
     pip3 install -q ansible-runner && \
     pip3 install -q openshift && \
     dnf remove -yq --skip-broken yum-utils gcc python3-devel epel-release && \
-    dnf install -yq --nogpgcheck 'dnf-command(config-manager)' && \
-    dnf config-manager --enable --add-repo https://releases.ansible.com/ansible-runner/ansible-runner.el7.repo && \
+    dnf config-manager --enable --add-repo https://releases.ansible.com/ansible-runner/ansible-runner.el8.repo && \
     dnf install -yq --nogpgcheck ansible-runner && \
-    package-cleanup --problems && \
-    package-cleanup --orphans && \
     npm install uuid && \
     dnf remove -yq --skip-broken yum-utils && \
     dnf clean all --enablerepo=\* && \

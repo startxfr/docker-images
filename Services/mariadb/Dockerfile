@@ -35,14 +35,18 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 COPY my.cnf $MY_CONF
-COPY mariadb.repo /etc/yum.repos.d/mariadb.repo
+#COPY mariadb.repo /etc/yum.repos.d/mariadb.repo
 RUN dnf install -y yum-utils && \
     dnf upgrade -y --refresh && \
     dnf install -y --nogpgcheck \
-    MariaDB-shared \
-    MariaDB-backup \
-    MariaDB-client \
-    MariaDB-common && \
+        mariadb-server \
+        mariadb-server-utils \
+        mariadb-backup \
+        mariadb-common \
+        mariadb-errmsg \
+        mariadb-gssapi-server \
+        mariadb-oqgraph-engine \
+        mariadb-server-galera && \
     dnf remove -y --skip-broken yum-utils && \
     dnf clean all --enablerepo=\* && \
     mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH && \
@@ -51,7 +55,6 @@ RUN dnf install -y yum-utils && \
     mv /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     touch $DATA_PATH/.keep && \
-    useradd -g 0 -u 1001 mysql && \
     chown -R mysql:0 $LOG_PATH $DATA_PATH $LOADSQL_PATH && \
     chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* $MY_CONF && \
     chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* $MY_CONF && \
@@ -67,3 +70,8 @@ EXPOSE 3306
 VOLUME $DATA_PATH
 
 CMD [ "/bin/sx-mariadb" , "run" ]
+
+
+
+
+

@@ -21,6 +21,9 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 RUN dnf upgrade -yq --refresh && \
+    dnf install -yq 'dnf-command(config-manager)' epel-release && \
+    dnf makecache  && \
+    dnf config-manager --enable --add-repo https://releases.ansible.com/ansible-runner/ansible-runner.el8.repo && \
     dnf install -yq --nogpgcheck \
     make \
     bubblewrap \

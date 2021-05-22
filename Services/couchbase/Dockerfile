@@ -37,12 +37,11 @@ RUN dnf upgrade -yq --refresh && \
     dnf install -yq epel-release && \
     dnf install -yq https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm && \
     rpm -ivh https://forensics.cert.org/cert-forensics-tools-release-el8.rpm && \
-     && \
     dnf install -yq 'dnf-command(config-manager)' && \
-    dnf config-manager --set-enabled PowerTools && \
     dnf install -y --nogpgcheck \
     python2-httplib2 \
     openssl \
+    bzip2 \
     ncurses \
     ncurses-libs \
     ncurses-compat-libs \

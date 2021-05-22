@@ -35,25 +35,27 @@ LABEL name="$SX_ID" \
 USER root
 COPY supervisord.conf $SX_CHROME_SUPERVISOR_CONF/
 COPY sx /tmp/
+COPY google-chrome.repo /etc/yum.repos.d/google-chrome.repo
 RUN dnf install -yq --nogpgcheck yum-utils && \
+    dnf install -yq https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm && \
+    dnf config-manager --set-enabled epel && \
     dnf upgrade -yq --nogpgcheck --refresh && \
     dnf install -yq --nogpgcheck \
         supervisor \
         python3-pip \
         xorg-x11-server-Xvfb \
         x11vnc \
-        fedora-workstation-repositories \
         dnf-plugins-core \
         pulseaudio \
-        python2-setuptools && \
+        python3-setuptools && \
     dnf config-manager --set-enabled google-chrome && \
     dnf install -yq --nogpgcheck google-chrome-stable && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     dnf remove -yq --skip-broken yum-utils && \
     dnf clean all --enablerepo=\* && \
-    pip install --upgrade pip && \
-    pip install --upgrade --force-reinstall setuptools pip && \
+    pip3 install --upgrade pip && \
+    pip3 install --upgrade --force-reinstall setuptools pip && \
     useradd -s /bin/bash -m -g 0 -u 1001 -G pulse-access $SX_USER && \
     mkdir -p /s2i $SX_LIBDIR /.local && \
     mv /tmp/s2i/bin/* /s2i/ && \
