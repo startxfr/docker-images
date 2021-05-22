@@ -7,36 +7,31 @@ SXDC_PROJECT=$DEFAULT_PROJECT
 SXDC_FLAVOUR=$DEFAULT_FLAVOUR
 SXDC_OS_FLAVOUR=$DEFAULT_OS_FLAVOUR
 
-# config file
-touch $CONF_FILE
-source $CONF_FILE
-
-
 # Create lib
 function testBuild {
     podman build -t $SXDC_PROJECT/$2:$3 $1
 }
 
 function testDeploy {
-    podman stop $SXDC_PROJECT-$2-$3
-    podman rm -vf $SXDC_PROJECT-$2-$3
-    podman run -d --name $SXDC_PROJECT-$2-$3 $SXDC_PROJECT/$2:$3
+    podman stop ${SXDC_PROJECT}_$2_$3
+    podman rm -vf ${SXDC_PROJECT}_$2_$3
+    podman run -d --name ${SXDC_PROJECT}_$2_$3 $SXDC_PROJECT/$2:$3
 }
 
 function testVersion {
-    podman stop $SXDC_PROJECT-$2-$3-version &>/dev/null
-    podman rm -f $SXDC_PROJECT-$2-$3-version &>/dev/null
+    podman stop ${SXDC_PROJECT}_$2_$3-version &>/dev/null
+    podman rm -f ${SXDC_PROJECT}_$2_$3-version &>/dev/null
     echo -e "== Display informations on \e[1m$2\e[0m in \e[1m$3\e[0m version"
-    podman run --name $SXDC_PROJECT-$2-$3-version $SXDC_PROJECT/$2:$3 /bin/sx-$2 info
-    podman rm -f $SXDC_PROJECT-$2-$3-version &>/dev/null
+    podman run --name ${SXDC_PROJECT}_$2_$3-version $SXDC_PROJECT/$2:$3 /bin/sx-$2 info
+    podman rm -f ${SXDC_PROJECT}_$2_$3-version &>/dev/null
 }
 
 function testOSVersion {
-    podman stop $SXDC_PROJECT-$2-$3-version &>/dev/null
-    podman rm -f $SXDC_PROJECT-$2-$3-version &>/dev/null
+    podman stop ${SXDC_PROJECT}_$2_$3-version &>/dev/null
+    podman rm -f ${SXDC_PROJECT}_$2_$3-version &>/dev/null
     echo -e "== Display informations on \e[1m$2\e[0m in \e[1m$3\e[0m version"
-    podman run --name $SXDC_PROJECT-$2-$3-version $SXDC_PROJECT/$2:$3 /bin/sx info
-    podman rm -f $SXDC_PROJECT-$2-$3-version &>/dev/null
+    podman run --name ${SXDC_PROJECT}_$2_$3-version $SXDC_PROJECT/$2:$3 /bin/sx info
+    podman rm -f ${SXDC_PROJECT}_$2_$3-version &>/dev/null
 }
 
 function temporize {
@@ -90,12 +85,14 @@ Usage:
   usage                  this message
 
 - Test commands:
-  all-versions           List all image content version
   buildrun               Build and run all container for the given flavour
   run ≤name>             Run one container with defined flavour
   run all                Run all containers with defined flavour
   build ≤name>           Build one container with defined flavour
   build all              Build all containers with defined flavour
+  version ≤name>         Run (and build) container to extract application informations
+  version all            Run (and build) all container to extract application informations
+  versions               Alias of the previous command
 
   Using podman $ov
 EOF
@@ -145,7 +142,7 @@ function menuSetupFlavour {
         fi
     fi
     case $flavour in
-        alpine3)  appendConf SXDC_FLAVOUR alpine3
+        alpine)  appendConf SXDC_FLAVOUR alpine
         appendConf SXDC_OS_FLAVOUR 'alpine';;
         ubi8)     appendConf SXDC_FLAVOUR ubi8
         appendConf SXDC_OS_FLAVOUR 'ubi';;
@@ -186,6 +183,7 @@ function menuSetupFlavour {
 
 # Display menu test build templates
 function menuBuild {
+    reloadConf
     case $2 in
         os|fedora|centos|alpine)   testBuild OS $SXDC_OS_FLAVOUR latest;;
         apache|http)               testBuild Services/apache apache $SXDC_FLAVOUR;;
@@ -229,6 +227,7 @@ esac
 
 # Display menu test deploy templates
 function menuRun {
+    reloadConf
     case $2 in
         os|fedora|centos|alpine)   testDeploy OS $SXDC_OS_FLAVOUR latest;;
         apache|http)               testDeploy Services/apache apache $SXDC_FLAVOUR;;
@@ -271,6 +270,7 @@ esac
 
 # Display menu test deploy templates
 function menuVersion {
+    reloadConf
     case $2 in
         os|fedora|centos|alpine)   testOSVersion OS $SXDC_OS_FLAVOUR latest;;
         apache|http)               testVersion Services/apache apache $SXDC_FLAVOUR;;
@@ -326,6 +326,7 @@ function menuAllVersions {
 
 # Display menu delete
 function menuDelete {
+    reloadConf
     podman stop $(podman ps -q -f label=$SXDC_PROJECT)
     podman container prune
     podman image prune
@@ -334,11 +335,11 @@ function menuDelete {
 # Dispatch input arguments
 case $1 in
     setup)                  menuSetup $@ ;;
-    buildrun)               menuBuildRun $@ ;;
-    allversion|allversions|versions|all-versions) menuAllVersions $@ ;;
-    version) menuVersion $@ ;;
-    run)                    menuRun $@ ;;
     build)                  menuBuild $@ ;;
+    run)                    menuRun $@ ;;
+    buildrun)               menuBuildRun $@ ;;
+    version)                menuVersion $@ ;;
+    versions)               menuAllVersions $@ ;;
     delete)                 menuDelete $@ ;;
     usage|help|--help)      menuUsage $@ ;;
     *)                      menuUsage $@ ;;

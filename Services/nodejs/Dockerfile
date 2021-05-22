@@ -32,7 +32,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 COPY *.j* $APP_PATH/
-RUN dnf install -yq --nogpgcheck yum-utils dnf-plugin-system-upgrade && \
+RUN dnf install -yq --nogpgcheck yum-utils && \
     dnf upgrade -yq --nogpgcheck --refresh && \
     dnf install -yq --nogpgcheck \
         nodejs \
@@ -44,7 +44,7 @@ RUN dnf install -yq --nogpgcheck yum-utils dnf-plugin-system-upgrade && \
         git && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
