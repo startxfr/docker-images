@@ -42,7 +42,7 @@ See more applications builders and sample on [startx docker images repository](h
 | ---------------------------------------------------------------- | ------------------- | ------ |
 | [`startx/fedora:latest`](https://hub.docker.com/r/startx/fedora) | Fedora core rawhide | 5.1.4  |
 | [`startx/fedora:34`](https://hub.docker.com/r/startx/fedora)     | Fedora core 34      | 5.1.4  |
-| [`startx/fedora:33`](https://hub.docker.com/r/startx/fedora)     | Fedora core 33      | 5.0.17 |
+| [`startx/fedora:33`](https://hub.docker.com/r/startx/fedora)     | Fedora core 33      | 5.1.4  |
 | [`startx/fedora:32`](https://hub.docker.com/r/startx/fedora)     | Fedora core 32      | 5.0.17 |
 | [`startx/fedora:31`](https://hub.docker.com/r/startx/fedora)     | Fedora core 31      | 5.0.11 |
 | [`startx/fedora:30`](https://hub.docker.com/r/startx/fedora)     | Fedora core 30      | 5.0.11 |

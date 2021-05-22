@@ -14,7 +14,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | --------------------------------------------------------------------------- | ------------------- | ------- |
 | [`startx/vdi-firefox:latest`](https://hub.docker.com/r/startx/vdi-firefox)  | Fedora core rawhide | 88.0    |
 | [`startx/vdi-firefox:fc34`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 34      | 88.0.1  |
-| [`startx/vdi-firefox:fc33`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 33      |         |
+| [`startx/vdi-firefox:fc33`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 33      | 88.0.1  |
 | [`startx/vdi-firefox:fc32`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 32      |         |
 | [`startx/vdi-firefox:fc31`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 31      |         |
 | [`startx/vdi-firefox:fc30`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 30      |         |

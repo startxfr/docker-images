@@ -14,7 +14,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | ------------------------------------------------------------------------- | ------------------- | ------------- |
 | [`startx/vdi-chrome:latest`](https://hub.docker.com/r/startx/vdi-chrome)  | Fedora core rawhide | 90.0.4430.212 |
 | [`startx/vdi-chrome:fc34`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 34      | 90.0.4430.212 |
-| [`startx/vdi-chrome:fc33`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 33      |               |
+| [`startx/vdi-chrome:fc33`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 33      | 90.0.4430.212 |
 | [`startx/vdi-chrome:fc32`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 32      |               |
 | [`startx/vdi-chrome:fc31`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 31      |               |
 | [`startx/vdi-chrome:fc30`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 30      |               |
