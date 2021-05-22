@@ -51,7 +51,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/sv-nodejs:22`](https://hub.docker.com/r/startx/sv-nodejs)      | Fedora core 22      |         |         |
 | [`startx/sv-nodejs:21`](https://hub.docker.com/r/startx/sv-nodejs)      | Fedora core 21      |         |         |
 | [`startx/sv-nodejs:20`](https://hub.docker.com/r/startx/sv-nodejs)      | Fedora core 20      |         |         |
-| [`startx/sv-nodejs:centos8`](https://hub.docker.com/r/startx/sv-nodejs) | Centos 8            |         |         |
+| [`startx/sv-nodejs:centos8`](https://hub.docker.com/r/startx/sv-nodejs) | Centos 8            | 10.24.0 | 6.14.11 |
 | [`startx/sv-nodejs:centos7`](https://hub.docker.com/r/startx/sv-nodejs) | Centos 7            |         |         |
 | [`startx/sv-nodejs:centos6`](https://hub.docker.com/r/startx/sv-nodejs) | Centos 6            |         |         |
 | [`startx/sv-nodejs:ubi8`](https://hub.docker.com/r/startx/sv-nodejs)    | RedHat UBI 8        |         |         |

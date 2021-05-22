@@ -9,23 +9,23 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-| Docker Hub repository                                                       | Content             | Make |
-| --------------------------------------------------------------------------- | ------------------- | ---- |
-| [`startx/runner-bash:latest`](https://hub.docker.com/r/startx/runner-bash)  | Fedora core rawhide | 4.3  |
-| [`startx/runner-bash:34`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 34      | 4.3  |
-| [`startx/runner-bash:33`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 33      | 4.3  |
-| [`startx/runner-bash:32`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 32      |      |
-| [`startx/runner-bash:31`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 31      |      |
-| [`startx/runner-bash:30`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 30      |      |
-| [`startx/runner-bash:29`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 29      |      |
-| [`startx/runner-bash:28`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 28      |      |
-| [`startx/runner-bash:27`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 27      |      |
-| [`startx/runner-bash:26`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 26      |      |
-| [`startx/runner-bash:centos8`](https://hub.docker.com/r/startx/runner-bash) | Centos 8            |      |
-| [`startx/runner-bash:centos7`](https://hub.docker.com/r/startx/runner-bash) | Centos 7            |      |
-| [`startx/runner-bash:centos6`](https://hub.docker.com/r/startx/runner-bash) | Centos 6            |      |
-| [`startx/runner-bash:ubi8`](https://hub.docker.com/r/startx/runner-bash)    | RedHat UBI 8        |      |
-| [`startx/runner-bash:alpine3`](https://hub.docker.com/r/startx/runner-bash) | Alpine 3.12         |      |
+| Docker Hub repository                                                       | Content             | Make   |
+| --------------------------------------------------------------------------- | ------------------- | ------ |
+| [`startx/runner-bash:latest`](https://hub.docker.com/r/startx/runner-bash)  | Fedora core rawhide | 4.3    |
+| [`startx/runner-bash:34`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 34      | 4.3    |
+| [`startx/runner-bash:33`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 33      | 4.3    |
+| [`startx/runner-bash:32`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 32      |        |
+| [`startx/runner-bash:31`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 31      |        |
+| [`startx/runner-bash:30`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 30      |        |
+| [`startx/runner-bash:29`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 29      |        |
+| [`startx/runner-bash:28`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 28      |        |
+| [`startx/runner-bash:27`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 27      |        |
+| [`startx/runner-bash:26`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 26      |        |
+| [`startx/runner-bash:centos8`](https://hub.docker.com/r/startx/runner-bash) | Centos 8            | 4.4.19 |
+| [`startx/runner-bash:centos7`](https://hub.docker.com/r/startx/runner-bash) | Centos 7            |        |
+| [`startx/runner-bash:centos6`](https://hub.docker.com/r/startx/runner-bash) | Centos 6            |        |
+| [`startx/runner-bash:ubi8`](https://hub.docker.com/r/startx/runner-bash)    | RedHat UBI 8        |        |
+| [`startx/runner-bash:alpine3`](https://hub.docker.com/r/startx/runner-bash) | Alpine 3.12         |        |
 
 ## Running from dockerhub registry
 
