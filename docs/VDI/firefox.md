@@ -1,6 +1,6 @@
 [![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-# Docker OS Images : Firefox
+# Image Firefox
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/VDI/firefox/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/vdi-firefox.svg)](https://hub.docker.com/r/startx/vdi-firefox) [![Docker firefox pulls](https://img.shields.io/docker/pulls/startx/vdi-firefox)](https://hub.docker.com/r/startx/vdi-firefox) [![Docker Repository on Quay](https://quay.io/repository/startx/firefox/status "Docker Repository on Quay")](https://quay.io/repository/startx/firefox)
 
