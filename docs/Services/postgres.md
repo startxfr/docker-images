@@ -1,6 +1,6 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : POSTGRESQL
+# Image POSTGRESQL
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/postgres/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-postgres.svg)](https://hub.docker.com/r/startx/sv-postgres) [![Docker postgres pulls](https://img.shields.io/docker/pulls/startx/sv-postgres)](https://hub.docker.com/r/startx/sv-postgres) [![Docker Repository on Quay](https://quay.io/repository/startx/postgres/status "Docker Repository on Quay")](https://quay.io/repository/startx/postgres)
 
