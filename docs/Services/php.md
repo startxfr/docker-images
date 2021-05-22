@@ -38,7 +38,7 @@ See more applications builders and sample on [startx docker images repository](h
 
 | Docker Hub repository                                             | Content             | PHP    | apache |
 | ----------------------------------------------------------------- | ------------------- | ------ | ------ |
-| [`startx/sv-php:latest`](https://hub.docker.com/r/startx/sv-php)  | Fedora core rawhide |        |        |
+| [`startx/sv-php:latest`](https://hub.docker.com/r/startx/sv-php)  | Fedora core rawhide | 8.0.7  | 2.4.46 |
 | [`startx/sv-php:34`](https://hub.docker.com/r/startx/sv-php)      | Fedora core 34      |        |        |
 | [`startx/sv-php:33`](https://hub.docker.com/r/startx/sv-php)      | Fedora core 33      | 7.4.19 | 2.4.46 |
 | [`startx/sv-php:32`](https://hub.docker.com/r/startx/sv-php)      | Fedora core 32      | 7.3.8  | 2.4.39 |
