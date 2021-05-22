@@ -10,19 +10,19 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-| Docker Hub repository                                                       | Content             | Firefox       |
-| --------------------------------------------------------------------------- | ------------------- | ------------- |
-| [`startx/vdi-firefox:latest`](https://hub.docker.com/r/startx/vdi-firefox)  | Fedora core rawhide | 88.0          |
-| [`startx/vdi-firefox:fc34`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 34      | 88.0.1        |
-| [`startx/vdi-firefox:fc33`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 33      | 88.0.1        |
-| [`startx/vdi-firefox:fc32`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 32      | 50.0.2661.102 |
-| [`startx/vdi-firefox:fc31`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 31      | 50.0.2661.102 |
-| [`startx/vdi-firefox:fc30`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 30      | 50.0.2661.102 |
-| [`startx/vdi-firefox:fc29`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 29      | 50.0.2661.102 |
-| [`startx/vdi-firefox:fc28`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 28      | 50.0.2661.102 |
-| [`startx/vdi-firefox:centos8`](https://hub.docker.com/r/startx/vdi-firefox) | Centos 8            |               |
-| [`startx/vdi-firefox:centos7`](https://hub.docker.com/r/startx/vdi-firefox) | Centos 7            |               |
-| [`startx/vdi-firefox:alpine3`](https://hub.docker.com/r/startx/vdi-firefox) | Alpine 3.12         | 50.0.2661.102 |
+| Docker Hub repository                                                       | Content             | Firefox |
+| --------------------------------------------------------------------------- | ------------------- | ------- |
+| [`startx/vdi-firefox:latest`](https://hub.docker.com/r/startx/vdi-firefox)  | Fedora core rawhide | 88.0    |
+| [`startx/vdi-firefox:fc34`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 34      | 88.0.1  |
+| [`startx/vdi-firefox:fc33`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 33      | 88.0.1  |
+| [`startx/vdi-firefox:fc32`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 32      |         |
+| [`startx/vdi-firefox:fc31`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 31      |         |
+| [`startx/vdi-firefox:fc30`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 30      |         |
+| [`startx/vdi-firefox:fc29`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 29      |         |
+| [`startx/vdi-firefox:fc28`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 28      |         |
+| [`startx/vdi-firefox:centos8`](https://hub.docker.com/r/startx/vdi-firefox) | Centos 8            |         |
+| [`startx/vdi-firefox:centos7`](https://hub.docker.com/r/startx/vdi-firefox) | Centos 7            |         |
+| [`startx/vdi-firefox:alpine3`](https://hub.docker.com/r/startx/vdi-firefox) | Alpine 3.12         |         |
 
 ## Running from dockerhub registry
 
