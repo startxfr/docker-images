@@ -3,7 +3,7 @@
 # Docker OS Images : CentOS 8
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startx-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/centos8/OS/)
-[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos8)](https://travis-ci.org/startxfr/docker-images) [![Docker apache pulls](https://img.shields.io/docker/pulls/startx/centos)](https://hub.docker.com/r/startx/centos) [![Docker Repository on Quay](https://quay.io/repository/startx/apache/status "Docker Repository on Quay")](https://quay.io/repository/startx/apache)
+[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos8)](https://travis-ci.org/startxfr/docker-images) [![Docker centos pulls](https://img.shields.io/docker/pulls/startx/centos)](https://hub.docker.com/r/startx/centos) [![Docker Repository on Quay](https://quay.io/repository/startx/centos/status "Docker Repository on Quay")](https://quay.io/repository/startx/centos)
 
 Startx centos is a basic container used for all startx services and applications published in
 [Dockerhub registry](https://hub.docker.com/u/startx) or [Quay registry](https://quay.io/repository/startx).
