@@ -35,6 +35,7 @@ LABEL name="$SX_ID" \
 USER root
 
 COPY sx /tmp/
+COPY centos.repo /etc/yum.repos.d/CentOS-Base.repo
 RUN echo "keepcache=0" >> /etc/yum.conf && \
     yum install -y -q  --nogpgcheck \
     yum-utils \
