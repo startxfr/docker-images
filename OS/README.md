@@ -1,11 +1,11 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/alpine/travis/logo-small.svg?sanitize=true">
 
-# Docker OS Images : alpine 3.12
+# Alpine container image
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startx-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/OS/)
 [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Docker alpine pulls](https://img.shields.io/docker/pulls/startx/alpine)](https://hub.docker.com/r/startx/alpine) [![Docker Repository on Quay](https://quay.io/repository/startx/alpine/status "Docker Repository on Quay")](https://quay.io/repository/startx/alpine)
 
-Startx alpine is a basic container used for all startx services and applications published in
+Startx alpine container image is a basic image used for all startx services and applications published in
 [Dockerhub registry](https://hub.docker.com/u/startx) or [Quay registry](https://quay.io/repository/startx).
 
 You can use [Startx alpine container image](https://docker-images.readthedocs.io/en/latest/OS/alpine) in many ways :
