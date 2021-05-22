@@ -37,8 +37,8 @@ See more applications builders and sample on [startx docker images repository](h
 
 | Docker Hub repository                                                   | Content             | Node    | NPM     |
 | ----------------------------------------------------------------------- | ------------------- | ------- | ------- |
-| [`startx/sv-nodejs:latest`](https://hub.docker.com/r/startx/sv-nodejs)  | Fedora core rawhide | 14.16.1 | 6.14.12 |
-| [`startx/sv-nodejs:34`](https://hub.docker.com/r/startx/sv-nodejs)      | Fedora core 34      | 14.16.1 | 6.14.12 |
+| [`startx/sv-nodejs:latest`](https://hub.docker.com/r/startx/sv-nodejs)  | Fedora core rawhide | 14.17.0 | 6.14.13 |
+| [`startx/sv-nodejs:34`](https://hub.docker.com/r/startx/sv-nodejs)      | Fedora core 34      | 14.17.0 | 6.14.13 |
 | [`startx/sv-nodejs:33`](https://hub.docker.com/r/startx/sv-nodejs)      | Fedora core 33      | 14.16.1 | 6.14.12 |
 | [`startx/sv-nodejs:32`](https://hub.docker.com/r/startx/sv-nodejs)      | Fedora core 32      |         |         |
 | [`startx/sv-nodejs:31`](https://hub.docker.com/r/startx/sv-nodejs)      | Fedora core 31      |         |         |
@@ -54,7 +54,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/sv-nodejs:centos8`](https://hub.docker.com/r/startx/sv-nodejs) | Centos 8            | 10.24.0 | 6.14.11 |
 | [`startx/sv-nodejs:centos7`](https://hub.docker.com/r/startx/sv-nodejs) | Centos 7            |         |         |
 | [`startx/sv-nodejs:centos6`](https://hub.docker.com/r/startx/sv-nodejs) | Centos 6            |         |         |
-| [`startx/sv-nodejs:ubi8`](https://hub.docker.com/r/startx/sv-nodejs)    | RedHat UBI 8        |         |         |
+| [`startx/sv-nodejs:ubi8`](https://hub.docker.com/r/startx/sv-nodejs)    | RedHat UBI 8        | 10.24.0 | 6.14.11 |
 | [`startx/sv-nodejs:alpine3`](https://hub.docker.com/r/startx/sv-nodejs) | Alpine 3.12         |         |         |
 
 ## Running this image

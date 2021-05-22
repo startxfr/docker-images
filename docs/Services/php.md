@@ -38,8 +38,8 @@ See more applications builders and sample on [startx docker images repository](h
 
 | Docker Hub repository                                             | Content             | PHP    | apache |
 | ----------------------------------------------------------------- | ------------------- | ------ | ------ |
-| [`startx/sv-php:latest`](https://hub.docker.com/r/startx/sv-php)  | Fedora core rawhide |        |        |
-| [`startx/sv-php:34`](https://hub.docker.com/r/startx/sv-php)      | Fedora core 34      |        |        |
+| [`startx/sv-php:latest`](https://hub.docker.com/r/startx/sv-php)  | Fedora core rawhide | 8.0.7  | 2.4.46 |
+| [`startx/sv-php:34`](https://hub.docker.com/r/startx/sv-php)      | Fedora core 34      | 7.4.19 | 2.4.46 |
 | [`startx/sv-php:33`](https://hub.docker.com/r/startx/sv-php)      | Fedora core 33      | 7.4.19 | 2.4.46 |
 | [`startx/sv-php:32`](https://hub.docker.com/r/startx/sv-php)      | Fedora core 32      | 7.3.8  | 2.4.39 |
 | [`startx/sv-php:31`](https://hub.docker.com/r/startx/sv-php)      | Fedora core 31      | 7.3.8  | 2.4.39 |
@@ -55,7 +55,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/sv-php:centos8`](https://hub.docker.com/r/startx/sv-php) | Centos 8            | 7.2.24 | 2.4.37 |
 | [`startx/sv-php:centos7`](https://hub.docker.com/r/startx/sv-php) | Centos 7            |        |        |
 | [`startx/sv-php:centos6`](https://hub.docker.com/r/startx/sv-php) | Centos 6            |        |        |
-| [`startx/sv-php:ubi8`](https://hub.docker.com/r/startx/sv-php)    | RedHat UBI 8        |        |        |
+| [`startx/sv-php:ubi8`](https://hub.docker.com/r/startx/sv-php)    | RedHat UBI 8        | 7.2.24 | 2.4.37 |
 | [`startx/sv-php:alpine3`](https://hub.docker.com/r/startx/sv-php) | Alpine 3.12         |        |        |
 
 ## Running this image

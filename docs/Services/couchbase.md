@@ -59,7 +59,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/sv-couchbase:26`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 26      | 2.4.17     |
 | [`startx/sv-couchbase:centos8`](https://hub.docker.com/r/startx/sv-couchbase) | Centos 8            | 6.5.1-6299 |
 | [`startx/sv-couchbase:centos7`](https://hub.docker.com/r/startx/sv-couchbase) | Centos 7            | 6.0.0      |
-| [`startx/sv-couchbase:ubi8`](https://hub.docker.com/r/startx/sv-couchbase)    | RedHat UBI 8        | 6.0.0      |
+| [`startx/sv-couchbase:ubi8`](https://hub.docker.com/r/startx/sv-couchbase)    | RedHat UBI 8        | 6.6.2-9588 |
 
 ## Running this image
 
