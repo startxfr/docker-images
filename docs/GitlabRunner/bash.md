@@ -12,8 +12,8 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | Docker Hub repository                                                       | Content             | Bash  | Make |
 | --------------------------------------------------------------------------- | ------------------- | ----- | ---- |
 | [`startx/runner-bash:latest`](https://hub.docker.com/r/startx/runner-bash)  | Fedora core rawhide | 5.1.4 | 4.3  |
-| [`startx/runner-bash:34`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 34      |       | 4.3  |
-| [`startx/runner-bash:33`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 33      |       | 4.3  |
+| [`startx/runner-bash:34`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 34      | 5.1.4 | 4.3  |
+| [`startx/runner-bash:33`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 33      | 5.1.0 | 4.3  |
 | [`startx/runner-bash:32`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 32      |       |      |
 | [`startx/runner-bash:31`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 31      |       |      |
 | [`startx/runner-bash:30`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 30      |       |      |

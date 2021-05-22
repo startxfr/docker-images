@@ -26,7 +26,7 @@ See more applications builders and sample on [startx docker images repository](h
 | Docker Hub repository                                                           | Content             | Apache | Make |
 | ------------------------------------------------------------------------------- | ------------------- | ------ | ---- |
 | [`startx/runner-apache:latest`](https://hub.docker.com/r/startx/runner-apache)  | Fedora core rawhide | 2.4.46 | 4.3  |
-| [`startx/runner-apache:34`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 34      | 2.4.46 |      |
+| [`startx/runner-apache:34`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 34      | 2.4.46 | 4.3     |
 | [`startx/runner-apache:33`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 33      | 2.4.46 |      |
 | [`startx/runner-apache:32`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 32      | 2.4.39 |      |
 | [`startx/runner-apache:31`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 31      | 2.4.39 |      |
