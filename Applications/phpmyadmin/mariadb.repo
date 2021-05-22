@@ -1,0 +1,7 @@
+# MariaDB 10.4 CentOS repository list - created 2019-07-28 22:35 UTC
+# https://mariadb.com/kb/en/library/yum/#using-the-mariadb-repository-configuration-tool
+[mariadb]
+name = MariaDB
+baseurl = http://yum.mariadb.org/10.4/centos8-amd64
+gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgcheck=1

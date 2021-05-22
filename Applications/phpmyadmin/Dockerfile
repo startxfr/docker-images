@@ -26,9 +26,13 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf upgrade -yq --refresh && \
-    dnf install -yq --nogpgcheck \
-    mysql && \
+COPY mariadb.repo centos.repo /etc/yum.repos.d/
+RUN rpm --import https://yum.mariadb.org/RPM-GPG-KEY-MariaDB && \
+    dnf upgrade -yq --refresh --nobest && \
+    dnf install -yq --nogpgcheck boost boost-devel \
+    dnf install -yq --nogpgcheck --skip-broken \
+        MariaDB-client \
+        MariaDB-common && \
     dnf clean all --enablerepo=\* && \
     cd $APP_PATH && \
     wget -q https://files.phpmyadmin.net/phpMyAdmin/4.8.0.1/phpMyAdmin-4.8.0.1-all-languages.zip && \
