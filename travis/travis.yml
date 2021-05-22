@@ -21,7 +21,6 @@ script:
   - "./travis/test    OS                                  alpine         3      alpine"
   - "./travis/test    OS                                  alpine         latest alpine"
   - "./travis/testPublish        Services/apache          sv-apache      alpine3 apache"
-  - "./travis/testPublish        Services/couchbase       sv-couchbase   alpine3 couchbase"
   - "./travis/testPublish        Services/mariadb         sv-mariadb     alpine3 mariadb"
   - "./travis/testPublish        Services/memcache        sv-memcache    alpine3 memcache"
   - "./travis/testPublish        Services/mongo           sv-mongo       alpine3 mongo"
