@@ -34,27 +34,27 @@ COPY php-fpm.conf /etc/php-fpm.d/www.conf
 COPY sx /tmp/
 COPY index.php $APP_PATH/index.php
 RUN dnf upgrade -yq --refresh && \
+    dnf install -yq https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm && \
+    dnf install -yq https://rpms.remirepo.net/enterprise/remi-release-8.rpm && \
+    dnf install -yq 'dnf-command(config-manager)' && \
+    dnf config-manager --set-enabled remi && \
+    dnf config-manager --set-enabled epel && \
     dnf install -yq --nogpgcheck \
     php \
     php-cli \
     php-pear \
     php-gd \
-    php-mcrypt \
     php-mysqlnd \
     php-soap \
     php-pdo \
     php-process \
     php-common \
     php-mbstring \
-    php-bcmath \
-    php-php-gettext \
-    php-tcpdf \
-    php-tcpdf-dejavu-sans-fonts \
-    php-tidy && \
+    php-bcmath && \
     dnf clean all --enablerepo=\* && \
-    mv /tmp/s2i/bin/* /s2i/ && \
-    mv /tmp/sx/bin/* /bin/ && \
-    mv /tmp/sx/lib/* $SX_LIBDIR/ && \
+    mv -f /tmp/s2i/bin/* /s2i/ && \
+    mv -f /tmp/sx/bin/* /bin/ && \
+    mv -f /tmp/sx/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/sx /tmp/s2i && \
     chmod ug+r $HTTPDCONF && \
     mkdir -p $APP_PATH $LOG_PATH /run/php-fpm /var/lib/php $SX_PHPSESS_PATH && \

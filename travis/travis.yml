@@ -36,8 +36,6 @@ script:
   - "./travis/testPublish        GitlabRunner/nodejs      runner-nodejs  ubi8 runner-nodejs"
   - "./travis/testPublish        GitlabRunner/php         runner-php     ubi8 runner-php"
   - "./travis/testPublish        GitlabRunner/oc          runner-oc      ubi8 runner-oc"
-  - "./travis/testPublish        VDI/chrome               vdi-chrome     ubi8 chrome"
-  - "./travis/testPublish        VDI/firefox              vdi-firefox    ubi8 firefox"
   - "./travis/testPublish        Applications/phpmyadmin  app-phpmyadmin ubi8 phpmyadmin"
 after_success:
   - "./travis/finish-end true"
