@@ -1,6 +1,6 @@
 [![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
 
-# Docker OS Images : Chrome
+# Image Chrome
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/VDI/chrome/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/vdi-chrome.svg)](https://hub.docker.com/r/startx/vdi-chrome) [![Docker chrome pulls](https://img.shields.io/docker/pulls/startx/vdi-chrome)](https://hub.docker.com/r/startx/vdi-chrome) [![Docker Repository on Quay](https://quay.io/repository/startx/chrome/status "Docker Repository on Quay")](https://quay.io/repository/startx/chrome)
 
