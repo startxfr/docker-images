@@ -34,6 +34,8 @@ script:
   - "./travis/testPublish        GitlabRunner/nodejs      runner-nodejs  centos6 runner-nodejs"
   - "./travis/testPublish        GitlabRunner/php         runner-php     centos6 runner-php"
   - "./travis/testPublish        GitlabRunner/oc          runner-oc      centos6 runner-oc"
+  - "./travis/testPublish        VDI/chrome               vdi-chrome     centos6 chrome"
+  - "./travis/testPublish        VDI/firefox              vdi-firefox    centos6 firefox"
   - "./travis/testPublish        Applications/phpmyadmin  app-phpmyadmin centos6 phpmyadmin"
 after_success:
   - "./travis/finish-end true"
