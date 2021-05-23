@@ -54,7 +54,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/sv-php:20`](https://hub.docker.com/r/startx/sv-php)      | Fedora core 20      |        |        |
 | [`startx/sv-php:centos8`](https://hub.docker.com/r/startx/sv-php) | Centos 8            |        |        |
 | [`startx/sv-php:centos7`](https://hub.docker.com/r/startx/sv-php) | Centos 7            | 5.4.16 | 2.4.6  |
-| [`startx/sv-php:centos6`](https://hub.docker.com/r/startx/sv-php) | Centos 6            |        |        |
+| [`startx/sv-php:centos6`](https://hub.docker.com/r/startx/sv-php) | Centos 6            | 5.3.3  | 2.2.15 |
 | [`startx/sv-php:ubi8`](https://hub.docker.com/r/startx/sv-php)    | RedHat UBI 8        | 7.2.24 | 2.4.37 |
 | [`startx/sv-php:alpine3`](https://hub.docker.com/r/startx/sv-php) | Alpine 3.12         |        |        |
 
