@@ -105,7 +105,7 @@ docker-compose logs
 
 ### Running using Openshift
 
-- Openshift images streams
+#### Openshift images streams
 
 Openshift cluster administrator can offer this image and all its flavour to all consumers.
 You can import our [openshift images stream](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-imageStreams.yml)
@@ -121,7 +121,7 @@ oc project openshift
 oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-imageStreams.yml
 ```
 
-- Openshift builder template
+#### Openshift builder template
 
 Openshift cluster administrator can add 2 build and deploy template to their consumers.
 As an administrator, you can import our [openshift ephemeral builder template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-build.yml)
@@ -155,7 +155,7 @@ oc process -f startx-mariadb-build-persist-template \
 | oc create -f -
 ```
 
-- Openshift deploy template
+#### Openshift deploy template
 
 Openshift cluster administrator can add a deploy template to their consumers.
 As an administrator, you can import our [openshift deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-deploy.yml)

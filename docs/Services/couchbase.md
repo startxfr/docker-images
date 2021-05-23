@@ -112,7 +112,7 @@ firefox http://localhost:9201
 
 ### Running using Openshift
 
-- Openshift images streams
+#### Openshift images streams
 
 Openshift cluster administrator can offer this image and all its flavour to all consumers.
 You can import our [openshift images stream](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-imageStreams.yml)
@@ -128,7 +128,7 @@ oc project openshift
 oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-imageStreams.yml
 ```
 
-- Openshift builder template
+#### Openshift builder template
 
 Openshift cluster administrator can add a build and deploy template to their consumers.
 As an administrator, you can import our [openshift builder template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-template-build.yml)
@@ -155,7 +155,7 @@ oc process -f startx-couchbase-build-template \
 | oc create -f -
 ```
 
-- Openshift deploy template
+#### Openshift deploy template
 
 Openshift cluster administrator can add a deploy template to their consumers.
 As an administrator, you can import our [openshift deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-template-deploy.yml)
