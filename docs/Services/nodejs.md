@@ -15,7 +15,7 @@ This container contain :
 
 You can use Startx Nodejs image in many ways :
 
-- [Docker OS Images : NODEJS](#docker-os-images--nodejs)
+- [Image NODEJS](#image-nodejs)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
@@ -51,11 +51,11 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/sv-nodejs:22`](https://hub.docker.com/r/startx/sv-nodejs)      | Fedora core 22      |         |         |
 | [`startx/sv-nodejs:21`](https://hub.docker.com/r/startx/sv-nodejs)      | Fedora core 21      |         |         |
 | [`startx/sv-nodejs:20`](https://hub.docker.com/r/startx/sv-nodejs)      | Fedora core 20      |         |         |
-| [`startx/sv-nodejs:centos8`](https://hub.docker.com/r/startx/sv-nodejs) | Centos 8            |         |         |
-| [`startx/sv-nodejs:centos7`](https://hub.docker.com/r/startx/sv-nodejs) | Centos 7            |         |         |
-| [`startx/sv-nodejs:centos6`](https://hub.docker.com/r/startx/sv-nodejs) | Centos 6            |         |         |
+| [`startx/sv-nodejs:centos8`](https://hub.docker.com/r/startx/sv-nodejs) | Centos 8            | 10.24.0 | 6.14.11 |
+| [`startx/sv-nodejs:centos7`](https://hub.docker.com/r/startx/sv-nodejs) | Centos 7            | 6.17.1  | 3.10.10 |
+| [`startx/sv-nodejs:centos6`](https://hub.docker.com/r/startx/sv-nodejs) | Centos 6            | 0.10.48 | 1.3.6   |
 | [`startx/sv-nodejs:ubi8`](https://hub.docker.com/r/startx/sv-nodejs)    | RedHat UBI 8        | 10.24.0 | 6.14.11 |
-| [`startx/sv-nodejs:alpine3`](https://hub.docker.com/r/startx/sv-nodejs) | Alpine 3.12         |         |         |
+| [`startx/sv-nodejs:alpine3`](https://hub.docker.com/r/startx/sv-nodejs) | Alpine 3.12         | 12.22.1 | 6.14.12 |
 
 ## Running this image
 

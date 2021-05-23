@@ -19,12 +19,15 @@ This container contain :
 
 You can use Startx Apache image in many ways :
 
-- [Docker OS Images : APACHE](#docker-os-images--apache)
+- [Image APACHE](#image-apache)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
     - [Running using docker-compose](#running-using-docker-compose)
     - [Running using Openshift](#running-using-openshift)
+      - [Openshift images streams](#openshift-images-streams)
+      - [Openshift builder template](#openshift-builder-template)
+      - [Openshift deploy template](#openshift-deploy-template)
     - [Using this image as S2I builder](#using-this-image-as-s2i-builder)
     - [Using this image as base container](#using-this-image-as-base-container)
   - [Environment variable](#environment-variable)
@@ -57,7 +60,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/sv-apache:centos7`](https://hub.docker.com/r/startx/sv-apache) | Centos 7            | 2.4.6  |
 | [`startx/sv-apache:centos6`](https://hub.docker.com/r/startx/sv-apache) | Centos 6            | 2.2.15 |
 | [`startx/sv-apache:ubi8`](https://hub.docker.com/r/startx/sv-apache)    | RedHat UBI 8        | 2.4.37 |
-| [`startx/sv-apache:alpine3`](https://hub.docker.com/r/startx/sv-apache) | Alpine 3.12         | 2.4.43 |
+| [`startx/sv-apache:alpine3`](https://hub.docker.com/r/startx/sv-apache) | Alpine 3.12         | 2.4.46 |
 
 ## Running this image
 
@@ -109,7 +112,7 @@ firefox http://localhost:9201
 
 ### Running using Openshift
 
-- Openshift images streams
+#### Openshift images streams
 
 Openshift cluster administrator can offer this image and all its flavour to all consumers.
 You can import our [openshift images stream](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-imageStreams.yml)
@@ -125,7 +128,7 @@ oc project openshift
 oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-imageStreams.yml
 ```
 
-- Openshift builder template
+#### Openshift builder template
 
 Openshift cluster administrator can add a build and deploy template to their consumers.
 As an administrator, you can import our [openshift builder template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-build.yml)
@@ -152,7 +155,7 @@ oc process -f startx-apache-build-template \
 | oc create -f -
 ```
 
-- Openshift deploy template
+#### Openshift deploy template
 
 Openshift cluster administrator can add a deploy template to their consumers.
 As an administrator, you can import our [openshift deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/apache/openshift-template-deploy.yml)

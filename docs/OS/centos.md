@@ -17,7 +17,7 @@ This container contain :
 
 You can use Startx Apache image in many ways :
 
-- [Docker OS Images : CENTOS](#docker-os-images--centos)
+- [Image CENTOS](#image-centos)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
@@ -38,13 +38,13 @@ See more applications builders and sample on [startx docker images repository](h
 
 ## Container flavours
 
-| Docker Hub repository                                            | Distribution        | Bash   | Kernel      |
-| ---------------------------------------------------------------- | ------------------- | ------ | ----------- |
-| [`startx/centos:8`](https://hub.docker.com/r/startx/centos)      | Centos 8            | 4.4.19 |             |
-| [`startx/centos:7`](https://hub.docker.com/r/startx/centos)      | Centos 7            | 4.2.46 |             |
-| [`startx/centos:6`](https://hub.docker.com/r/startx/centos)      | Centos 6            | 4.1.2  |             |
-| [`startx/ubi:8`](https://hub.docker.com/r/startx/ubi)            | RedHat UBI 8        | 4.4.19 |             |
-| [`startx/alpine:3`](https://hub.docker.com/r/startx/alpine)      | Alpine 3.12         | 5.0.17 |             |
+| Docker Hub repository                                       | Distribution | Bash   |
+| ----------------------------------------------------------- | ------------ | ------ |
+| [`startx/centos:8`](https://hub.docker.com/r/startx/centos) | Centos 8     | 4.4.19 |
+| [`startx/centos:7`](https://hub.docker.com/r/startx/centos) | Centos 7     | 4.2.46 |
+| [`startx/centos:6`](https://hub.docker.com/r/startx/centos) | Centos 6     | 4.1.2  |
+| [`startx/ubi:8`](https://hub.docker.com/r/startx/ubi)       | RedHat UBI 8 | 4.4.19 |
+| [`startx/alpine:3`](https://hub.docker.com/r/startx/alpine) | Alpine 3.12  | 5.0.17 |
 
 ## Running this image
 

@@ -16,7 +16,7 @@ This container contain :
 
 You can use Startx Apache image in many ways :
 
-- [Docker gitlab runner : PHP](#docker-gitlab-runner--php)
+- [Image runner-PHP](#image-runner-php)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
@@ -44,7 +44,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/runner-nodejs:27`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 27      | 5.6.16 | 2.4.17 |
 | [`startx/runner-nodejs:centos8`](https://hub.docker.com/r/startx/runner-nodejs) | Centos 8            |        |
 | [`startx/runner-nodejs:centos7`](https://hub.docker.com/r/startx/runner-nodejs) | Centos 7            |        |
-| [`startx/runner-nodejs:centos6`](https://hub.docker.com/r/startx/runner-nodejs) | Centos 6            |        |
+| [`startx/runner-nodejs:centos6`](https://hub.docker.com/r/startx/runner-nodejs) | Centos 6            | 5.3.3  | 2.2.15 |
 | [`startx/runner-nodejs:ubi8`](https://hub.docker.com/r/startx/runner-nodejs)    | RedHat UBI 8        |        |
 | [`startx/runner-nodejs:alpine3`](https://hub.docker.com/r/startx/runner-nodejs) | Alpine 3.12         | 7.2.5  | 2.4.33 |
 
