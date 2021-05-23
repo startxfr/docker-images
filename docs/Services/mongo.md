@@ -30,7 +30,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | [`startx/sv-mongo:centos7`](https://hub.docker.com/r/startx/sv-mongo) | Centos 7            | 4.4.6   |
 | [`startx/sv-mongo:centos6`](https://hub.docker.com/r/startx/sv-mongo) | Centos 6            | 2.4.14  |
 | [`startx/sv-mongo:ubi8`](https://hub.docker.com/r/startx/sv-mongo)    | RedHat UBI 8        | 4.4.6   |
-| [`startx/sv-mongo:alpine3`](https://hub.docker.com/r/startx/sv-mongo) | Alpine 3.12         | 4.1     |
+| [`startx/sv-mongo:alpine3`](https://hub.docker.com/r/startx/sv-mongo) | Alpine 3.12         | 4.0.5   |
 
 ## Running from dockerhub registry
 

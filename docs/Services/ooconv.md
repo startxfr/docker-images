@@ -30,7 +30,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | [`startx/sv-ooconv:centos7`](https://hub.docker.com/r/startx/sv-ooconv) | Centos 7            | 5.3         | 0.7     |
 | [`startx/sv-ooconv:centos6`](https://hub.docker.com/r/startx/sv-ooconv) | Centos 6            |             |         |
 | [`startx/sv-ooconv:ubi8`](https://hub.docker.com/r/startx/sv-ooconv)    | RedHat UBI 8        |             | 0.7     |
-| [`startx/sv-ooconv:alpine3`](https://hub.docker.com/r/startx/sv-ooconv) | Alpine 3.12         | 5.4.5.1     | 0.8     |
+| [`startx/sv-ooconv:alpine3`](https://hub.docker.com/r/startx/sv-ooconv) | Alpine 3.12         | 6.2.7.1     | 0.8     |
 
 ## Running from dockerhub registry
 

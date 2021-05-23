@@ -46,7 +46,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/runner-nodejs:centos7`](https://hub.docker.com/r/startx/runner-nodejs) | Centos 7            | 3.10.10 | 6.17.1  | 3.82  |
 | [`startx/runner-nodejs:centos6`](https://hub.docker.com/r/startx/runner-nodejs) | Centos 6            | 0.10.48 | 1.3.6   | 3.81  |
 | [`startx/runner-nodejs:ubi8`](https://hub.docker.com/r/startx/runner-nodejs)    | RedHat UBI 8        |         |         |       |
-| [`startx/runner-nodejs:alpine3`](https://hub.docker.com/r/startx/runner-nodejs) | Alpine 3.12         | 8.11.1  |         |       |
+| [`startx/runner-nodejs:alpine3`](https://hub.docker.com/r/startx/runner-nodejs) | Alpine 3.12         | 12.22.1 | 6.14.12 | 4.3   |
 
 ## Running this image
 

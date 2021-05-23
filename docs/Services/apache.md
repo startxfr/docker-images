@@ -60,7 +60,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/sv-apache:centos7`](https://hub.docker.com/r/startx/sv-apache) | Centos 7            | 2.4.6  |
 | [`startx/sv-apache:centos6`](https://hub.docker.com/r/startx/sv-apache) | Centos 6            | 2.2.15 |
 | [`startx/sv-apache:ubi8`](https://hub.docker.com/r/startx/sv-apache)    | RedHat UBI 8        | 2.4.37 |
-| [`startx/sv-apache:alpine3`](https://hub.docker.com/r/startx/sv-apache) | Alpine 3.12         | 2.4.43 |
+| [`startx/sv-apache:alpine3`](https://hub.docker.com/r/startx/sv-apache) | Alpine 3.12         | 2.4.46 |
 
 ## Running this image
 
