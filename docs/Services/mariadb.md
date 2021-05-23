@@ -19,12 +19,15 @@ This container contain :
 
 You can use Startx mariadb image in many ways :
 
-- [Docker OS Images : MARIADB](#docker-os-images--mariadb)
+- [Image MARIADB](#image-mariadb)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
     - [Running using docker-compose](#running-using-docker-compose)
     - [Running using Openshift](#running-using-openshift)
+      - [Openshift images streams](#openshift-images-streams)
+      - [Openshift builder template](#openshift-builder-template)
+      - [Openshift deploy template](#openshift-deploy-template)
     - [Using this image as S2I builder](#using-this-image-as-s2i-builder)
     - [Using this image as base container](#using-this-image-as-base-container)
   - [Environment variable](#environment-variable)
@@ -52,7 +55,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/sv-mariadb:23`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 23      | 10.0.21 | 15.1   |
 | [`startx/sv-mariadb:22`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 22      | 10.0.21 | 15.1   |
 | [`startx/sv-mariadb:centos8`](https://hub.docker.com/r/startx/sv-mariadb) | Centos 8            |         | 15.1   |
-| [`startx/sv-mariadb:centos7`](https://hub.docker.com/r/startx/sv-mariadb) | Centos 7            | 10.4.7  | 15.1   |
+| [`startx/sv-mariadb:centos7`](https://hub.docker.com/r/startx/sv-mariadb) | Centos 7            | 10.4.19 | 15.1   |
 | [`startx/sv-mariadb:centos6`](https://hub.docker.com/r/startx/sv-mariadb) | Centos 6            | 10.0.38 | 15.1   |
 | [`startx/sv-mariadb:ubi8`](https://hub.docker.com/r/startx/sv-mariadb)    | RedHat UBI 8        | 10.4.19 | 15.1   |
 | [`startx/sv-mariadb:alpine3`](https://hub.docker.com/r/startx/sv-mariadb) | Alpine 3.12         | 10.4.13 | 15.1   |

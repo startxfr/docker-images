@@ -15,7 +15,7 @@ This container contain :
 
 You can use Startx Nodejs image in many ways :
 
-- [Docker gitlab runner : NodeJS](#docker-gitlab-runner--nodejs)
+- [Image runner-NodeJS](#image-runner-nodejs)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
@@ -43,7 +43,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/runner-nodejs:27`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 27      | 0.10.36 |         |      |
 | [`startx/runner-nodejs:26`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 26      |         |         |      |
 | [`startx/runner-nodejs:centos8`](https://hub.docker.com/r/startx/runner-nodejs) | Centos 8            |         |         |      |
-| [`startx/runner-nodejs:centos7`](https://hub.docker.com/r/startx/runner-nodejs) | Centos 7            |         |         |      |
+| [`startx/runner-nodejs:centos7`](https://hub.docker.com/r/startx/runner-nodejs) | Centos 7            | 3.10.10 | 6.17.1  | 3.82 |
 | [`startx/runner-nodejs:centos6`](https://hub.docker.com/r/startx/runner-nodejs) | Centos 6            |         |         |      |
 | [`startx/runner-nodejs:ubi8`](https://hub.docker.com/r/startx/runner-nodejs)    | RedHat UBI 8        |         |         |      |
 | [`startx/runner-nodejs:alpine3`](https://hub.docker.com/r/startx/runner-nodejs) | Alpine 3.12         | 8.11.1  |         |      |

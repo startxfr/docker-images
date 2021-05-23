@@ -23,12 +23,15 @@ This container contain :
 
 You can use Startx couchbase image in many ways :
 
-- [Docker OS Images : COUCHBASE](#docker-os-images--couchbase)
+- [Image COUCHBASE](#image-couchbase)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
     - [Running using docker-compose](#running-using-docker-compose)
     - [Running using Openshift](#running-using-openshift)
+      - [Openshift images streams](#openshift-images-streams)
+      - [Openshift builder template](#openshift-builder-template)
+      - [Openshift deploy template](#openshift-deploy-template)
     - [Using this image as S2I builder](#using-this-image-as-s2i-builder)
   - [Docker-compose in various situations](#docker-compose-in-various-situations)
     - [Using this image as base container](#using-this-image-as-base-container)
@@ -58,7 +61,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/sv-couchbase:27`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 27      | 4.5.0      |
 | [`startx/sv-couchbase:26`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 26      | 2.4.17     |
 | [`startx/sv-couchbase:centos8`](https://hub.docker.com/r/startx/sv-couchbase) | Centos 8            | 6.0.0      |
-| [`startx/sv-couchbase:centos7`](https://hub.docker.com/r/startx/sv-couchbase) | Centos 7            | 6.0.0      |
+| [`startx/sv-couchbase:centos7`](https://hub.docker.com/r/startx/sv-couchbase) | Centos 7            | 6.0.5-3340 |
 | [`startx/sv-couchbase:ubi8`](https://hub.docker.com/r/startx/sv-couchbase)    | RedHat UBI 8        | 6.6.2-9588 |
 
 ## Running this image

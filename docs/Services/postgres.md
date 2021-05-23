@@ -15,7 +15,7 @@ This container contain :
 
 You can use Startx Postgresql image in many ways :
 
-- [Docker OS Images : POSTGRESQL](#docker-os-images--postgresql)
+- [Image POSTGRESQL](#image-postgresql)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
@@ -52,7 +52,7 @@ See more databases builders and sample on [startx docker images repository](http
 | [`startx/sv-postgres:21`](https://hub.docker.com/r/startx/sv-postgres)      | Fedora core 21      |          |
 | [`startx/sv-postgres:20`](https://hub.docker.com/r/startx/sv-postgres)      | Fedora core 20      |          |
 | [`startx/sv-postgres:centos8`](https://hub.docker.com/r/startx/sv-postgres) | Centos 8            |          |
-| [`startx/sv-postgres:centos7`](https://hub.docker.com/r/startx/sv-postgres) | Centos 7            |          |
+| [`startx/sv-postgres:centos7`](https://hub.docker.com/r/startx/sv-postgres) | Centos 7            | 9.2.24   |
 | [`startx/sv-postgres:centos6`](https://hub.docker.com/r/startx/sv-postgres) | Centos 6            |          |
 | [`startx/sv-postgres:ubi8`](https://hub.docker.com/r/startx/sv-postgres)    | RedHat UBI 8        |          |
 | [`startx/sv-postgres:alpine3`](https://hub.docker.com/r/startx/sv-postgres) | Alpine 3.12         |          |

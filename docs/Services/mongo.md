@@ -27,7 +27,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | [`startx/sv-mongo:21`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 21      |         |
 | [`startx/sv-mongo:20`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 20      |         |
 | [`startx/sv-mongo:centos8`](https://hub.docker.com/r/startx/sv-mongo) | Centos 8            | 4.1     |
-| [`startx/sv-mongo:centos7`](https://hub.docker.com/r/startx/sv-mongo) | Centos 7            | 4.1     |
+| [`startx/sv-mongo:centos7`](https://hub.docker.com/r/startx/sv-mongo) | Centos 7            | 4.4.6   |
 | [`startx/sv-mongo:centos6`](https://hub.docker.com/r/startx/sv-mongo) | Centos 6            | 3.7     |
 | [`startx/sv-mongo:ubi8`](https://hub.docker.com/r/startx/sv-mongo)    | RedHat UBI 8        | 4.4.6   |
 | [`startx/sv-mongo:alpine3`](https://hub.docker.com/r/startx/sv-mongo) | Alpine 3.12         | 4.1     |

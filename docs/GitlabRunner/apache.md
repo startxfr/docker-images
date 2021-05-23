@@ -36,7 +36,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/runner-apache:27`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 27      | 2.4.17 |       |
 | [`startx/runner-apache:26`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 26      | 2.4.17 |       |
 | [`startx/runner-apache:centos8`](https://hub.docker.com/r/startx/runner-apache) | Centos 8            |        |       |
-| [`startx/runner-apache:centos7`](https://hub.docker.com/r/startx/runner-apache) | Centos 7            |        |       |
+| [`startx/runner-apache:centos7`](https://hub.docker.com/r/startx/runner-apache) | Centos 7            | 2.4.6  | 3.82  |
 | [`startx/runner-apache:centos6`](https://hub.docker.com/r/startx/runner-apache) | Centos 6            |        |       |
 | [`startx/runner-apache:ubi8`](https://hub.docker.com/r/startx/runner-apache)    | RedHat UBI 8        | 2.4.37 | 4.2.1 |
 | [`startx/runner-apache:alpine3`](https://hub.docker.com/r/startx/runner-apache) | Alpine 3.12         | 2.4.33 |       |
