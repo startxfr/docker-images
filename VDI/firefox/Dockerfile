@@ -33,7 +33,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY supervisord.conf $SX_FIREFOX_SUPERVISOR_CONF/
-COPY sx /tmp/
+COPY sx /tmp/ 
 RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
@@ -45,7 +45,7 @@ RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
     python3-setuptools && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     useradd -s /bin/bash -m -g 0 -u 1001 $SX_USER && \
     mkdir -p /s2i $SX_LIBDIR && \

@@ -33,28 +33,28 @@ COPY php.ini /etc/php.d/sx.ini
 COPY php-fpm.conf /etc/php-fpm.d/www.conf
 COPY sx /tmp/
 COPY index.php $APP_PATH/index.php
-RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
-    dnf upgrade -yq --refresh && \
+RUN dnf install -yq --nogpgcheck yum-utils && \
+    dnf upgrade -yq --nogpgcheck --refresh && \
     dnf install -yq --nogpgcheck \
-    php \
-    php-cli \
-    php-pear \
-    php-gd \
-    php-mcrypt \
-    php-mysqlnd \
-    php-soap \
-    php-pdo \
-    php-process \
-    php-common \
-    php-mbstring \
-    php-bcmath \
-    php-php-gettext \
-    php-tcpdf \
-    php-tcpdf-dejavu-sans-fonts \
-    php-tidy && \
+        php \
+        php-cli \
+        php-pear \
+        php-gd \
+        php-mcrypt \
+        php-mysqlnd \
+        php-soap \
+        php-pdo \
+        php-process \
+        php-common \
+        php-mbstring \
+        php-bcmath \
+        php-php-gettext \
+        php-tcpdf \
+        php-tcpdf-dejavu-sans-fonts \
+        php-tidy && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
@@ -75,6 +75,6 @@ WORKDIR $APP_PATH
 
 EXPOSE $APP_PORT
 
-VOLUME [ $SX_PHPSESS_PATH ]
+VOLUME $SX_PHPSESS_PATH
 
 CMD [ "/bin/sx-php" , "run" ]

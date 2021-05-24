@@ -31,7 +31,10 @@ RUN dnf install -yq python3-pip jq && \
     tar xzvf openshift-install-linux-$SX_OC_VERSION.tar.gz && \
     mv openshift-install /usr/bin/ && \
     rm -f openshift-install-linux-$SX_OC_VERSION.tar.gz && \
-    cd -
+    cd - && \
+    mv /tmp/bin/* /bin/ && \
+    mv /tmp/lib/* $SX_LIBDIR/ && \
+    rm -rf /tmp/bin /tmp/bin
 
 USER 1001
 

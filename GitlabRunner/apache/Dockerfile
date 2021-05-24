@@ -19,18 +19,22 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION"
 
 USER root
-RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
-    dnf upgrade -yq --refresh && \
+COPY sx /tmp/
+RUN dnf install -yq --nogpgcheck yum-utils && \
+    dnf upgrade -yq --nogpgcheck --refresh && \
     dnf install -yq --nogpgcheck \
-    make \
-    bubblewrap \
-    rsync \
-    openssh-clients \
-    sshpass && \
+        make \
+        bubblewrap \
+        rsync \
+        openssh-clients \
+        sshpass && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
-    dnf clean all --enablerepo=\*
+    dnf remove -yq --skip-broken yum-utils yum && \
+    dnf clean all --enablerepo=\* && \
+    mv /tmp/bin/* /bin/ && \
+    mv /tmp/lib/* $SX_LIBDIR/ && \
+    rm -rf /tmp/bin /tmp/bin
 
 USER 1001
 

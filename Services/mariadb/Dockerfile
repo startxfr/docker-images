@@ -35,27 +35,32 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 COPY my.cnf $MY_CONF
-RUN dnf install -yq yum-utils dnf-plugin-system-upgrade && \
-    dnf upgrade -yq --refresh && \
+RUN dnf install -yq --nogpgcheck yum-utils && \
+    dnf upgrade -yq --nogpgcheck --refresh && \
     dnf install -yq --nogpgcheck \
-    mariadb-tokudb-engine \
-    mariadb-connect-engine \
-    mariadb-rocksdb-engine \
-    mariadb-oqgraph-engine \
-    mariadb-connector-c \
-    mariadb-connector-odbc \
-    mariadb-server-utils \
-    mariadb-java-client \
-    mariadb-backup \
-    mariadb-common \
-    mariadb-errmsg \
-    mariadb-gssapi-server \
-    mariadb-cracklib-password-check \
-    glibc-langpack-fr \
-    mariadb && \
+        mariadb-connect-engine \
+        mariadb-connector-odbc \
+        mariadb-embedded \
+        mariadb-pam \
+        mariadb-rocksdb-engine \
+        mariadb-s3-engine \
+        mariadb-server \
+        mariadb-server-utils \
+        mariadb-sphinx-engine \
+        mariadb-backup \
+        mariadb-common \
+        mariadb-cracklib-password-check \
+        mariadb-errmsg \
+        mariadb-gssapi-server \
+        mariadb-server-galera \
+        mysql-selinux \
+        percona-xtrabackup \
+        python3-mysqlclient \
+        glibc-langpack-fr \
+        mariadb && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
-    dnf remove -yq --skip-broken dnf-plugin-system-upgrade yum-utils yum && \
+    dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH && \
     mv /tmp/s2i/bin/* /s2i/ && \
