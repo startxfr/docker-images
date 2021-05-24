@@ -1,12 +1,12 @@
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/centos8/travis/logo-small.svg?sanitize=true">
 
-# CentOS container image
+# STARTX CentOS container image
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startx-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/centos8/OS/)
 [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos8)](https://travis-ci.org/startxfr/docker-images) [![Docker centos pulls](https://img.shields.io/docker/pulls/startx/centos)](https://hub.docker.com/r/startx/centos) [![Docker Repository on Quay](https://quay.io/repository/startx/centos/status "Docker Repository on Quay")](https://quay.io/repository/startx/centos)
 
 Startx CentOS container image is a basic image used for all startx services and applications published in
-[Dockerhub registry](https://hub.docker.com/u/startx) or [Quay registry](https://quay.io/repository/startx).
+[Dockerhub registry](https://hub.docker.com/u/startx) or [Quay registry](https://quay.io/startx).
 
 You can use [Startx centos container image](https://docker-images.readthedocs.io/en/latest/OS/centos) in many ways :
 
@@ -15,9 +15,6 @@ You can use [Startx centos container image](https://docker-images.readthedocs.io
   - [Running using docker](https://docker-images.readthedocs.io/en/latest/OS/centos#running-using-docker)
   - [Running using docker-compose](https://docker-images.readthedocs.io/en/latest/OS/centos#running-using-docker-compose)
   - [Running using Openshift](https://docker-images.readthedocs.io/en/latest/OS/centos#running-using-openshift)
-    - [Openshift images streams](https://docker-images.readthedocs.io/en/latest/OS/centos#openshift-images-streams)
-    - [Openshift builder template](https://docker-images.readthedocs.io/en/latest/OS/centos#openshift-builder-template)
-    - [Openshift deploy template](https://docker-images.readthedocs.io/en/latest/OS/centos#openshift-deploy-template)
   - [Using this image as S2I builder](https://docker-images.readthedocs.io/en/latest/OS/centos#using-this-image-as-s2i-builder)
   - [Using this image as base container](https://docker-images.readthedocs.io/en/latest/OS/centos#using-this-image-as-base-container)
 - [Environment variable](https://docker-images.readthedocs.io/en/latest/OS/centos#environment-variable)

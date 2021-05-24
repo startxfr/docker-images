@@ -6,7 +6,7 @@ ENV SX_VERSION="centos8" \
     SX_ID="startx/runner-ansible" \
     SX_NAME="Startx Ansible gitlab runner image (centos 8)" \
     SX_SUMMARY="Startx ansible gitlab runner based on centos 8" \
-    SX_HUGO_RELEASE="0.72.0"
+    SX_HUGO_RELEASE="0.83.1"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \

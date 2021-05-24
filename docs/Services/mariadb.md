@@ -19,12 +19,15 @@ This container contain :
 
 You can use Startx mariadb image in many ways :
 
-- [Docker OS Images : MARIADB](#docker-os-images--mariadb)
+- [Image MARIADB](#image-mariadb)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
     - [Running using docker-compose](#running-using-docker-compose)
     - [Running using Openshift](#running-using-openshift)
+      - [Openshift images streams](#openshift-images-streams)
+      - [Openshift builder template](#openshift-builder-template)
+      - [Openshift deploy template](#openshift-deploy-template)
     - [Using this image as S2I builder](#using-this-image-as-s2i-builder)
     - [Using this image as base container](#using-this-image-as-base-container)
   - [Environment variable](#environment-variable)
@@ -43,7 +46,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/sv-mariadb:34`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 34      | 10.5.10 | 15.1   |
 | [`startx/sv-mariadb:33`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 33      | 10.4.19 | 15.1   |
 | [`startx/sv-mariadb:32`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 32      | 10.4.12 | 15.1   |
-| [`startx/sv-mariadb:31`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 31      | 10.3.22 | 15.1   |
+| [`startx/sv-mariadb:31`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 31      | 10.3.27 | 15.1   |
 | [`startx/sv-mariadb:30`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 30      | 10.3.21 | 15.1   |
 | [`startx/sv-mariadb:29`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 29      | 10.3.18 | 15.1   |
 | [`startx/sv-mariadb:28`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 28      | 10.2.22 | 15.1   |
@@ -52,10 +55,10 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/sv-mariadb:23`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 23      | 10.0.21 | 15.1   |
 | [`startx/sv-mariadb:22`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 22      | 10.0.21 | 15.1   |
 | [`startx/sv-mariadb:centos8`](https://hub.docker.com/r/startx/sv-mariadb) | Centos 8            | 10.3.28 | 15.1   |
-| [`startx/sv-mariadb:centos7`](https://hub.docker.com/r/startx/sv-mariadb) | Centos 7            | 10.4.7  | 15.1   |
+| [`startx/sv-mariadb:centos7`](https://hub.docker.com/r/startx/sv-mariadb) | Centos 7            | 10.4.19 | 15.1   |
 | [`startx/sv-mariadb:centos6`](https://hub.docker.com/r/startx/sv-mariadb) | Centos 6            | 10.0.38 | 15.1   |
 | [`startx/sv-mariadb:ubi8`](https://hub.docker.com/r/startx/sv-mariadb)    | RedHat UBI 8        | 10.4.19 | 15.1   |
-| [`startx/sv-mariadb:alpine3`](https://hub.docker.com/r/startx/sv-mariadb) | Alpine 3.12         | 10.4.13 | 15.1   |
+| [`startx/sv-mariadb:alpine3`](https://hub.docker.com/r/startx/sv-mariadb) | Alpine 3.12         | 10.4.18 | 15.1   |
 
 ## Running this image
 
@@ -105,7 +108,7 @@ docker-compose logs
 
 ### Running using Openshift
 
-- Openshift images streams
+#### Openshift images streams
 
 Openshift cluster administrator can offer this image and all its flavour to all consumers.
 You can import our [openshift images stream](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-imageStreams.yml)
@@ -121,7 +124,7 @@ oc project openshift
 oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-imageStreams.yml
 ```
 
-- Openshift builder template
+#### Openshift builder template
 
 Openshift cluster administrator can add 2 build and deploy template to their consumers.
 As an administrator, you can import our [openshift ephemeral builder template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-build.yml)
@@ -155,7 +158,7 @@ oc process -f startx-mariadb-build-persist-template \
 | oc create -f -
 ```
 
-- Openshift deploy template
+#### Openshift deploy template
 
 Openshift cluster administrator can add a deploy template to their consumers.
 As an administrator, you can import our [openshift deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/mariadb/openshift-template-deploy.yml)

@@ -23,12 +23,15 @@ This container contain :
 
 You can use Startx couchbase image in many ways :
 
-- [Docker OS Images : COUCHBASE](#docker-os-images--couchbase)
+- [Image COUCHBASE](#image-couchbase)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
     - [Running using docker-compose](#running-using-docker-compose)
     - [Running using Openshift](#running-using-openshift)
+      - [Openshift images streams](#openshift-images-streams)
+      - [Openshift builder template](#openshift-builder-template)
+      - [Openshift deploy template](#openshift-deploy-template)
     - [Using this image as S2I builder](#using-this-image-as-s2i-builder)
   - [Docker-compose in various situations](#docker-compose-in-various-situations)
     - [Using this image as base container](#using-this-image-as-base-container)
@@ -51,14 +54,15 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/sv-couchbase:34`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 34      | 6.6.1-9213 |
 | [`startx/sv-couchbase:33`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 33      | 6.6.0-7909 |
 | [`startx/sv-couchbase:32`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 32      | 6.0.2-2413 |
-| [`startx/sv-couchbase:31`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 31      | 6.0.2-2413 |
+| [`startx/sv-couchbase:31`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 31      | 6.6.2-9588 |
 | [`startx/sv-couchbase:30`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 30      | 6.0.0      |
 | [`startx/sv-couchbase:29`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 29      | 5.5.0-beta |
 | [`startx/sv-couchbase:28`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 28      | 4.5.0      |
 | [`startx/sv-couchbase:27`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 27      | 4.5.0      |
 | [`startx/sv-couchbase:26`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 26      | 2.4.17     |
 | [`startx/sv-couchbase:centos8`](https://hub.docker.com/r/startx/sv-couchbase) | Centos 8            | 6.5.1-6299 |
-| [`startx/sv-couchbase:centos7`](https://hub.docker.com/r/startx/sv-couchbase) | Centos 7            | 6.0.0      |
+| [`startx/sv-couchbase:centos7`](https://hub.docker.com/r/startx/sv-couchbase) | Centos 7            | 6.0.5-3340 |
+| [`startx/sv-couchbase:centos6`](https://hub.docker.com/r/startx/sv-couchbase) | Centos 6            | 5.5.0-2958 |
 | [`startx/sv-couchbase:ubi8`](https://hub.docker.com/r/startx/sv-couchbase)    | RedHat UBI 8        | 6.6.2-9588 |
 
 ## Running this image
@@ -112,7 +116,7 @@ firefox http://localhost:9201
 
 ### Running using Openshift
 
-- Openshift images streams
+#### Openshift images streams
 
 Openshift cluster administrator can offer this image and all its flavour to all consumers.
 You can import our [openshift images stream](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-imageStreams.yml)
@@ -128,7 +132,7 @@ oc project openshift
 oc create -f https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-imageStreams.yml
 ```
 
-- Openshift builder template
+#### Openshift builder template
 
 Openshift cluster administrator can add a build and deploy template to their consumers.
 As an administrator, you can import our [openshift builder template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-template-build.yml)
@@ -155,7 +159,7 @@ oc process -f startx-couchbase-build-template \
 | oc create -f -
 ```
 
-- Openshift deploy template
+#### Openshift deploy template
 
 Openshift cluster administrator can add a deploy template to their consumers.
 As an administrator, you can import our [openshift deploy template](https://raw.githubusercontent.com/startxfr/docker-images/master/Services/couchbase/openshift-template-deploy.yml)

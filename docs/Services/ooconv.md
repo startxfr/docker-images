@@ -16,7 +16,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | [`startx/sv-ooconv:34`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 34      | 7.1.3.2     | 0.7     |
 | [`startx/sv-ooconv:33`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 33      | 7.0.5.2     | 0.7     |
 | [`startx/sv-ooconv:32`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 32      | 6.2.4.2.0   | 0.7     |
-| [`startx/sv-ooconv:31`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 31      | 6.1.6.3     | 0.7     |
+| [`startx/sv-ooconv:31`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 31      | 6.3.6.2     | 0.7     |
 | [`startx/sv-ooconv:30`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 30      | 6.1.6.3     | 0.7     |
 | [`startx/sv-ooconv:29`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 29      | 6.1.6.3     | 0.7     |
 | [`startx/sv-ooconv:28`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 28      | 5.0.3.2     | 0.7     |
@@ -27,10 +27,10 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | [`startx/sv-ooconv:21`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 21      |             |         |
 | [`startx/sv-ooconv:20`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 20      |             |         |
 | [`startx/sv-ooconv:centos8`](https://hub.docker.com/r/startx/sv-ooconv) | Centos 8            | 6.3.6.2     | 0.7     |
-| [`startx/sv-ooconv:centos7`](https://hub.docker.com/r/startx/sv-ooconv) | Centos 7            |             | 0.7     |
-| [`startx/sv-ooconv:centos6`](https://hub.docker.com/r/startx/sv-ooconv) | Centos 6            |             | 0.7     |
+| [`startx/sv-ooconv:centos7`](https://hub.docker.com/r/startx/sv-ooconv) | Centos 7            | 5.3         | 0.7     |
+| [`startx/sv-ooconv:centos6`](https://hub.docker.com/r/startx/sv-ooconv) | Centos 6            | 4.3.7.2     |         |
 | [`startx/sv-ooconv:ubi8`](https://hub.docker.com/r/startx/sv-ooconv)    | RedHat UBI 8        |             | 0.7     |
-| [`startx/sv-ooconv:alpine3`](https://hub.docker.com/r/startx/sv-ooconv) | Alpine 3.12         | 5.4.5.1     | 0.8     |
+| [`startx/sv-ooconv:alpine3`](https://hub.docker.com/r/startx/sv-ooconv) | Alpine 3.12         | 6.2.7.1     | 0.8     |
 
 ## Running from dockerhub registry
 
