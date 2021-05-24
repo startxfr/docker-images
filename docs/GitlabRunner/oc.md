@@ -23,7 +23,6 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | [`startx/runner-oc:27`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 27      |         |     |
 | [`startx/runner-oc:centos8`](https://hub.docker.com/r/startx/runner-oc) | Centos 8            |         |     |
 | [`startx/runner-oc:centos7`](https://hub.docker.com/r/startx/runner-oc) | Centos 7            |         |     |
-| [`startx/runner-oc:centos6`](https://hub.docker.com/r/startx/runner-oc) | Centos 6            |         |     |
 | [`startx/runner-oc:ubi8`](https://hub.docker.com/r/startx/runner-oc)    | RedHat UBI 8        |         |     |
 | [`startx/runner-oc:alpine3`](https://hub.docker.com/r/startx/runner-oc) | Alpine 3.12         |         |     |
 
