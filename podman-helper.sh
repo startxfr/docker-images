@@ -272,6 +272,9 @@ esac
 # Display menu test deploy templates
 function menuVersion {
     reloadConf
+    if [[ "$SXDC_FLAVOUR" == "alpine" ]]; then
+        SXDC_FLAVOUR="alpine3"
+    fi
     case $2 in
         os|fedora|centos|alpine)   testOSVersion OS $SXDC_OS_FLAVOUR latest;;
         apache|http)               testVersion Services/apache apache $SXDC_FLAVOUR;;

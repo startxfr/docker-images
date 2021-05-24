@@ -17,7 +17,7 @@ This container contain :
 
 You can use Startx Apache image in many ways :
 
-- [Docker OS Images : ALPINE](#docker-os-images--alpine)
+- [Image ALPINE](#image-alpine)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
@@ -38,9 +38,9 @@ See more applications builders and sample on [startx docker images repository](h
 
 ## Container flavours
 
-| Docker Hub repository                                            | Distribution        | Bash   | Kernel      |
-| ---------------------------------------------------------------- | ------------------- | ------ | ----------- |
-| [`startx/alpine:3`](https://hub.docker.com/r/startx/alpine)      | Alpine 3.12         | 5.0.17 |             |
+| Docker Hub repository                                       | Distribution | Bash   |
+| ----------------------------------------------------------- | ------------ | ------ |
+| [`startx/alpine:3`](https://hub.docker.com/r/startx/alpine) | Alpine 3.12  | 5.0.17 |
 
 ## Running this image
 
