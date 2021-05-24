@@ -1,7 +1,7 @@
 #!/bin/bash
 source $SX_LIBDIR/sx
 
-# Display apache information
+# Display oc information
 function runnerOcInformation {
     genericAllInformation $1 
     echoVerbose $1 "runner oc  : " `oc --version`
