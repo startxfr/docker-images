@@ -17,7 +17,7 @@ This container contain :
 
 You can use Startx Apache image in many ways :
 
-- [Docker OS Images : CENTOS](#docker-os-images--centos)
+- [Image CENTOS](#image-centos)
   - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
