@@ -8,7 +8,7 @@ ENV SX_VERSION="ubi8" \
     SX_SUMMARY="Startx postgres service based on RedHat UBI 8" \
     DATA_PATH=/data \
     LOG_PATH=/var/log/postgres \
-    RPM_REPO=https://yum.postgresql.org/testing/12/redhat/rhel-8-x86_64
+    RPM_REPO=https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \
@@ -34,9 +34,8 @@ RUN dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck \
     libicu \
     libpq && \
-    rpm -ivh $RPM_REPO/postgresql12-libs-12.3-5PGDG.rhel8.x86_64.rpm && \
-    rpm -ivh $RPM_REPO/postgresql12-12.3-5PGDG.rhel8.x86_64.rpm && \
-    rpm -ivh $RPM_REPO/postgresql12-server-12.3-5PGDG.rhel8.x86_64.rpm && \
+    rpm -ivh $RPM_REPO && \
+    dnf install -y postgresql13-server && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \
