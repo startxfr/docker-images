@@ -16,7 +16,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | [`startx/sv-mongo:34`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 34      | 4.4.4   |
 | [`startx/sv-mongo:33`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 33      | 4.4.4   |
 | [`startx/sv-mongo:32`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 32      | 4.1.13  |
-| [`startx/sv-mongo:31`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 31      | 4.1.13  |
+| [`startx/sv-mongo:31`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 31      | 4.4.4   |
 | [`startx/sv-mongo:30`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 30      | 4.0.3   |
 | [`startx/sv-mongo:29`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 29      | 4.0.3   |
 | [`startx/sv-mongo:28`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 28      | 3.6     |
@@ -26,11 +26,11 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | [`startx/sv-mongo:22`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 22      |         |
 | [`startx/sv-mongo:21`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 21      |         |
 | [`startx/sv-mongo:20`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 20      |         |
-| [`startx/sv-mongo:centos8`](https://hub.docker.com/r/startx/sv-mongo) | Centos 8            | 4.1     |
-| [`startx/sv-mongo:centos7`](https://hub.docker.com/r/startx/sv-mongo) | Centos 7            | 4.1     |
-| [`startx/sv-mongo:centos6`](https://hub.docker.com/r/startx/sv-mongo) | Centos 6            | 3.7     |
+| [`startx/sv-mongo:centos8`](https://hub.docker.com/r/startx/sv-mongo) | Centos 8            | 4.4.6   |
+| [`startx/sv-mongo:centos7`](https://hub.docker.com/r/startx/sv-mongo) | Centos 7            | 4.4.6   |
+| [`startx/sv-mongo:centos6`](https://hub.docker.com/r/startx/sv-mongo) | Centos 6            | 2.4.14  |
 | [`startx/sv-mongo:ubi8`](https://hub.docker.com/r/startx/sv-mongo)    | RedHat UBI 8        | 4.4.6   |
-| [`startx/sv-mongo:alpine3`](https://hub.docker.com/r/startx/sv-mongo) | Alpine 3.12         | 4.1     |
+| [`startx/sv-mongo:alpine3`](https://hub.docker.com/r/startx/sv-mongo) | Alpine 3.12         | 4.0.5   |
 
 ## Running from dockerhub registry
 
