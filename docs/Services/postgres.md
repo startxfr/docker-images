@@ -41,7 +41,7 @@ See more databases builders and sample on [startx docker images repository](http
 | [`startx/sv-postgres:34`](https://hub.docker.com/r/startx/sv-postgres)      | Fedora core 34      | 13.2     |
 | [`startx/sv-postgres:33`](https://hub.docker.com/r/startx/sv-postgres)      | Fedora core 33      | 12.6     |
 | [`startx/sv-postgres:32`](https://hub.docker.com/r/startx/sv-postgres)      | Fedora core 32      | 11.4     |
-| [`startx/sv-postgres:31`](https://hub.docker.com/r/startx/sv-postgres)      | Fedora core 31      | 9.4.5    |
+| [`startx/sv-postgres:31`](https://hub.docker.com/r/startx/sv-postgres)      | Fedora core 31      | 11.8    |
 | [`startx/sv-postgres:30`](https://hub.docker.com/r/startx/sv-postgres)      | Fedora core 30      | 9.4.5    |
 | [`startx/sv-postgres:29`](https://hub.docker.com/r/startx/sv-postgres)      | Fedora core 29      | 9.4.5    |
 | [`startx/sv-postgres:28`](https://hub.docker.com/r/startx/sv-postgres)      | Fedora core 28      | 9.4.5    |

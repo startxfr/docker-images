@@ -36,7 +36,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/runner-nodejs:34`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 34      | 14.17.0 | 6.14.13 | 4.3   |
 | [`startx/runner-nodejs:33`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 33      | 14.16.1 | 6.14.12 | 4.3   |
 | [`startx/runner-nodejs:32`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 32      | 12.4.0  |         |       |
-| [`startx/runner-nodejs:31`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 31      | 10.15.0 |         |       |
+| [`startx/runner-nodejs:31`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 31      | 12.19.0 | 6.14.8  | 4.2.1 |
 | [`startx/runner-nodejs:30`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 30      | 10.15.0 |         |       |
 | [`startx/runner-nodejs:29`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 29      | 10.16.0 |         |       |
 | [`startx/runner-nodejs:28`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 28      | 0.10.36 |         |       |

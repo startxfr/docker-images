@@ -15,7 +15,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | [`startx/runner-bash:34`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 34      | 5.1.4  | 4.3   |
 | [`startx/runner-bash:33`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 33      | 5.0.17 | 4.3   |
 | [`startx/runner-bash:32`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 32      |        |       |
-| [`startx/runner-bash:31`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 31      |        |       |
+| [`startx/runner-bash:31`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 31      | 5.0.17 | 4.2.1 |
 | [`startx/runner-bash:30`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 30      |        |       |
 | [`startx/runner-bash:29`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 29      |        |       |
 | [`startx/runner-bash:28`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 28      |        |       |
