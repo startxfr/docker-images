@@ -6,7 +6,7 @@ ENV SX_VERSION="latest" \
     SX_ID="startx/runner-ansible" \
     SX_NAME="Startx Ansible gitlab runner image (fedora rawhide)" \
     SX_SUMMARY="Startx ansible gitlab runner based on fedora rawhide" \
-    SX_HUGO_RELEASE="0.72.0"
+    SX_HUGO_RELEASE="0.83.1"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \
