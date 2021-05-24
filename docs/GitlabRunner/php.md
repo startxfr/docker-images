@@ -35,7 +35,7 @@ See more applications builders and sample on [startx docker images repository](h
 | ------------------------------------------------------------------------- | ------------------- | ------ | ------ |
 | [`startx/runner-php:latest`](https://hub.docker.com/r/startx/runner-php)  | Fedora core rawhide |        |
 | [`startx/runner-php:34`](https://hub.docker.com/r/startx/runner-php)      | Fedora core 34      |        |
-| [`startx/runner-php:33`](https://hub.docker.com/r/startx/runner-php)      | Fedora core 33      |        |
+| [`startx/runner-php:33`](https://hub.docker.com/r/startx/runner-php)      | Fedora core 33      | 7.4.19 | 2.4.46 |
 | [`startx/runner-php:32`](https://hub.docker.com/r/startx/runner-php)      | Fedora core 32      | 7.3.8  | 2.4.46 |
 | [`startx/runner-php:31`](https://hub.docker.com/r/startx/runner-php)      | Fedora core 31      | 7.3.24 | 2.4.46 |
 | [`startx/runner-php:30`](https://hub.docker.com/r/startx/runner-php)      | Fedora core 30      | 7.3.1  | 2.4.39 |
