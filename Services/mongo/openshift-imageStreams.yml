@@ -135,6 +135,19 @@ items:
           from:
             kind: DockerImage
             name: startx/sv-mongo:fc34
+        - name: fc35
+          annotations:
+            openshift.io/display-name: S2I Startx MongoDB Database (Fedora 35)
+            description: MongoDB server builder for NoSQL database running under
+              Fedora 35
+            iconClass: icon-mongodb
+            tags: builder,startx,fedora,mongo,database
+            supports: mongodb
+            version: fc35
+            sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+          from:
+            kind: DockerImage
+            name: startx/sv-mongo:fc35
         - name: rawhide
           annotations:
             openshift.io/display-name: S2I Startx MongoDB Database (Fedora rawhide)

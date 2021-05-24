@@ -144,6 +144,20 @@ items:
           from:
             kind: DockerImage
             name: startx/sv-memcache:fc34
+        - name: fc35
+          annotations:
+            openshift.io/display-name: S2I Startx Memcache Backend (Fedora 35)
+            description:
+              Memcache server builder for distributed cache backend running under
+              Fedora 35
+            iconClass: icon-redis
+            tags: builder,startx,fedora,memcache
+            supports: memcache
+            version: fc35
+            sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+          from:
+            kind: DockerImage
+            name: startx/sv-memcache:fc35
         - name: rawhide
           annotations:
             openshift.io/display-name: S2I Startx Memcache Backend (Fedora rawhide)

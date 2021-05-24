@@ -144,6 +144,20 @@ items:
           from:
             kind: DockerImage
             name: startx/sv-apache:fc34
+        - name: fc35
+          annotations:
+            openshift.io/display-name: S2I Startx WebServer (Fedora 35)
+            description:
+              Http server builder for simple web application running under
+              Fedora 35
+            iconClass: icon-apache
+            tags: builder,startx,fedora,apache,httpd
+            supports: http
+            version: fc35
+            sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+          from:
+            kind: DockerImage
+            name: startx/sv-apache:fc35
         - name: rawhide
           annotations:
             openshift.io/display-name: S2I Startx WebServer (Fedora rawhide)

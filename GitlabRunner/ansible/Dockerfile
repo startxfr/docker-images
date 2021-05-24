@@ -1,11 +1,11 @@
-FROM quay.io/startx/fedora:latest
+FROM quay.io/startx/fedora:35
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="fc35" \
     SX_TYPE="runner" \
     SX_SERVICE="ansible" \
     SX_ID="startx/runner-ansible" \
-    SX_NAME="Startx Ansible gitlab runner image (fedora rawhide)" \
-    SX_SUMMARY="Startx ansible gitlab runner based on fedora rawhide" \
+    SX_NAME="Startx Ansible gitlab runner image (fedora 35)" \
+    SX_SUMMARY="Startx ansible gitlab runner based on fedora 35" \
     SX_HUGO_RELEASE="0.83.1"
 
 LABEL name="$SX_ID" \

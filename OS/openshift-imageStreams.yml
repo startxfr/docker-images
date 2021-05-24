@@ -126,6 +126,18 @@ items:
           from:
             kind: DockerImage
             name: startx/fedora:34
+        - name: fc35
+          annotations:
+            openshift.io/display-name: S2I Startx Fedora 35
+            description: Minimal Fedora 35 OS builder for bash operations
+            iconClass: icon-beaker
+            tags: builder,startx,fedora
+            supports: fedora
+            version: fc35
+            sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+          from:
+            kind: DockerImage
+            name: startx/fedora:35
         - name: rawhide
           annotations:
             openshift.io/display-name: S2I Startx Fedora (rawhide)

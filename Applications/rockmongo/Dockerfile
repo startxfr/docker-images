@@ -1,4 +1,4 @@
-FROM quay.io/startx/php
+FROM quay.io/startx/php:fc35
 
 # update, install required, clean
 RUN yum -y update && yum install -y httpd php php-devel php-pear gcc-c++ make && yum clean all

@@ -1,11 +1,11 @@
-FROM quay.io/startx/php:latest
+FROM quay.io/startx/php:fc35
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="fc35" \
     SX_TYPE="application" \
     SX_SERVICE="phpmyadmin" \
     SX_ID="startx/app-phpmyadmin" \
-    SX_NAME="Startx PhpMyAdmin service image (fedora rawhide)" \
-    SX_SUMMARY="Startx phpmyadmin service based on fedora rawhide" \
+    SX_NAME="Startx PhpMyAdmin service image (fedora 35)" \
+    SX_SUMMARY="Startx phpmyadmin service based on fedora 35" \
     MYSQL_LANG=fr_FR
 
 LABEL name="$SX_ID" \

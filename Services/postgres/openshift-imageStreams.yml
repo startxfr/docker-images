@@ -144,6 +144,20 @@ items:
           from:
             kind: DockerImage
             name: startx/sv-postgres:fc34
+        - name: fc35
+          annotations:
+            openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora 35)
+            description:
+              PostgreSQL server builder for advanced SQL database running under
+              Fedora 35
+            iconClass: icon-postgresql
+            tags: builder,startx,fedora,postgres,sql
+            supports: postgresql
+            version: fc35
+            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+          from:
+            kind: DockerImage
+            name: startx/sv-postgres:fc35
         - name: latest
           annotations:
             openshift.io/display-name: S2I Startx PostgreSQL Database (Fedora latest)

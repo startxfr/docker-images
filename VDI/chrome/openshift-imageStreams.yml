@@ -117,6 +117,20 @@ items:
           from:
             kind: DockerImage
             name: startx/vdi-chrome:fc33
+        - name: fc35
+          annotations:
+            openshift.io/display-name: VDI Chrome Browser (Fedora 35)
+            description:
+              Container-based desktop Chrome browser for remote internet browsing  under
+              Fedora 35
+            iconClass: icon-aerogear
+            tags: builder,startx,fedora,chrome,vnc
+            supports: vnc
+            version: fc35
+            sampleRepo: https://github.com/startxfr/docker-images-example-chrome.git
+          from:
+            kind: DockerImage
+            name: startx/vdi-chrome:fc35
         - name: fc34
           annotations:
             openshift.io/display-name: VDI Chrome Browser (Fedora 34)

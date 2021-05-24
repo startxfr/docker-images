@@ -1,11 +1,11 @@
-FROM quay.io/startx/fedora:latest
+FROM quay.io/startx/fedora:35
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="fc35" \
     SX_TYPE="service" \
     SX_SERVICE="couchbase" \
     SX_ID="startx/sv-couchbase" \
-    SX_NAME="Startx Couchbase service image (fedora rawhide)" \
-    SX_SUMMARY="Startx couchbase service based on fedora rawhide" \
+    SX_NAME="Startx Couchbase service image (fedora 35)" \
+    SX_SUMMARY="Startx couchbase service based on fedora 35" \
     CB_PATH=/opt/couchbase \
     DATA_PATH=/opt/couchbase/var \
     CB_VERSION=6.6.2 \

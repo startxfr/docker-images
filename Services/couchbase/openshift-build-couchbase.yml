@@ -294,7 +294,7 @@ parameters:
   - name: BASE_IMAGE_TAG
     displayName: Base image tag
     description:
-      Base image flavour to use for buidling this application (latest, fc34, fc33, fc32, fc31, fc30, fc29, fc27,
+      Base image flavour to use for buidling this application (latest, fc35, fc34, fc33, fc32, fc31, fc30, fc29, fc27,
       fc28, centos6, centos7, centos8, ubi8)
     value: latest
     required: true

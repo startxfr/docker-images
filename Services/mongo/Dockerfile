@@ -1,11 +1,11 @@
-FROM quay.io/startx/fedora:latest
+FROM quay.io/startx/fedora:35
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="fc35" \
     SX_TYPE="service" \
     SX_SERVICE="mongo" \
     SX_ID="startx/sv-mongo" \
-    SX_NAME="Startx MongoDB service image (fedora rawhide)" \
-    SX_SUMMARY="Startx mongo service based on fedora rawhide" \
+    SX_NAME="Startx MongoDB service image (fedora 35)" \
+    SX_SUMMARY="Startx mongo service based on fedora 35" \
     LOG_PATH=/var/log/mongodb \
     MONGO_RUNTIME=/usr/bin/mongod \
     MONGO_USER=mongod \

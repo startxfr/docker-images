@@ -1,11 +1,11 @@
-FROM quay.io/startx/fedora:latest
+FROM quay.io/startx/fedora:35
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="fc35" \
     SX_TYPE="desktop" \
     SX_SERVICE="chrome" \
     SX_ID="startx/vdi-chrome" \
-    SX_NAME="Startx Chrome VDI image (fedora rawhide)" \
-    SX_SUMMARY="Startx chrome container-based desktop application based on fedora rawhide" \
+    SX_NAME="Startx Chrome VDI image (fedora 35)" \
+    SX_SUMMARY="Startx chrome container-based desktop application based on fedora 35" \
     SX_CHROME_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
     LOG_PATH=/var/log/chrome \
     APP_PATH=/home/chrome \
