@@ -6,7 +6,7 @@ ENV SX_VERSION="alpine3" \
     SX_ID="startx/runner-ansible" \
     SX_NAME="Startx Ansible gitlab runner image (alpine 3)" \
     SX_SUMMARY="Startx ansible gitlab runner based on alpine 3" \
-    SX_HUGO_RELEASE="0.72.0"
+    SX_HUGO_RELEASE="0.83.1"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \

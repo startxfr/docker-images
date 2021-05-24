@@ -46,7 +46,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/sv-mariadb:34`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 34      | 10.5.10 | 15.1   |
 | [`startx/sv-mariadb:33`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 33      | 10.4.19 | 15.1   |
 | [`startx/sv-mariadb:32`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 32      | 10.4.12 | 15.1   |
-| [`startx/sv-mariadb:31`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 31      | 10.3.22 | 15.1   |
+| [`startx/sv-mariadb:31`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 31      | 10.3.27 | 15.1   |
 | [`startx/sv-mariadb:30`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 30      | 10.3.21 | 15.1   |
 | [`startx/sv-mariadb:29`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 29      | 10.3.18 | 15.1   |
 | [`startx/sv-mariadb:28`](https://hub.docker.com/r/startx/sv-mariadb)      | Fedora core 28      | 10.2.22 | 15.1   |

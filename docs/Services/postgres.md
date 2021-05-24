@@ -41,7 +41,7 @@ See more databases builders and sample on [startx docker images repository](http
 | [`startx/sv-postgres:34`](https://hub.docker.com/r/startx/sv-postgres)      | Fedora core 34      | 13.2     |
 | [`startx/sv-postgres:33`](https://hub.docker.com/r/startx/sv-postgres)      | Fedora core 33      | 12.6     |
 | [`startx/sv-postgres:32`](https://hub.docker.com/r/startx/sv-postgres)      | Fedora core 32      | 11.4     |
-| [`startx/sv-postgres:31`](https://hub.docker.com/r/startx/sv-postgres)      | Fedora core 31      | 9.4.5    |
+| [`startx/sv-postgres:31`](https://hub.docker.com/r/startx/sv-postgres)      | Fedora core 31      | 11.8     |
 | [`startx/sv-postgres:30`](https://hub.docker.com/r/startx/sv-postgres)      | Fedora core 30      | 9.4.5    |
 | [`startx/sv-postgres:29`](https://hub.docker.com/r/startx/sv-postgres)      | Fedora core 29      | 9.4.5    |
 | [`startx/sv-postgres:28`](https://hub.docker.com/r/startx/sv-postgres)      | Fedora core 28      | 9.4.5    |
@@ -54,7 +54,7 @@ See more databases builders and sample on [startx docker images repository](http
 | [`startx/sv-postgres:centos8`](https://hub.docker.com/r/startx/sv-postgres) | Centos 8            | 10.15    |
 | [`startx/sv-postgres:centos7`](https://hub.docker.com/r/startx/sv-postgres) | Centos 7            | 9.2.24   |
 | [`startx/sv-postgres:centos6`](https://hub.docker.com/r/startx/sv-postgres) | Centos 6            | 8.4.20   |
-| [`startx/sv-postgres:ubi8`](https://hub.docker.com/r/startx/sv-postgres)    | RedHat UBI 8        |          |
+| [`startx/sv-postgres:ubi8`](https://hub.docker.com/r/startx/sv-postgres)    | RedHat UBI 8        | 13.3     |
 | [`startx/sv-postgres:alpine3`](https://hub.docker.com/r/startx/sv-postgres) | Alpine 3.12         | 12.7     |
 
 ## Running this image

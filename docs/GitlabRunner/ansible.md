@@ -12,10 +12,10 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | Docker Hub repository                                                             | Content             | Ansible | Python | Make  |
 | --------------------------------------------------------------------------------- | ------------------- | ------- | ------ | ----- |
 | [`startx/runner-ansible:latest`](https://hub.docker.com/r/startx/runner-ansible)  | Fedora core rawhide | 2.9.21  | 3.9.5  | 4.3   |
-| [`startx/runner-ansible:34`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 34      |         |        | 4.3   |
+| [`startx/runner-ansible:34`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 34      | 2.9.21  | 3.9.5  | 4.3   |
 | [`startx/runner-ansible:33`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 33      |         |        | 4.3   |
-| [`startx/runner-ansible:32`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 32      |         |        |       |
-| [`startx/runner-ansible:31`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 31      |         |        |       |
+| [`startx/runner-ansible:32`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 32      | 2.9.21  | 3.9.5  | 4.3   |
+| [`startx/runner-ansible:31`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 31      | 2.9.14  | 3.7.9  | 4.2.1 |
 | [`startx/runner-ansible:30`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 30      |         |        |       |
 | [`startx/runner-ansible:29`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 29      |         |        |       |
 | [`startx/runner-ansible:28`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 28      |         |        |       |
