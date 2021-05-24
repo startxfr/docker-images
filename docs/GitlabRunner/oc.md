@@ -12,6 +12,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | Docker Hub repository                                                   | Content             | Kubectl | OC  |
 | ----------------------------------------------------------------------- | ------------------- | ------- | --- |
 | [`startx/runner-oc:latest`](https://hub.docker.com/r/startx/runner-oc)  | Fedora core rawhide |         |     |
+| [`startx/runner-oc:35`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 35      |         |     |
 | [`startx/runner-oc:34`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 34      |         |     |
 | [`startx/runner-oc:33`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 33      |         |     |
 | [`startx/runner-oc:32`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 32      |         |     |
