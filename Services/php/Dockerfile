@@ -1,4 +1,4 @@
-FROM quay.io/startx/apache:35
+FROM quay.io/startx/apache:fc35
 
 ENV SX_VERSION="fc35" \
     SX_TYPE="service" \
