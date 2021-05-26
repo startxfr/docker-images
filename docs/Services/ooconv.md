@@ -13,6 +13,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | Docker Hub repository                                                   | Content             | Libreoffice | Unoconv |
 | ----------------------------------------------------------------------- | ------------------- | ----------- | ------- |
 | [`startx/sv-ooconv:latest`](https://hub.docker.com/r/startx/sv-ooconv)  | Fedora core rawhide | 7.1.3.2     | 0.7     |
+| [`startx/sv-ooconv:35`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 35      | 7.1.3.2     | 0.7     |
 | [`startx/sv-ooconv:34`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 34      | 7.1.3.2     | 0.7     |
 | [`startx/sv-ooconv:33`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 33      | 7.0.5.2     | 0.7     |
 | [`startx/sv-ooconv:32`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 32      | 6.2.4.2.0   | 0.7     |

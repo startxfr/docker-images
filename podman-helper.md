@@ -19,7 +19,7 @@ This script assume :
 # setup project
 ./podman-helper.sh setup project startx
 
-# setup flavour (alpine3, ubi8, centos8, centos7, centos6, fc34, fc33, fc32, fc31, fc30, fc29 or fc28)
+# setup flavour (alpine3, ubi8, centos8, centos7, centos6, fc35, fc34, fc33, fc32, fc31, fc30, fc29 or fc28)
 ./podman-helper.sh setup flavour latest
 ```
 
@@ -74,6 +74,9 @@ This script assume :
 # Start full test for centos 6 containers
 ./podman-helper.sh setup flavour centos6
 ./podman-helper.sh buildrun
+# Start full test for fedora 35 containers
+./podman-helper.sh setup flavour fc35
+./podman-helper.sh buildrun
 # Start full test for fedora 34 containers
 ./podman-helper.sh setup flavour fc34
 ./podman-helper.sh buildrun
@@ -123,6 +126,10 @@ This script assume :
 # Start full test for fedora 34 containers (dedicated project)
 ./podman-helper.sh setup project fedora-34
 ./podman-helper.sh setup flavour fc34
+./podman-helper.sh buildrun
+# Start full test for fedora 35 containers (dedicated project)
+./podman-helper.sh setup project fedora-35
+./podman-helper.sh setup flavour fc35
 ./podman-helper.sh buildrun
 # Start full test for fedora 33 containers (dedicated project)
 ./podman-helper.sh setup project fedora-33
