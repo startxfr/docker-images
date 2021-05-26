@@ -20,8 +20,8 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN dnf upgrade -yq --refresh && \
-    dnf install -yq --nogpgcheck \
+# RUN dnf upgrade -yq --refresh
+RUN dnf install -yq --nogpgcheck \
     make \
     http://mirror.centos.org/centos/8/BaseOS/x86_64/os/Packages/bubblewrap-0.4.0-1.el8.x86_64.rpm \
     rsync \
