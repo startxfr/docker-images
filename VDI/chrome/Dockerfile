@@ -35,7 +35,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY supervisord.conf $SX_CHROME_SUPERVISOR_CONF/
 COPY sx /tmp/
-RUN wget -q http://download-ib01.fedoraproject.org/pub/epel/6/x86_64/Packages/p/python-meld3-0.6.7-1.el6.x86_64.rpm && \
+RUN wget -q https://dl.fedoraproject.org/pub/archive/epel/6/x86_64/Packages/p/python-meld3-0.6.7-1.el6.x86_64.rpm && \
     rpm -ivh python-meld3-0.6.7-1.el6.x86_64.rpm && \
     rm -f python-meld3-0.6.7-1.el6.x86_64.rpm && \
     yum install -y -q  yum-utils && \
