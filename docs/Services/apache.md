@@ -43,6 +43,7 @@ See more applications builders and sample on [startx docker images repository](h
 | Docker Hub repository                                                   | Content             | Apache |
 | ----------------------------------------------------------------------- | ------------------- | ------ |
 | [`startx/sv-apache:latest`](https://hub.docker.com/r/startx/sv-apache)  | Fedora core rawhide | 2.4.46 |
+| [`startx/sv-apache:35`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 35      | 2.4.46 |
 | [`startx/sv-apache:34`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 34      | 2.4.46 |
 | [`startx/sv-apache:33`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 33      | 2.4.46 |
 | [`startx/sv-apache:32`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 32      | 2.4.43 |
