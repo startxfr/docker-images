@@ -51,6 +51,7 @@ See more applications builders and sample on [startx docker images repository](h
 | Docker Hub repository                                                         | Content             | Couchbase  |
 | ----------------------------------------------------------------------------- | ------------------- | ---------- |
 | [`startx/sv-couchbase:latest`](https://hub.docker.com/r/startx/sv-couchbase)  | Fedora core rawhide | 6.6.2-9588 |
+| [`startx/sv-couchbase:35`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 35      | 6.6.2-9588 |
 | [`startx/sv-couchbase:34`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 34      | 6.6.1-9213 |
 | [`startx/sv-couchbase:33`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 33      | 6.6.0-7909 |
 | [`startx/sv-couchbase:32`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 32      | 6.0.2-2413 |
