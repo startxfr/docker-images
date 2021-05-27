@@ -9,29 +9,45 @@ SXDC_OS_FLAVOUR=$DEFAULT_OS_FLAVOUR
 
 # Create lib
 function testBuild {
-    podman build -t $SXDC_PROJECT/$2:$3 $1
+    if [[ -r $1/Dockerfile ]]; then
+        podman build -t $SXDC_PROJECT/$2:$3 $1
+    else
+        echo -e "!! Could not build \e[1m$SXDC_PROJECT/$2:$3\e[0m based on \e[1m$1/Dockerfile\e[0m definition"
+    fi
 }
 
 function testDeploy {
-    podman stop ${SXDC_PROJECT}_$2_$3
-    podman rm -vf ${SXDC_PROJECT}_$2_$3
-    podman run -d --name ${SXDC_PROJECT}_$2_$3 $SXDC_PROJECT/$2:$3
+    if [[ -r $1/Dockerfile ]]; then
+        podman stop ${SXDC_PROJECT}_$2_$3 &>/dev/null
+        podman rm -vf ${SXDC_PROJECT}_$2_$3 &>/dev/null
+        podman run -d --name ${SXDC_PROJECT}_$2_$3 $SXDC_PROJECT/$2:$3
+    else
+        echo -e "!! Could not deploy \e[1m$SXDC_PROJECT/$2:$3\e[0m because no \e[1m$1/Dockerfile\e[0m found"
+    fi
 }
 
 function testVersion {
-    podman stop ${SXDC_PROJECT}_$2_$3-version &>/dev/null
-    podman rm -f ${SXDC_PROJECT}_$2_$3-version &>/dev/null
-    echo -e "== Display informations on \e[1m$2\e[0m in \e[1m$3\e[0m version"
-    podman run --name ${SXDC_PROJECT}_$2_$3-version $SXDC_PROJECT/$2:$3 /bin/sx-$2 info
-    podman rm -f ${SXDC_PROJECT}_$2_$3-version &>/dev/null
+    if [[ -r $1/Dockerfile ]]; then
+        podman stop ${SXDC_PROJECT}_$2_$3-version &>/dev/null
+        podman rm -f ${SXDC_PROJECT}_$2_$3-version &>/dev/null
+        echo -e "== Display informations on \e[1m$2\e[0m in \e[1m$3\e[0m version"
+        podman run --name ${SXDC_PROJECT}_$2_$3-version $SXDC_PROJECT/$2:$3 /bin/sx-$2 info
+        podman rm -f ${SXDC_PROJECT}_$2_$3-version &>/dev/null
+    else
+        echo -e "!! Could not get \e[1m$SXDC_PROJECT/$2:$3\e[0m info because no \e[1m$1/Dockerfile\e[0m found"
+    fi
 }
 
 function testOSVersion {
-    podman stop ${SXDC_PROJECT}_$2_$3-version &>/dev/null
-    podman rm -f ${SXDC_PROJECT}_$2_$3-version &>/dev/null
-    echo -e "== Display informations on \e[1m$2\e[0m in \e[1m$3\e[0m version"
-    podman run --name ${SXDC_PROJECT}_$2_$3-version $SXDC_PROJECT/$2:$3 /bin/sx info
-    podman rm -f ${SXDC_PROJECT}_$2_$3-version &>/dev/null
+    if [[ -r $1/Dockerfile ]]; then
+        podman stop ${SXDC_PROJECT}_$2_$3-version &>/dev/null
+        podman rm -f ${SXDC_PROJECT}_$2_$3-version &>/dev/null
+        echo -e "== Display informations on \e[1m$2\e[0m in \e[1m$3\e[0m version"
+        podman run --name ${SXDC_PROJECT}_$2_$3-version $SXDC_PROJECT/$2:$3 /bin/sx info
+        podman rm -f ${SXDC_PROJECT}_$2_$3-version &>/dev/null
+    else
+        echo -e "!! Could not get \e[1m$SXDC_PROJECT/$2:$3\e[0m info because no \e[1m$1/Dockerfile\e[0m found"
+    fi
 }
 
 function temporize {
