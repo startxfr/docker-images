@@ -7,7 +7,9 @@ env:
     - secure: LOzTNPUbkMkwCo/pzP2+tzlN9ix8KNFAFR1iNHGFBN+X4SlPfcU/EGUomJX99rb9DJxSOZVW1mXMiv0qLvwRSqeXbrFA26NV+iVbVZXXZzl9zHv1Lpo4o6mk4J8WOqZvaMlQZKYC3i1Ty+nMsCZpCh5c/lCptlM9oNSWAtNHfyE=
     - SX_DEBUG=false
     - NAMESPACE=startx
-    - ISFATAL=true
+    - ISFATAL=false
+after_failure:
+  - "./travis/finish-end false"
 sudo: required
 services:
   - docker
