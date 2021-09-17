@@ -28,9 +28,14 @@ jobs:
       run: "./travis/prepare-cache fedora latest rawhide"
     - name: End
       run: "./travis/prepare-end fedora latest rawhide"
-  publish:
+  publish-OS:
     needs: prepare
     runs-on: ubuntu-latest
     steps:
-    - name: OS
-      run: "./travis/testPublish OS fedora latest fedora"
+    - uses: actions/checkout@v2
+    - name: Connect-registry
+      run: "./travis/prepare-dockerhub fedora latest rawhide"
+    - name: build
+      run: "./travis/test OS fedora latest fedora"
+    - name: publish
+      run: "./travis/publish OS fedora latest fedora"
