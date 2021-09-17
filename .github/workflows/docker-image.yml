@@ -29,15 +29,8 @@ jobs:
     - name: End
       run: "./travis/prepare-end fedora latest rawhide"
   publish:
+    needs: prepare
     runs-on: ubuntu-latest
     steps:
     - name: OS
       run: "./travis/testPublish OS fedora latest fedora"
-
-
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
