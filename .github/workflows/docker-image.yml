@@ -14,11 +14,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: "./travis/prepare-begin      fedora                   latest         rawhide"
-
-
-
+    - name: Start
+      run: "./travis/prepare-begin fedora latest rawhide"
+    - name: Docker
+      run: "./travis/prepare-docker fedora latest rawhide"
+    - name: Dockerhub
+      run: "./travis/prepare-dockerhub fedora latest rawhide"
+    - name: Cache
+      run: "./travis/prepare-cache fedora latest rawhide"
+    - name: End
+      run: "./travis/prepare-end fedora latest rawhide"
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+    - name: OS
+      run: "./travis/testPublish OS fedora latest fedora"
 
 
   build:
