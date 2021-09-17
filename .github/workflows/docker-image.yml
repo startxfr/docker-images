@@ -7,9 +7,13 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+env:
+  DOCKER_USER: ${{ secrets.DOCKER_USER }}
+  DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+  QUAY_USER: ${{ secrets.QUAY_USER }}
+  QUAY_PASS: ${{ secrets.QUAY_PASS }}
 
 jobs:
-
   prepare:
     runs-on: ubuntu-latest
     steps:
