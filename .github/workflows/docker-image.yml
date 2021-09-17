@@ -12,30 +12,54 @@ env:
   DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
   QUAY_USER: ${{ secrets.QUAY_USER }}
   QUAY_PASS: ${{ secrets.QUAY_PASS }}
-
+  SX_DEBUG: "false"
+  NAMESPACE: "startx"
+  ISFATAL: "false"
 jobs:
-  prepare:
+  Prepare:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Start
       run: "./travis/prepare-begin fedora latest rawhide"
-    - name: Docker
-      run: "./travis/prepare-docker fedora latest rawhide"
     - name: Dockerhub
       run: "./travis/prepare-dockerhub fedora latest rawhide"
-    - name: Cache
-      run: "./travis/prepare-cache fedora latest rawhide"
     - name: End
       run: "./travis/prepare-end fedora latest rawhide"
-  publish-OS:
-    needs: prepare
+  Publish-OS:
+    needs: Prepare
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Connect-registry
       run: "./travis/prepare-dockerhub fedora latest rawhide"
-    - name: build
+    - name: Configure-docker
+      run: "./travis/prepare-docker fedora latest rawhide"
+    - name: Build-image
       run: "./travis/test OS fedora latest fedora"
-    - name: publish
+    - name: Publish-image
       run: "./travis/publish OS fedora latest fedora"
+  Publish-apache:
+    needs: Publish-OS
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Connect-registry
+      run: "./travis/prepare-dockerhub fedora latest rawhide"
+    - name: Configure-docker
+      run: "./travis/prepare-docker fedora latest rawhide"
+    - name: Build-image
+      run: "./travis/test Services/apache sv-apache latest apache"
+    - name: Publish-image
+      run: "./travis/publish Services/apache sv-apache latest apache"
+  Publish-couchbase:
+    needs: Publish-OS
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Connect-registry
+      run: "./travis/prepare-dockerhub && ./travis/prepare-docker"
+    - name: Build-image
+      run: "./travis/test Services/couchbase sv-couchbase latest couchbase"
+    - name: Publish-image
+      run: "./travis/publish Services/couchbase sv-couchbase latest couchbase"
