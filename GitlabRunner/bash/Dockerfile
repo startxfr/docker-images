@@ -28,6 +28,8 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
         rsync \
         openssh-clients \
         sshpass && \
+        yamllint gem ShellCheck && \
+    gem install --silent mdl && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     dnf remove -yq --skip-broken yum-utils yum && \
