@@ -28,17 +28,16 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
         rsync \
         openssh-clients \
         sshpass \
-        yamllint gem ShellCheck git && \
+        yamllint \
+        gem \
+        ShellCheck \
+        git \
+        bats && \
     gem install --silent mdl && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
-    git clone https://github.com/bats-core/bats-core.git /tmp/bats-core && \
-    cd /tmp/bats-core && \
-    ./install.sh /usr/local && \
-    cd - && \
-    rm -rf /tmp/bats-core && \
     mv /tmp/bin/* /bin/ && \
     mv /tmp/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/bin /tmp/bin
