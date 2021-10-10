@@ -20,6 +20,7 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
+<<<<<<< HEAD
 RUN apk --no-cache add \
       make \
       sshpass \
@@ -37,6 +38,29 @@ RUN apk --no-cache add \
     ./install.sh /usr/local && \
     cd - && \
     rm -rf /tmp/bats-core
+=======
+RUN dnf install -yq --nogpgcheck yum-utils && \
+    dnf upgrade -yq --nogpgcheck --refresh && \
+    dnf install -yq --nogpgcheck \
+        make \
+        bubblewrap \
+        rsync \
+        openssh-clients \
+        sshpass \
+        yamllint \
+        gem \
+        ShellCheck \
+        git \
+        bats && \
+    gem install --silent mdl && \
+    package-cleanup --problems && \
+    package-cleanup --orphans && \
+    dnf remove -yq --skip-broken yum-utils yum && \
+    dnf clean all --enablerepo=\* && \
+    mv /tmp/bin/* /bin/ && \
+    mv /tmp/lib/* $SX_LIBDIR/ && \
+    rm -rf /tmp/bin /tmp/bin
+>>>>>>> master
 
 USER 1001
 
