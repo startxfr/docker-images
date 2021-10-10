@@ -20,10 +20,23 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN apk --no-cache add make && \
+RUN apk --no-cache add \
+      make \
+      sshpass \
+      yamllint \
+      shellcheck \
+      ruby \
+      ruby-etc \
+      git && \
+    gem install --silent mdl && \
     mv /tmp/bin/* /bin/ && \
     mv /tmp/lib/* $SX_LIBDIR/ && \
-    rm -rf /tmp/bin /tmp/bin
+    rm -rf /tmp/bin /tmp/bin && \
+    git clone https://github.com/bats-core/bats-core.git /tmp/bats-core && \
+    cd /tmp/bats-core && \
+    ./install.sh /usr/local && \
+    cd - && \
+    rm -rf /tmp/bats-core
 
 USER 1001
 
