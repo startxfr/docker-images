@@ -23,6 +23,7 @@ COPY sx /tmp/
 RUN apk --no-cache add \
       make \
       sshpass \
+      openssh \
       yamllint \
       shellcheck \
       ruby \
