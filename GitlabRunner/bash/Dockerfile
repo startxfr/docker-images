@@ -3,6 +3,8 @@ FROM quay.io/startx/fedora:latest
 ENV SX_VERSION="latest" \
     SX_TYPE="runner" \
     SX_SERVICE="bash" \
+    SX_UID=1001 \
+    SX_UNAME="user" \
     SX_ID="startx/runner-bash" \
     SX_NAME="Startx Bash gitlab runner image (fedora rawhide)" \
     SX_SUMMARY="Startx bash gitlab runner based on fedora rawhide"
@@ -38,10 +40,11 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
     package-cleanup --orphans && \
     dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
+    useradd -s /bin/bash -u ${SX_UID} -g 0 -m ${SX_UNAME} && \
     mv /tmp/bin/* /bin/ && \
     mv /tmp/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/bin /tmp/bin
 
-USER 1001
+USER $SX_UID
 
 CMD [ "/bin/sx" , "usage" ]
