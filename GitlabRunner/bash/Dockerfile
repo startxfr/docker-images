@@ -3,6 +3,8 @@ FROM quay.io/startx/alpine:3
 ENV SX_VERSION="alpine3" \
     SX_TYPE="runner" \
     SX_SERVICE="bash" \
+    SX_UID=1001 \
+    SX_UNAME="user" \
     SX_ID="startx/runner-bash" \
     SX_NAME="Startx Bash gitlab runner image (alpine 3)" \
     SX_SUMMARY="Startx bash gitlab runner based on alpine 3"
@@ -30,6 +32,7 @@ RUN apk --no-cache add \
       ruby-etc \
       git && \
     gem install --silent mdl && \
+    useradd -s /bin/bash -u ${SX_UID} -g 0 -m ${SX_UNAME} && \
     mv /tmp/bin/* /bin/ && \
     mv /tmp/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/bin /tmp/bin && \
@@ -39,6 +42,6 @@ RUN apk --no-cache add \
     cd - && \
     rm -rf /tmp/bats-core
 
-USER 1001
+USER $SX_UID
 
 CMD [ "/bin/sx" , "usage" ]

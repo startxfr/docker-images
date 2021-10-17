@@ -3,6 +3,8 @@ FROM quay.io/startx/php:alpine3
 ENV SX_VERSION="alpine3" \
     SX_TYPE="runner" \
     SX_SERVICE="php" \
+    SX_UID=1001 \
+    SX_UNAME="user" \
     SX_ID="startx/runner-php" \
     SX_NAME="Startx Apache-PHP gitlab runner image (alpine 3)" \
     SX_SUMMARY="Startx apache-php gitlab runner based on alpine 3"
@@ -20,11 +22,17 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN apk --no-cache add make && \
+RUN apk --no-cache add \
+      make \
+      sshpass \
+      openssh \
+      yamllint \
+      git && \
+    useradd -u ${SX_UID} -m ${SX_UNAME} && \
     mv /tmp/bin/* /bin/ && \
     mv /tmp/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/bin /tmp/bin
 
-USER 1001
+USER $SX_UID
 
 CMD [ "/bin/sx-php" , "usage" ]
