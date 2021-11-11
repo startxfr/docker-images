@@ -16,35 +16,35 @@ source $CONF_FILE
 
 # Create lib
 function importImages {
-    oc create -f $1/openshift-imageStreams.yml -n $SXDC_PROJECT
+    oc create -f "$1"/openshift-imageStreams.yml -n $SXDC_PROJECT
 }
 
 function importBuild {
-    oc create -f $1/openshift-template-build.yml -n $SXDC_PROJECT
+    oc create -f "$1"/openshift-template-build.yml -n $SXDC_PROJECT
 }
 
 function importDeploy {
-    oc create -f $1/openshift-template-deploy.yml -n $SXDC_PROJECT
+    oc create -f "$1"/openshift-template-deploy.yml -n $SXDC_PROJECT
 }
 
 function testBuild {
-    oc process -f $1/openshift-template-build.yml -p APP_NAME=$2-$3-build -p APP_STAGE=$SXDC_STAGE -p BUILDER_TAG=$3 -n $SXDC_PROJECT | oc create -f -
+    oc process -f "$1"/openshift-template-build.yml -p APP_NAME="$2"-"$3"-build -p APP_STAGE=$SXDC_STAGE -p BUILDER_TAG=$3 -n $SXDC_PROJECT | oc create -f -
 }
 
 function testDeployOS {
-    oc process -f $1/openshift-template-deploy.yml -p APP_NAME=$2-$3-deploy -p APP_STAGE=$SXDC_STAGE -p BUILDER_IMAGE=startx/$2:$3 -n $SXDC_PROJECT | oc create -f -
+    oc process -f "$1"/openshift-template-deploy.yml -p APP_NAME="$2"-"$3"-deploy -p APP_STAGE=$SXDC_STAGE -p BUILDER_IMAGE=startx/$2:$3 -n $SXDC_PROJECT | oc create -f -
 }
 
 function testDeploy {
-    oc process -f $1/openshift-template-deploy.yml -p APP_NAME=$2-$3-deploy -p APP_STAGE=$SXDC_STAGE -p BUILDER_TAG=$3 -n $SXDC_PROJECT | oc create -f -
+    oc process -f "$1"/openshift-template-deploy.yml -p APP_NAME="$2"-"$3"-deploy -p APP_STAGE=$SXDC_STAGE -p BUILDER_TAG=$3 -n $SXDC_PROJECT | oc create -f -
 }
 
 function temporize {
-    x=$1
+    x="$1"
     echo "temporize during ${x}sec"
     while [ $x -gt 0 ]
     do
-        sleep $2
+        sleep "$2"
         x=$(( $x - $2 ))
         echo "wait for ${x}sec..."
     done
@@ -134,15 +134,15 @@ function menuSetup {
 
 # Display sub-menu setup
 function menuSetupAll {
-    menuSetupProject $2
-    menuSetupFlavour $2
-    menuSetupStage $2
+    menuSetupProject "$2"
+    menuSetupFlavour "$2"
+    menuSetupStage "$2"
 }
 
 # Display sub-menu setup - project
 function menuSetupProject {
     if [[ "$1" != "" ]]; then
-        appendConf SXDC_PROJECT $1
+        appendConf SXDC_PROJECT "$1"
     else
         echo -en "Project name \e[2m(\e[0m\e[1m$DEFAULT_PROJECT\e[0m\e[2m)\e[0m :"
         read project
@@ -168,7 +168,7 @@ function menuSetupProject {
 function menuSetupFlavour {
     flavour=$DEFAULT_FLAVOUR
     if [[ "$1" != "" ]]; then
-        flavour=$1
+        flavour="$1"
     else
         echo -en "Image flavour \e[2m(\e[0m\e[1m$DEFAULT_FLAVOUR\e[0m\e[2m)\e[0m :"
         read project
@@ -212,7 +212,7 @@ function menuSetupFlavour {
 # Display sub-menu setup - stage
 function menuSetupStage {
     if [[ "$1" != "" ]]; then
-        appendConf SXDC_STAGE $1
+        appendConf SXDC_STAGE "$1"
     else
         echo -en "Project stage \e[2m(\e[0m\e[1m$DEFAULT_STAGE\e[0m\e[2m)\e[0m :"
         read stage
