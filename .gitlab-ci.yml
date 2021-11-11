@@ -65,8 +65,8 @@
 
 # # Global environment variables
 # variables:
-#   SXGLCI_GIT_DOMAIN: gitlab.com
-#   SXGLCI_GIT_SSH_USER: git@gitlab.com
+#   SXDI_GIT_DOMAIN: gitlab.com
+#   SXDI_GIT_SSH_USER: git@gitlab.com
 #   SX_VERBOSE: "true"
 #   SX_DEBUG: "true"
 
@@ -91,8 +91,8 @@
 # # Library used to merge branch in a local repo
 # .git-merge:
 #   variables:
-#     SXGLCI_BRANCH_FROM: 'devel' # default to devel branch
-#     SXGLCI_BRANCH_TO: 'main' # default to main branch
+#     SXDI_BRANCH: 'devel' # default to devel branch
+#     SXDI_PATH: 'main' # default to main branch
 #   before_script: 
 #     - |
 #       #!/bin/bash
@@ -112,67 +112,67 @@
 #       if [[ $SX_DEBUG == true ]]; then
 #         eval $(ssh-agent -s)
 #         mkdir -p ~/.ssh && chmod 740 ~/.ssh
-#         echo $SXGLCI_GITSSH_PRIVB64 | base64 -d > ~/.ssh/sxcm-gitlabci.id_ecdsa
+#         echo $SXDI_GITSSH_PRIVB64 | base64 -d > ~/.ssh/sxcm-gitlabci.id_ecdsa
 #         chmod 600 ~/.ssh/sxcm-gitlabci.id_ecdsa
 #         ssh-add ~/.ssh/sxcm-gitlabci.id_ecdsa
-#         $(ssh-keyscan $SXGLCI_GIT_DOMAIN >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts)
+#         $(ssh-keyscan $SXDI_GIT_DOMAIN >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts)
 #       else
 #         eval $(ssh-agent -s) &> /dev/null
 #         mkdir -p ~/.ssh && chmod 740 ~/.ssh
-#         echo $SXGLCI_GITSSH_PRIVB64 | base64 -d > ~/.ssh/sxcm-gitlabci.id_ecdsa
+#         echo $SXDI_GITSSH_PRIVB64 | base64 -d > ~/.ssh/sxcm-gitlabci.id_ecdsa
 #         chmod 600 ~/.ssh/sxcm-gitlabci.id_ecdsa
 #         ssh-add ~/.ssh/sxcm-gitlabci.id_ecdsa &> /dev/null
-#         $(ssh-keyscan $SXGLCI_GIT_DOMAIN >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts)
+#         $(ssh-keyscan $SXDI_GIT_DOMAIN >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts)
 #       fi
-#       echo "======== Configuration of remote push to ${SXGLCI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git"
+#       echo "======== Configuration of remote push to ${SXDI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git"
 #       if [[ $SX_DEBUG == true ]]; then
-#         git remote set-url origin ${SXGLCI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git
+#         git remote set-url origin ${SXDI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git
 #         git fetch origin
 #       else
-#         git remote set-url origin ${SXGLCI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git
+#         git remote set-url origin ${SXDI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git
 #         git fetch origin &> /dev/null
 #       fi
 #   script: |
 #     #!/bin/bash
-#     echo "======== Checkout branch $SXGLCI_BRANCH_FROM"
+#     echo "======== Checkout branch $SXDI_BRANCH"
 #     if [[ $SX_DEBUG == true ]]; then
-#       git checkout $SXGLCI_BRANCH_FROM
+#       git checkout $SXDI_BRANCH
 #     else
-#       git checkout $SXGLCI_BRANCH_FROM &> /dev/null
+#       git checkout $SXDI_BRANCH &> /dev/null
 #     fi
 #     if [[ $? != 0 ]]; then
-#       echo "!! Could not find origin branch $SXGLCI_BRANCH_FROM" && exit 1
+#       echo "!! Could not find origin branch $SXDI_BRANCH" && exit 1
 #     fi
-#     echo "======== Checkout branch $SXGLCI_BRANCH_TO"
+#     echo "======== Checkout branch $SXDI_PATH"
 #     if [[ $SX_DEBUG == true ]]; then
-#       git checkout --track origin/$SXGLCI_BRANCH_TO && \
-#       git checkout $SXGLCI_BRANCH_TO && \
+#       git checkout --track origin/$SXDI_PATH && \
+#       git checkout $SXDI_PATH && \
 #       git pull
 #     else
-#       git checkout --track origin/$SXGLCI_BRANCH_TO &> /dev/null && \
-#       git checkout $SXGLCI_BRANCH_TO &> /dev/null && \
+#       git checkout --track origin/$SXDI_PATH &> /dev/null && \
+#       git checkout $SXDI_PATH &> /dev/null && \
 #       git pull &> /dev/null
 #     fi
 #     if [[ $? != 0 ]]; then
-#       echo "!! Could not find destination branch $SXGLCI_BRANCH_TO" && exit 1
+#       echo "!! Could not find destination branch $SXDI_PATH" && exit 1
 #     fi
-#     echo "======== Merge branch $SXGLCI_BRANCH_FROM into $SXGLCI_BRANCH_TO"
+#     echo "======== Merge branch $SXDI_BRANCH into $SXDI_PATH"
 #     if [[ $SX_DEBUG == true ]]; then
-#       git merge --no-ff $SXGLCI_BRANCH_FROM
+#       git merge --no-ff $SXDI_BRANCH
 #     else
-#       git merge --no-ff $SXGLCI_BRANCH_FROM &> /dev/null
+#       git merge --no-ff $SXDI_BRANCH &> /dev/null
 #     fi
 #     if [[ $? != 0 ]]; then
-#       echo "!! Could not automaticaly merge branch $SXGLCI_BRANCH_FROM into $SXGLCI_BRANCH_TO" && exit 1
+#       echo "!! Could not automaticaly merge branch $SXDI_BRANCH into $SXDI_PATH" && exit 1
 #     fi
-#     echo "======== Push branch $SXGLCI_BRANCH_TO into ${SXGLCI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git"
+#     echo "======== Push branch $SXDI_PATH into ${SXDI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git"
 #     if [[ $SX_DEBUG == true ]]; then
-#       git push origin $SXGLCI_BRANCH_TO
+#       git push origin $SXDI_PATH
 #     else
-#       git push origin $SXGLCI_BRANCH_TO &> /dev/null
+#       git push origin $SXDI_PATH &> /dev/null
 #     fi
 #     if [[ $? != 0 ]]; then
-#       echo "!! Could not automaticaly push branch $SXGLCI_BRANCH_TO"
+#       echo "!! Could not automaticaly push branch $SXDI_PATH"
 #       exit 1
 #     fi
 
@@ -338,8 +338,8 @@
 #   stage: "auto merge"
 #   extends: .git-merge
 #   variables:
-#     SXGLCI_BRANCH_FROM: 'devel'
-#     SXGLCI_BRANCH_TO: 'main'
+#     SXDI_BRANCH: 'devel'
+#     SXDI_PATH: 'main'
 #   only:
 #     - devel
 
@@ -348,8 +348,8 @@
 #   stage: "auto merge"
 #   extends: .git-merge
 #   variables:
-#     SXGLCI_BRANCH_FROM: 'main'
-#     SXGLCI_BRANCH_TO: 'stable'
+#     SXDI_BRANCH: 'main'
+#     SXDI_PATH: 'stable'
 #   only:
 #     - main
 
@@ -358,49 +358,49 @@
 #   stage: "auto merge"
 #   extends: .git-merge
 #   variables:
-#     SXGLCI_BRANCH_FROM: 'stable' # default to stable branch
+#     SXDI_BRANCH: 'stable' # default to stable branch
 #   script: |
 #     #!/bin/bash
-#     echo "======== Checkout branch $SXGLCI_BRANCH_FROM"
+#     echo "======== Checkout branch $SXDI_BRANCH"
 #     if [[ $SX_DEBUG == true ]]; then
-#       git checkout $SXGLCI_BRANCH_FROM
+#       git checkout $SXDI_BRANCH
 #     else
-#       git checkout $SXGLCI_BRANCH_FROM &> /dev/null
+#       git checkout $SXDI_BRANCH &> /dev/null
 #     fi
 #     if [[ $? != 0 ]]; then
-#       echo "!! Could not find origin branch $SXGLCI_BRANCH_FROM" && exit 1
+#       echo "!! Could not find origin branch $SXDI_BRANCH" && exit 1
 #     fi
 #     echo "======== Checking tags for repository ${CI_PROJECT_PATH}"
 #     git tag | tail -n 1 > /tmp/last
 #     if [[ $? != 0 ]]; then
 #       echo "!! Could not last tag for this repository" && exit 1
 #     fi
-#     SXGLCI_LAST_TAG=`cat /tmp/last`
-#     echo "== Found $SXGLCI_LAST_TAG as last tag"
+#     SXDI_LAST_TAG=`cat /tmp/last`
+#     echo "== Found $SXDI_LAST_TAG as last tag"
 #     source installer
 #     eval x=$(git tag | tail -n 1 | grep $SXCM_INSTALLER_VERSION)
 #     if [[ $x != "" ]]; then
 #       echo "!! Tag $SXCM_INSTALLER_VERSION already exist" && exit 0
 #     fi
 #     echo "== Tag $SXCM_INSTALLER_VERSION doesn't exist"
-#     echo "======== Checkout to tag $SXGLCI_LAST_TAG"
+#     echo "======== Checkout to tag $SXDI_LAST_TAG"
 #     if [[ $SX_DEBUG == true ]]; then
-#       git checkout $SXGLCI_LAST_TAG
-#       git pull origin $SXGLCI_LAST_TAG
+#       git checkout $SXDI_LAST_TAG
+#       git pull origin $SXDI_LAST_TAG
 #     else
-#       git checkout $SXGLCI_LAST_TAG &> /dev/null
-#       git pull origin $SXGLCI_LAST_TAG &> /dev/null
+#       git checkout $SXDI_LAST_TAG &> /dev/null
+#       git pull origin $SXDI_LAST_TAG &> /dev/null
 #     fi
-#     echo "======== Merge branch $SXGLCI_BRANCH_FROM into $SXGLCI_LAST_TAG (release $SXCM_INSTALLER_VERSION)"
+#     echo "======== Merge branch $SXDI_BRANCH into $SXDI_LAST_TAG (release $SXCM_INSTALLER_VERSION)"
 #     if [[ $SX_DEBUG == true ]]; then
-#       git merge --no-ff $SXGLCI_BRANCH_FROM
+#       git merge --no-ff $SXDI_BRANCH
 #     else
-#       git merge --no-ff $SXGLCI_BRANCH_FROM &> /dev/null
+#       git merge --no-ff $SXDI_BRANCH &> /dev/null
 #     fi
 #     if [[ $? != 0 ]]; then
-#       echo "!! Could not automaticaly merge branch $SXGLCI_BRANCH_FROM into $SXGLCI_LAST_TAG for release $SXCM_INSTALLER_VERSION" && exit 1
+#       echo "!! Could not automaticaly merge branch $SXDI_BRANCH into $SXDI_LAST_TAG for release $SXCM_INSTALLER_VERSION" && exit 1
 #     fi
-#     echo "======== Tag $SXCM_INSTALLER_VERSION after merging $SXGLCI_BRANCH_FROM into $SXGLCI_LAST_TAG"
+#     echo "======== Tag $SXCM_INSTALLER_VERSION after merging $SXDI_BRANCH into $SXDI_LAST_TAG"
 #     if [[ $SX_DEBUG == true ]]; then
 #       git tag $SXCM_INSTALLER_VERSION
 #     else
@@ -421,6 +421,94 @@
 #   only:
 #     - stable
 
+
+# # Library used to merge branch in a local repo
+# .build-image:
+#   variables:
+#     SXDI_BRANCH: 'master' # default to master branch
+#     SXDI_PATH: 'fc35' # default to fc35 branch
+#   before_script: 
+#     - |
+#       #!/bin/bash
+#       echo "======== Configuration of git repository"
+#       if [[ $SX_DEBUG == true ]]; then
+#         git config user.email "devops@startx.fr"
+#         git config user.name "STARTX Gitlab-CI"
+#         git config fetch.recurseSubmodules true
+#         git config advice.detachedHead false
+#       else
+#         git config user.email "devops@startx.fr" &> /dev/null
+#         git config user.name "STARTX Gitlab-CI" &> /dev/null
+#         git config fetch.recurseSubmodules true &> /dev/null
+#         git config advice.detachedHead false &> /dev/null
+#       fi
+#       echo "======== Configuration of SSH key"
+#       if [[ $SX_DEBUG == true ]]; then
+#         eval $(ssh-agent -s)
+#         mkdir -p ~/.ssh && chmod 740 ~/.ssh
+#         echo $SXDI_GITSSH_PRIVB64 | base64 -d > ~/.ssh/sxcm-gitlabci.id_ecdsa
+#         chmod 600 ~/.ssh/sxcm-gitlabci.id_ecdsa
+#         ssh-add ~/.ssh/sxcm-gitlabci.id_ecdsa
+#         $(ssh-keyscan $SXDI_GIT_DOMAIN >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts)
+#       else
+#         eval $(ssh-agent -s) &> /dev/null
+#         mkdir -p ~/.ssh && chmod 740 ~/.ssh
+#         echo $SXDI_GITSSH_PRIVB64 | base64 -d > ~/.ssh/sxcm-gitlabci.id_ecdsa
+#         chmod 600 ~/.ssh/sxcm-gitlabci.id_ecdsa
+#         ssh-add ~/.ssh/sxcm-gitlabci.id_ecdsa &> /dev/null
+#         $(ssh-keyscan $SXDI_GIT_DOMAIN >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts)
+#       fi
+#       echo "======== Configuration of remote push to ${SXDI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git"
+#       if [[ $SX_DEBUG == true ]]; then
+#         git remote set-url origin ${SXDI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git
+#         git fetch origin
+#       else
+#         git remote set-url origin ${SXDI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git
+#         git fetch origin &> /dev/null
+#       fi
+#   script: |
+#     #!/bin/bash
+#     echo "======== Checkout branch $SXDI_BRANCH"
+#     if [[ $SX_DEBUG == true ]]; then
+#       git checkout $SXDI_BRANCH
+#     else
+#       git checkout $SXDI_BRANCH &> /dev/null
+#     fi
+#     if [[ $? != 0 ]]; then
+#       echo "!! Could not find origin branch $SXDI_BRANCH" && exit 1
+#     fi
+#     echo "======== Checkout branch $SXDI_PATH"
+#     if [[ $SX_DEBUG == true ]]; then
+#       git checkout --track origin/$SXDI_PATH && \
+#       git checkout $SXDI_PATH && \
+#       git pull
+#     else
+#       git checkout --track origin/$SXDI_PATH &> /dev/null && \
+#       git checkout $SXDI_PATH &> /dev/null && \
+#       git pull &> /dev/null
+#     fi
+#     if [[ $? != 0 ]]; then
+#       echo "!! Could not find destination branch $SXDI_PATH" && exit 1
+#     fi
+#     echo "======== Merge branch $SXDI_BRANCH into $SXDI_PATH"
+#     if [[ $SX_DEBUG == true ]]; then
+#       git merge --no-ff $SXDI_BRANCH
+#     else
+#       git merge --no-ff $SXDI_BRANCH &> /dev/null
+#     fi
+#     if [[ $? != 0 ]]; then
+#       echo "!! Could not automaticaly merge branch $SXDI_BRANCH into $SXDI_PATH" && exit 1
+#     fi
+#     echo "======== Push branch $SXDI_PATH into ${SXDI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git"
+#     if [[ $SX_DEBUG == true ]]; then
+#       git push origin $SXDI_PATH
+#     else
+#       git push origin $SXDI_PATH &> /dev/null
+#     fi
+#     if [[ $? != 0 ]]; then
+#       echo "!! Could not automaticaly push branch $SXDI_PATH"
+#       exit 1
+#     fi
 
 
 
@@ -457,8 +545,8 @@
 
 # Global environment variables
 variables:
-  SXGLCI_GIT_DOMAIN: gitlab.com
-  SXGLCI_GIT_SSH_USER: git@gitlab.com
+  SXDI_GIT_DOMAIN: gitlab.com
+  SXDI_GIT_SSH_USER: git@gitlab.com
   SX_VERBOSE: "true"
   SX_DEBUG: "true"
 
@@ -482,8 +570,8 @@ stages:
 # Library used to merge branch in a local repo
 .build-image:
   variables:
-    SXGLCI_BRANCH_FROM: 'devel' # default to devel branch
-    SXGLCI_BRANCH_TO: 'main' # default to main branch
+    SXDI_BRANCH: 'master' # default to master branch
+    SXDI_PATH: 'OS' # default to OS image
   before_script: 
     - |
       #!/bin/bash
@@ -503,75 +591,61 @@ stages:
       if [[ $SX_DEBUG == true ]]; then
         eval $(ssh-agent -s)
         mkdir -p ~/.ssh && chmod 740 ~/.ssh
-        echo $SXGLCI_GITSSH_PRIVB64 | base64 -d > ~/.ssh/sxcm-gitlabci.id_ecdsa
+        echo $SXDI_GITSSH_PRIVB64 | base64 -d > ~/.ssh/sxcm-gitlabci.id_ecdsa
         chmod 600 ~/.ssh/sxcm-gitlabci.id_ecdsa
         ssh-add ~/.ssh/sxcm-gitlabci.id_ecdsa
-        $(ssh-keyscan $SXGLCI_GIT_DOMAIN >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts)
+        $(ssh-keyscan $SXDI_GIT_DOMAIN >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts)
       else
         eval $(ssh-agent -s) &> /dev/null
         mkdir -p ~/.ssh && chmod 740 ~/.ssh
-        echo $SXGLCI_GITSSH_PRIVB64 | base64 -d > ~/.ssh/sxcm-gitlabci.id_ecdsa
+        echo $SXDI_GITSSH_PRIVB64 | base64 -d > ~/.ssh/sxcm-gitlabci.id_ecdsa
         chmod 600 ~/.ssh/sxcm-gitlabci.id_ecdsa
         ssh-add ~/.ssh/sxcm-gitlabci.id_ecdsa &> /dev/null
-        $(ssh-keyscan $SXGLCI_GIT_DOMAIN >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts)
+        $(ssh-keyscan $SXDI_GIT_DOMAIN >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts)
       fi
-      echo "======== Configuration of remote push to ${SXGLCI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git"
+      echo "======== Configuration of remote push to ${SXDI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git"
       if [[ $SX_DEBUG == true ]]; then
-        git remote set-url origin ${SXGLCI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git
+        git remote set-url origin ${SXDI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git
         git fetch origin
       else
-        git remote set-url origin ${SXGLCI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git
+        git remote set-url origin ${SXDI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git
         git fetch origin &> /dev/null
       fi
   script: |
     #!/bin/bash
-    echo "======== Checkout branch $SXGLCI_BRANCH_FROM"
+    echo "======== Checkout branch $SXDI_BRANCH"
     if [[ $SX_DEBUG == true ]]; then
-      git checkout $SXGLCI_BRANCH_FROM
+      git checkout $SXDI_BRANCH
     else
-      git checkout $SXGLCI_BRANCH_FROM &> /dev/null
+      git checkout $SXDI_BRANCH &> /dev/null
     fi
     if [[ $? != 0 ]]; then
-      echo "!! Could not find origin branch $SXGLCI_BRANCH_FROM" && exit 1
+      echo "!! Could not find origin branch $SXDI_BRANCH" && exit 1
     fi
-    echo "======== Checkout branch $SXGLCI_BRANCH_TO"
+    echo "======== Move to $SXDI_PATH path"
     if [[ $SX_DEBUG == true ]]; then
-      git checkout --track origin/$SXGLCI_BRANCH_TO && \
-      git checkout $SXGLCI_BRANCH_TO && \
-      git pull
+      cd $SXDI_PATH
     else
-      git checkout --track origin/$SXGLCI_BRANCH_TO &> /dev/null && \
-      git checkout $SXGLCI_BRANCH_TO &> /dev/null && \
-      git pull &> /dev/null
+      cd $SXDI_PATH &> /dev/null
     fi
     if [[ $? != 0 ]]; then
-      echo "!! Could not find destination branch $SXGLCI_BRANCH_TO" && exit 1
+      echo "!! Could not find destination directory $SXDI_PATH" && exit 1
     fi
-    echo "======== Merge branch $SXGLCI_BRANCH_FROM into $SXGLCI_BRANCH_TO"
+    echo "======== Build image $SXDI_PATH"
     if [[ $SX_DEBUG == true ]]; then
-      git merge --no-ff $SXGLCI_BRANCH_FROM
+      podman build .
     else
-      git merge --no-ff $SXGLCI_BRANCH_FROM &> /dev/null
+      podman build . &> /dev/null
     fi
     if [[ $? != 0 ]]; then
-      echo "!! Could not automaticaly merge branch $SXGLCI_BRANCH_FROM into $SXGLCI_BRANCH_TO" && exit 1
-    fi
-    echo "======== Push branch $SXGLCI_BRANCH_TO into ${SXGLCI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git"
-    if [[ $SX_DEBUG == true ]]; then
-      git push origin $SXGLCI_BRANCH_TO
-    else
-      git push origin $SXGLCI_BRANCH_TO &> /dev/null
-    fi
-    if [[ $? != 0 ]]; then
-      echo "!! Could not automaticaly push branch $SXGLCI_BRANCH_TO"
-      exit 1
+      echo "!! Could not build $SXDI_PATH for $SXDI_BRANCH branch" && exit 1
     fi
 
 ##
 ## STAGES
 ##
 
-# Debug stage, used when developping the ci/cd chain
+# Return debug informations on master branch
 debug:
   stage: "check"
   script: |
@@ -598,7 +672,7 @@ debug:
   only:
     - master
 
-# Info stage, used to get the execution context
+# Return informations details on master branch
 info:
   stage: "check"
   image: "busybox:latest"
@@ -659,7 +733,7 @@ info:
   only:
     - master
 
-# Check stage, used to check for good context
+# Requirements check on master branch
 requirements:
   stage: "check"
   image: "busybox:latest"
@@ -710,14 +784,15 @@ requirements:
   only:
     - master
 
-# First stage; all branches
+# Markdown check on master branch
 markdown:
   stage: "check"
   script: |
     #!/bin/bash
     mdl --skip-default-ruleset *.md
-  only:
-    - master
+
+
+# Shell check on master branch
 shell:
   stage: "check"
   script: "shellcheck podman-helper.sh && shellcheck okd-helper.sh"
@@ -738,8 +813,8 @@ build-fedora:
   stage: "build OS"
   extends: .build-image
   variables:
-    SXGLCI_BRANCH_FROM: 'devel'
-    SXGLCI_BRANCH_TO: 'main'
+    SXDI_BRANCH: 'master'
+    SXDI_PATH: 'OS'
   only:
     - master
 
