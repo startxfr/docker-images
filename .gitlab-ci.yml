@@ -512,6 +512,100 @@
 
 
 
+# # Library used to merge branch in a local repo
+# .build-image:
+#   variables:
+#     SXDI_BRANCH: 'master' # default to master branch
+#     SXDI_PATH: 'OS' # default to OS image
+#   image: docker:latest
+#   stage: build
+#   services:
+#     - docker:dind
+#   before_script: 
+#     - |
+#       #!/bin/bash
+#       echo "======== Configuration of git repository"
+#       if [[ $SX_DEBUG == true ]]; then
+#         git config user.email "devops@startx.fr"
+#         git config user.name "STARTX Gitlab-CI"
+#         git config fetch.recurseSubmodules true
+#         git config advice.detachedHead false
+#       else
+#         git config user.email "devops@startx.fr" &> /dev/null
+#         git config user.name "STARTX Gitlab-CI" &> /dev/null
+#         git config fetch.recurseSubmodules true &> /dev/null
+#         git config advice.detachedHead false &> /dev/null
+#       fi
+#       echo "======== Configuration of SSH key"
+#       if [[ $SX_DEBUG == true ]]; then
+#         eval $(ssh-agent -s)
+#         mkdir -p ~/.ssh && chmod 740 ~/.ssh
+#         echo $SXDI_GITSSH_PRIVB64 | base64 -d > ~/.ssh/sxcm-gitlabci.id_ecdsa
+#         chmod 600 ~/.ssh/sxcm-gitlabci.id_ecdsa
+#         ssh-add ~/.ssh/sxcm-gitlabci.id_ecdsa
+#         $(ssh-keyscan $SXDI_GIT_DOMAIN >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts)
+#       else
+#         eval $(ssh-agent -s) &> /dev/null
+#         mkdir -p ~/.ssh && chmod 740 ~/.ssh
+#         echo $SXDI_GITSSH_PRIVB64 | base64 -d > ~/.ssh/sxcm-gitlabci.id_ecdsa
+#         chmod 600 ~/.ssh/sxcm-gitlabci.id_ecdsa
+#         ssh-add ~/.ssh/sxcm-gitlabci.id_ecdsa &> /dev/null
+#         $(ssh-keyscan $SXDI_GIT_DOMAIN >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts)
+#       fi
+#       echo "======== Configuration of remote push to ${SXDI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git"
+#       if [[ $SX_DEBUG == true ]]; then
+#         git remote set-url origin ${SXDI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git
+#         git fetch origin
+#       else
+#         git remote set-url origin ${SXDI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git
+#         git fetch origin &> /dev/null
+#       fi
+#     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+#   script: |
+#     #!/bin/bash
+#     echo "======== Checkout branch $SXDI_BRANCH"
+#     if [[ $SX_DEBUG == true ]]; then
+#       git checkout $SXDI_BRANCH
+#     else
+#       git checkout $SXDI_BRANCH &> /dev/null
+#     fi
+#     if [[ $? != 0 ]]; then
+#       echo "!! Could not find origin branch $SXDI_BRANCH" && exit 1
+#     fi
+#     echo "======== Move to $SXDI_PATH path"
+#     if [[ $SX_DEBUG == true ]]; then
+#       cd $SXDI_PATH
+#     else
+#       cd $SXDI_PATH &> /dev/null
+#     fi
+#     if [[ $? != 0 ]]; then
+#       echo "!! Could not find destination directory $SXDI_PATH" && exit 1
+#     fi
+#     echo "======== Build image $SXDI_PATH"
+#     if [[ $SX_DEBUG == true ]]; then
+#       podman build .
+#     else
+#       podman build . &> /dev/null
+#     fi
+#     if [[ $? != 0 ]]; then
+#       echo "!! Could not build $SXDI_PATH for $SXDI_BRANCH branch" && exit 1
+#     fi
+#     - |
+#       if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
+#         tag=""
+#         echo "Running on default branch '$CI_DEFAULT_BRANCH': tag = 'latest'"
+#       else
+#         tag=":$CI_COMMIT_REF_SLUG"
+#         echo "Running on branch '$CI_COMMIT_BRANCH': tag = $tag"
+#       fi
+#     - docker build --pull -t "$CI_REGISTRY_IMAGE${tag}" .
+#     - docker images
+#     - "./travis/prepare-begin      fedora                   latest         rawhide"
+#     - "./travis/prepare-docker     fedora                   latest         rawhide"
+#     - "./travis/prepare-dockerhub  fedora                   latest         rawhide"
+#     - "./travis/prepare-cache      fedora                   latest         rawhide"
+#     - "./travis/prepare-end        fedora                   latest         rawhide"
+#     # - docker push "$CI_REGISTRY_IMAGE${tag}"
 
 
 
@@ -579,54 +673,9 @@ stages:
   before_script: 
     - |
       #!/bin/bash
-      echo "======== Configuration of git repository"
-      if [[ $SX_DEBUG == true ]]; then
-        git config user.email "devops@startx.fr"
-        git config user.name "STARTX Gitlab-CI"
-        git config fetch.recurseSubmodules true
-        git config advice.detachedHead false
-      else
-        git config user.email "devops@startx.fr" &> /dev/null
-        git config user.name "STARTX Gitlab-CI" &> /dev/null
-        git config fetch.recurseSubmodules true &> /dev/null
-        git config advice.detachedHead false &> /dev/null
-      fi
-      echo "======== Configuration of SSH key"
-      if [[ $SX_DEBUG == true ]]; then
-        eval $(ssh-agent -s)
-        mkdir -p ~/.ssh && chmod 740 ~/.ssh
-        echo $SXDI_GITSSH_PRIVB64 | base64 -d > ~/.ssh/sxcm-gitlabci.id_ecdsa
-        chmod 600 ~/.ssh/sxcm-gitlabci.id_ecdsa
-        ssh-add ~/.ssh/sxcm-gitlabci.id_ecdsa
-        $(ssh-keyscan $SXDI_GIT_DOMAIN >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts)
-      else
-        eval $(ssh-agent -s) &> /dev/null
-        mkdir -p ~/.ssh && chmod 740 ~/.ssh
-        echo $SXDI_GITSSH_PRIVB64 | base64 -d > ~/.ssh/sxcm-gitlabci.id_ecdsa
-        chmod 600 ~/.ssh/sxcm-gitlabci.id_ecdsa
-        ssh-add ~/.ssh/sxcm-gitlabci.id_ecdsa &> /dev/null
-        $(ssh-keyscan $SXDI_GIT_DOMAIN >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts)
-      fi
-      echo "======== Configuration of remote push to ${SXDI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git"
-      if [[ $SX_DEBUG == true ]]; then
-        git remote set-url origin ${SXDI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git
-        git fetch origin
-      else
-        git remote set-url origin ${SXDI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git
-        git fetch origin &> /dev/null
-      fi
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+      docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script: |
     #!/bin/bash
-    echo "======== Checkout branch $SXDI_BRANCH"
-    if [[ $SX_DEBUG == true ]]; then
-      git checkout $SXDI_BRANCH
-    else
-      git checkout $SXDI_BRANCH &> /dev/null
-    fi
-    if [[ $? != 0 ]]; then
-      echo "!! Could not find origin branch $SXDI_BRANCH" && exit 1
-    fi
     echo "======== Move to $SXDI_PATH path"
     if [[ $SX_DEBUG == true ]]; then
       cd $SXDI_PATH
@@ -643,7 +692,7 @@ stages:
       podman build . &> /dev/null
     fi
     if [[ $? != 0 ]]; then
-      echo "!! Could not build $SXDI_PATH for $SXDI_BRANCH branch" && exit 1
+      echo "!! Could not build $SXDI_PATH for $CI_COMMIT_BRANCH branch" && exit 1
     fi
     - |
       if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
@@ -660,6 +709,7 @@ stages:
     - "./travis/prepare-dockerhub  fedora                   latest         rawhide"
     - "./travis/prepare-cache      fedora                   latest         rawhide"
     - "./travis/prepare-end        fedora                   latest         rawhide"
+    - docker images
     # - docker push "$CI_REGISTRY_IMAGE${tag}"
 
 ##
