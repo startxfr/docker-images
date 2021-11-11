@@ -647,14 +647,14 @@ variables:
 # Default container image
 image: "quay.io/startx/runner-bash:alpine3"
 
-# Include library
-include:
-  - template: Security/SAST.gitlab-ci.yml
+# # Include library
+# include:
+#   - template: Security/SAST.gitlab-ci.yml
 
 # Stagging for this pipeline
 stages:
   - "check"
-  - "test"
+  # - "test"
   - "build OS"
 
 ##
@@ -741,7 +741,7 @@ debug:
     EOF
     fi
   only:
-    - master
+    - masterrrrr
 
 # Return informations details on master branch
 info:
@@ -802,7 +802,7 @@ info:
     EOF
     fi
   only:
-    - master
+    - masterrrrr
 
 # Requirements check on master branch
 requirements:
@@ -853,7 +853,7 @@ requirements:
       exit 1; 
     fi
   only:
-    - master
+    - masterrrrr
 
 # Markdown check on master branch
 markdown:
@@ -868,14 +868,14 @@ shell:
   stage: "check"
   script: "shellcheck podman-helper.sh && shellcheck okd-helper.sh"
   only:
-    - master
+    - masterrrrr
 
 # #Second stage; only dev branch
 # bats:
 #   stage: "test"
 #   script: "cd tests && ./start.sh"
 #   only:
-#     - master
+#     - masterrrrr
 
 ## Build image
 
