@@ -82,7 +82,7 @@ function appendConf {
 
 # reload conf file
 function reloadConf {
-    source $CONF_FILE
+    source "$CONF_FILE"
 }
 
 
