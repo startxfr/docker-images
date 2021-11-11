@@ -721,25 +721,23 @@ debug:
   script:
     - source .gitlab-ci.sh && DisplayCheckDebug
   only:
-    - masterrrrr
+    - master
 
 # Return informations details on master branch
 info:
   stage: "check"
-  image: "busybox:latest"
   script: 
     - source .gitlab-ci.sh && DisplayCheckInfo
   only:
-    - masterrrrr
+    - master
 
 # Requirements check on master branch
 requirements:
   stage: "check"
-  image: "busybox:latest"
   script: 
     - source .gitlab-ci.sh && DisplayCheckRequirements
   only:
-    - masterrrrr
+    - master
 
 # Markdown check on master branch
 markdown:
