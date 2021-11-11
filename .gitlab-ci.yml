@@ -838,9 +838,4 @@ build-fedora:
     SXDI_PATH: 'OS'
   only:
     - master
-  # Run this job in a branch where a Dockerfile exists
-  rules:
-    - if: $CI_COMMIT_BRANCH
-      exists:
-        - $SXDI_PATH/Dockerfile
 
