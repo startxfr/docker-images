@@ -661,11 +661,6 @@ stages:
     - "./travis/prepare-cache      fedora                   latest         rawhide"
     - "./travis/prepare-end        fedora                   latest         rawhide"
     # - docker push "$CI_REGISTRY_IMAGE${tag}"
-  # Run this job in a branch where a Dockerfile exists
-  rules:
-    - if: $CI_COMMIT_BRANCH
-      exists:
-        - $SXDI_PATH/Dockerfile
 
 ##
 ## STAGES
@@ -843,4 +838,9 @@ build-fedora:
     SXDI_PATH: 'OS'
   only:
     - master
+  # Run this job in a branch where a Dockerfile exists
+  rules:
+    - if: $CI_COMMIT_BRANCH
+      exists:
+        - $SXDI_PATH/Dockerfile
 
