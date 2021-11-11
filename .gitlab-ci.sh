@@ -5,7 +5,7 @@
 function DisplayCheckDebug {
     VS_PYTHON=$(python3 --version)
     MDL_PYTHON=$(mdl --version)
-    SS_PYTHON=$(shellcheck --version)
+    SS_PYTHON=$(shellcheck --version | head -n 2 | tail -n 1)
     DDSIZE=$(du -sh .)
     if [[ $SX_DEBUG == true ]]; then
     cat <<EOF
@@ -82,6 +82,7 @@ EOF
 
 # Display the requirements checks
 function DisplayCheckRequirements {
+    echo "======== CHECK REQUIREMENTS"
     if [[ -f LICENSE ]]; then 
       echo "LICENSE is found"; 
     else 
@@ -129,5 +130,19 @@ function DisplayCheckRequirements {
 
 # Display the markdown checks
 function DisplayCheckMarkdown {
+    echo "======== CHECK MARKDOWN SYNTAX"
     mdl --skip-default-ruleset *.md
+}
+
+# Display the shellcheck checks
+function DisplayCheckShellcheck {
+    echo "======== CHECK SHELL SYNTAX"
+    shellcheck podman-helper.sh
+    shellcheck okd-helper.sh
+}
+
+# Display the build of a container image
+function DisplayImageBuild {
+    echo "======== BUILD IMAGE"
+    echo "=======================> image build"
 }

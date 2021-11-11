@@ -673,6 +673,9 @@ stages:
   before_script: 
     - |
       #!/bin/bash
+      ls -la .
+      source .gitlab-ci.sh
+      DisplayImageBuild
       docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script: |
     #!/bin/bash
@@ -718,26 +721,23 @@ stages:
 # Return debug informations on master branch
 debug:
   stage: "check"
-  script:
-    - source .gitlab-ci.sh && DisplayCheckDebug
+  script: "source .gitlab-ci.sh && DisplayCheckDebug"
   only:
-    - master
+    - masterrrrr
 
 # Return informations details on master branch
 info:
   stage: "check"
-  script: 
-    - source .gitlab-ci.sh && DisplayCheckInfo
+  script: "source .gitlab-ci.sh && DisplayCheckInfo"
   only:
-    - master
+    - masterrrrr
 
 # Requirements check on master branch
 requirements:
   stage: "check"
-  script: 
-    - source .gitlab-ci.sh && DisplayCheckRequirements
+  script: "source .gitlab-ci.sh && DisplayCheckRequirements"
   only:
-    - master
+    - masterrrrr
 
 # Markdown check on master branch
 markdown:
@@ -750,9 +750,9 @@ markdown:
 # Shell check on master branch
 shell:
   stage: "check"
-  script: "shellcheck podman-helper.sh && shellcheck okd-helper.sh"
+  script: "source .gitlab-ci.sh && DisplayCheckShellcheck"
   only:
-    - masterrrrr
+    - master
 
 # #Second stage; only dev branch
 # bats:
