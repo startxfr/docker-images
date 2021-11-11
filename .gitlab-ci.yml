@@ -687,9 +687,9 @@ stages:
     fi
     echo "======== Build image $SXDI_PATH"
     if [[ $SX_DEBUG == true ]]; then
-      podman build .
+      docker build .
     else
-      podman build . &> /dev/null
+      docker build . &> /dev/null
     fi
     if [[ $? != 0 ]]; then
       echo "!! Could not build $SXDI_PATH for $CI_COMMIT_BRANCH branch" && exit 1
