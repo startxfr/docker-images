@@ -572,6 +572,10 @@ stages:
   variables:
     SXDI_BRANCH: 'master' # default to master branch
     SXDI_PATH: 'OS' # default to OS image
+  image: docker:latest
+  stage: build
+  services:
+    - docker:dind
   before_script: 
     - |
       #!/bin/bash
@@ -611,6 +615,7 @@ stages:
         git remote set-url origin ${SXDI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git
         git fetch origin &> /dev/null
       fi
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script: |
     #!/bin/bash
     echo "======== Checkout branch $SXDI_BRANCH"
@@ -640,6 +645,27 @@ stages:
     if [[ $? != 0 ]]; then
       echo "!! Could not build $SXDI_PATH for $SXDI_BRANCH branch" && exit 1
     fi
+    - |
+      if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
+        tag=""
+        echo "Running on default branch '$CI_DEFAULT_BRANCH': tag = 'latest'"
+      else
+        tag=":$CI_COMMIT_REF_SLUG"
+        echo "Running on branch '$CI_COMMIT_BRANCH': tag = $tag"
+      fi
+    - docker build --pull -t "$CI_REGISTRY_IMAGE${tag}" .
+    - docker images
+    - "./travis/prepare-begin      fedora                   latest         rawhide"
+    - "./travis/prepare-docker     fedora                   latest         rawhide"
+    - "./travis/prepare-dockerhub  fedora                   latest         rawhide"
+    - "./travis/prepare-cache      fedora                   latest         rawhide"
+    - "./travis/prepare-end        fedora                   latest         rawhide"
+    # - docker push "$CI_REGISTRY_IMAGE${tag}"
+  # Run this job in a branch where a Dockerfile exists
+  rules:
+    - if: $CI_COMMIT_BRANCH
+      exists:
+        - $SXDI_PATH/Dockerfile
 
 ##
 ## STAGES
