@@ -673,7 +673,8 @@ stages:
   stage: build
   services:
     - docker:dind
-  before_script: "source .gitlab-ci.sh && DoImageBuildPrepare"
+  before_script: 
+    - "source .gitlab-ci.sh && DoImageBuildPrepare"
   script:
     - DoImageBuildExecute OS fedora latest fedora
     - DoImageBuildTest OS fedora latest fedora
