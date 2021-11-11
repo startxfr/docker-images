@@ -159,7 +159,7 @@ function DoImageBuildPrepare {
 # Prepare the docker daemon for optimal layer generation
 function DoImageBuildPrepareDaemon {
     echo "INFO: Updating docker configuration (experimental)"
-    echo '{ "experimental": true, "dns" : [ "8.8.8.8" ], "storage-driver": "overlay2", "max-concurrent-downloads": 50, "max-concurrent-uploads": 50 }' | sudo tee /etc/docker/daemon.json
+    echo '{ "experimental": true, "dns" : [ "8.8.8.8" ], "storage-driver": "overlay2", "max-concurrent-downloads": 50, "max-concurrent-uploads": 50 }' | tee /etc/docker/daemon.json
     service docker restart
 }
 
