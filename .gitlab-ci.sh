@@ -159,8 +159,9 @@ function DoImageBuildPrepare {
 # Prepare the docker daemon for optimal layer generation
 function DoImageBuildPrepareDaemon {
     echo "INFO: Updating docker configuration (experimental)"
+    ls -la /etc/docker
     echo '{ "experimental": true, "dns" : [ "8.8.8.8" ], "storage-driver": "overlay2", "max-concurrent-downloads": 50, "max-concurrent-uploads": 50 }' | sudo tee /etc/docker/daemon.json
-    sudo service docker restart
+    service docker restart
 }
 
 # Execute a docker login command for the given registry with the given credentials
