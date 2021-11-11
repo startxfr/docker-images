@@ -12,7 +12,7 @@ function testBuild {
     if [[ -r $1/Dockerfile ]]; then
         podman build -t $SXDC_PROJECT/"$2":"$3" "$1"
     else
-        echo -e "!! Could not build \e[1m$SXDC_PROJECT/"$2":"$3"\e[0m based on \e[1m$1/Dockerfile\e[0m definition"
+        echo -e "!! Could not build \e[1m$SXDC_PROJECT/$2:$3\e[0m based on \e[1m$1/Dockerfile\e[0m definition"
     fi
 }
 
@@ -22,19 +22,19 @@ function testDeploy {
         podman rm -vf ${SXDC_PROJECT}_"$2"_"$3" &>/dev/null
         podman run -d --name ${SXDC_PROJECT}_"$2"_"$3" $SXDC_PROJECT/"$2":"$3"
     else
-        echo -e "!! Could not deploy \e[1m$SXDC_PROJECT/"$2":"$3"\e[0m because no \e[1m$1/Dockerfile\e[0m found"
+        echo -e "!! Could not deploy \e[1m$SXDC_PROJECT/$2:$3\e[0m because no \e[1m$1/Dockerfile\e[0m found"
     fi
 }
 
 function testVersion {
-    if [[ -r $1/Dockerfile ]]; then
+    if [[ -r "$1"/Dockerfile ]]; then
         podman stop ${SXDC_PROJECT}_"$2"_"$3"-version &>/dev/null
         podman rm -f ${SXDC_PROJECT}_"$2"_"$3"-version &>/dev/null
         echo -e "== Display informations on \e[1m$2\e[0m in \e[1m$3\e[0m version"
-        podman run --name ${SXDC_PROJECT}_"$2"_"$3"-version $SXDC_PROJECT/"$2":"$3" /bin/sx-$2 info
+        podman run --name ${SXDC_PROJECT}_"$2"_"$3"-version $SXDC_PROJECT/"$2":"$3" /bin/sx-"$2" info
         podman rm -f ${SXDC_PROJECT}_"$2"_"$3"-version &>/dev/null
     else
-        echo -e "!! Could not get \e[1m$SXDC_PROJECT/"$2":"$3"\e[0m info because no \e[1m$1/Dockerfile\e[0m found"
+        echo -e "!! Could not get \e[1m$SXDC_PROJECT/$2:$3\e[0m info because no \e[1m$1/Dockerfile\e[0m found"
     fi
 }
 
@@ -46,7 +46,7 @@ function testOSVersion {
         podman run --name ${SXDC_PROJECT}_"$2"_"$3"-version $SXDC_PROJECT/"$2":"$3" /bin/sx info
         podman rm -f ${SXDC_PROJECT}_"$2"_"$3"-version &>/dev/null
     else
-        echo -e "!! Could not get \e[1m$SXDC_PROJECT/"$2":"$3"\e[0m info because no \e[1m$1/Dockerfile\e[0m found"
+        echo -e "!! Could not get \e[1m$SXDC_PROJECT/$2:$3\e[0m info because no \e[1m$1/Dockerfile\e[0m found"
     fi
 }
 
@@ -64,7 +64,8 @@ function temporize {
 ## start application
 
 #test if podman client is present
-if [ $(podman version | grep ^Version) != 0 ]; then
+$(podman version | grep ^Version)
+if [ $? != 0 ]; then
     echo "Podman is not installed."
     echo "Install podman client (podman) first"
     echo "Exit"
@@ -109,7 +110,6 @@ Usage:
   version all            Run (and build) all container to extract application informations
   versions               Alias of the previous command
 
-  Using podman $ov
 EOF
 }
 
@@ -134,9 +134,9 @@ function menuSetupProject {
         appendConf SXDC_PROJECT "$1"
     else
         echo -en "Project name \e[2m(\e[0m\e[1m$DEFAULT_PROJECT\e[0m\e[2m)\e[0m :"
-        read project
+        read -r project
         if [[ "$project" != "" ]]; then
-            appendConf SXDC_PROJECT $project
+            appendConf SXDC_PROJECT "$project"
         else
             appendConf SXDC_PROJECT $DEFAULT_PROJECT
         fi
