@@ -11,7 +11,7 @@ SXDC_STAGE=$DEFAULT_STAGE
 
 # config file
 touch $CONF_FILE
-# shellcheck source=~/.oks-sx
+# shellcheck source=/dev/null
 source $CONF_FILE
 
 
@@ -66,8 +66,8 @@ else
 fi
 
 #test if openshift is connected
-ou=`oc whoami`
-if [ $? != 0 ]; then
+oc whoami &> /dev/null
+if [ "$?" != 0 ]; then
     echo "Openshift is not logged."
     echo "Log to openshift cluster first (oc login -u <user> -p <pwd> <host>)"
     echo "Exit"
@@ -83,7 +83,7 @@ function appendConf {
 
 # reload conf file
 function reloadConf {
-    # shellcheck source=~/.oks-sx
+    # shellcheck source=/dev/null
     source $CONF_FILE
 }
 
@@ -150,9 +150,9 @@ function menuSetupProject {
         appendConf SXDC_PROJECT "$1"
     else
         echo -en "Project name \e[2m(\e[0m\e[1m$DEFAULT_PROJECT\e[0m\e[2m)\e[0m :"
-        read project
+        read -r project
         if [[ "$project" != "" ]]; then
-            appendConf SXDC_PROJECT $project
+            appendConf SXDC_PROJECT "$project"
         else
             appendConf SXDC_PROJECT $DEFAULT_PROJECT
         fi
@@ -177,9 +177,9 @@ function menuSetupFlavour {
         flavour="$1"
     else
         echo -en "Image flavour \e[2m(\e[0m\e[1m$DEFAULT_FLAVOUR\e[0m\e[2m)\e[0m :"
-        read project
+        read -r project
         if [[ "$project" != "" ]]; then
-            flavour=$project
+            flavour="$project"
         fi
     fi
     case $flavour in
@@ -221,9 +221,9 @@ function menuSetupStage {
         appendConf SXDC_STAGE "$1"
     else
         echo -en "Project stage \e[2m(\e[0m\e[1m$DEFAULT_STAGE\e[0m\e[2m)\e[0m :"
-        read stage
+        read -r stage
         if [[ "$stage" != "" ]]; then
-            appendConf SXDC_STAGE $stage
+            appendConf SXDC_STAGE "$stage"
         else
             appendConf SXDC_STAGE $DEFAULT_STAGE
         fi
