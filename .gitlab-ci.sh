@@ -125,3 +125,9 @@ function DisplayCheckRequirements {
       exit 1; 
     fi
 }
+
+
+# Display the markdown checks
+function DisplayCheckMarkdown {
+    mdl --skip-default-ruleset *.md
+}

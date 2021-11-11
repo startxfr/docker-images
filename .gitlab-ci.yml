@@ -730,7 +730,7 @@ info:
   script: 
     - source .gitlab-ci.sh && DisplayCheckInfo
   only:
-    - master
+    - masterrrrr
 
 # Requirements check on master branch
 requirements:
@@ -739,16 +739,14 @@ requirements:
   script: 
     - source .gitlab-ci.sh && DisplayCheckRequirements
   only:
-    - master
+    - masterrrrr
 
 # Markdown check on master branch
 markdown:
   stage: "check"
-  script: |
-    #!/bin/bash
-    mdl --skip-default-ruleset *.md
+  script: "source .gitlab-ci.sh && DisplayCheckMarkdown"
   only:
-    - masterrrrr
+    - master
 
 
 # Shell check on master branch
