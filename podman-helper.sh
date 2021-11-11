@@ -82,6 +82,7 @@ function appendConf {
 
 # reload conf file
 function reloadConf {
+    # shellcheck source=/dev/null
     source "$CONF_FILE"
 }
 
