@@ -2,9 +2,9 @@
 
 # Image COUCHBASE
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/couchbase/)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://gitlab.com/startx1/containers) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://gitlab.com/startx1/containers/tree/master/Services/couchbase/)
 
-[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-couchbase.svg)](https://hub.docker.com/r/startx/sv-couchbase) [![Docker couchbase pulls](https://img.shields.io/docker/pulls/startx/sv-couchbase)](https://hub.docker.com/r/startx/sv-couchbase) [![Docker Repository on Quay](https://quay.io/repository/startx/couchbase/status "Docker Repository on Quay")](https://quay.io/repository/startx/couchbase)
+[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://gitlab.com/startx1/containers) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-couchbase.svg)](https://hub.docker.com/r/startx/sv-couchbase) [![Docker couchbase pulls](https://img.shields.io/docker/pulls/startx/sv-couchbase)](https://hub.docker.com/r/startx/sv-couchbase) [![Docker Repository on Quay](https://quay.io/repository/startx/couchbase/status "Docker Repository on Quay")](https://quay.io/repository/startx/couchbase)
 
 Simple container used to deliver distributed and low latency document oriented database
 Run [couchbase daemon](https://www.couchbase.org/) under a container
@@ -44,7 +44,7 @@ You can use Startx couchbase image in many ways :
     - [Build & run a container using `docker`](#build--run-a-container-using-docker)
     - [Build & run a container using `docker-compose`](#build--run-a-container-using-docker-compose)
 
-See more applications builders and sample on [startx docker images repository](https://github.com/startxfr/docker-images/blob/master)
+See more applications builders and sample on [startx docker images repository](https://gitlab.com/startx1/containers/blob/master)
 
 ## Container flavours
 
@@ -192,7 +192,7 @@ oc process -f startx-couchbase-deploy-template \
 You can use this image as an s2i builder image.
 
 ```bash
-s2i build https://github.com/startxfr/docker-images-example-couchbase startx/sv-couchbase test-couchbase
+s2i build https://gitlab.com/startx1/containers-example-couchbase startx/sv-couchbase test-couchbase
 docker run --rm -i -t test-couchbase
 ```
 
@@ -235,11 +235,11 @@ access to the running couchbase daemon with `telnet localhost 11211; stats`. Cha
 ## Environment variable
 
 This container is based on [startx fedora container](https://hub.docker.com/r/startx/fedora) who came with
-some [predefined environment variable](https://github.com/startxfr/docker-images/tree/master/OS#environment-variable)
+some [predefined environment variable](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable)
 
 | Variable                       | Type     | Mandatory             | Description                                                                                           |
 | ------------------------------ | -------- | --------------------- | ----------------------------------------------------------------------------------------------------- |
-| <i>base image environement</i> |          |                       | [see environment list](https://github.com/startxfr/docker-images/tree/master/OS#environment-variable) |
+| <i>base image environement</i> |          |                       | [see environment list](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable) |
 | SX_VERSION                     | `string` | `latest`              | container version                                                                                     |
 | SX_TYPE                        | `string` | `service`             | Container family (os, service, application). could be enhanced                                        |
 | SX_SERVICE                     | `string` | `couchbase`           | Define the type of service or application provided                                                    |
@@ -290,7 +290,7 @@ This section will help you if you want to :
 - Get latest version of this service container
 - Enhance container content by adding instruction in Dockefile before build step
 
-You must have a working environment with the source code of this repository. Read and follow [how to setup your working environment](https://github.com/startxfr/docker-images#setup-your-working-environment-mandatory) to get a working directory. The following instructions assume you are at the top level of your working directory.
+You must have a working environment with the source code of this repository. Read and follow [how to setup your working environment](https://gitlab.com/startx1/containers#setup-your-working-environment-mandatory) to get a working directory. The following instructions assume you are at the top level of your working directory.
 
 ### Build & run a container using `docker`
 

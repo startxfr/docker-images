@@ -21,4 +21,4 @@ currently being supported with security updates.
 
 ## Reporting a Vulnerability
 
-please report a vulnerability or security issue using the [new issue formular](https://github.com/startxfr/docker-images/issues/new)
+please report a vulnerability or security issue using the [new issue formular](https://gitlab.com/startx1/containers/issues/new)

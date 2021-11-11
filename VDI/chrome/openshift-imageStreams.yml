@@ -29,7 +29,7 @@ items:
             tags: builder,startx,fedora,chrome,vnc
             supports: vnc
             version: fc27
-            sampleRepo: https://github.com/startxfr/docker-images-example-chrome.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-chrome.git
           from:
             kind: DockerImage
             name: startx/vdi-chrome:fc27
@@ -43,7 +43,7 @@ items:
             tags: builder,startx,fedora,chrome,vnc
             supports: vnc
             version: fc28
-            sampleRepo: https://github.com/startxfr/docker-images-example-chrome.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-chrome.git
           from:
             kind: DockerImage
             name: startx/vdi-chrome:fc28
@@ -57,7 +57,7 @@ items:
             tags: builder,startx,fedora,chrome,vnc
             supports: vnc
             version: fc29
-            sampleRepo: https://github.com/startxfr/docker-images-example-chrome.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-chrome.git
           from:
             kind: DockerImage
             name: startx/vdi-chrome:fc29
@@ -71,7 +71,7 @@ items:
             tags: builder,startx,fedora,chrome,vnc
             supports: vnc
             version: fc30
-            sampleRepo: https://github.com/startxfr/docker-images-example-chrome.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-chrome.git
           from:
             kind: DockerImage
             name: startx/vdi-chrome:fc30
@@ -85,7 +85,7 @@ items:
             tags: builder,startx,fedora,chrome,vnc
             supports: vnc
             version: fc31
-            sampleRepo: https://github.com/startxfr/docker-images-example-chrome.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-chrome.git
           from:
             kind: DockerImage
             name: startx/vdi-chrome:fc31
@@ -99,7 +99,7 @@ items:
             tags: builder,startx,fedora,chrome,vnc
             supports: vnc
             version: fc32
-            sampleRepo: https://github.com/startxfr/docker-images-example-chrome.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-chrome.git
           from:
             kind: DockerImage
             name: startx/vdi-chrome:fc32
@@ -113,7 +113,7 @@ items:
             tags: builder,startx,fedora,chrome,vnc
             supports: vnc
             version: fc33
-            sampleRepo: https://github.com/startxfr/docker-images-example-chrome.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-chrome.git
           from:
             kind: DockerImage
             name: startx/vdi-chrome:fc33
@@ -127,7 +127,7 @@ items:
             tags: builder,startx,fedora,chrome,vnc
             supports: vnc
             version: fc34
-            sampleRepo: https://github.com/startxfr/docker-images-example-chrome.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-chrome.git
           from:
             kind: DockerImage
             name: startx/vdi-chrome:fc34
@@ -141,7 +141,7 @@ items:
             tags: builder,startx,fedora,chrome,vnc
             supports: vnc
             version: rawhide
-            sampleRepo: https://github.com/startxfr/docker-images-example-chrome.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-chrome.git
           from:
             kind: DockerImage
             name: startx/vdi-chrome:latest
@@ -155,7 +155,7 @@ items:
             tags: builder,startx,centos,chrome,vnc
             supports: vnc
             version: "8"
-            sampleRepo: https://github.com/startxfr/docker-images-example-chrome.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-chrome.git
           from:
             kind: DockerImage
             name: startx/vdi-chrome:centos8
@@ -169,7 +169,7 @@ items:
             tags: builder,startx,centos,chrome,vnc
             supports: vnc
             version: "7"
-            sampleRepo: https://github.com/startxfr/docker-images-example-chrome.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-chrome.git
           from:
             kind: DockerImage
             name: startx/vdi-chrome:centos7
@@ -183,7 +183,7 @@ items:
             tags: builder,startx,alpine,chrome,vnc
             supports: vnc
             version: "3"
-            sampleRepo: https://github.com/startxfr/docker-images-example-chrome.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-chrome.git
           from:
             kind: DockerImage
             name: startx/vdi-chrome:alpine3

@@ -2,8 +2,8 @@
 
 # STARTX Chrome container image
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startx-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/VDI/chrome/)
-[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Docker chrome pulls](https://img.shields.io/docker/pulls/startx/vdi-chrome)](https://hub.docker.com/r/startx/vdi-chrome) [![Docker Repository on Quay](https://quay.io/repository/startx/chrome/status "Docker Repository on Quay")](https://quay.io/repository/startx/chrome)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://gitlab.com/startx1/containers) [![Sources](https://img.shields.io/badge/startx-docker--images-blue.svg)](https://gitlab.com/startx1/containers/tree/master/VDI/chrome/)
+[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://gitlab.com/startx1/containers) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Docker chrome pulls](https://img.shields.io/docker/pulls/startx/vdi-chrome)](https://hub.docker.com/r/startx/vdi-chrome) [![Docker Repository on Quay](https://quay.io/repository/startx/chrome/status "Docker Repository on Quay")](https://quay.io/repository/startx/chrome)
 
 Startx chrome is a base container used for web services and applications published in
 [Dockerhub registry](https://hub.docker.com/u/startx) or [Quay registry](https://quay.io/startx).

@@ -1,8 +1,8 @@
-[![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
+[![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://gitlab.com/startx1/containers)
 
 # Image OOCONV
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/Services/ooconv/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-ooconv.svg)](https://hub.docker.com/r/startx/sv-ooconv) [![Docker ooconv pulls](https://img.shields.io/docker/pulls/startx/sv-ooconv)](https://hub.docker.com/r/startx/sv-ooconv) [![Docker Repository on Quay](https://quay.io/repository/startx/ooconv/status "Docker Repository on Quay")](https://quay.io/repository/startx/ooconv)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://gitlab.com/startx1/containers) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://gitlab.com/startx1/containers/tree/master/Services/ooconv/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://gitlab.com/startx1/containers) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/sv-ooconv.svg)](https://hub.docker.com/r/startx/sv-ooconv) [![Docker ooconv pulls](https://img.shields.io/docker/pulls/startx/sv-ooconv)](https://hub.docker.com/r/startx/sv-ooconv) [![Docker Repository on Quay](https://quay.io/repository/startx/ooconv/status "Docker Repository on Quay")](https://quay.io/repository/startx/ooconv)
 
 Simple container used to document convertion and manipulation tools
 Run [libreoffice](https://www.libreoffice.org/) as a daemon using [dagwieers unoconv](https://github.com/dagwieers/unoconv) under a container
@@ -78,7 +78,7 @@ oc process startx-ooconv-build-template | oc create -f -
 You can use this image as an s2i builder image.
 
 ```bash
-s2i build https://github.com/startxfr/docker-images-example-ooconv startx/sv-ooconv test-ooconv
+s2i build https://gitlab.com/startx1/containers-example-ooconv startx/sv-ooconv test-ooconv
 docker run --rm -i -t test-ooconv
 ```
 
@@ -117,11 +117,11 @@ CMD ["/bin/sx", "run"]
 ## Environment variable
 
 This container is based on [startx fedora container](https://hub.docker.com/r/startx/fedora) who came with
-some [additional environment variable](https://github.com/startxfr/docker-images/tree/master/OS#environment-variable)
+some [additional environment variable](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable)
 
 | Variable                       | Type   | Mandatory | Description                                                                                           |
 | ------------------------------ | ------ | --------- | ----------------------------------------------------------------------------------------------------- |
-| <i>base image environement</i> |        |           | [see environment list](https://github.com/startxfr/docker-images/tree/master/OS#environment-variable) |
+| <i>base image environement</i> |        |           | [see environment list](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable) |
 | HOSTNAME                       | `auto` | `auto`    | Container unique id automatically assigned by docker daemon at startup                                |
 | LOG_PATH                       | `auto` | `auto`    | default set to /var/log/ooconv and used as a volume mountpoint                                        |
 
@@ -150,7 +150,7 @@ This section will help you if you want to :
 - Get latest version of this service container
 - Enhance container content by adding instruction in Dockefile before build step
 
-You must have a working environment with the source code of this repository. Read and follow [how to setup your working environment](https://github.com/startxfr/docker-images#setup-your-working-environment-mandatory) to get a working directory. The following instructions assume you are at the top level of your working directory.
+You must have a working environment with the source code of this repository. Read and follow [how to setup your working environment](https://gitlab.com/startx1/containers#setup-your-working-environment-mandatory) to get a working directory. The following instructions assume you are at the top level of your working directory.
 
 ### Build & run a container using `docker`
 

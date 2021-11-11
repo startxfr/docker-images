@@ -1,4 +1,4 @@
-[![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
+[![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://gitlab.com/startx1/containers)
 
 # STARTX Application docker-images : AWX
 
@@ -12,7 +12,7 @@ Only based on public image. Do not need to be builded before running it
 ```bash
 mkdir startx-docker-images; 
 cd startx-docker-images;
-git clone https://github.com/startxfr/docker-images.git .
+git clone https://gitlab.com/startx1/containers.git .
 ```
 
 ### Run local containers
@@ -73,7 +73,7 @@ oc logs dc/awx-awx_task
 ```
 
 ## Related Resources
-* [Sources files](https://github.com/startxfr/docker-images/tree/master/Applications/awx)
-* [Github STARTX profile](https://github.com/startxfr/docker-images)
+* [Sources files](https://gitlab.com/startx1/containers/tree/master/Applications/awx)
+* [Github STARTX profile](https://gitlab.com/startx1/containers)
 * [Docker registry for this container](https://registry.hub.docker.com/u/startx/app-awx/)
 * [Docker registry for Fedora](https://registry.hub.docker.com/u/fedora/)

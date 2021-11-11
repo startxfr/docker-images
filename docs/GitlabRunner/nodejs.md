@@ -2,7 +2,7 @@
 
 # Image runner-NodeJS
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/GitlabRunner/nodejs/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/runner-nodejs.svg)](https://hub.docker.com/r/startx/runner-nodejs) [![Docker nodejs pulls](https://img.shields.io/docker/pulls/startx/runner-nodejs)](https://hub.docker.com/r/startx/runner-nodejs) [![Docker Repository on Quay](https://quay.io/repository/startx/nodejs/status "Docker Repository on Quay")](https://quay.io/repository/startx/nodejs)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://gitlab.com/startx1/containers) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://gitlab.com/startx1/containers/tree/master/GitlabRunner/nodejs/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://gitlab.com/startx1/containers) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/runner-nodejs.svg)](https://hub.docker.com/r/startx/runner-nodejs) [![Docker nodejs pulls](https://img.shields.io/docker/pulls/startx/runner-nodejs)](https://hub.docker.com/r/startx/runner-nodejs) [![Docker Repository on Quay](https://quay.io/repository/startx/nodejs/status "Docker Repository on Quay")](https://quay.io/repository/startx/nodejs)
 
 Startx nodejs is a base container used for web services and applications published in [Dockerhub registry](https://hub.docker.com/u/startx).
 This container contain :
@@ -26,7 +26,7 @@ You can use Startx Nodejs image in many ways :
     - [Build & run a container using `docker`](#build--run-a-container-using-docker)
     - [Build & run a container using `docker-compose`](#build--run-a-container-using-docker-compose)
 
-See more applications builders and sample on [startx docker images repository](https://github.com/startxfr/docker-images/blob/master)
+See more applications builders and sample on [startx docker images repository](https://gitlab.com/startx1/containers/blob/master)
 
 ## Container flavours
 
@@ -126,7 +126,7 @@ FROM quay.io/startx/runner-nodejs:latest
 ## For advanced users
 
 You can contribute or start this container initiative locally.
-[Follow theses instructions](https://github.com/startxfr/docker-images#setup-your-working-environment-mandatory) to setup a working environment.
+[Follow theses instructions](https://gitlab.com/startx1/containers#setup-your-working-environment-mandatory) to setup a working environment.
 
 This section will help you if you want to :
 
