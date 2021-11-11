@@ -666,53 +666,18 @@ stages:
   variables:
     SXDI_BRANCH: 'master' # default to master branch
     SXDI_PATH: 'OS' # default to OS image
+    SXDI_DOCKERNAME: 'fedora' # image name in docker.io registry
+    SXDI_TAG: 'latest' # image tag name
+    SXDI_QUAYNAME: 'fedora' # image name in quay.io registry
   image: docker:latest
   stage: build
   services:
     - docker:dind
-  before_script: 
-    - |
-      #!/bin/bash
-      ls -la .
-      source .gitlab-ci.sh
-      DisplayImageBuild
-      docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-  script: |
-    #!/bin/bash
-    echo "======== Move to $SXDI_PATH path"
-    if [[ $SX_DEBUG == true ]]; then
-      cd $SXDI_PATH
-    else
-      cd $SXDI_PATH &> /dev/null
-    fi
-    if [[ $? != 0 ]]; then
-      echo "!! Could not find destination directory $SXDI_PATH" && exit 1
-    fi
-    echo "======== Build image $SXDI_PATH"
-    if [[ $SX_DEBUG == true ]]; then
-      docker build .
-    else
-      docker build . &> /dev/null
-    fi
-    if [[ $? != 0 ]]; then
-      echo "!! Could not build $SXDI_PATH for $CI_COMMIT_BRANCH branch" && exit 1
-    fi
-    - |
-      if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
-        tag=""
-        echo "Running on default branch '$CI_DEFAULT_BRANCH': tag = 'latest'"
-      else
-        tag=":$CI_COMMIT_REF_SLUG"
-        echo "Running on branch '$CI_COMMIT_BRANCH': tag = $tag"
-      fi
-    - docker build --pull -t "$CI_REGISTRY_IMAGE${tag}" .
-    - docker images
-    - "./travis/prepare-begin      fedora                   latest         rawhide"
-    - "./travis/prepare-docker     fedora                   latest         rawhide"
-    - "./travis/prepare-dockerhub  fedora                   latest         rawhide"
-    - "./travis/prepare-cache      fedora                   latest         rawhide"
-    - "./travis/prepare-end        fedora                   latest         rawhide"
-    # - docker push "$CI_REGISTRY_IMAGE${tag}"
+  before_script: "source .gitlab-ci.sh && DoImageBuildPrepare"
+  script:
+    - DoImageBuildExecute OS fedora latest fedora
+    - DoImageBuildTest OS fedora latest fedora
+    - DoImageBuildPublish OS fedora latest fedora
 
 ##
 ## STAGES
@@ -744,7 +709,7 @@ markdown:
   stage: "check"
   script: "source .gitlab-ci.sh && DisplayCheckMarkdown"
   only:
-    - master
+    - masterrrrr
 
 
 # Shell check on master branch
@@ -752,7 +717,7 @@ shell:
   stage: "check"
   script: "source .gitlab-ci.sh && DisplayCheckShellcheck"
   only:
-    - master
+    - masterrrrr
 
 # #Second stage; only dev branch
 # bats:
@@ -770,6 +735,8 @@ build-fedora:
   variables:
     SXDI_BRANCH: 'master'
     SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: 'fedora'
+    SXDI_TAG: 'latest'
+    SXDI_QUAYNAME: 'fedora'
   only:
     - master
-

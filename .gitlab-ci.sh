@@ -144,5 +144,255 @@ function DisplayCheckShellcheck {
 # Display the build of a container image
 function DisplayImageBuild {
     echo "======== BUILD IMAGE"
-    echo "=======================> image build"
+    DoImageBuildPrepare
 }
+
+# Display the build of a container image
+function DoImageBuildPrepare {
+    echo "======== PREPARE IMAGE BUILD"
+    DoImageBuildPrepareDaemon
+    DoImageBuildPrepareRepositoryAuth docker.io $DOCKER_USER $DOCKER_PASS
+    DoImageBuildPrepareRepositoryAuth quay.io $QUAY_USER $QUAY_PASS
+    DoImageBuildPrepareRepositoryAuth $CI_REGISTRY $CI_REGISTRY_USER $CI_REGISTRY_PASSWORD
+}
+
+# Prepare the docker daemon for optimal layer generation
+function DoImageBuildPrepareDaemon {
+    echo "INFO: Updating docker configuration (experimental)"
+    echo '{ "experimental": true, "dns" : [ "8.8.8.8" ], "storage-driver": "overlay2", "max-concurrent-downloads": 50, "max-concurrent-uploads": 50 }' | sudo tee /etc/docker/daemon.json
+    sudo service docker restart
+}
+
+# Execute a docker login command for the given registry with the given credentials
+function DoImageBuildPrepareRepositoryAuth {
+    echo "INFO: Login to $1 registry"
+    docker login -u "$2" -p "$3" "$1"
+}
+
+# Execute a docker login command for the given registry with the given credentials
+function DoImagePullImage {
+    echo "INFO: Pull image $1/$2:$3"
+    docker pull "$1/$2:$3"
+}
+
+# Execute a docker build
+function DoImageBuildExecute {
+    local path=${1:-OS}
+    local dockername=${2:-fedora}
+    local tag=${3:-latest}
+    local quayname=${4:-fedora}
+    local ns=${5:-startx}
+    IMAGE_TAG=docker.io/${ns}/$dockername:$tag
+    IMAGE_QUAYTAG=quay.io/${ns}/$quayname:$tag
+    TEST_NAME=${ns}_$quayname_$tag
+    echo "========> BUILD Container image $IMAGE_TAG"
+    cd $path  &>/dev/null
+    RESULT=$(docker build --squash -t $IMAGE_TAG .)
+    if [[ $? = "0" ]]; then
+        if [ "$SX_DEBUG" = true ] ; then
+            echo $RESULT
+        fi
+        echo "========> BUILDED container image $IMAGE_TAG"
+    else
+        echo $RESULT
+        echo "!!!!!!!!> Could not build container image $IMAGE_TAG"
+        if [[ "$ISFATAL" = "true" ]]; then
+            exit 10;
+        else
+            exit 0;
+        fi
+    fi
+    cd - &>/dev/null
+}
+
+# Test the builded image
+function DoImageBuildTest {
+    local path=${1:-OS}
+    local dockername=${2:-fedora}
+    local tag=${3:-latest}
+    local quayname=${4:-fedora}
+    local ns=${5:-startx}
+    IMAGE_TAG=docker.io/${ns}/$dockername:$tag
+    IMAGE_QUAYTAG=quay.io/${ns}/$quayname:$tag
+    TEST_NAME=${ns}_$quayname_$tag
+    echo "========> TEST Container instance $TEST_NAME based on image $IMAGE_TAG"
+    docker rm -f $TEST_NAME &>/dev/null
+    RESULT=$(docker run -d --name $TEST_NAME $IMAGE_TAG)
+    if [[ $? = "0" ]]; then
+        if [ "$SX_DEBUG" = true ] ; then
+            echo $RESULT
+        fi
+        echo "========> TESTED Container instance $TEST_NAME STARTED"
+        echo "$TEST_NAME" > /tmp/istested_$quayname
+    else
+        echo $RESULT
+        echo "!!!!!!!!> Could not start container instance $TEST_NAME"
+        if [[ "$ISFATAL" = "true" ]]; then
+            exit 20;
+        else
+            exit 0;
+        fi
+    fi
+}
+
+# Publish the builded image
+function DoImageBuildPublish {
+    local path=${1:-OS}
+    local dockername=${2:-fedora}
+    local tag=${3:-latest}
+    local quayname=${4:-fedora}
+    local ns=${5:-startx}
+    IMAGE_TAG=docker.io/${ns}/$dockername:$tag
+    IMAGE_QUAYTAG=quay.io/${ns}/$quayname:$tag
+    TEST_NAME=${ns}_$quayname_$tag
+    echo "========> PUBLISH Container $IMAGE_TAG"
+    if [ -f /tmp/istested_$quayname ] ; then
+        rm -f /tmp/istested_$quayname
+        RESULT=$(docker push $IMAGE_TAG)
+        if [ "$SX_DEBUG" = true ] ; then
+            echo $RESULT
+        fi
+        if [[ $? = "0" ]]; then
+            echo "========> PUBLISHED Container image $IMAGE_TAG"
+            echo "========> PUBLISH Container image $IMAGE_QUAYTAG"
+            docker tag $IMAGE_TAG $IMAGE_QUAYTAG &>/dev/null
+            docker push $IMAGE_QUAYTAG &>/dev/null
+            echo "========> PUBLISHED Container image $IMAGE_QUAYTAG"
+            exit 0;
+        else
+            echo "!!!!!!!!> Could not publish container image $IMAGE_TAG"
+            if [[ "$ISFATAL" = "true" ]]; then
+                exit 31;
+            else
+                exit 0;
+            fi
+        fi
+    else
+        echo "========> PUBLISHING Container image $IMAGE_TAG skipped because test failed"
+        if [[ "$ISFATAL" = "true" ]]; then
+            exit 30;
+        else
+            exit 0;
+        fi
+    fi
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$path=OS
+$dockername=fedora
+$tag=latest
+$quayname=fedora
+
+
+
+IMAGE_TAG=docker.io/${NAMESPACE}/$dockername:$tag
+IMAGE_QUAYTAG=quay.io/${NAMESPACE}/$quayname:$tag
+TEST_NAME=${NAMESPACE}_$quayname_$tag
+# echo "========> BUILD Container image $IMAGE_TAG"
+# cd $path/
+# RESULT=$(docker build --squash -t $IMAGE_TAG .)
+# if [[ $? = "0" ]]; then
+#     if [ "$SX_DEBUG" = true ] ; then
+#         echo $RESULT
+#     fi
+#     echo "========> BUILDED container image $IMAGE_TAG"
+# else
+#     echo $RESULT
+#     echo "!!!!!!!!> Could not build container image $IMAGE_TAG"
+#     if [[ "$ISFATAL" = "true" ]]; then
+#         exit 10;
+#     else
+#         exit 0;
+#     fi
+# fi
+# cd - &>/dev/null
+# echo "========> TEST Container instance $TEST_NAME based on image $IMAGE_TAG"
+# docker rm -f $TEST_NAME &>/dev/null
+# RESULT=$(docker run -d --name $TEST_NAME $IMAGE_TAG)
+# if [[ $? = "0" ]]; then
+#     if [ "$SX_DEBUG" = true ] ; then
+#         echo $RESULT
+#     fi
+#     echo "========> TESTED Container instance $TEST_NAME STARTED"
+#     echo "$TEST_NAME" > /tmp/istested_$quayname
+# else
+#     echo $RESULT
+#     echo "!!!!!!!!> Could not start container instance $TEST_NAME"
+#     if [[ "$ISFATAL" = "true" ]]; then
+#         exit 20;
+#     else
+#         exit 0;
+#     fi
+# fi
+# echo "========> PUBLISH Container $IMAGE_TAG"
+# if [ -f /tmp/istested_$quayname ] ; then
+#     rm -f /tmp/istested_$quayname
+#     RESULT=$(docker push $IMAGE_TAG)
+#     if [ "$SX_DEBUG" = true ] ; then
+#         echo $RESULT
+#     fi
+#     if [[ $? = "0" ]]; then
+#         echo "========> PUBLISHED Container image $IMAGE_TAG"
+#         echo "========> PUBLISH Container image $IMAGE_QUAYTAG"
+#         docker tag $IMAGE_TAG $IMAGE_QUAYTAG &>/dev/null
+#         docker push $IMAGE_QUAYTAG &>/dev/null
+#         echo "========> PUBLISHED Container image $IMAGE_QUAYTAG"
+#         exit 0;
+#     else
+#         echo "!!!!!!!!> Could not publish container image $IMAGE_TAG"
+#         if [[ "$ISFATAL" = "true" ]]; then
+#             exit 31;
+#         else
+#             exit 0;
+#         fi
+#     fi
+# else
+#     echo "========> PUBLISHING Container image $IMAGE_TAG skipped because test failed"
+#     if [[ "$ISFATAL" = "true" ]]; then
+#         exit 30;
+#     else
+#         exit 0;
+#     fi
+# fi
