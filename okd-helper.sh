@@ -66,8 +66,9 @@ else
 fi
 
 #test if openshift is connected
-oc whoami &> /dev/null
-if [ "$?" != 0 ]; then
+ou=$(oc whoami)
+ourc="$?"
+if [ "$ourc" != 0 ]; then
     echo "Openshift is not logged."
     echo "Log to openshift cluster first (oc login -u <user> -p <pwd> <host>)"
     echo "Exit"
