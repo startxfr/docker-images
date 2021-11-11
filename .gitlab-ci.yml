@@ -667,45 +667,45 @@ requirements:
   script: |
     #!/bin/bash
     if [[ -f LICENSE ]]; then 
-      echo "LICENSE found"; 
+      echo "LICENSE is found"; 
     else 
-      echo "NO LICENSE found"; 
+      echo "NO LICENSE file found"; 
       exit 1; 
     fi
     if [[ -f README.md ]]; then 
-      echo "README.md found"; 
+      echo "README.md is found"; 
     else 
-      echo "NO README.md found"; 
+      echo "NO README.md file found"; 
       exit 1; 
     fi
     if [[ -d docs ]]; then 
-      echo "docs directory found"; 
+      echo "docs directory is found"; 
     else 
       echo "NO docs directory found"; 
       exit 1; 
     fi
     if [[ -f podman-helper.sh ]]; then 
-      echo "podman-helper.sh found"; 
+      echo "podman-helper.sh is found"; 
       if [[ -x podman-helper.sh ]]; then 
-        echo "podman-helper.sh executable"; 
+        echo "podman-helper.sh is executable"; 
       else 
         echo "Could not execute podman-helper.sh"; 
         exit 1; 
       fi
     else 
-      echo "NO podman-helper.sh found"; 
+      echo "NO podman-helper.sh is found"; 
       exit 1; 
     fi
     if [[ -f okd-helper.sh ]]; then 
-      echo "okd-helper.sh found"; 
+      echo "okd-helper.sh is found"; 
       if [[ -x okd-helper.sh ]]; then 
-        echo "okd-helper.sh executable"; 
+        echo "okd-helper.sh is executable"; 
       else 
         echo "Could not execute okd-helper.sh"; 
         exit 1; 
       fi
     else 
-      echo "NO okd-helper.sh found"; 
+      echo "NO okd-helper.sh is found"; 
       exit 1; 
     fi
   only:
@@ -721,7 +721,7 @@ markdown:
     - master
 shell:
   stage: "syntax check"
-  script: "shellcheck installer"
+  script: "shellcheck podman-helper.sh && shellcheck okd-helper.sh"
   only:
     - master
 
