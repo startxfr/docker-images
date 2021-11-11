@@ -14,13 +14,13 @@ function DisplayContextDebug {
     mdl version        : $MDL_PYTHON
     shellcheck version : $SS_PYTHON
     directory size     : $DDSIZE
-    EOF
+EOF
     else
     cat <<EOF
     ======== DEBUG
     python version     : $VS_PYTHON
     directory size     : $DDSIZE
-    EOF
+EOF
     fi
 }
 
