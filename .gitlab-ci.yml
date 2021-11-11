@@ -79,8 +79,8 @@
 
 # # Stagging for this pipeline
 # stages:
-#   - "context check"
-#   - "syntax check"
+#   - "check"
+#   - "check"
 #   - "test"
 #   - "auto merge"
 
@@ -182,7 +182,7 @@
 
 # # Debug stage, used when developping the ci/cd chain
 # debug:
-#   stage: "context check"
+#   stage: "check"
 #   script: |
 #     #!/bin/bash
 #     VS_PYTHON=$(python3 --version)
@@ -209,7 +209,7 @@
 
 # # Info stage, used to get the execution context
 # info:
-#   stage: "context check"
+#   stage: "check"
 #   image: "busybox:latest"
 #   script: |
 #     #!/bin/bash
@@ -271,7 +271,7 @@
 
 # # Check stage, used to check for good context
 # requirements:
-#   stage: "context check"
+#   stage: "check"
 #   image: "busybox:latest"
 #   script: |
 #     #!/bin/bash
@@ -306,7 +306,7 @@
 
 # # First stage; all branches
 # markdown:
-#   stage: "syntax check"
+#   stage: "check"
 #   script: |
 #     #!/bin/bash
 #     mdl --skip-default-ruleset *.md
@@ -315,7 +315,7 @@
 #     - main
 #     - stable
 # shell:
-#   stage: "syntax check"
+#   stage: "check"
 #   script: "shellcheck installer"
 #   only:
 #     - devel
@@ -471,10 +471,9 @@ include:
 
 # Stagging for this pipeline
 stages:
-  - "context check"
-  - "syntax check"
+  - "check"
   - "test"
-  - "build"
+  - "build OS"
 
 ##
 ## LIBRARY
@@ -574,7 +573,7 @@ stages:
 
 # Debug stage, used when developping the ci/cd chain
 debug:
-  stage: "context check"
+  stage: "check"
   script: |
     #!/bin/bash
     VS_PYTHON=$(python3 --version)
@@ -601,7 +600,7 @@ debug:
 
 # Info stage, used to get the execution context
 info:
-  stage: "context check"
+  stage: "check"
   image: "busybox:latest"
   script: |
     #!/bin/bash
@@ -662,7 +661,7 @@ info:
 
 # Check stage, used to check for good context
 requirements:
-  stage: "context check"
+  stage: "check"
   image: "busybox:latest"
   script: |
     #!/bin/bash
@@ -713,14 +712,14 @@ requirements:
 
 # First stage; all branches
 markdown:
-  stage: "syntax check"
+  stage: "check"
   script: |
     #!/bin/bash
     mdl --skip-default-ruleset *.md
   only:
     - master
 shell:
-  stage: "syntax check"
+  stage: "check"
   script: "shellcheck podman-helper.sh && shellcheck okd-helper.sh"
   only:
     - master
@@ -736,7 +735,7 @@ shell:
 
 # Build the fedora 
 build-fedora:
-  stage: "build"
+  stage: "build OS"
   extends: .build-image
   variables:
     SXGLCI_BRANCH_FROM: 'devel'
