@@ -64,12 +64,15 @@ function temporize {
 ## start application
 
 #test if podman client is present
-$(podman version | grep ^Version)
-if [ $? != 0 ]; then
+ov=$(podman version | grep ^Version)
+ovrc="$?"
+if [ $ovrc != 0 ]; then
     echo "Podman is not installed."
     echo "Install podman client (podman) first"
     echo "Exit"
     exit 1;
+else
+    echo -e "Podman version $ov found"
 fi
 
 # append key to conf
