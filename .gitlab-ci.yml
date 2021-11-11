@@ -709,7 +709,6 @@ stages:
     - "./travis/prepare-dockerhub  fedora                   latest         rawhide"
     - "./travis/prepare-cache      fedora                   latest         rawhide"
     - "./travis/prepare-end        fedora                   latest         rawhide"
-    - docker images
     # - docker push "$CI_REGISTRY_IMAGE${tag}"
 
 ##
@@ -719,29 +718,10 @@ stages:
 # Return debug informations on master branch
 debug:
   stage: "check"
-  script: |
-    #!/bin/bash
-    VS_PYTHON=$(python3 --version)
-    MDL_PYTHON=$(mdl --version)
-    SS_PYTHON=$(shellcheck --version)
-    DDSIZE=$(du -sh .)
-    if [[ $SX_DEBUG == true ]]; then
-    cat <<EOF
-    ======== DEBUG
-    python version     : $VS_PYTHON
-    mdl version        : $MDL_PYTHON
-    shellcheck version : $SS_PYTHON
-    directory size     : $DDSIZE
-    EOF
-    else
-    cat <<EOF
-    ======== DEBUG
-    python version     : $VS_PYTHON
-    directory size     : $DDSIZE
-    EOF
-    fi
+  script:
+    - source .gitlab-ci.sh && DisplayContextDebug
   only:
-    - masterrrrr
+    - master
 
 # Return informations details on master branch
 info:
@@ -861,6 +841,8 @@ markdown:
   script: |
     #!/bin/bash
     mdl --skip-default-ruleset *.md
+  only:
+    - masterrrrr
 
 
 # Shell check on master branch
