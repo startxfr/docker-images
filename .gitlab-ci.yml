@@ -654,9 +654,10 @@ image: "quay.io/startx/runner-bash:alpine3"
 # Stagging for this pipeline
 stages:
   - "check"
-  # - "test"
+  - "test"
   - "build OS"
   - "build basic"
+  - "build common"
 
 ##
 ## LIBRARY
@@ -665,7 +666,6 @@ stages:
 # Library used to merge branch in a local repo
 .build-image:
   variables:
-    SXDI_BRANCH: 'master' # default to master branch
     SXDI_PATH: 'OS' # default to OS image
     SXDI_DOCKERNAME: 'fedora' # image name in docker.io registry
     SXDI_QUAYNAME: 'fedora' # image name in quay.io registry
@@ -689,28 +689,28 @@ debug:
   stage: "check"
   script: "source .gitlab-ci.sh && DisplayCheckDebug"
   only:
-    - masterrrrr
+    - master
 
 # Return informations details on master branch
 info:
   stage: "check"
   script: "source .gitlab-ci.sh && DisplayCheckInfo"
   only:
-    - masterrrrr
+    - master
 
 # Requirements check on master branch
 requirements:
   stage: "check"
   script: "source .gitlab-ci.sh && DisplayCheckRequirements"
   only:
-    - masterrrrr
+    - master
 
 # Markdown check on master branch
 markdown:
   stage: "check"
   script: "source .gitlab-ci.sh && DisplayCheckMarkdown"
   only:
-    - masterrrrr
+    - master
 
 
 # Shell check on master branch
@@ -718,14 +718,14 @@ shell:
   stage: "check"
   script: "source .gitlab-ci.sh && DisplayCheckShellcheck"
   only:
-    - masterrrrr
+    - master
 
 # #Second stage; only dev branch
 # bats:
 #   stage: "test"
 #   script: "cd tests && ./start.sh"
 #   only:
-#     - masterrrrr
+#     - master
 
 ## Build image
 
@@ -734,21 +734,52 @@ build-os:
   stage: "build OS"
   extends: .build-image
   variables:
-    SXDI_BRANCH: 'master'
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: 'fedora'
     SXDI_QUAYNAME: 'fedora'
   only:
     - master
 
-# Build the apche image 
+# Build the apache image 
 build-apache:
   stage: "build basic"
   extends: .build-image
   variables:
-    SXDI_BRANCH: 'master'
     SXDI_PATH: 'Services/apache'
     SXDI_DOCKERNAME: 'sv-apache'
     SXDI_QUAYNAME: 'apache'
+  only:
+    - master
+
+# Build the nodejs image 
+build-couchbase:
+  stage: "build common"
+  extends: .build-image
+  variables:
+    SXDI_PATH: 'Services/couchbase'
+    SXDI_DOCKERNAME: 'sv-couchbase'
+    SXDI_QUAYNAME: 'couchbase'
+  only:
+    - master
+
+# Build the nodejs image 
+build-nodejs:
+  stage: "build basic"
+  extends: .build-image
+  variables:
+    SXDI_PATH: 'Services/nodejs'
+    SXDI_DOCKERNAME: 'sv-nodejs'
+    SXDI_QUAYNAME: 'nodejs'
+  only:
+    - master
+
+# Build the bash gitlab-runner image 
+build-runner-bash:
+  stage: "build basic"
+  extends: .build-image
+  variables:
+    SXDI_PATH: 'GitlabRunner/bash'
+    SXDI_DOCKERNAME: 'runner-bash'
+    SXDI_QUAYNAME: 'runner-bash'
   only:
     - master
