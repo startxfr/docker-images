@@ -143,6 +143,12 @@ function DisplayCheckMarkdown {
     fi
 }
 
+# Display the readthedocs genation
+function DisplayCheckReadthedocs {
+    echo "======== CHECK READTHEDOCS GENERATION"
+    echo "INFO: Readthedocs is generating documentation that can be followed at https://readthedocs.org/projects/docker-images/"
+}
+
 # Display the shellcheck checks
 function DisplayCheckShellcheck {
     echo "======== CHECK SHELL SYNTAX"
