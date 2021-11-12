@@ -7,7 +7,7 @@ function DisplayCheckDebug {
     MDL_PYTHON=$(mdl --version)
     SS_PYTHON=$(shellcheck --version | head -n 2 | tail -n 1)
     DDSIZE=$(du -sh .)
-    if [[ $SX_DEBUG == true ]]; then
+    if [[ $SX_DEBUG == "true" ]]; then
     cat <<EOF
     ======== DEBUG
     python version     : $VS_PYTHON
@@ -26,7 +26,7 @@ EOF
 
 # Display the info checks
 function DisplayCheckInfo {
-    if [[ $SX_DEBUG == true ]]; then
+    if [[ $SX_DEBUG == "true" ]]; then
     cat <<EOF
     ======== USER INFO
     ID         : $GITLAB_USER_ID
@@ -166,7 +166,7 @@ function DoImageBuildPrepareDaemon {
 # Execute a docker login command for the given registry with the given credentials
 function DoImageBuildPrepareRepositoryAuth {
     echo "INFO: Login to $1 registry"
-    if [[ $SX_DEBUG == true ]]; then
+    if [[ $SX_DEBUG == "true" ]]; then
         docker login -u "$2" -p "$3" "$1" &> /dev/null
     else
         docker login -u "$2" -p "$3" "$1"
@@ -176,7 +176,7 @@ function DoImageBuildPrepareRepositoryAuth {
 # Execute a docker pull of an image comming from the given registry. Must be authenticated prior to this pull if image is private.
 function DoImagePullImage {
     echo "INFO: Pull image $1/$2:$3"
-    if [[ $SX_DEBUG == true ]]; then
+    if [[ $SX_DEBUG == "true" ]]; then
         docker pull "$1/$2:$3" &> /dev/null
     else
         docker pull "$1/$2:$3"
@@ -186,9 +186,7 @@ function DoImagePullImage {
 # Execute a docker push of an image comming from the given registry. Must be authenticated prior to this push.
 function DoImagePushImage {
     echo "INFO: Push image $1/$2:$3"
-    echo $SX_DEBUG
-    docker push "$1/$2:$3"
-    if [[ $SX_DEBUG == true ]]; then
+    if [[ $SX_DEBUG == "true" ]]; then
         docker push "$1/$2:$3" &> /dev/null
     else
         docker push "$1/$2:$3"
@@ -209,7 +207,7 @@ function DoImageBuildExecute {
     cd $path  &>/dev/null
     RESULT=$(docker build -t $IMAGE_TAG .)
     if [[ $? = "0" ]]; then
-        if [ "$SX_DEBUG" = true ] ; then
+        if [ "$SX_DEBUG" = "true" ] ; then
             echo $RESULT
         fi
         echo "========> BUILDED container image $IMAGE_TAG"
@@ -239,7 +237,7 @@ function DoImageBuildTest {
     docker rm -f $TEST_NAME &>/dev/null
     RESULT=$(docker run -d --name $TEST_NAME $IMAGE_TAG)
     if [[ $? = "0" ]]; then
-        if [ "$SX_DEBUG" = true ] ; then
+        if [ "$SX_DEBUG" = "true" ] ; then
             echo $RESULT
         fi
         echo "========> TESTED Container instance $TEST_NAME STARTED"
@@ -268,6 +266,7 @@ function DoImageBuildPublish {
     echo "========> PUBLISH Container $IMAGE_TAG"
     if [ -f /tmp/istested_$quayname ] ; then
         DoImagePushImage docker.io $ns/$dockername $tag
+        docker tag $IMAGE_TAG $IMAGE_QUAYTAG
         DoImagePushImage quay.io $ns/$quayname $tag
     else
         echo "========> PUBLISHING Container image $IMAGE_TAG skipped because test failed"
