@@ -166,7 +166,7 @@ function DoImageBuildPrepareDaemon {
 # Execute a docker login command for the given registry with the given credentials
 function DoImageBuildPrepareRepositoryAuth {
     echo "INFO: Login to $1 registry"
-    if [[ $SX_DEBUG == "true" ]]; then
+    if [ $SX_DEBUG == "true" ]; then
         docker login -u "$2" -p "$3" "$1" &> /dev/null
     else
         docker login -u "$2" -p "$3" "$1"
@@ -187,7 +187,7 @@ function DoImagePullImage {
 function DoImagePushImage {
     echo "INFO: Push image $1/$2:$3"
     docker push "$1/$2:$3"
-    if [[ $SX_DEBUG == "true" ]]; then
+    if [ $SX_DEBUG == "true" ]; then
         docker push "$1/$2:$3" &> /dev/null
     else
         docker push "$1/$2:$3"
@@ -269,6 +269,7 @@ function DoImageBuildPublish {
         DoImagePushImage docker.io $ns/$dockername $tag
         echo "INFO: Retag image $IMAGE_TAG to $IMAGE_QUAYTAG"
         docker tag $IMAGE_TAG $IMAGE_QUAYTAG
+        DoImageBuildPrepareRepositoryAuth quay.io $QUAY_USER $QUAY_PASS
         DoImagePushImage quay.io $ns/$quayname $tag
     else
         echo "========> PUBLISHING Container image $IMAGE_TAG skipped because test failed"
