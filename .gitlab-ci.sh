@@ -137,7 +137,10 @@ function DisplayCheckRequirements {
 # Display the markdown checks
 function DisplayCheckMarkdown {
     echo "======== CHECK MARKDOWN SYNTAX"
-    mdl --skip-default-ruleset *.md
+    RESULT=$(mdl --skip-default-ruleset *.md)
+    if [ "$SX_DEBUG" == "true" ]; then
+        echo $RESULT
+    fi
 }
 
 # Display the shellcheck checks
@@ -215,7 +218,7 @@ function DoImageBuildExecute {
     IMAGE_QUAYTAG=quay.io/$ns/$quayname:$tag
     TEST_NAME="$ns"_"$quayname"_"$tag"
     echo "========> BUILD Container image $IMAGE_TAG"
-    cd "$path"  &>/dev/null
+    cd "$path"  &>/dev/null || exit
     RESULT=$(docker build -t "$IMAGE_TAG" .)
     RESULTRC=$?
     if [[ "$RESULTRC" = "0" ]]; then
@@ -232,7 +235,7 @@ function DoImageBuildExecute {
             exit 0;
         fi
     fi
-    cd - &>/dev/null
+    cd - &>/dev/null || exit
 }
 
 # Test the builded image
@@ -249,15 +252,15 @@ function DoImageBuildTest {
     IMAGE_QUAYTAG=quay.io/$ns/$quayname:$tag
     TEST_NAME="$ns"_"$quayname"_"$tag"
     echo "========> TEST Container instance $TEST_NAME based on image $IMAGE_TAG"
-    docker rm -f $TEST_NAME &>/dev/null
-    RESULT=$(docker run -d --name $TEST_NAME $IMAGE_TAG)
+    docker rm -f "$TEST_NAME" &>/dev/null
+    RESULT=$(docker run -d --name "$TEST_NAME" "$IMAGE_TAG")
     RESULTRC=$?
     if [[ "$RESULTRC" = "0" ]]; then
         if [ "$SX_DEBUG" = "true" ] ; then
             echo "$RESULT"
         fi
         echo "========> TESTED Container instance $TEST_NAME STARTED"
-        echo "$TEST_NAME" > /tmp/istested_$quayname
+        echo "$TEST_NAME" > /tmp/istested_"$quayname"
     else
         echo "$RESULT"
         echo "!!!!!!!!> Could not start container instance $TEST_NAME"
@@ -283,11 +286,11 @@ function DoImageBuildPublish {
     IMAGE_QUAYTAG=quay.io/$ns/$quayname:$tag
     TEST_NAME="$ns"_"$quayname"_"$tag"
     echo "========> PUBLISH Container $IMAGE_TAG"
-    if [ -f /tmp/istested_$quayname ] ; then
-        DoImagePushImage docker.io $ns/$dockername $tag
+    if [ -f /tmp/istested_"$quayname" ] ; then
+        DoImagePushImage docker.io "$ns"/"$dockername" $tag
         echo "INFO: Retag image $IMAGE_TAG to $IMAGE_QUAYTAG"
-        docker tag $IMAGE_TAG $IMAGE_QUAYTAG
-        DoImagePushImage quay.io $ns/$quayname $tag
+        docker tag "$IMAGE_TAG" "$IMAGE_QUAYTAG"
+        DoImagePushImage quay.io "$ns/$quayname" "$tag"
     else
         echo "========> PUBLISHING Container image $IMAGE_TAG skipped because test failed"
         if [[ "$ISFATAL" = "true" ]]; then
