@@ -656,6 +656,7 @@ stages:
   - "check"
   # - "test"
   - "build OS"
+  - "build basic"
 
 ##
 ## LIBRARY
@@ -729,7 +730,7 @@ shell:
 
 ## Build image
 
-# Build the fedora 
+# Build the fedora image
 build-os:
   stage: "build OS"
   extends: .build-image
@@ -739,5 +740,18 @@ build-os:
     SXDI_DOCKERNAME: 'fedora'
     SXDI_TAG: 'latest'
     SXDI_QUAYNAME: 'fedora'
+  only:
+    - master
+
+# Build the apche image 
+build-apache:
+  stage: "build basic"
+  extends: .build-image
+  variables:
+    SXDI_BRANCH: 'master'
+    SXDI_PATH: 'Services/apache'
+    SXDI_DOCKERNAME: 'sv-apache'
+    SXDI_TAG: 'latest'
+    SXDI_QUAYNAME: 'apache'
   only:
     - master
