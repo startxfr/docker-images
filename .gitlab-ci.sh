@@ -186,6 +186,8 @@ function DoImagePullImage {
 # Execute a docker push of an image comming from the given registry. Must be authenticated prior to this push.
 function DoImagePushImage {
     echo "INFO: Push image $1/$2:$3"
+    echo $SX_DEBUG
+    docker push "$1/$2:$3"
     if [[ $SX_DEBUG == true ]]; then
         docker push "$1/$2:$3" &> /dev/null
     else
