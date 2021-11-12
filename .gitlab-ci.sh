@@ -166,13 +166,21 @@ function DoImageBuildPrepareDaemon {
 # Execute a docker login command for the given registry with the given credentials
 function DoImageBuildPrepareRepositoryAuth {
     echo "INFO: Login to $1 registry"
-    docker login -u "$2" -p "$3" "$1"
+    if [[ $SX_DEBUG == true ]]; then
+        docker login -u "$2" -p "$3" "$1" &> /dev/null
+    else
+        docker login -u "$2" -p "$3" "$1"
+    fi
 }
 
 # Execute a docker login command for the given registry with the given credentials
 function DoImagePullImage {
     echo "INFO: Pull image $1/$2:$3"
-    docker pull "$1/$2:$3"
+    if [[ $SX_DEBUG == true ]]; then
+        docker pull "$1/$2:$3" &> /dev/null
+    else
+        docker pull "$1/$2:$3"
+    fi
 }
 
 # Execute a docker build
@@ -247,7 +255,6 @@ function DoImageBuildPublish {
     TEST_NAME=${ns}_$quayname_$tag
     echo "========> PUBLISH Container $IMAGE_TAG"
     if [ -f /tmp/istested_$quayname ] ; then
-        rm -f /tmp/istested_$quayname
         RESULT=$(docker push $IMAGE_TAG)
         if [ "$SX_DEBUG" = true ] ; then
             echo $RESULT
@@ -255,8 +262,8 @@ function DoImageBuildPublish {
         if [[ $? = "0" ]]; then
             echo "========> PUBLISHED Container image $IMAGE_TAG"
             echo "========> PUBLISH Container image $IMAGE_QUAYTAG"
-            docker tag $IMAGE_TAG $IMAGE_QUAYTAG &>/dev/null
-            docker push $IMAGE_QUAYTAG &>/dev/null
+            docker tag $IMAGE_TAG $IMAGE_QUAYTAG
+            docker push $IMAGE_QUAYTAG
             echo "========> PUBLISHED Container image $IMAGE_QUAYTAG"
             exit 0;
         else
