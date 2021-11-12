@@ -137,7 +137,7 @@ function DisplayCheckRequirements {
 # Display the markdown checks
 function DisplayCheckMarkdown {
     echo "======== CHECK MARKDOWN SYNTAX"
-    mdl --skip-default-ruleset *.md
+    mdl --skip-default-ruleset "*.md"
 }
 
 # Display the shellcheck checks
@@ -158,9 +158,9 @@ function DisplayImageBuild {
 function DoImageBuildPrepare {
     echo "======== PREPARE IMAGE BUILD"
     DoImageBuildPrepareDaemon
-    DoImageBuildPrepareRepositoryAuth docker.io $DOCKER_USER $DOCKER_PASS
-    DoImageBuildPrepareRepositoryAuth quay.io $QUAY_USER $QUAY_PASS
-    DoImageBuildPrepareRepositoryAuth $CI_REGISTRY $CI_REGISTRY_USER $CI_REGISTRY_PASSWORD
+    DoImageBuildPrepareRepositoryAuth docker.io "$DOCKER_USER" "$DOCKER_PASS"
+    DoImageBuildPrepareRepositoryAuth quay.io "$QUAY_USER" "$QUAY_PASS"
+    DoImageBuildPrepareRepositoryAuth "$CI_REGISTRY" "$CI_REGISTRY_USER" "$CI_REGISTRY_PASSWORD"
 }
 
 # Prepare the docker daemon for optimal layer generation
@@ -211,19 +211,20 @@ function DoImageBuildExecute {
     fi
     local quayname=${3:-fedora}
     local ns=${4:-startx}
-    IMAGE_TAG=docker.io/${ns}/$dockername:$tag
-    IMAGE_QUAYTAG=quay.io/${ns}/$quayname:$tag
-    TEST_NAME=${ns}_$quayname_$tag
+    IMAGE_TAG=docker.io/$ns/$dockername:$tag
+    IMAGE_QUAYTAG=quay.io/$ns/$quayname:$tag
+    TEST_NAME="$ns"_"$quayname"_"$tag"
     echo "========> BUILD Container image $IMAGE_TAG"
-    cd $path  &>/dev/null
-    RESULT=$(docker build -t $IMAGE_TAG .)
-    if [[ $? = "0" ]]; then
+    cd "$path"  &>/dev/null
+    RESULT=$(docker build -t "$IMAGE_TAG" .)
+    RESULTRC=$?
+    if [[ "$RESULTRC" = "0" ]]; then
         if [ "$SX_DEBUG" = "true" ] ; then
-            echo $RESULT
+            echo "$RESULT"
         fi
         echo "========> BUILDED container image $IMAGE_TAG"
     else
-        echo $RESULT
+        echo "$RESULT"
         echo "!!!!!!!!> Could not build container image $IMAGE_TAG"
         if [[ "$ISFATAL" = "true" ]]; then
             exit 10;
@@ -244,20 +245,21 @@ function DoImageBuildTest {
     fi
     local quayname=${3:-fedora}
     local ns=${4:-startx}
-    IMAGE_TAG=docker.io/${ns}/$dockername:$tag
-    IMAGE_QUAYTAG=quay.io/${ns}/$quayname:$tag
-    TEST_NAME=${ns}_$quayname_$tag
+    IMAGE_TAG=docker.io/$ns/$dockername:$tag
+    IMAGE_QUAYTAG=quay.io/$ns/$quayname:$tag
+    TEST_NAME="$ns"_"$quayname"_"$tag"
     echo "========> TEST Container instance $TEST_NAME based on image $IMAGE_TAG"
     docker rm -f $TEST_NAME &>/dev/null
     RESULT=$(docker run -d --name $TEST_NAME $IMAGE_TAG)
-    if [[ $? = "0" ]]; then
+    RESULTRC=$?
+    if [[ "$RESULTRC" = "0" ]]; then
         if [ "$SX_DEBUG" = "true" ] ; then
-            echo $RESULT
+            echo "$RESULT"
         fi
         echo "========> TESTED Container instance $TEST_NAME STARTED"
         echo "$TEST_NAME" > /tmp/istested_$quayname
     else
-        echo $RESULT
+        echo "$RESULT"
         echo "!!!!!!!!> Could not start container instance $TEST_NAME"
         if [[ "$ISFATAL" = "true" ]]; then
             exit 20;
@@ -277,9 +279,9 @@ function DoImageBuildPublish {
     fi
     local quayname=${3:-fedora}
     local ns=${4:-startx}
-    IMAGE_TAG=docker.io/${ns}/$dockername:$tag
-    IMAGE_QUAYTAG=quay.io/${ns}/$quayname:$tag
-    TEST_NAME=${ns}_$quayname_$tag
+    IMAGE_TAG=docker.io/$ns/$dockername:$tag
+    IMAGE_QUAYTAG=quay.io/$ns/$quayname:$tag
+    TEST_NAME="$ns"_"$quayname"_"$tag"
     echo "========> PUBLISH Container $IMAGE_TAG"
     if [ -f /tmp/istested_$quayname ] ; then
         DoImagePushImage docker.io $ns/$dockername $tag
