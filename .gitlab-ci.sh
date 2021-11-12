@@ -187,7 +187,7 @@ function DoImageBuildExecute {
     TEST_NAME=${ns}_$quayname_$tag
     echo "========> BUILD Container image $IMAGE_TAG"
     cd $path  &>/dev/null
-    RESULT=$(docker build --squash -t $IMAGE_TAG .)
+    RESULT=$(docker build -t $IMAGE_TAG .)
     if [[ $? = "0" ]]; then
         if [ "$SX_DEBUG" = true ] ; then
             echo $RESULT
