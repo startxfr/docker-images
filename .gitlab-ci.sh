@@ -137,9 +137,9 @@ function DisplayCheckRequirements {
 # Display the markdown checks
 function DisplayCheckMarkdown {
     echo "======== CHECK MARKDOWN SYNTAX"
-    RESULT=$(mdl --skip-default-ruleset *.md)
+    RESULT=$(mdl --skip-default-ruleset ./*.md)
     if [ "$SX_DEBUG" == "true" ]; then
-        echo $RESULT
+        echo "$RESULT"
     fi
 }
 
