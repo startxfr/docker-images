@@ -173,13 +173,23 @@ function DoImageBuildPrepareRepositoryAuth {
     fi
 }
 
-# Execute a docker login command for the given registry with the given credentials
+# Execute a docker pull of an image comming from the given registry. Must be authenticated prior to this pull if image is private.
 function DoImagePullImage {
     echo "INFO: Pull image $1/$2:$3"
     if [[ $SX_DEBUG == true ]]; then
         docker pull "$1/$2:$3" &> /dev/null
     else
         docker pull "$1/$2:$3"
+    fi
+}
+
+# Execute a docker push of an image comming from the given registry. Must be authenticated prior to this push.
+function DoImagePushImage {
+    echo "INFO: Push image $1/$2:$3"
+    if [[ $SX_DEBUG == true ]]; then
+        docker push "$1/$2:$3" &> /dev/null
+    else
+        docker push "$1/$2:$3"
     fi
 }
 
@@ -255,25 +265,8 @@ function DoImageBuildPublish {
     TEST_NAME=${ns}_$quayname_$tag
     echo "========> PUBLISH Container $IMAGE_TAG"
     if [ -f /tmp/istested_$quayname ] ; then
-        RESULT=$(docker push $IMAGE_TAG)
-        if [ "$SX_DEBUG" = true ] ; then
-            echo $RESULT
-        fi
-        if [[ $? = "0" ]]; then
-            echo "========> PUBLISHED Container image $IMAGE_TAG"
-            echo "========> PUBLISH Container image $IMAGE_QUAYTAG"
-            docker tag $IMAGE_TAG $IMAGE_QUAYTAG
-            docker push $IMAGE_QUAYTAG
-            echo "========> PUBLISHED Container image $IMAGE_QUAYTAG"
-            exit 0;
-        else
-            echo "!!!!!!!!> Could not publish container image $IMAGE_TAG"
-            if [[ "$ISFATAL" = "true" ]]; then
-                exit 31;
-            else
-                exit 0;
-            fi
-        fi
+        DoImagePushImage docker.io $ns/$dockername $tag
+        DoImagePushImage quay.io $ns/$quayname $tag
     else
         echo "========> PUBLISHING Container image $IMAGE_TAG skipped because test failed"
         if [[ "$ISFATAL" = "true" ]]; then

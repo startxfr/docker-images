@@ -730,7 +730,7 @@ shell:
 ## Build image
 
 # Build the fedora 
-build-fedora:
+build-os:
   stage: "build OS"
   extends: .build-image
   variables:
