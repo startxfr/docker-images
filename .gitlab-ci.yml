@@ -676,9 +676,9 @@ stages:
   before_script: 
     - "source .gitlab-ci.sh && DoImageBuildPrepare"
   script:
-    - DoImageBuildExecute OS fedora latest fedora
-    - DoImageBuildTest OS fedora latest fedora
-    - DoImageBuildPublish OS fedora latest fedora
+    - DoImageBuildExecute $SXDI_PATH $SXDI_DOCKERNAME $SXDI_TAG $SXDI_QUAYNAME
+    - DoImageBuildTest $SXDI_PATH $SXDI_DOCKERNAME $SXDI_TAG $SXDI_QUAYNAME
+    - DoImageBuildPublish $SXDI_PATH $SXDI_DOCKERNAME $SXDI_TAG $SXDI_QUAYNAME
 
 ##
 ## STAGES
