@@ -127,12 +127,6 @@ function DisplayCheckRequirements {
     fi
     if [[ -f .gitlab-ci.sh ]]; then 
       echo ".gitlab-ci.sh is found"; 
-      if [[ -x .gitlab-ci.sh ]]; then 
-        echo ".gitlab-ci.sh is executable"; 
-      else 
-        echo "Could not execute .gitlab-ci.sh"; 
-        exit 1; 
-      fi
     else 
       echo "NO .gitlab-ci.sh is found"; 
       exit 1; 
