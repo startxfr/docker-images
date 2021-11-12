@@ -113,8 +113,6 @@ build-os:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: 'fedora'
     SXDI_QUAYNAME: 'fedora'
-  only:
-    - master
 
 # Build the apache image 
 build-apache:
@@ -124,8 +122,6 @@ build-apache:
     SXDI_PATH: 'Services/apache'
     SXDI_DOCKERNAME: 'sv-apache'
     SXDI_QUAYNAME: 'apache'
-  only:
-    - master
 
 # Build the couchbase image 
 build-couchbase:
@@ -135,8 +131,6 @@ build-couchbase:
     SXDI_PATH: 'Services/couchbase'
     SXDI_DOCKERNAME: 'sv-couchbase'
     SXDI_QUAYNAME: 'couchbase'
-  only:
-    - master
 
 # Build the mariadb image 
 build-mariadb:
@@ -146,8 +140,6 @@ build-mariadb:
     SXDI_PATH: 'Services/mariadb'
     SXDI_DOCKERNAME: 'sv-mariadb'
     SXDI_QUAYNAME: 'mariadb'
-  only:
-    - master
 
 # Build the memcache image 
 build-memcache:
@@ -157,8 +149,6 @@ build-memcache:
     SXDI_PATH: 'Services/memcache'
     SXDI_DOCKERNAME: 'sv-memcache'
     SXDI_QUAYNAME: 'memcache'
-  only:
-    - master
 
 # Build the mongo image 
 build-mongo:
@@ -168,8 +158,6 @@ build-mongo:
     SXDI_PATH: 'Services/mongo'
     SXDI_DOCKERNAME: 'sv-mongo'
     SXDI_QUAYNAME: 'mongo'
-  only:
-    - master
 
 # Build the nodejs image 
 build-nodejs:
@@ -179,8 +167,6 @@ build-nodejs:
     SXDI_PATH: 'Services/nodejs'
     SXDI_DOCKERNAME: 'sv-nodejs'
     SXDI_QUAYNAME: 'nodejs'
-  only:
-    - master
 
 # Build the ooconv image 
 build-ooconv:
@@ -190,8 +176,6 @@ build-ooconv:
     SXDI_PATH: 'Services/ooconv'
     SXDI_DOCKERNAME: 'sv-ooconv'
     SXDI_QUAYNAME: 'ooconv'
-  only:
-    - master
 
 # Build the php image 
 build-php:
@@ -201,8 +185,6 @@ build-php:
     SXDI_PATH: 'Services/php'
     SXDI_DOCKERNAME: 'sv-php'
     SXDI_QUAYNAME: 'php'
-  only:
-    - master
 
 # Build the postgres image 
 build-postgres:
@@ -212,8 +194,6 @@ build-postgres:
     SXDI_PATH: 'Services/postgres'
     SXDI_DOCKERNAME: 'sv-postgres'
     SXDI_QUAYNAME: 'postgres'
-  only:
-    - master
 
 # Build the ansible gitlab-runner image 
 build-runner-ansible:
@@ -223,8 +203,6 @@ build-runner-ansible:
     SXDI_PATH: 'GitlabRunner/ansible'
     SXDI_DOCKERNAME: 'runner-ansible'
     SXDI_QUAYNAME: 'runner-ansible'
-  only:
-    - master
 
 # Build the apache gitlab-runner image 
 build-runner-apache:
@@ -234,8 +212,6 @@ build-runner-apache:
     SXDI_PATH: 'GitlabRunner/apache'
     SXDI_DOCKERNAME: 'runner-apache'
     SXDI_QUAYNAME: 'runner-apache'
-  only:
-    - master
 
 # Build the bash gitlab-runner image 
 build-runner-bash:
@@ -245,8 +221,6 @@ build-runner-bash:
     SXDI_PATH: 'GitlabRunner/bash'
     SXDI_DOCKERNAME: 'runner-bash'
     SXDI_QUAYNAME: 'runner-bash'
-  only:
-    - master
 
 # Build the nodejs gitlab-runner image 
 build-runner-nodejs:
@@ -256,8 +230,6 @@ build-runner-nodejs:
     SXDI_PATH: 'GitlabRunner/nodejs'
     SXDI_DOCKERNAME: 'runner-nodejs'
     SXDI_QUAYNAME: 'runner-nodejs'
-  only:
-    - master
 
 # Build the oc gitlab-runner image 
 build-runner-oc:
@@ -267,8 +239,6 @@ build-runner-oc:
     SXDI_PATH: 'GitlabRunner/oc'
     SXDI_DOCKERNAME: 'runner-oc'
     SXDI_QUAYNAME: 'runner-oc'
-  only:
-    - master
 
 # Build the php gitlab-runner image 
 build-runner-php:
@@ -278,8 +248,6 @@ build-runner-php:
     SXDI_PATH: 'GitlabRunner/php'
     SXDI_DOCKERNAME: 'runner-php'
     SXDI_QUAYNAME: 'runner-php'
-  only:
-    - master
 
 # Build the chrome VDI image 
 build-vdi-chrome:
@@ -289,8 +257,6 @@ build-vdi-chrome:
     SXDI_PATH: 'VDI/chrome'
     SXDI_DOCKERNAME: 'vdi-chrome'
     SXDI_QUAYNAME: 'chrome'
-  only:
-    - master
 
 # Build the firefox VDI image 
 build-vdi-firefox:
@@ -300,8 +266,6 @@ build-vdi-firefox:
     SXDI_PATH: 'VDI/firefox'
     SXDI_DOCKERNAME: 'vdi-firefox'
     SXDI_QUAYNAME: 'firefox'
-  only:
-    - master
 
 # Build the AWX application image 
 build-application-awx:
@@ -311,8 +275,6 @@ build-application-awx:
     SXDI_PATH: 'Applications/awx'
     SXDI_DOCKERNAME: 'app-awx'
     SXDI_QUAYNAME: 'awx'
-  only:
-    - master
 
 # Build the phpmyadmin application image 
 build-application-phpmyadmin:
@@ -322,8 +284,6 @@ build-application-phpmyadmin:
     SXDI_PATH: 'Applications/phpmyadmin'
     SXDI_DOCKERNAME: 'app-phpmyadmin'
     SXDI_QUAYNAME: 'phpmyadmin'
-  only:
-    - master
 
 # Build the rockmongo application image 
 build-application-rockmongo:
@@ -333,5 +293,3 @@ build-application-rockmongo:
     SXDI_PATH: 'Applications/rockmongo'
     SXDI_DOCKERNAME: 'app-rockmongo'
     SXDI_QUAYNAME: 'rockmongo'
-  only:
-    - master
