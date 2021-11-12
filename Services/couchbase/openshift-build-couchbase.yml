@@ -41,7 +41,7 @@ objects:
               3.7
             iconClass: icon-couchbase
             version: beta
-            sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-couchbase.git
           from:
             kind: DockerImage
             name: couchbase/k8s-operator:beta

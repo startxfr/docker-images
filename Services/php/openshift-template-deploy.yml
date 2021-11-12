@@ -12,7 +12,7 @@ metadata:
     tags: startx,os,fedora,php,httpd
     openshift.io/provider-display-name: STARTX
     openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-php
-    openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
+    openshift.io/support-url: https://gitlab.com/startx1/containers/issues/new
 message: |-
   Your application ${APP_NAME} will be soon deployed.
   Monitor the deployement for application availability and

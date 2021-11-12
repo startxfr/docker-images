@@ -1,4 +1,4 @@
-[![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
+[![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://gitlab.com/startx1/containers)
 
 # STARTX Docker-Images Container Desktop Images Repository
 
@@ -16,7 +16,7 @@ OS, Services, VDI and application you will find here will be closer to your favo
 Please **read each container manual** for more information on how you can use it in
 your project and start using stable or experimental Container-based desktop applications
 
-| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx) | [Sources](https://github.com/startxfr/docker-images/) | [STARTX Profile](https://github.com/startxfr) |
+| [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) | [Dockerhub Registry](https://hub.docker.com/r/startx) | [Sources](https://gitlab.com/startx1/containers/) | [STARTX Profile](https://github.com/startxfr) |
 | ------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | --------------------------------------------- |
 
 

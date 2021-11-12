@@ -28,7 +28,7 @@ items:
             tags: builder,startx,fedora,postgres,sql
             supports: postgresql
             version: fc26
-            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
           from:
             kind: DockerImage
             name: startx/sv-postgres:fc26
@@ -42,7 +42,7 @@ items:
             tags: builder,startx,fedora,postgres,sql
             supports: postgresql
             version: fc27
-            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
           from:
             kind: DockerImage
             name: startx/sv-postgres:fc27
@@ -56,7 +56,7 @@ items:
             tags: builder,startx,fedora,postgres,sql
             supports: postgresql
             version: fc28
-            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
           from:
             kind: DockerImage
             name: startx/sv-postgres:fc28
@@ -70,7 +70,7 @@ items:
             tags: builder,startx,fedora,postgres,sql
             supports: postgresql
             version: fc29
-            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
           from:
             kind: DockerImage
             name: startx/sv-postgres:fc29
@@ -84,7 +84,7 @@ items:
             tags: builder,startx,fedora,postgres,sql
             supports: postgresql
             version: fc30
-            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
           from:
             kind: DockerImage
             name: startx/sv-postgres:fc30
@@ -98,7 +98,7 @@ items:
             tags: builder,startx,fedora,postgres,sql
             supports: postgresql
             version: fc31
-            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
           from:
             kind: DockerImage
             name: startx/sv-postgres:fc31
@@ -112,7 +112,7 @@ items:
             tags: builder,startx,fedora,postgres,sql
             supports: postgresql
             version: fc32
-            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
           from:
             kind: DockerImage
             name: startx/sv-postgres:fc32
@@ -126,7 +126,7 @@ items:
             tags: builder,startx,fedora,postgres,sql
             supports: postgresql
             version: fc33
-            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
           from:
             kind: DockerImage
             name: startx/sv-postgres:fc33
@@ -140,7 +140,7 @@ items:
             tags: builder,startx,fedora,postgres,sql
             supports: postgresql
             version: fc34
-            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
           from:
             kind: DockerImage
             name: startx/sv-postgres:fc34
@@ -168,7 +168,7 @@ items:
             tags: builder,startx,fedora,postgres,sql
             supports: postgresql
             version: rawhide
-            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
           from:
             kind: DockerImage
             name: startx/sv-postgres:latest
@@ -182,7 +182,7 @@ items:
             tags: builder,startx,ubi,postgres,sql
             supports: postgresql
             version: "8"
-            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
           from:
             kind: DockerImage
             name: startx/sv-postgres:ubi8
@@ -196,7 +196,7 @@ items:
             tags: builder,startx,centos,postgres,sql
             supports: postgresql
             version: "8"
-            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
           from:
             kind: DockerImage
             name: startx/sv-postgres:centos8
@@ -210,7 +210,7 @@ items:
             tags: builder,startx,centos,postgres,sql
             supports: postgresql
             version: "7"
-            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
           from:
             kind: DockerImage
             name: startx/sv-postgres:centos7
@@ -224,7 +224,7 @@ items:
             tags: builder,startx,centos,postgres,sql
             supports: postgresql
             version: "6"
-            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
           from:
             kind: DockerImage
             name: startx/sv-postgres:centos6
@@ -238,7 +238,7 @@ items:
             tags: builder,startx,alpine,postgres,sql
             supports: postgresql
             version: "3"
-            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
           from:
             kind: DockerImage
             name: startx/sv-postgres:alpine3
@@ -250,7 +250,7 @@ items:
             tags: builder,startx,alpine,postgres,sql
             supports: postgresql
             version: "dev"
-            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
           from:
             kind: ImageStreamTag
             name: rawhide
@@ -262,7 +262,7 @@ items:
             tags: builder,startx,alpine,postgres,sql
             supports: postgresql
             version: "test"
-            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
           from:
             kind: ImageStreamTag
             name: centos8
@@ -274,7 +274,7 @@ items:
             tags: builder,startx,alpine,postgres,sql
             supports: postgresql
             version: "pre-prod"
-            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
           from:
             kind: ImageStreamTag
             name: alpine3
@@ -286,7 +286,7 @@ items:
             tags: builder,startx,alpine,postgres,sql
             supports: postgresql
             version: "prod"
-            sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
           from:
             kind: ImageStreamTag
             name: alpine3

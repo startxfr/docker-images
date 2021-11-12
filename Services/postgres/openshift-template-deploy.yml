@@ -12,7 +12,7 @@ metadata:
     tags: startx,os,fedora,postgres,sql
     openshift.io/provider-display-name: STARTX
     openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-postgres
-    openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
+    openshift.io/support-url: https://gitlab.com/startx1/containers/issues/new
 message: |-
   Your ephemeral database ${APP_NAME} will be soon deployed.
   Monitor the deployement for database availability 

@@ -13,10 +13,10 @@ metadata:
       This template provides a fedora container with
       minimal tools and scripts. Ready to use in openshift with a simple deployement
       config, or as a s2i builder for bash applications. For more information about
-      using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.
+      using this image, including OpenShift considerations, see https://gitlab.com/startx1/containers/blob/master/README.md.
     openshift.io/provider-display-name: STARTX
-    openshift.io/documentation-url: https://github.com/startxfr/docker-images/blob/master/README.md
-    openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
+    openshift.io/documentation-url: https://gitlab.com/startx1/containers/blob/master/README.md
+    openshift.io/support-url: https://gitlab.com/startx1/containers/issues/new
 message: |-
   Your application ${APP_NAME} is building and will be soon deployed...
 
@@ -47,7 +47,7 @@ objects:
             tags: builder,startx,fedora
             supports: fedora
             version: fc26
-            sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
           from:
             kind: DockerImage
             name: startx/fedora:26
@@ -59,7 +59,7 @@ objects:
             tags: builder,startx,fedora
             supports: fedora
             version: fc27
-            sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
           from:
             kind: DockerImage
             name: startx/fedora:27
@@ -71,7 +71,7 @@ objects:
             tags: builder,startx,fedora
             supports: fedora
             version: fc28
-            sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
           from:
             kind: DockerImage
             name: startx/fedora:28
@@ -83,7 +83,7 @@ objects:
             tags: builder,startx,fedora
             supports: fedora
             version: fc29
-            sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
           from:
             kind: DockerImage
             name: startx/fedora:29
@@ -95,7 +95,7 @@ objects:
             tags: builder,startx,fedora
             supports: fedora
             version: fc30
-            sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
           from:
             kind: DockerImage
             name: startx/fedora:30
@@ -107,7 +107,7 @@ objects:
             tags: builder,startx,fedora
             supports: fedora
             version: fc31
-            sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
           from:
             kind: DockerImage
             name: startx/fedora:31
@@ -119,7 +119,7 @@ objects:
             tags: builder,startx,fedora
             supports: fedora
             version: fc32
-            sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
           from:
             kind: DockerImage
             name: startx/fedora:32
@@ -131,7 +131,7 @@ objects:
             tags: builder,startx,fedora
             supports: fedora
             version: fc33
-            sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
           from:
             kind: DockerImage
             name: startx/fedora:33
@@ -143,7 +143,7 @@ objects:
             tags: builder,startx,fedora
             supports: fedora
             version: fc34
-            sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
           from:
             kind: DockerImage
             name: startx/fedora:34
@@ -155,7 +155,7 @@ objects:
             tags: builder,startx,fedora
             supports: fedora
             version: rawhide
-            sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
           from:
             kind: DockerImage
             name: startx/fedora:latest
@@ -167,7 +167,7 @@ objects:
             tags: builder,startx,ubi
             supports: ubi
             version: "8"
-            sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
           from:
             kind: DockerImage
             name: startx/ubi:8
@@ -179,7 +179,7 @@ objects:
             tags: builder,startx,centos
             supports: centos
             version: "8"
-            sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
           from:
             kind: DockerImage
             name: startx/centos:8
@@ -191,7 +191,7 @@ objects:
             tags: builder,startx,centos
             supports: centos
             version: "7"
-            sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
           from:
             kind: DockerImage
             name: startx/centos:7
@@ -203,7 +203,7 @@ objects:
             tags: builder,startx,centos
             supports: centos
             version: "6"
-            sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
           from:
             kind: DockerImage
             name: startx/centos:6
@@ -215,7 +215,7 @@ objects:
             tags: builder,startx,alpine
             supports: alpine
             version: "3"
-            sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
           from:
             kind: DockerImage
             name: startx/alpine:3
@@ -226,7 +226,7 @@ objects:
             iconClass: icon-beaker
             tags: builder,startx,fedora
             supports: fedora
-            sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
           from:
             kind: ImageStreamTag
             name: rawhide
@@ -238,7 +238,7 @@ objects:
             tags: builder,startx,fedora
             supports: fedora
             version: "dev"
-            sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
           from:
             kind: ImageStreamTag
             name: rawhide
@@ -250,7 +250,7 @@ objects:
             tags: builder,startx,fedora
             supports: fedora
             version: "test"
-            sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
           from:
             kind: ImageStreamTag
             name: centos8
@@ -262,7 +262,7 @@ objects:
             tags: builder,startx,fedora
             supports: fedora
             version: "pre-prod"
-            sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
           from:
             kind: ImageStreamTag
             name: alpine3
@@ -274,7 +274,7 @@ objects:
             tags: builder,startx,fedora
             supports: fedora
             version: "prod"
-            sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
           from:
             kind: ImageStreamTag
             name: alpine3
@@ -500,7 +500,7 @@ parameters:
   - name: SOURCE_GIT
     displayName: Source repository
     description: URL to the source code to use during build process
-    value: https://github.com/startxfr/docker-images-example-bash.git
+    value: https://gitlab.com/startx1/containers-example-bash.git
     required: true
   - name: SOURCE_BRANCH
     displayName: Source branch

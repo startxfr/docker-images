@@ -13,7 +13,7 @@ metadata:
     tags: startx,os,fedora,ooconv,libreoffice
     openshift.io/provider-display-name: STARTX
     openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-ooconv
-    openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
+    openshift.io/support-url: https://gitlab.com/startx1/containers/issues/new
 message: |-
   Your converter ${APP_NAME} is deploying and will be soon deployed.
   Monitor the deployement for application availability

@@ -17,7 +17,7 @@ Copy sources in your docker host
 
     mkdir startx-docker-images;
     cd startx-docker-images;
-    git clone https://github.com/startxfr/docker-images.git .
+    git clone https://gitlab.com/startx1/containers.git .
 
 Build the container
 
@@ -39,7 +39,7 @@ access to the container itself
 
 ## Related Resources
 
-- [Sources files](https://github.com/startxfr/docker-images/tree/master/Applications/rockmongo)
-- [Github STARTX profile](https://github.com/startxfr/docker-images)
+- [Sources files](https://gitlab.com/startx1/containers/tree/master/Applications/rockmongo)
+- [Github STARTX profile](https://gitlab.com/startx1/containers)
 - [Docker registry for this container](https://registry.hub.docker.com/u/startx/app-rockmongo/)
 - [Docker registry for Fedora](https://registry.hub.docker.com/u/fedora/)

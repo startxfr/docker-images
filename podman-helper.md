@@ -1,4 +1,4 @@
-[![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
+[![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://gitlab.com/startx1/containers)
 
 # STARTX Podman Helper
 
@@ -10,7 +10,7 @@ This script assume :
 
 - You have a Centos/RHEL 8 environment running with all updates applied
 - You have installed docker package (alias for podman, buildhah and much more)
-- You have cloned this repository content (git clone https://github.com/startxfr/docker-images)
+- You have cloned this repository content (git clone https://gitlab.com/startx1/containers)
 - You are in the root directory of your cloned copy of this repository
 
 ## Setup project and flavour

@@ -13,7 +13,7 @@ metadata:
     tags: startx,os,fedora,couchbase,nosql
     openshift.io/provider-display-name: STARTX
     openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-couchbase
-    openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
+    openshift.io/support-url: https://gitlab.com/startx1/containers/issues/new
 message: |-
   Your database ${APP_NAME} will be soon deployed.
   Monitor the deployement for database availability and
@@ -45,7 +45,7 @@ objects:
             tags: builder,startx,fedora,couchbase,database
             supports: db
             version: rawhide
-            sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-couchbase.git
           from:
             kind: DockerImage
             name: startx/sv-couchbase:${BUILDER_TAG}
