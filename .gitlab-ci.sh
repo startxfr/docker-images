@@ -137,7 +137,7 @@ function DisplayCheckRequirements {
 # Display the markdown checks
 function DisplayCheckMarkdown {
     echo "======== CHECK MARKDOWN SYNTAX"
-    mdl --skip-default-ruleset "*.md"
+    mdl --skip-default-ruleset *.md
 }
 
 # Display the shellcheck checks
