@@ -668,7 +668,6 @@ stages:
     SXDI_BRANCH: 'master' # default to master branch
     SXDI_PATH: 'OS' # default to OS image
     SXDI_DOCKERNAME: 'fedora' # image name in docker.io registry
-    SXDI_TAG: 'latest' # image tag name
     SXDI_QUAYNAME: 'fedora' # image name in quay.io registry
   image: docker:latest
   stage: build
@@ -677,9 +676,9 @@ stages:
   before_script: 
     - "source .gitlab-ci.sh && DoImageBuildPrepare"
   script:
-    - DoImageBuildExecute $SXDI_PATH $SXDI_DOCKERNAME $SXDI_TAG $SXDI_QUAYNAME
-    - DoImageBuildTest $SXDI_PATH $SXDI_DOCKERNAME $SXDI_TAG $SXDI_QUAYNAME
-    - DoImageBuildPublish $SXDI_PATH $SXDI_DOCKERNAME $SXDI_TAG $SXDI_QUAYNAME
+    - DoImageBuildExecute $SXDI_PATH $SXDI_DOCKERNAME $SXDI_QUAYNAME startx
+    - DoImageBuildTest $SXDI_PATH $SXDI_DOCKERNAME $SXDI_QUAYNAME startx
+    - DoImageBuildPublish $SXDI_PATH $SXDI_DOCKERNAME $SXDI_QUAYNAME startx
 
 ##
 ## STAGES
@@ -738,7 +737,6 @@ build-os:
     SXDI_BRANCH: 'master'
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: 'fedora'
-    SXDI_TAG: 'latest'
     SXDI_QUAYNAME: 'fedora'
   only:
     - master
@@ -751,7 +749,6 @@ build-apache:
     SXDI_BRANCH: 'master'
     SXDI_PATH: 'Services/apache'
     SXDI_DOCKERNAME: 'sv-apache'
-    SXDI_TAG: 'latest'
     SXDI_QUAYNAME: 'apache'
   only:
     - master

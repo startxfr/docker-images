@@ -211,9 +211,12 @@ function DoImagePushImage {
 function DoImageBuildExecute {
     local path=${1:-OS}
     local dockername=${2:-fedora}
-    local tag=${3:-latest}
-    local quayname=${4:-fedora}
-    local ns=${5:-startx}
+    local tag=${CI_COMMIT_BRANCH:-latest}
+    if [[ "$tag" = "master" ]]; then
+        tag="latest"
+    fi
+    local quayname=${3:-fedora}
+    local ns=${4:-startx}
     IMAGE_TAG=docker.io/${ns}/$dockername:$tag
     IMAGE_QUAYTAG=quay.io/${ns}/$quayname:$tag
     TEST_NAME=${ns}_$quayname_$tag
@@ -241,9 +244,12 @@ function DoImageBuildExecute {
 function DoImageBuildTest {
     local path=${1:-OS}
     local dockername=${2:-fedora}
-    local tag=${3:-latest}
-    local quayname=${4:-fedora}
-    local ns=${5:-startx}
+    local tag=${CI_COMMIT_BRANCH:-latest}
+    if [[ "$tag" = "master" ]]; then
+        tag="latest"
+    fi
+    local quayname=${3:-fedora}
+    local ns=${4:-startx}
     IMAGE_TAG=docker.io/${ns}/$dockername:$tag
     IMAGE_QUAYTAG=quay.io/${ns}/$quayname:$tag
     TEST_NAME=${ns}_$quayname_$tag
@@ -271,9 +277,12 @@ function DoImageBuildTest {
 function DoImageBuildPublish {
     local path=${1:-OS}
     local dockername=${2:-fedora}
-    local tag=${3:-latest}
-    local quayname=${4:-fedora}
-    local ns=${5:-startx}
+    local tag=${CI_COMMIT_BRANCH:-latest}
+    if [[ "$tag" = "master" ]]; then
+        tag="latest"
+    fi
+    local quayname=${3:-fedora}
+    local ns=${4:-startx}
     IMAGE_TAG=docker.io/${ns}/$dockername:$tag
     IMAGE_QUAYTAG=quay.io/${ns}/$quayname:$tag
     TEST_NAME=${ns}_$quayname_$tag
