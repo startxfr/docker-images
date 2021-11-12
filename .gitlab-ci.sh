@@ -186,6 +186,7 @@ function DoImagePullImage {
 # Execute a docker push of an image comming from the given registry. Must be authenticated prior to this push.
 function DoImagePushImage {
     echo "INFO: Push image $1/$2:$3"
+    docker push "$1/$2:$3"
     if [[ $SX_DEBUG == "true" ]]; then
         docker push "$1/$2:$3" &> /dev/null
     else
@@ -266,6 +267,7 @@ function DoImageBuildPublish {
     echo "========> PUBLISH Container $IMAGE_TAG"
     if [ -f /tmp/istested_$quayname ] ; then
         DoImagePushImage docker.io $ns/$dockername $tag
+        echo "INFO: Retag image $IMAGE_TAG to $IMAGE_QUAYTAG"
         docker tag $IMAGE_TAG $IMAGE_QUAYTAG
         DoImagePushImage quay.io $ns/$quayname $tag
     else
