@@ -14,10 +14,10 @@ metadata:
       This template provides a fedora container with
       minimal tools and scripts. Ready to use in openshift with a simple deployement
       config, or as a s2i builder for bash applications. For more information about
-      using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.
+      using this image, including OpenShift considerations, see https://gitlab.com/startx1/containers/blob/master/README.md.
     openshift.io/provider-display-name: STARTX
-    openshift.io/documentation-url: https://github.com/startxfr/docker-images/blob/master/README.md
-    openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
+    openshift.io/documentation-url: https://gitlab.com/startx1/containers/blob/master/README.md
+    openshift.io/support-url: https://gitlab.com/startx1/containers/issues/new
 message: |-
   Your application ${APP_NAME} is deploying...
 
@@ -45,7 +45,7 @@ objects:
             iconClass: icon-beaker
             tags: builder,startx,${APP_STAGE}
             supports: ${APP_STAGE}
-            sampleRepo: https://github.com/startxfr/docker-images-example-bash.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
           from:
             kind: DockerImage
             name: ${BUILDER_IMAGE}

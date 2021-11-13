@@ -46,7 +46,11 @@ RUN dnf install -y yum-utils && \
         mariadb-errmsg \
         mariadb-gssapi-server \
         mariadb-oqgraph-engine \
-        mariadb-server-galera && \
+        mariadb-server-galera  \
+        mysql-selinux \
+        python3-mysqlclient \
+        glibc-langpack-fr \
+        mariadb && \
     dnf remove -y --skip-broken yum-utils && \
     dnf clean all --enablerepo=\* && \
     mkdir -p $DATA_PATH $LOG_PATH $LOADSQL_PATH && \

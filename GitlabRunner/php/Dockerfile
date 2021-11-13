@@ -3,6 +3,8 @@ FROM quay.io/startx/php:centos8
 ENV SX_VERSION="centos8" \
     SX_TYPE="runner" \
     SX_SERVICE="php" \
+    SX_UID=1001 \
+    SX_UNAME="user" \
     SX_ID="startx/runner-php" \
     SX_NAME="Startx Apache-PHP gitlab runner image (centos 8)" \
     SX_SUMMARY="Startx apache-php gitlab runner based on centos 8"
@@ -29,10 +31,11 @@ RUN dnf upgrade -yq --refresh && \
     sshpass && \
     dnf remove -yq --skip-broken yum-utils && \
     dnf clean all --enablerepo=\* && \
+    useradd -u ${SX_UID} -m ${SX_UNAME} && \
     mv /tmp/bin/* /bin/ && \
     mv /tmp/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/bin /tmp/bin
 
-USER 1001
+USER $SX_UID
 
 CMD [ "/bin/sx-php" , "usage" ]

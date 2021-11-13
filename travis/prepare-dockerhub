@@ -1,4 +1,0 @@
-#!/bin/bash
-echo "INFO: Login to dockerhub registry"
-docker login -u $DOCKER_USER -p $DOCKER_PASS docker.io
-docker login -u="$QUAY_USER" -p="$QUAY_PASS" quay.io

@@ -12,7 +12,7 @@ metadata:
     tags: startx,os,fedora,mariadb,sql
     openshift.io/provider-display-name: STARTX
     openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-mariadb
-    openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
+    openshift.io/support-url: https://gitlab.com/startx1/containers/issues/new
 message: |-
   Your database ${APP_NAME} is building and will be soon deployed.
   Monitor the deployement for database availability
@@ -55,7 +55,7 @@ objects:
             tags: builder,startx,fedora,mariadb,sql
             supports: mysql
             version: fc26
-            sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
           from:
             kind: DockerImage
             name: startx/sv-mariadb:fc26
@@ -69,7 +69,7 @@ objects:
             tags: builder,startx,fedora,mariadb,sql
             supports: mysql
             version: fc27
-            sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
           from:
             kind: DockerImage
             name: startx/sv-mariadb:fc27
@@ -83,7 +83,7 @@ objects:
             tags: builder,startx,fedora,mariadb,sql
             supports: mysql
             version: fc28
-            sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
           from:
             kind: DockerImage
             name: startx/sv-mariadb:fc28
@@ -97,7 +97,7 @@ objects:
             tags: builder,startx,fedora,mariadb,sql
             supports: mysql
             version: fc29
-            sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
           from:
             kind: DockerImage
             name: startx/sv-mariadb:fc29
@@ -111,7 +111,7 @@ objects:
             tags: builder,startx,fedora,mariadb,sql
             supports: mysql
             version: fc30
-            sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
           from:
             kind: DockerImage
             name: startx/sv-mariadb:fc30
@@ -125,7 +125,7 @@ objects:
             tags: builder,startx,fedora,mariadb,sql
             supports: mysql
             version: fc31
-            sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
           from:
             kind: DockerImage
             name: startx/sv-mariadb:fc31
@@ -139,7 +139,7 @@ objects:
             tags: builder,startx,fedora,mariadb,sql
             supports: mysql
             version: fc32
-            sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
           from:
             kind: DockerImage
             name: startx/sv-mariadb:fc32
@@ -153,7 +153,7 @@ objects:
             tags: builder,startx,fedora,mariadb,sql
             supports: mysql
             version: fc33
-            sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
           from:
             kind: DockerImage
             name: startx/sv-mariadb:fc33
@@ -167,7 +167,7 @@ objects:
             tags: builder,startx,fedora,mariadb,sql
             supports: mysql
             version: fc34
-            sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
           from:
             kind: DockerImage
             name: startx/sv-mariadb:fc34
@@ -181,7 +181,7 @@ objects:
             tags: builder,startx,fedora,mariadb,sql
             supports: mysql
             version: rawhide
-            sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
           from:
             kind: DockerImage
             name: startx/sv-mariadb:latest
@@ -195,7 +195,7 @@ objects:
             tags: builder,startx,ubi,mariadb,sql
             supports: mysql
             version: "8"
-            sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
           from:
             kind: DockerImage
             name: startx/sv-mariadb:ubi8
@@ -209,7 +209,7 @@ objects:
             tags: builder,startx,centos,mariadb,sql
             supports: mysql
             version: "8"
-            sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
           from:
             kind: DockerImage
             name: startx/sv-mariadb:centos8
@@ -223,7 +223,7 @@ objects:
             tags: builder,startx,centos,mariadb,sql
             supports: mysql
             version: "7"
-            sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
           from:
             kind: DockerImage
             name: startx/sv-mariadb:centos7
@@ -237,7 +237,7 @@ objects:
             tags: builder,startx,centos,mariadb,sql
             supports: mysql
             version: "6"
-            sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
           from:
             kind: DockerImage
             name: startx/sv-mariadb:centos6
@@ -251,7 +251,7 @@ objects:
             tags: builder,startx,alpine,mariadb,sql
             supports: mysql
             version: "3"
-            sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
           from:
             kind: DockerImage
             name: startx/sv-mariadb:alpine3
@@ -264,7 +264,7 @@ objects:
             iconClass: icon-mariadb
             tags: builder,startx,alpine,mariadb,sql
             supports: mysql
-            sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
           from:
             kind: ImageStreamTag
             name: rawhide
@@ -276,7 +276,7 @@ objects:
             tags: builder,startx,alpine,mariadb,sql
             supports: mysql
             version: "dev"
-            sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
           from:
             kind: ImageStreamTag
             name: rawhide
@@ -288,7 +288,7 @@ objects:
             tags: builder,startx,alpine,mariadb,sql
             supports: mysql
             version: "test"
-            sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
           from:
             kind: ImageStreamTag
             name: centos8
@@ -300,7 +300,7 @@ objects:
             tags: builder,startx,alpine,mariadb,sql
             supports: mysql
             version: "pre-prod"
-            sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
           from:
             kind: ImageStreamTag
             name: alpine3
@@ -312,7 +312,7 @@ objects:
             tags: builder,startx,alpine,mariadb,sql
             supports: mysql
             version: "prod"
-            sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
           from:
             kind: ImageStreamTag
             name: alpine3
@@ -670,7 +670,7 @@ parameters:
   - name: SOURCE_GIT
     displayName: Source repository
     description: URL to the source code to use during build process
-    value: https://github.com/startxfr/docker-images-example-mariadb.git
+    value: https://gitlab.com/startx1/containers-example-mariadb.git
     required: true
   - name: SOURCE_BRANCH
     displayName: Source branch

@@ -12,7 +12,7 @@ metadata:
     tags: startx,os,fedora,php,httpd
     openshift.io/provider-display-name: STARTX
     openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-php
-    openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
+    openshift.io/support-url: https://gitlab.com/startx1/containers/issues/new
 message: |-
   Your application ${APP_NAME} is building and will be soon deployed.
   Monitor the deployement for application availability and
@@ -48,7 +48,7 @@ objects:
             tags: builder,startx,fedora,php,httpd
             supports: http
             version: fc26
-            sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-php.git
           from:
             kind: DockerImage
             name: startx/sv-php:fc26
@@ -62,7 +62,7 @@ objects:
             tags: builder,startx,fedora,php,httpd
             supports: http
             version: fc27
-            sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-php.git
           from:
             kind: DockerImage
             name: startx/sv-php:fc27
@@ -76,7 +76,7 @@ objects:
             tags: builder,startx,fedora,php,httpd
             supports: http
             version: fc28
-            sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-php.git
           from:
             kind: DockerImage
             name: startx/sv-php:fc28
@@ -90,7 +90,7 @@ objects:
             tags: builder,startx,fedora,php,httpd
             supports: http
             version: fc29
-            sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-php.git
           from:
             kind: DockerImage
             name: startx/sv-php:fc29
@@ -104,7 +104,7 @@ objects:
             tags: builder,startx,fedora,php,httpd
             supports: http
             version: fc30
-            sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-php.git
           from:
             kind: DockerImage
             name: startx/sv-php:fc30
@@ -118,7 +118,7 @@ objects:
             tags: builder,startx,fedora,php,httpd
             supports: http
             version: fc31
-            sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-php.git
           from:
             kind: DockerImage
             name: startx/sv-php:fc31
@@ -132,7 +132,7 @@ objects:
             tags: builder,startx,fedora,php,httpd
             supports: http
             version: fc32
-            sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-php.git
           from:
             kind: DockerImage
             name: startx/sv-php:fc32
@@ -146,7 +146,7 @@ objects:
             tags: builder,startx,fedora,php,httpd
             supports: http
             version: fc33
-            sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-php.git
           from:
             kind: DockerImage
             name: startx/sv-php:fc33
@@ -160,7 +160,7 @@ objects:
             tags: builder,startx,fedora,php,httpd
             supports: http
             version: fc34
-            sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-php.git
           from:
             kind: DockerImage
             name: startx/sv-php:fc34
@@ -174,7 +174,7 @@ objects:
             tags: builder,startx,fedora,php,httpd
             supports: http
             version: rawhide
-            sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-php.git
           from:
             kind: DockerImage
             name: startx/sv-php:latest
@@ -188,7 +188,7 @@ objects:
             tags: builder,startx,ubi,php,httpd
             supports: http
             version: "8"
-            sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-php.git
           from:
             kind: DockerImage
             name: startx/sv-php:ubi8
@@ -202,7 +202,7 @@ objects:
             tags: builder,startx,centos,php,httpd
             supports: http
             version: "8"
-            sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-php.git
           from:
             kind: DockerImage
             name: startx/sv-php:centos8
@@ -216,7 +216,7 @@ objects:
             tags: builder,startx,centos,php,httpd
             supports: http
             version: "7"
-            sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-php.git
           from:
             kind: DockerImage
             name: startx/sv-php:centos7
@@ -230,7 +230,7 @@ objects:
             tags: builder,startx,centos,php,httpd
             supports: http
             version: "6"
-            sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-php.git
           from:
             kind: DockerImage
             name: startx/sv-php:centos6
@@ -244,7 +244,7 @@ objects:
             tags: builder,startx,alpine,php,httpd
             supports: http
             version: "3"
-            sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-php.git
           from:
             kind: DockerImage
             name: startx/sv-php:alpine3
@@ -257,7 +257,7 @@ objects:
             iconClass: icon-php
             tags: builder,startx,alpine,php,httpd
             supports: http
-            sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-php.git
           from:
             kind: ImageStreamTag
             name: rawhide
@@ -269,7 +269,7 @@ objects:
             tags: builder,startx,alpine,php,httpd
             supports: http
             version: "dev"
-            sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-php.git
           from:
             kind: ImageStreamTag
             name: rawhide
@@ -281,7 +281,7 @@ objects:
             tags: builder,startx,alpine,php,httpd
             supports: http
             version: "test"
-            sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-php.git
           from:
             kind: ImageStreamTag
             name: centos8
@@ -293,7 +293,7 @@ objects:
             tags: builder,startx,alpine,php,httpd
             supports: http
             version: "pre-prod"
-            sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-php.git
           from:
             kind: ImageStreamTag
             name: alpine3
@@ -305,7 +305,7 @@ objects:
             tags: builder,startx,alpine,php,httpd
             supports: http
             version: "prod"
-            sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-php.git
           from:
             kind: ImageStreamTag
             name: alpine3
@@ -570,7 +570,7 @@ parameters:
   - name: SOURCE_GIT
     displayName: Source repository
     description: URL to the source code to use during build process
-    value: https://github.com/startxfr/docker-images-example-php.git
+    value: https://gitlab.com/startx1/containers-example-php.git
     required: true
   - name: SOURCE_BRANCH
     displayName: Source branch

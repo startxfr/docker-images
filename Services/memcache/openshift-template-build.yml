@@ -12,7 +12,7 @@ metadata:
     tags: startx,os,fedora,memcache
     openshift.io/provider-display-name: STARTX
     openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-memcache
-    openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
+    openshift.io/support-url: https://gitlab.com/startx1/containers/issues/new
 message: |-
   Your cache ${APP_NAME} is building and will be soon deployed.
   Monitor the deployement for cache availability
@@ -50,7 +50,7 @@ objects:
             tags: builder,startx,fedora,memcache
             supports: memcache
             version: fc26
-            sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
           from:
             kind: DockerImage
             name: startx/sv-memcache:fc26
@@ -64,7 +64,7 @@ objects:
             tags: builder,startx,fedora,memcache
             supports: memcache
             version: fc27
-            sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
           from:
             kind: DockerImage
             name: startx/sv-memcache:fc27
@@ -78,7 +78,7 @@ objects:
             tags: builder,startx,fedora,memcache
             supports: memcache
             version: fc28
-            sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
           from:
             kind: DockerImage
             name: startx/sv-memcache:fc28
@@ -92,7 +92,7 @@ objects:
             tags: builder,startx,fedora,memcache
             supports: memcache
             version: fc29
-            sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
           from:
             kind: DockerImage
             name: startx/sv-memcache:fc29
@@ -106,7 +106,7 @@ objects:
             tags: builder,startx,fedora,memcache
             supports: memcache
             version: fc30
-            sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
           from:
             kind: DockerImage
             name: startx/sv-memcache:fc30
@@ -120,7 +120,7 @@ objects:
             tags: builder,startx,fedora,memcache
             supports: memcache
             version: fc31
-            sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
           from:
             kind: DockerImage
             name: startx/sv-memcache:fc31
@@ -134,7 +134,7 @@ objects:
             tags: builder,startx,fedora,memcache
             supports: memcache
             version: fc32
-            sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
           from:
             kind: DockerImage
             name: startx/sv-memcache:fc32
@@ -148,7 +148,7 @@ objects:
             tags: builder,startx,fedora,memcache
             supports: memcache
             version: fc33
-            sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
           from:
             kind: DockerImage
             name: startx/sv-memcache:fc33
@@ -162,7 +162,7 @@ objects:
             tags: builder,startx,fedora,memcache
             supports: memcache
             version: fc34
-            sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
           from:
             kind: DockerImage
             name: startx/sv-memcache:fc34
@@ -176,7 +176,7 @@ objects:
             tags: builder,startx,fedora,memcache
             supports: memcache
             version: rawhide
-            sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
           from:
             kind: DockerImage
             name: startx/sv-memcache:latest
@@ -190,7 +190,7 @@ objects:
             tags: builder,startx,ubi,memcache
             supports: memcache
             version: "8"
-            sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
           from:
             kind: DockerImage
             name: startx/sv-memcache:ubi8
@@ -204,7 +204,7 @@ objects:
             tags: builder,startx,centos,memcache
             supports: memcache
             version: "8"
-            sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
           from:
             kind: DockerImage
             name: startx/sv-memcache:centos8
@@ -218,7 +218,7 @@ objects:
             tags: builder,startx,centos,memcache
             supports: memcache
             version: "7"
-            sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
           from:
             kind: DockerImage
             name: startx/sv-memcache:centos7
@@ -232,7 +232,7 @@ objects:
             tags: builder,startx,centos,memcache
             supports: memcache
             version: "6"
-            sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
           from:
             kind: DockerImage
             name: startx/sv-memcache:centos6
@@ -246,7 +246,7 @@ objects:
             tags: builder,startx,alpine,memcache
             supports: memcache
             version: "3"
-            sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
           from:
             kind: DockerImage
             name: startx/sv-memcache:alpine3
@@ -259,7 +259,7 @@ objects:
             iconClass: icon-redis
             tags: builder,startx,alpine,memcache
             supports: memcache
-            sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
           from:
             kind: ImageStreamTag
             name: rawhide
@@ -271,7 +271,7 @@ objects:
             tags: builder,startx,alpine,memcache
             supports: memcache
             version: "dev"
-            sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
           from:
             kind: ImageStreamTag
             name: rawhide
@@ -283,7 +283,7 @@ objects:
             tags: builder,startx,alpine,memcache
             supports: memcache
             version: "test"
-            sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
           from:
             kind: ImageStreamTag
             name: centos8
@@ -295,7 +295,7 @@ objects:
             tags: builder,startx,alpine,memcache
             supports: memcache
             version: "pre-prod"
-            sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
           from:
             kind: ImageStreamTag
             name: alpine3
@@ -307,7 +307,7 @@ objects:
             tags: builder,startx,alpine,memcache
             supports: memcache
             version: "prod"
-            sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
           from:
             kind: ImageStreamTag
             name: alpine3
@@ -520,7 +520,7 @@ parameters:
   - name: SOURCE_GIT
     displayName: Source repository
     description: URL to the source code to use during build process
-    value: https://github.com/startxfr/docker-images-example-memcache.git
+    value: https://gitlab.com/startx1/containers-example-memcache.git
     required: true
   - name: SOURCE_BRANCH
     displayName: Source branch
