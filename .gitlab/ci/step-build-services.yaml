@@ -1,0 +1,72 @@
+##
+## STAGES
+##
+
+# Build the couchbase image 
+build-couchbase:
+  stage: "build Services"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXDI_PATH: 'Services/couchbase'
+    SXDI_DOCKERNAME: 'sv-couchbase'
+    SXDI_QUAYNAME: 'couchbase'
+
+# Build the mariadb image 
+build-mariadb:
+  stage: "build Services"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXDI_PATH: 'Services/mariadb'
+    SXDI_DOCKERNAME: 'sv-mariadb'
+    SXDI_QUAYNAME: 'mariadb'
+
+# Build the memcache image 
+build-memcache:
+  stage: "build Services"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXDI_PATH: 'Services/memcache'
+    SXDI_DOCKERNAME: 'sv-memcache'
+    SXDI_QUAYNAME: 'memcache'
+
+# Build the mongo image 
+build-mongo:
+  stage: "build Services"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXDI_PATH: 'Services/mongo'
+    SXDI_DOCKERNAME: 'sv-mongo'
+    SXDI_QUAYNAME: 'mongo'
+
+# Build the ooconv image 
+build-ooconv:
+  stage: "build Services"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXDI_PATH: 'Services/ooconv'
+    SXDI_DOCKERNAME: 'sv-ooconv'
+    SXDI_QUAYNAME: 'ooconv'
+
+# Build the php image 
+build-php:
+  stage: "build Services"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXDI_PATH: 'Services/php'
+    SXDI_DOCKERNAME: 'sv-php'
+    SXDI_QUAYNAME: 'php'
+
+# Build the postgres image 
+build-postgres:
+  stage: "build Services"
+  extends: .build-image
+  variables:
+    SXDI_PATH: 'Services/postgres'
+    SXDI_DOCKERNAME: 'sv-postgres'
+    SXDI_QUAYNAME: 'postgres'

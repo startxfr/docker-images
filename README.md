@@ -1,6 +1,6 @@
 # STARTX Docker-Images Repository
 
-[![docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true)](https://gitlab.com/startx1/containers)
+[![docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/.gitlab/img/logo.svg?sanitize=true)](https://gitlab.com/startx1/containers)
 
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://gitlab.com/startx1/containers) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://gitlab.com/startx1/containers/tree/master/OS/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://gitlab.com/startx1/containers) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/fedora.svg)](https://hub.docker.com/r/startx/fedora) [![Docker Fedora pulls](https://img.shields.io/docker/pulls/startx/fedora)](https://hub.docker.com/r/startx/fedora) [![Docker Repository on Quay](https://quay.io/repository/startx/fedora/status "Docker Repository on Quay")](https://quay.io/repository/startx/fedora)
 
@@ -151,7 +151,7 @@ and stay stiked to a defined stable release.
 | 0.95.11 | improve verbose display                                                          |
 | 0.95.9  | debug and stabilize dockerfiles                                                  |
 | 0.95.7  | Add s2i label for s2i compat                                                     |
-| 0.95.5  | Add .data.sql and _.schema.sql dump support for mariadb                          |
+| 0.95.5  | Add _.data.sql_ and _.schema.sql_ dump support for mariadb                       |
 | 0.95.3  | Updating docker for better diff and merge. Improve doc structures                |
 | 0.93.1  | Unstable release with UBI and centos8 added. Prepare first major release         |
 | 0.40.0  | Stable release with updated images lib packages                                  |

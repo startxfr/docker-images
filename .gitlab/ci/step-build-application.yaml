@@ -1,0 +1,33 @@
+##
+## STAGES
+##
+
+# Build the AWX application image 
+build-application-awx:
+  stage: "build Application"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXDI_PATH: 'Applications/awx'
+    SXDI_DOCKERNAME: 'app-awx'
+    SXDI_QUAYNAME: 'awx'
+
+# Build the phpmyadmin application image 
+build-application-phpmyadmin:
+  stage: "build Application"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXDI_PATH: 'Applications/phpmyadmin'
+    SXDI_DOCKERNAME: 'app-phpmyadmin'
+    SXDI_QUAYNAME: 'phpmyadmin'
+
+# Build the rockmongo application image 
+build-application-rockmongo:
+  stage: "build Application"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXDI_PATH: 'Applications/rockmongo'
+    SXDI_DOCKERNAME: 'app-rockmongo'
+    SXDI_QUAYNAME: 'rockmongo'

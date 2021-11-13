@@ -1,0 +1,32 @@
+##
+## STAGES
+##
+
+# Build the apache image 
+build-apache:
+  stage: "build basic"
+  extends: .build-image
+  variables:
+    SXDI_PATH: 'Services/apache'
+    SXDI_DOCKERNAME: 'sv-apache'
+    SXDI_QUAYNAME: 'apache'
+
+# Build the nodejs image 
+build-nodejs:
+  stage: "build basic"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXDI_PATH: 'Services/nodejs'
+    SXDI_DOCKERNAME: 'sv-nodejs'
+    SXDI_QUAYNAME: 'nodejs'
+
+# Build the bash gitlab-runner image 
+build-runner-bash:
+  stage: "build basic"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXDI_PATH: 'GitlabRunner/bash'
+    SXDI_DOCKERNAME: 'runner-bash'
+    SXDI_QUAYNAME: 'runner-bash'

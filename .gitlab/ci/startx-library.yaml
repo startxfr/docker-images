@@ -1,0 +1,24 @@
+# Default container image
+image: "quay.io/startx/runner-bash:alpine3"
+
+##
+## LIBRARY
+##
+
+# Library used to merge branch in a local repo
+.build-image:
+  variables:
+    SXDI_PATH: 'OS' # default to OS image
+    SXDI_DOCKERNAME: 'fedora' # image name in docker.io registry
+    SXDI_QUAYNAME: 'fedora' # image name in quay.io registry
+    SXDI_TAG: ${CI_COMMIT_BRANCH:-latest} # image tag name
+  image: docker:latest
+  stage: build
+  services:
+    - docker:dind
+  before_script: 
+    - "source .gitlab/ci/startx-library.sh && DoImageBuildPrepare"
+  script:
+    - DoImageBuildExecute $SXDI_PATH $SXDI_DOCKERNAME $SXDI_QUAYNAME $SXDI_TAG startx
+    - DoImageBuildTest $SXDI_PATH $SXDI_DOCKERNAME $SXDI_QUAYNAME $SXDI_TAG startx
+    - DoImageBuildPublish $SXDI_PATH $SXDI_DOCKERNAME $SXDI_QUAYNAME $SXDI_TAG startx
