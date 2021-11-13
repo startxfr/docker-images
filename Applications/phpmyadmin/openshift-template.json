@@ -8,10 +8,10 @@
             "description": "Http server for simple web application running under Fedora",
             "iconClass": "icon-php",
             "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
-            "openshift.io/long-description": "This template provides an apache + php httpd webserver in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.",
+            "openshift.io/long-description": "This template provides an apache + php httpd webserver in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://gitlab.com/startx1/containers/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
-            "openshift.io/documentation-url": "https://github.com/startxfr/docker-images/blob/master/README.md",
-            "openshift.io/support-url": "https://github.com/startxfr/docker-images/issues/new"
+            "openshift.io/documentation-url": "https://gitlab.com/startx1/containers/blob/master/README.md",
+            "openshift.io/support-url": "https://gitlab.com/startx1/containers/issues/new"
         }
     },
     "message": "The following container have been created in your project: ${APP_NAME} and you can use openshift console to log into.",
@@ -45,8 +45,8 @@
                             "iconClass": "icon-php",
                             "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
-                            "version": "fc31",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "version": "rawhide",
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",

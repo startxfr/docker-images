@@ -3,6 +3,8 @@ FROM quay.io/startx/apache:fc33
 ENV SX_VERSION="fc33" \
     SX_TYPE="runner" \
     SX_SERVICE="apache" \
+    SX_UID=1001 \
+    SX_UNAME="user" \
     SX_ID="startx/runner-apache" \
     SX_NAME="Startx Apache gitlab runner image (fedora 33)" \
     SX_SUMMARY="Startx apache gitlab runner based on fedora 33"
@@ -32,11 +34,12 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
     package-cleanup --orphans && \
     dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
+    useradd -u ${SX_UID} -m ${SX_UNAME} && \
     mv /tmp/bin/* /bin/ && \
     mv /tmp/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/bin /tmp/bin
 
-USER 1001
+USER $SX_UID
 
 WORKDIR $APP_PATH
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-ORIGIN_REPO_URL=https://startxfr@github.com/startxfr/docker-images.git
+ORIGIN_REPO_URL=https://startxfr1@gitlab.com/startx1/containers.git
 
 # check if git is installed
 function checkGitInstalled {

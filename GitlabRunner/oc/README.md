@@ -1,9 +1,9 @@
-<img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
+<img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/.gitlab/img/logo-small.svg?sanitize=true">
 
 # STARTX Openshift runner container image
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startx-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/GitlabRunner/oc/)
-[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Docker oc pulls](https://img.shields.io/docker/pulls/startx/sv-oc)](https://hub.docker.com/r/startx/sv-oc) [![Docker Repository on Quay](https://quay.io/repository/startx/oc/status "Docker Repository on Quay")](https://quay.io/repository/startx/oc)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://gitlab.com/startx1/containers) [![Sources](https://img.shields.io/badge/startx-docker--images-blue.svg)](https://gitlab.com/startx1/containers/tree/master/GitlabRunner/oc/)
+[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://gitlab.com/startx1/containers) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Docker oc pulls](https://img.shields.io/docker/pulls/startx/sv-oc)](https://hub.docker.com/r/startx/sv-oc) [![Docker Repository on Quay](https://quay.io/repository/startx/oc/status "Docker Repository on Quay")](https://quay.io/repository/startx/oc)
 
 Startx oc is a base container used for web services and applications published in
 [Dockerhub registry](https://hub.docker.com/u/startx) or [Quay registry](https://quay.io/startx).
