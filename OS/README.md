@@ -1,9 +1,9 @@
-<img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/centos7/travis/logo-small.svg?sanitize=true">
+<img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/centos7/.gitlab/img/logo-small.svg?sanitize=true">
 
 # STARTX CentOS container image
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startx-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/centos7/OS/)
-[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) [![Docker centos pulls](https://img.shields.io/docker/pulls/startx/centos)](https://hub.docker.com/r/startx/centos) [![Docker Repository on Quay](https://quay.io/repository/startx/centos/status "Docker Repository on Quay")](https://quay.io/repository/startx/centos)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://gitlab.com/startx1/containers) [![Sources](https://img.shields.io/badge/startx-docker--images-blue.svg)](https://gitlab.com/startx1/containers/tree/centos7/OS/)
+[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://gitlab.com/startx1/containers) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=centos7)](https://travis-ci.org/startxfr/docker-images) [![Docker apache pulls](https://img.shields.io/docker/pulls/startx/fedora)](https://hub.docker.com/r/startx/fedora) [![Docker Repository on Quay](https://quay.io/repository/startx/fedora/status "Docker Repository on Quay")](https://quay.io/repository/startx/fedora)
 
 Startx CentOS container image is a basic image used for all startx services and applications published in
 [Dockerhub registry](https://hub.docker.com/u/startx) or [Quay registry](https://quay.io/startx).

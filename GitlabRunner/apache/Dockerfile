@@ -3,6 +3,8 @@ FROM quay.io/startx/apache:centos7
 ENV SX_VERSION="centos7" \
     SX_TYPE="runner" \
     SX_SERVICE="apache" \
+    SX_UID=1001 \
+    SX_UNAME="user" \
     SX_ID="startx/runner-apache" \
     SX_NAME="Startx Apache gitlab runner image (centos 7)" \
     SX_SUMMARY="Startx apache gitlab runner based on centos 7"
@@ -32,7 +34,7 @@ RUN yum install -y -q yum-utils && \
     mv /tmp/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/bin /tmp/bin
 
-USER 1001
+USER $SX_UID
 
 WORKDIR $APP_PATH
 

@@ -3,6 +3,8 @@ FROM quay.io/startx/nodejs:centos7
 ENV SX_VERSION="centos7" \
     SX_TYPE="runner" \
     SX_SERVICE="nodejs" \
+    SX_UID=1001 \
+    SX_UNAME="user" \
     SX_ID="startx/runner-nodejs" \
     SX_NAME="Startx Nodejs gitlab runner image (centos 7)" \
     SX_SUMMARY="Startx nodejs gitlab runner based on centos 7"
@@ -28,11 +30,12 @@ RUN yum install -y -q yum-utils && \
     package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
     yum clean all --enablerepo=\* && \
+    useradd -u ${SX_UID} -m ${SX_UNAME} && \
     mv /tmp/bin/* /bin/ && \
     mv /tmp/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/bin /tmp/bin
 
-USER 1001
+USER $SX_UID
 
 WORKDIR $APP_PATH
 

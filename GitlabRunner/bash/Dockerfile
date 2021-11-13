@@ -3,6 +3,8 @@ FROM quay.io/startx/centos:7
 ENV SX_VERSION="centos7" \
     SX_TYPE="runner" \
     SX_SERVICE="bash" \
+    SX_UID=1001 \
+    SX_UNAME="user" \
     SX_ID="startx/runner-bash" \
     SX_NAME="Startx Bash gitlab runner image (centos 7)" \
     SX_SUMMARY="Startx bash gitlab runner based on centos 7"
@@ -23,7 +25,16 @@ COPY sx /tmp/
 RUN yum install -y -q yum-utils python3-pip && \
     yum upgrade -y -q  && \
     yum install -y -q --nogpgcheck \
-    make && \
+    make \
+    bubblewrap \
+    rsync \
+    openssh-clients \
+    sshpass \
+    yamllint \
+    gem \
+    ShellCheck \
+    git \
+    bats && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
@@ -32,6 +43,6 @@ RUN yum install -y -q yum-utils python3-pip && \
     mv /tmp/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/bin /tmp/bin
 
-USER 1001
+USER $SX_UID
 
 CMD [ "/bin/sx" , "usage" ]
