@@ -12,6 +12,22 @@ build-runner-ansible:
     SXDI_DOCKERNAME: 'runner-ansible'
     SXDI_QUAYNAME: 'runner-ansible'
     SXDI_TAG: ${SXDI_OTHERTAG}
+  only:
+    - master
+    - centos8
+    - centos7
+    - alpine
+    - ubi8
+    - fc35
+    - fc34
+    - fc33
+    - fc32
+    - fc31
+    - fc30
+    - fc29
+    - fc28
+    - fc27
+    - fc26
 
 # Build the apache gitlab-runner image 
 build-runner-apache:
@@ -23,6 +39,22 @@ build-runner-apache:
     SXDI_DOCKERNAME: 'runner-apache'
     SXDI_QUAYNAME: 'runner-apache'
     SXDI_TAG: ${SXDI_OTHERTAG}
+  only:
+    - master
+    - centos8
+    - centos7
+    - alpine
+    - ubi8
+    - fc35
+    - fc34
+    - fc33
+    - fc32
+    - fc31
+    - fc30
+    - fc29
+    - fc28
+    - fc27
+    - fc26
 
 # Build the nodejs gitlab-runner image 
 build-runner-nodejs:
@@ -34,6 +66,22 @@ build-runner-nodejs:
     SXDI_DOCKERNAME: 'runner-nodejs'
     SXDI_QUAYNAME: 'runner-nodejs'
     SXDI_TAG: ${SXDI_OTHERTAG}
+  only:
+    - master
+    - centos8
+    - centos7
+    - alpine
+    - ubi8
+    - fc35
+    - fc34
+    - fc33
+    - fc32
+    - fc31
+    - fc30
+    - fc29
+    - fc28
+    - fc27
+    - fc26
 
 # Build the oc gitlab-runner image 
 build-runner-oc:
@@ -45,6 +93,21 @@ build-runner-oc:
     SXDI_DOCKERNAME: 'runner-oc'
     SXDI_QUAYNAME: 'runner-oc'
     SXDI_TAG: ${SXDI_OTHERTAG}
+  only:
+    - master
+    - centos8
+    - centos7
+    - alpine
+    - ubi8
+    - fc35
+    - fc34
+    - fc33
+    - fc32
+    - fc31
+    - fc30
+    - fc29
+    - fc28
+    - fc27
 
 # Build the php gitlab-runner image 
 build-runner-php:
@@ -56,3 +119,18 @@ build-runner-php:
     SXDI_DOCKERNAME: 'runner-php'
     SXDI_QUAYNAME: 'runner-php'
     SXDI_TAG: ${SXDI_OTHERTAG}
+  only:
+    - master
+    - centos8
+    - centos7
+    - alpine
+    - ubi8
+    - fc35
+    - fc34
+    - fc33
+    - fc32
+    - fc31
+    - fc30
+    - fc29
+    - fc28
+    - fc27

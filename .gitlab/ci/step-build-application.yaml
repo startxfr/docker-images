@@ -12,6 +12,16 @@ build-application-awx:
     SXDI_DOCKERNAME: 'app-awx'
     SXDI_QUAYNAME: 'awx'
     SXDI_TAG: ${SXDI_OTHERTAG}
+  only:
+    - master
+    - centos8
+    - centos7
+    - fc35
+    - fc34
+    - fc33
+    - fc32
+    - fc31
+    - fc30
 
 # Build the phpmyadmin application image 
 build-application-phpmyadmin:
@@ -23,6 +33,27 @@ build-application-phpmyadmin:
     SXDI_DOCKERNAME: 'app-phpmyadmin'
     SXDI_QUAYNAME: 'phpmyadmin'
     SXDI_TAG: ${SXDI_OTHERTAG}
+  only:
+    - master
+    - centos8
+    - centos7
+    - centos6
+    - alpine
+    - ubi8
+    - fc35
+    - fc34
+    - fc33
+    - fc32
+    - fc31
+    - fc30
+    - fc29
+    - fc28
+    - fc27
+    - fc26
+    - fc25
+    - fc24
+    - fc23
+    - fc22
 
 # Build the rockmongo application image 
 build-application-rockmongo:
@@ -34,3 +65,24 @@ build-application-rockmongo:
     SXDI_DOCKERNAME: 'app-rockmongo'
     SXDI_QUAYNAME: 'rockmongo'
     SXDI_TAG: ${SXDI_OTHERTAG}
+  only:
+    - master
+    - centos8
+    - centos7
+    - centos6
+    - alpine
+    - ubi8
+    - fc35
+    - fc34
+    - fc33
+    - fc32
+    - fc31
+    - fc30
+    - fc29
+    - fc28
+    - fc27
+    - fc26
+    - fc25
+    - fc24
+    - fc23
+    - fc22
