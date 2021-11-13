@@ -145,13 +145,15 @@ and stay stiked to a defined stable release.
 
 | Release | Description                                                                      |
 | ------- | -------------------------------------------------------------------------------- |
+| 0.95.25 | move from github to gitlab and from travis to gitab-ci                           |
+| 0.95.23 | adding fc35 branch                                                               |
 | 0.95.21 | adding fc34 and fc33 branch                                                      |
 | 0.95.17 | stable ubi8, centos7, centos8, fc32, fc31 and fc30 branch                        |
 | 0.95.15 | debug mariadb configuration on build or run                                      |
 | 0.95.11 | improve verbose display                                                          |
 | 0.95.9  | debug and stabilize dockerfiles                                                  |
 | 0.95.7  | Add s2i label for s2i compat                                                     |
-| 0.95.5  | Add _.data.sql and _.schema.sql dump support for mariadb                         |
+| 0.95.5  | Add _.data.sql_ and _.schema.sql_ dump support for mariadb                       |
 | 0.95.3  | Updating docker for better diff and merge. Improve doc structures                |
 | 0.93.1  | Unstable release with UBI and centos8 added. Prepare first major release         |
 | 0.40.0  | Stable release with updated images lib packages                                  |
