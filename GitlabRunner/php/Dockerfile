@@ -3,6 +3,8 @@ FROM quay.io/startx/php:ubi8
 ENV SX_VERSION="ubi8" \
     SX_TYPE="runner" \
     SX_SERVICE="php" \
+    SX_UID=1001 \
+    SX_UNAME="user" \
     SX_ID="startx/runner-php" \
     SX_NAME="Startx Apache-PHP gitlab runner image (UBI 8)" \
     SX_SUMMARY="Startx apache-php gitlab runner based on UBI 8"
@@ -28,10 +30,11 @@ RUN dnf upgrade -yq --refresh && \
     openssh-clients \
     https://download-ib01.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/s/sshpass-1.06-9.el8.x86_64.rpm  && \
     dnf clean all --enablerepo=\* && \
+    useradd -u ${SX_UID} -m ${SX_UNAME} && \
     mv /tmp/bin/* /bin/ && \
     mv /tmp/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/bin /tmp/bin
 
-USER 1001
+USER $SX_UID
 
 CMD [ "/bin/sx-php" , "usage" ]

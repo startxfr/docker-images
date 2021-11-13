@@ -1,0 +1,13 @@
+##
+## STAGES
+##
+
+# Build the fedora image
+build-os:
+  stage: "build OS"
+  extends: .build-image
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: 'fedora'
+    SXDI_QUAYNAME: 'fedora'
+    SXDI_TAG: ${SXDI_OSTAG}

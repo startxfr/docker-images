@@ -1,8 +1,8 @@
 # STARTX Docker-Images Repository
 
-[![docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo.svg?sanitize=true)](https://github.com/startxfr/docker-images)
+[![docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/.gitlab/img/logo.svg?sanitize=true)](https://gitlab.com/startx1/containers)
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/OS/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/fedora.svg)](https://hub.docker.com/r/startx/fedora) [![Docker Fedora pulls](https://img.shields.io/docker/pulls/startx/fedora)](https://hub.docker.com/r/startx/fedora) [![Docker Repository on Quay](https://quay.io/repository/startx/fedora/status "Docker Repository on Quay")](https://quay.io/repository/startx/fedora)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://gitlab.com/startx1/containers) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://gitlab.com/startx1/containers/tree/master/OS/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://gitlab.com/startx1/containers) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/fedora.svg)](https://hub.docker.com/r/startx/fedora) [![Docker Fedora pulls](https://img.shields.io/docker/pulls/startx/fedora)](https://hub.docker.com/r/startx/fedora) [![Docker Repository on Quay](https://quay.io/repository/startx/fedora/status "Docker Repository on Quay")](https://quay.io/repository/startx/fedora)
 
 This project is a collection of application or services containers ready to execute
 or embed your application as part of a building process
@@ -64,22 +64,22 @@ your project and start using stable or experimental services in your application
 
 ## Images flavours
 
-- `latest` based on fedora rawhide [see detail](https://github.com/startxfr/docker-images/tree/master)
-- `fc35` based on fedora core 35 [see detail](https://github.com/startxfr/docker-images/tree/fc35)
-- `fc34` based on fedora core 34 [see detail](https://github.com/startxfr/docker-images/tree/fc34)
-- `fc33` based on fedora core 33 [see detail](https://github.com/startxfr/docker-images/tree/fc33)
-- `fc32` based on fedora core 32 [see detail](https://github.com/startxfr/docker-images/tree/fc32)
-- `fc31` based on fedora core 31 [see detail](https://github.com/startxfr/docker-images/tree/fc31)
-- `fc30` based on fedora core 30 [see detail](https://github.com/startxfr/docker-images/tree/fc30)
-- `fc29` based on fedora core 29 [see detail](https://github.com/startxfr/docker-images/tree/fc29)
-- `fc28` based on fedora core 28 [see detail](https://github.com/startxfr/docker-images/tree/fc28)
-- `fc27` based on fedora core 27 [see detail](https://github.com/startxfr/docker-images/tree/fc27)
-- `fc26` based on fedora core 26 [see detail](https://github.com/startxfr/docker-images/tree/fc26)
-- `centos8` based on Centos 8 [see detail](https://github.com/startxfr/docker-images/tree/centos8)
-- `centos7` based on Centos 7 [see detail](https://github.com/startxfr/docker-images/tree/centos7)
-- `centos6` based on Centos 6 [see detail](https://github.com/startxfr/docker-images/tree/centos6)
-- `alpine3` based on Alpine 3.12 [see detail](https://github.com/startxfr/docker-images/tree/alpine3)
-- `ubi8` based on RedHat UBI 8 [see detail](https://github.com/startxfr/docker-images/tree/ubi8)
+- `latest` based on fedora rawhide [see detail](https://gitlab.com/startx1/containers/tree/master)
+- `fc35` based on fedora core 35 [see detail](https://gitlab.com/startx1/containers/tree/fc35)
+- `fc34` based on fedora core 34 [see detail](https://gitlab.com/startx1/containers/tree/fc34)
+- `fc33` based on fedora core 33 [see detail](https://gitlab.com/startx1/containers/tree/fc33)
+- `fc32` based on fedora core 32 [see detail](https://gitlab.com/startx1/containers/tree/fc32)
+- `fc31` based on fedora core 31 [see detail](https://gitlab.com/startx1/containers/tree/fc31)
+- `fc30` based on fedora core 30 [see detail](https://gitlab.com/startx1/containers/tree/fc30)
+- `fc29` based on fedora core 29 [see detail](https://gitlab.com/startx1/containers/tree/fc29)
+- `fc28` based on fedora core 28 [see detail](https://gitlab.com/startx1/containers/tree/fc28)
+- `fc27` based on fedora core 27 [see detail](https://gitlab.com/startx1/containers/tree/fc27)
+- `fc26` based on fedora core 26 [see detail](https://gitlab.com/startx1/containers/tree/fc26)
+- `centos8` based on Centos 8 [see detail](https://gitlab.com/startx1/containers/tree/centos8)
+- `centos7` based on Centos 7 [see detail](https://gitlab.com/startx1/containers/tree/centos7)
+- `centos6` based on Centos 6 [see detail](https://gitlab.com/startx1/containers/tree/centos6)
+- `alpine3` based on Alpine 3.12 [see detail](https://gitlab.com/startx1/containers/tree/alpine3)
+- `ubi8` based on RedHat UBI 8 [see detail](https://gitlab.com/startx1/containers/tree/ubi8)
 
 ## For advanced users
 
@@ -108,7 +108,7 @@ you can [read ours containers engines guidelines](https://github.com/startxfr/co
 1. Check if you have git installed using `git --version`. If git is not installed, execute `sudo dnf install -yq git`
 1. **Copy repository source locally**
 1. Setup a working directory with `mkdir startx-docker-images; cd startx-docker-images;`
-1. Clone source repository with `git clone https://github.com/startxfr/docker-images.git .`
+1. Clone source repository with `git clone https://gitlab.com/startx1/containers.git .`
 
 ### Build all containers using `docker-compose`
 
@@ -145,13 +145,15 @@ and stay stiked to a defined stable release.
 
 | Release | Description                                                                      |
 | ------- | -------------------------------------------------------------------------------- |
+| 0.95.25 | move from github to gitlab and from travis to gitab-ci                           |
+| 0.95.23 | adding fc35 branch                                                               |
 | 0.95.21 | adding fc34 and fc33 branch                                                      |
 | 0.95.17 | stable ubi8, centos7, centos8, fc32, fc31 and fc30 branch                        |
 | 0.95.15 | debug mariadb configuration on build or run                                      |
 | 0.95.11 | improve verbose display                                                          |
 | 0.95.9  | debug and stabilize dockerfiles                                                  |
 | 0.95.7  | Add s2i label for s2i compat                                                     |
-| 0.95.5  | Add _.data.sql and _.schema.sql dump support for mariadb                         |
+| 0.95.5  | Add _.data.sql_ and _.schema.sql_ dump support for mariadb                       |
 | 0.95.3  | Updating docker for better diff and merge. Improve doc structures                |
 | 0.93.1  | Unstable release with UBI and centos8 added. Prepare first major release         |
 | 0.40.0  | Stable release with updated images lib packages                                  |

@@ -28,7 +28,7 @@
                             "tags": "startx,centos,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "fc26",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
@@ -44,7 +44,7 @@
                             "tags": "startx,centos,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "fc27",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
@@ -60,7 +60,7 @@
                             "tags": "startx,centos,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "fc28",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
@@ -76,7 +76,7 @@
                             "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "fc29",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
@@ -92,7 +92,7 @@
                             "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "fc30",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
@@ -108,7 +108,7 @@
                             "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "fc31",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
@@ -124,7 +124,7 @@
                             "tags": "startx,centos,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "rawhide",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
@@ -140,7 +140,7 @@
                             "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "8",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
@@ -156,7 +156,7 @@
                             "tags": "startx,centos,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "7",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
@@ -172,7 +172,7 @@
                             "tags": "startx,centos,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "6",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
@@ -188,7 +188,7 @@
                             "tags": "startx,alpine,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "3",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",

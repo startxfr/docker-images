@@ -28,7 +28,7 @@ items:
             tags: builder,startx,fedora,nodejs,httpd
             supports: http
             version: fc26
-            sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
           from:
             kind: DockerImage
             name: startx/sv-nodejs:fc26
@@ -42,7 +42,7 @@ items:
             tags: builder,startx,fedora,nodejs,httpd
             supports: http
             version: fc27
-            sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
           from:
             kind: DockerImage
             name: startx/sv-nodejs:fc27
@@ -56,7 +56,7 @@ items:
             tags: builder,startx,fedora,nodejs,httpd
             supports: http
             version: fc28
-            sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
           from:
             kind: DockerImage
             name: startx/sv-nodejs:fc28
@@ -70,7 +70,7 @@ items:
             tags: builder,startx,fedora,nodejs,httpd
             supports: http
             version: fc29
-            sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
           from:
             kind: DockerImage
             name: startx/sv-nodejs:fc29
@@ -84,7 +84,7 @@ items:
             tags: builder,startx,fedora,nodejs,httpd
             supports: http
             version: fc30
-            sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
           from:
             kind: DockerImage
             name: startx/sv-nodejs:fc30
@@ -98,7 +98,7 @@ items:
             tags: builder,startx,fedora,nodejs,httpd
             supports: http
             version: fc31
-            sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
           from:
             kind: DockerImage
             name: startx/sv-nodejs:fc31
@@ -112,7 +112,7 @@ items:
             tags: builder,startx,fedora,nodejs,httpd
             supports: http
             version: fc32
-            sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
           from:
             kind: DockerImage
             name: startx/sv-nodejs:fc32
@@ -126,7 +126,7 @@ items:
             tags: builder,startx,fedora,nodejs,httpd
             supports: http
             version: fc33
-            sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
           from:
             kind: DockerImage
             name: startx/sv-nodejs:fc33
@@ -140,7 +140,7 @@ items:
             tags: builder,startx,fedora,nodejs,httpd
             supports: http
             version: fc34
-            sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
           from:
             kind: DockerImage
             name: startx/sv-nodejs:fc34
@@ -154,7 +154,7 @@ items:
             tags: builder,startx,fedora,nodejs,httpd
             supports: http
             version: rawhide
-            sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
           from:
             kind: DockerImage
             name: startx/sv-nodejs:latest
@@ -168,7 +168,7 @@ items:
             tags: builder,startx,ubi,nodejs,httpd
             supports: http
             version: "8"
-            sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
           from:
             kind: DockerImage
             name: startx/sv-nodejs:ubi8
@@ -182,7 +182,7 @@ items:
             tags: builder,startx,centos,nodejs,httpd
             supports: http
             version: "8"
-            sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
           from:
             kind: DockerImage
             name: startx/sv-nodejs:centos8
@@ -196,7 +196,7 @@ items:
             tags: builder,startx,centos,nodejs,httpd
             supports: http
             version: "7"
-            sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
           from:
             kind: DockerImage
             name: startx/sv-nodejs:centos7
@@ -210,7 +210,7 @@ items:
             tags: builder,startx,centos,nodejs,httpd
             supports: http
             version: "6"
-            sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
           from:
             kind: DockerImage
             name: startx/sv-nodejs:centos6
@@ -224,7 +224,7 @@ items:
             tags: builder,startx,alpine,nodejs,httpd
             supports: http
             version: "3"
-            sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
           from:
             kind: DockerImage
             name: startx/sv-nodejs:alpine3
@@ -237,7 +237,7 @@ items:
             iconClass: icon-nodejs
             tags: builder,startx,alpine,nodejs,httpd
             supports: http
-            sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
           from:
             kind: ImageStreamTag
             name: rawhide
@@ -249,7 +249,7 @@ items:
             tags: builder,startx,alpine,nodejs,httpd
             supports: http
             version: "dev"
-            sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
           from:
             kind: ImageStreamTag
             name: rawhide
@@ -261,7 +261,7 @@ items:
             tags: builder,startx,alpine,nodejs,httpd
             supports: http
             version: "test"
-            sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
           from:
             kind: ImageStreamTag
             name: centos8
@@ -273,7 +273,7 @@ items:
             tags: builder,startx,alpine,nodejs,httpd
             supports: http
             version: "pre-prod"
-            sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
           from:
             kind: ImageStreamTag
             name: alpine3
@@ -285,7 +285,7 @@ items:
             tags: builder,startx,alpine,nodejs,httpd
             supports: http
             version: "prod"
-            sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
           from:
             kind: ImageStreamTag
             name: alpine3

@@ -12,7 +12,7 @@ metadata:
     tags: startx,os,fedora,mongo,database
     openshift.io/provider-display-name: STARTX
     openshift.io/documentation-url: https://hub.docker.com/r/startx/sv-mongo
-    openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
+    openshift.io/support-url: https://gitlab.com/startx1/containers/issues/new
 message: |-
   Your database ${APP_NAME} is building and will be soon deployed.
   Monitor the deployement for application availability
@@ -54,7 +54,7 @@ objects:
             tags: builder,startx,fedora,mongo,database
             supports: mongodb
             version: fc26
-            sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
           from:
             kind: DockerImage
             name: startx/sv-mongo:fc26
@@ -67,7 +67,7 @@ objects:
             tags: builder,startx,fedora,mongo,database
             supports: mongodb
             version: fc27
-            sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
           from:
             kind: DockerImage
             name: startx/sv-mongo:fc27
@@ -80,7 +80,7 @@ objects:
             tags: builder,startx,fedora,mongo,database
             supports: mongodb
             version: fc28
-            sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
           from:
             kind: DockerImage
             name: startx/sv-mongo:fc28
@@ -93,7 +93,7 @@ objects:
             tags: builder,startx,fedora,mongo,database
             supports: mongodb
             version: fc29
-            sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
           from:
             kind: DockerImage
             name: startx/sv-mongo:fc29
@@ -106,7 +106,7 @@ objects:
             tags: builder,startx,fedora,mongo,database
             supports: mongodb
             version: fc30
-            sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
           from:
             kind: DockerImage
             name: startx/sv-mongo:fc30
@@ -119,7 +119,7 @@ objects:
             tags: builder,startx,fedora,mongo,database
             supports: mongodb
             version: fc31
-            sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
           from:
             kind: DockerImage
             name: startx/sv-mongo:fc31
@@ -132,7 +132,7 @@ objects:
             tags: builder,startx,fedora,mongo,database
             supports: mongodb
             version: fc32
-            sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
           from:
             kind: DockerImage
             name: startx/sv-mongo:fc32
@@ -145,7 +145,7 @@ objects:
             tags: builder,startx,fedora,mongo,database
             supports: mongodb
             version: fc33
-            sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
           from:
             kind: DockerImage
             name: startx/sv-mongo:fc33
@@ -158,7 +158,7 @@ objects:
             tags: builder,startx,fedora,mongo,database
             supports: mongodb
             version: fc34
-            sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
           from:
             kind: DockerImage
             name: startx/sv-mongo:fc34
@@ -171,7 +171,7 @@ objects:
             tags: builder,startx,fedora,mongo,database
             supports: mongodb
             version: rawhide
-            sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
           from:
             kind: DockerImage
             name: startx/sv-mongo:latest
@@ -184,7 +184,7 @@ objects:
             tags: builder,startx,ubi,mongo,database
             supports: mongodb
             version: "8"
-            sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
           from:
             kind: DockerImage
             name: startx/sv-mongo:ubi8
@@ -197,7 +197,7 @@ objects:
             tags: builder,startx,centos,mongo,database
             supports: mongodb
             version: "8"
-            sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
           from:
             kind: DockerImage
             name: startx/sv-mongo:centos8
@@ -210,7 +210,7 @@ objects:
             tags: builder,startx,centos,mongo,database
             supports: mongodb
             version: "7"
-            sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
           from:
             kind: DockerImage
             name: startx/sv-mongo:centos7
@@ -223,7 +223,7 @@ objects:
             tags: builder,startx,centos,mongo,database
             supports: mongodb
             version: "6"
-            sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
           from:
             kind: DockerImage
             name: startx/sv-mongo:centos6
@@ -236,7 +236,7 @@ objects:
             tags: builder,startx,alpine,mongo,database
             supports: mongodb
             version: "3"
-            sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
           from:
             kind: DockerImage
             name: startx/sv-mongo:alpine3
@@ -248,7 +248,7 @@ objects:
             iconClass: icon-mongodb
             tags: builder,startx,alpine,mongo,database
             supports: mongodb
-            sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
           from:
             kind: ImageStreamTag
             name: rawhide
@@ -260,7 +260,7 @@ objects:
             tags: builder,startx,alpine,mongo,database
             supports: mongodb
             version: "dev"
-            sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
           from:
             kind: ImageStreamTag
             name: rawhide
@@ -272,7 +272,7 @@ objects:
             tags: builder,startx,alpine,mongo,database
             supports: mongodb
             version: "test"
-            sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
           from:
             kind: ImageStreamTag
             name: centos8
@@ -284,7 +284,7 @@ objects:
             tags: builder,startx,alpine,mongo,database
             supports: mongodb
             version: "pre-prod"
-            sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
           from:
             kind: ImageStreamTag
             name: alpine3
@@ -296,7 +296,7 @@ objects:
             tags: builder,startx,alpine,mongo,database
             supports: mongodb
             version: "prod"
-            sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
           from:
             kind: ImageStreamTag
             name: alpine3
@@ -639,7 +639,7 @@ parameters:
   - name: SOURCE_GIT
     displayName: Source repository
     description: URL to the source code to use during build process
-    value: https://github.com/startxfr/docker-images-example-mongo.git
+    value: https://gitlab.com/startx1/containers-example-mongo.git
     required: true
   - name: SOURCE_BRANCH
     displayName: Source branch

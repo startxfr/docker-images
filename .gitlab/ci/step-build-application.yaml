@@ -1,0 +1,88 @@
+##
+## STAGES
+##
+
+# Build the AWX application image 
+build-application-awx:
+  stage: "build Application"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXDI_PATH: 'Applications/awx'
+    SXDI_DOCKERNAME: 'app-awx'
+    SXDI_QUAYNAME: 'awx'
+    SXDI_TAG: ${SXDI_OTHERTAG}
+  only:
+    - master
+    - centos8
+    - centos7
+    - fc35
+    - fc34
+    - fc33
+    - fc32
+    - fc31
+    - fc30
+
+# Build the phpmyadmin application image 
+build-application-phpmyadmin:
+  stage: "build Application"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXDI_PATH: 'Applications/phpmyadmin'
+    SXDI_DOCKERNAME: 'app-phpmyadmin'
+    SXDI_QUAYNAME: 'phpmyadmin'
+    SXDI_TAG: ${SXDI_OTHERTAG}
+  only:
+    - master
+    - centos8
+    - centos7
+    - centos6
+    - alpine
+    - ubi8
+    - fc35
+    - fc34
+    - fc33
+    - fc32
+    - fc31
+    - fc30
+    - fc29
+    - fc28
+    - fc27
+    - fc26
+    - fc25
+    - fc24
+    - fc23
+    - fc22
+
+# Build the rockmongo application image 
+build-application-rockmongo:
+  stage: "build Application"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXDI_PATH: 'Applications/rockmongo'
+    SXDI_DOCKERNAME: 'app-rockmongo'
+    SXDI_QUAYNAME: 'rockmongo'
+    SXDI_TAG: ${SXDI_OTHERTAG}
+  only:
+    - master
+    - centos8
+    - centos7
+    - centos6
+    - alpine
+    - ubi8
+    - fc35
+    - fc34
+    - fc33
+    - fc32
+    - fc31
+    - fc30
+    - fc29
+    - fc28
+    - fc27
+    - fc26
+    - fc25
+    - fc24
+    - fc23
+    - fc22
