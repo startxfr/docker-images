@@ -89,7 +89,7 @@ function DisplayCheckRequirements {
     DoCheckCheckRequirementsFileExist docs/index.md
     DoCheckCheckRequirementsFileExecutable podman-helper.sh
     DoCheckCheckRequirementsFileExecutable okd-helper.sh
-    DoCheckCheckRequirementsFileExecutable .gitlab/ci/startx-library.sh
+    DoCheckCheckRequirementsFileExist .gitlab/ci/startx-library.sh
 }
 
 # Perform a file check or exit
@@ -144,7 +144,7 @@ function DisplayCheckMarkdown {
 # Perform a markdown check agaisn't a file expression
 function DoCheckMarkdown {
     echo "==== Check all markdown file coresponding to $1"
-    RESULT=$(mdl --skip-default-ruleset $1)
+    RESULT=$(mdl --skip-default-ruleset "$1")
     if [ "$SX_DEBUG" == "true" ]; then
         echo "$RESULT"
     fi
