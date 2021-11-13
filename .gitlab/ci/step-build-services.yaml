@@ -11,6 +11,7 @@ build-couchbase:
     SXDI_PATH: 'Services/couchbase'
     SXDI_DOCKERNAME: 'sv-couchbase'
     SXDI_QUAYNAME: 'couchbase'
+    SXDI_TAG: ${SXDI_OTHERTAG}
 
 # Build the mariadb image 
 build-mariadb:
@@ -21,6 +22,7 @@ build-mariadb:
     SXDI_PATH: 'Services/mariadb'
     SXDI_DOCKERNAME: 'sv-mariadb'
     SXDI_QUAYNAME: 'mariadb'
+    SXDI_TAG: ${SXDI_OTHERTAG}
 
 # Build the memcache image 
 build-memcache:
@@ -31,6 +33,7 @@ build-memcache:
     SXDI_PATH: 'Services/memcache'
     SXDI_DOCKERNAME: 'sv-memcache'
     SXDI_QUAYNAME: 'memcache'
+    SXDI_TAG: ${SXDI_OTHERTAG}
 
 # Build the mongo image 
 build-mongo:
@@ -41,6 +44,7 @@ build-mongo:
     SXDI_PATH: 'Services/mongo'
     SXDI_DOCKERNAME: 'sv-mongo'
     SXDI_QUAYNAME: 'mongo'
+    SXDI_TAG: ${SXDI_OTHERTAG}
 
 # Build the ooconv image 
 build-ooconv:
@@ -51,6 +55,7 @@ build-ooconv:
     SXDI_PATH: 'Services/ooconv'
     SXDI_DOCKERNAME: 'sv-ooconv'
     SXDI_QUAYNAME: 'ooconv'
+    SXDI_TAG: ${SXDI_OTHERTAG}
 
 # Build the php image 
 build-php:
@@ -61,6 +66,7 @@ build-php:
     SXDI_PATH: 'Services/php'
     SXDI_DOCKERNAME: 'sv-php'
     SXDI_QUAYNAME: 'php'
+    SXDI_TAG: ${SXDI_OTHERTAG}
 
 # Build the postgres image 
 build-postgres:
@@ -70,3 +76,4 @@ build-postgres:
     SXDI_PATH: 'Services/postgres'
     SXDI_DOCKERNAME: 'sv-postgres'
     SXDI_QUAYNAME: 'postgres'
+    SXDI_TAG: ${SXDI_OTHERTAG}

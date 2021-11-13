@@ -11,6 +11,7 @@ build-application-awx:
     SXDI_PATH: 'Applications/awx'
     SXDI_DOCKERNAME: 'app-awx'
     SXDI_QUAYNAME: 'awx'
+    SXDI_TAG: ${SXDI_OTHERTAG}
 
 # Build the phpmyadmin application image 
 build-application-phpmyadmin:
@@ -21,6 +22,7 @@ build-application-phpmyadmin:
     SXDI_PATH: 'Applications/phpmyadmin'
     SXDI_DOCKERNAME: 'app-phpmyadmin'
     SXDI_QUAYNAME: 'phpmyadmin'
+    SXDI_TAG: ${SXDI_OTHERTAG}
 
 # Build the rockmongo application image 
 build-application-rockmongo:
@@ -31,3 +33,4 @@ build-application-rockmongo:
     SXDI_PATH: 'Applications/rockmongo'
     SXDI_DOCKERNAME: 'app-rockmongo'
     SXDI_QUAYNAME: 'rockmongo'
+    SXDI_TAG: ${SXDI_OTHERTAG}

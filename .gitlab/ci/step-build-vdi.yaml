@@ -11,6 +11,7 @@ build-vdi-chrome:
     SXDI_PATH: 'VDI/chrome'
     SXDI_DOCKERNAME: 'vdi-chrome'
     SXDI_QUAYNAME: 'chrome'
+    SXDI_TAG: ${SXDI_OTHERTAG}
 
 # Build the firefox VDI image 
 build-vdi-firefox:
@@ -21,3 +22,4 @@ build-vdi-firefox:
     SXDI_PATH: 'VDI/firefox'
     SXDI_DOCKERNAME: 'vdi-firefox'
     SXDI_QUAYNAME: 'firefox'
+    SXDI_TAG: ${SXDI_OTHERTAG}
