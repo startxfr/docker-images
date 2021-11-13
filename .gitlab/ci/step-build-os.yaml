@@ -10,7 +10,7 @@ build-os:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: 'ubi'
     SXDI_QUAYNAME: 'ubi'
-    SXDI_TAG: "8"
+    SXDI_TAG: ${SXDI_OSTAG}
 
 # Build the latest of images other than fedora (master)
 build-os-latest:
