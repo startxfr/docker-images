@@ -11,6 +11,7 @@ build-runner-ansible:
     SXDI_PATH: 'GitlabRunner/ansible'
     SXDI_DOCKERNAME: 'runner-ansible'
     SXDI_QUAYNAME: 'runner-ansible'
+    SXDI_TAG: ${SXDI_OTHERTAG}
 
 # Build the apache gitlab-runner image 
 build-runner-apache:
@@ -21,6 +22,7 @@ build-runner-apache:
     SXDI_PATH: 'GitlabRunner/apache'
     SXDI_DOCKERNAME: 'runner-apache'
     SXDI_QUAYNAME: 'runner-apache'
+    SXDI_TAG: ${SXDI_OTHERTAG}
 
 # Build the nodejs gitlab-runner image 
 build-runner-nodejs:
@@ -31,6 +33,7 @@ build-runner-nodejs:
     SXDI_PATH: 'GitlabRunner/nodejs'
     SXDI_DOCKERNAME: 'runner-nodejs'
     SXDI_QUAYNAME: 'runner-nodejs'
+    SXDI_TAG: ${SXDI_OTHERTAG}
 
 # Build the oc gitlab-runner image 
 build-runner-oc:
@@ -41,6 +44,7 @@ build-runner-oc:
     SXDI_PATH: 'GitlabRunner/oc'
     SXDI_DOCKERNAME: 'runner-oc'
     SXDI_QUAYNAME: 'runner-oc'
+    SXDI_TAG: ${SXDI_OTHERTAG}
 
 # Build the php gitlab-runner image 
 build-runner-php:
@@ -51,3 +55,4 @@ build-runner-php:
     SXDI_PATH: 'GitlabRunner/php'
     SXDI_DOCKERNAME: 'runner-php'
     SXDI_QUAYNAME: 'runner-php'
+    SXDI_TAG: ${SXDI_OTHERTAG}

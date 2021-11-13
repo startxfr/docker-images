@@ -10,6 +10,7 @@ build-apache:
     SXDI_PATH: 'Services/apache'
     SXDI_DOCKERNAME: 'sv-apache'
     SXDI_QUAYNAME: 'apache'
+    SXDI_TAG: ${SXDI_OTHERTAG}
 
 # Build the nodejs image 
 build-nodejs:
@@ -20,6 +21,7 @@ build-nodejs:
     SXDI_PATH: 'Services/nodejs'
     SXDI_DOCKERNAME: 'sv-nodejs'
     SXDI_QUAYNAME: 'nodejs'
+    SXDI_TAG: ${SXDI_OTHERTAG}
 
 # Build the bash gitlab-runner image 
 build-runner-bash:
@@ -30,3 +32,4 @@ build-runner-bash:
     SXDI_PATH: 'GitlabRunner/bash'
     SXDI_DOCKERNAME: 'runner-bash'
     SXDI_QUAYNAME: 'runner-bash'
+    SXDI_TAG: ${SXDI_OTHERTAG}
