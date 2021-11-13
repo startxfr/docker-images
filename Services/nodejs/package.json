@@ -5,7 +5,7 @@
   "author": "startx",
   "license": "BSD",
   "bugs": {
-    "url": "https://github.com/startxfr/docker-images/issues"
+    "url": "https://gitlab.com/startx1/containers/issues"
   },
   "private": false,
   "dependencies": {
@@ -18,7 +18,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/startxfr/docker-images.git"
+    "url": "https://gitlab.com/startx1/containers.git"
   },
   "scripts": {
     "start": "node app.js"

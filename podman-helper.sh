@@ -10,7 +10,7 @@ SXDC_OS_FLAVOUR=$DEFAULT_OS_FLAVOUR
 # Create lib
 function testBuild {
     if [[ -r $1/Dockerfile ]]; then
-        podman build -t $SXDC_PROJECT/$2:$3 $1
+        podman build -t $SXDC_PROJECT/"$2":"$3" "$1"
     else
         echo -e "!! Could not build \e[1m$SXDC_PROJECT/$2:$3\e[0m based on \e[1m$1/Dockerfile\e[0m definition"
     fi
@@ -18,21 +18,21 @@ function testBuild {
 
 function testDeploy {
     if [[ -r $1/Dockerfile ]]; then
-        podman stop ${SXDC_PROJECT}_$2_$3 &>/dev/null
-        podman rm -vf ${SXDC_PROJECT}_$2_$3 &>/dev/null
-        podman run -d --name ${SXDC_PROJECT}_$2_$3 $SXDC_PROJECT/$2:$3
+        podman stop ${SXDC_PROJECT}_"$2"_"$3" &>/dev/null
+        podman rm -vf ${SXDC_PROJECT}_"$2"_"$3" &>/dev/null
+        podman run -d --name ${SXDC_PROJECT}_"$2"_"$3" $SXDC_PROJECT/"$2":"$3"
     else
         echo -e "!! Could not deploy \e[1m$SXDC_PROJECT/$2:$3\e[0m because no \e[1m$1/Dockerfile\e[0m found"
     fi
 }
 
 function testVersion {
-    if [[ -r $1/Dockerfile ]]; then
-        podman stop ${SXDC_PROJECT}_$2_$3-version &>/dev/null
-        podman rm -f ${SXDC_PROJECT}_$2_$3-version &>/dev/null
+    if [[ -r "$1"/Dockerfile ]]; then
+        podman stop ${SXDC_PROJECT}_"$2"_"$3"-version &>/dev/null
+        podman rm -f ${SXDC_PROJECT}_"$2"_"$3"-version &>/dev/null
         echo -e "== Display informations on \e[1m$2\e[0m in \e[1m$3\e[0m version"
-        podman run --name ${SXDC_PROJECT}_$2_$3-version $SXDC_PROJECT/$2:$3 /bin/sx-$2 info
-        podman rm -f ${SXDC_PROJECT}_$2_$3-version &>/dev/null
+        podman run --name ${SXDC_PROJECT}_"$2"_"$3"-version $SXDC_PROJECT/"$2":"$3" /bin/sx-"$2" info
+        podman rm -f ${SXDC_PROJECT}_"$2"_"$3"-version &>/dev/null
     else
         echo -e "!! Could not get \e[1m$SXDC_PROJECT/$2:$3\e[0m info because no \e[1m$1/Dockerfile\e[0m found"
     fi
@@ -40,23 +40,23 @@ function testVersion {
 
 function testOSVersion {
     if [[ -r $1/Dockerfile ]]; then
-        podman stop ${SXDC_PROJECT}_$2_$3-version &>/dev/null
-        podman rm -f ${SXDC_PROJECT}_$2_$3-version &>/dev/null
+        podman stop ${SXDC_PROJECT}_"$2"_"$3"-version &>/dev/null
+        podman rm -f ${SXDC_PROJECT}_"$2"_"$3"-version &>/dev/null
         echo -e "== Display informations on \e[1m$2\e[0m in \e[1m$3\e[0m version"
-        podman run --name ${SXDC_PROJECT}_$2_$3-version $SXDC_PROJECT/$2:$3 /bin/sx info
-        podman rm -f ${SXDC_PROJECT}_$2_$3-version &>/dev/null
+        podman run --name ${SXDC_PROJECT}_"$2"_"$3"-version $SXDC_PROJECT/"$2":"$3" /bin/sx info
+        podman rm -f ${SXDC_PROJECT}_"$2"_"$3"-version &>/dev/null
     else
         echo -e "!! Could not get \e[1m$SXDC_PROJECT/$2:$3\e[0m info because no \e[1m$1/Dockerfile\e[0m found"
     fi
 }
 
 function temporize {
-    x=$1
+    x="$1"
     echo "temporize during ${x}sec"
-    while [ $x -gt 0 ]
+    while [ "$x" -gt 0 ]
     do
-        sleep $2
-        x=$(( $x - $2 ))
+        sleep "$2"
+        x=$(( "$x" - "$2" ))
         echo "wait for ${x}sec..."
     done
 }
@@ -64,12 +64,15 @@ function temporize {
 ## start application
 
 #test if podman client is present
-ov=`podman version | grep ^Version`
-if [ $? != 0 ]; then
+ov=$(podman version | grep ^Version)
+ovrc="$?"
+if [ $ovrc != 0 ]; then
     echo "Podman is not installed."
     echo "Install podman client (podman) first"
     echo "Exit"
     exit 1;
+else
+    echo -e "Podman version $ov found"
 fi
 
 # append key to conf
@@ -79,7 +82,8 @@ function appendConf {
 
 # reload conf file
 function reloadConf {
-    source $CONF_FILE
+    # shellcheck source=/dev/null
+    source "$CONF_FILE"
 }
 
 
@@ -110,34 +114,33 @@ Usage:
   version all            Run (and build) all container to extract application informations
   versions               Alias of the previous command
 
-  Using podman $ov
 EOF
 }
 
 # Display menu setup
 function menuSetup {
     case $2 in
-        project|p)   menuSetupProject $3 ;;
-        flavour|f)   menuSetupFlavour $3 ;;
-        *)           menuSetupAll $@ ;;
+        project|p)   menuSetupProject "$3" ;;
+        flavour|f)   menuSetupFlavour "$3" ;;
+        *)           menuSetupAll "$@" ;;
     esac
 }
 
 # Display sub-menu setup
 function menuSetupAll {
-    menuSetupProject $2
-    menuSetupFlavour $2
+    menuSetupProject "$2"
+    menuSetupFlavour "$2"
 }
 
 # Display sub-menu setup - project
 function menuSetupProject {
     if [[ "$1" != "" ]]; then
-        appendConf SXDC_PROJECT $1
+        appendConf SXDC_PROJECT "$1"
     else
         echo -en "Project name \e[2m(\e[0m\e[1m$DEFAULT_PROJECT\e[0m\e[2m)\e[0m :"
-        read project
+        read -r project
         if [[ "$project" != "" ]]; then
-            appendConf SXDC_PROJECT $project
+            appendConf SXDC_PROJECT "$project"
         else
             appendConf SXDC_PROJECT $DEFAULT_PROJECT
         fi
@@ -149,10 +152,10 @@ function menuSetupProject {
 function menuSetupFlavour {
     flavour=$DEFAULT_FLAVOUR
     if [[ "$1" != "" ]]; then
-        flavour=$1
+        flavour="$1"
     else
         echo -en "Image flavour \e[2m(\e[0m\e[1m$DEFAULT_FLAVOUR\e[0m\e[2m)\e[0m :"
-        read project
+        read -r project
         if [[ "$project" != "" ]]; then
             flavour=$project
         fi
@@ -349,20 +352,20 @@ function menuAllVersions {
 # Display menu delete
 function menuDelete {
     reloadConf
-    podman stop $(podman ps -q -f label=$SXDC_PROJECT)
+    podman stop "$(podman ps -q -f label=$SXDC_PROJECT)"
     podman container prune
     podman image prune
 }
 
 # Dispatch input arguments
 case $1 in
-    setup)                  menuSetup $@ ;;
-    build)                  menuBuild $@ ;;
-    run)                    menuRun $@ ;;
-    buildrun)               menuBuildRun $@ ;;
-    version)                menuVersion $@ ;;
-    versions)               menuAllVersions $@ ;;
-    delete)                 menuDelete $@ ;;
-    usage|help|--help)      menuUsage $@ ;;
-    *)                      menuUsage $@ ;;
+    setup)                  menuSetup "$@" ;;
+    build)                  menuBuild "$@" ;;
+    run)                    menuRun "$@" ;;
+    buildrun)               menuBuildRun "$@" ;;
+    version)                menuVersion "$@" ;;
+    versions)               menuAllVersions "$@" ;;
+    delete)                 menuDelete "$@" ;;
+    usage|help|--help)      menuUsage "$@" ;;
+    *)                      menuUsage "$@" ;;
 esac

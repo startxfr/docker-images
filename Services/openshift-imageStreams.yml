@@ -28,7 +28,7 @@ items:
         tags: builder,startx,fedora,apache,httpd
         supports: http
         version: fc26
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-apache.git
       from:
         kind: DockerImage
         name: startx/sv-apache:fc26
@@ -41,7 +41,7 @@ items:
         tags: builder,startx,fedora,apache,httpd
         supports: http
         version: fc27
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-apache.git
       from:
         kind: DockerImage
         name: startx/sv-apache:fc27
@@ -54,7 +54,7 @@ items:
         tags: builder,startx,fedora,apache,httpd
         supports: http
         version: fc28
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-apache.git
       from:
         kind: DockerImage
         name: startx/sv-apache:fc28
@@ -67,7 +67,7 @@ items:
         tags: builder,startx,fedora,apache,httpd
         supports: http
         version: fc29
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-apache.git
       from:
         kind: DockerImage
         name: startx/sv-apache:fc29
@@ -80,7 +80,7 @@ items:
         tags: builder,startx,fedora,apache,httpd
         supports: http
         version: fc30
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-apache.git
       from:
         kind: DockerImage
         name: startx/sv-apache:fc30
@@ -93,7 +93,7 @@ items:
         tags: builder,startx,fedora,apache,httpd
         supports: http
         version: fc31
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-apache.git
       from:
         kind: DockerImage
         name: startx/sv-apache:fc31
@@ -106,7 +106,7 @@ items:
         tags: builder,startx,fedora,apache,httpd
         supports: http
         version: fc32
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-apache.git
       from:
         kind: DockerImage
         name: startx/sv-apache:fc32
@@ -119,7 +119,7 @@ items:
         tags: builder,startx,fedora,apache,httpd
         supports: http
         version: fc33
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-apache.git
       from:
         kind: DockerImage
         name: startx/sv-apache:fc33
@@ -132,7 +132,7 @@ items:
         tags: builder,startx,fedora,apache,httpd
         supports: http
         version: fc34
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-apache.git
       from:
         kind: DockerImage
         name: startx/sv-apache:fc34
@@ -145,7 +145,7 @@ items:
         tags: builder,startx,fedora,apache,httpd
         supports: http
         version: rawhide
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-apache.git
       from:
         kind: DockerImage
         name: startx/sv-apache:latest
@@ -158,7 +158,7 @@ items:
         tags: builder,startx,ubi,apache,httpd
         supports: http
         version: '8'
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-apache.git
       from:
         kind: DockerImage
         name: startx/sv-apache:ubi8
@@ -171,7 +171,7 @@ items:
         tags: builder,startx,centos,apache,httpd
         supports: http
         version: '8'
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-apache.git
       from:
         kind: DockerImage
         name: startx/sv-apache:centos8
@@ -184,7 +184,7 @@ items:
         tags: builder,startx,centos,apache,httpd
         supports: http
         version: '7'
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-apache.git
       from:
         kind: DockerImage
         name: startx/sv-apache:centos7
@@ -197,7 +197,7 @@ items:
         tags: builder,startx,centos,apache,httpd
         supports: http
         version: '6'
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-apache.git
       from:
         kind: DockerImage
         name: startx/sv-apache:centos6
@@ -210,7 +210,7 @@ items:
         tags: builder,startx,alpine,apache,httpd
         supports: http
         version: '3'
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-apache.git
       from:
         kind: DockerImage
         name: startx/sv-apache:alpine3
@@ -222,7 +222,7 @@ items:
         iconClass: icon-apache
         tags: builder,startx,alpine,apache,httpd
         supports: http
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-apache.git
       from:
         kind: ImageStreamTag
         name: rawhide
@@ -234,7 +234,7 @@ items:
         tags: builder,startx,alpine,apache,httpd
         supports: http
         version: 'dev'
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-apache.git
       from:
         kind: ImageStreamTag
         name: rawhide
@@ -246,7 +246,7 @@ items:
         tags: builder,startx,alpine,apache,httpd
         supports: http
         version: 'test'
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-apache.git
       from:
         kind: ImageStreamTag
         name: centos8
@@ -258,7 +258,7 @@ items:
         tags: builder,startx,alpine,apache,httpd
         supports: http
         version: 'pre-prod'
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-apache.git
       from:
         kind: ImageStreamTag
         name: alpine3
@@ -270,7 +270,7 @@ items:
         tags: builder,startx,alpine,apache,httpd
         supports: http
         version: 'prod'
-        sampleRepo: https://github.com/startxfr/docker-images-example-apache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-apache.git
       from:
         kind: ImageStreamTag
         name: alpine3
@@ -295,7 +295,7 @@ items:
         tags: builder,startx,fedora,couchbase,database
         supports: db
         version: fc27
-        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-couchbase.git
       from:
         kind: DockerImage
         name: startx/sv-couchbase:fc27
@@ -308,7 +308,7 @@ items:
         tags: builder,startx,fedora,couchbase,database
         supports: db
         version: fc28
-        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-couchbase.git
       from:
         kind: DockerImage
         name: startx/sv-couchbase:fc28
@@ -321,7 +321,7 @@ items:
         tags: builder,startx,fedora,couchbase,database
         supports: db
         version: fc29
-        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-couchbase.git
       from:
         kind: DockerImage
         name: startx/sv-couchbase:fc29
@@ -334,7 +334,7 @@ items:
         tags: builder,startx,fedora,couchbase,database
         supports: db
         version: fc30
-        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-couchbase.git
       from:
         kind: DockerImage
         name: startx/sv-couchbase:fc30
@@ -347,7 +347,7 @@ items:
         tags: builder,startx,fedora,couchbase,database
         supports: db
         version: fc31
-        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-couchbase.git
       from:
         kind: DockerImage
         name: startx/sv-couchbase:fc31
@@ -360,7 +360,7 @@ items:
         tags: builder,startx,fedora,couchbase,database
         supports: db
         version: fc32
-        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-couchbase.git
       from:
         kind: DockerImage
         name: startx/sv-couchbase:fc32
@@ -373,7 +373,7 @@ items:
         tags: builder,startx,fedora,couchbase,database
         supports: db
         version: fc33
-        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-couchbase.git
       from:
         kind: DockerImage
         name: startx/sv-couchbase:fc33
@@ -386,7 +386,7 @@ items:
         tags: builder,startx,fedora,couchbase,database
         supports: db
         version: fc34
-        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-couchbase.git
       from:
         kind: DockerImage
         name: startx/sv-couchbase:fc34
@@ -399,7 +399,7 @@ items:
         tags: builder,startx,fedora,couchbase,database
         supports: db
         version: rawhide
-        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-couchbase.git
       from:
         kind: DockerImage
         name: startx/sv-couchbase:latest
@@ -412,7 +412,7 @@ items:
         tags: builder,startx,ubi,couchbase,database
         supports: db
         version: '8'
-        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-couchbase.git
       from:
         kind: DockerImage
         name: startx/sv-couchbase:ubi8
@@ -425,7 +425,7 @@ items:
         tags: builder,startx,centos,couchbase,database
         supports: db
         version: '8'
-        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-couchbase.git
       from:
         kind: DockerImage
         name: startx/sv-couchbase:centos8
@@ -438,7 +438,7 @@ items:
         tags: builder,startx,centos,couchbase,database
         supports: db
         version: '7'
-        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-couchbase.git
       from:
         kind: DockerImage
         name: startx/sv-couchbase:centos7
@@ -451,7 +451,7 @@ items:
         tags: builder,startx,centos,couchbase,database
         supports: db
         version: '6'
-        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-couchbase.git
       from:
         kind: DockerImage
         name: startx/sv-couchbase:centos6
@@ -464,7 +464,7 @@ items:
         tags: builder,startx,alpine,couchbase,database
         supports: db
         version: '3'
-        sampleRepo: https://github.com/startxfr/docker-images-example-couchbase.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-couchbase.git
       from:
         kind: DockerImage
         name: startx/sv-couchbase:alpine3
@@ -488,7 +488,7 @@ items:
         tags: builder,startx,fedora,mariadb,sql
         supports: mysql
         version: fc26
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
       from:
         kind: DockerImage
         name: startx/sv-mariadb:fc26
@@ -501,7 +501,7 @@ items:
         tags: builder,startx,fedora,mariadb,sql
         supports: mysql
         version: fc27
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
       from:
         kind: DockerImage
         name: startx/sv-mariadb:fc27
@@ -514,7 +514,7 @@ items:
         tags: builder,startx,fedora,mariadb,sql
         supports: mysql
         version: fc28
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
       from:
         kind: DockerImage
         name: startx/sv-mariadb:fc28
@@ -527,7 +527,7 @@ items:
         tags: builder,startx,fedora,mariadb,sql
         supports: mysql
         version: fc29
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
       from:
         kind: DockerImage
         name: startx/sv-mariadb:fc29
@@ -541,7 +541,7 @@ items:
         tags: builder,startx,fedora,mariadb,sql
         supports: mysql
         version: fc31
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
       from:
         kind: DockerImage
         name: startx/sv-mariadb:fc31
@@ -555,7 +555,7 @@ items:
         tags: builder,startx,fedora,mariadb,sql
         supports: mysql
         version: fc32
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
       from:
         kind: DockerImage
         name: startx/sv-mariadb:fc32
@@ -569,7 +569,7 @@ items:
         tags: builder,startx,fedora,mariadb,sql
         supports: mysql
         version: fc33
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
       from:
         kind: DockerImage
         name: startx/sv-mariadb:fc33
@@ -583,7 +583,7 @@ items:
         tags: builder,startx,fedora,mariadb,sql
         supports: mysql
         version: fc34
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
       from:
         kind: DockerImage
         name: startx/sv-mariadb:fc34
@@ -596,7 +596,7 @@ items:
         tags: builder,startx,fedora,mariadb,sql
         supports: mysql
         version: rawhide
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
       from:
         kind: DockerImage
         name: startx/sv-mariadb:latest
@@ -609,7 +609,7 @@ items:
         tags: builder,startx,ubi,mariadb,sql
         supports: mysql
         version: '8'
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
       from:
         kind: DockerImage
         name: startx/sv-mariadb:ubi8
@@ -622,7 +622,7 @@ items:
         tags: builder,startx,centos,mariadb,sql
         supports: mysql
         version: '8'
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
       from:
         kind: DockerImage
         name: startx/sv-mariadb:centos8
@@ -635,7 +635,7 @@ items:
         tags: builder,startx,centos,mariadb,sql
         supports: mysql
         version: '7'
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
       from:
         kind: DockerImage
         name: startx/sv-mariadb:centos7
@@ -648,7 +648,7 @@ items:
         tags: builder,startx,centos,mariadb,sql
         supports: mysql
         version: '6'
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
       from:
         kind: DockerImage
         name: startx/sv-mariadb:centos6
@@ -661,7 +661,7 @@ items:
         tags: builder,startx,alpine,mariadb,sql
         supports: mysql
         version: '3'
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
       from:
         kind: DockerImage
         name: startx/sv-mariadb:alpine3
@@ -673,7 +673,7 @@ items:
         iconClass: icon-mariadb
         tags: builder,startx,alpine,mariadb,sql
         supports: mysql
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
       from:
         kind: ImageStreamTag
         name: rawhide
@@ -685,7 +685,7 @@ items:
         tags: builder,startx,alpine,mariadb,sql
         supports: mysql
         version: 'dev'
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
       from:
         kind: ImageStreamTag
         name: rawhide
@@ -697,7 +697,7 @@ items:
         tags: builder,startx,alpine,mariadb,sql
         supports: mysql
         version: 'test'
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
       from:
         kind: ImageStreamTag
         name: centos8
@@ -709,7 +709,7 @@ items:
         tags: builder,startx,alpine,mariadb,sql
         supports: mysql
         version: 'pre-prod'
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
       from:
         kind: ImageStreamTag
         name: alpine3
@@ -721,7 +721,7 @@ items:
         tags: builder,startx,alpine,mariadb,sql
         supports: mysql
         version: 'prod'
-        sampleRepo: https://github.com/startxfr/docker-images-example-mariadb.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
       from:
         kind: ImageStreamTag
         name: alpine3
@@ -745,7 +745,7 @@ items:
         tags: builder,startx,fedora,memcache
         supports: memcache
         version: fc26
-        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
       from:
         kind: DockerImage
         name: startx/sv-memcache:fc26
@@ -758,7 +758,7 @@ items:
         tags: builder,startx,fedora,memcache
         supports: memcache
         version: fc27
-        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
       from:
         kind: DockerImage
         name: startx/sv-memcache:fc27
@@ -771,7 +771,7 @@ items:
         tags: builder,startx,fedora,memcache
         supports: memcache
         version: fc28
-        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
       from:
         kind: DockerImage
         name: startx/sv-memcache:fc28
@@ -784,7 +784,7 @@ items:
         tags: builder,startx,fedora,memcache
         supports: memcache
         version: fc29
-        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
       from:
         kind: DockerImage
         name: startx/sv-memcache:fc29
@@ -797,7 +797,7 @@ items:
         tags: builder,startx,fedora,memcache
         supports: memcache
         version: fc30
-        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
       from:
         kind: DockerImage
         name: startx/sv-memcache:fc30
@@ -811,7 +811,7 @@ items:
         tags: builder,startx,fedora,memcache
         supports: memcache
         version: fc31
-        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
       from:
         kind: DockerImage
         name: startx/sv-memcache:fc31
@@ -825,7 +825,7 @@ items:
         tags: builder,startx,fedora,memcache
         supports: memcache
         version: fc32
-        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
       from:
         kind: DockerImage
         name: startx/sv-memcache:fc32
@@ -839,7 +839,7 @@ items:
         tags: builder,startx,fedora,memcache
         supports: memcache
         version: fc33
-        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
       from:
         kind: DockerImage
         name: startx/sv-memcache:fc33
@@ -853,7 +853,7 @@ items:
         tags: builder,startx,fedora,memcache
         supports: memcache
         version: fc34
-        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
       from:
         kind: DockerImage
         name: startx/sv-memcache:fc34
@@ -866,7 +866,7 @@ items:
         tags: builder,startx,fedora,memcache
         supports: memcache
         version: rawhide
-        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
       from:
         kind: DockerImage
         name: startx/sv-memcache:latest
@@ -879,7 +879,7 @@ items:
         tags: builder,startx,ubi,memcache
         supports: memcache
         version: '8'
-        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
       from:
         kind: DockerImage
         name: startx/sv-memcache:ubi8
@@ -892,7 +892,7 @@ items:
         tags: builder,startx,centos,memcache
         supports: memcache
         version: '8'
-        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
       from:
         kind: DockerImage
         name: startx/sv-memcache:centos8
@@ -905,7 +905,7 @@ items:
         tags: builder,startx,centos,memcache
         supports: memcache
         version: '7'
-        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
       from:
         kind: DockerImage
         name: startx/sv-memcache:centos7
@@ -918,7 +918,7 @@ items:
         tags: builder,startx,centos,memcache
         supports: memcache
         version: '6'
-        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
       from:
         kind: DockerImage
         name: startx/sv-memcache:centos6
@@ -931,7 +931,7 @@ items:
         tags: builder,startx,alpine,memcache
         supports: memcache
         version: '3'
-        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
       from:
         kind: DockerImage
         name: startx/sv-memcache:alpine3
@@ -943,7 +943,7 @@ items:
         iconClass: icon-redis
         tags: builder,startx,alpine,memcache
         supports: memcache
-        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
       from:
         kind: ImageStreamTag
         name: rawhide
@@ -955,7 +955,7 @@ items:
         tags: builder,startx,alpine,memcache
         supports: memcache
         version: 'dev'
-        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
       from:
         kind: ImageStreamTag
         name: rawhide
@@ -967,7 +967,7 @@ items:
         tags: builder,startx,alpine,memcache
         supports: memcache
         version: 'test'
-        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
       from:
         kind: ImageStreamTag
         name: centos8
@@ -979,7 +979,7 @@ items:
         tags: builder,startx,alpine,memcache
         supports: memcache
         version: 'pre-prod'
-        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
       from:
         kind: ImageStreamTag
         name: alpine3
@@ -991,7 +991,7 @@ items:
         tags: builder,startx,alpine,memcache
         supports: memcache
         version: 'prod'
-        sampleRepo: https://github.com/startxfr/docker-images-example-memcache.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
       from:
         kind: ImageStreamTag
         name: alpine3
@@ -1015,7 +1015,7 @@ items:
         tags: builder,startx,fedora,mongo,database
         supports: db
         version: fc26
-        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
       from:
         kind: DockerImage
         name: startx/sv-mongo:fc26
@@ -1028,7 +1028,7 @@ items:
         tags: builder,startx,fedora,mongo,database
         supports: db
         version: fc27
-        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
       from:
         kind: DockerImage
         name: startx/sv-mongo:fc27
@@ -1041,7 +1041,7 @@ items:
         tags: builder,startx,fedora,mongo,database
         supports: db
         version: fc28
-        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
       from:
         kind: DockerImage
         name: startx/sv-mongo:fc28
@@ -1054,7 +1054,7 @@ items:
         tags: builder,startx,fedora,mongo,database
         supports: db
         version: fc29
-        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
       from:
         kind: DockerImage
         name: startx/sv-mongo:fc29
@@ -1067,7 +1067,7 @@ items:
         tags: builder,startx,fedora,mongo,database
         supports: db
         version: fc30
-        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
       from:
         kind: DockerImage
         name: startx/sv-mongo:fc30
@@ -1081,7 +1081,7 @@ items:
         tags: builder,startx,fedora,mongo,database
         supports: db
         version: fc31
-        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
       from:
         kind: DockerImage
         name: startx/sv-mongo:fc31
@@ -1095,7 +1095,7 @@ items:
         tags: builder,startx,fedora,mongo,database
         supports: db
         version: fc32
-        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
       from:
         kind: DockerImage
         name: startx/sv-mongo:fc32
@@ -1109,7 +1109,7 @@ items:
         tags: builder,startx,fedora,mongo,database
         supports: db
         version: fc33
-        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
       from:
         kind: DockerImage
         name: startx/sv-mongo:fc33
@@ -1123,7 +1123,7 @@ items:
         tags: builder,startx,fedora,mongo,database
         supports: db
         version: fc34
-        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
       from:
         kind: DockerImage
         name: startx/sv-mongo:fc34
@@ -1136,7 +1136,7 @@ items:
         tags: builder,startx,fedora,mongo,database
         supports: db
         version: rawhide
-        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
       from:
         kind: DockerImage
         name: startx/sv-mongo:latest
@@ -1149,7 +1149,7 @@ items:
         tags: builder,startx,ubi,mongo,database
         supports: db
         version: '8'
-        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
       from:
         kind: DockerImage
         name: startx/sv-mongo:ubi8
@@ -1162,7 +1162,7 @@ items:
         tags: builder,startx,centos,mongo,database
         supports: db
         version: '8'
-        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
       from:
         kind: DockerImage
         name: startx/sv-mongo:centos8
@@ -1175,7 +1175,7 @@ items:
         tags: builder,startx,centos,mongo,database
         supports: db
         version: '7'
-        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
       from:
         kind: DockerImage
         name: startx/sv-mongo:centos7
@@ -1188,7 +1188,7 @@ items:
         tags: builder,startx,centos,mongo,database
         supports: db
         version: '6'
-        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
       from:
         kind: DockerImage
         name: startx/sv-mongo:centos6
@@ -1201,7 +1201,7 @@ items:
         tags: builder,startx,alpine,mongo,database
         supports: db
         version: '3'
-        sampleRepo: https://github.com/startxfr/docker-images-example-mongo.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
       from:
         kind: DockerImage
         name: startx/sv-mongo:alpine3
@@ -1225,7 +1225,7 @@ items:
         tags: builder,startx,fedora,nodejs,httpd
         supports: http
         version: fc26
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
       from:
         kind: DockerImage
         name: startx/sv-nodejs:fc26
@@ -1238,7 +1238,7 @@ items:
         tags: builder,startx,fedora,nodejs,httpd
         supports: http
         version: fc27
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
       from:
         kind: DockerImage
         name: startx/sv-nodejs:fc27
@@ -1251,7 +1251,7 @@ items:
         tags: builder,startx,fedora,nodejs,httpd
         supports: http
         version: fc28
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
       from:
         kind: DockerImage
         name: startx/sv-nodejs:fc28
@@ -1264,7 +1264,7 @@ items:
         tags: builder,startx,fedora,nodejs,httpd
         supports: http
         version: fc29
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
       from:
         kind: DockerImage
         name: startx/sv-nodejs:fc29
@@ -1277,7 +1277,7 @@ items:
         tags: builder,startx,fedora,nodejs,httpd
         supports: http
         version: fc30
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
       from:
         kind: DockerImage
         name: startx/sv-nodejs:fc30
@@ -1291,7 +1291,7 @@ items:
         tags: builder,startx,fedora,nodejs,httpd
         supports: http
         version: fc31
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
       from:
         kind: DockerImage
         name: startx/sv-nodejs:fc31
@@ -1305,7 +1305,7 @@ items:
         tags: builder,startx,fedora,nodejs,httpd
         supports: http
         version: fc32
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
       from:
         kind: DockerImage
         name: startx/sv-nodejs:fc32
@@ -1319,7 +1319,7 @@ items:
         tags: builder,startx,fedora,nodejs,httpd
         supports: http
         version: fc33
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
       from:
         kind: DockerImage
         name: startx/sv-nodejs:fc33
@@ -1333,7 +1333,7 @@ items:
         tags: builder,startx,fedora,nodejs,httpd
         supports: http
         version: fc34
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
       from:
         kind: DockerImage
         name: startx/sv-nodejs:fc34
@@ -1346,7 +1346,7 @@ items:
         tags: builder,startx,fedora,nodejs,httpd
         supports: http
         version: rawhide
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
       from:
         kind: DockerImage
         name: startx/sv-nodejs:latest
@@ -1359,7 +1359,7 @@ items:
         tags: builder,startx,ubi,nodejs,httpd
         supports: http
         version: '8'
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
       from:
         kind: DockerImage
         name: startx/sv-nodejs:ubi8
@@ -1372,7 +1372,7 @@ items:
         tags: builder,startx,centos,nodejs,httpd
         supports: http
         version: '8'
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
       from:
         kind: DockerImage
         name: startx/sv-nodejs:centos8
@@ -1385,7 +1385,7 @@ items:
         tags: builder,startx,centos,nodejs,httpd
         supports: http
         version: '7'
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
       from:
         kind: DockerImage
         name: startx/sv-nodejs:centos7
@@ -1398,7 +1398,7 @@ items:
         tags: builder,startx,centos,nodejs,httpd
         supports: http
         version: '6'
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
       from:
         kind: DockerImage
         name: startx/sv-nodejs:centos6
@@ -1411,7 +1411,7 @@ items:
         tags: builder,startx,alpine,nodejs,httpd
         supports: http
         version: '3'
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
       from:
         kind: DockerImage
         name: startx/sv-nodejs:alpine3
@@ -1423,7 +1423,7 @@ items:
         iconClass: icon-nodejs
         tags: builder,startx,alpine,nodejs,httpd
         supports: http
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
       from:
         kind: ImageStreamTag
         name: rawhide
@@ -1435,7 +1435,7 @@ items:
         tags: builder,startx,alpine,nodejs,httpd
         supports: http
         version: 'dev'
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
       from:
         kind: ImageStreamTag
         name: rawhide
@@ -1447,7 +1447,7 @@ items:
         tags: builder,startx,alpine,nodejs,httpd
         supports: http
         version: 'test'
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
       from:
         kind: ImageStreamTag
         name: centos8
@@ -1459,7 +1459,7 @@ items:
         tags: builder,startx,alpine,nodejs,httpd
         supports: http
         version: 'pre-prod'
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
       from:
         kind: ImageStreamTag
         name: alpine3
@@ -1471,7 +1471,7 @@ items:
         tags: builder,startx,alpine,nodejs,httpd
         supports: http
         version: 'prod'
-        sampleRepo: https://github.com/startxfr/docker-images-example-nodejs.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
       from:
         kind: ImageStreamTag
         name: alpine3
@@ -1495,7 +1495,7 @@ items:
         tags: builder,startx,fedora,ooconv,libreoffice
         supports: http
         version: fc26
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-ooconv.git
       from:
         kind: DockerImage
         name: startx/sv-ooconv:fc26
@@ -1508,7 +1508,7 @@ items:
         tags: builder,startx,fedora,ooconv,libreoffice
         supports: http
         version: fc27
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-ooconv.git
       from:
         kind: DockerImage
         name: startx/sv-ooconv:fc27
@@ -1521,7 +1521,7 @@ items:
         tags: builder,startx,fedora,ooconv,libreoffice
         supports: http
         version: fc28
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-ooconv.git
       from:
         kind: DockerImage
         name: startx/sv-ooconv:fc28
@@ -1534,7 +1534,7 @@ items:
         tags: builder,startx,fedora,ooconv,libreoffice
         supports: http
         version: fc29
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-ooconv.git
       from:
         kind: DockerImage
         name: startx/sv-ooconv:fc29
@@ -1547,7 +1547,7 @@ items:
         tags: builder,startx,fedora,ooconv,libreoffice
         supports: http
         version: fc30
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-ooconv.git
       from:
         kind: DockerImage
         name: startx/sv-ooconv:fc30
@@ -1561,7 +1561,7 @@ items:
         tags: builder,startx,fedora,ooconv,libreoffice
         supports: http
         version: fc31
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-ooconv.git
       from:
         kind: DockerImage
         name: startx/sv-ooconv:fc31
@@ -1575,7 +1575,7 @@ items:
         tags: builder,startx,fedora,ooconv,libreoffice
         supports: http
         version: fc32
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-ooconv.git
       from:
         kind: DockerImage
         name: startx/sv-ooconv:fc32
@@ -1589,7 +1589,7 @@ items:
         tags: builder,startx,fedora,ooconv,libreoffice
         supports: http
         version: fc33
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-ooconv.git
       from:
         kind: DockerImage
         name: startx/sv-ooconv:fc33
@@ -1603,7 +1603,7 @@ items:
         tags: builder,startx,fedora,ooconv,libreoffice
         supports: http
         version: fc34
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-ooconv.git
       from:
         kind: DockerImage
         name: startx/sv-ooconv:fc34
@@ -1616,7 +1616,7 @@ items:
         tags: builder,startx,fedora,ooconv,libreoffice
         supports: http
         version: rawhide
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-ooconv.git
       from:
         kind: DockerImage
         name: startx/sv-ooconv:latest
@@ -1629,7 +1629,7 @@ items:
         tags: builder,startx,ubi,ooconv,libreoffice
         supports: http
         version: '8'
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-ooconv.git
       from:
         kind: DockerImage
         name: startx/sv-ooconv:ubi8
@@ -1642,7 +1642,7 @@ items:
         tags: builder,startx,centos,ooconv,libreoffice
         supports: http
         version: '8'
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-ooconv.git
       from:
         kind: DockerImage
         name: startx/sv-ooconv:centos8
@@ -1655,7 +1655,7 @@ items:
         tags: builder,startx,centos,ooconv,libreoffice
         supports: http
         version: '7'
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-ooconv.git
       from:
         kind: DockerImage
         name: startx/sv-ooconv:centos7
@@ -1668,7 +1668,7 @@ items:
         tags: builder,startx,centos,ooconv,libreoffice
         supports: http
         version: '6'
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-ooconv.git
       from:
         kind: DockerImage
         name: startx/sv-ooconv:centos6
@@ -1681,7 +1681,7 @@ items:
         tags: builder,startx,alpine,ooconv,libreoffice
         supports: http
         version: '3'
-        sampleRepo: https://github.com/startxfr/docker-images-example-ooconv.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-ooconv.git
       from:
         kind: DockerImage
         name: startx/sv-ooconv:alpine3
@@ -1705,7 +1705,7 @@ items:
         tags: builder,startx,fedora,php,httpd
         supports: http
         version: fc26
-        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-php.git
       from:
         kind: DockerImage
         name: startx/sv-php:fc26
@@ -1718,7 +1718,7 @@ items:
         tags: builder,startx,fedora,php,httpd
         supports: http
         version: fc27
-        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-php.git
       from:
         kind: DockerImage
         name: startx/sv-php:fc27
@@ -1731,7 +1731,7 @@ items:
         tags: builder,startx,fedora,php,httpd
         supports: http
         version: fc28
-        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-php.git
       from:
         kind: DockerImage
         name: startx/sv-php:fc28
@@ -1744,7 +1744,7 @@ items:
         tags: builder,startx,fedora,php,httpd
         supports: http
         version: fc29
-        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-php.git
       from:
         kind: DockerImage
         name: startx/sv-php:fc29
@@ -1757,7 +1757,7 @@ items:
         tags: builder,startx,fedora,php,httpd
         supports: http
         version: fc30
-        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-php.git
       from:
         kind: DockerImage
         name: startx/sv-php:fc30
@@ -1770,7 +1770,7 @@ items:
         tags: builder,startx,fedora,php,httpd
         supports: http
         version: rawhide
-        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-php.git
       from:
         kind: DockerImage
         name: startx/sv-php:latest
@@ -1784,7 +1784,7 @@ items:
         tags: builder,startx,fedora,php,httpd
         supports: http
         version: fc31
-        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-php.git
       from:
         kind: DockerImage
         name: startx/sv-php:fc31
@@ -1798,7 +1798,7 @@ items:
         tags: builder,startx,fedora,php,httpd
         supports: http
         version: fc32
-        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-php.git
       from:
         kind: DockerImage
         name: startx/sv-php:fc32
@@ -1812,7 +1812,7 @@ items:
         tags: builder,startx,fedora,php,httpd
         supports: http
         version: fc33
-        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-php.git
       from:
         kind: DockerImage
         name: startx/sv-php:fc33
@@ -1826,7 +1826,7 @@ items:
         tags: builder,startx,fedora,php,httpd
         supports: http
         version: fc34
-        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-php.git
       from:
         kind: DockerImage
         name: startx/sv-php:fc34
@@ -1839,7 +1839,7 @@ items:
         tags: builder,startx,ubi,php,httpd
         supports: http
         version: '8'
-        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-php.git
       from:
         kind: DockerImage
         name: startx/sv-php:ubi8
@@ -1852,7 +1852,7 @@ items:
         tags: builder,startx,centos,php,httpd
         supports: http
         version: '8'
-        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-php.git
       from:
         kind: DockerImage
         name: startx/sv-php:centos8
@@ -1865,7 +1865,7 @@ items:
         tags: builder,startx,centos,php,httpd
         supports: http
         version: '7'
-        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-php.git
       from:
         kind: DockerImage
         name: startx/sv-php:centos7
@@ -1878,7 +1878,7 @@ items:
         tags: builder,startx,centos,php,httpd
         supports: http
         version: '6'
-        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-php.git
       from:
         kind: DockerImage
         name: startx/sv-php:centos6
@@ -1891,7 +1891,7 @@ items:
         tags: builder,startx,alpine,php,httpd
         supports: http
         version: '3'
-        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-php.git
       from:
         kind: DockerImage
         name: startx/sv-php:alpine3
@@ -1903,7 +1903,7 @@ items:
         iconClass: icon-php
         tags: builder,startx,alpine,php,httpd
         supports: http
-        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-php.git
       from:
         kind: ImageStreamTag
         name: rawhide
@@ -1915,7 +1915,7 @@ items:
         tags: builder,startx,alpine,php,httpd
         supports: http
         version: 'dev'
-        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-php.git
       from:
         kind: ImageStreamTag
         name: rawhide
@@ -1927,7 +1927,7 @@ items:
         tags: builder,startx,alpine,php,httpd
         supports: http
         version: 'test'
-        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-php.git
       from:
         kind: ImageStreamTag
         name: centos8
@@ -1939,7 +1939,7 @@ items:
         tags: builder,startx,alpine,php,httpd
         supports: http
         version: 'pre-prod'
-        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-php.git
       from:
         kind: ImageStreamTag
         name: alpine3
@@ -1951,7 +1951,7 @@ items:
         tags: builder,startx,alpine,php,httpd
         supports: http
         version: 'prod'
-        sampleRepo: https://github.com/startxfr/docker-images-example-php.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-php.git
       from:
         kind: ImageStreamTag
         name: alpine3
@@ -1975,7 +1975,7 @@ items:
         tags: builder,startx,fedora,postgres,sql
         supports: postgresql
         version: fc26
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
       from:
         kind: DockerImage
         name: startx/sv-postgres:fc26
@@ -1988,7 +1988,7 @@ items:
         tags: builder,startx,fedora,postgres,sql
         supports: postgresql
         version: fc27
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
       from:
         kind: DockerImage
         name: startx/sv-postgres:fc27
@@ -2001,7 +2001,7 @@ items:
         tags: builder,startx,fedora,postgres,sql
         supports: postgresql
         version: fc28
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
       from:
         kind: DockerImage
         name: startx/sv-postgres:fc28
@@ -2014,7 +2014,7 @@ items:
         tags: builder,startx,fedora,postgres,sql
         supports: postgresql
         version: fc29
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
       from:
         kind: DockerImage
         name: startx/sv-postgres:fc29
@@ -2027,7 +2027,7 @@ items:
         tags: builder,startx,fedora,postgres,sql
         supports: postgresql
         version: fc30
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
       from:
         kind: DockerImage
         name: startx/sv-postgres:fc30
@@ -2041,7 +2041,7 @@ items:
         tags: builder,startx,fedora,postgres,sql
         supports: postgresql
         version: fc31
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
       from:
         kind: DockerImage
         name: startx/sv-postgres:fc31
@@ -2055,7 +2055,7 @@ items:
         tags: builder,startx,fedora,postgres,sql
         supports: postgresql
         version: fc32
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
       from:
         kind: DockerImage
         name: startx/sv-postgres:fc32
@@ -2069,7 +2069,7 @@ items:
         tags: builder,startx,fedora,postgres,sql
         supports: postgresql
         version: fc33
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
       from:
         kind: DockerImage
         name: startx/sv-postgres:fc33
@@ -2083,7 +2083,7 @@ items:
         tags: builder,startx,fedora,postgres,sql
         supports: postgresql
         version: fc34
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
       from:
         kind: DockerImage
         name: startx/sv-postgres:fc34
@@ -2096,7 +2096,7 @@ items:
         tags: builder,startx,fedora,postgres,sql
         supports: postgresql
         version: rawhide
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
       from:
         kind: DockerImage
         name: startx/sv-postgres:latest
@@ -2109,7 +2109,7 @@ items:
         tags: builder,startx,ubi,postgres,sql
         supports: postgresql
         version: '8'
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
       from:
         kind: DockerImage
         name: startx/sv-postgres:ubi8
@@ -2122,7 +2122,7 @@ items:
         tags: builder,startx,centos,postgres,sql
         supports: postgresql
         version: '8'
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
       from:
         kind: DockerImage
         name: startx/sv-postgres:centos8
@@ -2135,7 +2135,7 @@ items:
         tags: builder,startx,centos,postgres,sql
         supports: postgresql
         version: '7'
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
       from:
         kind: DockerImage
         name: startx/sv-postgres:centos7
@@ -2148,7 +2148,7 @@ items:
         tags: builder,startx,centos,postgres,sql
         supports: postgresql
         version: '6'
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
       from:
         kind: DockerImage
         name: startx/sv-postgres:centos6
@@ -2161,7 +2161,7 @@ items:
         tags: builder,startx,alpine,postgres,sql
         supports: postgresql
         version: '3'
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
       from:
         kind: DockerImage
         name: startx/sv-postgres:alpine3
@@ -2173,7 +2173,7 @@ items:
         tags: builder,startx,alpine,postgres,sql
         supports: postgresql
         version: 'dev'
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
       from:
         kind: ImageStreamTag
         name: rawhide
@@ -2185,7 +2185,7 @@ items:
         tags: builder,startx,alpine,postgres,sql
         supports: postgresql
         version: 'test'
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
       from:
         kind: ImageStreamTag
         name: centos8
@@ -2197,7 +2197,7 @@ items:
         tags: builder,startx,alpine,postgres,sql
         supports: postgresql
         version: 'pre-prod'
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
       from:
         kind: ImageStreamTag
         name: alpine3
@@ -2209,7 +2209,7 @@ items:
         tags: builder,startx,alpine,postgres,sql
         supports: postgresql
         version: 'prod'
-        sampleRepo: https://github.com/startxfr/docker-images-example-postgres.git
+        sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
       from:
         kind: ImageStreamTag
         name: alpine3
