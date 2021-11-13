@@ -10,8 +10,8 @@ variables:
   SXDI_GIT_SSH_USER: git@gitlab.com
   SX_VERBOSE: "true"
   SX_DEBUG: "true"
-  SXDI_OSTAG: latest
-  SXDI_OTHERTAG: latest
+  SXDI_OSTAG: "3"
+  SXDI_OTHERTAG: alpine3
 
 # Default container image
 image: "quay.io/startx/runner-bash:alpine3"
