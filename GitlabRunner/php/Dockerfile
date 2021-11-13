@@ -3,6 +3,8 @@ FROM quay.io/startx/php:fc34
 ENV SX_VERSION="fc34" \
     SX_TYPE="runner" \
     SX_SERVICE="php" \
+    SX_UID=1001 \
+    SX_UNAME="user" \
     SX_ID="startx/runner-php" \
     SX_NAME="Startx Apache-PHP gitlab runner image (fedora 34)" \
     SX_SUMMARY="Startx apache-php gitlab runner based on fedora 34"
@@ -32,10 +34,11 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
     package-cleanup --orphans && \
     dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
+    useradd -u ${SX_UID} -m ${SX_UNAME} && \
     mv /tmp/bin/* /bin/ && \
     mv /tmp/lib/* $SX_LIBDIR/ && \
     rm -rf /tmp/bin /tmp/bin
 
-USER 1001
+USER $SX_UID
 
 CMD [ "/bin/sx-php" , "usage" ]

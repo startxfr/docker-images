@@ -1,0 +1,66 @@
+##
+## STAGES
+##
+
+# Return debug informations on master branch
+debug:
+  stage: "check"
+  script: "source .gitlab/ci/startx-library.sh && DisplayCheckDebug"
+  only:
+    - master
+
+# Return informations details on master branch
+info:
+  stage: "check"
+  script: "source .gitlab/ci/startx-library.sh && DisplayCheckInfo"
+  only:
+    - master
+
+# Requirements check on master branch
+requirements:
+  stage: "check"
+  script: "source .gitlab/ci/startx-library.sh && DisplayCheckRequirements"
+  only:
+    - master
+
+# Markdown check on master branch
+markdown:
+  stage: "check"
+  script: "source .gitlab/ci/startx-library.sh && DisplayCheckMarkdown"
+  only:
+    - master
+    - centos8
+    - centos7
+    - centos6
+    - alpine
+    - ubi8
+    - fc35
+    - fc34
+    - fc33
+    - fc32
+    - fc31
+    - fc30
+    - fc29
+    - fc28
+    - fc27
+    - fc26
+    - fc25
+    - fc24
+    - fc23
+    - fc22
+    - fc21
+    - fc20
+
+# Readthedocs check on master branch
+readthedocs:
+  stage: "check"
+  script: "source .gitlab/ci/startx-library.sh && DisplayCheckReadthedocs"
+  only:
+    - master
+
+# Shell check on master branch
+shell:
+  stage: "check"
+  script: "source .gitlab/ci/startx-library.sh && DisplayCheckShellcheck"
+  only:
+    - master

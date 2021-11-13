@@ -1,8 +1,8 @@
-[![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true)](https://github.com/startxfr/docker-images)
+[![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/.gitlab/img/logo-small.svg?sanitize=true)](https://gitlab.com/startx1/containers)
 
 # Image Chrome
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/VDI/chrome/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/vdi-chrome.svg)](https://hub.docker.com/r/startx/vdi-chrome) [![Docker chrome pulls](https://img.shields.io/docker/pulls/startx/vdi-chrome)](https://hub.docker.com/r/startx/vdi-chrome) [![Docker Repository on Quay](https://quay.io/repository/startx/chrome/status "Docker Repository on Quay")](https://quay.io/repository/startx/chrome)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://gitlab.com/startx1/containers) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://gitlab.com/startx1/containers/tree/master/VDI/chrome/) [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://gitlab.com/startx1/containers) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/vdi-chrome.svg)](https://hub.docker.com/r/startx/vdi-chrome) [![Docker chrome pulls](https://img.shields.io/docker/pulls/startx/vdi-chrome)](https://hub.docker.com/r/startx/vdi-chrome) [![Docker Repository on Quay](https://quay.io/repository/startx/chrome/status "Docker Repository on Quay")](https://quay.io/repository/startx/chrome)
 
 Simple container used to server VNC based chrome browser.
 Run [chrome browser application](https://httpd.chrome.org/) under a container
@@ -71,7 +71,7 @@ oc process startx-vdi-chrome-build-template | oc create -f -
 You can use this image as an s2i builder image.
 
 ```bash
-s2i build https://github.com/startxfr/docker-images-example-chrome startx/vdi-chrome test-chrome
+s2i build https://gitlab.com/startx1/containers-example-chrome startx/vdi-chrome test-chrome
 docker run --rm -i -t test-chrome
 ```
 
@@ -123,11 +123,11 @@ CMD ["/bin/sx", "run"]
 ## Environment variable
 
 This container is based on [startx fedora container](https://hub.docker.com/r/startx/fedora) who came with
-some [additional environment variable](https://github.com/startxfr/docker-images/tree/master/OS#environment-variable)
+some [additional environment variable](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable)
 
 | Variable                       | Type          | Mandatory | Description                                                                                           |
 | ------------------------------ | ------------- | --------- | ----------------------------------------------------------------------------------------------------- |
-| <i>base image environement</i> |               |           | [see environment list](https://github.com/startxfr/docker-images/tree/master/OS#environment-variable) |
+| <i>base image environement</i> |               |           | [see environment list](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable) |
 | SERVER_NAME                    | `string`      | `no`      | Server name for this container. If no name localhost will be assigned                                 |
 | HOSTNAME                       | `auto`        | `auto`    | Container unique id automatically assigned by docker daemon at startup                                |
 | LOG_PATH                       | `auto`        | `auto`    | default set to /var/log/chrome and used as a volume mountpoint                                        |
@@ -161,7 +161,7 @@ This section will help you if you want to :
 - Get latest version of this desktop container
 - Enhance container content by adding instruction in Dockefile before build step
 
-You must have a working environment with the source code of this repository. Read and follow [how to setup your working environment](https://github.com/startxfr/docker-images#setup-your-working-environment-mandatory) to get a working directory. The following instructions assume you are at the top level of your working directory.
+You must have a working environment with the source code of this repository. Read and follow [how to setup your working environment](https://gitlab.com/startx1/containers#setup-your-working-environment-mandatory) to get a working directory. The following instructions assume you are at the top level of your working directory.
 
 ### Build & run a container using `docker`
 
