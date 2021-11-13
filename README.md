@@ -144,6 +144,8 @@ and stay stiked to a defined stable release.
 
 | Release | Description                                                                      |
 | ------- | -------------------------------------------------------------------------------- |
+| 0.95.25 | move from github to gitlab and from travis to gitab-ci                           |
+| 0.95.23 | adding fc35 branch                                                               |
 | 0.95.21 | adding fc34 and fc33 branch                                                      |
 | 0.95.17 | stable ubi8, centos7, centos8, fc32, fc31 and fc30 branch                        |
 | 0.95.15 | debug mariadb configuration on build or run                                      |
