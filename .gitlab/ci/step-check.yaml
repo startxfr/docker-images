@@ -29,6 +29,27 @@ markdown:
   script: "source .gitlab/ci/startx-library.sh && DisplayCheckMarkdown"
   only:
     - master
+    - centos8
+    - centos7
+    - centos6
+    - alpine
+    - ubi8
+    - fc35
+    - fc34
+    - fc33
+    - fc32
+    - fc31
+    - fc30
+    - fc29
+    - fc28
+    - fc27
+    - fc26
+    - fc25
+    - fc24
+    - fc23
+    - fc22
+    - fc21
+    - fc20
 
 # Readthedocs check on master branch
 readthedocs:
