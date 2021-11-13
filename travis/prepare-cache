@@ -1,4 +1,0 @@
-#!/bin/bash
-echo "INFO: Cache $1 image"
-docker pull fedora:$3
-docker pull startx/$1:$2
