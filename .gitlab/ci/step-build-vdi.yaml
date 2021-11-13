@@ -1,0 +1,23 @@
+##
+## STAGES
+##
+
+# Build the chrome VDI image 
+build-vdi-chrome:
+  stage: "build VDI"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXDI_PATH: 'VDI/chrome'
+    SXDI_DOCKERNAME: 'vdi-chrome'
+    SXDI_QUAYNAME: 'chrome'
+
+# Build the firefox VDI image 
+build-vdi-firefox:
+  stage: "build VDI"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXDI_PATH: 'VDI/firefox'
+    SXDI_DOCKERNAME: 'vdi-firefox'
+    SXDI_QUAYNAME: 'firefox'

@@ -150,7 +150,7 @@ and stay stiked to a defined stable release.
 | 0.95.11 | improve verbose display                                                          |
 | 0.95.9  | debug and stabilize dockerfiles                                                  |
 | 0.95.7  | Add s2i label for s2i compat                                                     |
-| 0.95.5  | Add _.data.sql and _.schema.sql dump support for mariadb                         |
+| 0.95.5  | Add _.data.sql_ and _.schema.sql_ dump support for mariadb                       |
 | 0.95.3  | Updating docker for better diff and merge. Improve doc structures                |
 | 0.93.1  | Unstable release with UBI and centos8 added. Prepare first major release         |
 | 0.40.0  | Stable release with updated images lib packages                                  |

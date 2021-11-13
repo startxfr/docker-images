@@ -125,10 +125,10 @@ function DisplayCheckRequirements {
       echo "NO okd-helper.sh is found"; 
       exit 1; 
     fi
-    if [[ -f .gitlab-ci.sh ]]; then 
-      echo ".gitlab-ci.sh is found"; 
+    if [[ -f .gitlab/ci/startx-library.sh ]]; then 
+      echo ".gitlab/ci/startx-library.sh is found"; 
     else 
-      echo "NO .gitlab-ci.sh is found"; 
+      echo "NO .gitlab/ci/startx-library.sh is found"; 
       exit 1; 
     fi
 }
@@ -154,7 +154,7 @@ function DisplayCheckShellcheck {
     echo "======== CHECK SHELL SYNTAX"
     shellcheck podman-helper.sh
     shellcheck okd-helper.sh
-    shellcheck .gitlab-ci.sh
+    shellcheck .gitlab/ci/startx-library.sh
 }
 
 # Display the build of a container image
@@ -214,12 +214,12 @@ function DoImagePushImage {
 function DoImageBuildExecute {
     local path=${1:-OS}
     local dockername=${2:-fedora}
-    local tag=${CI_COMMIT_BRANCH:-latest}
+    local tag=${4:-latest}
     if [[ "$tag" = "master" ]]; then
         tag="latest"
     fi
     local quayname=${3:-fedora}
-    local ns=${4:-startx}
+    local ns=${5:-startx}
     IMAGE_TAG=docker.io/$ns/$dockername:$tag
     IMAGE_QUAYTAG=quay.io/$ns/$quayname:$tag
     TEST_NAME="$ns"_"$quayname"_"$tag"
@@ -248,12 +248,12 @@ function DoImageBuildExecute {
 function DoImageBuildTest {
     local path=${1:-OS}
     local dockername=${2:-fedora}
-    local tag=${CI_COMMIT_BRANCH:-latest}
+    local tag=${4:-latest}
     if [[ "$tag" = "master" ]]; then
         tag="latest"
     fi
     local quayname=${3:-fedora}
-    local ns=${4:-startx}
+    local ns=${5:-startx}
     IMAGE_TAG=docker.io/$ns/$dockername:$tag
     IMAGE_QUAYTAG=quay.io/$ns/$quayname:$tag
     TEST_NAME="$ns"_"$quayname"_"$tag"
@@ -282,12 +282,12 @@ function DoImageBuildTest {
 function DoImageBuildPublish {
     local path=${1:-OS}
     local dockername=${2:-fedora}
-    local tag=${CI_COMMIT_BRANCH:-latest}
+    local tag=${4:-latest}
     if [[ "$tag" = "master" ]]; then
         tag="latest"
     fi
     local quayname=${3:-fedora}
-    local ns=${4:-startx}
+    local ns=${5:-startx}
     IMAGE_TAG=docker.io/$ns/$dockername:$tag
     IMAGE_QUAYTAG=quay.io/$ns/$quayname:$tag
     TEST_NAME="$ns"_"$quayname"_"$tag"
