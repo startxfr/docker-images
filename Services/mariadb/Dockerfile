@@ -41,6 +41,17 @@ RUN yum install -y -q  yum-utils && \
     yum install -y -q  --nogpgcheck \
     mariadb-libs \
     mariadb-server \
+    mariadb-server-utils \
+    mariadb-sphinx-engine \
+    mariadb-backup \
+    mariadb-common \
+    mariadb-cracklib-password-check \
+    mariadb-errmsg \
+    mariadb-gssapi-server \
+    mariadb-server-galera \
+    mysql-selinux \
+    python3-mysqlclient \
+    glibc-langpack-fr \
     mariadb && \
     package-cleanup --problems && \
     package-cleanup --orphans && \

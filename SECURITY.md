@@ -7,6 +7,7 @@ currently being supported with security updates.
 
 | Version | Supported          |
 | ------- | ------------------ |
+| 0.95.25 | :white_check_mark: |
 | 0.95.17 | :white_check_mark: |
 | 0.95.15 | :x:                |
 | 0.95.9  | :white_check_mark: |
@@ -21,4 +22,4 @@ currently being supported with security updates.
 
 ## Reporting a Vulnerability
 
-please report a vulnerability or security issue using the [new issue formular](https://github.com/startxfr/docker-images/issues/new)
+please report a vulnerability or security issue using the [new issue formular](https://gitlab.com/startx1/containers/issues/new)
