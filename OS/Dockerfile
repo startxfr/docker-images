@@ -1,4 +1,4 @@
-FROM registry.redhat.io/ubi8/ubi
+FROM registry.access.redhat.com/ubi8/ubi:latest
 
 ENV SX_VERSION="ubi8" \
     SX_TYPE="OS" \
