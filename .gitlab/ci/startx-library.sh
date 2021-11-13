@@ -83,61 +83,68 @@ EOF
 # Display the requirements checks
 function DisplayCheckRequirements {
     echo "======== CHECK REQUIREMENTS"
-    if [[ -f LICENSE ]]; then 
-      echo "LICENSE is found"; 
+    DoCheckCheckRequirementsFileExist LICENSE
+    DoCheckCheckRequirementsFileExist README.md
+    DoCheckCheckRequirementsDirectoryExist docs
+    DoCheckCheckRequirementsFileExist docs/index.md
+    DoCheckCheckRequirementsFileExecutable podman-helper.sh
+    DoCheckCheckRequirementsFileExecutable okd-helper.sh
+    DoCheckCheckRequirementsFileExecutable .gitlab/ci/startx-library.sh
+}
+
+# Perform a file check or exit
+function DoCheckCheckRequirementsFileExist {
+    echo "==== Check if file $1 exist"
+    if [[ -f $1 ]]; then 
+      echo "$1 file is found"; 
     else 
-      echo "NO LICENSE file found"; 
+      echo "NO $1 file found"; 
       exit 1; 
     fi
-    if [[ -f README.md ]]; then 
-      echo "README.md is found"; 
+}
+
+# Perform a directory check or exit
+function DoCheckCheckRequirementsDirectoryExist {
+    echo "==== Check if directory $1 exist"
+    if [[ -d $1 ]]; then 
+      echo "$1 directory is found"; 
     else 
-      echo "NO README.md file found"; 
+      echo "NO $1 directory found"; 
       exit 1; 
     fi
-    if [[ -d docs ]]; then 
-      echo "docs directory is found"; 
-    else 
-      echo "NO docs directory found"; 
-      exit 1; 
-    fi
-    if [[ -f podman-helper.sh ]]; then 
-      echo "podman-helper.sh is found"; 
-      if [[ -x podman-helper.sh ]]; then 
-        echo "podman-helper.sh is executable"; 
+}
+
+# Perform a file check is binary or exit
+function DoCheckCheckRequirementsFileExecutable {
+    echo "==== Check if file $1 exist and is executable"
+    if [[ -f $1 ]]; then 
+      echo "$1 is found"; 
+      if [[ -x $1 ]]; then 
+        echo "$1 is executable"; 
       else 
-        echo "Could not execute podman-helper.sh"; 
+        echo "Could not execute $1"; 
         exit 1; 
       fi
     else 
-      echo "NO podman-helper.sh is found"; 
-      exit 1; 
-    fi
-    if [[ -f okd-helper.sh ]]; then 
-      echo "okd-helper.sh is found"; 
-      if [[ -x okd-helper.sh ]]; then 
-        echo "okd-helper.sh is executable"; 
-      else 
-        echo "Could not execute okd-helper.sh"; 
-        exit 1; 
-      fi
-    else 
-      echo "NO okd-helper.sh is found"; 
-      exit 1; 
-    fi
-    if [[ -f .gitlab/ci/startx-library.sh ]]; then 
-      echo ".gitlab/ci/startx-library.sh is found"; 
-    else 
-      echo "NO .gitlab/ci/startx-library.sh is found"; 
+      echo "NO $1 is found"; 
       exit 1; 
     fi
 }
 
 
+
 # Display the markdown checks
 function DisplayCheckMarkdown {
     echo "======== CHECK MARKDOWN SYNTAX"
-    RESULT=$(mdl --skip-default-ruleset ./*.md)
+    DoCheckMarkdown "./*.md"
+    DoCheckMarkdown "./docs/*.md"
+    DoCheckMarkdown "./docs/*/*.md"
+}
+
+# Perform a markdown check agaisn't a file expression
+function DoCheckMarkdown {
+    echo "==== Check all markdown file coresponding to $1"
+    RESULT=$(mdl --skip-default-ruleset $1)
     if [ "$SX_DEBUG" == "true" ]; then
         echo "$RESULT"
     fi
