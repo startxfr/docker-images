@@ -8,8 +8,8 @@ build-os:
   extends: .build-image
   variables:
     SXDI_PATH: 'OS'
-    SXDI_DOCKERNAME: 'fedora'
-    SXDI_QUAYNAME: 'fedora'
+    SXDI_DOCKERNAME: 'centos'
+    SXDI_QUAYNAME: 'centos'
     SXDI_TAG: ${SXDI_OSTAG}
 
 # Build the latest of images other than fedora (master)
@@ -18,8 +18,8 @@ build-os-latest:
   extends: .build-image
   variables:
     SXDI_PATH: 'OS'
-    SXDI_DOCKERNAME: 'ubi'
-    SXDI_QUAYNAME: 'ubi'
+    SXDI_DOCKERNAME: 'centos'
+    SXDI_QUAYNAME: 'centos'
     SXDI_TAG: latest
   only:
     - centos8
