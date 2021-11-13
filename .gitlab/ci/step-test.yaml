@@ -5,10 +5,3 @@
 include:
   - template: Security/SAST.gitlab-ci.yml
   # - template: Security/Container-Scanning.gitlab-ci.yml
-
-#Second stage; only dev branch
-bats:
-  stage: "test"
-  script: "cd tests && ./start.sh"
-  only:
-    - master
