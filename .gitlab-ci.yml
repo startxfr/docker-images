@@ -18,7 +18,7 @@ image: "quay.io/startx/runner-bash:alpine3"
 include:
   - local: .gitlab/ci/startx-library.yaml
   - local: .gitlab/ci/step-check.yaml
-  - local: .gitlab/ci/step-check.yaml
+  - local: .gitlab/ci/step-test.yaml
   - local: .gitlab/ci/step-build-os.yaml
   - local: .gitlab/ci/step-build-basic.yaml
   - local: .gitlab/ci/step-build-services.yaml
