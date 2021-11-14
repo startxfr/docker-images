@@ -11,6 +11,7 @@ variables:
   SX_VERBOSE: "true"
   SX_DEBUG: "true"
   SXDI_OSTAG: "8"
+  SXDI_OSNAME: ubi
   SXDI_OTHERTAG: ubi8
 
 # Default container image
