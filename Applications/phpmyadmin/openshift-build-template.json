@@ -4,11 +4,11 @@
     "metadata": {
         "name": "startx-app-phpmyadmin-build-template",
         "annotations": {
-            "openshift.io/display-name": "Startx PhpMyAdmin web-console (centos)",
-            "description": "PhpMyAdmin web-console for dynamic web application running under Centos",
+            "openshift.io/display-name": "Startx PhpMyAdmin web-console (fedora)",
+            "description": "PhpMyAdmin web-console for dynamic web application running under Fedora",
             "iconClass": "icon-php",
-            "tags": "startx,centos,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
-            "openshift.io/long-description": "This template provides an apache + php httpd webserver in a centos container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://gitlab.com/startx1/containers/blob/master/README.md.",
+            "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
+            "openshift.io/long-description": "This template provides an apache + php httpd webserver in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://gitlab.com/startx1/containers/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://gitlab.com/startx1/containers/blob/master/README.md",
             "openshift.io/support-url": "https://gitlab.com/startx1/containers/issues/new"
@@ -38,19 +38,19 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "centos7",
+                        "name": "latest",
                         "annotations": {
-                            "openshift.io/display-name": "PhpMyAdmin web-console (Centos 7)",
-                            "description": "PhpMyAdmin web-console for mariadb running under Centos 7",
+                            "openshift.io/display-name": "PhpMyAdmin web-console (Fedora rawhide)",
+                            "description": "PhpMyAdmin web-console for mariadb running under Fedora rawhide",
                             "iconClass": "icon-php",
-                            "tags": "startx,centos,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
+                            "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "rawhide",
                             "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/app-phpmyadmin:centos7"
+                            "name": "startx/app-phpmyadmin:latest"
                         }
                     }
                 ]
@@ -80,7 +80,7 @@
                             "openshift.io/display-name": "Application ${APP_NAME}",
                             "description": "Base image for the application ${APP_NAME}",
                             "iconClass": "icon-php",
-                            "tags": "startx,centos,apache,httpd,php,application,${APP_NAME}",
+                            "tags": "startx,fedora,apache,httpd,php,application,${APP_NAME}",
                             "supports": "http",
                             "version": "rawhide"
                         }
@@ -375,7 +375,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-app-phpmyadmin:centos7"
+                            "name": "startx-app-phpmyadmin:latest"
                         },
                         "env": [
                             {
