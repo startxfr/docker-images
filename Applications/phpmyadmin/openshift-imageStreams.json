@@ -36,10 +36,10 @@
                         }
                     },
                     {
-                        "name": "fc28",
+                        "name": "fc27",
                         "annotations": {
-                            "openshift.io/display-name": "PhpMyAdmin web-console (Fedora 28)",
-                            "description": "PhpMyAdmin web-console for mariadb running under Fedora 28",
+                            "openshift.io/display-name": "PhpMyAdmin web-console (Fedora 27)",
+                            "description": "PhpMyAdmin web-console for mariadb running under Fedora 27",
                             "iconClass": "icon-php",
                             "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
@@ -48,7 +48,7 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/app-phpmyadmin:fc28"
+                            "name": "startx/app-phpmyadmin:fc27"
                         }
                     },
                     {
@@ -84,10 +84,10 @@
                         }
                     },
                     {
-                        "name": "fc31",
+                        "name": "fc30",
                         "annotations": {
-                            "openshift.io/display-name": "PhpMyAdmin web-console (Fedora 31)",
-                            "description": "PhpMyAdmin web-console for mariadb running under Fedora 31",
+                            "openshift.io/display-name": "PhpMyAdmin web-console (Fedora 30)",
+                            "description": "PhpMyAdmin web-console for mariadb running under Fedora 30",
                             "iconClass": "icon-php",
                             "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
@@ -96,7 +96,7 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/app-phpmyadmin:fc31"
+                            "name": "startx/app-phpmyadmin:fc30"
                         }
                     },
                     {

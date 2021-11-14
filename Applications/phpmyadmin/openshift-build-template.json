@@ -38,10 +38,10 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "fc31",
+                        "name": "latest",
                         "annotations": {
-                            "openshift.io/display-name": "PhpMyAdmin web-console (Fedora 31)",
-                            "description": "PhpMyAdmin web-console for mariadb running under Fedora 31",
+                            "openshift.io/display-name": "PhpMyAdmin web-console (Fedora rawhide)",
+                            "description": "PhpMyAdmin web-console for mariadb running under Fedora rawhide",
                             "iconClass": "icon-php",
                             "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
@@ -50,7 +50,7 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/app-phpmyadmin:fc31"
+                            "name": "startx/app-phpmyadmin:latest"
                         }
                     }
                 ]
@@ -375,7 +375,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-app-phpmyadmin:fc31"
+                            "name": "startx-app-phpmyadmin:latest"
                         },
                         "env": [
                             {
