@@ -34,5 +34,3 @@ container_scanning:
   stage: "build OS"
   variables:
     GIT_STRATEGY: fetch
-  only:
-    - master
