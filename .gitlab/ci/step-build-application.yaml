@@ -8,10 +8,10 @@ build-application-awx:
   extends: .build-image
   allow_failure: true
   variables:
-    SXDI_PATH: 'Applications/awx'
-    SXDI_DOCKERNAME: 'app-awx'
-    SXDI_QUAYNAME: 'awx'
-    SXDI_TAG: ${SXDI_OTHERTAG}
+    SXGLCI_PATH: 'Applications/awx'
+    SXGLCI_DOCKERNAME: 'app-awx'
+    SXGLCI_QUAYNAME: 'awx'
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
   only:
     - master
     - centos8
@@ -29,10 +29,10 @@ build-application-phpmyadmin:
   extends: .build-image
   allow_failure: true
   variables:
-    SXDI_PATH: 'Applications/phpmyadmin'
-    SXDI_DOCKERNAME: 'app-phpmyadmin'
-    SXDI_QUAYNAME: 'phpmyadmin'
-    SXDI_TAG: ${SXDI_OTHERTAG}
+    SXGLCI_PATH: 'Applications/phpmyadmin'
+    SXGLCI_DOCKERNAME: 'app-phpmyadmin'
+    SXGLCI_QUAYNAME: 'phpmyadmin'
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
   only:
     - master
     - centos8
@@ -61,10 +61,10 @@ build-application-rockmongo:
   extends: .build-image
   allow_failure: true
   variables:
-    SXDI_PATH: 'Applications/rockmongo'
-    SXDI_DOCKERNAME: 'app-rockmongo'
-    SXDI_QUAYNAME: 'rockmongo'
-    SXDI_TAG: ${SXDI_OTHERTAG}
+    SXGLCI_PATH: 'Applications/rockmongo'
+    SXGLCI_DOCKERNAME: 'app-rockmongo'
+    SXGLCI_QUAYNAME: 'rockmongo'
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
   only:
     - master
     - centos8
