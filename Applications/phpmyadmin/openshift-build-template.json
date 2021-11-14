@@ -4,11 +4,11 @@
     "metadata": {
         "name": "startx-app-phpmyadmin-build-template",
         "annotations": {
-            "openshift.io/display-name": "Startx PhpMyAdmin web-console (centos)",
-            "description": "PhpMyAdmin web-console for dynamic web application running under Centos",
+            "openshift.io/display-name": "Startx PhpMyAdmin web-console (fedora)",
+            "description": "PhpMyAdmin web-console for dynamic web application running under Fedora",
             "iconClass": "icon-php",
-            "tags": "startx,centos,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
-            "openshift.io/long-description": "This template provides an apache + php httpd webserver in a centos container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://gitlab.com/startx1/containers/blob/master/README.md.",
+            "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
+            "openshift.io/long-description": "This template provides an apache + php httpd webserver in a fedora container. Ready to use in openshift with a simple deployement config, or as a s2i builder for building web applications container. For more information about using this image, including OpenShift considerations, see https://gitlab.com/startx1/containers/blob/master/README.md.",
             "openshift.io/provider-display-name": "STARTX",
             "openshift.io/documentation-url": "https://gitlab.com/startx1/containers/blob/master/README.md",
             "openshift.io/support-url": "https://gitlab.com/startx1/containers/issues/new"
@@ -18,7 +18,8 @@
     "labels": {
         "template": "startx-app-phpmyadmin-build-template"
     },
-    "objects": [{
+    "objects": [
+        {
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
@@ -52,7 +53,7 @@
                             "name": "startx/app-phpmyadmin:latest"
                         }
                     }
-                }]
+                ]
             }
         },
         {
@@ -72,17 +73,19 @@
                 }
             },
             "spec": {
-                "tags": [{
-                    "name": "latest",
-                    "annotations": {
-                        "openshift.io/display-name": "Application ${APP_NAME}",
-                        "description": "Base image for the application ${APP_NAME}",
-                        "iconClass": "icon-php",
-                        "tags": "startx,centos,apache,httpd,php,application,${APP_NAME}",
-                        "supports": "http",
-                        "version": "rawhide"
+                "tags": [
+                    {
+                        "name": "latest",
+                        "annotations": {
+                            "openshift.io/display-name": "Application ${APP_NAME}",
+                            "description": "Base image for the application ${APP_NAME}",
+                            "iconClass": "icon-php",
+                            "tags": "startx,fedora,apache,httpd,php,application,${APP_NAME}",
+                            "supports": "http",
+                            "version": "rawhide"
+                        }
                     }
-                }]
+                ]
             }
         },
         {
@@ -116,7 +119,8 @@
                                     "/bin/sx-pma",
                                     "pre-deploy"
                                 ],
-                                "env": [{
+                                "env": [
+                                    {
                                         "name": "SX_VERBOSE",
                                         "value": "true"
                                     },
@@ -135,7 +139,8 @@
                                     "/bin/sx-pma",
                                     "post-deploy"
                                 ],
-                                "env": [{
+                                "env": [
+                                    {
                                         "name": "SX_VERBOSE",
                                         "value": "true"
                                     },
@@ -149,7 +154,8 @@
                         }
                     }
                 },
-                "triggers": [{
+                "triggers": [
+                    {
                         "type": "ImageChange",
                         "imageChangeParams": {
                             "automatic": true,
@@ -189,48 +195,52 @@
                         }
                     },
                     "spec": {
-                        "containers": [{
-                            "name": "${APP_NAME}",
-                            "image": " ",
-                            "env": [{
-                                "name": "SX_VERBOSE",
-                                "value": "true"
-                            }],
-                            "command": [
-                                "/bin/sx-pma"
-                            ],
-                            "args": [
-                                "run"
-                            ],
-                            "livenessProbe": {
-                                "exec": {
-                                    "command": [
-                                        "/bin/sx-pma",
-                                        "isLive"
-                                    ]
+                        "containers": [
+                            {
+                                "name": "${APP_NAME}",
+                                "image": " ",
+                                "env": [
+                                    {
+                                        "name": "SX_VERBOSE",
+                                        "value": "true"
+                                    }
+                                ],
+                                "command": [
+                                    "/bin/sx-pma"
+                                ],
+                                "args": [
+                                    "run"
+                                ],
+                                "livenessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/bin/sx-pma",
+                                            "isLive"
+                                        ]
+                                    },
+                                    "initialDelaySeconds": 4,
+                                    "timeoutSeconds": 1,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "failureThreshold": 3
                                 },
-                                "initialDelaySeconds": 4,
-                                "timeoutSeconds": 1,
-                                "periodSeconds": 10,
-                                "successThreshold": 1,
-                                "failureThreshold": 3
-                            },
-                            "readinessProbe": {
-                                "exec": {
-                                    "command": [
-                                        "/bin/sx-pma",
-                                        "isReady"
-                                    ]
+                                "readinessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/bin/sx-pma",
+                                            "isReady"
+                                        ]
+                                    },
+                                    "initialDelaySeconds": 4,
+                                    "timeoutSeconds": 1,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "failureThreshold": 3
                                 },
-                                "initialDelaySeconds": 4,
-                                "timeoutSeconds": 1,
-                                "periodSeconds": 10,
-                                "successThreshold": 1,
-                                "failureThreshold": 3
-                            },
-                            "terminationMessagePath": "/dev/termination-log",
-                            "imagePullPolicy": "Always"
-                        }],
+                                "terminationMessagePath": "/dev/termination-log",
+                                "imagePullPolicy": "Always"
+                            }
+                        ],
                         "restartPolicy": "Always",
                         "terminationGracePeriodSeconds": 30,
                         "dnsPolicy": "ClusterFirst",
@@ -268,13 +278,17 @@
                 }
             },
             "status": {
-                "ingress": [{
-                    "routerName": "router",
-                    "conditions": [{
-                        "type": "Admitted",
-                        "status": "True"
-                    }]
-                }]
+                "ingress": [
+                    {
+                        "routerName": "router",
+                        "conditions": [
+                            {
+                                "type": "Admitted",
+                                "status": "True"
+                            }
+                        ]
+                    }
+                ]
             }
         },
         {
@@ -293,11 +307,13 @@
                 }
             },
             "spec": {
-                "ports": [{
-                    "protocol": "TCP",
-                    "port": 8080,
-                    "targetPort": 8080
-                }],
+                "ports": [
+                    {
+                        "protocol": "TCP",
+                        "port": 8080,
+                        "targetPort": 8080
+                    }
+                ],
                 "selector": {
                     "app": "${APP_NAME}",
                     "deploymentconfig": "${APP_NAME}"
@@ -325,7 +341,8 @@
                 }
             },
             "spec": {
-                "triggers": [{
+                "triggers": [
+                    {
                         "type": "GitHub",
                         "github": {
                             "secret": "${WEBHOOK_TOKEN}_${APP_NAME}"
@@ -358,12 +375,14 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "startx-app-phpmyadmin:centos8"
+                            "name": "startx-app-phpmyadmin:latest"
                         },
-                        "env": [{
-                            "name": "SX_VERBOSE",
-                            "value": "true"
-                        }]
+                        "env": [
+                            {
+                                "name": "SX_VERBOSE",
+                                "value": "true"
+                            }
+                        ]
                     }
                 },
                 "output": {
@@ -384,7 +403,8 @@
             }
         }
     ],
-    "parameters": [{
+    "parameters": [
+        {
             "name": "APP_NAME",
             "displayName": "Application name",
             "description": "The name of the created application",
