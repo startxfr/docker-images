@@ -28,13 +28,8 @@
                 <h1>Congratulation !</h1>
                 <p>You are actually running an apache webserver + php <?php echo phpversion(); ?>  running under alpine 3.12. For more information about this container and how to add your content instead of this message, please read the following links.</p>
                 <p>
-<<<<<<< HEAD
-                    <a class="btn btn-primary btn-lg"href="https://github.com/startxfr/docker-images/tree/alpine3/Services/php" target="_blank" role="button">See this container Dockerfile</a>
-                    <a class="btn btn-primary btn-lg"href="https://github.com/startxfr/docker-images" target="_blank" role="button">STARTX github docker images repository</a>
-=======
                     <a class="btn btn-primary btn-lg"href="https://gitlab.com/startx1/containers/tree/alpine3/Services/php" target="_blank" role="button">See this container Dockerfile</a>
                     <a class="btn btn-primary btn-lg"href="https://gitlab.com/startx1/containers" target="_blank" role="button">STARTX github docker images repository</a>
->>>>>>> master
                     <a class="btn btn-primary btn-lg"href="https://registry.hub.docker.com/u/startx/" target="_blank" role="button">STARTX Dockerhub profile</a>
                 </p>
             </div>
