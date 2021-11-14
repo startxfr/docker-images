@@ -136,15 +136,16 @@ function DoCheckCheckRequirementsFileExecutable {
 # Display the markdown checks
 function DisplayCheckMarkdown {
     echo "======== CHECK MARKDOWN SYNTAX"
-    DoCheckMarkdown "./*.md"
-    DoCheckMarkdown "./docs/*.md"
-    DoCheckMarkdown "./docs/*/*.md"
+    DoCheckMarkdown "*.md"
+    DoCheckMarkdown "docs/*.md"
+    DoCheckMarkdown "docs/*/*.md"
 }
 
 # Perform a markdown check agaisn't a file expression
 function DoCheckMarkdown {
     echo "==== Check all markdown file coresponding to $1"
-    RESULT=$(mdl --skip-default-ruleset "$1")
+    # shellcheck disable=SC2086
+    RESULT=$(mdl --skip-default-ruleset $1)
     if [ "$SX_DEBUG" == "true" ]; then
         echo "$RESULT"
     fi
