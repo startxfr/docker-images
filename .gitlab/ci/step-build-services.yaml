@@ -144,7 +144,6 @@ build-ooconv:
     - centos8
     - centos7
     - centos6
-    - alpine
     - ubi8
     - fc35
     - fc34
