@@ -307,7 +307,7 @@ function DoImageBuildPublish {
         DoImagePushImage quay.io "$ns/$quayname" "$tag"
         echo "INFO: Retag image $IMAGE_TAG to $CI_REGISTRY/$ns/$quayname:$tag"
         docker tag "$IMAGE_TAG" "$CI_REGISTRY/$ns/$quayname:$tag"
-        DoImagePushImage $CI_REGISTRY "$ns/$quayname" "$tag"
+        DoImagePushImage "$CI_REGISTRY" "$ns/$quayname" "$tag"
     else
         echo "========> PUBLISHING Container image $IMAGE_TAG skipped because test failed"
         if [[ "$ISFATAL" = "true" ]]; then
