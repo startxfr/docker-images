@@ -11,6 +11,7 @@ variables:
   SX_VERBOSE: "true"
   SX_DEBUG: "true"
   SXDI_OSTAG: "8"
+  SXDI_OSNAME: centos
   SXDI_OTHERTAG: centos8
 
 # Default container image
