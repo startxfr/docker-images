@@ -1,3 +1,8 @@
+
+# 
+# startx gitlab library version 0.0.1-container
+# 
+
 # Default container image
 image: "quay.io/startx/runner-bash:alpine3"
 

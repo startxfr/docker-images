@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# 
+# startx gitlab library version 0.0.1-container
+# 
 
 # Display the debug checks
 function DisplayCheckDebug {
