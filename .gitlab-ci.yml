@@ -11,6 +11,7 @@ variables:
   SX_VERBOSE: "true"
   SX_DEBUG: "true"
   SXDI_OSTAG: "3"
+  SXDI_OSNAME: alpine
   SXDI_OTHERTAG: alpine3
 
 # Default container image
