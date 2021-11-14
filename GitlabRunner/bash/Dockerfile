@@ -23,7 +23,8 @@ LABEL name="$SX_ID" \
 USER root
 COPY sx /tmp/
 RUN dnf upgrade -yq --refresh && \
-    dnf install -yq --nogpgcheck \
+    dnf install -y --nogpgcheck epel-release && \
+    dnf install -y --nogpgcheck --enablerepo="epel" \
     make \
     bubblewrap \
     rsync \
@@ -31,7 +32,6 @@ RUN dnf upgrade -yq --refresh && \
     sshpass \
     yamllint \
     gem \
-    ShellCheck \
     git \
     bats && \
     dnf remove -yq --skip-broken yum-utils && \
