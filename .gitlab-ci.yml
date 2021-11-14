@@ -11,6 +11,7 @@ variables:
   SX_VERBOSE: "true"
   SX_DEBUG: "true"
   SXDI_OSTAG: "34"
+  SXDI_OSNAME: fedora
   SXDI_OTHERTAG: fc34
 
 # Default container image
