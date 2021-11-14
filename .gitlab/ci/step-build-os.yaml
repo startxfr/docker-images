@@ -34,4 +34,5 @@ container_scanning:
   stage: "build OS"
   variables:
     GIT_STRATEGY: fetch
-    DOCKER_IMAGE: quay.io/startx/${SXDI_OSNAME}:${SXDI_OSTAG}"
+    SECURE_LOG_LEVEL: debug
+    DOCKER_IMAGE: "quay.io/startx/${SXDI_OSNAME}:${SXDI_OSTAG}"
