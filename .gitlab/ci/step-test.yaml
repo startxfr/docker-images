@@ -7,7 +7,7 @@ include:
   - template: Security/License-Scanning.gitlab-ci.yml
   - template: Security/SAST.gitlab-ci.yml
   - template: Security/Secret-Detection.gitlab-ci.yml
-  # - template: Security/Container-Scanning.gitlab-ci.yml
+  - template: DAST.gitlab-ci.yml
 
 
 dependency_scanning:
@@ -20,3 +20,12 @@ sast:
     VALIDATE_SCHEMA: "true"
 .secret-analyzer:
   stage: test
+
+
+# Your selected site and scanner profiles:
+dast:
+  stage: test
+  dast_configuration:
+    site_profile: "readthedocs"
+    scanner_profile: "default"
+  

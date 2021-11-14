@@ -2,6 +2,9 @@
 ## STAGES
 ##
 
+include:
+  - template: Security/Container-Scanning.gitlab-ci.yml
+
 # Build the fedora image
 build-os:
   stage: "build OS"
@@ -25,3 +28,11 @@ build-os-latest:
     - centos8
     - alpine
     - ubi8
+
+# Scanning of the containers
+container_scanning:
+  stage: "build OS"
+  variables:
+    GIT_STRATEGY: fetch
+  only:
+    - master
