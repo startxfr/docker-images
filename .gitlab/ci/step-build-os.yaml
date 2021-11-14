@@ -2,17 +2,14 @@
 ## STAGES
 ##
 
-include:
-  - template: Security/Container-Scanning.gitlab-ci.yml
-
 # Build the fedora image
 build-os:
   stage: "build OS"
   extends: .build-image
   variables:
     SXDI_PATH: 'OS'
-    SXDI_DOCKERNAME: 'fedora'
-    SXDI_QUAYNAME: 'fedora'
+    SXDI_DOCKERNAME: ${SXDI_OSNAME}
+    SXDI_QUAYNAME: ${SXDI_OSNAME}
     SXDI_TAG: ${SXDI_OSTAG}
 
 # Build the latest of images other than fedora (master)
@@ -21,16 +18,20 @@ build-os-latest:
   extends: .build-image
   variables:
     SXDI_PATH: 'OS'
-    SXDI_DOCKERNAME: 'ubi'
-    SXDI_QUAYNAME: 'ubi'
+    SXDI_DOCKERNAME: ${SXDI_OSNAME}
+    SXDI_QUAYNAME: ${SXDI_OSNAME}
     SXDI_TAG: latest
   only:
     - centos8
     - alpine
     - ubi8
 
+include:
+  - template: Security/Container-Scanning.gitlab-ci.yml
+
 # Scanning of the containers
 container_scanning:
   stage: "build OS"
   variables:
     GIT_STRATEGY: fetch
+    DOCKER_IMAGE: quay.io/startx/${SXDI_OSNAME}:${SXDI_OSTAG}"

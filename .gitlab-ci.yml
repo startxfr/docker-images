@@ -11,6 +11,7 @@ variables:
   SX_VERBOSE: "true"
   SX_DEBUG: "true"
   SXDI_OSTAG: latest
+  SXDI_OSNAME: fedora
   SXDI_OTHERTAG: latest
 
 # Default container image
