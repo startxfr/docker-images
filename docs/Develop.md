@@ -89,7 +89,7 @@ This script assume :
 
 This script will help you load and run startx docker images in an OKD cluster
 
-### Requirements
+### Openshift requirements
 
 This script assume :
 
@@ -99,7 +99,7 @@ This script assume :
 - You have cloned this repository content (git clone https://gitlab.com/startx1/containers)
 - You are in the root directory of your cloned copy of this repository
 
-### Setup project and flavour
+### Setup project and flavour with openshift
 
 ```bash
 # setup project
@@ -112,23 +112,23 @@ This script assume :
 ./okd-helper.sh setup stage test
 ```
 
-### Loading templates and images streams
+### Loading templates and images streams with openshift
 
-#### Loading all templates and images streams
+#### Loading all templates and images streams with openshift
 
 ```bash
 # Load all images streams and all templates
 ./okd-helper.sh load
 ```
 
-#### Loading single image streams
+#### Loading single image streams with openshift
 
 ```bash
 # Load apache image streams
 ./okd-helper.sh load-is apache
 ```
 
-#### Loading single template
+#### Loading single template with openshift
 
 ```bash
 # Load apache deploy template
@@ -138,9 +138,9 @@ This script assume :
 ./okd-helper.sh load-build apache
 ```
 
-### Testing templates
+### Testing templates with openshift
 
-#### Testing single template
+#### Testing single template with openshift
 
 ```bash
 # Testing deploy template for apache
@@ -150,7 +150,7 @@ This script assume :
 ./okd-helper.sh test-build apache
 ```
 
-#### Testing all templates
+#### Testing all templates with openshift
 
 ```bash
 # Testing deploy templates
@@ -159,9 +159,9 @@ This script assume :
 ./okd-helper.sh test-build all
 ```
 
-### Full test sequence
+### Full test sequence with openshift
 
-#### Test all in one project
+#### Test all in one project with openshift
 
 ```bash
 # setup common stage and project
@@ -208,7 +208,7 @@ This script assume :
 ./okd-helper.sh test
 ```
 
-#### Test in individuals project
+#### Test in individuals project with openshift
 
 ```bash
 # setup common stage
@@ -271,7 +271,7 @@ This script assume :
 
 This script will help you load and run startx docker images on a local host (using Podman).
 
-### Requirements
+### Podman requirements
 
 This script assume :
 
@@ -280,7 +280,7 @@ This script assume :
 - You have cloned this repository content (git clone https://gitlab.com/startx1/containers)
 - You are in the root directory of your cloned copy of this repository
 
-### Setup project and flavour
+### Setup project and flavour with podman
 
 ```bash
 # setup project
@@ -290,41 +290,41 @@ This script assume :
 ./podman-helper.sh setup flavour latest
 ```
 
-### Building images
+### Building images with podman
 
-#### Build image
+#### Build image with podman
 
 ```bash
 # build apache image
 ./podman-helper.sh build apache
 ```
 
-#### Building all images
+#### Building all images with podman
 
 ```bash
 # build all images
 ./podman-helper.sh build all
 ```
 
-### Deploying images
+### Deploying images with podman
 
-#### Deploy image
+#### Deploy image with podman
 
 ```bash
 # build apache image
 ./podman-helper.sh run apache
 ```
 
-#### Deploying all images
+#### Deploying all images with podman
 
 ```bash
 # build all images
 ./podman-helper.sh run all
 ```
 
-### Full build & run sequence
+### Full build & run sequence with podman
 
-#### Start all in one project
+#### Start all in one project with podman
 
 ```bash
 # setup common project
@@ -370,7 +370,7 @@ This script assume :
 ./podman-helper.sh buildrun
 ```
 
-#### Test in individuals project
+#### Test in individuals project with podman
 
 ```bash
 # setup common stage
