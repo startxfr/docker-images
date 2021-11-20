@@ -1,5 +1,3 @@
-[![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/.gitlab/img/logo-small.svg?sanitize=true)](https://gitlab.com/startx1/containers)
-
 # STARTX Podman Helper
 
 This script will help you load and run startx docker images on a local host (using Podman).

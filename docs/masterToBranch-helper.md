@@ -1,5 +1,3 @@
-[![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/.gitlab/img/logo-small.svg?sanitize=true)](https://gitlab.com/startx1/containers)
-
 # STARTX masterToBranch Helper
 
 This script will help you propagate updates from master branch to a distribution relase branch.
