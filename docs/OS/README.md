@@ -1,4 +1,4 @@
-# OS Images
+# All Images
 
 OS Images.
 
