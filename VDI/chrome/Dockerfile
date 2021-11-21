@@ -45,7 +45,7 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
         fedora-workstation-repositories \
         dnf-plugins-core \
         pulseaudio \
-        python2-setuptools && \
+        python3-setuptools && \
     dnf config-manager --set-enabled google-chrome && \
     dnf install -yq --nogpgcheck google-chrome-stable && \
     package-cleanup --problems && \
