@@ -87,7 +87,3 @@ fedora-app-pma:
   extends:
     file: Applications/phpmyadmin/docker-compose.yml
     service: phpmyadmin
-#fedora-app-rockmongo:
-#  extends:
-#    file: Applications/rockmongo/docker-compose.yml
-#    service: rockmongo
