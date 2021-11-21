@@ -42,7 +42,7 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
         xorg-x11-server-Xvfb \
         x11vnc \
         firefox \
-        python2-setuptools && \
+        python3-setuptools && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     dnf remove -yq --skip-broken yum-utils yum && \
