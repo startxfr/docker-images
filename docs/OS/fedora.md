@@ -18,7 +18,7 @@ This container contain :
 You can use Startx Apache image in many ways :
 
 - [Image FEDORA](#image-fedora)
-  - [Container flavours= Display informations on fedora in latest version](#container-flavours-display-informations-on-fedora-in-latest-version)
+  - [Container flavours](#container-flavours)
   - [Running this image](#running-this-image)
     - [Running using docker](#running-using-docker)
     - [Running using docker-compose](#running-using-docker-compose)
@@ -36,7 +36,9 @@ You can use Startx Apache image in many ways :
 
 See more applications builders and sample on [startx docker images repository](https://gitlab.com/startx1/containers/blob/master)
 
-## Container flavours= Display informations on fedora in latest version
+## Container flavours
+
+Display informations on fedora in latest version
 
 | Docker Hub repository                                            | Distribution        | Bash   |
 | ---------------------------------------------------------------- | ------------------- | ------ |
