@@ -6,13 +6,13 @@
 
 # Global environment variables
 variables:
-  SXDI_GIT_DOMAIN: gitlab.com
-  SXDI_GIT_SSH_USER: git@gitlab.com
+  SXGLCI_GIT_DOMAIN: gitlab.com
+  SXGLCI_GIT_SSH_USER: git@gitlab.com
   SX_VERBOSE: "true"
   SX_DEBUG: "true"
-  SXDI_OSTAG: "3"
-  SXDI_OSNAME: alpine
-  SXDI_OTHERTAG: alpine3
+  SXGLCI_OSTAG: "3"
+  SXGLCI_OSNAME: alpine
+  SXGLCI_OTHERTAG: alpine3
 
 # Default container image
 image: "quay.io/startx/runner-bash:alpine3"

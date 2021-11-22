@@ -25,7 +25,6 @@ your project and start using stable or experimental applications in your applica
 | Service        | Docker.io                                                               | Quay.io                                                           | Docs                          |
 | -------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------- |
 | **PhpMyAdmin** | [`startx/app-pma`](https://hub.docker.com/r/startx/app-pma)             | [`startx/pma`](https://quay.io/repository/startx/pma)             | [manual](pma/README.md)       |
-| **RockMongo**  | [`startx/app-rockmongo`](https://hub.docker.com/r/startx/app-rockmongo) | [`startx/rockmongo`](https://quay.io/repository/startx/rockmongo) | [manual](rockmongo/README.md) |
 
 ## Available Flavours
 
@@ -39,4 +38,3 @@ your project and start using stable or experimental applications in your applica
 | Applications   | Command                                                          |
 | -------------- | ---------------------------------------------------------------- |
 | **PhpMyAdmin** | `docker run -d -p 80:80 --name="pma" startx/app-pma`             |
-| **RockMongo**  | `docker run -d -p 80:80 --name="rockmongo" startx/app-rockmongo` |

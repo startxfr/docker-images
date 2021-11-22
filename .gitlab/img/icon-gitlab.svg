@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24" height="24" version="1.1" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+<style type="text/css">
+	.st0{fill:#FAFAFA;}
+	.st1{fill:#F0F0F0;}
+	.st2{fill:#FFFFFF;}
+	.st3{fill:#E24329;}
+	.st4{fill:#FCA326;}
+	.st5{fill:#FC6D26;}
+	.st6{fill:#8C929D;}
+	.st7{fill:#2E2E2E;}
+	.st8{fill:none;stroke:#FCA326;stroke-width:16;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st9{fill:none;stroke:#FC6D26;stroke-width:16;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st10{fill:none;stroke:#E24329;stroke-width:16;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st11{fill:none;stroke:#F0F0F0;stroke-miterlimit:10;}
+	.st12{fill:#231F20;}
+	.st13{fill:none;stroke:#231F20;stroke-width:16;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st14{display:none;}
+	.st15{display:inline;opacity:0.1;fill:#E828E3;}
+	.st16{display:inline;}
+	.st17{opacity:0.1;fill:#E828E3;}
+	.st18{font-family:'SourceSansPro-Semibold';}
+	.st19{font-size:24px;}
+	.st20{display:inline;fill:#DB3B21;}
+	.st21{display:inline;fill:#FC6D26;}
+	.st22{display:inline;fill:#2E2E2E;}
+	.st23{display:inline;fill:#6E49CB;}
+	.st24{display:inline;fill:#380D75;}
+	.st25{display:inline;fill:#FCA121;}
+	.st26{opacity:0.6;fill:none;stroke:#231F20;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:12,6;}
+	.st27{fill:none;stroke:#444444;stroke-width:1.5339;stroke-miterlimit:10;}
+</style>
+<g id="a" transform="matrix(.06611 0 0 .06611 -7.4077 -6.4377)">
+	
+		
+		
+			<path id="b" class="st3" d="m292.78 434.89 62.199-191.32h-124.31z"/>
+			<path id="c" class="st4" d="m143.55 243.57-18.941 58.126c-1.714 5.278 0.137 11.104 4.661 14.394l163.51 118.8z"/>
+			<path id="d" class="st3" d="m143.55 243.57h87.12l-37.494-115.22c-1.919-5.895-10.282-5.895-12.27 0z"/>
+			<path id="e" class="st4" d="m442.1 243.57 18.873 58.126c1.714 5.278-0.137 11.104-4.661 14.394l-163.53 118.8z"/>
+			<path id="f" class="st3" d="m442.1 243.57h-87.12l37.425-115.22c1.919-5.895 10.282-5.895 12.27 0z"/>
+			<polygon class="st5" points="292.78 434.89 354.98 243.57 442.1 243.57"/>
+			<polygon class="st5" points="292.78 434.89 143.55 243.57 230.67 243.57"/>
+		
+	
+</g>
+<g id="g" class="st14">
+	<path id="h" class="st15" d="m-1 0v124h1268v-124z"/>
+	<path id="i" class="st15" d="m-1 435v124h1268v-124z"/>
+	<path id="j" class="st15" d="m261.69 434.55h62v-310h-62z"/>
+	<path id="k" class="st15" d="m462.2 560h62v-561h-62z"/>
+	<text class="st16 st18 st19" transform="translate(256.25 195)">H: 2.5 x</text>
+	<text class="st16 st18 st19" transform="translate(468.47 282.83)">1/2 x</text>
+	<text class="st16 st18 st19" transform="translate(621.29 500.5)">1x</text>
+	<text class="st16 st18 st19" transform="translate(621.29 65.499)">1x</text>
+	<path id="l" class="st15" d="m0 560h124v-561h-124z"/>
+	<text class="st16 st18 st19" transform="translate(51.288 282.83)">1x</text>
+	<path id="m" class="st15" d="m1142 560h124v-561h-124z"/>
+	<text class="st16 st18 st19" transform="translate(1191.3 282.83)">1x</text>
+</g>
+</svg>
