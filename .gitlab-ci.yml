@@ -10,9 +10,9 @@ variables:
   SXGLCI_GIT_SSH_USER: git@gitlab.com
   SX_VERBOSE: "true"
   SX_DEBUG: "true"
-  SXDI_OSTAG: "35"
-  SXDI_OSNAME: fedora
-  SXDI_OTHERTAG: fc35
+  SXGLCI_OSTAG: "35"
+  SXGLCI_OSNAME: fedora
+  SXGLCI_OTHERTAG: fc35
 
 # Default container image
 image: "quay.io/startx/runner-bash:alpine3"
