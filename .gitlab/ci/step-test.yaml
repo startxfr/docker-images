@@ -1,0 +1,33 @@
+##
+## STAGES
+##
+
+include:
+  - template: Security/Dependency-Scanning.gitlab-ci.yml
+  - template: Security/License-Scanning.gitlab-ci.yml
+  - template: Security/SAST.gitlab-ci.yml
+  - template: Security/Secret-Detection.gitlab-ci.yml
+  - template: DAST.gitlab-ci.yml
+
+
+dependency_scanning:
+  stage: test
+license_scanning:
+  stage: test
+sast:
+  stage: test
+  variables:
+    VALIDATE_SCHEMA: "true"
+.secret-analyzer:
+  stage: test
+
+
+# Your selected site and scanner profiles:
+dast:
+  stage: test
+  dast_configuration:
+    site_profile: "readthedocs"
+    scanner_profile: "default"
+  variables:
+    DAST_WEBSITE: "https://docker-images.readthedocs.io/en/latest"
+  

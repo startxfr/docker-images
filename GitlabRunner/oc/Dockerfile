@@ -1,4 +1,4 @@
-FROM quay.io/startx/fedora:32
+FROM quay.io/startx/runner-bash:fc32
 
 ENV SX_VERSION="fc32" \
     SX_TYPE="runner" \
@@ -6,7 +6,7 @@ ENV SX_VERSION="fc32" \
     SX_ID="startx/runner-oc" \
     SX_NAME="Startx OCP/K8S client gitlab runner image (fedora 32)" \
     SX_SUMMARY="Startx ocp/k8s gitlab runner based on fedora 32" \
-    SX_OC_VERSION="4.7.3"
+    SX_OC_VERSION="4.8.13"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \

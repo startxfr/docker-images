@@ -1,8 +1,9 @@
-FROM quay.io/startx/fedora:32
+FROM quay.io/startx/runner-bash:fc32
 
 ENV SX_VERSION="fc32" \
     SX_TYPE="runner" \
     SX_SERVICE="ansible" \
+    SX_UNAME="ansible" \
     SX_ID="startx/runner-ansible" \
     SX_NAME="Startx Ansible gitlab runner image (fedora 32)" \
     SX_SUMMARY="Startx ansible gitlab runner based on fedora 32" \
@@ -50,7 +51,7 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
     tar xzvf hugo_${SX_HUGO_RELEASE}_Linux-64bit.tar.gz && \
     mv hugo /usr/bin/ && \
     cd - && \
-    useradd -s /bin/bash -m -g 0 -u 1001 ansible && \
+    usermod -d /home/ansible -m -l ${SX_UNAME} user && \
     mkdir -p /.ansible && \
     chgrp -R 0 /.ansible && \
     chown -R 1001:0 /.ansible && \

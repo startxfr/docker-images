@@ -1,0 +1,38 @@
+##
+## STAGES
+##
+
+# Build the fedora image
+build-os:
+  stage: "build OS"
+  extends: .build-image
+  variables:
+    SXGLCI_PATH: 'OS'
+    SXGLCI_DOCKERNAME: ${SXGLCI_OSNAME}
+    SXGLCI_QUAYNAME: ${SXGLCI_OSNAME}
+    SXGLCI_TAG: ${SXGLCI_OSTAG}
+
+# Build the latest of images other than fedora (master)
+build-os-latest:
+  stage: "build OS"
+  extends: .build-image
+  variables:
+    SXGLCI_PATH: 'OS'
+    SXGLCI_DOCKERNAME: ${SXGLCI_OSNAME}
+    SXGLCI_QUAYNAME: ${SXGLCI_OSNAME}
+    SXGLCI_TAG: latest
+  only:
+    - centos8
+    - alpine
+    - ubi8
+
+include:
+  - template: Security/Container-Scanning.gitlab-ci.yml
+
+# Scanning of the containers
+container_scanning:
+  stage: "build OS"
+  variables:
+    GIT_STRATEGY: fetch
+    SECURE_LOG_LEVEL: debug
+    DOCKER_IMAGE: "quay.io/startx/${SXGLCI_OSNAME}:${SXGLCI_OSTAG}"

@@ -28,7 +28,7 @@
                             "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "fc26",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
@@ -36,19 +36,19 @@
                         }
                     },
                     {
-                        "name": "fc28",
+                        "name": "fc27",
                         "annotations": {
-                            "openshift.io/display-name": "PhpMyAdmin web-console (Fedora 28)",
-                            "description": "PhpMyAdmin web-console for mariadb running under Fedora 28",
+                            "openshift.io/display-name": "PhpMyAdmin web-console (Fedora 27)",
+                            "description": "PhpMyAdmin web-console for mariadb running under Fedora 27",
                             "iconClass": "icon-php",
                             "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
-                            "version": "fc28",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "version": "fc27",
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/app-phpmyadmin:fc28"
+                            "name": "startx/app-phpmyadmin:fc27"
                         }
                     },
                     {
@@ -60,7 +60,7 @@
                             "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "fc28",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
@@ -76,7 +76,7 @@
                             "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "fc29",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
@@ -84,19 +84,19 @@
                         }
                     },
                     {
-                        "name": "fc31",
+                        "name": "fc30",
                         "annotations": {
-                            "openshift.io/display-name": "PhpMyAdmin web-console (Fedora 31)",
-                            "description": "PhpMyAdmin web-console for mariadb running under Fedora 31",
+                            "openshift.io/display-name": "PhpMyAdmin web-console (Fedora 30)",
+                            "description": "PhpMyAdmin web-console for mariadb running under Fedora 30",
                             "iconClass": "icon-php",
                             "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
-                            "version": "fc31",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "version": "fc30",
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "startx/app-phpmyadmin:fc31"
+                            "name": "startx/app-phpmyadmin:fc30"
                         }
                     },
                     {
@@ -108,7 +108,7 @@
                             "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "fc31",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
@@ -124,7 +124,7 @@
                             "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "rawhide",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
@@ -140,7 +140,7 @@
                             "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "8",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
@@ -156,7 +156,7 @@
                             "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "7",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
@@ -172,7 +172,7 @@
                             "tags": "startx,fedora,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "6",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",
@@ -188,7 +188,7 @@
                             "tags": "startx,alpine,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
                             "supports": "http",
                             "version": "3",
-                            "sampleRepo": "https://github.com/startxfr/docker-images-example-mariadb.git"
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
                         },
                         "from": {
                             "kind": "DockerImage",

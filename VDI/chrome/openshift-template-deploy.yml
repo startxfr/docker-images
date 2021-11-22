@@ -12,10 +12,10 @@ metadata:
       This template provides an Chrome browser in a fedora
       container. Ready to use in openshift with a simple deployement config, or as
       a s2i builder for building personalized browser container. For more information
-      about using this image, including OpenShift considerations, see https://github.com/startxfr/docker-images/blob/master/README.md.
+      about using this image, including OpenShift considerations, see https://gitlab.com/startx1/containers/blob/master/README.md.
     openshift.io/provider-display-name: STARTX
-    openshift.io/documentation-url: https://github.com/startxfr/docker-images/blob/master/README.md
-    openshift.io/support-url: https://github.com/startxfr/docker-images/issues/new
+    openshift.io/documentation-url: https://gitlab.com/startx1/containers/blob/master/README.md
+    openshift.io/support-url: https://gitlab.com/startx1/containers/issues/new
 message:
   "The following container have been created in your project: ${APP_NAME} and
   you can use openshift console to log into."
@@ -46,7 +46,7 @@ objects:
             tags: builder,startx,fedora,chrome,vnc
             supports: vnc
             version: rawhide
-            sampleRepo: https://github.com/startxfr/docker-images-example-chrome.git
+            sampleRepo: https://gitlab.com/startx1/containers-example-chrome.git
           from:
             kind: DockerImage
             name: startx/vdi-chrome:latest

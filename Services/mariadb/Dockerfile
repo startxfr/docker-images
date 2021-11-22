@@ -51,7 +51,6 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
         mariadb-gssapi-server \
         mariadb-server-galera \
         mysql-selinux \
-        percona-xtrabackup \
         python3-mysqlclient \
         glibc-langpack-fr \
         mariadb && \

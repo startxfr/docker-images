@@ -1,0 +1,97 @@
+##
+## STAGES
+##
+
+# Build the apache image 
+build-apache:
+  stage: "build basic"
+  extends: .build-image
+  variables:
+    SXGLCI_PATH: 'Services/apache'
+    SXGLCI_DOCKERNAME: 'sv-apache'
+    SXGLCI_QUAYNAME: 'apache'
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+  only:
+    - master
+    - centos8
+    - centos7
+    - centos6
+    - alpine
+    - ubi8
+    - fc35
+    - fc34
+    - fc33
+    - fc32
+    - fc31
+    - fc30
+    - fc29
+    - fc28
+    - fc27
+    - fc26
+    - fc25
+    - fc24
+    - fc23
+    - fc22
+    - fc21
+    - fc20
+
+# Build the nodejs image 
+build-nodejs:
+  stage: "build basic"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXGLCI_PATH: 'Services/nodejs'
+    SXGLCI_DOCKERNAME: 'sv-nodejs'
+    SXGLCI_QUAYNAME: 'nodejs'
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+  only:
+    - master
+    - centos8
+    - centos7
+    - centos6
+    - alpine
+    - ubi8
+    - fc35
+    - fc34
+    - fc33
+    - fc32
+    - fc31
+    - fc30
+    - fc29
+    - fc28
+    - fc27
+    - fc26
+    - fc25
+    - fc24
+    - fc23
+    - fc22
+    - fc21
+    - fc20
+
+# Build the bash gitlab-runner image 
+build-runner-bash:
+  stage: "build basic"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXGLCI_PATH: 'GitlabRunner/bash'
+    SXGLCI_DOCKERNAME: 'runner-bash'
+    SXGLCI_QUAYNAME: 'runner-bash'
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+  only:
+    - master
+    - centos8
+    - centos7
+    - alpine
+    - ubi8
+    - fc35
+    - fc34
+    - fc33
+    - fc32
+    - fc31
+    - fc30
+    - fc29
+    - fc28
+    - fc27
+    - fc26

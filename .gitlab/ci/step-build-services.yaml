@@ -1,0 +1,225 @@
+##
+## STAGES
+##
+
+# Build the couchbase image 
+build-couchbase:
+  stage: "build Services"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXGLCI_PATH: 'Services/couchbase'
+    SXGLCI_DOCKERNAME: 'sv-couchbase'
+    SXGLCI_QUAYNAME: 'couchbase'
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+  only:
+    - master
+    - centos8
+    - centos7
+    - centos6
+    - ubi8
+    - fc35
+    - fc34
+    - fc33
+    - fc32
+    - fc31
+    - fc30
+    - fc29
+    - fc28
+    - fc27
+    - fc26
+
+# Build the mariadb image 
+build-mariadb:
+  stage: "build Services"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXGLCI_PATH: 'Services/mariadb'
+    SXGLCI_DOCKERNAME: 'sv-mariadb'
+    SXGLCI_QUAYNAME: 'mariadb'
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+  only:
+    - master
+    - centos8
+    - centos7
+    - centos6
+    - alpine
+    - ubi8
+    - fc35
+    - fc34
+    - fc33
+    - fc32
+    - fc31
+    - fc30
+    - fc29
+    - fc28
+    - fc27
+    - fc26
+    - fc25
+    - fc24
+    - fc23
+    - fc22
+
+# Build the memcache image 
+build-memcache:
+  stage: "build Services"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXGLCI_PATH: 'Services/memcache'
+    SXGLCI_DOCKERNAME: 'sv-memcache'
+    SXGLCI_QUAYNAME: 'memcache'
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+  only:
+    - master
+    - centos8
+    - centos7
+    - centos6
+    - alpine
+    - ubi8
+    - fc35
+    - fc34
+    - fc33
+    - fc32
+    - fc31
+    - fc30
+    - fc29
+    - fc28
+    - fc27
+    - fc26
+    - fc25
+    - fc24
+    - fc23
+    - fc22
+    - fc21
+    - fc20
+
+# Build the mongo image 
+build-mongo:
+  stage: "build Services"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXGLCI_PATH: 'Services/mongo'
+    SXGLCI_DOCKERNAME: 'sv-mongo'
+    SXGLCI_QUAYNAME: 'mongo'
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+  only:
+    - master
+    - centos8
+    - centos7
+    - centos6
+    - alpine
+    - ubi8
+    - fc35
+    - fc34
+    - fc33
+    - fc32
+    - fc31
+    - fc30
+    - fc29
+    - fc28
+    - fc27
+    - fc26
+    - fc25
+    - fc24
+    - fc23
+    - fc22
+    - fc21
+    - fc20
+
+# Build the ooconv image 
+build-ooconv:
+  stage: "build Services"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXGLCI_PATH: 'Services/ooconv'
+    SXGLCI_DOCKERNAME: 'sv-ooconv'
+    SXGLCI_QUAYNAME: 'ooconv'
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+  only:
+    - master
+    - centos8
+    - centos7
+    - centos6
+    - ubi8
+    - fc35
+    - fc34
+    - fc33
+    - fc32
+    - fc31
+    - fc30
+    - fc29
+    - fc28
+    - fc27
+    - fc26
+    - fc25
+    - fc24
+    - fc23
+    - fc22
+
+# Build the php image 
+build-php:
+  stage: "build Services"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXGLCI_PATH: 'Services/php'
+    SXGLCI_DOCKERNAME: 'sv-php'
+    SXGLCI_QUAYNAME: 'php'
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+  only:
+    - master
+    - centos8
+    - centos7
+    - centos6
+    - alpine
+    - ubi8
+    - fc35
+    - fc34
+    - fc33
+    - fc32
+    - fc31
+    - fc30
+    - fc29
+    - fc28
+    - fc27
+    - fc26
+    - fc25
+    - fc24
+    - fc23
+    - fc22
+    - fc21
+    - fc20
+
+# Build the postgres image 
+build-postgres:
+  stage: "build Services"
+  extends: .build-image
+  variables:
+    SXGLCI_PATH: 'Services/postgres'
+    SXGLCI_DOCKERNAME: 'sv-postgres'
+    SXGLCI_QUAYNAME: 'postgres'
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+  only:
+    - master
+    - centos8
+    - centos7
+    - centos6
+    - alpine
+    - ubi8
+    - fc35
+    - fc34
+    - fc33
+    - fc32
+    - fc31
+    - fc30
+    - fc29
+    - fc28
+    - fc27
+    - fc26
+    - fc25
+    - fc24
+    - fc23

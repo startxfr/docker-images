@@ -1,10 +1,10 @@
-<img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/travis/logo-small.svg?sanitize=true">
+<img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/.gitlab/img/logo-small.svg?sanitize=true">
 
 # Image CENTOS
 
-[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://github.com/startxfr/docker-images/tree/master/OS/)
+[![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://gitlab.com/startx1/containers) [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://gitlab.com/startx1/containers/tree/master/OS/)
 
-[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://github.com/startxfr/docker-images) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/centos.svg)](https://hub.docker.com/r/startx/centos) [![Docker apache pulls](https://img.shields.io/docker/pulls/startx/centos)](https://hub.docker.com/r/startx/centos) [![Docker Repository on Quay](https://quay.io/repository/startx/apache/status "Docker Repository on Quay")](https://quay.io/repository/startx/apache)
+[![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://gitlab.com/startx1/containers) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Dockerhub Registry](https://img.shields.io/docker/build/startx/centos.svg)](https://hub.docker.com/r/startx/centos) [![Docker apache pulls](https://img.shields.io/docker/pulls/startx/centos)](https://hub.docker.com/r/startx/centos) [![Docker Repository on Quay](https://quay.io/repository/startx/apache/status "Docker Repository on Quay")](https://quay.io/repository/startx/apache)
 
 Startx centos is a base container used for all startx services and applications published in
 [Dockerhub registry](https://hub.docker.com/u/startx) or [Quay registry](https://quay.io/user/startx).
@@ -34,7 +34,7 @@ You can use Startx Apache image in many ways :
     - [Build & run a container using `docker`](#build--run-a-container-using-docker)
     - [Build & run a container using `docker-compose`](#build--run-a-container-using-docker-compose)
 
-See more applications builders and sample on [startx docker images repository](https://github.com/startxfr/docker-images/blob/master)
+See more applications builders and sample on [startx docker images repository](https://gitlab.com/startx1/containers/blob/master)
 
 ## Container flavours
 
@@ -176,7 +176,7 @@ Then you can use this image as an s2i builder image
 s2i build . startx/centos:latest startx-bash-myapp
 docker run --rm -i -t startx-bash-myapp
 # With startx application sample code repository
-s2i build https://github.com/startxfr/docker-images-example-bash startx/centos startx-bash-sample
+s2i build https://gitlab.com/startx1/containers-example-bash startx/centos startx-bash-sample
 docker run --rm -i -t startx-bash-sample
 ```
 
@@ -225,7 +225,7 @@ FROM quay.io/startx/centos:latest
 ## For advanced users
 
 You can contribute or start this container initiative locally.
-[Follow theses instructions](https://github.com/startxfr/docker-images#setup-your-working-environment-mandatory) to setup a working environment.
+[Follow theses instructions](https://gitlab.com/startx1/containers#setup-your-working-environment-mandatory) to setup a working environment.
 
 This section will help you if you want to :
 

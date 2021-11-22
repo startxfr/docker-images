@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# This is the GitLab CI/CD configuration file for sxcm kubernetes cluster manager.
+#
+# For more information, see: https://sxcm.readthedocs.io
+
+# Global environment variables
+variables:
+  SXGLCI_GIT_DOMAIN: gitlab.com
+  SXGLCI_GIT_SSH_USER: git@gitlab.com
+  SX_VERBOSE: "true"
+  SX_DEBUG: "true"
+  SXGLCI_OSTAG: "32"
+  SXGLCI_OSNAME: fedora
+  SXGLCI_OTHERTAG: fc32
+
+# Default container image
+image: "quay.io/startx/runner-bash:alpine3"
+
+# Include library
+include:
+  - local: .gitlab/ci/startx-library.yaml
+  - local: .gitlab/ci/step-check.yaml
+  - local: .gitlab/ci/step-test.yaml
+  - local: .gitlab/ci/step-build-os.yaml
+  - local: .gitlab/ci/step-build-basic.yaml
+  - local: .gitlab/ci/step-build-services.yaml
+  - local: .gitlab/ci/step-build-runners.yaml
+  - local: .gitlab/ci/step-build-vdi.yaml
+  - local: .gitlab/ci/step-build-application.yaml
+
+# Stagging for this pipeline
+stages:
+  - "check"
+  - "test"
+  - "build OS"
+  - "build basic"
+  - "build Services"
+  - "build Runners"
+  - "build VDI"
+  - "build Application"
