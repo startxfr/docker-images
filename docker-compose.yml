@@ -92,7 +92,3 @@ ubi8-app-pma:
   extends:
     file: Applications/phpmyadmin/docker-compose.yml
     service: phpmyadmin
-#ubi8-app-rockmongo:
-#  extends:
-#    file: Applications/rockmongo/docker-compose.yml
-#    service: rockmongo
