@@ -27,6 +27,8 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | [`startx/sv-ooconv:22`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 22      |             |         |
 | [`startx/sv-ooconv:21`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 21      |             |         |
 | [`startx/sv-ooconv:20`](https://hub.docker.com/r/startx/sv-ooconv)      | Fedora core 20      |             |         |
+| [`startx/sv-ooconv:alma8`](https://hub.docker.com/r/startx/sv-ooconv)   | Alma 8              | 6.3.6.2     | 0.7     |
+| [`startx/sv-ooconv:rocky8`](https://hub.docker.com/r/startx/sv-ooconv)  | Rocky 8             | 6.3.6.2     | 0.7     |
 | [`startx/sv-ooconv:centos8`](https://hub.docker.com/r/startx/sv-ooconv) | Centos 8            | 6.3.6.2     | 0.7     |
 | [`startx/sv-ooconv:centos7`](https://hub.docker.com/r/startx/sv-ooconv) | Centos 7            | 5.3         | 0.7     |
 | [`startx/sv-ooconv:centos6`](https://hub.docker.com/r/startx/sv-ooconv) | Centos 6            | 4.3.7.2     |         |
@@ -119,11 +121,11 @@ CMD ["/bin/sx", "run"]
 This container is based on [startx fedora container](https://hub.docker.com/r/startx/fedora) who came with
 some [additional environment variable](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable)
 
-| Variable                       | Type   | Mandatory | Description                                                                                           |
-| ------------------------------ | ------ | --------- | ----------------------------------------------------------------------------------------------------- |
+| Variable                       | Type   | Mandatory | Description                                                                                       |
+| ------------------------------ | ------ | --------- | ------------------------------------------------------------------------------------------------- |
 | <i>base image environement</i> |        |           | [see environment list](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable) |
-| HOSTNAME                       | `auto` | `auto`    | Container unique id automatically assigned by docker daemon at startup                                |
-| LOG_PATH                       | `auto` | `auto`    | default set to /var/log/ooconv and used as a volume mountpoint                                        |
+| HOSTNAME                       | `auto` | `auto`    | Container unique id automatically assigned by docker daemon at startup                            |
+| LOG_PATH                       | `auto` | `auto`    | default set to /var/log/ooconv and used as a volume mountpoint                                    |
 
 ## Exposed port
 

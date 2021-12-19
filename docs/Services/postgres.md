@@ -52,6 +52,8 @@ See more databases builders and sample on [startx docker images repository](http
 | [`startx/sv-postgres:22`](https://hub.docker.com/r/startx/sv-postgres)      | Fedora core 22      |          |
 | [`startx/sv-postgres:21`](https://hub.docker.com/r/startx/sv-postgres)      | Fedora core 21      |          |
 | [`startx/sv-postgres:20`](https://hub.docker.com/r/startx/sv-postgres)      | Fedora core 20      |          |
+| [`startx/sv-postgres:alma8`](https://hub.docker.com/r/startx/sv-postgres) | Alma 8            | 10.15    |
+| [`startx/sv-postgres:rocky8`](https://hub.docker.com/r/startx/sv-postgres) | Rocky 8            | 10.15    |
 | [`startx/sv-postgres:centos8`](https://hub.docker.com/r/startx/sv-postgres) | Centos 8            | 10.15    |
 | [`startx/sv-postgres:centos7`](https://hub.docker.com/r/startx/sv-postgres) | Centos 7            | 9.2.24   |
 | [`startx/sv-postgres:centos6`](https://hub.docker.com/r/startx/sv-postgres) | Centos 6            | 8.4.20   |

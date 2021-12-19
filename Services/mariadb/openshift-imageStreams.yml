@@ -172,6 +172,34 @@ items:
           from:
             kind: DockerImage
             name: startx/sv-mariadb:ubi8
+        - name: alma8
+          annotations:
+            openshift.io/display-name: S2I Startx Mariadb Database (Alma 8)
+            description:
+              MariaDB server builder for simple SQL database running under
+              Alma 8
+            iconClass: icon-mariadb
+            tags: builder,startx,alma,mariadb,sql
+            supports: mysql
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
+          from:
+            kind: DockerImage
+            name: startx/sv-mariadb:alma8
+        - name: rocky8
+          annotations:
+            openshift.io/display-name: S2I Startx Mariadb Database (Rocky 8)
+            description:
+              MariaDB server builder for simple SQL database running under
+              Rocky 8
+            iconClass: icon-mariadb
+            tags: builder,startx,rocky,mariadb,sql
+            supports: mysql
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
+          from:
+            kind: DockerImage
+            name: startx/sv-mariadb:rocky8
         - name: centos8
           annotations:
             openshift.io/display-name: S2I Startx Mariadb Database (Centos 8)
