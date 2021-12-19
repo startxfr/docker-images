@@ -13,6 +13,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | Docker Hub repository                                                     | Content             | Firefox       |
 | ------------------------------------------------------------------------- | ------------------- | ------------- |
 | [`startx/vdi-chrome:latest`](https://hub.docker.com/r/startx/vdi-chrome)  | Fedora core rawhide | 90.0.4430.212 |
+| [`startx/vdi-chrome:fc36`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 36      | 90.0.4430.212 |
 | [`startx/vdi-chrome:fc35`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 35      | 90.0.4430.212 |
 | [`startx/vdi-chrome:fc34`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 34      | 90.0.4430.212 |
 | [`startx/vdi-chrome:fc33`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 33      | 90.0.4430.212 |
@@ -125,15 +126,15 @@ CMD ["/bin/sx", "run"]
 This container is based on [startx fedora container](https://hub.docker.com/r/startx/fedora) who came with
 some [additional environment variable](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable)
 
-| Variable                       | Type          | Mandatory | Description                                                                                           |
-| ------------------------------ | ------------- | --------- | ----------------------------------------------------------------------------------------------------- |
+| Variable                       | Type          | Mandatory | Description                                                                                       |
+| ------------------------------ | ------------- | --------- | ------------------------------------------------------------------------------------------------- |
 | <i>base image environement</i> |               |           | [see environment list](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable) |
-| SERVER_NAME                    | `string`      | `no`      | Server name for this container. If no name localhost will be assigned                                 |
-| HOSTNAME                       | `auto`        | `auto`    | Container unique id automatically assigned by docker daemon at startup                                |
-| LOG_PATH                       | `auto`        | `auto`    | default set to /var/log/chrome and used as a volume mountpoint                                        |
-| APP_PATH                       | `auto`        | `auto`    | default set to /data and used as a volume mountpoint                                                  |
-| SX_CHROME_SCREEN_RES_X         | `1024x768x24` | `auto`    | Define the screen resolution for X server                                                             |
-| SX_CHROME_SCREEN_RES_CHROME    | `1024,768`    | `auto`    | Define the screen resolution for Chrome GUI window                                                    |
+| SERVER_NAME                    | `string`      | `no`      | Server name for this container. If no name localhost will be assigned                             |
+| HOSTNAME                       | `auto`        | `auto`    | Container unique id automatically assigned by docker daemon at startup                            |
+| LOG_PATH                       | `auto`        | `auto`    | default set to /var/log/chrome and used as a volume mountpoint                                    |
+| APP_PATH                       | `auto`        | `auto`    | default set to /data and used as a volume mountpoint                                              |
+| SX_CHROME_SCREEN_RES_X         | `1024x768x24` | `auto`    | Define the screen resolution for X server                                                         |
+| SX_CHROME_SCREEN_RES_CHROME    | `1024,768`    | `auto`    | Define the screen resolution for Chrome GUI window                                                |
 
 ## Exposed port
 
