@@ -1,12 +1,12 @@
-FROM quay.io/startx/runner-bash:fc35
+FROM quay.io/startx/runner-bash:fc36
 
-ENV SX_VERSION="fc35" \
+ENV SX_VERSION="fc36" \
     SX_TYPE="runner" \
     SX_SERVICE="ansible" \
     SX_UNAME="ansible" \
     SX_ID="startx/runner-ansible" \
-    SX_NAME="Startx Ansible gitlab runner image (fedora 35)" \
-    SX_SUMMARY="Startx ansible gitlab runner based on fedora 35" \
+    SX_NAME="Startx Ansible gitlab runner image (fedora 36)" \
+    SX_SUMMARY="Startx ansible gitlab runner based on fedora 36" \
     SX_HUGO_RELEASE="0.83.1"
 
 LABEL name="$SX_ID" \

@@ -1,11 +1,11 @@
-FROM quay.io/startx/fedora:35
+FROM quay.io/startx/fedora:36
 
-ENV SX_VERSION="fc35" \
+ENV SX_VERSION="fc36" \
     SX_TYPE="service" \
     SX_SERVICE="mongo" \
     SX_ID="startx/sv-mongo" \
-    SX_NAME="Startx MongoDB service image (fedora 35)" \
-    SX_SUMMARY="Startx mongo service based on fedora 35" \
+    SX_NAME="Startx MongoDB service image (fedora 36)" \
+    SX_SUMMARY="Startx mongo service based on fedora 36" \
     LOG_PATH=/var/log/mongodb \
     MONGO_RUNTIME=/usr/bin/mongod \
     MONGO_USER=mongod \

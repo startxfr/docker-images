@@ -1,11 +1,11 @@
-FROM quay.io/startx/fedora:35
+FROM quay.io/startx/fedora:36
 
-ENV SX_VERSION="fc35" \
+ENV SX_VERSION="fc36" \
     SX_TYPE="service" \
     SX_SERVICE="memcache" \
     SX_ID="startx/sv-memcache" \
-    SX_NAME="Startx Memcached service image (fedora 35)" \
-    SX_SUMMARY="Startx Memcached service based on fedora 35"
+    SX_NAME="Startx Memcached service image (fedora 36)" \
+    SX_SUMMARY="Startx Memcached service based on fedora 36"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \

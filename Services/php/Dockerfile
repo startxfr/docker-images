@@ -1,11 +1,11 @@
-FROM quay.io/startx/apache:fc35
+FROM quay.io/startx/apache:fc36
 
-ENV SX_VERSION="fc35" \
+ENV SX_VERSION="fc36" \
     SX_TYPE="service" \
     SX_SERVICE="php" \
     SX_ID="startx/sv-php" \
-    SX_NAME="Startx Apache-PHP service image (fedora 35)" \
-    SX_SUMMARY="Startx apache-php service based on fedora 35" \
+    SX_NAME="Startx Apache-PHP service image (fedora 36)" \
+    SX_SUMMARY="Startx apache-php service based on fedora 36" \
     SX_PHPSESS_PATH="/var/lib/php/session" \
     SX_PHP_TMPPATH="/tmp"
 

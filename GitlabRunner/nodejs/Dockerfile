@@ -1,13 +1,13 @@
-FROM quay.io/startx/nodejs:fc35
+FROM quay.io/startx/nodejs:fc36
 
-ENV SX_VERSION="fc35" \
+ENV SX_VERSION="fc36" \
     SX_TYPE="runner" \
     SX_SERVICE="nodejs" \
     SX_UID=1001 \
     SX_UNAME="user" \
     SX_ID="startx/runner-nodejs" \
-    SX_NAME="Startx Nodejs gitlab runner image (fedora 35)" \
-    SX_SUMMARY="Startx nodejs gitlab runner based on fedora 35"
+    SX_NAME="Startx Nodejs gitlab runner image (fedora 36)" \
+    SX_SUMMARY="Startx nodejs gitlab runner based on fedora 36"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \

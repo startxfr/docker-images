@@ -1,11 +1,11 @@
-FROM fedora:35
+FROM fedora:36
 
 ENV SX_VERSION="latest" \
     SX_TYPE="OS" \
     SX_SERVICE="fedora" \
     SX_ID="startx/fedora" \
-    SX_NAME="Startx OS base image (fedora 35)" \
-    SX_SUMMARY="Startx OS base image based on fedora 35" \
+    SX_NAME="Startx OS base image (fedora 36)" \
+    SX_SUMMARY="Startx OS base image based on fedora 36" \
     SX_VERBOSE=true \
     SX_DEBUG=false \
     APP_PATH="/app" \

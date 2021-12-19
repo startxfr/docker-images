@@ -1,11 +1,11 @@
-FROM quay.io/startx/fedora:35
+FROM quay.io/startx/fedora:36
 
-ENV SX_VERSION="fc35" \
+ENV SX_VERSION="fc36" \
     SX_TYPE="service" \
     SX_SERVICE="apache" \
     SX_ID="startx/sv-apache" \
-    SX_NAME="Startx Apache service image (fedora 35)" \
-    SX_SUMMARY="Startx apache service based on fedora 35" \
+    SX_NAME="Startx Apache service image (fedora 36)" \
+    SX_SUMMARY="Startx apache service based on fedora 36" \
     HTTPDCONF=/etc/httpd/conf.d/app.conf \
     LOG_PATH=/var/log/httpd \
     APP_PATH=/app \

@@ -1,11 +1,11 @@
-FROM quay.io/startx/fedora:35
+FROM quay.io/startx/fedora:36
 
-ENV SX_VERSION="fc35" \
+ENV SX_VERSION="fc36" \
     SX_TYPE="service" \
     SX_SERVICE="mariadb" \
     SX_ID="startx/sv-mariadb" \
-    SX_NAME="Startx Mariadb service image (fedora 35)" \
-    SX_SUMMARY="Startx mariadb service based on fedora 35" \
+    SX_NAME="Startx Mariadb service image (fedora 36)" \
+    SX_SUMMARY="Startx mariadb service based on fedora 36" \
     MY_CONF=/etc/my.cnf \
     DATA_PATH=/data \
     LOG_PATH=/var/log/mariadb \
