@@ -3,7 +3,7 @@ ORIGIN_REPO_URL=https://startxfr1@gitlab.com/startx1/containers.git
 
 # check if git is installed
 function checkGitInstalled {
-    retn=`git --version | grep version`
+    retn=$(git --version | grep version)
     if [ $? != 0 ]; then
         echo "git is not installed."
         echo "Install git client first"
@@ -13,7 +13,7 @@ function checkGitInstalled {
 
 # check if is in git directory
 function checkDirectoryIsGit {
-    retn=`git status &>/dev/null`
+    retn=$(git status &>/dev/null)
     if [ $? != "0" ]; then
         echo "your are not in a git repository"
         echo "please run 'git clone $ORIGIN_REPO_URL docker-images && cd docker-images' first"
@@ -23,8 +23,8 @@ function checkDirectoryIsGit {
 
 # check if git repo is the good one
 function checkGitRepoIsOrigin {
-    retn=`git remote show origin | grep 'Fetch URL: ' | sed 's/ *//g' | cut -c 10-`
-    if [ $retn != "$ORIGIN_REPO_URL" ]; then
+    retn=$(git remote show origin | grep 'Fetch URL: ' | sed 's/ *//g' | cut -c 10-)
+    if [ "$retn" != "$ORIGIN_REPO_URL" ]; then
         echo "your are not in the $ORIGIN_REPO_URL repo"
         echo "please run 'mv ..' first"
         exit 3;
@@ -34,12 +34,12 @@ function checkGitRepoIsOrigin {
 # check if git branch is master
 function checkGitBranchIsMaster {
     git branch | grep '* master' &> /tmp/aaa
-    if [[ `cat /tmp/aaa` != '* master' ]]; then
+    if [[ $(cat /tmp/aaa) != '* master' ]]; then
         echo "your are not in the master branch"
         echo "please run 'git checkout master' first"
         git checkout master
         git branch | grep '* master' &> /tmp/aaa
-        if [[ `cat /tmp/aaa` != '* master' ]]; then
+        if [[ $(cat /tmp/aaa) != '* master' ]]; then
             echo "your are not in the master branch"
             echo "please run 'git checkout master' first"
             exit 4;
@@ -50,7 +50,7 @@ function checkGitBranchIsMaster {
 
 # check if git branch has no file to commit
 function checkGitBranchIsCommited {
-    retn=`git status -s | wc -l`
+    retn=$(git status -s | wc -l)
     if [ $retn -gt 0 ]; then
         echo "There is some file waiting for commit"
         echo "please run 'git commit' first"
