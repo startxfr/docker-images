@@ -1,4 +1,4 @@
-centos8:
+rocky8:
   extends:
     file: OS/docker-compose.yml
-    service: centos8
+    service: rocky8

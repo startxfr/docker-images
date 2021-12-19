@@ -1,11 +1,11 @@
-FROM quay.io/startx/centos:8
+FROM quay.io/startx/rocky:8
 
-ENV SX_VERSION="centos8" \
+ENV SX_VERSION="rocky8" \
     SX_TYPE="desktop" \
     SX_SERVICE="firefox" \
     SX_ID="startx/vdi-firefox" \
-    SX_NAME="Startx Firefox VDI image (centos 8)" \
-    SX_SUMMARY="Startx firefox container-based desktop application based on centos 8" \
+    SX_NAME="Startx Firefox VDI image (rocky 8)" \
+    SX_SUMMARY="Startx firefox container-based desktop application based on rocky 8" \
     SX_FIREFOX_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
     LOG_PATH=/var/log/firefox \
     APP_PATH=/home/firefox \
@@ -22,7 +22,7 @@ LABEL name="$SX_ID" \
     maintainer="Startx <dev@startx.fr>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
-    io.openshift.tags="startx,os,centos,firefox,vnc,X11" \
+    io.openshift.tags="startx,os,rocky,firefox,vnc,X11" \
     io.openshift.non-scalable="false" \
     io.openshift.min-memory="712Mi" \
     io.openshift.min-cpu="600m" \

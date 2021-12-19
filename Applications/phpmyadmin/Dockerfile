@@ -1,11 +1,11 @@
-FROM quay.io/startx/php:centos8
+FROM quay.io/startx/php:rocky8
 
-ENV SX_VERSION="centos8" \
+ENV SX_VERSION="rocky8" \
     SX_TYPE="application" \
     SX_SERVICE="phpmyadmin" \
     SX_ID="startx/app-phpmyadmin" \
-    SX_NAME="Startx PhpMyAdmin service image (centos 8)" \
-    SX_SUMMARY="Startx phpmyadmin service based on centos 8" \
+    SX_NAME="Startx PhpMyAdmin service image (rocky 8)" \
+    SX_SUMMARY="Startx phpmyadmin service based on rocky 8" \
     MYSQL_LANG=fr_FR
 
 LABEL name="$SX_ID" \
@@ -16,7 +16,7 @@ LABEL name="$SX_ID" \
     maintainer="Startx <dev@startx.fr>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
-    io.openshift.tags="startx,os,centos,apache,httpd,php,phpmyadmin,mysql,mariadb" \
+    io.openshift.tags="startx,os,rocky,apache,httpd,php,phpmyadmin,mysql,mariadb" \
     io.openshift.non-scalable="false" \
     io.openshift.wants="mysql" \
     io.openshift.min-memory="128Mi" \

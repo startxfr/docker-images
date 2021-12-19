@@ -1,11 +1,11 @@
-FROM quay.io/startx/centos:8
+FROM quay.io/startx/rocky:8
 
-ENV SX_VERSION="centos8" \
+ENV SX_VERSION="rocky8" \
     SX_TYPE="service" \
     SX_SERVICE="apache" \
     SX_ID="startx/sv-apache" \
-    SX_NAME="Startx Apache service image (centos 8)" \
-    SX_SUMMARY="Startx apache service based on centos 8" \
+    SX_NAME="Startx Apache service image (rocky 8)" \
+    SX_SUMMARY="Startx apache service based on rocky 8" \
     HTTPDCONF=/etc/httpd/conf.d/app.conf \
     LOG_PATH=/var/log/httpd \
     APP_PATH=/app \
@@ -23,7 +23,7 @@ LABEL name="$SX_ID" \
     maintainer="Startx <dev@startx.fr>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
-    io.openshift.tags="startx,os,centos,apache,httpd" \
+    io.openshift.tags="startx,os,rocky,apache,httpd" \
     io.openshift.non-scalable="false" \
     io.openshift.min-memory="128Mi" \
     io.openshift.min-cpu="100m" \

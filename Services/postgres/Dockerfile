@@ -1,11 +1,11 @@
-FROM quay.io/startx/centos:8
+FROM quay.io/startx/rocky:8
 
-ENV SX_VERSION="centos8" \
+ENV SX_VERSION="rocky8" \
     SX_TYPE="service" \
     SX_SERVICE="postgres" \
     SX_ID="startx/sv-postgres" \
-    SX_NAME="Startx Postgres service image (centos 8)" \
-    SX_SUMMARY="Startx postgres service based on centos 8" \
+    SX_NAME="Startx Postgres service image (rocky 8)" \
+    SX_SUMMARY="Startx postgres service based on rocky 8" \
     DATA_PATH=/data \
     LOG_PATH=/var/log/postgres
 
@@ -17,7 +17,7 @@ LABEL name="$SX_ID" \
     maintainer="Startx <dev@startx.fr>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
-    io.openshift.tags="startx,os,centos,database,postgresql" \
+    io.openshift.tags="startx,os,rocky,database,postgresql" \
     io.openshift.non-scalable="true" \
     io.openshift.min-memory="512Mi" \
     io.openshift.min-cpu="600m" \

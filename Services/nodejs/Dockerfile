@@ -1,11 +1,11 @@
-FROM quay.io/startx/centos:8
+FROM quay.io/startx/rocky:8
 
-ENV SX_VERSION="centos8" \
+ENV SX_VERSION="rocky8" \
     SX_TYPE="service" \
     SX_SERVICE="nodejs" \
     SX_ID="startx/sv-nodejs" \
-    SX_NAME="Startx Nodejs service image (centos 8)" \
-    SX_SUMMARY="Startx nodejs service based on centos 8" \
+    SX_NAME="Startx Nodejs service image (rocky 8)" \
+    SX_SUMMARY="Startx nodejs service based on rocky 8" \
     LOG_PATH=/var/log/nodejs \
     APP_PATH=/app \
     DATA_PATH=/data \
@@ -19,7 +19,7 @@ LABEL name="$SX_ID" \
     maintainer="Startx <dev@startx.fr>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
-    io.openshift.tags="startx,os,centos,nodejs,httpd" \
+    io.openshift.tags="startx,os,rocky,nodejs,httpd" \
     io.openshift.non-scalable="false" \
     io.openshift.min-memory="64Mi" \
     io.openshift.min-cpu="100m" \

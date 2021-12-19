@@ -1,13 +1,13 @@
-FROM quay.io/startx/apache:centos8
+FROM quay.io/startx/apache:rocky8
 
-ENV SX_VERSION="centos8" \
+ENV SX_VERSION="rocky8" \
     SX_TYPE="runner" \
     SX_SERVICE="apache" \
     SX_UID=1001 \
     SX_UNAME="user" \
     SX_ID="startx/runner-apache" \
-    SX_NAME="Startx Apache gitlab runner image (centos 8)" \
-    SX_SUMMARY="Startx apache gitlab runner based on centos 8"
+    SX_NAME="Startx Apache gitlab runner image (rocky 8)" \
+    SX_SUMMARY="Startx apache gitlab runner based on rocky 8"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \

@@ -1,11 +1,11 @@
-FROM centos:8
+FROM rockylinux/rockylinux:8
 
-ENV SX_VERSION="centos8" \
+ENV SX_VERSION="rocky8" \
     SX_TYPE="OS" \
-    SX_SERVICE="centos" \
-    SX_ID="startx/centos" \
-    SX_NAME="Startx OS base image (centos 8)" \
-    SX_SUMMARY="Startx OS base image based on centos 8" \
+    SX_SERVICE="rocky" \
+    SX_ID="startx/rocky" \
+    SX_NAME="Startx OS base image (rocky 8)" \
+    SX_SUMMARY="Startx OS base image based on rocky 8" \
     SX_VERBOSE=true \
     SX_DEBUG=false \
     APP_PATH="/app" \
@@ -23,7 +23,7 @@ LABEL name="$SX_ID" \
     maintainer="Startx <dev@startx.fr>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
-    io.openshift.tags="startx,os,centos" \
+    io.openshift.tags="startx,os,rocky" \
     io.openshift.non-scalable="false" \
     io.openshift.min-memory="32Mi" \
     io.openshift.min-cpu="50m" \
