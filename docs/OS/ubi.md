@@ -15,7 +15,7 @@ This container contain :
 - fundamentals tools (ex: pwgen, tar, zip) updated every week
 - usefull tools (psmisc, procps, coreutils, findutils, wget, curl, vi, bash-completion) only for the `:latest` flavour.
 
-You can use Startx Apache image in many ways :
+You can use Startx image in many ways :
 
 - [Docker OS Images : UBI](#docker-os-images--ubi)
   - [Container flavours](#container-flavours)

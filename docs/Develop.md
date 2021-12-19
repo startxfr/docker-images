@@ -104,10 +104,10 @@ This script assume :
 ```bash
 # setup project
 ./okd-helper.sh setup project fedora
-
-# setup flavour (alpine3, ubi8, centos8, centos7, centos6,
-    - fc36, fc35, fc34, fc33, fc32, fc31, fc30, fc29 or fc28)
-./okd-helper.sh setup flavour latest
+./okd-helper.sh setup project centos
+./okd-helper.sh setup project rocky
+./okd-helper.sh setup project alma
+./okd-helper.sh setup project ubi
 
 # setup stage
 ./okd-helper.sh setup stage test
@@ -171,6 +171,12 @@ This script assume :
 # Start full test for fedora rawhide containers
 ./okd-helper.sh setup flavour fedora latest
 ./okd-helper.sh test
+# Start full test for alma containers
+./okd-helper.sh setup flavour alma
+./okd-helper.sh test
+# Start full test for rocky containers
+./okd-helper.sh setup flavour rocky
+./okd-helper.sh test
 # Start full test for centos 8 containers
 ./okd-helper.sh setup flavour centos8
 ./okd-helper.sh test
@@ -220,6 +226,14 @@ This script assume :
 # Start full test for fedora rawhide containers (dedicated project)
 ./okd-helper.sh setup project fedora-latest
 ./okd-helper.sh setup flavour latest
+./okd-helper.sh test
+# Start full test for rocky containers (dedicated project)
+./okd-helper.sh setup project rocky-8
+./okd-helper.sh setup flavour rocky8
+./okd-helper.sh test
+# Start full test for alma containers (dedicated project)
+./okd-helper.sh setup project alma-8
+./okd-helper.sh setup flavour alma8
 ./okd-helper.sh test
 # Start full test for centos 8 containers (dedicated project)
 ./okd-helper.sh setup project centos-8
@@ -294,7 +308,7 @@ This script assume :
 # setup project
 ./podman-helper.sh setup project startx
 
-# setup flavour (alpine3, ubi8, centos8, centos7, centos6, fc36, fc35, fc34, fc33, fc32, fc31, fc30, fc29 or fc28)
+# setup flavour (alpine3, ubi8, centos8, centos7, centos6, alma, rocky, fc36, fc35, fc34, fc33, fc32, fc31, fc30, fc29 or fc28)
 ./podman-helper.sh setup flavour latest
 ```
 
@@ -339,6 +353,12 @@ This script assume :
 ./podman-helper.sh setup project test
 # Start full test for fedora rawhide containers
 ./podman-helper.sh setup flavour latest
+./podman-helper.sh buildrun
+# Start full test for alma 8 containers
+./podman-helper.sh setup flavour alma8
+./podman-helper.sh buildrun
+# Start full test for rocky 8 containers
+./podman-helper.sh setup flavour rocky8
 ./podman-helper.sh buildrun
 # Start full test for centos 8 containers
 ./podman-helper.sh setup flavour centos8
@@ -388,6 +408,14 @@ This script assume :
 # Start full test for fedora rawhide containers (dedicated project)
 ./podman-helper.sh setup project fedora-latest
 ./podman-helper.sh setup flavour latest
+./podman-helper.sh buildrun
+# Start full test for alma 8 containers (dedicated project)
+./podman-helper.sh setup project alma-8
+./podman-helper.sh setup flavour alma8
+./podman-helper.sh buildrun
+# Start full test for rocky 8 containers (dedicated project)
+./podman-helper.sh setup project rocky-8
+./podman-helper.sh setup flavour rocky8
 ./podman-helper.sh buildrun
 # Start full test for centos 8 containers (dedicated project)
 ./podman-helper.sh setup project centos-8
