@@ -16,6 +16,8 @@ build-runner-ansible:
     - master
     - centos8
     - centos7
+    - alma8
+    - rocky8
     - alpine
     - ubi8
     - fc36
@@ -44,6 +46,8 @@ build-runner-apache:
     - master
     - centos8
     - centos7
+    - alma8
+    - rocky8
     - alpine
     - ubi8
     - fc36
@@ -72,6 +76,8 @@ build-runner-nodejs:
     - master
     - centos8
     - centos7
+    - alma8
+    - rocky8
     - alpine
     - ubi8
     - fc36
@@ -100,6 +106,8 @@ build-runner-oc:
     - master
     - centos8
     - centos7
+    - alma8
+    - rocky8
     - alpine
     - ubi8
     - fc36
@@ -127,6 +135,8 @@ build-runner-php:
     - master
     - centos8
     - centos7
+    - alma8
+    - rocky8
     - alpine
     - ubi8
     - fc36
