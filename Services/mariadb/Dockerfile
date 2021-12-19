@@ -45,8 +45,7 @@ RUN apk --no-cache add mariadb mariadb-client mysql && \
     chown -R mysql:mysql $LOG_PATH $DATA_PATH $LOADSQL_PATH && \
     chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* /var/lib/mysql $RUN_BIN /run/mysqld $MY_CONF && \
     chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* /var/lib/mysql $RUN_BIN /run/mysqld $MY_CONF && \
-    chmod -R ugo+x /bin/sx* && \
-    chmod ug+rw $MY_CONF
+    chmod -R ugo+x /bin/sx*
 
 USER 1001
 

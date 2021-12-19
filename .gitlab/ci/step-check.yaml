@@ -34,6 +34,7 @@ markdown:
     - centos6
     - alpine
     - ubi8
+    - fc36
     - fc35
     - fc34
     - fc33
