@@ -61,6 +61,8 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/sv-couchbase:28`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 28      | 4.5.0      |
 | [`startx/sv-couchbase:27`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 27      | 4.5.0      |
 | [`startx/sv-couchbase:26`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 26      | 2.4.17     |
+| [`startx/sv-couchbase:alma8`](https://hub.docker.com/r/startx/sv-couchbase)   | Alma 8              | 6.5.1-6299 |
+| [`startx/sv-couchbase:rocky8`](https://hub.docker.com/r/startx/sv-couchbase)  | Rocky 8             | 6.5.1-6299 |
 | [`startx/sv-couchbase:centos8`](https://hub.docker.com/r/startx/sv-couchbase) | Centos 8            | 6.5.1-6299 |
 | [`startx/sv-couchbase:centos7`](https://hub.docker.com/r/startx/sv-couchbase) | Centos 7            | 6.0.5-3340 |
 | [`startx/sv-couchbase:centos6`](https://hub.docker.com/r/startx/sv-couchbase) | Centos 6            | 5.5.0-2958 |
@@ -237,21 +239,21 @@ access to the running couchbase daemon with `telnet localhost 11211; stats`. Cha
 This container is based on [startx fedora container](https://hub.docker.com/r/startx/fedora) who came with
 some [predefined environment variable](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable)
 
-| Variable                       | Type     | Mandatory             | Description                                                                                           |
-| ------------------------------ | -------- | --------------------- | ----------------------------------------------------------------------------------------------------- |
+| Variable                       | Type     | Mandatory             | Description                                                                                       |
+| ------------------------------ | -------- | --------------------- | ------------------------------------------------------------------------------------------------- |
 | <i>base image environement</i> |          |                       | [see environment list](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable) |
-| SX_VERSION                     | `string` | `latest`              | container version                                                                                     |
-| SX_TYPE                        | `string` | `service`             | Container family (os, service, application). could be enhanced                                        |
-| SX_SERVICE                     | `string` | `couchbase`           | Define the type of service or application provided                                                    |
-| SX_ID                          | `auto`   | `startx/sv-couchbase` | Container ID coresponding to the image repository                                                     |
-| SX_NAME                        | `auto`   | `yes`                 | Container name                                                                                        |
-| SX_SUMMARY                     | `auto`   | `yes`                 | Container purpose description                                                                         |
-| SX_VERBOSE                     | `bool`   | `no`                  | Display information about the execution                                                               |
-| SX_DEBUG                       | `bool`   | `no`                  | Display debug informations during execution                                                           |
-| APP_PATH                       | `string` | `/app`                | Path to the application                                                                               |
-| APP_PORT                       | `string` | `8080`                | Port to the application                                                                               |
-| LOG_PATH                       | `string` | `/var/log/httpd`      | Destination path to the log produced by the webserver                                                 |
-| SX_S2IDIR                      | `string` | `/tmp`                | Destination path to the application pushed via s2i process                                            |
+| SX_VERSION                     | `string` | `latest`              | container version                                                                                 |
+| SX_TYPE                        | `string` | `service`             | Container family (os, service, application). could be enhanced                                    |
+| SX_SERVICE                     | `string` | `couchbase`           | Define the type of service or application provided                                                |
+| SX_ID                          | `auto`   | `startx/sv-couchbase` | Container ID coresponding to the image repository                                                 |
+| SX_NAME                        | `auto`   | `yes`                 | Container name                                                                                    |
+| SX_SUMMARY                     | `auto`   | `yes`                 | Container purpose description                                                                     |
+| SX_VERBOSE                     | `bool`   | `no`                  | Display information about the execution                                                           |
+| SX_DEBUG                       | `bool`   | `no`                  | Display debug informations during execution                                                       |
+| APP_PATH                       | `string` | `/app`                | Path to the application                                                                           |
+| APP_PORT                       | `string` | `8080`                | Port to the application                                                                           |
+| LOG_PATH                       | `string` | `/var/log/httpd`      | Destination path to the log produced by the webserver                                             |
+| SX_S2IDIR                      | `string` | `/tmp`                | Destination path to the application pushed via s2i process                                        |
 
 ## Exposed port
 
