@@ -2,22 +2,23 @@
 ## STAGES
 ##
 
-# Build the ansible gitlab-runner image 
+# Build the ansible gitlab-runner image
 build-runner-ansible:
   stage: "build Runners"
   extends: .build-image
   allow_failure: true
   variables:
-    SXDI_PATH: 'GitlabRunner/ansible'
-    SXDI_DOCKERNAME: 'runner-ansible'
-    SXDI_QUAYNAME: 'runner-ansible'
-    SXDI_TAG: ${SXDI_OTHERTAG}
+    SXGLCI_PATH: "GitlabRunner/ansible"
+    SXGLCI_DOCKERNAME: "runner-ansible"
+    SXGLCI_QUAYNAME: "runner-ansible"
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
   only:
     - master
     - centos8
     - centos7
     - alpine
     - ubi8
+    - fc36
     - fc35
     - fc34
     - fc33
@@ -29,22 +30,23 @@ build-runner-ansible:
     - fc27
     - fc26
 
-# Build the apache gitlab-runner image 
+# Build the apache gitlab-runner image
 build-runner-apache:
   stage: "build Runners"
   extends: .build-image
   allow_failure: true
   variables:
-    SXDI_PATH: 'GitlabRunner/apache'
-    SXDI_DOCKERNAME: 'runner-apache'
-    SXDI_QUAYNAME: 'runner-apache'
-    SXDI_TAG: ${SXDI_OTHERTAG}
+    SXGLCI_PATH: "GitlabRunner/apache"
+    SXGLCI_DOCKERNAME: "runner-apache"
+    SXGLCI_QUAYNAME: "runner-apache"
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
   only:
     - master
     - centos8
     - centos7
     - alpine
     - ubi8
+    - fc36
     - fc35
     - fc34
     - fc33
@@ -56,22 +58,23 @@ build-runner-apache:
     - fc27
     - fc26
 
-# Build the nodejs gitlab-runner image 
+# Build the nodejs gitlab-runner image
 build-runner-nodejs:
   stage: "build Runners"
   extends: .build-image
   allow_failure: true
   variables:
-    SXDI_PATH: 'GitlabRunner/nodejs'
-    SXDI_DOCKERNAME: 'runner-nodejs'
-    SXDI_QUAYNAME: 'runner-nodejs'
-    SXDI_TAG: ${SXDI_OTHERTAG}
+    SXGLCI_PATH: "GitlabRunner/nodejs"
+    SXGLCI_DOCKERNAME: "runner-nodejs"
+    SXGLCI_QUAYNAME: "runner-nodejs"
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
   only:
     - master
     - centos8
     - centos7
     - alpine
     - ubi8
+    - fc36
     - fc35
     - fc34
     - fc33
@@ -83,22 +86,23 @@ build-runner-nodejs:
     - fc27
     - fc26
 
-# Build the oc gitlab-runner image 
+# Build the oc gitlab-runner image
 build-runner-oc:
   stage: "build Runners"
   extends: .build-image
   allow_failure: true
   variables:
-    SXDI_PATH: 'GitlabRunner/oc'
-    SXDI_DOCKERNAME: 'runner-oc'
-    SXDI_QUAYNAME: 'runner-oc'
-    SXDI_TAG: ${SXDI_OTHERTAG}
+    SXGLCI_PATH: "GitlabRunner/oc"
+    SXGLCI_DOCKERNAME: "runner-oc"
+    SXGLCI_QUAYNAME: "runner-oc"
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
   only:
     - master
     - centos8
     - centos7
     - alpine
     - ubi8
+    - fc36
     - fc35
     - fc34
     - fc33
@@ -109,22 +113,23 @@ build-runner-oc:
     - fc28
     - fc27
 
-# Build the php gitlab-runner image 
+# Build the php gitlab-runner image
 build-runner-php:
   stage: "build Runners"
   extends: .build-image
   allow_failure: true
   variables:
-    SXDI_PATH: 'GitlabRunner/php'
-    SXDI_DOCKERNAME: 'runner-php'
-    SXDI_QUAYNAME: 'runner-php'
-    SXDI_TAG: ${SXDI_OTHERTAG}
+    SXGLCI_PATH: "GitlabRunner/php"
+    SXGLCI_DOCKERNAME: "runner-php"
+    SXGLCI_QUAYNAME: "runner-php"
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
   only:
     - master
     - centos8
     - centos7
     - alpine
     - ubi8
+    - fc36
     - fc35
     - fc34
     - fc33

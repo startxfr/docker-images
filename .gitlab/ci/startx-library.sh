@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# 
+# startx gitlab library version 0.0.1-container
+# 
 
 # Display the debug checks
 function DisplayCheckDebug {
@@ -154,7 +157,7 @@ function DoCheckMarkdown {
 # Display the readthedocs genation
 function DisplayCheckReadthedocs {
     echo "======== CHECK READTHEDOCS GENERATION"
-    echo "INFO: Readthedocs is generating documentation that can be followed at https://readthedocs.org/projects/docker-images/"
+    echo "INFO: Readthedocs is generating documentation that can be followed at https://readthedocs.org/projects"
 }
 
 # Display the shellcheck checks
@@ -223,7 +226,7 @@ function DoImageBuildExecute {
     local path=${1:-OS}
     local dockername=${2:-fedora}
     local tag=${4:-latest}
-    if [[ "$tag" = "master" ]]; then
+    if [[ "$tag" = "master" || "$tag" = "main" ]]; then
         tag="latest"
     fi
     local quayname=${3:-fedora}
@@ -257,7 +260,7 @@ function DoImageBuildTest {
     local path=${1:-OS}
     local dockername=${2:-fedora}
     local tag=${4:-latest}
-    if [[ "$tag" = "master" ]]; then
+    if [[ "$tag" = "master" || "$tag" = "main" ]]; then
         tag="latest"
     fi
     local quayname=${3:-fedora}
@@ -291,7 +294,7 @@ function DoImageBuildPublish {
     local path=${1:-OS}
     local dockername=${2:-fedora}
     local tag=${4:-latest}
-    if [[ "$tag" = "master" ]]; then
+    if [[ "$tag" = "master" || "$tag" = "main" ]]; then
         tag="latest"
     fi
     local quayname=${3:-fedora}

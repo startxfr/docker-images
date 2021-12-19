@@ -2,21 +2,22 @@
 ## STAGES
 ##
 
-# Build the chrome VDI image 
+# Build the chrome VDI image
 build-vdi-chrome:
   stage: "build VDI"
   extends: .build-image
   allow_failure: true
   variables:
-    SXDI_PATH: 'VDI/chrome'
-    SXDI_DOCKERNAME: 'vdi-chrome'
-    SXDI_QUAYNAME: 'chrome'
-    SXDI_TAG: ${SXDI_OTHERTAG}
+    SXGLCI_PATH: "VDI/chrome"
+    SXGLCI_DOCKERNAME: "vdi-chrome"
+    SXGLCI_QUAYNAME: "chrome"
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
   only:
     - master
     - centos8
     - centos7
     - alpine
+    - fc36
     - fc35
     - fc34
     - fc33
@@ -26,21 +27,22 @@ build-vdi-chrome:
     - fc29
     - fc28
 
-# Build the firefox VDI image 
+# Build the firefox VDI image
 build-vdi-firefox:
   stage: "build VDI"
   extends: .build-image
   allow_failure: true
   variables:
-    SXDI_PATH: 'VDI/firefox'
-    SXDI_DOCKERNAME: 'vdi-firefox'
-    SXDI_QUAYNAME: 'firefox'
-    SXDI_TAG: ${SXDI_OTHERTAG}
+    SXGLCI_PATH: "VDI/firefox"
+    SXGLCI_DOCKERNAME: "vdi-firefox"
+    SXGLCI_QUAYNAME: "firefox"
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
   only:
     - master
     - centos8
     - centos7
     - alpine
+    - fc36
     - fc35
     - fc34
     - fc33
