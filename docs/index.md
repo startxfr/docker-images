@@ -20,7 +20,9 @@ or by running it direcly with various containers engines like
 Each container is provided with various underlying OS version based on
 [CentOS](https://quay.io/repository/startx/centos),
 [Fedora Linux](https://quay.io/repository/startx/fedora),
-[Alpine](https://quay.io/repository/startx/alpine) and
+[Alpine](https://quay.io/repository/startx/alpine),
+[Rocky](https://quay.io/repository/startx/rocky),
+[Alma](https://quay.io/repository/startx/alma) and
 [UBI](https://quay.io/repository/startx/ubi) distributions.
 
 [Kubernetes](https://github.com/startxfr/containers-engines/blob/master/Kubernetes.md) and
@@ -114,6 +116,7 @@ and stay stiked to a defined stable release.
 
 | Release | Description                                                                      |
 | ------- | -------------------------------------------------------------------------------- |
+| 0.95.29 | adding rocky and alma branch                                                     |
 | 0.95.27 | adding fc36 branch                                                               |
 | 0.95.25 | move from github to gitlab and from travis to gitab-ci                           |
 | 0.95.23 | adding fc35 branch                                                               |
