@@ -2,15 +2,15 @@
 ## STAGES
 ##
 
-# Build the phpmyadmin application image 
+# Build the phpmyadmin application image
 build-application-phpmyadmin:
   stage: "build Application"
   extends: .build-image
   allow_failure: true
   variables:
-    SXGLCI_PATH: 'Applications/phpmyadmin'
-    SXGLCI_DOCKERNAME: 'app-phpmyadmin'
-    SXGLCI_QUAYNAME: 'phpmyadmin'
+    SXGLCI_PATH: "Applications/phpmyadmin"
+    SXGLCI_DOCKERNAME: "app-phpmyadmin"
+    SXGLCI_QUAYNAME: "phpmyadmin"
     SXGLCI_TAG: ${SXGLCI_OTHERTAG}
   only:
     - master
@@ -19,6 +19,7 @@ build-application-phpmyadmin:
     - centos6
     - alpine
     - ubi8
+    - fc36
     - fc35
     - fc34
     - fc33
