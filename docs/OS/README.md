@@ -26,6 +26,16 @@ Various container images with OS and common tools. Used as a basic layer for ser
 - `fc27` based on fedora core 27 [see detail](https://docker-images.readthedocs.io/en/fc27/OS/fedora)
 - `fc26` based on fedora core 26 [see detail](https://docker-images.readthedocs.io/en/fc26/OS/fedora)
 
+### Alma
+
+- `latest` based on alma rawhide [see detail](https://docker-images.readthedocs.io/en/alma8)
+- `8` based on alma linux 8 [see detail](https://docker-images.readthedocs.io/en/alma8/OS)
+
+### Rocky
+
+- `latest` based on alma rawhide [see detail](https://docker-images.readthedocs.io/en/rocky8)
+- `8` based on alma linux 8 [see detail](https://docker-images.readthedocs.io/en/rocky8/OS)
+
 ### Centos
 
 - `centos8` based on Centos 8 [see detail](https://docker-images.readthedocs.io/en/centos8/OS/fedora)

@@ -132,6 +132,38 @@
                         }
                     },
                     {
+                        "name": "alma8",
+                        "annotations": {
+                            "openshift.io/display-name": "PhpMyAdmin web-console (Alma 8)",
+                            "description": "PhpMyAdmin web-console for mariadb running under Alma 8",
+                            "iconClass": "icon-php",
+                            "tags": "startx,alma,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
+                            "supports": "http",
+                            "version": "8",
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/app-phpmyadmin:alma8"
+                        }
+                    },
+                    {
+                        "name": "rocky8",
+                        "annotations": {
+                            "openshift.io/display-name": "PhpMyAdmin web-console (Rocky 8)",
+                            "description": "PhpMyAdmin web-console for mariadb running under Rocky 8",
+                            "iconClass": "icon-php",
+                            "tags": "startx,fedora,rocky,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql",
+                            "supports": "http",
+                            "version": "8",
+                            "sampleRepo": "https://gitlab.com/startx1/containers-example-mariadb.git"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "startx/app-phpmyadmin:rocky8"
+                        }
+                    },
+                    {
                         "name": "centos8",
                         "annotations": {
                             "openshift.io/display-name": "PhpMyAdmin web-console (Centos 8)",
