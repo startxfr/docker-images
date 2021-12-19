@@ -11,8 +11,8 @@ variables:
   SX_VERBOSE: "true"
   SX_DEBUG: "true"
   SXGLCI_OSTAG: "8"
-  SXGLCI_OSNAME: rocky
-  SXGLCI_OTHERTAG: rocky8
+  SXGLCI_OSNAME: alma
+  SXGLCI_OTHERTAG: alma8
 
 # Default container image
 image: "quay.io/startx/runner-bash:alpine3"

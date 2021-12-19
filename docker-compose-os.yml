@@ -1,4 +1,4 @@
-rocky8:
+alma8:
   extends:
     file: OS/docker-compose.yml
-    service: rocky8
+    service: alma8

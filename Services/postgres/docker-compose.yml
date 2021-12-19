@@ -1,6 +1,6 @@
 postgres:
   build: ./
-  container_name: "rocky8-service-postgres"
+  container_name: "alma8-service-postgres"
   mem_limit: 1g
   memswap_limit: 1g
   cpu_shares: 8

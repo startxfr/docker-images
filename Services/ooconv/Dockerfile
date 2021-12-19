@@ -1,11 +1,11 @@
-FROM quay.io/startx/rocky:8
+FROM quay.io/startx/alma:8
 
-ENV SX_VERSION="rocky8" \
+ENV SX_VERSION="alma8" \
     SX_TYPE="service" \
     SX_SERVICE="ooconv" \
     SX_ID="startx/sv-ooconv" \
-    SX_NAME="Startx LibreOffice converter service image (rocky 8)" \
-    SX_SUMMARY="Startx unoconv service based on rocky 8" \
+    SX_NAME="Startx LibreOffice converter service image (alma 8)" \
+    SX_SUMMARY="Startx unoconv service based on alma 8" \
     SX_USER=ooconv \
     APP_PATH=/home/ooconv \
     LOG_PATH=/var/log/ooconv \
@@ -19,7 +19,7 @@ LABEL name="$SX_ID" \
     maintainer="Startx <dev@startx.fr>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
-    io.openshift.tags="startx,os,rocky,document,libreoffice" \
+    io.openshift.tags="startx,os,alma,document,libreoffice" \
     io.openshift.non-scalable="false" \
     io.openshift.min-memory="512Mi" \
     io.openshift.min-cpu="500m" \

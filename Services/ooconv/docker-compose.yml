@@ -1,6 +1,6 @@
 ooconv:
   build: ./
-  container_name: "rocky8-service-ooconv"
+  container_name: "alma8-service-ooconv"
   mem_limit: 2g
   memswap_limit: 2g
   cpu_shares: 8

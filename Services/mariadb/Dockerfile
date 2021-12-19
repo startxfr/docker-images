@@ -1,11 +1,11 @@
-FROM quay.io/startx/rocky:8
+FROM quay.io/startx/alma:8
 
-ENV SX_VERSION="rocky8" \
+ENV SX_VERSION="alma8" \
     SX_TYPE="service" \
     SX_SERVICE="mariadb" \
     SX_ID="startx/sv-mariadb" \
-    SX_NAME="Startx Mariadb service image (rocky 8)" \
-    SX_SUMMARY="Startx mariadb service based on rocky 8" \
+    SX_NAME="Startx Mariadb service image (alma 8)" \
+    SX_SUMMARY="Startx mariadb service based on alma 8" \
     MY_CONF=/etc/my.cnf \
     DATA_PATH=/data \
     LOG_PATH=/var/log/mariadb \
@@ -22,7 +22,7 @@ LABEL name="$SX_ID" \
     maintainer="Startx <dev@startx.fr>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
-    io.openshift.tags="startx,os,rocky,database,mariadb" \
+    io.openshift.tags="startx,os,alma,database,mariadb" \
     io.openshift.non-scalable="true" \
     io.openshift.min-memory="256Mi" \
     io.openshift.min-cpu="500m" \

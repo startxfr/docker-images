@@ -1,16 +1,16 @@
-FROM quay.io/startx/rocky:8
+FROM quay.io/startx/alma:8
 
-ENV SX_VERSION="rocky8" \
+ENV SX_VERSION="alma8" \
     SX_TYPE="service" \
     SX_SERVICE="couchbase" \
     SX_ID="startx/sv-couchbase" \
-    SX_NAME="Startx Couchbase service image (rocky 8)" \
-    SX_SUMMARY="Startx couchbase service based on rocky 8" \
+    SX_NAME="Startx Couchbase service image (alma 8)" \
+    SX_SUMMARY="Startx couchbase service based on alma 8" \
     CB_PATH=/opt/couchbase \
     DATA_PATH=/opt/couchbase/var \
     CB_VERSION=6.5.1 \
     CB_RELEASE_URL=https://packages.couchbase.com/releases/6.5.1 \
-    CB_PACKAGE=couchbase-server-enterprise-6.5.1-rocky8.x86_64.rpm \
+    CB_PACKAGE=couchbase-server-enterprise-6.5.1-alma8.x86_64.rpm \
     PATH=$PATH:/opt/couchbase/bin:/opt/couchbase/bin/tools:/opt/couchbase/bin/install
 
 LABEL name="$SX_ID" \
@@ -21,7 +21,7 @@ LABEL name="$SX_ID" \
     maintainer="Startx <dev@startx.fr>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
-    io.openshift.tags="startx,os,rocky,database,couchbase" \
+    io.openshift.tags="startx,os,alma,database,couchbase" \
     io.openshift.non-scalable="true" \
     io.openshift.min-memory="1Gi" \
     io.openshift.min-cpu="2000m" \

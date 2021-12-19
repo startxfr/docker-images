@@ -1,11 +1,11 @@
-FROM quay.io/startx/runner-bash:rocky8
+FROM quay.io/startx/runner-bash:alma8
 
-ENV SX_VERSION="rocky8" \
+ENV SX_VERSION="alma8" \
     SX_TYPE="runner" \
     SX_SERVICE="oc" \
     SX_ID="startx/runner-oc" \
-    SX_NAME="Startx OCP/K8S client gitlab runner image (rocky 8)" \
-    SX_SUMMARY="Startx ocp/k8s gitlab runner based on rocky 8" \
+    SX_NAME="Startx OCP/K8S client gitlab runner image (alma 8)" \
+    SX_SUMMARY="Startx ocp/k8s gitlab runner based on alma 8" \
     SX_OC_VERSION="4.8.13"
 
 LABEL name="$SX_ID" \

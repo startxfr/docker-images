@@ -1,17 +1,17 @@
-FROM quay.io/startx/runner-bash:rocky8
+FROM quay.io/startx/runner-bash:alma8
 
-ENV SX_VERSION="rocky8" \
+ENV SX_VERSION="alma8" \
     SX_TYPE="runner" \
     SX_SERVICE="ansible" \
     SX_UNAME="ansible" \
     SX_ID="startx/runner-ansible" \
-    SX_NAME="Startx Ansible gitlab runner image (rocky 8)" \
-    SX_SUMMARY="Startx ansible gitlab runner based on rocky 8" \
+    SX_NAME="Startx Ansible gitlab runner image (alma 8)" \
+    SX_SUMMARY="Startx ansible gitlab runner based on alma 8" \
     SX_HUGO_RELEASE="0.83.1"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \
-    description="$SX_SUMMARY. Use for building ansible playbooks based on rocky and using gitlab CI runners." \
+    description="$SX_SUMMARY. Use for building ansible playbooks based on alma and using gitlab CI runners." \
     version="$SX_VERSION" \
     release="$SX_VERSION" \
     io.k8s.description="$SX_SUMMARY" \

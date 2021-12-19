@@ -1,6 +1,6 @@
 phpmyadmin:
   build: ./
-  container_name: "rocky8-application-phpmyadmin"
+  container_name: "alma8-application-phpmyadmin"
   mem_limit: 500m
   memswap_limit: 500m
   cpu_shares: 2

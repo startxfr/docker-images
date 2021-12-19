@@ -1,6 +1,6 @@
 mongo:
   build: ./
-  container_name: "rocky8-service-mongo"
+  container_name: "alma8-service-mongo"
   mem_limit: 2g
   memswap_limit: 2g
   cpu_shares: 10

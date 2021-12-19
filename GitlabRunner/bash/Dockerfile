@@ -1,13 +1,13 @@
-FROM quay.io/startx/rocky:8
+FROM quay.io/startx/alma:8
 
-ENV SX_VERSION="rocky8" \
+ENV SX_VERSION="alma8" \
     SX_TYPE="runner" \
     SX_SERVICE="bash" \
     SX_UID=1001 \
     SX_UNAME="user" \
     SX_ID="startx/runner-bash" \
-    SX_NAME="Startx Bash gitlab runner image (rocky 8)" \
-    SX_SUMMARY="Startx bash gitlab runner based on rocky 8"
+    SX_NAME="Startx Bash gitlab runner image (alma 8)" \
+    SX_SUMMARY="Startx bash gitlab runner based on alma 8"
 
 LABEL name="$SX_ID" \
     summary="$SX_SUMMARY" \
