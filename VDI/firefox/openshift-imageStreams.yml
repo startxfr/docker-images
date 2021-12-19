@@ -145,6 +145,34 @@ items:
           from:
             kind: DockerImage
             name: startx/vdi-firefox:latest
+        - name: alma8
+          annotations:
+            openshift.io/display-name: VDI Firefox Browser (Alma 8)
+            description:
+              Container-based desktop Firefox browser for remote internet browsing  under
+              Alma 8
+            iconClass: icon-aerogear
+            tags: builder,startx,alma,firefox,vnc
+            supports: vnc
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-firefox.git
+          from:
+            kind: DockerImage
+            name: startx/vdi-firefox:alma8
+        - name: rocky8
+          annotations:
+            openshift.io/display-name: VDI Firefox Browser (Rocky 8)
+            description:
+              Container-based desktop Firefox browser for remote internet browsing  under
+              Rocky 8
+            iconClass: icon-aerogear
+            tags: builder,startx,rocky,firefox,vnc
+            supports: vnc
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-firefox.git
+          from:
+            kind: DockerImage
+            name: startx/vdi-firefox:rocky8
         - name: centos8
           annotations:
             openshift.io/display-name: VDI Firefox Browser (Centos 8)
