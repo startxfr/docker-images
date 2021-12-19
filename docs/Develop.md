@@ -46,7 +46,7 @@ If you want to build and run locally all the images provided in this repository,
 1. Build the container using `docker build -t <image_name> <path_to_Dockerfile>` where _image-name_ is the name of your future local image and*path_to_Dockerfile* should point to the targeted service or application directory, not including the Dockefile filename
 2. Run this container
 3. Interactively with `docker run -it <image_name>` where _image_name_ is the name of your previously created image name. If you add a second parameter, you can run a particular command instead of the default entrypoint. Could be usefull when you add `/bin/bash` to get a shell running into the container
-4. As a daemon with `docker run -d <image_name>` where _image_name_ is the name of your previously created image name.
+4. As a daemon with `docker run -d <image_name>` where _image_name_ is the name of your previously created image name. 
 
 ## Build & run a container using `docker-compose`
 
@@ -104,10 +104,10 @@ This script assume :
 ```bash
 # setup project
 ./okd-helper.sh setup project fedora
-
-# setup flavour (alpine3, ubi8, centos8, centos7, centos6,
-    - fc36, fc35, fc34, fc33, fc32, fc31, fc30, fc29 or fc28)
-./okd-helper.sh setup flavour latest
+./okd-helper.sh setup project centos
+./okd-helper.sh setup project rocky
+./okd-helper.sh setup project alma
+./okd-helper.sh setup project ubi
 
 # setup stage
 ./okd-helper.sh setup stage test

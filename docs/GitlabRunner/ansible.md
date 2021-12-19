@@ -21,6 +21,8 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | [`startx/runner-ansible:29`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 29      |         |        |       |
 | [`startx/runner-ansible:28`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 28      |         |        |       |
 | [`startx/runner-ansible:27`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 27      |         |        |       |
+| [`startx/runner-ansible:alma8`](https://hub.docker.com/r/startx/runner-ansible)   | Alma 8              | 2.9.21  | 3.6.8  | 4.2.1 |
+| [`startx/runner-ansible:rocky8`](https://hub.docker.com/r/startx/runner-ansible)  | Rocky 8             | 2.9.21  | 3.6.8  | 4.2.1 |
 | [`startx/runner-ansible:centos8`](https://hub.docker.com/r/startx/runner-ansible) | Centos 8            | 2.9.21  | 3.6.8  | 4.2.1 |
 | [`startx/runner-ansible:centos7`](https://hub.docker.com/r/startx/runner-ansible) | Centos 7            | 2.9.21  | 2.7.5  | 3.82  |
 | [`startx/runner-ansible:ubi8`](https://hub.docker.com/r/startx/runner-ansible)    | RedHat UBI 8        |         |        | 4.3   |
@@ -63,11 +65,11 @@ CMD ["/bin/sx", "run"]
 This container is based on [startx fedora container](https://hub.docker.com/r/startx/fedora) who came with
 some [additional environment variable](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable)
 
-| Variable                       | Type   | Mandatory | Description                                                                                           |
-| ------------------------------ | ------ | --------- | ----------------------------------------------------------------------------------------------------- |
+| Variable                       | Type   | Mandatory | Description                                                                                       |
+| ------------------------------ | ------ | --------- | ------------------------------------------------------------------------------------------------- |
 | <i>base image environement</i> |        |           | [see environment list](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable) |
-| HOSTNAME                       | `auto` | `auto`    | Container unique id automatically assigned by docker daemon at startup                                |
-| LOG_PATH                       | `auto` | `auto`    | default set to /var/log/ansible and used as a volume mountpoint                                       |
+| HOSTNAME                       | `auto` | `auto`    | Container unique id automatically assigned by docker daemon at startup                            |
+| LOG_PATH                       | `auto` | `auto`    | default set to /var/log/ansible and used as a volume mountpoint                                   |
 
 ## Exposed port
 

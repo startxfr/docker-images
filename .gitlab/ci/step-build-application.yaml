@@ -14,6 +14,8 @@ build-application-phpmyadmin:
     SXGLCI_TAG: ${SXGLCI_OTHERTAG}
   only:
     - master
+    - alma8
+    - rocky8
     - centos8
     - centos7
     - centos6
