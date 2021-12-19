@@ -13,6 +13,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | Docker Hub repository                                                       | Content             | Firefox    |
 | --------------------------------------------------------------------------- | ------------------- | ---------- |
 | [`startx/vdi-firefox:latest`](https://hub.docker.com/r/startx/vdi-firefox)  | Fedora core rawhide | 88.0       |
+| [`startx/vdi-firefox:fc36`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 36      | 88.0       |
 | [`startx/vdi-firefox:fc35`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 35      | 88.0       |
 | [`startx/vdi-firefox:fc34`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 34      | 88.0.1     |
 | [`startx/vdi-firefox:fc33`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 33      | 88.0.1     |
@@ -125,15 +126,15 @@ CMD ["/bin/sx", "run"]
 This container is based on [startx fedora container](https://hub.docker.com/r/startx/fedora) who came with
 some [additional environment variable](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable)
 
-| Variable                       | Type          | Mandatory | Description                                                                                           |
-| ------------------------------ | ------------- | --------- | ----------------------------------------------------------------------------------------------------- |
+| Variable                       | Type          | Mandatory | Description                                                                                       |
+| ------------------------------ | ------------- | --------- | ------------------------------------------------------------------------------------------------- |
 | <i>base image environement</i> |               |           | [see environment list](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable) |
-| SERVER_NAME                    | `string`      | `no`      | Server name for this container. If no name localhost will be assigned                                 |
-| HOSTNAME                       | `auto`        | `auto`    | Container unique id automatically assigned by docker daemon at startup                                |
-| LOG_PATH                       | `auto`        | `auto`    | default set to /var/log/firefox and used as a volume mountpoint                                       |
-| APP_PATH                       | `auto`        | `auto`    | default set to /data and used as a volume mountpoint                                                  |
-| SX_FIREFOX_SCREEN_RES_X        | `1024x768x24` | `auto`    | Define the screen resolution for X server                                                             |
-| SX_FIREFOX_SCREEN_RES_FIREFOX  | `1024,768`    | `auto`    | Define the screen resolution for Firefox GUI window                                                   |
+| SERVER_NAME                    | `string`      | `no`      | Server name for this container. If no name localhost will be assigned                             |
+| HOSTNAME                       | `auto`        | `auto`    | Container unique id automatically assigned by docker daemon at startup                            |
+| LOG_PATH                       | `auto`        | `auto`    | default set to /var/log/firefox and used as a volume mountpoint                                   |
+| APP_PATH                       | `auto`        | `auto`    | default set to /data and used as a volume mountpoint                                              |
+| SX_FIREFOX_SCREEN_RES_X        | `1024x768x24` | `auto`    | Define the screen resolution for X server                                                         |
+| SX_FIREFOX_SCREEN_RES_FIREFOX  | `1024,768`    | `auto`    | Define the screen resolution for Firefox GUI window                                               |
 
 ## Exposed port
 
