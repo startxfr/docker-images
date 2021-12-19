@@ -150,6 +150,30 @@ items:
           from:
             kind: DockerImage
             name: startx/ubi:8
+        - name: alma8
+          annotations:
+            openshift.io/display-name: S2I Startx Alma 8
+            description: Minimal Alma 8 OS builder for bash operations
+            iconClass: icon-beaker
+            tags: builder,startx,alma
+            supports: alma
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
+          from:
+            kind: DockerImage
+            name: startx/alma:8
+        - name: rocky8
+          annotations:
+            openshift.io/display-name: S2I Startx Rocky 8
+            description: Minimal Rocky 8 OS builder for bash operations
+            iconClass: icon-beaker
+            tags: builder,startx,rocky
+            supports: rocky
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
+          from:
+            kind: DockerImage
+            name: startx/rocky:8
         - name: centos8
           annotations:
             openshift.io/display-name: S2I Startx CentOS 8

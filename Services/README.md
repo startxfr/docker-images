@@ -34,17 +34,17 @@ your project and start using stable or experimental services in your application
 
 ## Available Flavours
 
-| Service        | Fedora flavours                                                                                                 | CentOS flavours                  | Alpine     | UBI     |
-| -------------- | --------------------------------------------------------------------------------------------------------------- | -------------------------------- | ---------- | ------- |
-| **Apache**     | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32``:fc33``:fc34` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
-| **MariaDB**    | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32``:fc33``:fc34` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
-| **Memcache**   | `:latest` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32``:fc33``:fc34`         | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
-| **MongoDB**    | `:latest` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32``:fc33``:fc34`                 | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
-| **nodejs**     | `:latest` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32``:fc33``:fc34`         | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
-| **ooconv**     | `:latest` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32``:fc33``:fc34`         | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
-| **php**        | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32``:fc33``:fc34` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
-| **postgreSQL** | `:latest` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32``:fc33``:fc34`                         | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` |
-| **Couchbase**  | `:latest` `:fc29` `:fc30` `:fc31` `:fc32``:fc33``:fc34`                                                         | `:centos7` `:centos8`            |            | `:ubi8` |
+| Service        | Fedora flavours                                                                                                   | CentOS flavours                  | Alpine     | UBI     | Alma     | Rocky     |
+| -------------- | ----------------------------------------------------------------------------------------------------------------- | -------------------------------- | ---------- | ------- | -------- | --------- |
+| **Apache**     | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` ` :fc32``:fc33``:fc34 ` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` | `:alma8` | `:rocky8` |
+| **MariaDB**    | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` ` :fc32``:fc33``:fc34 ` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` | `:alma8` | `:rocky8` |
+| **Memcache**   | `:latest` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` ` :fc32``:fc33``:fc34 `         | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` | `:alma8` | `:rocky8` |
+| **MongoDB**    | `:latest` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` ` :fc32``:fc33``:fc34 `                 | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` | `:alma8` | `:rocky8` |
+| **nodejs**     | `:latest` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` ` :fc32``:fc33``:fc34 `         | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` | `:alma8` | `:rocky8` |
+| **ooconv**     | `:latest` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` ` :fc32``:fc33``:fc34 `         | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` | `:alma8` | `:rocky8` |
+| **php**        | `:latest` `:fc20` `:fc21` `:fc22` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` ` :fc32``:fc33``:fc34 ` | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` | `:alma8` | `:rocky8` |
+| **postgreSQL** | `:latest` `:fc23` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` ` :fc32``:fc33``:fc34 `                         | `:centos6` `:centos7` `:centos8` | `:alpine3` | `:ubi8` | `:alma8` | `:rocky8` |
+| **Couchbase**  | `:latest` `:fc29` `:fc30` `:fc31` ` :fc32``:fc33``:fc34 `                                                         | `:centos7` `:centos8`            |            | `:ubi8` | `:alma8` | `:rocky8` | 
 
 ## Running from dockerhub registry
 

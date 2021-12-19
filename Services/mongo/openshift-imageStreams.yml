@@ -161,6 +161,32 @@ items:
           from:
             kind: DockerImage
             name: startx/sv-mongo:ubi8
+        - name: alma8
+          annotations:
+            openshift.io/display-name: S2I Startx MongoDB Database (Alma 8)
+            description: MongoDB server builder for NoSQL database running under
+              Alma 8
+            iconClass: icon-mongodb
+            tags: builder,startx,alma,mongo,database
+            supports: mongodb
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
+          from:
+            kind: DockerImage
+            name: startx/sv-mongo:alma8
+        - name: rocky8
+          annotations:
+            openshift.io/display-name: S2I Startx MongoDB Database (Rocky 8)
+            description: MongoDB server builder for NoSQL database running under
+              Rocky 8
+            iconClass: icon-mongodb
+            tags: builder,startx,rocky,mongo,database
+            supports: mongodb
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
+          from:
+            kind: DockerImage
+            name: startx/sv-mongo:rocky8
         - name: centos8
           annotations:
             openshift.io/display-name: S2I Startx MongoDB Database (Centos 8)

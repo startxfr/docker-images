@@ -57,6 +57,8 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/sv-apache:22`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 22      | 2.4.18 |
 | [`startx/sv-apache:21`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 21      |        |
 | [`startx/sv-apache:20`](https://hub.docker.com/r/startx/sv-apache)      | Fedora core 20      |        |
+| [`startx/sv-apache:alma8`](https://hub.docker.com/r/startx/sv-apache)   | Alma 8              | 2.4.37 |
+| [`startx/sv-apache:rocky8`](https://hub.docker.com/r/startx/sv-apache)  | Rocky 8             | 2.4.37 |
 | [`startx/sv-apache:centos8`](https://hub.docker.com/r/startx/sv-apache) | Centos 8            | 2.4.37 |
 | [`startx/sv-apache:centos7`](https://hub.docker.com/r/startx/sv-apache) | Centos 7            | 2.4.6  |
 | [`startx/sv-apache:centos6`](https://hub.docker.com/r/startx/sv-apache) | Centos 6            | 2.2.15 |
