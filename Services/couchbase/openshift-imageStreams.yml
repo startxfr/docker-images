@@ -174,6 +174,34 @@ items:
           from:
             kind: DockerImage
             name: startx/sv-couchbase:ubi8
+        - name: alma8
+          annotations:
+            openshift.io/display-name: S2I Couchbase Database (Alma 8)
+            description:
+              Couchbase server builder for NoSQL database running under Alma
+              8
+            iconClass: icon-mysql-database
+            tags: builder,startx,alma,couchbase,database
+            supports: db
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-couchbase.git
+          from:
+            kind: DockerImage
+            name: startx/sv-couchbase:alma8
+        - name: rocky8
+          annotations:
+            openshift.io/display-name: S2I Couchbase Database (Rocky 8)
+            description:
+              Couchbase server builder for NoSQL database running under Rocky
+              8
+            iconClass: icon-mysql-database
+            tags: builder,startx,rocky,couchbase,database
+            supports: db
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-couchbase.git
+          from:
+            kind: DockerImage
+            name: startx/sv-couchbase:rocky8
         - name: centos8
           annotations:
             openshift.io/display-name: S2I Couchbase Database (Centos 8)

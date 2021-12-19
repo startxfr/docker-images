@@ -175,6 +175,30 @@ items:
           from:
             kind: DockerImage
             name: startx/ubi:8
+        - name: rocky8
+          annotations:
+            openshift.io/display-name: S2I Startx Rocky 8
+            description: Minimal Rocky 8 OS builder for bash operations
+            iconClass: icon-beaker
+            tags: builder,startx,rocky
+            supports: rocky
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
+          from:
+            kind: DockerImage
+            name: startx/rocky:8
+        - name: alma8
+          annotations:
+            openshift.io/display-name: S2I Startx Alma 8
+            description: Minimal Alma 8 OS builder for bash operations
+            iconClass: icon-beaker
+            tags: builder,startx,alma
+            supports: alma
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-bash.git
+          from:
+            kind: DockerImage
+            name: startx/alma:8
         - name: centos8
           annotations:
             openshift.io/display-name: S2I Startx CentOS 8
@@ -475,6 +499,34 @@ items:
           from:
             kind: DockerImage
             name: startx/sv-apache:ubi8
+        - name: alma8
+          annotations:
+            openshift.io/display-name: S2I Startx WebServer (Alma 8)
+            description:
+              Http server builder for simple web application running under
+              Alma 8
+            iconClass: icon-apache
+            tags: builder,startx,alma,apache,httpd
+            supports: http
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-apache.git
+          from:
+            kind: DockerImage
+            name: startx/sv-apache:alma8
+        - name: rocky8
+          annotations:
+            openshift.io/display-name: S2I Startx WebServer (Rocky 8)
+            description:
+              Http server builder for simple web application running under
+              Rocky 8
+            iconClass: icon-apache
+            tags: builder,startx,rocky,apache,httpd
+            supports: http
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-apache.git
+          from:
+            kind: DockerImage
+            name: startx/sv-apache:rocky8
         - name: centos8
           annotations:
             openshift.io/display-name: S2I Startx WebServer (Centos 8)
@@ -772,6 +824,34 @@ items:
           from:
             kind: DockerImage
             name: startx/sv-couchbase:ubi8
+        - name: alma8
+          annotations:
+            openshift.io/display-name: S2I Couchbase Database (Alma 8)
+            description:
+              Couchbase server builder for NoSQL database running under Alma
+              8
+            iconClass: icon-mysql-database
+            tags: builder,startx,alma,couchbase,database
+            supports: db
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-couchbase.git
+          from:
+            kind: DockerImage
+            name: startx/sv-couchbase:alma8
+        - name: rocky8
+          annotations:
+            openshift.io/display-name: S2I Couchbase Database (Rocky 8)
+            description:
+              Couchbase server builder for NoSQL database running under Rocky
+              8
+            iconClass: icon-mysql-database
+            tags: builder,startx,rocky,couchbase,database
+            supports: db
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-couchbase.git
+          from:
+            kind: DockerImage
+            name: startx/sv-couchbase:rocky8
         - name: centos8
           annotations:
             openshift.io/display-name: S2I Couchbase Database (Centos 8)
@@ -1021,6 +1101,34 @@ items:
           from:
             kind: DockerImage
             name: startx/sv-mariadb:ubi8
+        - name: alma8
+          annotations:
+            openshift.io/display-name: S2I Startx Mariadb Database (Alma 8)
+            description:
+              MariaDB server builder for simple SQL database running under
+              Alma 8
+            iconClass: icon-mariadb
+            tags: builder,startx,alma,mariadb,sql
+            supports: mysql
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
+          from:
+            kind: DockerImage
+            name: startx/sv-mariadb:alma8
+        - name: rocky8
+          annotations:
+            openshift.io/display-name: S2I Startx Mariadb Database (Rocky 8)
+            description:
+              MariaDB server builder for simple SQL database running under
+              Rocky 8
+            iconClass: icon-mariadb
+            tags: builder,startx,rocky,mariadb,sql
+            supports: mysql
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
+          from:
+            kind: DockerImage
+            name: startx/sv-mariadb:rocky8
         - name: centos8
           annotations:
             openshift.io/display-name: S2I Startx Mariadb Database (Centos 8)
@@ -1331,6 +1439,34 @@ items:
           from:
             kind: DockerImage
             name: startx/sv-memcache:ubi8
+        - name: alma8
+          annotations:
+            openshift.io/display-name: S2I Startx Memcache Backend (Alma 8)
+            description:
+              Memcache server builder for distributed cache backend running under
+              Alma 8
+            iconClass: icon-redis
+            tags: builder,startx,alma,memcache
+            supports: memcache
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
+          from:
+            kind: DockerImage
+            name: startx/sv-memcache:alma8
+        - name: rocky8
+          annotations:
+            openshift.io/display-name: S2I Startx Memcache Backend (Rocky 8)
+            description:
+              Memcache server builder for distributed cache backend running under
+              Rocky 8
+            iconClass: icon-redis
+            tags: builder,startx,rocky,memcache
+            supports: memcache
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
+          from:
+            kind: DockerImage
+            name: startx/sv-memcache:rocky8
         - name: centos8
           annotations:
             openshift.io/display-name: S2I Startx Memcache Backend (Centos 8)
@@ -1641,6 +1777,34 @@ items:
           from:
             kind: DockerImage
             name: startx/sv-mongo:ubi8
+        - name: alma8
+          annotations:
+            openshift.io/display-name: S2I MongoDB Database (Alma 8)
+            description:
+              MongoDB server builder for NoSQL database running under Alma
+              8
+            iconClass: icon-mongodb
+            tags: builder,startx,alma,mongo,database
+            supports: db
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
+          from:
+            kind: DockerImage
+            name: startx/sv-mongo:alma8
+        - name: rocky8
+          annotations:
+            openshift.io/display-name: S2I MongoDB Database (Rocky 8)
+            description:
+              MongoDB server builder for NoSQL database running under Rocky
+              8
+            iconClass: icon-mongodb
+            tags: builder,startx,rocky,mongo,database
+            supports: db
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-mongo.git
+          from:
+            kind: DockerImage
+            name: startx/sv-mongo:rocky8
         - name: centos8
           annotations:
             openshift.io/display-name: S2I MongoDB Database (Centos 8)
@@ -1890,6 +2054,34 @@ items:
           from:
             kind: DockerImage
             name: startx/sv-nodejs:ubi8
+        - name: alma8
+          annotations:
+            openshift.io/display-name: S2I Startx Micro-WebServer (Alma 8)
+            description:
+              Lightweight Http server builder for micro-web application running under
+              Alma 8
+            iconClass: icon-nodejs
+            tags: builder,startx,alma,nodejs,httpd
+            supports: http
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
+          from:
+            kind: DockerImage
+            name: startx/sv-nodejs:alma8
+        - name: rocky8
+          annotations:
+            openshift.io/display-name: S2I Startx Micro-WebServer (Rocky 8)
+            description:
+              Lightweight Http server builder for micro-web application running under
+              Rocky 8
+            iconClass: icon-nodejs
+            tags: builder,startx,rocky,nodejs,httpd
+            supports: http
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-nodejs.git
+          from:
+            kind: DockerImage
+            name: startx/sv-nodejs:rocky8
         - name: centos8
           annotations:
             openshift.io/display-name: S2I Startx Micro-WebServer (Centos 8)
@@ -2200,6 +2392,34 @@ items:
           from:
             kind: DockerImage
             name: startx/sv-ooconv:ubi8
+        - name: alma8
+          annotations:
+            openshift.io/display-name: S2I LibreOffice converter (Alma 8)
+            description:
+              LibreOffice converter builder for document convertion running
+              under Alma 8
+            iconClass: icon-aerogear
+            tags: builder,startx,alma,ooconv,libreoffice
+            supports: http
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-ooconv.git
+          from:
+            kind: DockerImage
+            name: startx/sv-ooconv:alma8
+        - name: rocky8
+          annotations:
+            openshift.io/display-name: S2I LibreOffice converter (Rocky 8)
+            description:
+              LibreOffice converter builder for document convertion running
+              under Rocky 8
+            iconClass: icon-aerogear
+            tags: builder,startx,rocky,ooconv,libreoffice
+            supports: http
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-ooconv.git
+          from:
+            kind: DockerImage
+            name: startx/sv-ooconv:rocky8
         - name: centos8
           annotations:
             openshift.io/display-name: S2I LibreOffice converter (Centos 8)
@@ -2449,6 +2669,34 @@ items:
           from:
             kind: DockerImage
             name: startx/sv-php:ubi8
+        - name: alma8
+          annotations:
+            openshift.io/display-name: S2I Startx PHP WebServer (Alma 8)
+            description:
+              PHP with fpm + apache engine container builder for dynamic web application running under
+              Alma 8
+            iconClass: icon-php
+            tags: builder,startx,alma,php,httpd
+            supports: http
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-php.git
+          from:
+            kind: DockerImage
+            name: startx/sv-php:alma8
+        - name: rocky8
+          annotations:
+            openshift.io/display-name: S2I Startx PHP WebServer (Rocky 8)
+            description:
+              PHP with fpm + apache engine container builder for dynamic web application running under
+              Rocky 8
+            iconClass: icon-php
+            tags: builder,startx,rocky,php,httpd
+            supports: http
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-php.git
+          from:
+            kind: DockerImage
+            name: startx/sv-php:rocky8
         - name: centos8
           annotations:
             openshift.io/display-name: S2I Startx PHP WebServer (Centos 8)
@@ -2759,6 +3007,34 @@ items:
           from:
             kind: DockerImage
             name: startx/sv-postgres:ubi8
+        - name: alma8
+          annotations:
+            openshift.io/display-name: S2I Startx PostgreSQL Database (Alma 8)
+            description:
+              PostgreSQL server builder for advanced SQL database running under
+              Alma 8
+            iconClass: icon-postgresql
+            tags: builder,startx,alma,postgres,sql
+            supports: postgresql
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
+          from:
+            kind: DockerImage
+            name: startx/sv-postgres:alma8
+        - name: rocky8
+          annotations:
+            openshift.io/display-name: S2I Startx PostgreSQL Database (Rocky 8)
+            description:
+              PostgreSQL server builder for advanced SQL database running under
+              Rocky 8
+            iconClass: icon-postgresql
+            tags: builder,startx,rocky,postgres,sql
+            supports: postgresql
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
+          from:
+            kind: DockerImage
+            name: startx/sv-postgres:rocky8
         - name: centos8
           annotations:
             openshift.io/display-name: S2I Startx PostgreSQL Database (Centos 8)
@@ -3028,6 +3304,34 @@ items:
           from:
             kind: DockerImage
             name: startx/vdi-chrome:latest
+        - name: alma8
+          annotations:
+            openshift.io/display-name: VDI Chrome Browser (Alma 8)
+            description:
+              Container-based desktop Chrome browser for remote internet browsing  under
+              Alma 8
+            iconClass: icon-aerogear
+            tags: builder,startx,alma,chrome,vnc
+            supports: vnc
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-chrome.git
+          from:
+            kind: DockerImage
+            name: startx/vdi-chrome:alma8
+        - name: rocky8
+          annotations:
+            openshift.io/display-name: VDI Chrome Browser (Rocky 8)
+            description:
+              Container-based desktop Chrome browser for remote internet browsing  under
+              Rocky 8
+            iconClass: icon-aerogear
+            tags: builder,startx,rocky,chrome,vnc
+            supports: vnc
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-chrome.git
+          from:
+            kind: DockerImage
+            name: startx/vdi-chrome:rocky8
         - name: centos8
           annotations:
             openshift.io/display-name: VDI Chrome Browser (Centos 8)
@@ -3235,6 +3539,34 @@ items:
           from:
             kind: DockerImage
             name: startx/vdi-firefox:latest
+        - name: alma8
+          annotations:
+            openshift.io/display-name: VDI Firefox Browser (Alma 8)
+            description:
+              Container-based desktop Firefox browser for remote internet browsing  under
+              Alma 8
+            iconClass: icon-aerogear
+            tags: builder,startx,alma,firefox,vnc
+            supports: vnc
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-firefox.git
+          from:
+            kind: DockerImage
+            name: startx/vdi-firefox:alma8
+        - name: rocky8
+          annotations:
+            openshift.io/display-name: VDI Firefox Browser (Rocky 8)
+            description:
+              Container-based desktop Firefox browser for remote internet browsing  under
+              Rocky 8
+            iconClass: icon-aerogear
+            tags: builder,startx,rocky,firefox,vnc
+            supports: vnc
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-firefox.git
+          from:
+            kind: DockerImage
+            name: startx/vdi-firefox:rocky8
         - name: centos8
           annotations:
             openshift.io/display-name: VDI Firefox Browser (Centos 8)
@@ -3433,6 +3765,30 @@ items:
           from:
             kind: DockerImage
             name: startx/app-phpmyadmin:latest
+        - name: alma8
+          annotations:
+            openshift.io/display-name: PhpMyAdmin web-console (Alma 8)
+            description: PhpMyAdmin web-console for mariadb running under Centos 8
+            iconClass: icon-php
+            tags: startx,alma,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql
+            supports: http
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
+          from:
+            kind: DockerImage
+            name: startx/app-phpmyadmin:alma8
+        - name: rocky8
+          annotations:
+            openshift.io/display-name: PhpMyAdmin web-console (Rocky 8)
+            description: PhpMyAdmin web-console for mariadb running under Centos 8
+            iconClass: icon-php
+            tags: startx,rocky,apache,httpd,php,phpmyadmin,pma,db,database,mariadb,mysql
+            supports: http
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-mariadb.git
+          from:
+            kind: DockerImage
+            name: startx/app-phpmyadmin:rocky8
         - name: centos8
           annotations:
             openshift.io/display-name: PhpMyAdmin web-console (Centos 8)

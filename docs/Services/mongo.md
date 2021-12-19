@@ -27,6 +27,8 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | [`startx/sv-mongo:22`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 22      |         |
 | [`startx/sv-mongo:21`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 21      |         |
 | [`startx/sv-mongo:20`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 20      |         |
+| [`startx/sv-mongo:alma8`](https://hub.docker.com/r/startx/sv-mongo)   | Alma 8              | 4.4.6   |
+| [`startx/sv-mongo:rocky8`](https://hub.docker.com/r/startx/sv-mongo)  | Rocky 8             | 4.4.6   |
 | [`startx/sv-mongo:centos8`](https://hub.docker.com/r/startx/sv-mongo) | Centos 8            | 4.4.6   |
 | [`startx/sv-mongo:centos7`](https://hub.docker.com/r/startx/sv-mongo) | Centos 7            | 4.4.6   |
 | [`startx/sv-mongo:centos6`](https://hub.docker.com/r/startx/sv-mongo) | Centos 6            | 2.4.14  |
@@ -133,12 +135,12 @@ CMD ["/bin/sx", "run"]
 This container is based on [startx fedora container](https://hub.docker.com/r/startx/fedora) who came with
 some [additional environment variable](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable)
 
-| Variable                       | Type   | Mandatory | Description                                                                                           |
-| ------------------------------ | ------ | --------- | ----------------------------------------------------------------------------------------------------- |
+| Variable                       | Type   | Mandatory | Description                                                                                       |
+| ------------------------------ | ------ | --------- | ------------------------------------------------------------------------------------------------- |
 | <i>base image environement</i> |        |           | [see environment list](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable) |
-| HOSTNAME                       | `auto` | `auto`    | Container unique id automatically assigned by docker daemon at startup                                |
-| LOG_PATH                       | `auto` | `auto`    | default set to /var/log/mongodb and used as a volume mountpoint                                       |
-| DATA_PATH                      | `auto` | `auto`    | default set to /data and used as a volume mountpoint                                                  |
+| HOSTNAME                       | `auto` | `auto`    | Container unique id automatically assigned by docker daemon at startup                            |
+| LOG_PATH                       | `auto` | `auto`    | default set to /var/log/mongodb and used as a volume mountpoint                                   |
+| DATA_PATH                      | `auto` | `auto`    | default set to /data and used as a volume mountpoint                                              |
 
 ## Exposed port
 

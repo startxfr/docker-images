@@ -186,6 +186,34 @@ items:
           from:
             kind: DockerImage
             name: startx/sv-apache:ubi8
+        - name: alma8
+          annotations:
+            openshift.io/display-name: S2I Startx WebServer (Alma 8)
+            description:
+              Http server builder for simple web application running under
+              Alma 8
+            iconClass: icon-apache
+            tags: builder,startx,alma,apache,httpd
+            supports: http
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-apache.git
+          from:
+            kind: DockerImage
+            name: startx/sv-apache:alma8
+        - name: rocky8
+          annotations:
+            openshift.io/display-name: S2I Startx WebServer (Rocky 8)
+            description:
+              Http server builder for simple web application running under
+              Rocky 8
+            iconClass: icon-apache
+            tags: builder,startx,rocky,apache,httpd
+            supports: http
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-apache.git
+          from:
+            kind: DockerImage
+            name: startx/sv-apache:rocky8
         - name: centos8
           annotations:
             openshift.io/display-name: S2I Startx WebServer (Centos 8)

@@ -186,6 +186,34 @@ items:
           from:
             kind: DockerImage
             name: startx/sv-php:ubi8
+        - name: alma8
+          annotations:
+            openshift.io/display-name: S2I Startx PHP WebServer (Alma 8)
+            description:
+              PHP with fpm + apache engine container builder for dynamic web application running under
+              Alma 8
+            iconClass: icon-php
+            tags: builder,startx,alma,php,httpd
+            supports: http
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-php.git
+          from:
+            kind: DockerImage
+            name: startx/sv-php:alma8
+        - name: rocky8
+          annotations:
+            openshift.io/display-name: S2I Startx PHP WebServer (Rocky 8)
+            description:
+              PHP with fpm + apache engine container builder for dynamic web application running under
+              Rocky 8
+            iconClass: icon-php
+            tags: builder,startx,rocky,php,httpd
+            supports: http
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-php.git
+          from:
+            kind: DockerImage
+            name: startx/sv-php:rocky8
         - name: centos8
           annotations:
             openshift.io/display-name: S2I Startx PHP WebServer (Centos 8)

@@ -22,6 +22,8 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | [`startx/runner-bash:28`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 28      |        |       |
 | [`startx/runner-bash:27`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 27      |        |       |
 | [`startx/runner-bash:26`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 26      |        |       |
+| [`startx/runner-bash:alma8`](https://hub.docker.com/r/startx/runner-bash)   | Alma 8              | 4.4.19 | 4.2.1 |
+| [`startx/runner-bash:rocky8`](https://hub.docker.com/r/startx/runner-bash)  | Rocky 8             | 4.4.19 | 4.2.1 |
 | [`startx/runner-bash:centos8`](https://hub.docker.com/r/startx/runner-bash) | Centos 8            | 4.4.19 | 4.2.1 |
 | [`startx/runner-bash:centos7`](https://hub.docker.com/r/startx/runner-bash) | Centos 7            | 4.2.46 | 3.82  |
 | [`startx/runner-bash:ubi8`](https://hub.docker.com/r/startx/runner-bash)    | RedHat UBI 8        | 4.4.20 | 4.3   |
@@ -64,11 +66,11 @@ CMD ["/bin/sx", "run"]
 This container is based on [startx fedora container](https://hub.docker.com/r/startx/fedora) who came with
 some [additional environment variable](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable)
 
-| Variable                       | Type   | Mandatory | Description                                                                                           |
-| ------------------------------ | ------ | --------- | ----------------------------------------------------------------------------------------------------- |
+| Variable                       | Type   | Mandatory | Description                                                                                       |
+| ------------------------------ | ------ | --------- | ------------------------------------------------------------------------------------------------- |
 | <i>base image environement</i> |        |           | [see environment list](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable) |
-| HOSTNAME                       | `auto` | `auto`    | Container unique id automatically assigned by docker daemon at startup                                |
-| LOG_PATH                       | `auto` | `auto`    | default set to /var/log/bash and used as a volume mountpoint                                          |
+| HOSTNAME                       | `auto` | `auto`    | Container unique id automatically assigned by docker daemon at startup                            |
+| LOG_PATH                       | `auto` | `auto`    | default set to /var/log/bash and used as a volume mountpoint                                      |
 
 ## Exposed port
 
