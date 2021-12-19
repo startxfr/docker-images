@@ -186,6 +186,34 @@ items:
           from:
             kind: DockerImage
             name: startx/sv-memcache:ubi8
+        - name: alma8
+          annotations:
+            openshift.io/display-name: S2I Startx Memcache Backend (Alma 8)
+            description:
+              Memcache server builder for distributed cache backend running under
+              Alma 8
+            iconClass: icon-redis
+            tags: builder,startx,alma,memcache
+            supports: memcache
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
+          from:
+            kind: DockerImage
+            name: startx/sv-memcache:alma8
+        - name: rocky8
+          annotations:
+            openshift.io/display-name: S2I Startx Memcache Backend (Rocky 8)
+            description:
+              Memcache server builder for distributed cache backend running under
+              Rocky 8
+            iconClass: icon-redis
+            tags: builder,startx,rocky,memcache
+            supports: memcache
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-memcache.git
+          from:
+            kind: DockerImage
+            name: startx/sv-memcache:rocky8
         - name: centos8
           annotations:
             openshift.io/display-name: S2I Startx Memcache Backend (Centos 8)

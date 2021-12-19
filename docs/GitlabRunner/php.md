@@ -43,6 +43,8 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/runner-php:29`](https://hub.docker.com/r/startx/runner-php)      | Fedora core 29      | 7.2.20 | 2.4.39 |
 | [`startx/runner-php:28`](https://hub.docker.com/r/startx/runner-php)      | Fedora core 28      | 5.6.16 | 2.4.17 |
 | [`startx/runner-php:27`](https://hub.docker.com/r/startx/runner-php)      | Fedora core 27      | 5.6.16 | 2.4.17 |
+| [`startx/runner-php:alma8`](https://hub.docker.com/r/startx/runner-php)   | Alma 8              |        |        |
+| [`startx/runner-php:rocky8`](https://hub.docker.com/r/startx/runner-php)  | Rocky 8             |        |        |
 | [`startx/runner-php:centos8`](https://hub.docker.com/r/startx/runner-php) | Centos 8            |        |        |
 | [`startx/runner-php:centos7`](https://hub.docker.com/r/startx/runner-php) | Centos 7            |        |        |
 | [`startx/runner-php:ubi8`](https://hub.docker.com/r/startx/runner-php)    | RedHat UBI 8        |        |        |

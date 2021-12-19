@@ -186,6 +186,34 @@ items:
           from:
             kind: DockerImage
             name: startx/sv-postgres:ubi8
+        - name: alma8
+          annotations:
+            openshift.io/display-name: S2I Startx PostgreSQL Database (Alma 8)
+            description:
+              PostgreSQL server builder for advanced SQL database running under
+              Alma 8
+            iconClass: icon-postgresql
+            tags: builder,startx,v,postgres,sql
+            supports: postgresql
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
+          from:
+            kind: DockerImage
+            name: startx/sv-postgres:alma8
+        - name: rocky8
+          annotations:
+            openshift.io/display-name: S2I Startx PostgreSQL Database (Rocky 8)
+            description:
+              PostgreSQL server builder for advanced SQL database running under
+              Rocky 8
+            iconClass: icon-postgresql
+            tags: builder,startx,rocky,postgres,sql
+            supports: postgresql
+            version: "8"
+            sampleRepo: https://gitlab.com/startx1/containers-example-postgres.git
+          from:
+            kind: DockerImage
+            name: startx/sv-postgres:rocky8
         - name: centos8
           annotations:
             openshift.io/display-name: S2I Startx PostgreSQL Database (Centos 8)
