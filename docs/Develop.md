@@ -43,7 +43,7 @@ If you want to build and run locally all the images provided in this repository,
 
 ## Build & run a container using `docker`
 
-1. Build the container using `docker build -t <image_name> <path_to_Dockerfile>` where _image-name_ is the name of your future local image and_path_to_Dockerfile_ should point to the targeted service or application directory, not including the Dockefile filename
+1. Build the container using `docker build -t <image_name> <path_to_Dockerfile>` where _image-name_ is the name of your future local image and*path_to_Dockerfile* should point to the targeted service or application directory, not including the Dockefile filename
 2. Run this container
 3. Interactively with `docker run -it <image_name>` where _image_name_ is the name of your previously created image name. If you add a second parameter, you can run a particular command instead of the default entrypoint. Could be usefull when you add `/bin/bash` to get a shell running into the container
 4. As a daemon with `docker run -d <image_name>` where _image_name_ is the name of your previously created image name.
@@ -105,7 +105,8 @@ This script assume :
 # setup project
 ./okd-helper.sh setup project fedora
 
-# setup flavour (alpine3, ubi8, centos8, centos7, centos6, fc35, fc34, fc33, fc32, fc31, fc30, fc29 or fc28)
+# setup flavour (alpine3, ubi8, centos8, centos7, centos6,
+    - fc36, fc35, fc34, fc33, fc32, fc31, fc30, fc29 or fc28)
 ./okd-helper.sh setup flavour latest
 
 # setup stage
@@ -179,6 +180,9 @@ This script assume :
 # Start full test for centos 6 containers
 ./okd-helper.sh setup flavour centos6
 ./okd-helper.sh test
+# Start full test for fedora 36 containers
+./okd-helper.sh setup flavour fc36
+./okd-helper.sh test
 # Start full test for fedora 35 containers
 ./okd-helper.sh setup flavour fc35
 ./okd-helper.sh test
@@ -228,6 +232,10 @@ This script assume :
 # Start full test for centos 6 containers (dedicated project)
 ./okd-helper.sh setup project centos-6
 ./okd-helper.sh setup flavour centos6
+./okd-helper.sh test
+# Start full test for fedora 36 containers (dedicated project)
+./okd-helper.sh setup project fedora-36
+./okd-helper.sh setup flavour fc36
 ./okd-helper.sh test
 # Start full test for fedora 35 containers (dedicated project)
 ./okd-helper.sh setup project fedora-35
@@ -286,7 +294,7 @@ This script assume :
 # setup project
 ./podman-helper.sh setup project startx
 
-# setup flavour (alpine3, ubi8, centos8, centos7, centos6, fc35, fc34, fc33, fc32, fc31, fc30, fc29 or fc28)
+# setup flavour (alpine3, ubi8, centos8, centos7, centos6, fc36, fc35, fc34, fc33, fc32, fc31, fc30, fc29 or fc28)
 ./podman-helper.sh setup flavour latest
 ```
 
@@ -341,6 +349,9 @@ This script assume :
 # Start full test for centos 6 containers
 ./podman-helper.sh setup flavour centos6
 ./podman-helper.sh buildrun
+# Start full test for fedora 36 containers
+./podman-helper.sh setup flavour fc36
+./podman-helper.sh buildrun
 # Start full test for fedora 35 containers
 ./podman-helper.sh setup flavour fc35
 ./podman-helper.sh buildrun
@@ -390,13 +401,17 @@ This script assume :
 ./podman-helper.sh setup project centos-6
 ./podman-helper.sh setup flavour centos6
 ./podman-helper.sh buildrun
-# Start full test for fedora 34 containers (dedicated project)
-./podman-helper.sh setup project fedora-34
-./podman-helper.sh setup flavour fc34
+# Start full test for fedora 36 containers (dedicated project)
+./podman-helper.sh setup project fedora-36
+./podman-helper.sh setup flavour fc36
 ./podman-helper.sh buildrun
 # Start full test for fedora 35 containers (dedicated project)
 ./podman-helper.sh setup project fedora-35
 ./podman-helper.sh setup flavour fc35
+./podman-helper.sh buildrun
+# Start full test for fedora 34 containers (dedicated project)
+./podman-helper.sh setup project fedora-34
+./podman-helper.sh setup flavour fc34
 ./podman-helper.sh buildrun
 # Start full test for fedora 33 containers (dedicated project)
 ./podman-helper.sh setup project fedora-33
