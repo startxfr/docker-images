@@ -2,22 +2,23 @@
 ## STAGES
 ##
 
-# Build the couchbase image 
+# Build the couchbase image
 build-couchbase:
   stage: "build Services"
   extends: .build-image
   allow_failure: true
   variables:
-    SXDI_PATH: 'Services/couchbase'
-    SXDI_DOCKERNAME: 'sv-couchbase'
-    SXDI_QUAYNAME: 'couchbase'
-    SXDI_TAG: ${SXDI_OTHERTAG}
+    SXGLCI_PATH: "Services/couchbase"
+    SXGLCI_DOCKERNAME: "sv-couchbase"
+    SXGLCI_QUAYNAME: "couchbase"
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
   only:
     - master
     - centos8
     - centos7
     - centos6
     - ubi8
+    - fc36
     - fc35
     - fc34
     - fc33
@@ -29,16 +30,16 @@ build-couchbase:
     - fc27
     - fc26
 
-# Build the mariadb image 
+# Build the mariadb image
 build-mariadb:
   stage: "build Services"
   extends: .build-image
   allow_failure: true
   variables:
-    SXDI_PATH: 'Services/mariadb'
-    SXDI_DOCKERNAME: 'sv-mariadb'
-    SXDI_QUAYNAME: 'mariadb'
-    SXDI_TAG: ${SXDI_OTHERTAG}
+    SXGLCI_PATH: "Services/mariadb"
+    SXGLCI_DOCKERNAME: "sv-mariadb"
+    SXGLCI_QUAYNAME: "mariadb"
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
   only:
     - master
     - centos8
@@ -46,6 +47,7 @@ build-mariadb:
     - centos6
     - alpine
     - ubi8
+    - fc36
     - fc35
     - fc34
     - fc33
@@ -61,16 +63,16 @@ build-mariadb:
     - fc23
     - fc22
 
-# Build the memcache image 
+# Build the memcache image
 build-memcache:
   stage: "build Services"
   extends: .build-image
   allow_failure: true
   variables:
-    SXDI_PATH: 'Services/memcache'
-    SXDI_DOCKERNAME: 'sv-memcache'
-    SXDI_QUAYNAME: 'memcache'
-    SXDI_TAG: ${SXDI_OTHERTAG}
+    SXGLCI_PATH: "Services/memcache"
+    SXGLCI_DOCKERNAME: "sv-memcache"
+    SXGLCI_QUAYNAME: "memcache"
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
   only:
     - master
     - centos8
@@ -78,6 +80,7 @@ build-memcache:
     - centos6
     - alpine
     - ubi8
+    - fc36
     - fc35
     - fc34
     - fc33
@@ -95,16 +98,16 @@ build-memcache:
     - fc21
     - fc20
 
-# Build the mongo image 
+# Build the mongo image
 build-mongo:
   stage: "build Services"
   extends: .build-image
   allow_failure: true
   variables:
-    SXDI_PATH: 'Services/mongo'
-    SXDI_DOCKERNAME: 'sv-mongo'
-    SXDI_QUAYNAME: 'mongo'
-    SXDI_TAG: ${SXDI_OTHERTAG}
+    SXGLCI_PATH: "Services/mongo"
+    SXGLCI_DOCKERNAME: "sv-mongo"
+    SXGLCI_QUAYNAME: "mongo"
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
   only:
     - master
     - centos8
@@ -112,6 +115,7 @@ build-mongo:
     - centos6
     - alpine
     - ubi8
+    - fc36
     - fc35
     - fc34
     - fc33
@@ -129,22 +133,23 @@ build-mongo:
     - fc21
     - fc20
 
-# Build the ooconv image 
+# Build the ooconv image
 build-ooconv:
   stage: "build Services"
   extends: .build-image
   allow_failure: true
   variables:
-    SXDI_PATH: 'Services/ooconv'
-    SXDI_DOCKERNAME: 'sv-ooconv'
-    SXDI_QUAYNAME: 'ooconv'
-    SXDI_TAG: ${SXDI_OTHERTAG}
+    SXGLCI_PATH: "Services/ooconv"
+    SXGLCI_DOCKERNAME: "sv-ooconv"
+    SXGLCI_QUAYNAME: "ooconv"
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
   only:
     - master
     - centos8
     - centos7
     - centos6
     - ubi8
+    - fc36
     - fc35
     - fc34
     - fc33
@@ -160,16 +165,16 @@ build-ooconv:
     - fc23
     - fc22
 
-# Build the php image 
+# Build the php image
 build-php:
   stage: "build Services"
   extends: .build-image
   allow_failure: true
   variables:
-    SXDI_PATH: 'Services/php'
-    SXDI_DOCKERNAME: 'sv-php'
-    SXDI_QUAYNAME: 'php'
-    SXDI_TAG: ${SXDI_OTHERTAG}
+    SXGLCI_PATH: "Services/php"
+    SXGLCI_DOCKERNAME: "sv-php"
+    SXGLCI_QUAYNAME: "php"
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
   only:
     - master
     - centos8
@@ -177,6 +182,7 @@ build-php:
     - centos6
     - alpine
     - ubi8
+    - fc36
     - fc35
     - fc34
     - fc33
@@ -194,15 +200,15 @@ build-php:
     - fc21
     - fc20
 
-# Build the postgres image 
+# Build the postgres image
 build-postgres:
   stage: "build Services"
   extends: .build-image
   variables:
-    SXDI_PATH: 'Services/postgres'
-    SXDI_DOCKERNAME: 'sv-postgres'
-    SXDI_QUAYNAME: 'postgres'
-    SXDI_TAG: ${SXDI_OTHERTAG}
+    SXGLCI_PATH: "Services/postgres"
+    SXGLCI_DOCKERNAME: "sv-postgres"
+    SXGLCI_QUAYNAME: "postgres"
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
   only:
     - master
     - centos8
@@ -210,6 +216,7 @@ build-postgres:
     - centos6
     - alpine
     - ubi8
+    - fc36
     - fc35
     - fc34
     - fc33

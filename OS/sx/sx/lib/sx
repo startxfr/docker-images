@@ -1,9 +1,9 @@
 #!/bin/bash
 
 ## STARTX library release
-SXLIB_VERSION="0.95.25"
+SXLIB_VERSION="0.95.27"
 ## operating system name
-OS=`cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g'`
+OS=$(cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g')
 ## directory receiving S2I source code
 S2I_DEST=$SX_S2IDIR/src
 ## directory used to store application devops scripts
@@ -28,7 +28,7 @@ function isVerbose {
 
 # echo if verbose if activated
 function echoVerbose {
-    x=`isVerbose`
+    x=$(isVerbose)
     if [ "$x" -eq 1 ] ; then
         echo "$@"
     fi
@@ -36,7 +36,7 @@ function echoVerbose {
 
 # echo if verbose if not activated
 function echoNotVerbose {
-    x=`isVerbose`
+    x=$(isVerbose)
     if [ "$x" -eq 0 ] ; then
         echo "$@"
     fi

@@ -62,8 +62,7 @@ RUN dnf install -y yum-utils && \
     chown -R mysql:0 $LOG_PATH $DATA_PATH $LOADSQL_PATH && \
     chgrp -R 0 $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* $MY_CONF && \
     chmod -R g=u $DATA_PATH $LOG_PATH $LOADSQL_PATH /bin/sx-* /s2i $SX_LIBDIR* $MY_CONF && \
-    chmod -R ugo+x /bin/sx* && \
-    chmod ug+rw $MY_CONF
+    chmod -R ugo+x /bin/sx* 
 
 USER 1001
 
