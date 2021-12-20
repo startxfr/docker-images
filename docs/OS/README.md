@@ -7,6 +7,8 @@ Various container images with OS and common tools. Used as a basic layer for ser
 | **Fedora** | [guide](https://docker-images.readthedocs.io/en/latest/OS/fedora) | [OS list](https://docker-images.readthedocs.io/en/latest/OS/fedora#container-flavours) | [examples](https://docker-images.readthedocs.io/en/latest/OS/fedora#running-this-image) |
 | **Centos** | [guide](https://docker-images.readthedocs.io/en/latest/OS/centos) | [OS list](https://docker-images.readthedocs.io/en/latest/OS/centos#container-flavours) | [examples](https://docker-images.readthedocs.io/en/latest/OS/centos#running-this-image) |
 | **UBI**    | [guide](https://docker-images.readthedocs.io/en/latest/OS/ubi)    | [OS list](https://docker-images.readthedocs.io/en/latest/OS/ubi#container-flavours)    | [examples](https://docker-images.readthedocs.io/en/latest/OS/ubi#running-this-image)    |
+| **Alma**   | [guide](https://docker-images.readthedocs.io/en/latest/OS/alma)   | [OS list](https://docker-images.readthedocs.io/en/latest/OS/alma#container-flavours)   | [examples](https://docker-images.readthedocs.io/en/latest/OS/alma#running-this-image)   |
+| **Rocky**  | [guide](https://docker-images.readthedocs.io/en/latest/OS/rocky)  | [OS list](https://docker-images.readthedocs.io/en/latest/OS/rocky#container-flavours)  | [examples](https://docker-images.readthedocs.io/en/latest/OS/rocky#running-this-image)  |
 | **Alpine** | [guide](https://docker-images.readthedocs.io/en/latest/OS/alpine) | [OS list](https://docker-images.readthedocs.io/en/latest/OS/alpine#container-flavours) | [examples](https://docker-images.readthedocs.io/en/latest/OS/alpine#running-this-image) |
 
 ## Container flavours
@@ -28,13 +30,13 @@ Various container images with OS and common tools. Used as a basic layer for ser
 
 ### Alma
 
-- `latest` based on alma rawhide [see detail](https://docker-images.readthedocs.io/en/alma8)
-- `8` based on alma linux 8 [see detail](https://docker-images.readthedocs.io/en/alma8/OS)
+- `latest` based on alma rawhide [see detail](https://docker-images.readthedocs.io/en/alma/OS/alma)
+- `8` based on alma linux 8 [see detail](https://docker-images.readthedocs.io/en/alma/OS/alma)
 
 ### Rocky
 
-- `latest` based on alma rawhide [see detail](https://docker-images.readthedocs.io/en/rocky8)
-- `8` based on alma linux 8 [see detail](https://docker-images.readthedocs.io/en/rocky8/OS)
+- `latest` based on alma rawhide [see detail](https://docker-images.readthedocs.io/en/rocky/OS/rocky)
+- `8` based on alma linux 8 [see detail](https://docker-images.readthedocs.io/en/rocky/OS/rocky)
 
 ### Centos
 
