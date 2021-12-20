@@ -16,8 +16,8 @@ build-apache:
     - centos8
     - centos7
     - centos6
-    - alma8
-    - rocky8
+    - alma
+    - rocky
     - alpine
     - ubi8
     - fc36
@@ -53,8 +53,8 @@ build-nodejs:
     - centos8
     - centos7
     - centos6
-    - alma8
-    - rocky8
+    - alma
+    - rocky
     - alpine
     - ubi8
     - fc36
@@ -89,8 +89,8 @@ build-runner-bash:
     - master
     - centos8
     - centos7
-    - alma8
-    - rocky8
+    - alma
+    - rocky
     - alpine
     - ubi8
     - fc36
