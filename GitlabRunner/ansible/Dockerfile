@@ -50,7 +50,7 @@ RUN yum install -y -q yum-utils epel-release && \
     tar xzvf hugo_${SX_HUGO_RELEASE}_Linux-64bit.tar.gz && \
     mv hugo /usr/bin/ && \
     cd - && \
-    usermod -d /home/ansible -m -l ${SX_UNAME} user && \
+    useradd -d /home/ansible -m -g 0 -u 1001 ${SX_UNAME} && \
     mkdir -p /.ansible && \
     chgrp -R 0 /.ansible && \
     chown -R 1001:0 /.ansible && \
