@@ -48,7 +48,7 @@ RUN dnf install -y yum-utils && \
         mariadb-oqgraph-engine \
         mariadb-server-galera  \
         mysql-selinux \
-        python3-mysqlclient \
+        # python3-mysqlclient \
         glibc-langpack-fr \
         mariadb && \
     dnf remove -y --skip-broken yum-utils && \
