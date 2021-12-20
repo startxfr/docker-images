@@ -44,16 +44,15 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
         x11vnc \
         fedora-workstation-repositories \
         dnf-plugins-core \
-        pulseaudio \
-        python3-setuptools && \
+        pulseaudio && \
     dnf config-manager --set-enabled google-chrome && \
     dnf install -yq --nogpgcheck google-chrome-stable && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
-    pip install --upgrade pip && \
-    pip install --upgrade --force-reinstall setuptools pip && \
+    pip3 install --upgrade pip && \
+    pip3 install --upgrade --force-reinstall pip && \
     useradd -s /bin/bash -m -g 0 -u 1001 -G pulse-access $SX_USER && \
     mkdir -p /s2i $SX_LIBDIR /.local && \
     mv /tmp/s2i/bin/* /s2i/ && \
