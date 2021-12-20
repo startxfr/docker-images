@@ -158,7 +158,6 @@ build-ooconv:
     - centos6
     - alma8
     - rocky8
-    - ubi8
     - fc36
     - fc35
     - fc34
