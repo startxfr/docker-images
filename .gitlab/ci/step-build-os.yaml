@@ -28,19 +28,13 @@ build-os-latest:
     - alpine
     - ubi8
 
-include:
-  - template: Security/Container-Scanning.gitlab-ci.yml
+# include:
+#   - template: Security/Container-Scanning.gitlab-ci.yml
 
-# Scanning of the containers
-container_scanning:
-  stage: "build OS"
-  variables:
-    GIT_STRATEGY: fetch
-    SECURE_LOG_LEVEL: debug
-    DOCKER_IMAGE: "quay.io/startx/${SXGLCI_OSNAME}:${SXGLCI_OSTAG}"
-  only:
-    - centos8
-    # - alma
-    # - rocky
-    - alpine
-    - ubi8
+# # Scanning of the containers
+# container_scanning:
+#   stage: "build OS"
+#   variables:
+#     GIT_STRATEGY: fetch
+#     SECURE_LOG_LEVEL: debug
+#     DOCKER_IMAGE: "quay.io/startx/${SXGLCI_OSNAME}:${SXGLCI_OSTAG}"
