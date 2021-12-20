@@ -47,12 +47,12 @@ RUN dnf upgrade -yq --refresh && \
     tar xzvf hugo_${SX_HUGO_RELEASE}_Linux-64bit.tar.gz && \
     mv hugo /usr/bin/ && \
     cd - && \
-    useradd -d /home/ansible -m -u 1001 -g 0 ${SX_UNAME} && \
+    useradd -d /home/ansible -m -u 1002 -g 0 ${SX_UNAME} && \
     mkdir -p /.ansible && \
     chgrp -R 0 /.ansible && \
-    chown -R 1001:0 /.ansible && \
+    chown -R 1002:0 /.ansible && \
     chmod -R g=u /.ansible
 
-USER 1001
+USER 1002
 
 CMD [ "/bin/sx" , "usage" ]
