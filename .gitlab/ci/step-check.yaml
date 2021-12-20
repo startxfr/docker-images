@@ -32,8 +32,8 @@ markdown:
     - centos8
     - centos7
     - centos6
-    - alma8
-    - rocky8
+    - alma
+    - rocky
     - alpine
     - ubi8
     - fc36
