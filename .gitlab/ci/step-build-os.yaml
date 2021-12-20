@@ -23,8 +23,8 @@ build-os-latest:
     SXGLCI_TAG: latest
   only:
     - centos8
-    - alma8
-    - rocky8
+    - alma
+    - rocky
     - alpine
     - ubi8
 
