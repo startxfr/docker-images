@@ -16,8 +16,8 @@ build-vdi-chrome:
     - master
     - centos8
     - centos7
-    - alma8
-    - rocky8
+    - alma
+    - rocky
     - alpine
     - fc36
     - fc35
@@ -43,8 +43,8 @@ build-vdi-firefox:
     - master
     - centos8
     - centos7
-    - alma8
-    - rocky8
+    - alma
+    - rocky
     - alpine
     - fc36
     - fc35
