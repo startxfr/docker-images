@@ -28,16 +28,16 @@ RUN dnf upgrade -yq --refresh && \
     http://mirror.centos.org/centos/8/BaseOS/x86_64/os/Packages/bubblewrap-0.4.0-1.el8.x86_64.rpm \
     rsync \
     openssh-clients \
-    https://download-ib01.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/s/sshpass-1.06-9.el8.x86_64.rpm \
-    yamllint \
-    gem \
-    ShellCheck \
-    git \
-    bats && \
-    gem install --silent mdl && \
-    package-cleanup --problems && \
-    package-cleanup --orphans && \
-    dnf remove -yq --skip-broken yum-utils yum && \
+    https://download-ib01.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/s/sshpass-1.06-9.el8.x86_64.rpm && \
+    # yamllint \
+    # gem \
+    # ShellCheck \
+    # git \
+    # bats && \
+    # gem install --silent mdl && \
+    # package-cleanup --problems && \
+    # package-cleanup --orphans && \
+    # dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     useradd -s /bin/bash -u ${SX_UID} -g 0 -m ${SX_UNAME} && \
     mv /tmp/bin/* /bin/ && \
