@@ -38,3 +38,9 @@ container_scanning:
     GIT_STRATEGY: fetch
     SECURE_LOG_LEVEL: debug
     DOCKER_IMAGE: "quay.io/startx/${SXGLCI_OSNAME}:${SXGLCI_OSTAG}"
+  only:
+    - centos8
+    # - alma
+    # - rocky
+    - alpine
+    - ubi8
