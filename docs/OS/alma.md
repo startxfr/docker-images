@@ -38,9 +38,9 @@ See more applications builders and sample on [startx docker images repository](h
 
 ## Container flavours
 
-| Docker Hub repository                                            | Distribution        | Bash   | Kernel      |
-| ---------------------------------------------------------------- | ------------------- | ------ | ----------- |
-| [`startx/alma:8`](https://hub.docker.com/r/startx/alma)      | Alma 8            | 4.4.19 |             |
+| Docker Hub repository                                   | Distribution | Bash   | Kernel |
+| ------------------------------------------------------- | ------------ | ------ | ------ |
+| [`startx/alma:8`](https://hub.docker.com/r/startx/alma) | Alma 8       | 4.4.19 |        |
 
 ## Running this image
 
@@ -187,20 +187,20 @@ FROM quay.io/startx/alma:latest
 
 ## Environment variable
 
-| Variable              | Type     | Default         | Description                                                              |
-| --------------------- | -------- | --------------- | ------------------------------------------------------------------------ |
-| SX_VERSION            | `string` | `latest`        | container version                                                        |
-| SX_TYPE               | `string` | `OS`            | Container family (os, service, application). could be enhanced           |
+| Variable              | Type     | Default       | Description                                                              |
+| --------------------- | -------- | ------------- | ------------------------------------------------------------------------ |
+| SX_VERSION            | `string` | `latest`      | container version                                                        |
+| SX_TYPE               | `string` | `OS`          | Container family (os, service, application). could be enhanced           |
 | SX_SERVICE            | `string` | `alma`        | Define the type of service or application provided                       |
 | SX_ID                 | `auto`   | `startx/alma` | Container ID coresponding to the image repository                        |
-| SX_NAME               | `auto`   | `yes`           | Container name                                                           |
-| SX_SUMMARY            | `auto`   | `yes`           | Container purpose description                                            |
-| SX_VERBOSE            | `bool`   | `no`            | Display information about the execution                                  |
-| SX_DEBUG              | `bool`   | `no`            | Display debug informations during execution                              |
-| APP_PATH              | `string` | `/app`          | Path to the application                                                  |
-| SX_S2IDIR             | `string` | `/tmp`          | Destination path to the application pushed via s2i process               |
-| DAEMON_STOP_TIMEOUT   | `int`    | 3               | Number of second before stopping when smooth shutdown signal is received |
-| DAEMON_START_INTERVAL | `int`    | 10              | Hearthbeat rythm (in second) for the startx default daemeon              |
+| SX_NAME               | `auto`   | `yes`         | Container name                                                           |
+| SX_SUMMARY            | `auto`   | `yes`         | Container purpose description                                            |
+| SX_VERBOSE            | `bool`   | `no`          | Display information about the execution                                  |
+| SX_DEBUG              | `bool`   | `no`          | Display debug informations during execution                              |
+| APP_PATH              | `string` | `/app`        | Path to the application                                                  |
+| SX_S2IDIR             | `string` | `/tmp`        | Destination path to the application pushed via s2i process               |
+| DAEMON_STOP_TIMEOUT   | `int`    | 3             | Number of second before stopping when smooth shutdown signal is received |
+| DAEMON_START_INTERVAL | `int`    | 10            | Hearthbeat rythm (in second) for the startx default daemeon              |
 
 ## Container command
 
