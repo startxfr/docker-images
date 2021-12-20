@@ -10,7 +10,7 @@ ENV SX_VERSION="rocky8" \
     DATA_PATH=/opt/couchbase/var \
     CB_VERSION=6.5.1 \
     CB_RELEASE_URL=https://packages.couchbase.com/releases/6.5.1 \
-    CB_PACKAGE=couchbase-server-enterprise-6.5.1-rocky8.x86_64.rpm \
+    CB_PACKAGE=couchbase-server-enterprise-6.5.1-centos8.x86_64.rpm \
     PATH=$PATH:/opt/couchbase/bin:/opt/couchbase/bin/tools:/opt/couchbase/bin/install
 
 LABEL name="$SX_ID" \
@@ -38,14 +38,14 @@ RUN dnf upgrade -yq --refresh && \
     dnf install -yq https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm && \
     rpm -ivh https://forensics.cert.org/cert-forensics-tools-release-el8.rpm && \
     dnf install -yq 'dnf-command(config-manager)' && \
-    dnf install -y --nogpgcheck \
-    python2-httplib2 \
+    dnf install -y --nogpgcheck --enablerepo=* --disablerepo=media-* \
+    python3-httplib2 \
     openssl \
     bzip2 \
     ncurses \
     ncurses-libs \
     ncurses-compat-libs \
-    python2 && \
+    python3 && \
     dnf remove -yq --skip-broken yum-utils && \
     dnf remove -yq 'dnf-command(config-manager)' && \
     dnf clean all --enablerepo=\* && \
