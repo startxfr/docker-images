@@ -38,14 +38,14 @@ RUN dnf upgrade -yq --refresh && \
     dnf install -yq https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm && \
     rpm -ivh https://forensics.cert.org/cert-forensics-tools-release-el8.rpm && \
     dnf install -yq 'dnf-command(config-manager)' && \
-    dnf install -y --nogpgcheck \
-    python2-httplib2 \
+    dnf install -y --nogpgcheck --enablerepo=* --disablerepo=media-* \
+    python3-httplib2 \
     openssl \
     bzip2 \
     ncurses \
     ncurses-libs \
     ncurses-compat-libs \
-    python2 && \
+    python3 && \
     dnf remove -yq --skip-broken yum-utils && \
     dnf remove -yq 'dnf-command(config-manager)' && \
     dnf clean all --enablerepo=\* && \
