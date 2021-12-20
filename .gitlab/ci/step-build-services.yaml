@@ -17,8 +17,8 @@ build-couchbase:
     - centos8
     - centos7
     - centos6
-    - alma8
-    - rocky8
+    - alma
+    - rocky
     - ubi8
     - fc36
     - fc35
@@ -47,8 +47,8 @@ build-mariadb:
     - centos8
     - centos7
     - centos6
-    - alma8
-    - rocky8
+    - alma
+    - rocky
     - alpine
     - ubi8
     - fc36
@@ -82,8 +82,8 @@ build-memcache:
     - centos8
     - centos7
     - centos6
-    - alma8
-    - rocky8
+    - alma
+    - rocky
     - alpine
     - ubi8
     - fc36
@@ -119,8 +119,8 @@ build-mongo:
     - centos8
     - centos7
     - centos6
-    - alma8
-    - rocky8
+    - alma
+    - rocky
     - alpine
     - ubi8
     - fc36
@@ -156,8 +156,8 @@ build-ooconv:
     - centos8
     - centos7
     - centos6
-    - alma8
-    - rocky8
+    - alma
+    - rocky
     - fc36
     - fc35
     - fc34
@@ -189,8 +189,8 @@ build-php:
     - centos8
     - centos7
     - centos6
-    - alma8
-    - rocky8
+    - alma
+    - rocky
     - alpine
     - ubi8
     - fc36
@@ -225,8 +225,8 @@ build-postgres:
     - centos8
     - centos7
     - centos6
-    - alma8
-    - rocky8
+    - alma
+    - rocky
     - alpine
     - ubi8
     - fc36
