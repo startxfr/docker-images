@@ -32,6 +32,7 @@ RUN dnf upgrade -yq --refresh && \
     rsync \
     openssh-clients \
     sshpass && \
+    pip3 install -q yq && \
     dnf remove -yq --skip-broken yum-utils && \
     dnf clean all --enablerepo=\* && \
     useradd -u ${SX_UID} -m ${SX_UNAME} && \

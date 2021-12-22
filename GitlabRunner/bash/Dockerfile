@@ -34,6 +34,7 @@ RUN dnf upgrade -yq --refresh && \
     gem \
     git \
     bats && \
+    pip3 install -q yq && \
     dnf remove -yq --skip-broken yum-utils && \
     dnf clean all --enablerepo=\* && \
     useradd -s /bin/bash -u ${SX_UID} -g 0 -m ${SX_UNAME} && \
