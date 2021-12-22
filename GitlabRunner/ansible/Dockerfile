@@ -35,7 +35,7 @@ RUN dnf upgrade -yq --refresh && \
     openssh-clients \
     https://download-ib01.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/s/sshpass-1.06-9.el8.x86_64.rpm && \
     pip3 -q install --upgrade pip && \
-    pip3 -q install ansible ansible-runner openshift && \
+    pip3 -q install ansible ansible-runner openshift ansible-lint && \
     dnf remove -yq --skip-broken yum-utils && \
     npm install uuid && \
     dnf clean all --enablerepo=\* && \
