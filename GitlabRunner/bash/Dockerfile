@@ -31,6 +31,7 @@ RUN apk --no-cache add \
       ruby \
       ruby-etc \
       git && \
+    pip3 install yq && \
     gem install --silent mdl && \
     useradd -s /bin/bash -u ${SX_UID} -g 0 -m ${SX_UNAME} && \
     mv /tmp/bin/* /bin/ && \
