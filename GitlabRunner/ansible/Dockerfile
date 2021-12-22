@@ -35,7 +35,8 @@ RUN dnf upgrade -yq --refresh && \
     gcc python3-devel \
     curl \
     npm nodejs \
-    openssh-clients && \
+    openssh-clients \
+    jq && \
     alternatives --set python /usr/bin/python3 && \
     echo "alias pip=pip3" >> /etc/bashrc && \
     pip3 install -q ansible-runner ansible-lint openshift yq && \
