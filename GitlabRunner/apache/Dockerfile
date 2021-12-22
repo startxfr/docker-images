@@ -30,7 +30,8 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
         rsync \
         openssh-clients \
         sshpass
-        python3-pip && \
+        python3-pip \
+        jq && \
     pip install yq && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
