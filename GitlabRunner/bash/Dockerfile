@@ -34,7 +34,10 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
         gem \
         ShellCheck \
         git \
-        bats && \
+        bats
+        python3-pip \
+        jq && \
+    pip install yq && \
     gem install --silent mdl && \
     package-cleanup --problems && \
     package-cleanup --orphans && \

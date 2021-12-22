@@ -23,7 +23,8 @@ USER root
 COPY sx /tmp/
 RUN dnf install -yq --nogpgcheck \
         jq \
-        python3-pip && \
+        python3-pip \
+        jq && \
     pip install yq && \
     cd /tmp && \
     wget -q https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$SX_OC_VERSION/openshift-client-linux-$SX_OC_VERSION.tar.gz && \
