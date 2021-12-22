@@ -33,7 +33,8 @@ RUN dnf upgrade -yq --refresh && \
     yamllint \
     gem \
     git \
-    bats && \
+    bats \
+    jq && \
     pip3 install -q yq && \
     dnf remove -yq --skip-broken yum-utils && \
     dnf clean all --enablerepo=\* && \
