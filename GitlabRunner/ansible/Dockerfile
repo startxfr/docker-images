@@ -37,8 +37,7 @@ RUN yum install -y -q yum-utils epel-release && \
     sshpass && \
 #    alternatives --set python /usr/bin/python3 && \
 #    echo "alias pip=pip3" >> /etc/bashrc && \
-    pip3 install -q ansible-runner &> /dev/null && \
-    pip3 install -q openshift && \
+    pip3 install -q ansible-runner ansible-lint openshift && \
     yum remove -y --skip-broken yum-utils epel-release gcc python-devel && \
     yum clean all --enablerepo=\* && \
     npm install uuid && \
