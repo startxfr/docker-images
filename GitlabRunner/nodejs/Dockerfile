@@ -31,7 +31,8 @@ RUN dnf upgrade -yq --refresh && \
     bubblewrap \
     rsync \
     openssh-clients \
-    sshpass && \
+    sshpass \
+    jq && \
     pip3 install -q yq && \
     dnf remove -yq --skip-broken yum-utils && \
     dnf clean all --enablerepo=\* && \
