@@ -34,7 +34,8 @@ RUN yum install -y -q yum-utils epel-release && \
     curl \
     npm nodejs \
     openssh-clients \
-    sshpass && \
+    sshpass \
+    jq && \
 #    alternatives --set python /usr/bin/python3 && \
 #    echo "alias pip=pip3" >> /etc/bashrc && \
     pip3 install -q ansible-runner ansible-lint openshift yq && \

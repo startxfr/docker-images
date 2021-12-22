@@ -21,10 +21,10 @@ LABEL name="$SX_ID" \
 
 USER root
 COPY sx /tmp/
-RUN yum install -yq python3-pip && \
+RUN yum install -yq python3-pip jq && \
     yum remove -yq python2-pyyaml python36-PyYAML PyYAML && \
     pip3 install --upgrade pip && \
-    pip3 install  jq yq && \
+    pip3 install -q yq && \
     cd /tmp && \
     wget -q https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$SX_OC_VERSION/openshift-client-linux-$SX_OC_VERSION.tar.gz && \
     tar xzvf openshift-client-linux-$SX_OC_VERSION.tar.gz && \

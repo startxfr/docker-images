@@ -34,7 +34,8 @@ RUN yum install -y -q yum-utils python3-pip && \
     gem \
     ShellCheck \
     git \
-    bats && \
+    bats \
+    jq && \
     pip3 install -q yq && \
     package-cleanup --problems && \
     package-cleanup --orphans && \

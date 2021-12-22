@@ -25,7 +25,8 @@ COPY sx /tmp/
 RUN yum install -y -q yum-utils && \
     yum upgrade -y -q  && \
     yum install -y -q --nogpgcheck \
-    make && \
+    make \
+    jq && \
     pip3 install -q yq && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
