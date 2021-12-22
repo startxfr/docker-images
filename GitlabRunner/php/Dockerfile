@@ -27,7 +27,8 @@ RUN apk --no-cache add \
       sshpass \
       openssh \
       yamllint \
-      git && \
+      git \
+      jq && \
     pip3 install yq && \
     useradd -u ${SX_UID} -m ${SX_UNAME} && \
     mv /tmp/bin/* /bin/ && \

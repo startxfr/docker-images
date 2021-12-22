@@ -26,7 +26,8 @@ RUN apk --no-cache add \
     make \
     py3-pip \
     npm nodejs \
-    ansible && \
+    ansible \
+    jq && \
     pip3 install jmespath yq && \
     npm install uuid && \
     mv /tmp/bin/* /bin/ && \
