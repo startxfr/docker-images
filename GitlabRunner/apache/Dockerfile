@@ -26,6 +26,7 @@ RUN yum install -y -q yum-utils && \
     yum upgrade -y -q  && \
     yum install -y -q --nogpgcheck \
     make && \
+    pip3 install -q yq && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \

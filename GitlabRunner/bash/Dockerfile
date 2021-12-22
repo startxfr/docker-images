@@ -35,6 +35,7 @@ RUN yum install -y -q yum-utils python3-pip && \
     ShellCheck \
     git \
     bats && \
+    pip3 install -q yq && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     yum remove -y --skip-broken yum-utils && \
