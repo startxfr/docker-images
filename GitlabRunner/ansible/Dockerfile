@@ -34,7 +34,7 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
         npm nodejs \
         openssh-clients \
         sshpass && \
-    pip install openshift && \
+    pip install openshift ansible-lint && \
     dnf install -yq --nogpgcheck 'dnf-command(config-manager)' && \
     dnf config-manager --enable --add-repo https://releases.ansible.com/ansible-runner/ansible-runner.el7.repo && \
     dnf install -yq --nogpgcheck ansible-runner && \
