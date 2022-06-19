@@ -36,3 +36,25 @@ build-application-phpmyadmin:
     - fc24
     - fc23
     - fc22
+
+# Build the ocp-reliability application image
+build-application-ocp-reliability:
+  stage: "build OCP reliability"
+  extends: .build-image
+  allow_failure: true
+  variables:
+    SXGLCI_PATH: "Applications/ocp-reliability"
+    SXGLCI_DOCKERNAME: "app-ocp-reliability"
+    SXGLCI_QUAYNAME: "ocp-reliability"
+    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+  only:
+    - master
+    - alma
+    - rocky
+    - centos8
+    - centos7
+    - centos6
+    - alpine
+    - ubi8
+    - fc36
+    - fc35
