@@ -24,7 +24,8 @@ image: "quay.io/startx/runner-bash:alpine3"
   before_script: 
     - "source .gitlab/ci/startx-library.sh && DoImageBuildPrepare"
   script:
-    - DoImageBuildExecute $SXGLCI_PATH $SXGLCI_DOCKERNAME $SXGLCI_QUAYNAME $SXGLCI_TAG startx
+    - DoImageBuildExecute $SXGLCI_PATH $SXGLCI_DOCKERNAME $SXGLCI_TAG startx
+    - DoImageBuildExecute $SXGLCI_PATH $SXGLCI_QUAYNAME $SXGLCI_TAG startx
     - DoImageBuildTest $SXGLCI_PATH $SXGLCI_DOCKERNAME $SXGLCI_QUAYNAME $SXGLCI_TAG startx
     - DoImageBuildPublish $SXGLCI_PATH $SXGLCI_DOCKERNAME $SXGLCI_QUAYNAME $SXGLCI_TAG startx
 

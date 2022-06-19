@@ -12,7 +12,6 @@ function DisplayCheckDebug {
     DDSIZE=$(du -sh .)
     if [[ $SX_DEBUG == "true" ]]; then
     cat <<EOF
-    ======== DEBUG
     python version     : $VS_PYTHON
     mdl version        : $MDL_PYTHON
     shellcheck version : $SS_PYTHON
@@ -20,7 +19,6 @@ function DisplayCheckDebug {
 EOF
     else
     cat <<EOF
-    ======== DEBUG
     python version     : $VS_PYTHON
     directory size     : $DDSIZE
 EOF
@@ -85,7 +83,7 @@ EOF
 
 # Display the requirements checks
 function DisplayCheckRequirements {
-    echo "======== CHECK REQUIREMENTS"
+    echo "INFO:  CHECK REQUIREMENTS"
     DoCheckCheckRequirementsFileExist LICENSE
     DoCheckCheckRequirementsFileExist README.md
     DoCheckCheckRequirementsDirectoryExist docs
@@ -97,7 +95,7 @@ function DisplayCheckRequirements {
 
 # Perform a file check or exit
 function DoCheckCheckRequirementsFileExist {
-    echo "==== Check if file $1 exist"
+    echo "INFO: Check if file $1 exist"
     if [[ -f $1 ]]; then 
       echo "$1 file is found"; 
     else 
@@ -108,7 +106,7 @@ function DoCheckCheckRequirementsFileExist {
 
 # Perform a directory check or exit
 function DoCheckCheckRequirementsDirectoryExist {
-    echo "==== Check if directory $1 exist"
+    echo "INFO: Check if directory $1 exist"
     if [[ -d $1 ]]; then 
       echo "$1 directory is found"; 
     else 
@@ -119,7 +117,7 @@ function DoCheckCheckRequirementsDirectoryExist {
 
 # Perform a file check is binary or exit
 function DoCheckCheckRequirementsFileExecutable {
-    echo "==== Check if file $1 exist and is executable"
+    echo "INFO: Check if file $1 exist and is executable"
     if [[ -f $1 ]]; then 
       echo "$1 is found"; 
       if [[ -x $1 ]]; then 
@@ -138,7 +136,7 @@ function DoCheckCheckRequirementsFileExecutable {
 
 # Display the markdown checks
 function DisplayCheckMarkdown {
-    echo "======== CHECK MARKDOWN SYNTAX"
+    echo "INFO:  CHECK MARKDOWN SYNTAX"
     DoCheckMarkdown "*.md"
     DoCheckMarkdown "docs/*.md"
     DoCheckMarkdown "docs/*/*.md"
@@ -146,7 +144,7 @@ function DisplayCheckMarkdown {
 
 # Perform a markdown check agaisn't a file expression
 function DoCheckMarkdown {
-    echo "==== Check all markdown file coresponding to $1"
+    echo "INFO: Check all markdown file coresponding to $1"
     # shellcheck disable=SC2086
     RESULT=$(mdl --skip-default-ruleset $1)
     if [ "$SX_DEBUG" == "true" ]; then
@@ -156,13 +154,13 @@ function DoCheckMarkdown {
 
 # Display the readthedocs genation
 function DisplayCheckReadthedocs {
-    echo "======== CHECK READTHEDOCS GENERATION"
+    echo "INFO:  CHECK READTHEDOCS GENERATION"
     echo "INFO: Readthedocs is generating documentation that can be followed at https://readthedocs.org/projects"
 }
 
 # Display the shellcheck checks
 function DisplayCheckShellcheck {
-    echo "======== CHECK SHELL SYNTAX"
+    echo "INFO:  CHECK SHELL SYNTAX"
     shellcheck podman-helper.sh
     shellcheck okd-helper.sh
     shellcheck .gitlab/ci/startx-library.sh
@@ -170,33 +168,38 @@ function DisplayCheckShellcheck {
 
 # Display the build of a container image
 function DisplayImageBuild {
-    echo "======== BUILD IMAGE"
+    echo "INFO:  BUILD IMAGE"
     DoImageBuildPrepare
 }
 
 # Display the build of a container image
 function DoImageBuildPrepare {
-    echo "======== PREPARE IMAGE BUILD"
+    echo "INFO:  PREPARE IMAGE BUILD"
     DoImageBuildPrepareDaemon
     DoImageBuildPrepareRepositoryAuth docker.io "$DOCKER_USER" "$DOCKER_PASS"
     DoImageBuildPrepareRepositoryAuth quay.io "$QUAY_USER" "$QUAY_PASS"
-    DoImageBuildPrepareRepositoryAuth "$CI_REGISTRY" "$CI_REGISTRY_USER" "$CI_REGISTRY_PASSWORD"
+    if [ "$CI_REGISTRY" != "" ]; then
+        DoImageBuildPrepareRepositoryAuth "$CI_REGISTRY" "$CI_REGISTRY_USER" "$CI_REGISTRY_PASSWORD"
+    fi
 }
 
 # Prepare the docker daemon for optimal layer generation
 function DoImageBuildPrepareDaemon {
-    echo "INFO: Updating docker configuration (experimental)"
-    # echo '{ "experimental": true, "dns" : [ "8.8.8.8" ], "storage-driver": "overlay2", "max-concurrent-downloads": 50, "max-concurrent-uploads": 50 }' | tee /etc/docker/daemon.json
-    # service docker restart
+    echo "INFO: Updating $sxi_docker_images configurati\xon"
+    # if [ "$sxi_docker_images" == "docker" ]; then
+    #     echo "INFO: Updating docker configuration (experimental)"
+    #     echo '{ "experimental": true, "dns" : [ "8.8.8.8" ], "storage-driver": "overlay2", "max-concurrent-downloads": 50, "max-concurrent-uploads": 50 }' | tee /etc/docker/daemon.json
+    #     service docker restart
+    # fi
 }
 
 # Execute a docker login command for the given registry with the given credentials
 function DoImageBuildPrepareRepositoryAuth {
     echo "INFO: Login to $1 registry"
     if [ "$SX_DEBUG" == "true" ]; then
-        docker login -u "$2" -p "$3" "$1" &> /dev/null
+        ${sxi_docker_images} login -u "$2" -p "$3" "$1" &> /dev/null
     else
-        docker login -u "$2" -p "$3" "$1"
+        ${sxi_docker_images} login -u "$2" -p "$3" "$1"
     fi
 }
 
@@ -204,20 +207,20 @@ function DoImageBuildPrepareRepositoryAuth {
 function DoImagePullImage {
     echo "INFO: Pull image $1/$2:$3"
     if [[ "$SX_DEBUG" == "true" ]]; then
-        docker pull "$1/$2:$3" &> /dev/null
+        ${sxi_docker_images} pull "$1/$2:$3" &> /dev/null
     else
-        docker pull "$1/$2:$3"
+        ${sxi_docker_images} pull "$1/$2:$3"
     fi
 }
 
 # Execute a docker push of an image comming from the given registry. Must be authenticated prior to this push.
 function DoImagePushImage {
     echo "INFO: Push image $1/$2:$3"
-    docker push "$1/$2:$3"
+    ${sxi_docker_images} push "$1/$2:$3"
     if [ "$SX_DEBUG" == "true" ]; then
-        docker push "$1/$2:$3" &> /dev/null
+        ${sxi_docker_images} push "$1/$2:$3" &> /dev/null
     else
-        docker push "$1/$2:$3"
+        ${sxi_docker_images} push "$1/$2:$3"
     fi
 }
 
@@ -232,17 +235,20 @@ function DoImageBuildExecute {
     local quayname=${3:-fedora}
     local ns=${5:-startx}
     IMAGE_TAG=docker.io/$ns/$dockername:$tag
-    IMAGE_QUAYTAG=quay.io/$ns/$quayname:$tag
+    echo "INFO: Build execute $dockername version $tag in $ns"
+    echo "$IMAGE_TAG $IMAGE_QUAYTAG"
+    exit
     TEST_NAME="$ns"_"$quayname"_"$tag"
-    echo "========> BUILD Container image $IMAGE_TAG"
+    echo "INFO: > BUILD Container image $IMAGE_TAG"
     cd "$path"  &>/dev/null || exit
-    RESULT=$(docker build -t "$IMAGE_TAG" .)
+    echo "INFO: Build execute $IMAGE_TAG"
+    RESULT=$(${sxi_docker_images} build -t "$IMAGE_TAG" .)
     RESULTRC=$?
     if [[ "$RESULTRC" = "0" ]]; then
         if [ "$SX_DEBUG" = "true" ] ; then
             echo "$RESULT"
         fi
-        echo "========> BUILDED container image $IMAGE_TAG"
+        echo "INFO: > BUILDED container image $IMAGE_TAG"
     else
         echo "$RESULT"
         echo "!!!!!!!!> Could not build container image $IMAGE_TAG"
@@ -268,15 +274,15 @@ function DoImageBuildTest {
     IMAGE_TAG=docker.io/$ns/$dockername:$tag
     IMAGE_QUAYTAG=quay.io/$ns/$quayname:$tag
     TEST_NAME="$ns"_"$quayname"_"$tag"
-    echo "========> TEST Container instance $TEST_NAME based on image $IMAGE_TAG"
-    docker rm -f "$TEST_NAME" &>/dev/null
-    RESULT=$(docker run -d --name "$TEST_NAME" "$IMAGE_TAG")
+    echo "INFO: > TEST Container instance $TEST_NAME based on image $IMAGE_TAG"
+    ${sxi_docker_images} rm -f "$TEST_NAME" &>/dev/null
+    RESULT=$(${sxi_docker_images} run -d --name "$TEST_NAME" "$IMAGE_TAG")
     RESULTRC=$?
     if [[ "$RESULTRC" = "0" ]]; then
         if [ "$SX_DEBUG" = "true" ] ; then
             echo "$RESULT"
         fi
-        echo "========> TESTED Container instance $TEST_NAME STARTED"
+        echo "INFO: > TESTED Container instance $TEST_NAME STARTED"
         echo "$TEST_NAME" > /tmp/istested_"$quayname"
     else
         echo "$RESULT"
@@ -302,17 +308,17 @@ function DoImageBuildPublish {
     IMAGE_TAG=docker.io/$ns/$dockername:$tag
     IMAGE_QUAYTAG=quay.io/$ns/$quayname:$tag
     TEST_NAME="$ns"_"$quayname"_"$tag"
-    echo "========> PUBLISH Container $IMAGE_TAG"
+    echo "INFO: > PUBLISH Container $IMAGE_TAG"
     if [ -f /tmp/istested_"$quayname" ] ; then
         DoImagePushImage docker.io "$ns"/"$dockername" $tag
         echo "INFO: Retag image $IMAGE_TAG to $IMAGE_QUAYTAG"
-        docker tag "$IMAGE_TAG" "$IMAGE_QUAYTAG"
+        ${sxi_docker_images} tag "$IMAGE_TAG" "$IMAGE_QUAYTAG"
         DoImagePushImage quay.io "$ns/$quayname" "$tag"
         echo "INFO: Retag image $IMAGE_TAG to $CI_REGISTRY/startx1/containers/$dockername:$tag"
-        docker tag "$IMAGE_TAG" "$CI_REGISTRY/startx1/containers/$dockername:$tag"
+        ${sxi_docker_images} tag "$IMAGE_TAG" "$CI_REGISTRY/startx1/containers/$dockername:$tag"
         DoImagePushImage "$CI_REGISTRY" "startx1/containers/$dockername" "$tag"
     else
-        echo "========> PUBLISHING Container image $IMAGE_TAG skipped because test failed"
+        echo "INFO: > PUBLISHING Container image $IMAGE_TAG skipped because test failed"
         if [[ "$ISFATAL" = "true" ]]; then
             exit 30;
         else
