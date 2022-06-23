@@ -40,10 +40,10 @@ LABEL name="$SX_ID" \
     io.s2i.scripts-url="image:///s2i" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
     org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/latest/OS/fedora/" \
-    io.artifacthub.package.readme-url="https://docker-images.readthedocs.io/en/latest/OS/fedora/" \
     org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/master/OS" \
+    io.artifacthub.package.readme-url="https://docker-images.readthedocs.io/en/latest/OS/fedora/" \
     io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/master/docs/img/os-fedora.svg' \
-    io.artifacthub.package.alternative-locations='quay.io/startx/fedora:latest,docker.io/startx/fedora:latest' \
+    io.artifacthub.package.alternative-locations='quay.io/startx/fedora:latest,docker.io/startx/fedora:latest'
 
 USER root
 
