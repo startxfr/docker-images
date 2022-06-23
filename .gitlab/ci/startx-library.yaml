@@ -26,11 +26,11 @@ image: "quay.io/startx/runner-bash:alpine3"
   script:
     - DoImageBuildExecute ${SXDI_PATH} docker.io startx ${SXDI_DOCKERNAME} ${SXDI_TAG}
     - DoImageBuildExecute ${SXDI_PATH} quay.io startx ${SXDI_QUAYNAME} ${SXDI_TAG}
-    - DoImageBuildExecute ${SXDI_PATH} $CI_REGISTRY startx1/containers ${SXDI_DOCKERNAME} ${SXDI_TAG}
+    - DoImageBuildExecute ${SXDI_PATH} $CI_REGISTRY startx1/containers ${SXDI_QUAYNAME} ${SXDI_TAG}
     - DoImageBuildTest docker.io/startx/${SXDI_DOCKERNAME}:${SXDI_TAG} startx ${SXDI_DOCKERNAME} ${SXDI_TAG}
     - DoImageBuildPublish docker.io startx ${SXDI_DOCKERNAME} ${SXDI_TAG}
     - DoImageBuildPublish quay.io startx ${SXDI_QUAYNAME} ${SXDI_TAG}
-    - DoImageBuildPublish $CI_REGISTRY startx1/containers ${SXDI_DOCKERNAME} ${SXDI_TAG}
+    - DoImageBuildPublish $CI_REGISTRY startx1/containers ${SXDI_QUAYNAME} ${SXDI_TAG}
 
 # Library used to merge branch in a local repo
 .git-merge:

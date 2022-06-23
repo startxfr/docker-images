@@ -49,7 +49,7 @@ function DisplayCheckDebug {
     MDL_PYTHON=$(mdl --version)
     SS_PYTHON=$(shellcheck --version | head -n 2 | tail -n 1 | cut -d ':' -f 2 | xargs)
     DDSIZE=$(du -sh .)
-    if [[ $SX_DEBUG == "true" ]]; then
+    if [[ $SX_DEBUG != "false" ]]; then
     cat <<EOF
     SXDI version       : $SXDI_VERSION
     python version     : $VS_PYTHON
@@ -68,7 +68,7 @@ EOF
 
 # Display the info checks
 function DisplayCheckInfo {
-    if [[ $SX_DEBUG == "true" ]]; then
+    if [[ $SX_DEBUG != "false" ]]; then
     cat <<EOF
     ======== USER INFO
     ID         : $GITLAB_USER_ID
@@ -188,7 +188,7 @@ function DoCheckMarkdown {
     echo "INFO: Check all markdown file coresponding to $1"
     # shellcheck disable=SC2086
     RESULT=$(mdl --skip-default-ruleset $1)
-    if [ "$SX_DEBUG" == "true" ]; then
+    if [ "$SX_DEBUG" != "false" ]; then
         echo "$RESULT"
     fi
 }
@@ -246,7 +246,7 @@ function DoImageBuildPrepareDaemon {
 # Execute a docker login command for the given registry with the given credentials
 function DoImageBuildPrepareRepositoryAuth {
     echo "INFO: Login to $1 registry"
-    if [ "$SX_DEBUG" == "true" ]; then
+    if [ "$SX_DEBUG" == "false" ]; then
         ${SXDI_ENGINE} login -u "$2" -p "$3" "$1" &> /dev/null
     else
         ${SXDI_ENGINE} login -u "$2" -p "$3" "$1"
@@ -256,7 +256,7 @@ function DoImageBuildPrepareRepositoryAuth {
 # Execute a docker pull of an image comming from the given registry. Must be authenticated prior to this pull if image is private.
 function DoImagePullImage {
     echo "INFO: Pull image $1/$2:$3"
-    if [[ "$SX_DEBUG" == "true" ]]; then
+    if [[ "$SX_DEBUG" == "false" ]]; then
         ${SXDI_ENGINE} pull "$1/$2:$3" &> /dev/null
     else
         ${SXDI_ENGINE} pull "$1/$2:$3"
@@ -266,7 +266,7 @@ function DoImagePullImage {
 # Execute a docker push of an image comming from the given registry. Must be authenticated prior to this push.
 function DoImagePushImage {
     echo "INFO: Push image $1/$2:$3"
-    if [ "$SX_DEBUG" == "true" ]; then
+    if [ "$SX_DEBUG" == "false" ]; then
         ${SXDI_ENGINE} push "$1/$2:$3" &> /dev/null
     else
         ${SXDI_ENGINE} push "$1/$2:$3"
@@ -289,7 +289,7 @@ function DoImageBuildExecute {
     RESULT=$(${SXDI_ENGINE} build -t "$IMAGE_TAG" .)
     RESULTRC=$?
     if [[ "$RESULTRC" = "0" ]]; then
-        if [ "$SX_DEBUG" == "true" ] ; then
+        if [ "$SX_DEBUG" != "false" ] ; then
             echo "$RESULT"
         fi
         echo "INFO: > BUILDED container image $IMAGE_TAG"
@@ -321,7 +321,7 @@ function DoImageBuildTest {
     RESULT=$(${SXDI_ENGINE} run -d --name "$TEST_NAME" "$IMAGE_TAG")
     RESULTRC=$?
     if [[ "$RESULTRC" = "0" ]]; then
-        if [ "$SX_DEBUG" == "true" ] ; then
+        if [ "$SX_DEBUG" != "false" ] ; then
             echo "$RESULT"
             ${SXDI_ENGINE} logs "$TEST_NAME"
         fi
@@ -352,7 +352,7 @@ function DoImageCleanTest {
     RESULTRC=$?
     if [[ "$RESULTRC" = "0" ]]; then
         echo "INFO: > CLEANED Container instance $TEST_NAME"
-        if [ "$SX_DEBUG" == "true" ] ; then
+        if [ "$SX_DEBUG" != "false" ] ; then
             echo "$RESULT"
         fi
     else
@@ -368,7 +368,7 @@ function DoImageCleanImage {
     echo "INFO: > CLEAN Container instance image $IMAGE_TAG"
     if RESULT=$(${SXDI_ENGINE} rmi -f "$IMAGE_TAG" &>/dev/null); then
         echo "INFO: > CLEANED Container image $IMAGE_TAG"
-        if [ "$SX_DEBUG" == "true" ] ; then
+        if [ "$SX_DEBUG" != "false" ] ; then
             echo "$RESULT"
         fi
     else
