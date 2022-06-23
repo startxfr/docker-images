@@ -8,10 +8,10 @@ build-application-phpmyadmin:
   extends: .build-image
   allow_failure: true
   variables:
-    SXGLCI_PATH: "Applications/phpmyadmin"
-    SXGLCI_DOCKERNAME: "app-phpmyadmin"
-    SXGLCI_QUAYNAME: "phpmyadmin"
-    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+    SXDI_PATH: "Applications/phpmyadmin"
+    SXDI_DOCKERNAME: "app-phpmyadmin"
+    SXDI_QUAYNAME: "phpmyadmin"
+    SXDI_TAG: ${SXDI_OTHERTAG}
   only:
     - master
     - alma
@@ -43,10 +43,10 @@ build-application-phpmyadmin:
 #   extends: .build-image
 #   allow_failure: true
 #   variables:
-#     SXGLCI_PATH: "Applications/ocp-reliability"
-#     SXGLCI_DOCKERNAME: "app-ocp-reliability"
-#     SXGLCI_QUAYNAME: "ocp-reliability"
-#     SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+#     SXDI_PATH: "Applications/ocp-reliability"
+#     SXDI_DOCKERNAME: "app-ocp-reliability"
+#     SXDI_QUAYNAME: "ocp-reliability"
+#     SXDI_TAG: ${SXDI_OTHERTAG}
 #   only:
 #     - master
 #     - alma

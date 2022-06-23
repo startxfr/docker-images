@@ -8,10 +8,10 @@ build-vdi-chrome:
   extends: .build-image
   allow_failure: true
   variables:
-    SXGLCI_PATH: "VDI/chrome"
-    SXGLCI_DOCKERNAME: "vdi-chrome"
-    SXGLCI_QUAYNAME: "chrome"
-    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+    SXDI_PATH: "VDI/chrome"
+    SXDI_DOCKERNAME: "vdi-chrome"
+    SXDI_QUAYNAME: "chrome"
+    SXDI_TAG: ${SXDI_OTHERTAG}
   only:
     - master
     - centos8
@@ -35,10 +35,10 @@ build-vdi-firefox:
   extends: .build-image
   allow_failure: true
   variables:
-    SXGLCI_PATH: "VDI/firefox"
-    SXGLCI_DOCKERNAME: "vdi-firefox"
-    SXGLCI_QUAYNAME: "firefox"
-    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+    SXDI_PATH: "VDI/firefox"
+    SXDI_DOCKERNAME: "vdi-firefox"
+    SXDI_QUAYNAME: "firefox"
+    SXDI_TAG: ${SXDI_OTHERTAG}
   only:
     - master
     - centos8

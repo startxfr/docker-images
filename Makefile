@@ -1,65 +1,74 @@
-version= 0.95.29
-SXGLCI_GIT_DOMAIN= gitlab.com
-SXGLCI_GIT_SSH_USER= git@gitlab.com
+SXDI_GIT_DOMAIN=gitlab.com
+SXDI_GIT_SSH_USER=git@gitlab.com
 SX_VERBOSE=true
 SX_DEBUG=false
-SXGLCI_OSTAG=latest
-SXGLCI_OSNAME=fedora
-SXGLCI_OTHERTAG=latest
-SXGLCI_ENGINE=podman
-SXGLCI_PATH: "OS"
-export  SXGLCI_GIT_DOMAIN \
-		SXGLCI_GIT_SSH_USER \
+SXDI_OSTAG=latest
+SXDI_OSNAME=fedora
+SXDI_OTHERTAG=latest
+SXDI_ENGINE=podman
+SXDI_PATH=OS
+SXDI_REGISTRY_NS=startx
+SXDI_RTMODE=exit
+export  SXDI_GIT_DOMAIN \
+		SXDI_GIT_SSH_USER \
 		SX_VERBOSE \
 		SX_DEBUG \
 		DOCKER_USER \
 		DOCKER_PASS \
 		QUAY_USER \
 		QUAY_PASS \
-		SXGLCI_OSTAG \
-		SXGLCI_OSNAME \
-		SXGLCI_OTHERTAG \
-		SXGLCI_ENGINE \
-		SXGLCI_PATH
+		SXDI_OSTAG \
+		SXDI_OSNAME \
+		SXDI_OTHERTAG \
+		SXDI_ENGINE \
+		SXDI_PATH \
+		SXDI_REGISTRY_NS \
+		SXDI_RTMODE
 
 # Generic actions (default is local)
 # all action
 .PHONY: all
-all: build test clean
+all: all-local 
 # build action
 .PHONY: build
-build: build-local
+build: check-local build-local
 # test action
 .PHONY: test
-test: test-local
+test: check-local test-local
 # clean action
 .PHONY: clean
-clean: clean-local
+clean: check-local clean-local
 # mrproper action
-mrproper: clean-local 
+mrproper: check-local clean-local 
 
 # Local actions
 # all local actions
-all-local: build-local test-local clean-local
+all-local: check-local build-local test-local clean-local
+# check local action
+check-local:
+	@echo "======== CHECK LOCAL"
+	@source .gitlab/ci/startx-library.sh && \
+		checkRequirements && \
+		DisplayCheckDebug
+
 # build local action
 # build-local: SHELL:=/bin/bash
 build-local: 
 	@echo "======== BUILD LOCAL"
 	@source .gitlab/ci/startx-library.sh && \
 		DoImageBuildPrepare && \
-		DoImageBuildExecute ${SXGLCI_PATH} ${SXGLCI_DOCKERNAME} ${SXGLCI_QUAYNAME} ${SXGLCI_TAG} startx
-		DoImageBuildExecute ${SXGLCI_PATH} ${QUAY_USER} ${SXGLCI_QUAYNAME} ${SXGLCI_TAG} startx
-
-    # IMAGE_QUAYTAG=quay.io/$ns/$quayname:$tag
+		DoImageBuildExecute ${SXDI_PATH} localhost startx ${SXDI_OSNAME} ${SXDI_OSTAG}
 # test local action
 test-local: 
 	@echo "======== TEST LOCAL"
 	@source .gitlab/ci/startx-library.sh && \
-		ExecCollectionTest
+		DoImageBuildTest localhost/startx/${SXDI_OSNAME}:${SXDI_OSTAG} startx ${SXDI_OSNAME} ${SXDI_OSTAG}
 # clean local action
 clean-local: 
 	@echo "======== CLEAN LOCAL"
-	@bash -c "source .gitlab/ci/startx-library.sh && ExecCollectionClean"
+	@source .gitlab/ci/startx-library.sh && \
+		DoImageCleanTest startx ${SXDI_OSNAME} ${SXDI_OSTAG} && \
+		DoImageCleanImage localhost/startx/${SXDI_OSNAME}:${SXDI_OSTAG}
 
 # Gitlab actions
 # all gitlab actions
@@ -67,16 +76,22 @@ all-gitlab: build-gitlab test-gitlab publish-gitlab
 # build local action
 build-gitlab: 
 	@echo "======== BUILD GITLAB"
-	@bash -c "source .gitlab/ci/startx-library.sh && ExecCollectionBuild"
+	@source .gitlab/ci/startx-library.sh && \
+		DoImageBuildPrepare && \
+		DoImageBuildExecute ${SXDI_PATH} docker.io startx ${SXDI_OSNAME} ${SXDI_OSTAG} && \
+		DoImageBuildExecute ${SXDI_PATH} quay.io startx ${SXDI_OSNAME} ${SXDI_OSTAG}
 # test local action
 test-gitlab: 
 	@echo "======== TEST GITLAB"
-	@bash -c "source .gitlab/ci/startx-library.sh && ExecCollectionTest"
+	@source .gitlab/ci/startx-library.sh && \
+		ExecCollectionTest
 # clean local action
 publish-gitlab: 
 	@echo "======== PUBLISH GITLAB"
-	@bash -c "source .gitlab/ci/startx-library.sh && ExecCollectionPublish"
+	@source .gitlab/ci/startx-library.sh && \
+		ExecCollectionPublish
 # clean local action
 clean-gitlab: 
 	@echo "======== CLEAN GITLAB"
-	@bash -c "source .gitlab/ci/startx-library.sh && ExecCollectionClean"
+	@source .gitlab/ci/startx-library.sh && \
+		ExecCollectionClean
