@@ -391,7 +391,7 @@ function DoImageBuildPublish {
     local TEST_NAME="$namespace"_"$image"_"$tag"
     echo "INFO: > PUBLISH Container image $IMAGE_TAG"
     if [ -f /tmp/istested_"$TEST_NAME" ] ; then
-        DoImagePushImage ${IMAGE_TAG}
+        DoImagePushImage "${IMAGE_TAG}"
     else
         echo "INFO: > PUBLISHING Container image $IMAGE_TAG skipped because test failed"
         if [[ "$ISFATAL" = "true" ]]; then
