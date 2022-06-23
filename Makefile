@@ -8,7 +8,7 @@ SXDI_OTHERTAG=latest
 SXDI_ENGINE=podman
 SXDI_PATH=OS
 SXDI_REGISTRY_NS=startx
-SXDI_RTMODE=exit
+SXDI_RTMODE=return
 export  SXDI_GIT_DOMAIN \
 		SXDI_GIT_SSH_USER \
 		SX_VERBOSE \
@@ -57,18 +57,18 @@ build-local:
 	@echo "======== BUILD LOCAL"
 	@source .gitlab/ci/startx-library.sh && \
 		DoImageBuildPrepare && \
-		DoImageBuildExecute ${SXDI_PATH} localhost startx ${SXDI_OSNAME} ${SXDI_OSTAG}
+		DoImageBuildExecuteAll
 # test local action
 test-local: 
 	@echo "======== TEST LOCAL"
 	@source .gitlab/ci/startx-library.sh && \
-		DoImageBuildTest localhost/startx/${SXDI_OSNAME}:${SXDI_OSTAG} startx ${SXDI_OSNAME} ${SXDI_OSTAG}
+		DoImageBuildTestAll
 # clean local action
 clean-local: 
 	@echo "======== CLEAN LOCAL"
 	@source .gitlab/ci/startx-library.sh && \
-		DoImageCleanTest startx ${SXDI_OSNAME} ${SXDI_OSTAG} && \
-		DoImageCleanImage localhost/startx/${SXDI_OSNAME}:${SXDI_OSTAG}
+		DoImageCleanTestAll && \
+		DoImageCleanImageAll
 
 # Gitlab actions
 # all gitlab actions

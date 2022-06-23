@@ -173,8 +173,6 @@ function DoCheckCheckRequirementsFileExecutable {
     fi
 }
 
-
-
 # Display the markdown checks
 function DisplayCheckMarkdown {
     echo "INFO:  CHECK MARKDOWN SYNTAX"
@@ -273,6 +271,30 @@ function DoImagePushImage {
     fi
 }
 
+# Execute a docker build for OS environment
+function DoImageBuildExecuteAll {
+    echo "INFO: Build all images"
+    DoImageBuildExecute OS localhost startx ${SXDI_OSNAME} ${SXDI_OSTAG}
+    DoImageBuildExecute Applications/phpmyadmin localhost startx app-phpmyadmin ${SXDI_OSTAG}
+    DoImageBuildExecute Applications/ocp-reliability localhost startx app-ocp-reliability ${SXDI_OSTAG}
+    DoImageBuildExecute GitlabRunner/ansible localhost startx runner-ansible ${SXDI_OSTAG}
+    DoImageBuildExecute GitlabRunner/apache localhost startx runner-apache ${SXDI_OSTAG}
+    DoImageBuildExecute GitlabRunner/bash localhost startx runner-bash ${SXDI_OSTAG}
+    DoImageBuildExecute GitlabRunner/nodejs localhost startx runner-nodejs ${SXDI_OSTAG}
+    DoImageBuildExecute GitlabRunner/oc localhost startx runner-oc ${SXDI_OSTAG}
+    DoImageBuildExecute GitlabRunner/php localhost startx runner-php ${SXDI_OSTAG}
+    DoImageBuildExecute VDI/chrome localhost startx vdi-chrome ${SXDI_OSTAG}
+    DoImageBuildExecute VDI/firefox localhost startx vdi-firefox ${SXDI_OSTAG}
+    DoImageBuildExecute Services/apache localhost startx sv-apache ${SXDI_OSTAG}
+    DoImageBuildExecute Services/couchbase localhost startx sv-couchbase ${SXDI_OSTAG}
+    DoImageBuildExecute Services/mariadb localhost startx sv-mariadb ${SXDI_OSTAG}
+    DoImageBuildExecute Services/memcache localhost startx sv-memcache ${SXDI_OSTAG}
+    DoImageBuildExecute Services/mongo localhost startx sv-mongo ${SXDI_OSTAG}
+    DoImageBuildExecute Services/nodejs localhost startx sv-nodejs ${SXDI_OSTAG}
+    DoImageBuildExecute Services/php localhost startx sv-php ${SXDI_OSTAG}
+    DoImageBuildExecute Services/postgres localhost startx sv-postgres ${SXDI_OSTAG}
+}
+
 # Execute a docker build
 function DoImageBuildExecute {
     local path=${SXDI_ROOTPATH}/${1:-$SXDI_PATH}
@@ -304,6 +326,30 @@ function DoImageBuildExecute {
         fi
     fi
     cd - &>/dev/null || ${SXDI_RTMODE} 2
+}
+
+# Execute a docker build for OS environment
+function DoImageBuildTestAll {
+    echo "INFO: Test all images"
+    DoImageBuildTest localhost/startx/${SXDI_OSNAME}:${SXDI_OSTAG} startx ${SXDI_OSNAME} ${SXDI_OSTAG}
+    DoImageBuildTest localhost/startx/app-phpmyadmin:${SXDI_OSTAG} startx app-phpmyadmin ${SXDI_OSTAG}
+    DoImageBuildTest localhost/startx/app-ocp-reliability:${SXDI_OSTAG} startx app-ocp-reliability ${SXDI_OSTAG}
+    DoImageBuildTest localhost/startx/runner-ansible:${SXDI_OSTAG} startx runner-ansible ${SXDI_OSTAG}
+    DoImageBuildTest localhost/startx/runner-apache:${SXDI_OSTAG} startx runner-apache ${SXDI_OSTAG}
+    DoImageBuildTest localhost/startx/runner-bash:${SXDI_OSTAG} startx runner-bash ${SXDI_OSTAG}
+    DoImageBuildTest localhost/startx/runner-nodejs:${SXDI_OSTAG} startx runner-nodejs ${SXDI_OSTAG}
+    DoImageBuildTest localhost/startx/runner-oc:${SXDI_OSTAG} startx runner-oc ${SXDI_OSTAG}
+    DoImageBuildTest localhost/startx/runner-php:${SXDI_OSTAG} startx runner-php ${SXDI_OSTAG}
+    DoImageBuildTest localhost/startx/vdi-chrome:${SXDI_OSTAG} startx vdi-chrome ${SXDI_OSTAG}
+    DoImageBuildTest localhost/startx/vdi-firefox:${SXDI_OSTAG} startx vdi-firefox ${SXDI_OSTAG}
+    DoImageBuildTest localhost/startx/sv-apache:${SXDI_OSTAG} startx sv-apache ${SXDI_OSTAG}
+    DoImageBuildTest localhost/startx/sv-couchbase:${SXDI_OSTAG} startx sv-couchbase ${SXDI_OSTAG}
+    DoImageBuildTest localhost/startx/sv-mariadb:${SXDI_OSTAG} startx sv-mariadb ${SXDI_OSTAG}
+    DoImageBuildTest localhost/startx/sv-memcache:${SXDI_OSTAG} startx sv-memcache ${SXDI_OSTAG}
+    DoImageBuildTest localhost/startx/sv-mongo:${SXDI_OSTAG} startx sv-mongo ${SXDI_OSTAG}
+    DoImageBuildTest localhost/startx/sv-nodejs:${SXDI_OSTAG} startx sv-nodejs ${SXDI_OSTAG}
+    DoImageBuildTest localhost/startx/sv-php:${SXDI_OSTAG} startx sv-php ${SXDI_OSTAG}
+    DoImageBuildTest localhost/startx/sv-postgres:${SXDI_OSTAG} startx sv-postgres ${SXDI_OSTAG}
 }
 
 # Test the builded image
@@ -338,6 +384,30 @@ function DoImageBuildTest {
     fi
 }
 
+# Execute a docker build for OS environment
+function DoImageCleanTestAll {
+    echo "INFO: Clean all test"
+    DoImageCleanTest startx ${SXDI_OSNAME} ${SXDI_OSTAG}
+    DoImageCleanTest startx app-phpmyadmin ${SXDI_OSTAG}
+    DoImageCleanTest startx app-ocp-reliability ${SXDI_OSTAG}
+    DoImageCleanTest startx runner-ansible ${SXDI_OSTAG}
+    DoImageCleanTest startx runner-apache ${SXDI_OSTAG}
+    DoImageCleanTest startx runner-bash ${SXDI_OSTAG}
+    DoImageCleanTest startx runner-nodejs ${SXDI_OSTAG}
+    DoImageCleanTest startx runner-oc ${SXDI_OSTAG}
+    DoImageCleanTest startx runner-php ${SXDI_OSTAG}
+    DoImageCleanTest startx vdi-chrome ${SXDI_OSTAG}
+    DoImageCleanTest startx vdi-firefox ${SXDI_OSTAG}
+    DoImageCleanTest startx sv-apache ${SXDI_OSTAG}
+    DoImageCleanTest startx sv-couchbase ${SXDI_OSTAG}
+    DoImageCleanTest startx sv-mariadb ${SXDI_OSTAG}
+    DoImageCleanTest startx sv-memcache ${SXDI_OSTAG}
+    DoImageCleanTest startx sv-mongo ${SXDI_OSTAG}
+    DoImageCleanTest startx sv-nodejs ${SXDI_OSTAG}
+    DoImageCleanTest startx sv-php ${SXDI_OSTAG}
+    DoImageCleanTest startx sv-postgres ${SXDI_OSTAG}
+}
+
 # Test the builded image
 function DoImageCleanTest {
     local namespace=${1:-$SXDI_REGISTRY_NS}
@@ -360,6 +430,30 @@ function DoImageCleanTest {
         echo "!!!!!!!!> Could not remove container instance $TEST_NAME"
         ${SXDI_RTMODE} 0;
     fi
+}
+
+# Execute a docker build for OS environment
+function DoImageCleanImageAll {
+    echo "INFO: Clean all images"
+    DoImageCleanTest localhost/startx/${SXDI_OSNAME}:${SXDI_OSTAG}
+    DoImageCleanTest localhost/startx/app-phpmyadmin:${SXDI_OSTAG}
+    DoImageCleanTest localhost/startx/app-ocp-reliability:${SXDI_OSTAG}
+    DoImageCleanTest localhost/startx/runner-ansible:${SXDI_OSTAG}
+    DoImageCleanTest localhost/startx/runner-apache:${SXDI_OSTAG}
+    DoImageCleanTest localhost/startx/runner-bash:${SXDI_OSTAG}
+    DoImageCleanTest localhost/startx/runner-nodejs:${SXDI_OSTAG}
+    DoImageCleanTest localhost/startx/runner-oc:${SXDI_OSTAG}
+    DoImageCleanTest localhost/startx/runner-php:${SXDI_OSTAG}
+    DoImageCleanTest localhost/startx/vdi-chrome:${SXDI_OSTAG}
+    DoImageCleanTest localhost/startx/vdi-firefox:${SXDI_OSTAG}
+    DoImageCleanTest localhost/startx/sv-apache:${SXDI_OSTAG}
+    DoImageCleanTest localhost/startx/sv-couchbase:${SXDI_OSTAG}
+    DoImageCleanTest localhost/startx/sv-mariadb:${SXDI_OSTAG}
+    DoImageCleanTest localhost/startx/sv-memcache:${SXDI_OSTAG}
+    DoImageCleanTest localhost/startx/sv-mongo:${SXDI_OSTAG}
+    DoImageCleanTest localhost/startx/sv-nodejs:${SXDI_OSTAG}
+    DoImageCleanTest localhost/startx/sv-php:${SXDI_OSTAG}
+    DoImageCleanTest localhost/startx/sv-postgres:${SXDI_OSTAG}
 }
 
 # Clean the local cached image
