@@ -12,6 +12,7 @@ build-vdi-chrome:
     SXDI_DOCKERNAME: "vdi-chrome"
     SXDI_QUAYNAME: "chrome"
     SXDI_TAG: ${SXDI_OTHERTAG}
+    SXDI_ENGINE: docker
   only:
     - master
     - centos8
@@ -39,6 +40,7 @@ build-vdi-firefox:
     SXDI_DOCKERNAME: "vdi-firefox"
     SXDI_QUAYNAME: "firefox"
     SXDI_TAG: ${SXDI_OTHERTAG}
+    SXDI_ENGINE: docker
   only:
     - master
     - centos8

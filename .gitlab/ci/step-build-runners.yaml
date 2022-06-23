@@ -12,6 +12,7 @@ build-runner-ansible:
     SXDI_DOCKERNAME: "runner-ansible"
     SXDI_QUAYNAME: "runner-ansible"
     SXDI_TAG: ${SXDI_OTHERTAG}
+    SXDI_ENGINE: docker
   only:
     - master
     - centos8
@@ -42,6 +43,7 @@ build-runner-apache:
     SXDI_DOCKERNAME: "runner-apache"
     SXDI_QUAYNAME: "runner-apache"
     SXDI_TAG: ${SXDI_OTHERTAG}
+    SXDI_ENGINE: docker
   only:
     - master
     - centos8
@@ -72,6 +74,7 @@ build-runner-nodejs:
     SXDI_DOCKERNAME: "runner-nodejs"
     SXDI_QUAYNAME: "runner-nodejs"
     SXDI_TAG: ${SXDI_OTHERTAG}
+    SXDI_ENGINE: docker
   only:
     - master
     - centos8
@@ -102,6 +105,7 @@ build-runner-oc:
     SXDI_DOCKERNAME: "runner-oc"
     SXDI_QUAYNAME: "runner-oc"
     SXDI_TAG: ${SXDI_OTHERTAG}
+    SXDI_ENGINE: docker
   only:
     - master
     - centos8
@@ -131,6 +135,7 @@ build-runner-php:
     SXDI_DOCKERNAME: "runner-php"
     SXDI_QUAYNAME: "runner-php"
     SXDI_TAG: ${SXDI_OTHERTAG}
+    SXDI_ENGINE: docker
   only:
     - master
     - centos8

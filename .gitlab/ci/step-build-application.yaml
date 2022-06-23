@@ -12,6 +12,7 @@ build-application-phpmyadmin:
     SXDI_DOCKERNAME: "app-phpmyadmin"
     SXDI_QUAYNAME: "phpmyadmin"
     SXDI_TAG: ${SXDI_OTHERTAG}
+    SXDI_ENGINE: docker
   only:
     - master
     - alma
@@ -47,6 +48,7 @@ build-application-phpmyadmin:
 #     SXDI_DOCKERNAME: "app-ocp-reliability"
 #     SXDI_QUAYNAME: "ocp-reliability"
 #     SXDI_TAG: ${SXDI_OTHERTAG}
+#     SXDI_ENGINE: docker
 #   only:
 #     - master
 #     - alma

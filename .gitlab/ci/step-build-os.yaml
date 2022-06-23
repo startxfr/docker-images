@@ -11,6 +11,7 @@ build-os:
     SXDI_DOCKERNAME: ${SXDI_OSNAME}
     SXDI_QUAYNAME: ${SXDI_OSNAME}
     SXDI_TAG: ${SXDI_OSTAG}
+    SXDI_ENGINE: docker
 
 # Build the latest of images other than fedora (master)
 build-os-latest:
@@ -21,6 +22,7 @@ build-os-latest:
     SXDI_DOCKERNAME: ${SXDI_OSNAME}
     SXDI_QUAYNAME: ${SXDI_OSNAME}
     SXDI_TAG: latest
+    SXDI_ENGINE: docker
   only:
     - centos8
     - alma
@@ -38,3 +40,4 @@ build-os-latest:
 #     GIT_STRATEGY: fetch
 #     SECURE_LOG_LEVEL: debug
 #     DOCKER_IMAGE: "quay.io/startx/${SXDI_OSNAME}:${SXDI_OSTAG}"
+#     SXDI_ENGINE: docker
