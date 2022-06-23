@@ -29,5 +29,6 @@ dast:
     site_profile: "readthedocs"
     scanner_profile: "default"
   variables:
+    DAST_SKIP_TARGET_CHECK: true
     DAST_WEBSITE: "https://docker-images.readthedocs.io/en/latest"
   
