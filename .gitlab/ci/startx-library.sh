@@ -24,23 +24,19 @@ SXDI_REGISTRY_NS=${SXDI_REGISTRY_NS:-startx}
 
 # Check if requirements are present
 function checkRequirements {
-    shellcheck --version &>/dev/null
-    if [[ $? != 0 ]]; then
+    if ! shellcheck --version &>/dev/null; then
         echo "Missing shellcheck binary, see https://snapcraft.io/install/shellcheck/rhel"
         exit 1
     fi
-    mdl --version &>/dev/null
-    if [[ $? != 0 ]]; then
+    if ! mdl --version &>/dev/null; then
         echo "Missing mdl binary, see https://snapcraft.io/install/mdl/rhel"
         exit 1
     fi
-    bc --version &>/dev/null
-    if [[ $? != 0 ]]; then
+    if ! bc --version &>/dev/null; then
         echo "Missing bc binary, execute 'dnf install bc -y'"
         exit 1
     fi
-    python3 --version &>/dev/null
-    if [[ $? != 0 ]]; then
+    if ! python3 --version &>/dev/null; then
         echo "Missing python3 binary, see https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_installing-and-using-python_configuring-basic-system-settings"
         exit 1
     fi
@@ -48,12 +44,14 @@ function checkRequirements {
 
 # Display the debug checks
 function DisplayCheckDebug {
-    local VS_PYTHON=$(python3 --version | cut -d ' ' -f 2)
-    local MDL_PYTHON=$(mdl --version)
-    local SS_PYTHON=$(shellcheck --version | head -n 2 | tail -n 1 | cut -d ':' -f 2 | xargs)
-    local DDSIZE=$(du -sh .)
+    local VS_PYTHON MDL_PYTHON SS_PYTHON DDSIZE
+    VS_PYTHON=$(python3 --version | cut -d ' ' -f 2)
+    MDL_PYTHON=$(mdl --version)
+    SS_PYTHON=$(shellcheck --version | head -n 2 | tail -n 1 | cut -d ':' -f 2 | xargs)
+    DDSIZE=$(du -sh .)
     if [[ $SX_DEBUG == "true" ]]; then
     cat <<EOF
+    SXDI version       : $SXDI_VERSION
     python version     : $VS_PYTHON
     mdl version        : $MDL_PYTHON
     shellcheck version : $SS_PYTHON
@@ -61,6 +59,7 @@ function DisplayCheckDebug {
 EOF
     else
     cat <<EOF
+    SXDI version       : $SXDI_VERSION
     python version     : $VS_PYTHON
     directory size     : $DDSIZE
 EOF
@@ -367,8 +366,7 @@ function DoImageCleanTest {
 function DoImageCleanImage {
     local IMAGE_TAG=${1:-docker.io/startx/fedora}
     echo "INFO: > CLEAN Container instance image $IMAGE_TAG"
-    RESULT=$(${SXDI_ENGINE} rmi -f "$IMAGE_TAG" &>/dev/null)
-    if [[ "$?" == 0 ]]; then
+    if RESULT=$(${SXDI_ENGINE} rmi -f "$IMAGE_TAG" &>/dev/null); then
         echo "INFO: > CLEANED Container image $IMAGE_TAG"
         if [ "$SX_DEBUG" == "true" ] ; then
             echo "$RESULT"
@@ -393,7 +391,7 @@ function DoImageBuildPublish {
     local TEST_NAME="$namespace"_"$image"_"$tag"
     echo "INFO: > PUBLISH Container image $IMAGE_TAG"
     if [ -f /tmp/istested_"$TEST_NAME" ] ; then
-        DoImagePushImage $IMAGE_TAG
+        DoImagePushImage ${IMAGE_TAG}
     else
         echo "INFO: > PUBLISHING Container image $IMAGE_TAG skipped because test failed"
         if [[ "$ISFATAL" = "true" ]]; then
