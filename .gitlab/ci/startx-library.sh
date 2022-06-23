@@ -264,12 +264,12 @@ function DoImagePullImage {
 }
 
 # Execute a docker push of an image comming from the given registry. Must be authenticated prior to this push.
-function DoImagePushImage {
-    echo "INFO: Push image $1/$2:$3"
+function `DoImagePushImage` {
+    echo "INFO: Push image $1"
     if [ "$SX_DEBUG" == "false" ]; then
-        ${SXDI_ENGINE} push "$1/$2:$3" &> /dev/null
+        ${SXDI_ENGINE} push "$1" &> /dev/null
     else
-        ${SXDI_ENGINE} push "$1/$2:$3"
+        ${SXDI_ENGINE} push "$1"
     fi
 }
 
