@@ -1,0 +1,8 @@
+ocp_reliability:
+  build: ./
+  container_name: "startx-runner-ocp-reliability"
+  mem_limit: 200m
+  memswap_limit: 300m
+  cpu_shares: 2
+#  volumes:
+#    - "/tmp/config:/config:z"

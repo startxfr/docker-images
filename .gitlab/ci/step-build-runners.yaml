@@ -8,10 +8,11 @@ build-runner-ansible:
   extends: .build-image
   allow_failure: true
   variables:
-    SXGLCI_PATH: "GitlabRunner/ansible"
-    SXGLCI_DOCKERNAME: "runner-ansible"
-    SXGLCI_QUAYNAME: "runner-ansible"
-    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+    SXDI_PATH: "GitlabRunner/ansible"
+    SXDI_DOCKERNAME: "runner-ansible"
+    SXDI_QUAYNAME: "runner-ansible"
+    SXDI_TAG: ${SXDI_OTHERTAG}
+    SXDI_ENGINE: docker
   only:
     - master
     - centos8
@@ -38,10 +39,11 @@ build-runner-apache:
   extends: .build-image
   allow_failure: true
   variables:
-    SXGLCI_PATH: "GitlabRunner/apache"
-    SXGLCI_DOCKERNAME: "runner-apache"
-    SXGLCI_QUAYNAME: "runner-apache"
-    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+    SXDI_PATH: "GitlabRunner/apache"
+    SXDI_DOCKERNAME: "runner-apache"
+    SXDI_QUAYNAME: "runner-apache"
+    SXDI_TAG: ${SXDI_OTHERTAG}
+    SXDI_ENGINE: docker
   only:
     - master
     - centos8
@@ -68,10 +70,11 @@ build-runner-nodejs:
   extends: .build-image
   allow_failure: true
   variables:
-    SXGLCI_PATH: "GitlabRunner/nodejs"
-    SXGLCI_DOCKERNAME: "runner-nodejs"
-    SXGLCI_QUAYNAME: "runner-nodejs"
-    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+    SXDI_PATH: "GitlabRunner/nodejs"
+    SXDI_DOCKERNAME: "runner-nodejs"
+    SXDI_QUAYNAME: "runner-nodejs"
+    SXDI_TAG: ${SXDI_OTHERTAG}
+    SXDI_ENGINE: docker
   only:
     - master
     - centos8
@@ -98,10 +101,11 @@ build-runner-oc:
   extends: .build-image
   allow_failure: true
   variables:
-    SXGLCI_PATH: "GitlabRunner/oc"
-    SXGLCI_DOCKERNAME: "runner-oc"
-    SXGLCI_QUAYNAME: "runner-oc"
-    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+    SXDI_PATH: "GitlabRunner/oc"
+    SXDI_DOCKERNAME: "runner-oc"
+    SXDI_QUAYNAME: "runner-oc"
+    SXDI_TAG: ${SXDI_OTHERTAG}
+    SXDI_ENGINE: docker
   only:
     - master
     - centos8
@@ -127,10 +131,11 @@ build-runner-php:
   extends: .build-image
   allow_failure: true
   variables:
-    SXGLCI_PATH: "GitlabRunner/php"
-    SXGLCI_DOCKERNAME: "runner-php"
-    SXGLCI_QUAYNAME: "runner-php"
-    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+    SXDI_PATH: "GitlabRunner/php"
+    SXDI_DOCKERNAME: "runner-php"
+    SXDI_QUAYNAME: "runner-php"
+    SXDI_TAG: ${SXDI_OTHERTAG}
+    SXDI_ENGINE: docker
   only:
     - master
     - centos8

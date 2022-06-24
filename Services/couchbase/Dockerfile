@@ -8,9 +8,9 @@ ENV SX_VERSION="centos8" \
     SX_SUMMARY="Startx couchbase service based on centos 8" \
     CB_PATH=/opt/couchbase \
     DATA_PATH=/opt/couchbase/var \
-    CB_VERSION=6.5.1 \
-    CB_RELEASE_URL=https://packages.couchbase.com/releases/6.5.1 \
-    CB_PACKAGE=couchbase-server-enterprise-6.5.1-centos8.x86_64.rpm \
+    CB_VERSION=7.1.0 \
+    CB_RELEASE_URL=https://packages.couchbase.com/releases/7.1.0 \
+    CB_PACKAGE=couchbase-server-enterprise-7.1.0-rhel8.x86_64.rpm \
     PATH=$PATH:/opt/couchbase/bin:/opt/couchbase/bin/tools:/opt/couchbase/bin/install
 
 LABEL name="$SX_ID" \
@@ -43,8 +43,7 @@ RUN dnf upgrade -yq --refresh && \
     openssl \
     bzip2 \
     ncurses \
-    ncurses-libs \
-    ncurses-compat-libs \
+    ncurses-* \
     python3 && \
     dnf remove -yq --skip-broken yum-utils && \
     dnf remove -yq 'dnf-command(config-manager)' && \
