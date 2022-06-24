@@ -29,7 +29,7 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
         bubblewrap \
         rsync \
         openssh-clients \
-        sshpass
+        sshpass \
         python3-pip \
         jq && \
     pip install yq && \

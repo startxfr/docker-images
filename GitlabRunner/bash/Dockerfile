@@ -34,7 +34,7 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
         gem \
         ShellCheck \
         git \
-        bats
+        bats \
         python3-pip \
         jq && \
     pip install yq && \
