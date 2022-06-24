@@ -7,20 +7,22 @@ build-os:
   stage: "build OS"
   extends: .build-image
   variables:
-    SXGLCI_PATH: 'OS'
-    SXGLCI_DOCKERNAME: ${SXGLCI_OSNAME}
-    SXGLCI_QUAYNAME: ${SXGLCI_OSNAME}
-    SXGLCI_TAG: ${SXGLCI_OSTAG}
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: ${SXDI_OSNAME}
+    SXDI_QUAYNAME: ${SXDI_OSNAME}
+    SXDI_TAG: ${SXDI_OSTAG}
+    SXDI_ENGINE: docker
 
 # Build the latest of images other than fedora (master)
 build-os-latest:
   stage: "build OS"
   extends: .build-image
   variables:
-    SXGLCI_PATH: 'OS'
-    SXGLCI_DOCKERNAME: ${SXGLCI_OSNAME}
-    SXGLCI_QUAYNAME: ${SXGLCI_OSNAME}
-    SXGLCI_TAG: latest
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: ${SXDI_OSNAME}
+    SXDI_QUAYNAME: ${SXDI_OSNAME}
+    SXDI_TAG: latest
+    SXDI_ENGINE: docker
   only:
     - centos8
     - alma
@@ -37,4 +39,5 @@ build-os-latest:
 #   variables:
 #     GIT_STRATEGY: fetch
 #     SECURE_LOG_LEVEL: debug
-#     DOCKER_IMAGE: "quay.io/startx/${SXGLCI_OSNAME}:${SXGLCI_OSTAG}"
+#     DOCKER_IMAGE: "quay.io/startx/${SXDI_OSNAME}:${SXDI_OSTAG}"
+#     SXDI_ENGINE: docker

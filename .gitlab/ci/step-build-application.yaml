@@ -8,10 +8,11 @@ build-application-phpmyadmin:
   extends: .build-image
   allow_failure: true
   variables:
-    SXGLCI_PATH: "Applications/phpmyadmin"
-    SXGLCI_DOCKERNAME: "app-phpmyadmin"
-    SXGLCI_QUAYNAME: "phpmyadmin"
-    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+    SXDI_PATH: "Applications/phpmyadmin"
+    SXDI_DOCKERNAME: "app-phpmyadmin"
+    SXDI_QUAYNAME: "phpmyadmin"
+    SXDI_TAG: ${SXDI_OTHERTAG}
+    SXDI_ENGINE: docker
   only:
     - master
     - alma
@@ -36,3 +37,26 @@ build-application-phpmyadmin:
     - fc24
     - fc23
     - fc22
+
+# # Build the ocp-reliability application image
+# build-application-ocp-reliability:
+#   stage: "build OCP reliability"
+#   extends: .build-image
+#   allow_failure: true
+#   variables:
+#     SXDI_PATH: "Applications/ocp-reliability"
+#     SXDI_DOCKERNAME: "app-ocp-reliability"
+#     SXDI_QUAYNAME: "ocp-reliability"
+#     SXDI_TAG: ${SXDI_OTHERTAG}
+#     SXDI_ENGINE: docker
+#   only:
+#     - master
+#     - alma
+#     - rocky
+#     - centos8
+#     - centos7
+#     - centos6
+#     - alpine
+#     - ubi8
+#     - fc36
+#     - fc35
