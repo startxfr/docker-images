@@ -9,24 +9,24 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 
 ## Available flavours
 
-| Docker Hub repository                                                   | Content             | Kubectl | OC  |
-| ----------------------------------------------------------------------- | ------------------- | ------- | --- |
-| [`startx/runner-oc:latest`](https://hub.docker.com/r/startx/runner-oc)  | Fedora core rawhide |         |     |
-| [`startx/runner-oc:35`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 35      |         |     |
-| [`startx/runner-oc:34`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 34      |         |     |
-| [`startx/runner-oc:33`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 33      |         |     |
-| [`startx/runner-oc:32`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 32      |         |     |
-| [`startx/runner-oc:31`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 31      |         |     |
-| [`startx/runner-oc:30`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 30      |         |     |
-| [`startx/runner-oc:29`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 29      |         |     |
-| [`startx/runner-oc:28`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 28      |         |     |
-| [`startx/runner-oc:27`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 27      |         |     |
-| [`startx/runner-oc:alma8`](https://hub.docker.com/r/startx/runner-oc) | Alma 8            |         |     |
-| [`startx/runner-oc:rocky8`](https://hub.docker.com/r/startx/runner-oc) | Rocky 8            |         |     |
-| [`startx/runner-oc:centos8`](https://hub.docker.com/r/startx/runner-oc) | Centos 8            |         |     |
-| [`startx/runner-oc:centos7`](https://hub.docker.com/r/startx/runner-oc) | Centos 7            |         |     |
-| [`startx/runner-oc:ubi8`](https://hub.docker.com/r/startx/runner-oc)    | RedHat UBI 8        |         |     |
-| [`startx/runner-oc:alpine3`](https://hub.docker.com/r/startx/runner-oc) | Alpine 3.12         |         |     |
+| Docker Hub repository                                                   | Content             | Kubectl | OC      | Helm  | ArgoCD | Istio  |
+| ----------------------------------------------------------------------- | ------------------- | ------- | ------- | ----- | ------ | ------ |
+| [`startx/runner-oc:latest`](https://hub.docker.com/r/startx/runner-oc)  | Fedora core rawhide | 1.23.0  | 4.10.12 | 3.9.0 | 2.4.0  | 1.14.1 |
+| [`startx/runner-oc:35`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 35      | 1.23.0  | 4.10.12 | 3.9.0 | 2.4.0  | 1.14.1 |
+| [`startx/runner-oc:34`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 34      | 1.23.0  | 4.10.12 | 3.9.0 | 2.4.0  | 1.14.1 |
+| [`startx/runner-oc:33`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 33      |         |         |
+| [`startx/runner-oc:32`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 32      |         |         |
+| [`startx/runner-oc:31`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 31      |         |         |
+| [`startx/runner-oc:30`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 30      |         |         |
+| [`startx/runner-oc:29`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 29      |         |         |
+| [`startx/runner-oc:28`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 28      |         |         |
+| [`startx/runner-oc:27`](https://hub.docker.com/r/startx/runner-oc)      | Fedora core 27      |         |         |
+| [`startx/runner-oc:alma8`](https://hub.docker.com/r/startx/runner-oc)   | Alma 8              | 1.23.0  | 4.10.12 | 3.9.0 | 2.4.0  | 1.14.1 |
+| [`startx/runner-oc:rocky8`](https://hub.docker.com/r/startx/runner-oc)  | Rocky 8             | 1.23.0  | 4.10.12 | 3.9.0 | 2.4.0  | 1.14.1 |
+| [`startx/runner-oc:centos8`](https://hub.docker.com/r/startx/runner-oc) | Centos 8            | 1.23.0  | 4.10.12 | 3.9.0 | 2.4.0  | 1.14.1 |
+| [`startx/runner-oc:centos7`](https://hub.docker.com/r/startx/runner-oc) | Centos 7            |         |         |
+| [`startx/runner-oc:ubi8`](https://hub.docker.com/r/startx/runner-oc)    | RedHat UBI 8        | 1.23.0  | 4.10.12 | 3.9.0 | 2.4.0  | 1.14.1 |
+| [`startx/runner-oc:alpine3`](https://hub.docker.com/r/startx/runner-oc) | Alpine 3.12         | 1.23.0  | 4.10.12 | 3.9.0 | 2.4.0  | 1.14.1 |
 
 ## Running from dockerhub registry
 
@@ -65,11 +65,11 @@ CMD ["/bin/sx", "run"]
 This container is based on [startx fedora container](https://hub.docker.com/r/startx/fedora) who came with
 some [additional environment variable](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable)
 
-| Variable                       | Type   | Mandatory | Description                                                                                           |
-| ------------------------------ | ------ | --------- | ----------------------------------------------------------------------------------------------------- |
+| Variable                       | Type   | Mandatory | Description                                                                                       |
+| ------------------------------ | ------ | --------- | ------------------------------------------------------------------------------------------------- |
 | <i>base image environement</i> |        |           | [see environment list](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable) |
-| HOSTNAME                       | `auto` | `auto`    | Container unique id automatically assigned by docker daemon at startup                                |
-| LOG_PATH                       | `auto` | `auto`    | default set to /var/log/oc and used as a volume mountpoint                                            |
+| HOSTNAME                       | `auto` | `auto`    | Container unique id automatically assigned by docker daemon at startup                            |
+| LOG_PATH                       | `auto` | `auto`    | default set to /var/log/oc and used as a volume mountpoint                                        |
 
 ## Exposed port
 
