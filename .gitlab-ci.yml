@@ -6,8 +6,8 @@
 
 # Global environment variables
 variables:
-  SXGLCI_GIT_DOMAIN: gitlab.com
-  SXGLCI_GIT_SSH_USER: git@gitlab.com
+  SXDI_GIT_DOMAIN: gitlab.com
+  SXDI_GIT_SSH_USER: git@gitlab.com
   SX_VERBOSE: "true"
   SX_DEBUG: "true"
   SXGLCI_OSTAG: "36"

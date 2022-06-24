@@ -53,7 +53,7 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
     dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     pip install --upgrade pip && \
-    pip install --upgrade --force-reinstall setuptools pip && \
+    # pip install --upgrade --force-reinstall setuptools pip && \
     useradd -s /bin/bash -m -g 0 -u 1001 -G pulse-access $SX_USER && \
     mkdir -p /s2i $SX_LIBDIR /.local && \
     mv /tmp/s2i/bin/* /s2i/ && \
