@@ -9,7 +9,7 @@ ENV SX_VERSION="latest" \
     SX_MAINTAINER_MAIL="dev@startx.fr" \
     CB_PATH=/opt/couchbase \
     DATA_PATH=/opt/couchbase/var \
-    CB_VERSION=6.6.2 \
+    CB_VERSION=7.1.0 \
     CB_RELEASE_URL=https://packages.couchbase.com/releases/7.1.0 \
     CB_PACKAGE=couchbase-server-enterprise-7.1.0-rhel8.x86_64.rpm \
     PATH=$PATH:/opt/couchbase/bin:/opt/couchbase/bin/tools:/opt/couchbase/bin/install
@@ -52,7 +52,8 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
         python3-httplib2 \
         openssl \
         ncurses \
-        ncurses-* \
+        ncurses-base \
+        ncurses-compat-libs \
         python3 \
         bzip2 && \
     package-cleanup --problems && \
