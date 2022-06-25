@@ -7,6 +7,8 @@ currently being supported with security updates.
 
 | Version | Supported          |
 | ------- | ------------------ |
+| 0.95.31 | :white_check_mark: |
+| 0.95.29 | :white_check_mark: |
 | 0.95.27 | :white_check_mark: |
 | 0.95.25 | :white_check_mark: |
 | 0.95.17 | :white_check_mark: |

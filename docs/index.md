@@ -20,7 +20,9 @@ or by running it direcly with various containers engines like
 Each container is provided with various underlying OS version based on
 [CentOS](https://quay.io/repository/startx/centos),
 [Fedora Linux](https://quay.io/repository/startx/fedora),
-[Alpine](https://quay.io/repository/startx/alpine) and
+[Alpine](https://quay.io/repository/startx/alpine),
+[Rocky](https://quay.io/repository/startx/rocky),
+[Alma](https://quay.io/repository/startx/alma) and
 [UBI](https://quay.io/repository/startx/ubi) distributions.
 
 [Kubernetes](https://github.com/startxfr/containers-engines/blob/master/Kubernetes.md) and
@@ -99,6 +101,8 @@ your project and start using stable or experimental services in your application
 - `fc28` based on fedora core 28 [see detail](https://docker-images.readthedocs.io/en/fc28)
 - `fc27` based on fedora core 27 [see detail](https://docker-images.readthedocs.io/en/fc27)
 - `fc26` based on fedora core 26 [see detail](https://docker-images.readthedocs.io/en/fc26)
+- `alma8` based on Alma Linux 8 [see detail](https://docker-images.readthedocs.io/en/alma)
+- `rocky8` based on Rocky Linux 8 [see detail](https://docker-images.readthedocs.io/en/rocky)
 - `centos8` based on Centos 8 [see detail](https://docker-images.readthedocs.io/en/centos8)
 - `centos7` based on Centos 7 [see detail](https://docker-images.readthedocs.io/en/centos7)
 - `centos6` based on Centos 6 [see detail](https://docker-images.readthedocs.io/en/centos6)
@@ -112,6 +116,7 @@ and stay stiked to a defined stable release.
 
 | Release | Description                                                                      |
 | ------- | -------------------------------------------------------------------------------- |
+| 0.95.29 | adding rocky and alma branch                                                     |
 | 0.95.27 | adding fc36 branch                                                               |
 | 0.95.25 | move from github to gitlab and from travis to gitab-ci                           |
 | 0.95.23 | adding fc35 branch                                                               |

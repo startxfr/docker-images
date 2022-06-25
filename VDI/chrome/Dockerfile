@@ -6,6 +6,7 @@ ENV SX_VERSION="fc33" \
     SX_ID="startx/vdi-chrome" \
     SX_NAME="Startx Chrome VDI image (fedora 33)" \
     SX_SUMMARY="Startx chrome container-based desktop application based on fedora 33" \
+    SX_MAINTAINER_MAIL="dev@startx.fr" \
     SX_CHROME_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
     LOG_PATH=/var/log/chrome \
     APP_PATH=/home/chrome \
@@ -20,7 +21,7 @@ LABEL name="$SX_ID" \
     description="$SX_SUMMARY. Use for executing chrome browser as container mainstream image with persistence capabilities" \
     version="$SX_VERSION" \
     release="$SX_VERSION" \
-    maintainer="Startx <dev@startx.fr>" \
+    maintainer="Startx <$SX_MAINTAINER_MAIL>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
     io.openshift.tags="startx,os,fedora,chrome,vnc,X11" \
@@ -30,7 +31,19 @@ LABEL name="$SX_ID" \
     io.openshift.expose-VDI="$SX_CHROME_PORT:vnc" \
     io.openshift.s2i.destination="/tmp" \
     io.openshift.s2i.scripts-url="image:///s2i" \
-    fr.startx.component="$SX_ID:$SX_VERSION"
+    fr.startx.component="$SX_ID:$SX_VERSION" \
+    io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
+    io.artifacthub.package.keywords='startx,os,fedora,chrome,vnc,X11' \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/master/VDI/chrome/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/master/docs/img/sv-chrome.svg' \
+    io.artifacthub.package.alternative-locations='quay.io/startx/chrome,docker.io/startx/vdi-chrome'
+    io.artifacthub.package.license='Apache-2.0' \
+    org.opencontainers.image.version="$SX_VERSION" \
+    org.opencontainers.image.description="$SX_SUMMARY. Use for executing chrome browser as container mainstream image with persistence capabilities" \
+    org.opencontainers.image.created='2022-06-25T00:00:00Z' \
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/latest/VDI/chrome/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/master/VDI/chrome" \
+    org.opencontainers.image.vendor="STARTX"
 
 USER root
 COPY supervisord.conf $SX_CHROME_SUPERVISOR_CONF/
@@ -53,7 +66,7 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
     dnf remove -yq --skip-broken yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     pip install --upgrade pip && \
-    pip install --upgrade --force-reinstall setuptools pip && \
+    # pip install --upgrade --force-reinstall setuptools pip && \
     useradd -s /bin/bash -m -g 0 -u 1001 -G pulse-access $SX_USER && \
     mkdir -p /s2i $SX_LIBDIR /.local && \
     mv /tmp/s2i/bin/* /s2i/ && \
