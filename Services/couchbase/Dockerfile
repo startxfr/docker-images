@@ -9,9 +9,9 @@ ENV SX_VERSION="fc34" \
     SX_MAINTAINER_MAIL="dev@startx.fr" \
     CB_PATH=/opt/couchbase \
     DATA_PATH=/opt/couchbase/var \
-    CB_VERSION=6.6.2 \
-    CB_RELEASE_URL=https://packages.couchbase.com/releases/6.6.2 \
-    CB_PACKAGE=couchbase-server-enterprise-6.6.2-centos8.x86_64.rpm \
+    CB_VERSION=6.6.5 \
+    CB_RELEASE_URL=https://packages.couchbase.com/releases/6.6.5 \
+    CB_PACKAGE=couchbase-server-enterprise-6.6.5-centos8.x86_64.rpm \
     PATH=$PATH:/opt/couchbase/bin:/opt/couchbase/bin/tools:/opt/couchbase/bin/install
 
 LABEL name="$SX_ID" \
