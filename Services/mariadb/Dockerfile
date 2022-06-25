@@ -6,6 +6,7 @@ ENV SX_VERSION="centos8" \
     SX_ID="startx/sv-mariadb" \
     SX_NAME="Startx Mariadb service image (centos 8)" \
     SX_SUMMARY="Startx mariadb service based on centos 8" \
+    SX_MAINTAINER_MAIL="dev@startx.fr" \
     MY_CONF=/etc/my.cnf \
     DATA_PATH=/data \
     LOG_PATH=/var/log/mariadb \
@@ -19,7 +20,7 @@ LABEL name="$SX_ID" \
     description="$SX_SUMMARY. Use for executing database based on mariadb or as container mainstream image for your database backend containers." \
     version="$SX_VERSION" \
     release="$SX_VERSION" \
-    maintainer="Startx <dev@startx.fr>" \
+    maintainer="Startx <$SX_MAINTAINER_MAIL>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
     io.openshift.tags="startx,os,centos,database,mariadb" \
@@ -30,7 +31,19 @@ LABEL name="$SX_ID" \
     io.openshift.s2i.destination="/tmp" \
     io.openshift.s2i.scripts-url="image:///s2i" \
     io.s2i.scripts-url="image:///s2i" \
-    fr.startx.component="$SX_ID:$SX_VERSION"
+    fr.startx.component="$SX_ID:$SX_VERSION" \
+    io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
+    io.artifacthub.package.keywords='startx,os,fedora,database,mariadb' \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/master/Services/mariadb/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/master/docs/img/sv-mariadb.svg' \
+    io.artifacthub.package.alternative-locations='quay.io/startx/mariadb,docker.io/startx/sv-mariadb'
+    io.artifacthub.package.license='Apache-2.0' \
+    org.opencontainers.image.version="$SX_VERSION" \
+    org.opencontainers.image.description="$SX_SUMMARY. Use for executing database based on mariadb or as container mainstream image for your database backend containers." \
+    org.opencontainers.image.created='2022-06-25T00:00:00Z' \
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/latest/Services/mariadb/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/master/Services/mariadb" \
+    org.opencontainers.image.vendor="STARTX"
 
 USER root
 COPY sx /tmp/

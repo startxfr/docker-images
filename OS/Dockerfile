@@ -2,18 +2,11 @@ FROM centos:8
 
 ENV SX_VERSION="centos8" \
     SX_TYPE="OS" \
-<<<<<<< HEAD
     SX_SERVICE="centos" \
     SX_ID="startx/centos" \
     SX_NAME="Startx OS base image (centos 8)" \
     SX_SUMMARY="Startx OS base image based on centos 8" \
-=======
-    SX_SERVICE="fedora" \
-    SX_ID="startx/fedora" \
-    SX_NAME="Startx OS base image (fedora rawhide)" \
-    SX_SUMMARY="Startx OS base image based on fedora rawhide" \
     SX_MAINTAINER_MAIL="dev@startx.fr" \
->>>>>>> master
     SX_VERBOSE=true \
     SX_DEBUG=false \
     APP_PATH="/app" \
@@ -35,7 +28,7 @@ LABEL name="$SX_ID" \
     io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
     io.k8s.description="$SX_SUMMARY" \
     io.artifacthub.package.license='Apache-2.0' \
-    org.opencontainers.image.created='2022-06-23T00:00:00Z' \
+    org.opencontainers.image.created='2022-06-25T00:00:00Z' \
     io.k8s.display-name="$SX_ID" \
     io.openshift.tags="startx,os,centos" \
     io.artifacthub.package.keywords='startx,os,centos' \
@@ -48,7 +41,7 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
     org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/latest/OS/fedora/" \
     org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/master/OS" \
-    io.artifacthub.package.readme-url="https://docker-images.readthedocs.io/en/latest/OS/fedora/" \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/master/OS/fedora/README.md" \
     io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/master/docs/img/os-fedora.svg' \
     io.artifacthub.package.alternative-locations='quay.io/startx/fedora:latest,docker.io/startx/fedora:latest'
 

@@ -10,9 +10,9 @@ variables:
   SXDI_GIT_SSH_USER: git@gitlab.com
   SX_VERBOSE: "true"
   SX_DEBUG: "true"
-  SXGLCI_OSTAG: "8"
-  SXGLCI_OSNAME: centos
-  SXGLCI_OTHERTAG: centos8
+  SXDI_OSTAG: "8"
+  SXDI_OSNAME: centos
+  SXDI_OTHERTAG: centos8
 
 # Default container image
 image: "quay.io/startx/runner-bash:alpine3"
