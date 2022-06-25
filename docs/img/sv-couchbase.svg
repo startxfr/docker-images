@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60" height="40" version="1.1" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <clipPath id="clip134">
+   <rect width="167" height="205"/>
+  </clipPath>
+  <clipPath id="clip135">
+   <path d="m0 204.8h166.4v-204.8h-166.4z"/>
+  </clipPath>
+  <clipPath id="clip136">
+   <path d="m0 204.8h166.4v-204.8h-166.4z"/>
+  </clipPath>
+  <clipPath id="clip137">
+   <path d="m0 204.8h167v-205h-167z"/>
+  </clipPath>
+  <clipPath id="clip138">
+   <rect width="167" height="205"/>
+  </clipPath>
+  <clipPath id="clip139">
+   <rect width="167" height="205"/>
+  </clipPath>
+  <clipPath id="clip140">
+   <path d="m0 204.8h166.4v-204.8h-166.4z"/>
+  </clipPath>
+  <clipPath id="clip141">
+   <path d="m0 204.8h166.4v-204.8h-166.4z"/>
+  </clipPath>
+  <clipPath id="clip142">
+   <path d="m0 204.8h167v-205h-167z"/>
+  </clipPath>
+  <clipPath id="clip143">
+   <path d="m0 204.8h167v-205h-167z"/>
+  </clipPath>
+  <clipPath id="clip144">
+   <path d="m0 204.8h167v-205h-167z"/>
+  </clipPath>
+  <clipPath>
+   <path d="m113.37 5.9062 47.73 47.73-0.56641 0.5625-47.73-47.727z"/>
+  </clipPath>
+  <linearGradient id="SVGID_20_" x1="-7802.6" x2="-7726.6" y1="-1102" y2="-1102" gradientTransform="matrix(.4226 -.9063 .9063 .4226 4442.7 -6372.7)" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#9E2064" offset=".3233"/>
+   <stop stop-color="#C92037" offset=".6302"/>
+   <stop stop-color="#CD2335" offset=".7514"/>
+   <stop stop-color="#E97826" offset="1"/>
+  </linearGradient>
+  <linearGradient id="linearGradient41254" x1="-7802.6" x2="-7726.6" y1="-1102" y2="-1102" gradientTransform="matrix(.4226 -.9063 .9063 .4226 4442.7 -6372.7)" gradientUnits="userSpaceOnUse" xlink:href="#SVGID_20_"/>
+ </defs>
+ <mask id="a" fill="#ffffff">
+  <path d="m0 0h313.3v159.86h-313.3z" fill="#fff" fill-rule="evenodd"/>
+ </mask>
+ <mask id="b" fill="#ffffff">
+  <path d="m0 0h313.3v159.86h-313.3z" fill="#fff" fill-rule="evenodd"/>
+ </mask>
+ <g>
+  <g transform="matrix(.49527 0 0 .49527 5.0758 3.2126)">
+   <g fill="#050544">
+    <polygon class="st0" transform="matrix(1.6152 0 0 1.6152 -24.584 -106.93)" points="9 99.9 30.6 112.3 52.2 99.9 52.2 75 30.6 62.5 9 75"/>
+    <path class="st0" d="m69.72 49.413 25.308 14.568 25.185-14.568v-29.012l-25.185-14.568-25.308 14.568zm25.308 17.901-28.148-16.173v-32.468l28.024-16.173 28.024 16.173v32.468z" stroke-width="1.2345"/>
+    <path class="st0" d="m100.58 104.21 25.308 14.568 25.185-14.568v-29.012l-25.185-14.568-25.308 14.568zm25.308 17.901-28.148-16.173v-32.468l28.024-16.173 28.024 16.173v32.468z" stroke-width="1.2345"/>
+    <polygon class="st0" transform="matrix(1.2345 0 0 1.2345 26.14 -17.499)" points="30.6 112.3 52.2 99.9 52.2 75 30.6 62.5 9 75 9 99.9"/>
+   </g>
+   <g transform="matrix(.66255 0 0 .66255 89.519 7.1168)">
+    <g transform="matrix(.24729 0 0 .24729 -288.01 14.96)">
+     <g transform="matrix(1.3001 0 0 1.3001 -148.19 18.617)">
+      <g transform="translate(623.37 -38.632)" clip-path="url(#clip134)">
+       <g clip-path="url(#clip135)">
+        <g clip-path="url(#clip136)">
+         <g clip-path="url(#clip137)">
+          <g clip-path="url(#clip138)">
+           <g clip-path="url(#clip139)">
+            <g clip-path="url(#clip140)">
+             <g clip-path="url(#clip141)">
+              <g clip-path="url(#clip142)">
+               <g clip-path="url(#clip143)">
+                <g clip-path="url(#clip144)"></g>
+               </g>
+              </g>
+             </g>
+            </g>
+           </g>
+          </g>
+         </g>
+        </g>
+       </g>
+      </g>
+      <g transform="matrix(5.1718 0 0 5.1718 253.17 -98.171)">
+       <g>
+        <g transform="matrix(.27072 0 0 .27072 -20.848 13.255)" fill-rule="evenodd">
+         <g transform="matrix(.68206 0 0 .68206 305.51 -67.449)">
+          <polygon points="" fill="#be202e"/>
+          <polygon points="" fill="#be202e" opacity=".35"/>
+          <polygon points="" fill="url(#linearGradient41254)"/>
+         </g>
+         <g transform="matrix(.68206 0 0 .68206 -100.71 -67.449)">
+          <polygon points="" fill="#be202e"/>
+          <polygon points="" fill="#be202e" opacity=".35"/>
+          <polygon points="" fill="url(#linearGradient41254)"/>
+          <g transform="matrix(.59918 0 0 .59918 190.74 76.987)" fill="none" fill-rule="nonzero" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="12.465">
+           <g transform="matrix(1.4375 0 0 1.4375 2094.9 1546.9)" stroke="none">
+            <path d="m-831.14-1027c-133.93 0-177.95-39.276-177.95 95.306 0 134.58 49.508 117.29 183.44 117.29s190.31 13.17 190.31-121.41c0-134.58-61.877-91.184-195.81-91.184z" fill="#fdfdff"/>
+            <path d="m-651.17-880.84c0 15.518-9.0662 29.498-26.623 32.549-30.478 5.3471-94.448 8.6129-148.08 8.6129s-117.6-3.2692-148.1-8.6129c-17.534-3.0508-26.6-17.034-26.6-32.549v-101.42c-0.023-15.538 11.932-30.041 26.6-32.572 9.0662-1.5783 30.005-3.0739 46.436-3.0309 6.2041 0.023 11.2 4.8905 11.22 12.316 0 0.023-0.0232 70.902-0.0232 70.902 31.51-0.10919 58.864-1.8827 90.464-1.8827 31.576 0 58.95 1.7735 90.441 1.8827v-70.902c0.0232-7.425 5.0195-12.292 11.2-12.316 16.435-0.043 37.39 1.4493 46.436 3.0309 14.688 2.5313 26.623 17.034 26.623 32.572v101.42zm-180.56-152.94c-142.74 0-189.65-41.858-189.65 101.57 0 143.43 52.762 125 195.5 125s196.2 17.601 196.2-125.83c0-143.43-59.323-100.74-202.06-100.74z" fill="#050544"/>
+           </g>
+          </g>
+         </g>
+        </g>
+       </g>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>
