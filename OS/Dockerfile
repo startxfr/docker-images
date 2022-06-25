@@ -42,7 +42,7 @@ LABEL name="$SX_ID" \
     org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/centos8/OS/centos/" \
     org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/centos8/OS" \
     io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/centos8/OS/README.md" \
-    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/centos8/docs/img/os-fedora.svg' \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/centos8/docs/img/os-centos.svg' \
     io.artifacthub.package.alternative-locations='quay.io/startx/centos:8,docker.io/startx/centos:8'
 
 USER root
