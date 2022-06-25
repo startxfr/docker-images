@@ -24,15 +24,15 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
     io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
     io.artifacthub.package.keywords='startx,os,runner,nodejs' \
-    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/master/GitlabRunner/nodejs/README.md" \
-    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/master/docs/img/runner-nodejs.svg' \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/fc36/GitlabRunner/nodejs/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/fc36/docs/img/runner-nodejs.svg' \
     io.artifacthub.package.alternative-locations='quay.io/startx/runner-nodejs,docker.io/startx/runner-nodejs'
     io.artifacthub.package.license='Apache-2.0' \
     org.opencontainers.image.version="$SX_VERSION" \
     org.opencontainers.image.description="$SX_SUMMARY. Use for building application based on nodejs using gitlab CI runners." \
     org.opencontainers.image.created='2022-06-25T00:00:00Z' \
-    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/latest/GitlabRunner/nodejs/" \
-    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/master/GitlabRunner/nodejs" \
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/fc36/GitlabRunner/nodejs/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/fc36/GitlabRunner/nodejs" \
     org.opencontainers.image.vendor="STARTX"
 
 USER root

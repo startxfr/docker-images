@@ -33,15 +33,15 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
     io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
     io.artifacthub.package.keywords='startx,os,fedora,firefox,vnc,X11' \
-    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/master/VDI/firefox/README.md" \
-    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/master/docs/img/sv-firefox.svg' \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/fc36/VDI/firefox/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/fc36/docs/img/sv-firefox.svg' \
     io.artifacthub.package.alternative-locations='quay.io/startx/firefox,docker.io/startx/vdi-firefox'
     io.artifacthub.package.license='Apache-2.0' \
     org.opencontainers.image.version="$SX_VERSION" \
     org.opencontainers.image.description="$SX_SUMMARY. Use for executing firefox browser as container mainstream image with persistence capabilities" \
     org.opencontainers.image.created='2022-06-25T00:00:00Z' \
-    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/latest/VDI/firefox/" \
-    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/master/VDI/firefox" \
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/fc36/VDI/firefox/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/fc36/VDI/firefox" \
     org.opencontainers.image.vendor="STARTX"
 
 USER root
