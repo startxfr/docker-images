@@ -24,15 +24,15 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
     io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
     io.artifacthub.package.keywords='startx,os,runner,bash' \
-    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/master/GitlabRunner/bash/README.md" \
-    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/master/docs/img/runner-bash.svg' \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/rocky/GitlabRunner/bash/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/rocky/docs/img/runner-bash.svg' \
     io.artifacthub.package.alternative-locations='quay.io/startx/runner-bash,docker.io/startx/runner-bash'
     io.artifacthub.package.license='Apache-2.0' \
     org.opencontainers.image.version="$SX_VERSION" \
     org.opencontainers.image.description="$SX_SUMMARY. Use for building application based on bash using gitlab CI runners." \
     org.opencontainers.image.created='2022-06-25T00:00:00Z' \
-    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/latest/GitlabRunner/bash/" \
-    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/master/GitlabRunner/bash" \
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/rocky/GitlabRunner/bash/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/rocky/GitlabRunner/bash" \
     org.opencontainers.image.vendor="STARTX"
 
 USER root
