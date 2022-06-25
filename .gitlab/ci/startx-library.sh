@@ -4,7 +4,7 @@
 # set default values
 # 
 
-SXDI_VERSION=0.95.29
+SXDI_VERSION=0.95.31
 SXDI_ROOTPATH=$(pwd)
 SXDI_ENGINE=${SXDI_ENGINE:-podman}
 SXDI_RTMODE=${SXDI_RTMODE:-return}

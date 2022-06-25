@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60" height="40" version="1.1" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <clipPath id="clip134">
+   <rect width="167" height="205"/>
+  </clipPath>
+  <clipPath id="clip135">
+   <path d="m0 204.8h166.4v-204.8h-166.4z"/>
+  </clipPath>
+  <clipPath id="clip136">
+   <path d="m0 204.8h166.4v-204.8h-166.4z"/>
+  </clipPath>
+  <clipPath id="clip137">
+   <path d="m0 204.8h167v-205h-167z"/>
+  </clipPath>
+  <clipPath id="clip138">
+   <rect width="167" height="205"/>
+  </clipPath>
+  <clipPath id="clip139">
+   <rect width="167" height="205"/>
+  </clipPath>
+  <clipPath id="clip140">
+   <path d="m0 204.8h166.4v-204.8h-166.4z"/>
+  </clipPath>
+  <clipPath id="clip141">
+   <path d="m0 204.8h166.4v-204.8h-166.4z"/>
+  </clipPath>
+  <clipPath id="clip142">
+   <path d="m0 204.8h167v-205h-167z"/>
+  </clipPath>
+  <clipPath id="clip143">
+   <path d="m0 204.8h167v-205h-167z"/>
+  </clipPath>
+  <clipPath id="clip144">
+   <path d="m0 204.8h167v-205h-167z"/>
+  </clipPath>
+  <clipPath>
+   <path d="m113.37 5.9062 47.73 47.73-0.56641 0.5625-47.73-47.727z"/>
+  </clipPath>
+ </defs>
+ <mask id="a" fill="#ffffff">
+  <path d="m0 0h313.3v159.86h-313.3z" fill="#fff" fill-rule="evenodd"/>
+ </mask>
+ <mask id="b" fill="#ffffff">
+  <path d="m0 0h313.3v159.86h-313.3z" fill="#fff" fill-rule="evenodd"/>
+ </mask>
+ <g>
+  <g transform="matrix(.49527 0 0 .49527 5.0758 3.2126)">
+   <g fill="#050544">
+    <polygon class="st0" transform="matrix(1.6152 0 0 1.6152 -24.584 -106.93)" points="9 99.9 30.6 112.3 52.2 99.9 52.2 75 30.6 62.5 9 75"/>
+    <path class="st0" d="m69.72 49.413 25.308 14.568 25.185-14.568v-29.012l-25.185-14.568-25.308 14.568zm25.308 17.901-28.148-16.173v-32.468l28.024-16.173 28.024 16.173v32.468z" stroke-width="1.2345"/>
+    <path class="st0" d="m100.58 104.21 25.308 14.568 25.185-14.568v-29.012l-25.185-14.568-25.308 14.568zm25.308 17.901-28.148-16.173v-32.468l28.024-16.173 28.024 16.173v32.468z" stroke-width="1.2345"/>
+    <polygon class="st0" transform="matrix(1.2345 0 0 1.2345 26.14 -17.499)" points="30.6 112.3 52.2 99.9 52.2 75 30.6 62.5 9 75 9 99.9"/>
+   </g>
+   <g transform="matrix(.66255 0 0 .66255 89.519 7.1168)">
+    <g transform="matrix(.24729 0 0 .24729 -288.01 14.96)">
+     <g transform="matrix(1.3001 0 0 1.3001 -148.19 18.617)">
+      <g transform="translate(623.37 -38.632)" clip-path="url(#clip134)">
+       <g clip-path="url(#clip135)">
+        <g clip-path="url(#clip136)">
+         <g clip-path="url(#clip137)">
+          <g clip-path="url(#clip138)">
+           <g clip-path="url(#clip139)">
+            <g clip-path="url(#clip140)">
+             <g clip-path="url(#clip141)">
+              <g clip-path="url(#clip142)">
+               <g clip-path="url(#clip143)">
+                <g clip-path="url(#clip144)"></g>
+               </g>
+              </g>
+             </g>
+            </g>
+           </g>
+          </g>
+         </g>
+        </g>
+       </g>
+      </g>
+      <g transform="matrix(5.1718 0 0 5.1718 253.17 -98.171)">
+       <g>
+        <g transform="matrix(.27072 0 0 .27072 -20.848 13.255)" fill-rule="evenodd">
+         <path d="m306.76 106.08 14.028-71.014h32.437c14.027 0.877 21.041 7.89 21.041 20.165 0 21.041-16.657 33.315-31.562 32.438h-15.779l-3.507 18.411zm23.671-31.561 4.384-26.302h11.397c6.137 0 10.52 2.63 10.52 7.89-0.876 14.905-7.89 17.535-15.78 18.412h-10.52zm40.576 13.15 14.027-71.013h16.658l-3.507 18.41h15.78c14.028 0.877 19.288 7.89 17.535 16.658l-6.137 35.945h-17.534l6.137-32.438c0.876-4.384 0.876-7.014-5.26-7.014h-13.151l-7.89 39.452zm53.233 18.411 14.027-71.014h32.438c14.028 0.877 21.042 7.89 21.042 20.165 0 21.041-16.658 33.315-31.562 32.438h-15.781l-3.507 18.411zm23.67-31.561 4.384-26.302h11.398c6.137 0 10.52 2.63 10.52 7.89-0.876 14.905-7.89 17.535-15.78 18.412h-10.521z" fill="#fff"/>
+        </g>
+       </g>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>
