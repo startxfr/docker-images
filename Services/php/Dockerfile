@@ -29,15 +29,15 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
     io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
     io.artifacthub.package.keywords='startx,os,fedora,apache,httpd,php' \
-    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/master/Services/php/README.md" \
-    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/master/docs/img/sv-php.svg' \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/fc33/Services/php/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/fc33/docs/img/sv-php.svg' \
     io.artifacthub.package.alternative-locations='quay.io/startx/php,docker.io/startx/sv-php'
     io.artifacthub.package.license='Apache-2.0' \
     org.opencontainers.image.version="$SX_VERSION" \
     org.opencontainers.image.description="$SX_SUMMARY. Use for executing application based on http-php or as container mainstream image for your dynamic web application containers." \
     org.opencontainers.image.created='2022-06-25T00:00:00Z' \
-    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/latest/Services/php/" \
-    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/master/Services/php" \
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/fc33/Services/php/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/fc33/Services/php" \
     org.opencontainers.image.vendor="STARTX"
 
 USER root
