@@ -39,11 +39,11 @@ LABEL name="$SX_ID" \
     io.openshift.s2i.scripts-url="image:///s2i" \
     io.s2i.scripts-url="image:///s2i" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
-    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/latest/OS/fedora/" \
-    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/master/OS" \
-    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/master/OS/README.md" \
-    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/master/docs/img/os-fedora.svg' \
-    io.artifacthub.package.alternative-locations='quay.io/startx/fedora:latest,docker.io/startx/fedora:latest'
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/alma/OS/alma/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/alma/OS" \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/alma/OS/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/alma/docs/img/os-alma.svg' \
+    io.artifacthub.package.alternative-locations='quay.io/startx/alma:latest,docker.io/startx/alma:latest'
 
 USER root
 

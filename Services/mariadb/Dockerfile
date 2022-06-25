@@ -34,15 +34,15 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
     io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
     io.artifacthub.package.keywords='startx,os,fedora,database,mariadb' \
-    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/master/Services/mariadb/README.md" \
-    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/master/docs/img/sv-mariadb.svg' \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/alma/Services/mariadb/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/alma/docs/img/sv-mariadb.svg' \
     io.artifacthub.package.alternative-locations='quay.io/startx/mariadb,docker.io/startx/sv-mariadb'
     io.artifacthub.package.license='Apache-2.0' \
     org.opencontainers.image.version="$SX_VERSION" \
     org.opencontainers.image.description="$SX_SUMMARY. Use for executing database based on mariadb or as container mainstream image for your database backend containers." \
     org.opencontainers.image.created='2022-06-25T00:00:00Z' \
-    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/latest/Services/mariadb/" \
-    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/master/Services/mariadb" \
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/alma/Services/mariadb/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/alma/Services/mariadb" \
     org.opencontainers.image.vendor="STARTX"
 
 USER root
