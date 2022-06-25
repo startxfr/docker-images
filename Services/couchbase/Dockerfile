@@ -6,11 +6,12 @@ ENV SX_VERSION="alma8" \
     SX_ID="startx/sv-couchbase" \
     SX_NAME="Startx Couchbase service image (alma 8)" \
     SX_SUMMARY="Startx couchbase service based on alma 8" \
+    SX_MAINTAINER_MAIL="dev@startx.fr" \
     CB_PATH=/opt/couchbase \
     DATA_PATH=/opt/couchbase/var \
-    CB_VERSION=6.5.1 \
-    CB_RELEASE_URL=https://packages.couchbase.com/releases/6.5.1 \
-    CB_PACKAGE=couchbase-server-enterprise-6.5.1-centos8.x86_64.rpm \
+    CB_VERSION=7.1.0 \
+    CB_RELEASE_URL=https://packages.couchbase.com/releases/7.1.0 \
+    CB_PACKAGE=couchbase-server-enterprise-7.1.0-rhel8.x86_64.rpm \
     PATH=$PATH:/opt/couchbase/bin:/opt/couchbase/bin/tools:/opt/couchbase/bin/install
 
 LABEL name="$SX_ID" \
@@ -18,7 +19,7 @@ LABEL name="$SX_ID" \
     description="$SX_SUMMARY. Use for executing database based on couchbase or as container mainstream image for your database backend containers." \
     version="$SX_VERSION" \
     release="1" \
-    maintainer="Startx <dev@startx.fr>" \
+    maintainer="Startx <$SX_MAINTAINER_MAIL>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
     io.openshift.tags="startx,os,alma,database,couchbase" \
@@ -29,7 +30,19 @@ LABEL name="$SX_ID" \
     io.openshift.s2i.destination="/tmp" \
     io.openshift.s2i.scripts-url="image:///s2i" \
     io.s2i.scripts-url="image:///s2i" \
-    fr.startx.component="$SX_ID:$SX_VERSION"
+    fr.startx.component="$SX_ID:$SX_VERSION" \
+    io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
+    io.artifacthub.package.keywords='startx,os,fedora,database,couchbase' \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/master/Services/couchbase/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/master/docs/img/sv-couchbase.svg' \
+    io.artifacthub.package.alternative-locations='quay.io/startx/couchbase,docker.io/startx/sv-couchbase'
+    io.artifacthub.package.license='Apache-2.0' \
+    org.opencontainers.image.version="$SX_VERSION" \
+    org.opencontainers.image.description="$SX_SUMMARY. Use for executing database based on couchbase or as container mainstream image for your database backend containers." \
+    org.opencontainers.image.created='2022-06-25T00:00:00Z' \
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/latest/Services/couchbase/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/master/Services/couchbase" \
+    org.opencontainers.image.vendor="STARTX"
 
 USER root
 COPY sx /tmp/
@@ -43,8 +56,7 @@ RUN dnf upgrade -yq --refresh && \
     openssl \
     bzip2 \
     ncurses \
-    ncurses-libs \
-    ncurses-compat-libs \
+    ncurses-* \
     python3 && \
     dnf remove -yq --skip-broken yum-utils && \
     dnf remove -yq 'dnf-command(config-manager)' && \

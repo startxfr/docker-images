@@ -5,8 +5,7 @@
 [![STARTX Profile](https://img.shields.io/badge/provider-startx-green.svg)](https://github.com/startxfr) [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://gitlab.com/startx1/containers) [![Sources](https://img.shields.io/badge/startx-docker--images-blue.svg)](https://gitlab.com/startx1/containers/tree/master/GitlabRunner/oc/)
 [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://gitlab.com/startx1/containers) [![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=master)](https://travis-ci.org/startxfr/docker-images) [![Docker oc pulls](https://img.shields.io/docker/pulls/startx/sv-oc)](https://hub.docker.com/r/startx/sv-oc) [![Docker Repository on Quay](https://quay.io/repository/startx/oc/status "Docker Repository on Quay")](https://quay.io/repository/startx/oc)
 
-Startx oc is a base container used for web services and applications published in
-[Dockerhub registry](https://hub.docker.com/u/startx) or [Quay registry](https://quay.io/startx).
+Startx oc is a runner container used for interacting with various openshit or kubernetes clusters and major cluster services like argocd, helm or istio.
 
 You can use [Startx oc container image](https://docker-images.readthedocs.io/en/latest/GitlabRunner/oc/) in many ways :
 
