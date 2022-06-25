@@ -6,6 +6,7 @@ ENV SX_VERSION="latest" \
     SX_ID="startx/sv-ooconv" \
     SX_NAME="Startx LibreOffice converter service image (fedora rawhide)" \
     SX_SUMMARY="Startx unoconv service based on fedora rawhide" \
+    SX_MAINTAINER_MAIL="dev@startx.fr" \
     SX_USER=ooconv \
     APP_PATH=/home/ooconv \
     LOG_PATH=/var/log/ooconv \
@@ -16,7 +17,7 @@ LABEL name="$SX_ID" \
     description="$SX_SUMMARY. Use for executing OpenOffice document converter or as container mainstream image for your document convertion backend containers." \
     version="$SX_VERSION" \
     release="$SX_VERSION" \
-    maintainer="Startx <dev@startx.fr>" \
+    maintainer="Startx <$SX_MAINTAINER_MAIL>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
     io.openshift.tags="startx,os,fedora,document,libreoffice" \
@@ -27,7 +28,19 @@ LABEL name="$SX_ID" \
     io.openshift.s2i.destination="/tmp" \
     io.openshift.s2i.scripts-url="image:///s2i" \
     io.s2i.scripts-url="image:///s2i" \
-    fr.startx.component="$SX_ID:$SX_VERSION"
+    fr.startx.component="$SX_ID:$SX_VERSION" \
+    io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
+    io.artifacthub.package.keywords='startx,os,fedora,document,libreoffice' \
+    io.artifacthub.package.readme-url="https://docker-images.readthedocs.io/en/latest/Services/ooconv/" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/master/docs/img/sv-ooconv.svg' \
+    io.artifacthub.package.alternative-locations='quay.io/startx/ooconv,docker.io/startx/sv-ooconv'
+    io.artifacthub.package.license='Apache-2.0' \
+    org.opencontainers.image.version="$SX_VERSION" \
+    org.opencontainers.image.description="$SX_SUMMARY. Use for executing OpenOffice document converter or as container mainstream image for your document convertion backend containers." \
+    org.opencontainers.image.created='2022-06-25T00:00:00Z' \
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/latest/Services/ooconv/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/master/Services/ooconv" \
+    org.opencontainers.image.vendor="STARTX"
 
 USER root
 COPY sx /tmp/

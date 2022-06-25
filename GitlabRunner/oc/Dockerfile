@@ -6,6 +6,7 @@ ENV SX_VERSION="latest" \
     SX_ID="startx/runner-oc" \
     SX_NAME="Startx OCP/K8S client gitlab runner image (fedora rawhide)" \
     SX_SUMMARY="Startx ocp/k8s gitlab runner based on fedora rawhide" \
+    SX_MAINTAINER_MAIL="dev@startx.fr" \
     SX_OC_VERSION="4.10.12" \
     SX_ISTIO_VERSION="1.14.1"  \
     SX_HELM_VERSION="3.9.0"  \
@@ -16,11 +17,25 @@ LABEL name="$SX_ID" \
     description="$SX_SUMMARY. Use for building application based on oc or kubectl using gitlab CI runners." \
     version="$SX_VERSION" \
     release="$SX_VERSION" \
+    maintainer="Startx <$SX_MAINTAINER_MAIL>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
+    io.openshift.tags="startx,os,runner,openshift,kubernetes" \
     io.openshift.min-memory="128Mi" \
     io.openshift.min-cpu="100m" \
-    fr.startx.component="$SX_ID:$SX_VERSION"
+    fr.startx.component="$SX_ID:$SX_VERSION" \
+    io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
+    io.artifacthub.package.keywords='startx,os,runner,openshift,kubernetes' \
+    io.artifacthub.package.readme-url="https://docker-images.readthedocs.io/en/latest/GitlabRunner/oc/" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/master/docs/img/runner-oc.svg' \
+    io.artifacthub.package.alternative-locations='quay.io/startx/runner-oc,docker.io/startx/runner-oc'
+    io.artifacthub.package.license='Apache-2.0' \
+    org.opencontainers.image.version="$SX_VERSION" \
+    org.opencontainers.image.description="$SX_SUMMARY. Use for building application based on oc or kubectl using gitlab CI runners." \
+    org.opencontainers.image.created='2022-06-25T00:00:00Z' \
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/latest/GitlabRunner/oc/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/master/GitlabRunner/oc" \
+    org.opencontainers.image.vendor="STARTX"
 
 USER root
 COPY sx /tmp/
