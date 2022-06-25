@@ -28,7 +28,7 @@ LABEL name="$SX_ID" \
     io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
     io.k8s.description="$SX_SUMMARY" \
     io.artifacthub.package.license='Apache-2.0' \
-    org.opencontainers.image.created='2022-06-23T00:00:00Z' \
+    org.opencontainers.image.created='2022-06-25T00:00:00Z' \
     io.k8s.display-name="$SX_ID" \
     io.openshift.tags="startx,os,alpine" \
     io.artifacthub.package.keywords='startx,os,alpine' \
@@ -41,7 +41,7 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
     org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/latest/OS/alpine/" \
     org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/master/OS" \
-    io.artifacthub.package.readme-url="https://docker-images.readthedocs.io/en/latest/OS/alpine/" \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/alpine/OS/README.md" \
     io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/master/docs/img/os-alpine.svg' \
     io.artifacthub.package.alternative-locations='quay.io/startx/alpine:latest,docker.io/startx/alpine:latest'
 

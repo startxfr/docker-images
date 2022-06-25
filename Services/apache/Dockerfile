@@ -6,6 +6,7 @@ ENV SX_VERSION="alpine3" \
     SX_ID="startx/sv-apache" \
     SX_NAME="Startx Apache service image (alpine 3.12)" \
     SX_SUMMARY="Startx apache service based on alpine 3.12" \
+    SX_MAINTAINER_MAIL="dev@startx.fr" \
     HTTPDCONF=/etc/apache2/conf.d/app.conf \
     LOG_PATH=/var/log/apache2 \
     APP_PATH=/app \
@@ -20,7 +21,7 @@ LABEL name="$SX_ID" \
     description="$SX_SUMMARY. Use for executing application based on http or as container mainstream image for your web application containers." \
     version="$SX_VERSION" \
     release="$SX_VERSION" \
-    maintainer="Startx <dev@startx.fr>" \
+    maintainer="Startx <$SX_MAINTAINER_MAIL>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
     io.openshift.tags="startx,os,alpine,apache,httpd" \
@@ -31,7 +32,19 @@ LABEL name="$SX_ID" \
     io.openshift.s2i.destination="$SX_S2IDIR" \
     io.openshift.s2i.scripts-url="image:///s2i" \
     io.s2i.scripts-url="image:///s2i" \
-    fr.startx.component="$SX_ID:$SX_VERSION"
+    fr.startx.component="$SX_ID:$SX_VERSION" \
+    io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
+    io.artifacthub.package.keywords='startx,os,fedora,apache,httpd' \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/master/Services/apache/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/master/docs/img/sv-apache.svg' \
+    io.artifacthub.package.alternative-locations='quay.io/startx/apache,docker.io/startx/sv-apache'
+    io.artifacthub.package.license='Apache-2.0' \
+    org.opencontainers.image.version="$SX_VERSION" \
+    org.opencontainers.image.description="$SX_SUMMARY. Use for executing application based on http or as container mainstream image for your web application containers." \
+    org.opencontainers.image.created='2022-06-25T00:00:00Z' \
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/latest/Services/apache/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/master/Services/apache" \
+    org.opencontainers.image.vendor="STARTX"
 
 USER root
 COPY httpd.conf $HTTPDCONF
