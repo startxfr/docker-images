@@ -34,15 +34,15 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
     io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
     io.artifacthub.package.keywords='startx,os,fedora,chrome,vnc,X11' \
-    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/master/VDI/chrome/README.md" \
-    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/master/docs/img/sv-chrome.svg' \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/fc35/VDI/chrome/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/fc35/docs/img/sv-chrome.svg' \
     io.artifacthub.package.alternative-locations='quay.io/startx/chrome,docker.io/startx/vdi-chrome'
     io.artifacthub.package.license='Apache-2.0' \
     org.opencontainers.image.version="$SX_VERSION" \
     org.opencontainers.image.description="$SX_SUMMARY. Use for executing chrome browser as container mainstream image with persistence capabilities" \
     org.opencontainers.image.created='2022-06-25T00:00:00Z' \
-    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/latest/VDI/chrome/" \
-    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/master/VDI/chrome" \
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/fc35/VDI/chrome/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/fc35/VDI/chrome" \
     org.opencontainers.image.vendor="STARTX"
 
 USER root
