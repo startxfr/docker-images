@@ -31,15 +31,15 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
     io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
     io.artifacthub.package.keywords='startx,os,fedora,database,mongo' \
-    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/master/Services/mongo/README.md" \
-    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/master/docs/img/sv-mongo.svg' \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/alpine/Services/mongo/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/alpine/docs/img/sv-mongo.svg' \
     io.artifacthub.package.alternative-locations='quay.io/startx/mongo,docker.io/startx/sv-mongo'
     io.artifacthub.package.license='Apache-2.0' \
     org.opencontainers.image.version="$SX_VERSION" \
     org.opencontainers.image.description="$SX_SUMMARY. Use for executing database based on mongo or as container mainstream image for your database backend containers." \
     org.opencontainers.image.created='2022-06-25T00:00:00Z' \
-    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/latest/Services/mongo/" \
-    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/master/Services/mongo" \
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/alpine/Services/mongo/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/alpine/Services/mongo" \
     org.opencontainers.image.vendor="STARTX"
 
 USER root

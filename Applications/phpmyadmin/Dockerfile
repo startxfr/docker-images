@@ -26,15 +26,15 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
     io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
     io.artifacthub.package.keywords='startx,os,fedora,apache,httpd,php,phpmyadmin,mysql,mariadb' \
-    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/master/Application/phpmyadmin/README.md" \
-    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/master/docs/img/app-phpmyadmin.svg' \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/alpine/Application/phpmyadmin/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/alpine/docs/img/app-phpmyadmin.svg' \
     io.artifacthub.package.alternative-locations='quay.io/startx/phpmyadmin,docker.io/startx/app-phpmyadmin'
     io.artifacthub.package.license='Apache-2.0' \
     org.opencontainers.image.version="$SX_VERSION" \
     org.opencontainers.image.description="$SX_SUMMARY. Use for executing phpmyadmin database web-console or as container mainstream image for your dynamic web application containers." \
     org.opencontainers.image.created='2022-06-25T00:00:00Z' \
-    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/latest/Application/phpmyadmin/" \
-    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/master/Application/phpmyadmin" \
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/alpine/Application/phpmyadmin/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/alpine/Application/phpmyadmin" \
     org.opencontainers.image.vendor="STARTX"
 
 USER root

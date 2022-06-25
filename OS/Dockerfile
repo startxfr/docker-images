@@ -39,10 +39,10 @@ LABEL name="$SX_ID" \
     io.openshift.s2i.scripts-url="image:///s2i" \
     io.s2i.scripts-url="image:///s2i" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
-    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/latest/OS/alpine/" \
-    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/master/OS" \
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/alpine/OS/alpine/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/alpine/OS" \
     io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/alpine/OS/README.md" \
-    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/master/docs/img/os-alpine.svg' \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/alpine/docs/img/os-alpine.svg' \
     io.artifacthub.package.alternative-locations='quay.io/startx/alpine:latest,docker.io/startx/alpine:latest'
 
 USER root
