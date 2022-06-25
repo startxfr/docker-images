@@ -30,16 +30,16 @@ LABEL name="$SX_ID" \
     io.s2i.scripts-url="image:///s2i" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
     io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
-    io.artifacthub.package.keywords='startx,os,fedora,document,libreoffice' \
-    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/master/Services/ooconv/README.md" \
-    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/master/docs/img/sv-ooconv.svg' \
+    io.artifacthub.package.keywords='startx,os,centos,document,libreoffice' \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/centos8/Services/ooconv/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/centos8/docs/img/sv-ooconv.svg' \
     io.artifacthub.package.alternative-locations='quay.io/startx/ooconv,docker.io/startx/sv-ooconv'
     io.artifacthub.package.license='Apache-2.0' \
     org.opencontainers.image.version="$SX_VERSION" \
     org.opencontainers.image.description="$SX_SUMMARY. Use for executing OpenOffice document converter or as container mainstream image for your document convertion backend containers." \
     org.opencontainers.image.created='2022-06-25T00:00:00Z' \
-    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/latest/Services/ooconv/" \
-    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/master/Services/ooconv" \
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/centos8/Services/ooconv/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/centos8/Services/ooconv" \
     org.opencontainers.image.vendor="STARTX"
 
 USER root
