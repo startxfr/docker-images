@@ -6,6 +6,7 @@ ENV SX_VERSION="rocky8" \
     SX_ID="startx/vdi-firefox" \
     SX_NAME="Startx Firefox VDI image (rocky 8)" \
     SX_SUMMARY="Startx firefox container-based desktop application based on rocky 8" \
+    SX_MAINTAINER_MAIL="dev@startx.fr" \
     SX_FIREFOX_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
     LOG_PATH=/var/log/firefox \
     APP_PATH=/home/firefox \
@@ -19,7 +20,7 @@ LABEL name="$SX_ID" \
     description="$SX_SUMMARY. Use for executing firefox browser as container mainstream image with persistence capabilities" \
     version="$SX_VERSION" \
     release="$SX_VERSION" \
-    maintainer="Startx <dev@startx.fr>" \
+    maintainer="Startx <$SX_MAINTAINER_MAIL>" \
     io.k8s.description="$SX_SUMMARY" \
     io.k8s.display-name="$SX_ID" \
     io.openshift.tags="startx,os,rocky,firefox,vnc,X11" \
@@ -29,7 +30,19 @@ LABEL name="$SX_ID" \
     io.openshift.expose-VDI="$SX_FIREFOX_PORT:vnc" \
     io.openshift.s2i.destination="/tmp" \
     io.openshift.s2i.scripts-url="image:///s2i" \
-    fr.startx.component="$SX_ID:$SX_VERSION"
+    fr.startx.component="$SX_ID:$SX_VERSION" \
+    io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
+    io.artifacthub.package.keywords='startx,os,fedora,firefox,vnc,X11' \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/master/VDI/firefox/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/master/docs/img/sv-firefox.svg' \
+    io.artifacthub.package.alternative-locations='quay.io/startx/firefox,docker.io/startx/vdi-firefox'
+    io.artifacthub.package.license='Apache-2.0' \
+    org.opencontainers.image.version="$SX_VERSION" \
+    org.opencontainers.image.description="$SX_SUMMARY. Use for executing firefox browser as container mainstream image with persistence capabilities" \
+    org.opencontainers.image.created='2022-06-25T00:00:00Z' \
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/latest/VDI/firefox/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/master/VDI/firefox" \
+    org.opencontainers.image.vendor="STARTX"
 
 USER root
 COPY supervisord.conf $SX_FIREFOX_SUPERVISOR_CONF/

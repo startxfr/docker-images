@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60" height="40" version="1.1" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <path id="F" d="M8 184h83.77l38.88-38.88V116h-69.3L8 24.48z"/>
+  <path id="I" d="M96 56l34.65 60-38.88 68H184V56z"/>
+  <clipPath id="J-0">
+   <use width="100%" height="100%" xlink:href="#I"/>
+  </clipPath>
+  <linearGradient id="D-0" x1="29.34" x2="81.84" y1="75.02" y2="44.35" gradientTransform="matrix(1.0805 0 0 1.1878 -14.807 -21.786)" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#a52714" stop-opacity=".6" offset="0"/>
+   <stop stop-color="#a52714" stop-opacity="0" offset=".66"/>
+  </linearGradient>
+  <clipPath id="G-5">
+   <use width="100%" height="100%" xlink:href="#F"/>
+  </clipPath>
+  <linearGradient id="H-05" x1="121.9" x2="136.6" y1="49.8" y2="114.1" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#ea6100" stop-opacity=".3" offset="0"/>
+   <stop stop-color="#ea6100" stop-opacity="0" offset=".66"/>
+  </linearGradient>
+ </defs>
+ <mask id="a" fill="#ffffff">
+  <path d="m0 0h313.3v159.86h-313.3z" fill="#fff" fill-rule="evenodd"/>
+ </mask>
+ <mask id="b" fill="#ffffff">
+  <path d="m0 0h313.3v159.86h-313.3z" fill="#fff" fill-rule="evenodd"/>
+ </mask>
+ <g>
+  <g transform="matrix(.49527 0 0 .49527 5.0758 3.2126)">
+   <g fill="#72420b">
+    <path class="st0" d="m69.72 49.413 25.308 14.568 25.185-14.568v-29.012l-25.185-14.568-25.308 14.568zm25.308 17.901-28.148-16.173v-32.468l28.024-16.173 28.024 16.173v32.468z" stroke-width="1.2345"/>
+    <path class="st0" d="m100.58 104.21 25.308 14.568 25.185-14.568v-29.012l-25.185-14.568-25.308 14.568zm25.308 17.901-28.148-16.173v-32.468l28.024-16.173 28.024 16.173v32.468z" stroke-width="1.2345"/>
+    <polygon class="st0" transform="matrix(1.2345 0 0 1.2345 26.14 -17.499)" points="30.6 112.3 52.2 99.9 52.2 75 30.6 62.5 9 75 9 99.9"/>
+   </g>
+   <g transform="translate(1.8148e-7 7.1925)">
+    <g stroke-width=".39716">
+     <path d="m-10.047 7.0176 5.3891 30.256h15.648l13.754-23.829h34.95l0.037285-6.4271-34.889-20.19z" fill="#db9137"/>
+     <path d="m-10.047 47.237 31.672 18.195 16.88-16.592v-11.565h-27.523l-21.029-30.256z" fill="#9d5b0f"/>
+     <path class="D" d="m38.167 37.79-0.32964-0.19069-15.251 26.669h0.45674l15.132-26.466z" fill="#263238" fill-opacity=".15"/>
+    </g>
+    <g transform="matrix(.39716 0 0 .39716 -13.384 -8.7961)" clip-path="url(#G-5)">
+     <path d="m96 56 34.65 60-38.88 68h92.23v-128z" fill="#ffcd40"/>
+     <path d="m96 56 34.65 60-38.88 68h92.23v-128z" fill="url(#H-05)"/>
+    </g>
+    <path d="m24.743 13.445 13.761 23.829-16.88 28.157 3.2167 1.8339 34.889-20.029-0.037285-33.792z" fill="#ffbc40" stroke-width=".39716"/>
+    <g transform="matrix(.39716 0 0 .39716 -13.384 -8.7961)" clip-path="url(#J-0)">
+     <path d="m37.907 9.0866-28.976 106.91c-106.95-103.23-28.897-80.828 80.081-76.183h95.082l-26.897-32.542z" fill="url(#D-0)" stroke-width="1.1329"/>
+    </g>
+    <circle cx="24.434" cy="29.072" r="17.362" fill="#f1f1f1" stroke-width=".43405"/>
+    <circle cx="24.434" cy="29.072" r="13.89" fill="#f4a642" stroke-width=".43405"/>
+   </g>
+  </g>
+ </g>
+</svg>
