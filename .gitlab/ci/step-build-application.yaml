@@ -49,7 +49,7 @@ build-application-phpmyadmin:
 
 # Build the ocp-reliability application image
 build-application-ocp-reliability-latest:
-  stage: "build OCP reliability"
+  stage: "build Application"
   extends: .build-image-latest
   allow_failure: true
   variables:
