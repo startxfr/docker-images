@@ -49,9 +49,10 @@ USER root
 
 COPY sx /tmp/
 RUN echo "keepcache=0" >>/etc/dnf/dnf.conf && \
+    sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-Linux-* && \
+    sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.epel.cloud|g' /etc/yum.repos.d/CentOS-Linux-* && \
     dnf upgrade -yq --refresh && \
     dnf install -yq \
-    \
     tar \
     unzip \
     zip \
@@ -66,8 +67,8 @@ RUN echo "keepcache=0" >>/etc/dnf/dnf.conf && \
     logrotate \
     bash-completion \
     glibc-langpack-fr \
-    vim && \
-    dnf remove -yq --skip-broken yum-utils && \
+    vim
+RUN dnf remove -yq --skip-broken yum-utils && \
     dnf clean all --enablerepo=\* && \
     mkdir -p $SX_LIBDIR $APP_PATH $LOG_PATH && \
     chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib && \
