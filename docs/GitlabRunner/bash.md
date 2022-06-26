@@ -64,19 +64,17 @@ CMD ["/bin/sx", "run"]
 ## Environment variable
 
 This container is based on [startx fedora container](https://hub.docker.com/r/startx/fedora) who came with
-some [additional environment variable](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable)
+some [additional environment variable](https://docker-images.readthedocs.io/en/latest/OS/fedora/#environment-variable)
 
-| Variable                       | Type   | Mandatory | Description                                                                                       |
-| ------------------------------ | ------ | --------- | ------------------------------------------------------------------------------------------------- |
-| <i>base image environement</i> |        |           | [see environment list](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable) |
-| HOSTNAME                       | `auto` | `auto`    | Container unique id automatically assigned by docker daemon at startup                            |
-| LOG_PATH                       | `auto` | `auto`    | default set to /var/log/bash and used as a volume mountpoint                                      |
+| Variable                       | Type   | Mandatory | Description                                                                                            |
+| ------------------------------ | ------ | --------- | ------------------------------------------------------------------------------------------------------ |
+| <i>base image environement</i> |        |           | [see environment list](https://docker-images.readthedocs.io/en/latest/OS/fedora/#environment-variable) |
+| HOSTNAME                       | `auto` | `auto`    | Container unique id automatically assigned by docker daemon at startup                                 |
+| LOG_PATH                       | `auto` | `auto`    | default set to /var/log/bash and used as a volume mountpoint                                           |
 
 ## Exposed port
 
-| Port | Description                                           |
-| ---- | ----------------------------------------------------- |
-| 2002 | network port used to communicate with unoconv service |
+_no exposed port_
 
 ## Exposed volumes
 
@@ -86,7 +84,7 @@ some [additional environment variable](https://gitlab.com/startx1/containers/tre
 
 ## Testing the service
 
-access to the running unoconv service with unoconv client `unoconv -s localhost -p 2002`. Change port and hostname according to your current configuration
+access to the runner with `docker logs service-bash`.
 
 ## For advanced users
 
@@ -104,8 +102,8 @@ You must have a working environment with the source code of this repository. Rea
 1. Jump into the container directory with `cd GitlabRunner/bash`
 2. Build the container using `docker build -t runner-bash .`
 3. Run this container
-4. Interactively with `docker run -p 2002:2002 -v /logs -it runner-bash`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...)
-5. As a daemon with `docker run -p 2002:2002 -v /logs -d runner-bash`
+4. Interactively with `docker run -v /logs -it runner-bash`. If you add a second parameter (like `/bin/bash`) to will run this command instead of the default entrypoint. Usefull to interact with this container (ex: `/bin/bash`, `/bin/ps -a`, `/bin/df -h`,...)
+5. As a daemon with `docker run -v /logs -d runner-bash sleep infinity`
 
 ### Build & run a container using `docker-compose`
 
