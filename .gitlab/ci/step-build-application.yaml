@@ -60,7 +60,7 @@ build-application-ocp-reliability-latest:
   only:
     - master
 build-application-ocp-reliability:
-  stage: "build OCP reliability"
+  stage: "build Application"
   extends: .build-image
   allow_failure: true
   variables:
