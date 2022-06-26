@@ -45,11 +45,11 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
         rsync \
         openssh-clients \
         sshpass \
-        yamllint \
+        # yamllint \
         gem \
-        ShellCheck \
+        # ShellCheck \
         git \
-        bats \
+        # bats \
         python3-pip \
         jq && \
     pip install yq && \
