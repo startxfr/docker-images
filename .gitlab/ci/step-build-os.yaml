@@ -5,12 +5,11 @@
 # All builds tasks for FEDORA
 build-os-fc-latest:
   stage: "build OS"
-  extends: .build-image
+  extends: .build-image-latest
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: fedora
     SXDI_QUAYNAME: fedora
-    SXDI_TAG: latest
     SXDI_ENGINE: docker
   only:
     - master
@@ -21,9 +20,9 @@ build-os-fc36:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: fedora
     SXDI_QUAYNAME: fedora
-    SXDI_TAG: "36"
     SXDI_ENGINE: docker
   only:
+    - master
     - fc36
 build-os-fc35:
   stage: "build OS"
@@ -32,7 +31,6 @@ build-os-fc35:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: fedora
     SXDI_QUAYNAME: fedora
-    SXDI_TAG: "35"
     SXDI_ENGINE: docker
   only:
     - fc35
@@ -43,7 +41,6 @@ build-os-fc34:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: fedora
     SXDI_QUAYNAME: fedora
-    SXDI_TAG: "34"
     SXDI_ENGINE: docker
   only:
     - fc34
@@ -54,7 +51,6 @@ build-os-fc33:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: fedora
     SXDI_QUAYNAME: fedora
-    SXDI_TAG: "33"
     SXDI_ENGINE: docker
   only:
     - fc33
@@ -65,7 +61,6 @@ build-os-fc32:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: fedora
     SXDI_QUAYNAME: fedora
-    SXDI_TAG: "32"
     SXDI_ENGINE: docker
   only:
     - fc32
@@ -73,12 +68,11 @@ build-os-fc32:
 # All builds tasks for UBI
 build-os-ubi-latest:
   stage: "build OS"
-  extends: .build-image
+  extends: .build-image-latest
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: ubi
     SXDI_QUAYNAME: ubi
-    SXDI_TAG: latest
     SXDI_ENGINE: docker
   only:
     - ubi8
@@ -89,7 +83,6 @@ build-os-ubi8:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: ubi
     SXDI_QUAYNAME: ubi
-    SXDI_TAG: "8"
     SXDI_ENGINE: docker
   only:
     - ubi8
@@ -97,12 +90,11 @@ build-os-ubi8:
 # All builds tasks for ROCKY
 build-os-rocky-latest:
   stage: "build OS"
-  extends: .build-image
+  extends: .build-image-latest
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: rocky
     SXDI_QUAYNAME: rocky
-    SXDI_TAG: latest
     SXDI_ENGINE: docker
   only:
     - rocky
@@ -113,7 +105,6 @@ build-os-rocky8:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: rocky
     SXDI_QUAYNAME: rocky
-    SXDI_TAG: "8"
     SXDI_ENGINE: docker
   only:
     - rocky
@@ -121,12 +112,11 @@ build-os-rocky8:
 # All builds tasks for ALMA
 build-os-alma-latest:
   stage: "build OS"
-  extends: .build-image
+  extends: .build-image-latest
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: alma
     SXDI_QUAYNAME: alma
-    SXDI_TAG: latest
     SXDI_ENGINE: docker
   only:
     - alma
@@ -137,7 +127,6 @@ build-os-alma8:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: alma
     SXDI_QUAYNAME: alma
-    SXDI_TAG: "8"
     SXDI_ENGINE: docker
   only:
     - alma
@@ -145,12 +134,11 @@ build-os-alma8:
 # All builds tasks for ALPINE
 build-os-alpine-latest:
   stage: "build OS"
-  extends: .build-image
+  extends: .build-image-latest
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: alpine
     SXDI_QUAYNAME: alpine
-    SXDI_TAG: latest
     SXDI_ENGINE: docker
   only:
     - alpine
@@ -161,7 +149,6 @@ build-os-alpine3:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: alpine
     SXDI_QUAYNAME: alpine
-    SXDI_TAG: "3"
     SXDI_ENGINE: docker
   only:
     - alpine
@@ -169,12 +156,11 @@ build-os-alpine3:
 # All builds tasks for CENTOS
 build-os-centos-latest:
   stage: "build OS"
-  extends: .build-image
+  extends: .build-image-latest
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: centos
     SXDI_QUAYNAME: centos
-    SXDI_TAG: latest
     SXDI_ENGINE: docker
   only:
     - centos8
@@ -185,7 +171,6 @@ build-os-centos8:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: centos
     SXDI_QUAYNAME: centos
-    SXDI_TAG: "8"
     SXDI_ENGINE: docker
   only:
     - centos8
@@ -196,7 +181,6 @@ build-os-centos7:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: centos
     SXDI_QUAYNAME: centos
-    SXDI_TAG: "7"
     SXDI_ENGINE: docker
   only:
     - centos7
@@ -207,7 +191,6 @@ build-os-centos6:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: centos
     SXDI_QUAYNAME: centos
-    SXDI_TAG: "6"
     SXDI_ENGINE: docker
   only:
     - centos6
