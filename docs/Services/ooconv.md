@@ -119,11 +119,11 @@ CMD ["/bin/sx", "run"]
 ## Environment variable
 
 This container is based on [startx fedora container](https://hub.docker.com/r/startx/fedora) who came with
-some [additional environment variable](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable)
+some [additional environment variable](https://docker-images.readthedocs.io/en/latest/OS/fedora/#environment-variable)
 
 | Variable                       | Type   | Mandatory | Description                                                                                       |
 | ------------------------------ | ------ | --------- | ------------------------------------------------------------------------------------------------- |
-| <i>base image environement</i> |        |           | [see environment list](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable) |
+| <i>base image environement</i> |        |           | [see environment list](https://docker-images.readthedocs.io/en/latest/OS/fedora/#environment-variable) |
 | HOSTNAME                       | `auto` | `auto`    | Container unique id automatically assigned by docker daemon at startup                            |
 | LOG_PATH                       | `auto` | `auto`    | default set to /var/log/ooconv and used as a volume mountpoint                                    |
 
