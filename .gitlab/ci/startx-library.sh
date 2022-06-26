@@ -319,27 +319,6 @@ function DoSetImagetagFromGitlab {
     fi
 }
 
-
-
-    - centos8
-    - centos7
-    - centos6
-    - alma
-    - rocky
-    - ubi8
-    - fc36
-    - fc35
-    - fc34
-    - fc33
-    - fc32
-    - fc31
-    - fc30
-    - fc29
-    - fc28
-    - fc27
-    - fc26
-
-
 # Execute a docker build for OS environment
 function DoImageBuildExecuteAll {
     echo "INFO: Build all images"
