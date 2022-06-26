@@ -23,9 +23,12 @@ You can use Startx Apache image in many ways :
     - [Running using docker-compose](#running-using-docker-compose)
     - [Using this image as base container](#using-this-image-as-base-container)
   - [Environment variable](#environment-variable)
+  - [Exposed port](#exposed-port)
+  - [Exposed volumes](#exposed-volumes)
+  - [Testing the service](#testing-the-service)
   - [For advanced users](#for-advanced-users)
-    - [Build & run a container using `docker`](#build--run-a-container-using-docker)
-    - [Build & run a container using `docker-compose`](#build--run-a-container-using-docker-compose)
+    - [Build \& run a container using `docker`](#build--run-a-container-using-docker)
+    - [Build \& run a container using `docker-compose`](#build--run-a-container-using-docker-compose)
 
 See more applications builders and sample on [startx docker images repository](https://gitlab.com/startx1/containers/blob/master)
 
@@ -109,20 +112,41 @@ FROM quay.io/startx/runner-php:latest
 
 ## Environment variable
 
-| Variable   | Type     | Default             | Description                                                    |
-| ---------- | -------- | ------------------- | -------------------------------------------------------------- |
-| SX_VERSION | `string` | `latest`            | container version                                              |
-| SX_TYPE    | `string` | `service`           | Container family (os, service, application). could be enhanced |
-| SX_SERVICE | `string` | `php`               | Define the type of service or application provided             |
-| SX_ID      | `auto`   | `startx/runner-php` | Container ID coresponding to the image repository              |
-| SX_NAME    | `auto`   | `yes`               | Container name                                                 |
-| SX_SUMMARY | `auto`   | `yes`               | Container purpose description                                  |
-| SX_VERBOSE | `bool`   | `no`                | Display information about the execution                        |
-| SX_DEBUG   | `bool`   | `no`                | Display debug informations during execution                    |
-| APP_PATH   | `string` | `/app`              | Path to the application                                        |
-| APP_PORT   | `string` | `8080`              | Port to the application                                        |
-| LOG_PATH   | `string` | `/var/log/httpd`    | Destination path to the log produced by the webserver          |
-| SX_S2IDIR  | `string` | `/tmp`              | Destination path to the application pushed via s2i process     |
+This container is based on [startx php container](https://hub.docker.com/r/startx/sv-php) who came with
+some [additional environment variable](https://docker-images.readthedocs.io/en/latest/Services/php/#environment-variable)
+
+| Variable                       | Type     | Default             | Description                                                                                               |
+| ------------------------------ | -------- | ------------------- | --------------------------------------------------------------------------------------------------------- |
+| <i>base image environement</i> |          |                     | [see environment list](https://docker-images.readthedocs.io/en/latest/Services/php/#environment-variable) |
+| SX_VERSION                     | `string` | `latest`            | container version                                                                                         |
+| SX_TYPE                        | `string` | `service`           | Container family (os, service, application). could be enhanced                                            |
+| SX_SERVICE                     | `string` | `php`               | Define the type of service or application provided                                                        |
+| SX_ID                          | `auto`   | `startx/runner-php` | Container ID coresponding to the image repository                                                         |
+| SX_NAME                        | `auto`   | `yes`               | Container name                                                                                            |
+| SX_SUMMARY                     | `auto`   | `yes`               | Container purpose description                                                                             |
+| SX_VERBOSE                     | `bool`   | `no`                | Display information about the execution                                                                   |
+| SX_DEBUG                       | `bool`   | `no`                | Display debug informations during execution                                                               |
+| APP_PATH                       | `string` | `/app`              | Path to the application                                                                                   |
+| APP_PORT                       | `string` | `8080`              | Port to the application                                                                                   |
+| LOG_PATH                       | `string` | `/var/log/httpd`    | Destination path to the log produced by the webserver                                                     |
+| SX_S2IDIR                      | `string` | `/tmp`              | Destination path to the application pushed via s2i process                                                |
+
+## Exposed port
+
+| Port | Description                                                  |
+| ---- | ------------------------------------------------------------ |
+| 8080 | network port used to communicate with php service using http |
+
+## Exposed volumes
+
+| Container directory | Description                                                                           |
+| ------------------- | ------------------------------------------------------------------------------------- |
+| /var/log/httpd      | log directory used to record container and nodejs logs                                |
+| /app                | Main application components (already defined, use volume to overwrite full php stack) |
+
+## Testing the service
+
+access to the running nodejs service with http client `curl -k -I http://localhost:9213`. Change port and hostname according to your current configuration
 
 ## For advanced users
 
