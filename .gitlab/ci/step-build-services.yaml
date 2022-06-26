@@ -3,6 +3,17 @@
 ##
 
 # Build the couchbase image
+build-couchbase-latest:
+  stage: "build Services"
+  extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Services/couchbase"
+    SXDI_DOCKERNAME: "sv-couchbase"
+    SXDI_QUAYNAME: "couchbase"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-couchbase:
   stage: "build Services"
   extends: .build-image
@@ -11,10 +22,8 @@ build-couchbase:
     SXDI_PATH: "Services/couchbase"
     SXDI_DOCKERNAME: "sv-couchbase"
     SXDI_QUAYNAME: "couchbase"
-    SXDI_TAG: ${SXDI_OTHERTAG}
     SXDI_ENGINE: docker
   only:
-    - master
     - centos8
     - centos7
     - centos6
@@ -34,6 +43,17 @@ build-couchbase:
     - fc26
 
 # Build the mariadb image
+build-mariadb-latest:
+  stage: "build Services"
+  extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Services/mariadb"
+    SXDI_DOCKERNAME: "sv-mariadb"
+    SXDI_QUAYNAME: "mariadb"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-mariadb:
   stage: "build Services"
   extends: .build-image
@@ -42,10 +62,8 @@ build-mariadb:
     SXDI_PATH: "Services/mariadb"
     SXDI_DOCKERNAME: "sv-mariadb"
     SXDI_QUAYNAME: "mariadb"
-    SXDI_TAG: ${SXDI_OTHERTAG}
     SXDI_ENGINE: docker
   only:
-    - master
     - centos8
     - centos7
     - centos6
@@ -70,6 +88,17 @@ build-mariadb:
     - fc22
 
 # Build the memcache image
+build-memcache-latest:
+  stage: "build Services"
+  extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Services/memcache"
+    SXDI_DOCKERNAME: "sv-memcache"
+    SXDI_QUAYNAME: "memcache"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-memcache:
   stage: "build Services"
   extends: .build-image
@@ -78,10 +107,8 @@ build-memcache:
     SXDI_PATH: "Services/memcache"
     SXDI_DOCKERNAME: "sv-memcache"
     SXDI_QUAYNAME: "memcache"
-    SXDI_TAG: ${SXDI_OTHERTAG}
     SXDI_ENGINE: docker
   only:
-    - master
     - centos8
     - centos7
     - centos6
@@ -108,6 +135,17 @@ build-memcache:
     - fc20
 
 # Build the mongo image
+build-mongo-latest:
+  stage: "build Services"
+  extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Services/mongo"
+    SXDI_DOCKERNAME: "sv-mongo"
+    SXDI_QUAYNAME: "mongo"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-mongo:
   stage: "build Services"
   extends: .build-image
@@ -116,10 +154,8 @@ build-mongo:
     SXDI_PATH: "Services/mongo"
     SXDI_DOCKERNAME: "sv-mongo"
     SXDI_QUAYNAME: "mongo"
-    SXDI_TAG: ${SXDI_OTHERTAG}
     SXDI_ENGINE: docker
   only:
-    - master
     - centos8
     - centos7
     - centos6
@@ -146,6 +182,17 @@ build-mongo:
     - fc20
 
 # Build the ooconv image
+build-ooconv-latest:
+  stage: "build Services"
+  extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Services/ooconv"
+    SXDI_DOCKERNAME: "sv-ooconv"
+    SXDI_QUAYNAME: "ooconv"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-ooconv:
   stage: "build Services"
   extends: .build-image
@@ -154,10 +201,8 @@ build-ooconv:
     SXDI_PATH: "Services/ooconv"
     SXDI_DOCKERNAME: "sv-ooconv"
     SXDI_QUAYNAME: "ooconv"
-    SXDI_TAG: ${SXDI_OTHERTAG}
     SXDI_ENGINE: docker
   only:
-    - master
     - centos8
     - centos7
     - centos6
@@ -180,6 +225,17 @@ build-ooconv:
     - fc22
 
 # Build the php image
+build-php-latest:
+  stage: "build Services"
+  extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Services/php"
+    SXDI_DOCKERNAME: "sv-php"
+    SXDI_QUAYNAME: "php"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-php:
   stage: "build Services"
   extends: .build-image
@@ -188,10 +244,8 @@ build-php:
     SXDI_PATH: "Services/php"
     SXDI_DOCKERNAME: "sv-php"
     SXDI_QUAYNAME: "php"
-    SXDI_TAG: ${SXDI_OTHERTAG}
     SXDI_ENGINE: docker
   only:
-    - master
     - centos8
     - centos7
     - centos6
@@ -218,6 +272,16 @@ build-php:
     - fc20
 
 # Build the postgres image
+build-postgres-latest:
+  stage: "build Services"
+  extends: .build-image-latest
+  variables:
+    SXDI_PATH: "Services/postgres"
+    SXDI_DOCKERNAME: "sv-postgres"
+    SXDI_QUAYNAME: "postgres"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-postgres:
   stage: "build Services"
   extends: .build-image
@@ -225,10 +289,8 @@ build-postgres:
     SXDI_PATH: "Services/postgres"
     SXDI_DOCKERNAME: "sv-postgres"
     SXDI_QUAYNAME: "postgres"
-    SXDI_TAG: ${SXDI_OTHERTAG}
     SXDI_ENGINE: docker
   only:
-    - master
     - centos8
     - centos7
     - centos6
