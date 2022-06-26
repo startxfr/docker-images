@@ -387,37 +387,31 @@ function DoImageBuildExecute {
 # Execute a docker build for OS environment
 function DoImageBuildTestAll {
     echo "INFO: Test all images"
-    DoImageBuildTest localhost/startx/"${SXDI_OSNAME}":"${SXDI_OSTAG}" startx "${SXDI_OSNAME}" "${SXDI_OSTAG}"
-    DoImageBuildTest localhost/startx/app-phpmyadmin:"${SXDI_OSTAG}" startx app-phpmyadmin "${SXDI_OSTAG}"
-    DoImageBuildTest localhost/startx/app-ocp-reliability:"${SXDI_OSTAG}" startx app-ocp-reliability "${SXDI_OSTAG}"
-    DoImageBuildTest localhost/startx/runner-ansible:"${SXDI_OSTAG}" startx runner-ansible "${SXDI_OSTAG}"
-    DoImageBuildTest localhost/startx/runner-apache:"${SXDI_OSTAG}" startx runner-apache "${SXDI_OSTAG}"
-    DoImageBuildTest localhost/startx/runner-bash:"${SXDI_OSTAG}" startx runner-bash "${SXDI_OSTAG}"
-    DoImageBuildTest localhost/startx/runner-nodejs:"${SXDI_OSTAG}" startx runner-nodejs "${SXDI_OSTAG}"
-    DoImageBuildTest localhost/startx/runner-oc:"${SXDI_OSTAG}" startx runner-oc "${SXDI_OSTAG}"
-    DoImageBuildTest localhost/startx/runner-php:"${SXDI_OSTAG}" startx runner-php "${SXDI_OSTAG}"
-    DoImageBuildTest localhost/startx/vdi-chrome:"${SXDI_OSTAG}" startx vdi-chrome "${SXDI_OSTAG}"
-    DoImageBuildTest localhost/startx/vdi-firefox:"${SXDI_OSTAG}" startx vdi-firefox "${SXDI_OSTAG}"
-    DoImageBuildTest localhost/startx/sv-apache:"${SXDI_OSTAG}" startx sv-apache "${SXDI_OSTAG}"
-    DoImageBuildTest localhost/startx/sv-couchbase:"${SXDI_OSTAG}" startx sv-couchbase "${SXDI_OSTAG}"
-    DoImageBuildTest localhost/startx/sv-mariadb:"${SXDI_OSTAG}" startx sv-mariadb "${SXDI_OSTAG}"
-    DoImageBuildTest localhost/startx/sv-memcache:"${SXDI_OSTAG}" startx sv-memcache "${SXDI_OSTAG}"
-    DoImageBuildTest localhost/startx/sv-mongo:"${SXDI_OSTAG}" startx sv-mongo "${SXDI_OSTAG}"
-    DoImageBuildTest localhost/startx/sv-nodejs:"${SXDI_OSTAG}" startx sv-nodejs "${SXDI_OSTAG}"
-    DoImageBuildTest localhost/startx/sv-php:"${SXDI_OSTAG}" startx sv-php "${SXDI_OSTAG}"
-    DoImageBuildTest localhost/startx/sv-postgres:"${SXDI_OSTAG}" startx sv-postgres "${SXDI_OSTAG}"
+    DoImageBuildTest localhost/startx/"${SXDI_OSNAME}":"${SXDI_OSTAG}" startx_"${SXDI_OSNAME}"_"${SXDI_OSTAG}"
+    DoImageBuildTest localhost/startx/app-phpmyadmin:"${SXDI_OSTAG}" startx_app-phpmyadmin_"${SXDI_OSTAG}"
+    DoImageBuildTest localhost/startx/app-ocp-reliability:"${SXDI_OSTAG}" startx_app-ocp-reliability_"${SXDI_OSTAG}"
+    DoImageBuildTest localhost/startx/runner-ansible:"${SXDI_OSTAG}" startx_runner-ansible_"${SXDI_OSTAG}"
+    DoImageBuildTest localhost/startx/runner-apache:"${SXDI_OSTAG}" startx_runner-apache_"${SXDI_OSTAG}"
+    DoImageBuildTest localhost/startx/runner-bash:"${SXDI_OSTAG}" startx_runner-bash_"${SXDI_OSTAG}"
+    DoImageBuildTest localhost/startx/runner-nodejs:"${SXDI_OSTAG}" startx_runner-nodejs_"${SXDI_OSTAG}"
+    DoImageBuildTest localhost/startx/runner-oc:"${SXDI_OSTAG}" startx_runner-oc_"${SXDI_OSTAG}"
+    DoImageBuildTest localhost/startx/runner-php:"${SXDI_OSTAG}" startx_runner-php_"${SXDI_OSTAG}"
+    DoImageBuildTest localhost/startx/vdi-chrome:"${SXDI_OSTAG}" startx_vdi-chrome_"${SXDI_OSTAG}"
+    DoImageBuildTest localhost/startx/vdi-firefox:"${SXDI_OSTAG}" startx_vdi-firefox_"${SXDI_OSTAG}"
+    DoImageBuildTest localhost/startx/sv-apache:"${SXDI_OSTAG}" startx_sv-apache_"${SXDI_OSTAG}"
+    DoImageBuildTest localhost/startx/sv-couchbase:"${SXDI_OSTAG}" startx_sv-couchbase_"${SXDI_OSTAG}"
+    DoImageBuildTest localhost/startx/sv-mariadb:"${SXDI_OSTAG}" startx_sv-mariadb_"${SXDI_OSTAG}"
+    DoImageBuildTest localhost/startx/sv-memcache:"${SXDI_OSTAG}" startx_sv-memcache_"${SXDI_OSTAG}"
+    DoImageBuildTest localhost/startx/sv-mongo:"${SXDI_OSTAG}" startx_sv-mongo_"${SXDI_OSTAG}"
+    DoImageBuildTest localhost/startx/sv-nodejs:"${SXDI_OSTAG}" startx_sv-nodejs_"${SXDI_OSTAG}"
+    DoImageBuildTest localhost/startx/sv-php:"${SXDI_OSTAG}" startx_sv-php_"${SXDI_OSTAG}"
+    DoImageBuildTest localhost/startx/sv-postgres:"${SXDI_OSTAG}" startx_sv-postgres_"${SXDI_OSTAG}"
 }
 
 # Test the builded image
 function DoImageBuildTest {
     local IMAGE_TAG=${1:-docker.io/startx/fedora}
-    local namespace=${2:-$SXDI_REGISTRY_NS}
-    local image=${3:-$SXDI_OSNAME}
-    local tag=${4:-$SXDI_OSTAG}
-    if [[ "$tag" == "master" || "$tag" == "main" ]]; then
-        tag="latest"
-    fi
-    local TEST_NAME="$namespace"_"$image"_"$tag"
+    local TEST_NAME=${2:-startx_fedora_latest}
     echo "INFO: > TEST Container instance $TEST_NAME based on image $IMAGE_TAG"
     ${SXDI_ENGINE} rm -f "$TEST_NAME" &>/dev/null
     RESULT=$(${SXDI_ENGINE} run -d --name "$TEST_NAME" "$IMAGE_TAG")
@@ -530,19 +524,14 @@ function DoImageCleanImage {
 
 # Publish the builded image
 function DoImageBuildPublish {
-    local registry=${1:-localhost}
-    local namespace=${2:-$SXDI_REGISTRY_NS}
-    local image=${3:-$SXDI_OSNAME}
-    local tag=${4:-$SXDI_OSTAG}
-    if [[ "$tag" == "master" || "$tag" == "main" ]]; then
-        tag="latest"
-    fi
-    local IMAGE_TAG=${registry}/${namespace}/${image}:${tag}
-    local TEST_NAME="$namespace"_"$image"_"$tag"
+    local IMAGE_TAG=${1:-"docker.io/startx/fedora:latest"}
+    local TEST_NAME=${2:-startx_fedora_latest}
     echo "INFO: > PUBLISH Container image $IMAGE_TAG"
     if [ -f /tmp/istested_"$TEST_NAME" ] ; then
+        echo "DEBUG: > Found /tmp/istested_${TEST_NAME}"
         DoImagePushImage "${IMAGE_TAG}"
     else
+        echo "DEBUG: > Failed to find /tmp/istested_${TEST_NAME}"
         echo "INFO: > PUBLISHING Container image $IMAGE_TAG skipped because test failed"
         if [[ "$ISFATAL" == "true" ]]; then
             exit 30;
