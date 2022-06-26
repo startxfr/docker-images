@@ -271,6 +271,75 @@ function DoImagePushImage {
     fi
 }
 
+# Set the tag according the the gitlab environment variables
+function DoSetImagetagFromGitlab {
+    local isLatest="${1:-no}"
+    local isOS="no"
+    case $SXDI_PATH in
+        OS) isOS="yes";;
+    esac
+    if [[ "$isOS" == "yes" ]]; then
+        if [[ "$isLatest" == "yes" ]]; then
+            export SXDI_TAG="latest"
+        else
+            case $CI_COMMIT_BRANCH in
+                centos8)        export SXDI_TAG="8";;
+                centos7)        export SXDI_TAG="7";;
+                centos6)        export SXDI_TAG="6";;
+                ubi8)           export SXDI_TAG="8";;
+                rocky)          export SXDI_TAG="8";;
+                alma)           export SXDI_TAG="8";;
+                alpine)         export SXDI_TAG="3";;
+                fc36)           export SXDI_TAG="36";;
+                fc35)           export SXDI_TAG="35";;
+                fc34)           export SXDI_TAG="34";;
+                fc33)           export SXDI_TAG="33";;
+                fc32)           export SXDI_TAG="32";;
+            esac
+        fi
+    else
+        if [[ "$isLatest" == "yes" ]]; then
+            export SXDI_TAG="latest"
+        else
+            case $CI_COMMIT_BRANCH in
+                centos8)        export SXDI_TAG="centos8";;
+                centos7)        export SXDI_TAG="centos7";;
+                centos6)        export SXDI_TAG="centos6";;
+                ubi8)           export SXDI_TAG="ubi8";;
+                rocky)          export SXDI_TAG="rocky8";;
+                alma)           export SXDI_TAG="alma8";;
+                alpine)         export SXDI_TAG="alpine3";;
+                fc36)           export SXDI_TAG="fc36";;
+                fc35)           export SXDI_TAG="fc35";;
+                fc34)           export SXDI_TAG="fc34";;
+                fc33)           export SXDI_TAG="fc33";;
+                fc32)           export SXDI_TAG="fc32";;
+            esac
+        fi
+    fi
+}
+
+
+
+    - centos8
+    - centos7
+    - centos6
+    - alma
+    - rocky
+    - ubi8
+    - fc36
+    - fc35
+    - fc34
+    - fc33
+    - fc32
+    - fc31
+    - fc30
+    - fc29
+    - fc28
+    - fc27
+    - fc26
+
+
 # Execute a docker build for OS environment
 function DoImageBuildExecuteAll {
     echo "INFO: Build all images"
@@ -302,7 +371,7 @@ function DoImageBuildExecute {
     local namespace=${3:-$SXDI_REGISTRY_NS}
     local image=${4:-$SXDI_OSNAME}
     local tag=${5:-$SXDI_OSTAG}
-    if [[ "$tag" = "master" || "$tag" = "main" ]]; then
+    if [[ "$tag" == "master" || "$tag" == "main" ]]; then
         tag="latest"
     fi
     local IMAGE_TAG=${registry}/${namespace}/${image}:${tag}
@@ -310,7 +379,7 @@ function DoImageBuildExecute {
     cd "$path"  &>/dev/null || ${SXDI_RTMODE} 2
     RESULT=$(${SXDI_ENGINE} build -t "$IMAGE_TAG" .)
     RESULTRC=$?
-    if [[ "$RESULTRC" = "0" ]]; then
+    if [[ "$RESULTRC" == "0" ]]; then
         if [ "$SX_DEBUG" != "false" ] ; then
             echo "$RESULT"
         fi
@@ -319,7 +388,7 @@ function DoImageBuildExecute {
     else
         echo "$RESULT"
         echo "!!!!!!!!> Could not build container image $IMAGE_TAG"
-        if [[ "$ISFATAL" = "true" ]]; then
+        if [[ "$ISFATAL" == "true" ]]; then
             ${SXDI_RTMODE} 10;
         else
             ${SXDI_RTMODE} 5;
@@ -358,7 +427,7 @@ function DoImageBuildTest {
     local namespace=${2:-$SXDI_REGISTRY_NS}
     local image=${3:-$SXDI_OSNAME}
     local tag=${4:-$SXDI_OSTAG}
-    if [[ "$tag" = "master" || "$tag" = "main" ]]; then
+    if [[ "$tag" == "master" || "$tag" == "main" ]]; then
         tag="latest"
     fi
     local TEST_NAME="$namespace"_"$image"_"$tag"
@@ -366,7 +435,7 @@ function DoImageBuildTest {
     ${SXDI_ENGINE} rm -f "$TEST_NAME" &>/dev/null
     RESULT=$(${SXDI_ENGINE} run -d --name "$TEST_NAME" "$IMAGE_TAG")
     RESULTRC=$?
-    if [[ "$RESULTRC" = "0" ]]; then
+    if [[ "$RESULTRC" == "0" ]]; then
         if [ "$SX_DEBUG" != "false" ] ; then
             echo "$RESULT"
             ${SXDI_ENGINE} logs "$TEST_NAME"
@@ -376,7 +445,7 @@ function DoImageBuildTest {
     else
         echo "$RESULT"
         echo "!!!!!!!!> Could not start container instance $TEST_NAME"
-        if [[ "$ISFATAL" = "true" ]]; then
+        if [[ "$ISFATAL" == "true" ]]; then
             ${SXDI_RTMODE} 20;
         else
             ${SXDI_RTMODE} 0;
@@ -413,14 +482,14 @@ function DoImageCleanTest {
     local namespace=${1:-$SXDI_REGISTRY_NS}
     local image=${2:-$SXDI_OSNAME}
     local tag=${3:-$SXDI_OSTAG}
-    if [[ "$tag" = "master" || "$tag" = "main" ]]; then
+    if [[ "$tag" == "master" || "$tag" == "main" ]]; then
         tag="latest"
     fi
     local TEST_NAME="$namespace"_"$image"_"$tag"
     echo "INFO: > CLEAN test Container instance $TEST_NAME"
     RESULT=$(${SXDI_ENGINE} rm -f "$TEST_NAME" &>/dev/null)
     RESULTRC=$?
-    if [[ "$RESULTRC" = "0" ]]; then
+    if [[ "$RESULTRC" == "0" ]]; then
         echo "INFO: > CLEANED Container instance $TEST_NAME"
         if [ "$SX_DEBUG" != "false" ] ; then
             echo "$RESULT"
@@ -478,7 +547,7 @@ function DoImageBuildPublish {
     local namespace=${2:-$SXDI_REGISTRY_NS}
     local image=${3:-$SXDI_OSNAME}
     local tag=${4:-$SXDI_OSTAG}
-    if [[ "$tag" = "master" || "$tag" = "main" ]]; then
+    if [[ "$tag" == "master" || "$tag" == "main" ]]; then
         tag="latest"
     fi
     local IMAGE_TAG=${registry}/${namespace}/${image}:${tag}
@@ -488,7 +557,7 @@ function DoImageBuildPublish {
         DoImagePushImage "${IMAGE_TAG}"
     else
         echo "INFO: > PUBLISHING Container image $IMAGE_TAG skipped because test failed"
-        if [[ "$ISFATAL" = "true" ]]; then
+        if [[ "$ISFATAL" == "true" ]]; then
             exit 30;
         else
             exit 0;
