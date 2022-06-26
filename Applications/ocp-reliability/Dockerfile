@@ -1,4 +1,4 @@
-FROM quay.io/startx/runner-oc:latest
+FROM quay.io/startx/runner-oc:centos8
 
 ENV SX_VERSION="latest" \
     SX_TYPE="application" \
