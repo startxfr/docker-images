@@ -42,6 +42,8 @@ RUN dnf install -yq --nogpgcheck jq && \
     mv /tmp/src/reliability-v2/* $APP_PATH/ && \
     rm -rf /tmp/src && \
     cd $APP_PATH && \
+    pip install --upgrade pip && \
+    pip install discord && \
     pip install -r requirements.txt && \
     curl -o /tmp/reliability.yaml https://raw.githubusercontent.com/openshift/svt/master/reliability-v2/config/example_reliability.yaml &> /dev/null && \
     mkdir /config && \
