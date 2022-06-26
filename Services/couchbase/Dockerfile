@@ -35,11 +35,11 @@ LABEL name="$SX_ID" \
     io.artifacthub.package.keywords='startx,os,fedora,database,couchbase' \
     io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/fc34/Services/couchbase/README.md" \
     io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/fc34/docs/img/sv-couchbase.svg' \
-    io.artifacthub.package.alternative-locations='quay.io/startx/couchbase,docker.io/startx/sv-couchbase'
+    io.artifacthub.package.alternative-locations='quay.io/startx/couchbase,docker.io/startx/sv-couchbase' \
     io.artifacthub.package.license='Apache-2.0' \
+    org.opencontainers.image.created='2022-06-25T00:00:00Z' \
     org.opencontainers.image.version="$SX_VERSION" \
     org.opencontainers.image.description="$SX_SUMMARY. Use for executing database based on couchbase or as container mainstream image for your database backend containers." \
-    org.opencontainers.image.created='2022-06-25T00:00:00Z' \
     org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/fc34/Services/couchbase/" \
     org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/fc34/Services/couchbase" \
     org.opencontainers.image.vendor="STARTX"
@@ -52,7 +52,8 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
         python3-httplib2 \
         openssl \
         ncurses \
-        ncurses-* \
+        ncurses-base \
+        ncurses-compat-libs \
         python3 \
         bzip2 && \
     package-cleanup --problems && \
