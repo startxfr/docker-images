@@ -41,6 +41,7 @@ RUN dnf upgrade -yq --refresh && \
     dnf install -yq --nogpgcheck yum-utils && \
     dnf install -yq --nogpgcheck \
     make \
+    python3-pip \
     bubblewrap \
     rsync \
     openssh-clients \
