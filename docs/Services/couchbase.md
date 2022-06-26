@@ -237,11 +237,11 @@ access to the running couchbase daemon with `telnet localhost 11211; stats`. Cha
 ## Environment variable
 
 This container is based on [startx fedora container](https://hub.docker.com/r/startx/fedora) who came with
-some [predefined environment variable](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable)
+some [predefined environment variable](https://docker-images.readthedocs.io/en/latest/OS/fedora/#environment-variable)
 
 | Variable                       | Type     | Mandatory             | Description                                                                                       |
 | ------------------------------ | -------- | --------------------- | ------------------------------------------------------------------------------------------------- |
-| <i>base image environement</i> |          |                       | [see environment list](https://gitlab.com/startx1/containers/tree/master/OS#environment-variable) |
+| <i>base image environement</i> |          |                       | [see environment list](https://docker-images.readthedocs.io/en/latest/OS/fedora/#environment-variable) |
 | SX_VERSION                     | `string` | `latest`              | container version                                                                                 |
 | SX_TYPE                        | `string` | `service`             | Container family (os, service, application). could be enhanced                                    |
 | SX_SERVICE                     | `string` | `couchbase`           | Define the type of service or application provided                                                |
