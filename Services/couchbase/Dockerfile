@@ -11,7 +11,7 @@ ENV SX_VERSION="fc33" \
     DATA_PATH=/opt/couchbase/var \
     CB_VERSION=6.6.5 \
     CB_RELEASE_URL=https://packages.couchbase.com/releases/6.6.5 \
-    CB_PACKAGE=couchbase-server-enterprise-6.6.5-rhel8.x86_64.rpm \
+    CB_PACKAGE=couchbase-server-enterprise-6.6.5-centos8.x86_64.rpm \
     PATH=$PATH:/opt/couchbase/bin:/opt/couchbase/bin/tools:/opt/couchbase/bin/install
 
 LABEL name="$SX_ID" \
@@ -35,11 +35,11 @@ LABEL name="$SX_ID" \
     io.artifacthub.package.keywords='startx,os,fedora,database,couchbase' \
     io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/fc33/Services/couchbase/README.md" \
     io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/fc33/docs/img/sv-couchbase.svg' \
-    io.artifacthub.package.alternative-locations='quay.io/startx/couchbase,docker.io/startx/sv-couchbase'
+    io.artifacthub.package.alternative-locations='quay.io/startx/couchbase,docker.io/startx/sv-couchbase' \
     io.artifacthub.package.license='Apache-2.0' \
+    org.opencontainers.image.created='2022-06-25T00:00:00Z' \
     org.opencontainers.image.version="$SX_VERSION" \
     org.opencontainers.image.description="$SX_SUMMARY. Use for executing database based on couchbase or as container mainstream image for your database backend containers." \
-    org.opencontainers.image.created='2022-06-25T00:00:00Z' \
     org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/fc33/Services/couchbase/" \
     org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/fc33/Services/couchbase" \
     org.opencontainers.image.vendor="STARTX"
@@ -52,7 +52,8 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
         python3-httplib2 \
         openssl \
         ncurses \
-        ncurses-* \
+        ncurses-base \
+        ncurses-compat-libs \
         python3 \
         bzip2 && \
     package-cleanup --problems && \
