@@ -279,9 +279,12 @@ function DoSetImagetagFromGitlab {
         OS) isOS="yes";;
     esac
     if [[ "$isOS" == "yes" ]]; then
+        echo "INFO: DoSetImagetagFromGitlab found is an OS image"
         if [[ "$isLatest" == "yes" ]]; then
+            echo "INFO: DoSetImagetagFromGitlab found is latest image"
             export SXDI_TAG="latest"
         else
+            echo "INFO: DoSetImagetagFromGitlab found is NOT latest image"
             case $CI_COMMIT_BRANCH in
                 centos8)        export SXDI_TAG="8";;
                 centos7)        export SXDI_TAG="7";;
@@ -297,10 +300,14 @@ function DoSetImagetagFromGitlab {
                 fc32)           export SXDI_TAG="32";;
             esac
         fi
+        echo "INFO: DoSetImagetagFromGitlab Image will be tagged ${SXDI_TAG}"
     else
+        echo "INFO: DoSetImagetagFromGitlab found is NOT an OS image"
         if [[ "$isLatest" == "yes" ]]; then
+            echo "INFO: DoSetImagetagFromGitlab found is latest image"
             export SXDI_TAG="latest"
         else
+            echo "INFO: DoSetImagetagFromGitlab found is NOT latest image"
             case $CI_COMMIT_BRANCH in
                 centos8)        export SXDI_TAG="centos8";;
                 centos7)        export SXDI_TAG="centos7";;
@@ -316,6 +323,7 @@ function DoSetImagetagFromGitlab {
                 fc32)           export SXDI_TAG="fc32";;
             esac
         fi
+        echo "INFO: DoSetImagetagFromGitlab Image will be tagged ${SXDI_TAG}"
     fi
 }
 
