@@ -2,33 +2,198 @@
 ## STAGES
 ##
 
-# Build the fedora image
-build-os:
+# All builds tasks for FEDORA
+build-os-fc-latest:
   stage: "build OS"
-  extends: .build-image
+  extends: .build-image-latest
   variables:
     SXDI_PATH: 'OS'
-    SXDI_DOCKERNAME: ${SXDI_OSNAME}
-    SXDI_QUAYNAME: ${SXDI_OSNAME}
-    SXDI_TAG: ${SXDI_OSTAG}
+    SXDI_DOCKERNAME: fedora
+    SXDI_QUAYNAME: fedora
     SXDI_ENGINE: docker
-
-# Build the latest of images other than fedora (master)
-build-os-latest:
+  only:
+    - master
+build-os-fc36:
   stage: "build OS"
   extends: .build-image
   variables:
     SXDI_PATH: 'OS'
-    SXDI_DOCKERNAME: ${SXDI_OSNAME}
-    SXDI_QUAYNAME: ${SXDI_OSNAME}
-    SXDI_TAG: latest
+    SXDI_DOCKERNAME: fedora
+    SXDI_QUAYNAME: fedora
+    SXDI_ENGINE: docker
+  only:
+    - master
+    - fc36
+build-os-fc35:
+  stage: "build OS"
+  extends: .build-image
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: fedora
+    SXDI_QUAYNAME: fedora
+    SXDI_ENGINE: docker
+  only:
+    - fc35
+build-os-fc34:
+  stage: "build OS"
+  extends: .build-image
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: fedora
+    SXDI_QUAYNAME: fedora
+    SXDI_ENGINE: docker
+  only:
+    - fc34
+build-os-fc33:
+  stage: "build OS"
+  extends: .build-image
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: fedora
+    SXDI_QUAYNAME: fedora
+    SXDI_ENGINE: docker
+  only:
+    - fc33
+build-os-fc32:
+  stage: "build OS"
+  extends: .build-image
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: fedora
+    SXDI_QUAYNAME: fedora
+    SXDI_ENGINE: docker
+  only:
+    - fc32
+
+# All builds tasks for UBI
+build-os-ubi-latest:
+  stage: "build OS"
+  extends: .build-image-latest
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: ubi
+    SXDI_QUAYNAME: ubi
+    SXDI_ENGINE: docker
+  only:
+    - ubi8
+build-os-ubi8:
+  stage: "build OS"
+  extends: .build-image
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: ubi
+    SXDI_QUAYNAME: ubi
+    SXDI_ENGINE: docker
+  only:
+    - ubi8
+
+# All builds tasks for ROCKY
+build-os-rocky-latest:
+  stage: "build OS"
+  extends: .build-image-latest
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: rocky
+    SXDI_QUAYNAME: rocky
+    SXDI_ENGINE: docker
+  only:
+    - rocky
+build-os-rocky8:
+  stage: "build OS"
+  extends: .build-image
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: rocky
+    SXDI_QUAYNAME: rocky
+    SXDI_ENGINE: docker
+  only:
+    - rocky
+
+# All builds tasks for ALMA
+build-os-alma-latest:
+  stage: "build OS"
+  extends: .build-image-latest
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: alma
+    SXDI_QUAYNAME: alma
+    SXDI_ENGINE: docker
+  only:
+    - alma
+build-os-alma8:
+  stage: "build OS"
+  extends: .build-image
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: alma
+    SXDI_QUAYNAME: alma
+    SXDI_ENGINE: docker
+  only:
+    - alma
+
+# All builds tasks for ALPINE
+build-os-alpine-latest:
+  stage: "build OS"
+  extends: .build-image-latest
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: alpine
+    SXDI_QUAYNAME: alpine
+    SXDI_ENGINE: docker
+  only:
+    - alpine
+build-os-alpine3:
+  stage: "build OS"
+  extends: .build-image
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: alpine
+    SXDI_QUAYNAME: alpine
+    SXDI_ENGINE: docker
+  only:
+    - alpine
+
+# All builds tasks for CENTOS
+build-os-centos-latest:
+  stage: "build OS"
+  extends: .build-image-latest
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: centos
+    SXDI_QUAYNAME: centos
     SXDI_ENGINE: docker
   only:
     - centos8
-    - alma
-    - rocky
-    - alpine
-    - ubi8
+build-os-centos8:
+  stage: "build OS"
+  extends: .build-image
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: centos
+    SXDI_QUAYNAME: centos
+    SXDI_ENGINE: docker
+  only:
+    - centos8
+build-os-centos7:
+  stage: "build OS"
+  extends: .build-image
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: centos
+    SXDI_QUAYNAME: centos
+    SXDI_ENGINE: docker
+  only:
+    - centos7
+build-os-centos6:
+  stage: "build OS"
+  extends: .build-image
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: centos
+    SXDI_QUAYNAME: centos
+    SXDI_ENGINE: docker
+  only:
+    - centos6
 
 # include:
 #   - template: Security/Container-Scanning.gitlab-ci.yml
