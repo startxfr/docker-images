@@ -36,8 +36,8 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/runner-apache:28`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 28      | 2.4.17 |       |
 | [`startx/runner-apache:27`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 27      | 2.4.17 |       |
 | [`startx/runner-apache:26`](https://hub.docker.com/r/startx/runner-apache)      | Fedora core 26      | 2.4.17 |       |
-| [`startx/runner-apache:alma8`](https://hub.docker.com/r/startx/runner-apache) | Alma 8            | 2.4.37 | 4.2.1 |
-| [`startx/runner-apache:rocky8`](https://hub.docker.com/r/startx/runner-apache) | Rocky 8            | 2.4.37 | 4.2.1 |
+| [`startx/runner-apache:alma8`](https://hub.docker.com/r/startx/runner-apache)   | Alma 8              | 2.4.37 | 4.2.1 |
+| [`startx/runner-apache:rocky8`](https://hub.docker.com/r/startx/runner-apache)  | Rocky 8             | 2.4.37 | 4.2.1 |
 | [`startx/runner-apache:centos8`](https://hub.docker.com/r/startx/runner-apache) | Centos 8            | 2.4.37 | 4.2.1 |
 | [`startx/runner-apache:centos7`](https://hub.docker.com/r/startx/runner-apache) | Centos 7            | 2.4.6  | 3.82  |
 | [`startx/runner-apache:ubi8`](https://hub.docker.com/r/startx/runner-apache)    | RedHat UBI 8        | 2.4.37 | 4.2.1 |
@@ -102,20 +102,41 @@ FROM quay.io/startx/runner-apache:latest
 
 ## Environment variable
 
-| Variable   | Type     | Default                | Description                                                    |
-| ---------- | -------- | ---------------------- | -------------------------------------------------------------- |
-| SX_VERSION | `string` | `latest`               | container version                                              |
-| SX_TYPE    | `string` | `service`              | Container family (os, service, application). could be enhanced |
-| SX_SERVICE | `string` | `apache`               | Define the type of service or application provided             |
-| SX_ID      | `auto`   | `startx/runner-apache` | Container ID coresponding to the image repository              |
-| SX_NAME    | `auto`   | `yes`                  | Container name                                                 |
-| SX_SUMMARY | `auto`   | `yes`                  | Container purpose description                                  |
-| SX_VERBOSE | `bool`   | `no`                   | Display information about the execution                        |
-| SX_DEBUG   | `bool`   | `no`                   | Display debug informations during execution                    |
-| APP_PATH   | `string` | `/app`                 | Path to the application                                        |
-| APP_PORT   | `string` | `8080`                 | Port to the application                                        |
-| LOG_PATH   | `string` | `/var/log/httpd`       | Destination path to the log produced by the webserver          |
-| SX_S2IDIR  | `string` | `/tmp`                 | Destination path to the application pushed via s2i process     |
+This container is based on [startx apache container](https://hub.docker.com/r/startx/sv-apache) who came with
+some [additional environment variable](https://docker-images.readthedocs.io/en/latest/Services/apache/#environment-variable)
+
+| Variable                       | Type     | Default                | Description                                                                                                  |
+| ------------------------------ | -------- | ---------------------- | ------------------------------------------------------------------------------------------------------------ |
+| <i>base image environement</i> |          |                        | [see environment list](https://docker-images.readthedocs.io/en/latest/Services/apache/#environment-variable) |
+| SX_VERSION                     | `string` | `latest`               | container version                                                                                            |
+| SX_TYPE                        | `string` | `service`              | Container family (os, service, application). could be enhanced                                               |
+| SX_SERVICE                     | `string` | `apache`               | Define the type of service or application provided                                                           |
+| SX_ID                          | `auto`   | `startx/runner-apache` | Container ID coresponding to the image repository                                                            |
+| SX_NAME                        | `auto`   | `yes`                  | Container name                                                                                               |
+| SX_SUMMARY                     | `auto`   | `yes`                  | Container purpose description                                                                                |
+| SX_VERBOSE                     | `bool`   | `no`                   | Display information about the execution                                                                      |
+| SX_DEBUG                       | `bool`   | `no`                   | Display debug informations during execution                                                                  |
+| APP_PATH                       | `string` | `/app`                 | Path to the application                                                                                      |
+| APP_PORT                       | `string` | `8080`                 | Port to the application                                                                                      |
+| LOG_PATH                       | `string` | `/var/log/httpd`       | Destination path to the log produced by the webserver                                                        |
+| SX_S2IDIR                      | `string` | `/tmp`                 | Destination path to the application pushed via s2i process                                                   |
+
+## Exposed port
+
+| Port | Description                                                     |
+| ---- | --------------------------------------------------------------- |
+| 8080 | network port used to communicate with apache service using http |
+
+## Exposed volumes
+
+| Container directory | Description                                                                         |
+| ------------------- | ----------------------------------------------------------------------------------- |
+| /var/log/httpd      | log directory used to record container and nodejs logs                              |
+| /app                | Main application components (already defined, use volume to overwrite html content) |
+
+## Testing the service
+
+access to the running nodejs service with http client `curl -k -I http://localhost:9201`. Change port and hostname according to your current configuration
 
 ## For advanced users
 
