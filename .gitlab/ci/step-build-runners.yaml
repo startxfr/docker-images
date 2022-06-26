@@ -3,6 +3,17 @@
 ##
 
 # Build the ansible gitlab-runner image
+build-runner-ansible-latest:
+  stage: "build Runners"
+  extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "GitlabRunner/ansible"
+    SXDI_DOCKERNAME: "runner-ansible"
+    SXDI_QUAYNAME: "runner-ansible"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-runner-ansible:
   stage: "build Runners"
   extends: .build-image
@@ -11,10 +22,8 @@ build-runner-ansible:
     SXDI_PATH: "GitlabRunner/ansible"
     SXDI_DOCKERNAME: "runner-ansible"
     SXDI_QUAYNAME: "runner-ansible"
-    SXDI_TAG: ${SXDI_OTHERTAG}
     SXDI_ENGINE: docker
   only:
-    - master
     - centos8
     - centos7
     - alma
@@ -34,6 +43,17 @@ build-runner-ansible:
     - fc26
 
 # Build the apache gitlab-runner image
+build-runner-apache-latest:
+  stage: "build Runners"
+  extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "GitlabRunner/apache"
+    SXDI_DOCKERNAME: "runner-apache"
+    SXDI_QUAYNAME: "runner-apache"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-runner-apache:
   stage: "build Runners"
   extends: .build-image
@@ -42,10 +62,8 @@ build-runner-apache:
     SXDI_PATH: "GitlabRunner/apache"
     SXDI_DOCKERNAME: "runner-apache"
     SXDI_QUAYNAME: "runner-apache"
-    SXDI_TAG: ${SXDI_OTHERTAG}
     SXDI_ENGINE: docker
   only:
-    - master
     - centos8
     - centos7
     - alma
@@ -65,6 +83,17 @@ build-runner-apache:
     - fc26
 
 # Build the nodejs gitlab-runner image
+build-runner-nodejs-latest:
+  stage: "build Runners"
+  extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "GitlabRunner/nodejs"
+    SXDI_DOCKERNAME: "runner-nodejs"
+    SXDI_QUAYNAME: "runner-nodejs"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-runner-nodejs:
   stage: "build Runners"
   extends: .build-image
@@ -73,10 +102,8 @@ build-runner-nodejs:
     SXDI_PATH: "GitlabRunner/nodejs"
     SXDI_DOCKERNAME: "runner-nodejs"
     SXDI_QUAYNAME: "runner-nodejs"
-    SXDI_TAG: ${SXDI_OTHERTAG}
     SXDI_ENGINE: docker
   only:
-    - master
     - centos8
     - centos7
     - alma
@@ -96,6 +123,17 @@ build-runner-nodejs:
     - fc26
 
 # Build the oc gitlab-runner image
+build-runner-oc-latest:
+  stage: "build Runners"
+  extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "GitlabRunner/oc"
+    SXDI_DOCKERNAME: "runner-oc"
+    SXDI_QUAYNAME: "runner-oc"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-runner-oc:
   stage: "build Runners"
   extends: .build-image
@@ -104,10 +142,8 @@ build-runner-oc:
     SXDI_PATH: "GitlabRunner/oc"
     SXDI_DOCKERNAME: "runner-oc"
     SXDI_QUAYNAME: "runner-oc"
-    SXDI_TAG: ${SXDI_OTHERTAG}
     SXDI_ENGINE: docker
   only:
-    - master
     - centos8
     - centos7
     - alma
@@ -126,6 +162,17 @@ build-runner-oc:
     - fc27
 
 # Build the php gitlab-runner image
+build-runner-php-latest:
+  stage: "build Runners"
+  extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "GitlabRunner/php"
+    SXDI_DOCKERNAME: "runner-php"
+    SXDI_QUAYNAME: "runner-php"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-runner-php:
   stage: "build Runners"
   extends: .build-image
@@ -134,10 +181,8 @@ build-runner-php:
     SXDI_PATH: "GitlabRunner/php"
     SXDI_DOCKERNAME: "runner-php"
     SXDI_QUAYNAME: "runner-php"
-    SXDI_TAG: ${SXDI_OTHERTAG}
     SXDI_ENGINE: docker
   only:
-    - master
     - centos8
     - centos7
     - alma
