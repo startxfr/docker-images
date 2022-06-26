@@ -31,15 +31,15 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
     io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
     io.artifacthub.package.keywords='startx,os,fedora,nodejs,httpd' \
-    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/master/Services/nodejs/README.md" \
-    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/master/docs/img/sv-nodejs.svg' \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/centos7/Services/nodejs/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/centos7/docs/img/sv-nodejs.svg' \
     io.artifacthub.package.alternative-locations='quay.io/startx/nodejs,docker.io/startx/sv-nodejs'\
     io.artifacthub.package.license='Apache-2.0' \
     org.opencontainers.image.created='2022-06-25T00:00:00Z' \
     org.opencontainers.image.version="$SX_VERSION" \
     org.opencontainers.image.description="$SX_SUMMARY. Use for executing application based on nodejs or as container mainstream image for your micro-service containers." \
-    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/latest/Services/nodejs/" \
-    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/master/Services/nodejs" \
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/centos7/Services/nodejs/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/centos7/Services/nodejs" \
     org.opencontainers.image.vendor="STARTX"
 
 USER root

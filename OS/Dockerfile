@@ -39,11 +39,11 @@ LABEL name="$SX_ID" \
     io.openshift.s2i.scripts-url="image:///s2i" \
     io.s2i.scripts-url="image:///s2i" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
-    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/latest/OS/centos/" \
-    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/master/OS" \
-    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/master/OS/README.md" \
-    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/master/docs/img/os-centos.svg' \
-    io.artifacthub.package.alternative-locations='quay.io/startx/centos:latest,docker.io/startx/centos:latest'
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/centos7/OS/centos/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/centos7/OS" \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/centos7/OS/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/centos7/docs/img/os-centos.svg' \
+    io.artifacthub.package.alternative-locations='quay.io/startx/centos:7,docker.io/startx/centos:7'
 
 USER root
 COPY sx /tmp/
