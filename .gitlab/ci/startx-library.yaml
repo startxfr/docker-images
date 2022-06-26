@@ -11,6 +11,28 @@ image: "quay.io/startx/runner-bash:alpine3"
 ##
 
 # Library used to merge branch in a local repo
+.build-image-latest:
+  variables:
+    SXDI_PATH: 'OS' # default to OS image
+    SXDI_DOCKERNAME: 'fedora' # image name in docker.io registry
+    SXDI_QUAYNAME: 'fedora' # image name in quay.io registry
+    SXDI_ENGINE: docker
+  image: docker:latest
+  stage: build
+  services:
+    - docker:dind
+  before_script: 
+    - "source .gitlab/ci/startx-library.sh && DoImageBuildPrepare"
+  script:
+    - DoSetImagetagFromGitlab yes
+    - DoImageBuildExecute ${SXDI_PATH} docker.io startx ${SXDI_DOCKERNAME} ${SXDI_TAG}
+    - DoImageBuildExecute ${SXDI_PATH} quay.io startx ${SXDI_QUAYNAME} ${SXDI_TAG}
+    - DoImageBuildExecute ${SXDI_PATH} $CI_REGISTRY startx1/containers ${SXDI_QUAYNAME} ${SXDI_TAG}
+    - DoImageBuildTest "docker.io/startx/${SXDI_DOCKERNAME}:${SXDI_TAG}" startx "${SXDI_DOCKERNAME}" "${SXDI_TAG}"
+    - DoImageBuildPublish docker.io startx ${SXDI_DOCKERNAME} ${SXDI_TAG}
+    - DoImageBuildPublish quay.io startx ${SXDI_QUAYNAME} ${SXDI_TAG}
+    - DoImageBuildPublish $CI_REGISTRY startx1/containers ${SXDI_QUAYNAME} ${SXDI_TAG}
+
 .build-image:
   variables:
     SXDI_PATH: 'OS' # default to OS image
@@ -25,10 +47,11 @@ image: "quay.io/startx/runner-bash:alpine3"
   before_script: 
     - "source .gitlab/ci/startx-library.sh && DoImageBuildPrepare"
   script:
+    - DoSetImagetagFromGitlab
     - DoImageBuildExecute ${SXDI_PATH} docker.io startx ${SXDI_DOCKERNAME} ${SXDI_TAG}
     - DoImageBuildExecute ${SXDI_PATH} quay.io startx ${SXDI_QUAYNAME} ${SXDI_TAG}
     - DoImageBuildExecute ${SXDI_PATH} $CI_REGISTRY startx1/containers ${SXDI_QUAYNAME} ${SXDI_TAG}
-    - DoImageBuildTest docker.io/startx/${SXDI_DOCKERNAME}:${SXDI_TAG} startx ${SXDI_DOCKERNAME} ${SXDI_TAG}
+    - DoImageBuildTest "docker.io/startx/${SXDI_DOCKERNAME}:${SXDI_TAG}" startx "${SXDI_DOCKERNAME}" "${SXDI_TAG}"
     - DoImageBuildPublish docker.io startx ${SXDI_DOCKERNAME} ${SXDI_TAG}
     - DoImageBuildPublish quay.io startx ${SXDI_QUAYNAME} ${SXDI_TAG}
     - DoImageBuildPublish $CI_REGISTRY startx1/containers ${SXDI_QUAYNAME} ${SXDI_TAG}
