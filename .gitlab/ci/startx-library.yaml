@@ -11,12 +11,12 @@ image: "quay.io/startx/runner-bash:alpine3"
 ##
 
 # Library used to merge branch in a local repo
-.build-image:
+.build-image-latest:
   variables:
-    SXGLCI_PATH: 'OS' # default to OS image
-    SXGLCI_DOCKERNAME: 'fedora' # image name in docker.io registry
-    SXGLCI_QUAYNAME: 'fedora' # image name in quay.io registry
-    SXGLCI_TAG: ${CI_COMMIT_BRANCH:-latest} # image tag name
+    SXDI_PATH: 'OS' # default to OS image
+    SXDI_DOCKERNAME: 'fedora' # image name in docker.io registry
+    SXDI_QUAYNAME: 'fedora' # image name in quay.io registry
+    SXDI_ENGINE: docker
   image: docker:latest
   stage: build
   services:
@@ -24,16 +24,43 @@ image: "quay.io/startx/runner-bash:alpine3"
   before_script: 
     - "source .gitlab/ci/startx-library.sh && DoImageBuildPrepare"
   script:
-    - DoImageBuildExecute $SXGLCI_PATH $SXGLCI_DOCKERNAME $SXGLCI_QUAYNAME $SXGLCI_TAG startx
-    - DoImageBuildTest $SXGLCI_PATH $SXGLCI_DOCKERNAME $SXGLCI_QUAYNAME $SXGLCI_TAG startx
-    - DoImageBuildPublish $SXGLCI_PATH $SXGLCI_DOCKERNAME $SXGLCI_QUAYNAME $SXGLCI_TAG startx
+    - DoSetImagetagFromGitlab yes
+    - DoImageBuildExecute ${SXDI_PATH} docker.io startx ${SXDI_DOCKERNAME} ${SXDI_TAG}
+    - DoImageBuildExecute ${SXDI_PATH} quay.io startx ${SXDI_QUAYNAME} ${SXDI_TAG}
+    - DoImageBuildExecute ${SXDI_PATH} $CI_REGISTRY startx1/containers ${SXDI_QUAYNAME} ${SXDI_TAG}
+    - DoImageBuildTest "docker.io/startx/${SXDI_DOCKERNAME}:${SXDI_TAG}" startx "${SXDI_DOCKERNAME}" "${SXDI_TAG}"
+    - DoImageBuildPublish docker.io startx ${SXDI_DOCKERNAME} ${SXDI_TAG}
+    - DoImageBuildPublish quay.io startx ${SXDI_QUAYNAME} ${SXDI_TAG}
+    - DoImageBuildPublish $CI_REGISTRY startx1/containers ${SXDI_QUAYNAME} ${SXDI_TAG}
 
+.build-image:
+  variables:
+    SXDI_PATH: 'OS' # default to OS image
+    SXDI_DOCKERNAME: 'fedora' # image name in docker.io registry
+    SXDI_QUAYNAME: 'fedora' # image name in quay.io registry
+    SXDI_TAG: ${CI_COMMIT_BRANCH:-latest} # image tag name
+    SXDI_ENGINE: docker
+  image: docker:latest
+  stage: build
+  services:
+    - docker:dind
+  before_script: 
+    - "source .gitlab/ci/startx-library.sh && DoImageBuildPrepare"
+  script:
+    - DoSetImagetagFromGitlab
+    - DoImageBuildExecute ${SXDI_PATH} docker.io startx ${SXDI_DOCKERNAME} ${SXDI_TAG}
+    - DoImageBuildExecute ${SXDI_PATH} quay.io startx ${SXDI_QUAYNAME} ${SXDI_TAG}
+    - DoImageBuildExecute ${SXDI_PATH} $CI_REGISTRY startx1/containers ${SXDI_QUAYNAME} ${SXDI_TAG}
+    - DoImageBuildTest "docker.io/startx/${SXDI_DOCKERNAME}:${SXDI_TAG}" startx "${SXDI_DOCKERNAME}" "${SXDI_TAG}"
+    - DoImageBuildPublish docker.io startx ${SXDI_DOCKERNAME} ${SXDI_TAG}
+    - DoImageBuildPublish quay.io startx ${SXDI_QUAYNAME} ${SXDI_TAG}
+    - DoImageBuildPublish $CI_REGISTRY startx1/containers ${SXDI_QUAYNAME} ${SXDI_TAG}
 
 # Library used to merge branch in a local repo
 .git-merge:
   variables:
-    SXGLCI_BRANCH_FROM: 'devel' # default to devel branch
-    SXGLCI_BRANCH_TO: 'main' # default to main branch
+    SXDI_BRANCH_FROM: 'devel' # default to devel branch
+    SXDI_BRANCH_TO: 'main' # default to main branch
   before_script: 
     - |
       #!/bin/bash
@@ -53,68 +80,68 @@ image: "quay.io/startx/runner-bash:alpine3"
       if [[ $SX_DEBUG == true ]]; then
         eval $(ssh-agent -s)
         mkdir -p ~/.ssh && chmod 740 ~/.ssh
-        echo $SXGLCI_GITSSH_PRIVB64 | base64 -d > ~/.ssh/sxcm-gitlabci.id_ecdsa
+        echo $SXDI_GITSSH_PRIVB64 | base64 -d > ~/.ssh/sxcm-gitlabci.id_ecdsa
         chmod 600 ~/.ssh/sxcm-gitlabci.id_ecdsa
         ssh-add ~/.ssh/sxcm-gitlabci.id_ecdsa
         cat ~/.ssh/sxcm-gitlabci.id_ecdsa
-        echo "================$SXGLCI_GIT_DOMAIN"
-        $(ssh-keyscan $SXGLCI_GIT_DOMAIN >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts)
+        echo "================$SXDI_GIT_DOMAIN"
+        $(ssh-keyscan $SXDI_GIT_DOMAIN >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts)
       else
         eval $(ssh-agent -s) &> /dev/null
         mkdir -p ~/.ssh && chmod 740 ~/.ssh
-        echo $SXGLCI_GITSSH_PRIVB64 | base64 -d > ~/.ssh/sxcm-gitlabci.id_ecdsa
+        echo $SXDI_GITSSH_PRIVB64 | base64 -d > ~/.ssh/sxcm-gitlabci.id_ecdsa
         chmod 600 ~/.ssh/sxcm-gitlabci.id_ecdsa
         ssh-add ~/.ssh/sxcm-gitlabci.id_ecdsa &> /dev/null
-        $(ssh-keyscan $SXGLCI_GIT_DOMAIN >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts)
+        $(ssh-keyscan $SXDI_GIT_DOMAIN >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts)
       fi
-      echo "======== Configuration of remote push to ${SXGLCI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git"
+      echo "======== Configuration of remote push to ${SXDI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git"
       if [[ $SX_DEBUG == true ]]; then
-        git remote set-url origin ${SXGLCI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git
+        git remote set-url origin ${SXDI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git
         git fetch origin
       else
-        git remote set-url origin ${SXGLCI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git
+        git remote set-url origin ${SXDI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git
         git fetch origin &> /dev/null
       fi
   script: |
     #!/bin/bash
-    echo "======== Checkout branch $SXGLCI_BRANCH_FROM"
+    echo "======== Checkout branch $SXDI_BRANCH_FROM"
     if [[ $SX_DEBUG == true ]]; then
-      git checkout $SXGLCI_BRANCH_FROM
+      git checkout $SXDI_BRANCH_FROM
     else
-      git checkout $SXGLCI_BRANCH_FROM &> /dev/null
+      git checkout $SXDI_BRANCH_FROM &> /dev/null
     fi
     if [[ $? != 0 ]]; then
-      echo "!! Could not find origin branch $SXGLCI_BRANCH_FROM" && exit 1
+      echo "!! Could not find origin branch $SXDI_BRANCH_FROM" && exit 1
     fi
-    echo "======== Checkout branch $SXGLCI_BRANCH_TO"
+    echo "======== Checkout branch $SXDI_BRANCH_TO"
     if [[ $SX_DEBUG == true ]]; then
-      git checkout --track origin/$SXGLCI_BRANCH_TO && \
-      git checkout $SXGLCI_BRANCH_TO && \
+      git checkout --track origin/$SXDI_BRANCH_TO && \
+      git checkout $SXDI_BRANCH_TO && \
       git pull
     else
-      git checkout --track origin/$SXGLCI_BRANCH_TO &> /dev/null && \
-      git checkout $SXGLCI_BRANCH_TO &> /dev/null && \
+      git checkout --track origin/$SXDI_BRANCH_TO &> /dev/null && \
+      git checkout $SXDI_BRANCH_TO &> /dev/null && \
       git pull &> /dev/null
     fi
     if [[ $? != 0 ]]; then
-      echo "!! Could not find destination branch $SXGLCI_BRANCH_TO" && exit 1
+      echo "!! Could not find destination branch $SXDI_BRANCH_TO" && exit 1
     fi
-    echo "======== Merge branch $SXGLCI_BRANCH_FROM into $SXGLCI_BRANCH_TO"
+    echo "======== Merge branch $SXDI_BRANCH_FROM into $SXDI_BRANCH_TO"
     if [[ $SX_DEBUG == true ]]; then
-      git merge --no-ff $SXGLCI_BRANCH_FROM
+      git merge --no-ff $SXDI_BRANCH_FROM
     else
-      git merge --no-ff $SXGLCI_BRANCH_FROM &> /dev/null
+      git merge --no-ff $SXDI_BRANCH_FROM &> /dev/null
     fi
     if [[ $? != 0 ]]; then
-      echo "!! Could not automaticaly merge branch $SXGLCI_BRANCH_FROM into $SXGLCI_BRANCH_TO" && exit 1
+      echo "!! Could not automaticaly merge branch $SXDI_BRANCH_FROM into $SXDI_BRANCH_TO" && exit 1
     fi
-    echo "======== Push branch $SXGLCI_BRANCH_TO into ${SXGLCI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git"
+    echo "======== Push branch $SXDI_BRANCH_TO into ${SXDI_GIT_SSH_USER}:${CI_PROJECT_PATH}.git"
     if [[ $SX_DEBUG == true ]]; then
-      git push origin $SXGLCI_BRANCH_TO
+      git push origin $SXDI_BRANCH_TO
     else
-      git push origin $SXGLCI_BRANCH_TO &> /dev/null
+      git push origin $SXDI_BRANCH_TO &> /dev/null
     fi
     if [[ $? != 0 ]]; then
-      echo "!! Could not automaticaly push branch $SXGLCI_BRANCH_TO"
+      echo "!! Could not automaticaly push branch $SXDI_BRANCH_TO"
       exit 1
     fi

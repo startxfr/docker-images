@@ -3,16 +3,25 @@
 ##
 
 # Build the apache image
+build-apache-latest:
+  stage: "build basic"
+  extends: .build-image-latest
+  variables:
+    SXDI_PATH: "Services/apache"
+    SXDI_DOCKERNAME: "sv-apache"
+    SXDI_QUAYNAME: "apache"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-apache:
   stage: "build basic"
   extends: .build-image
   variables:
-    SXGLCI_PATH: "Services/apache"
-    SXGLCI_DOCKERNAME: "sv-apache"
-    SXGLCI_QUAYNAME: "apache"
-    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+    SXDI_PATH: "Services/apache"
+    SXDI_DOCKERNAME: "sv-apache"
+    SXDI_QUAYNAME: "apache"
+    SXDI_ENGINE: docker
   only:
-    - master
     - centos8
     - centos7
     - centos6
@@ -39,17 +48,27 @@ build-apache:
     - fc20
 
 # Build the nodejs image
+build-nodejs-latest:
+  stage: "build basic"
+  extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Services/nodejs"
+    SXDI_DOCKERNAME: "sv-nodejs"
+    SXDI_QUAYNAME: "nodejs"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-nodejs:
   stage: "build basic"
   extends: .build-image
   allow_failure: true
   variables:
-    SXGLCI_PATH: "Services/nodejs"
-    SXGLCI_DOCKERNAME: "sv-nodejs"
-    SXGLCI_QUAYNAME: "nodejs"
-    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+    SXDI_PATH: "Services/nodejs"
+    SXDI_DOCKERNAME: "sv-nodejs"
+    SXDI_QUAYNAME: "nodejs"
+    SXDI_ENGINE: docker
   only:
-    - master
     - centos8
     - centos7
     - centos6
@@ -76,17 +95,27 @@ build-nodejs:
     - fc20
 
 # Build the bash gitlab-runner image
+build-runner-bash-latest:
+  stage: "build basic"
+  extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "GitlabRunner/bash"
+    SXDI_DOCKERNAME: "runner-bash"
+    SXDI_QUAYNAME: "runner-bash"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-runner-bash:
   stage: "build basic"
   extends: .build-image
   allow_failure: true
   variables:
-    SXGLCI_PATH: "GitlabRunner/bash"
-    SXGLCI_DOCKERNAME: "runner-bash"
-    SXGLCI_QUAYNAME: "runner-bash"
-    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+    SXDI_PATH: "GitlabRunner/bash"
+    SXDI_DOCKERNAME: "runner-bash"
+    SXDI_QUAYNAME: "runner-bash"
+    SXDI_ENGINE: docker
   only:
-    - master
     - centos8
     - centos7
     - alma

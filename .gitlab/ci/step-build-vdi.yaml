@@ -3,17 +3,27 @@
 ##
 
 # Build the chrome VDI image
+build-vdi-chrome-latest:
+  stage: "build VDI"
+  extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "VDI/chrome"
+    SXDI_DOCKERNAME: "vdi-chrome"
+    SXDI_QUAYNAME: "chrome"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-vdi-chrome:
   stage: "build VDI"
   extends: .build-image
   allow_failure: true
   variables:
-    SXGLCI_PATH: "VDI/chrome"
-    SXGLCI_DOCKERNAME: "vdi-chrome"
-    SXGLCI_QUAYNAME: "chrome"
-    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+    SXDI_PATH: "VDI/chrome"
+    SXDI_DOCKERNAME: "vdi-chrome"
+    SXDI_QUAYNAME: "chrome"
+    SXDI_ENGINE: docker
   only:
-    - master
     - centos8
     - centos7
     - alma
@@ -30,17 +40,27 @@ build-vdi-chrome:
     - fc28
 
 # Build the firefox VDI image
+build-vdi-firefox-latest:
+  stage: "build VDI"
+  extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "VDI/firefox"
+    SXDI_DOCKERNAME: "vdi-firefox"
+    SXDI_QUAYNAME: "firefox"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-vdi-firefox:
   stage: "build VDI"
   extends: .build-image
   allow_failure: true
   variables:
-    SXGLCI_PATH: "VDI/firefox"
-    SXGLCI_DOCKERNAME: "vdi-firefox"
-    SXGLCI_QUAYNAME: "firefox"
-    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+    SXDI_PATH: "VDI/firefox"
+    SXDI_DOCKERNAME: "vdi-firefox"
+    SXDI_QUAYNAME: "firefox"
+    SXDI_ENGINE: docker
   only:
-    - master
     - centos8
     - centos7
     - alma

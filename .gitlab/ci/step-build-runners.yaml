@@ -3,17 +3,27 @@
 ##
 
 # Build the ansible gitlab-runner image
+build-runner-ansible-latest:
+  stage: "build Runners"
+  extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "GitlabRunner/ansible"
+    SXDI_DOCKERNAME: "runner-ansible"
+    SXDI_QUAYNAME: "runner-ansible"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-runner-ansible:
   stage: "build Runners"
   extends: .build-image
   allow_failure: true
   variables:
-    SXGLCI_PATH: "GitlabRunner/ansible"
-    SXGLCI_DOCKERNAME: "runner-ansible"
-    SXGLCI_QUAYNAME: "runner-ansible"
-    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+    SXDI_PATH: "GitlabRunner/ansible"
+    SXDI_DOCKERNAME: "runner-ansible"
+    SXDI_QUAYNAME: "runner-ansible"
+    SXDI_ENGINE: docker
   only:
-    - master
     - centos8
     - centos7
     - alma
@@ -33,17 +43,27 @@ build-runner-ansible:
     - fc26
 
 # Build the apache gitlab-runner image
+build-runner-apache-latest:
+  stage: "build Runners"
+  extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "GitlabRunner/apache"
+    SXDI_DOCKERNAME: "runner-apache"
+    SXDI_QUAYNAME: "runner-apache"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-runner-apache:
   stage: "build Runners"
   extends: .build-image
   allow_failure: true
   variables:
-    SXGLCI_PATH: "GitlabRunner/apache"
-    SXGLCI_DOCKERNAME: "runner-apache"
-    SXGLCI_QUAYNAME: "runner-apache"
-    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+    SXDI_PATH: "GitlabRunner/apache"
+    SXDI_DOCKERNAME: "runner-apache"
+    SXDI_QUAYNAME: "runner-apache"
+    SXDI_ENGINE: docker
   only:
-    - master
     - centos8
     - centos7
     - alma
@@ -63,17 +83,27 @@ build-runner-apache:
     - fc26
 
 # Build the nodejs gitlab-runner image
+build-runner-nodejs-latest:
+  stage: "build Runners"
+  extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "GitlabRunner/nodejs"
+    SXDI_DOCKERNAME: "runner-nodejs"
+    SXDI_QUAYNAME: "runner-nodejs"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-runner-nodejs:
   stage: "build Runners"
   extends: .build-image
   allow_failure: true
   variables:
-    SXGLCI_PATH: "GitlabRunner/nodejs"
-    SXGLCI_DOCKERNAME: "runner-nodejs"
-    SXGLCI_QUAYNAME: "runner-nodejs"
-    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+    SXDI_PATH: "GitlabRunner/nodejs"
+    SXDI_DOCKERNAME: "runner-nodejs"
+    SXDI_QUAYNAME: "runner-nodejs"
+    SXDI_ENGINE: docker
   only:
-    - master
     - centos8
     - centos7
     - alma
@@ -93,17 +123,27 @@ build-runner-nodejs:
     - fc26
 
 # Build the oc gitlab-runner image
+build-runner-oc-latest:
+  stage: "build Runners"
+  extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "GitlabRunner/oc"
+    SXDI_DOCKERNAME: "runner-oc"
+    SXDI_QUAYNAME: "runner-oc"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-runner-oc:
   stage: "build Runners"
   extends: .build-image
   allow_failure: true
   variables:
-    SXGLCI_PATH: "GitlabRunner/oc"
-    SXGLCI_DOCKERNAME: "runner-oc"
-    SXGLCI_QUAYNAME: "runner-oc"
-    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+    SXDI_PATH: "GitlabRunner/oc"
+    SXDI_DOCKERNAME: "runner-oc"
+    SXDI_QUAYNAME: "runner-oc"
+    SXDI_ENGINE: docker
   only:
-    - master
     - centos8
     - centos7
     - alma
@@ -122,17 +162,27 @@ build-runner-oc:
     - fc27
 
 # Build the php gitlab-runner image
+build-runner-php-latest:
+  stage: "build Runners"
+  extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "GitlabRunner/php"
+    SXDI_DOCKERNAME: "runner-php"
+    SXDI_QUAYNAME: "runner-php"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-runner-php:
   stage: "build Runners"
   extends: .build-image
   allow_failure: true
   variables:
-    SXGLCI_PATH: "GitlabRunner/php"
-    SXGLCI_DOCKERNAME: "runner-php"
-    SXGLCI_QUAYNAME: "runner-php"
-    SXGLCI_TAG: ${SXGLCI_OTHERTAG}
+    SXDI_PATH: "GitlabRunner/php"
+    SXDI_DOCKERNAME: "runner-php"
+    SXDI_QUAYNAME: "runner-php"
+    SXDI_ENGINE: docker
   only:
-    - master
     - centos8
     - centos7
     - alma
