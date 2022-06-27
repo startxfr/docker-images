@@ -16,6 +16,8 @@ build-os-fc-latest:
 build-os-fc-latest-sign:
   stage: "build OS"
   extends: .build-image-sign-latest
+  needs: 
+    - "build-os-fc-lastest"
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: fedora
@@ -37,6 +39,8 @@ build-os-fc36:
 build-os-fc36-sign:
   stage: "build OS"
   extends: .build-image-sign
+  needs: 
+    - "build-os-fc36"
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: fedora
@@ -58,6 +62,8 @@ build-os-fc35:
 build-os-fc35-sign:
   stage: "build OS"
   extends: .build-image-sign
+  needs: 
+    - "build-os-fc35"
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: fedora
@@ -78,6 +84,8 @@ build-os-fc34:
 build-os-fc34-sign:
   stage: "build OS"
   extends: .build-image-sign
+  needs: 
+    - "build-os-fc34"
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: fedora
@@ -98,6 +106,8 @@ build-os-fc33:
 build-os-fc33-sign:
   stage: "build OS"
   extends: .build-image-sign
+  needs: 
+    - "build-os-fc33"
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: fedora
@@ -130,6 +140,8 @@ build-os-ubi-latest:
 build-os-ubi-latest-sign:
   stage: "build OS"
   extends: .build-image-sign-latest
+  needs: 
+    - "build-os-ubi-latest"
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: ubi
@@ -150,6 +162,8 @@ build-os-ubi8:
 build-os-ubi8-sign:
   stage: "build OS"
   extends: .build-image-sign
+  needs: 
+    - "build-os-ubi8"
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: ubi
@@ -172,6 +186,8 @@ build-os-rocky-latest:
 build-os-rocky-latest-sign:
   stage: "build OS"
   extends: .build-image-sign-latest
+  needs: 
+    - "build-os-rocky-latest"
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: rocky
@@ -192,6 +208,8 @@ build-os-rocky8:
 build-os-rocky8-sign:
   stage: "build OS"
   extends: .build-image-sign
+  needs: 
+    - "build-os-rocky8"
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: rocky
@@ -214,6 +232,8 @@ build-os-alma-latest:
 build-os-alma-latest-sign:
   stage: "build OS"
   extends: .build-image-sign-latest
+  needs: 
+    - "build-os-alma-latest"
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: alma
@@ -234,6 +254,8 @@ build-os-alma8:
 build-os-alma8-sign:
   stage: "build OS"
   extends: .build-image-sign
+  needs: 
+    - "build-os-alma8"
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: alma
@@ -256,6 +278,8 @@ build-os-alpine-latest:
 build-os-alpine-latest-sign:
   stage: "build OS"
   extends: .build-image-sign-latest
+  needs: 
+    - "build-os-alpine-latest"
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: alpine
@@ -276,6 +300,8 @@ build-os-alpine3:
 build-os-alpine3-sign:
   stage: "build OS"
   extends: .build-image-sign
+  needs: 
+    - "build-os-alpine3"
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: alpine
@@ -298,6 +324,8 @@ build-os-centos-latest:
 build-os-centos-latest-sign:
   stage: "build OS"
   extends: .build-image-sign-latest
+  needs: 
+    - "build-os-centos-latest"
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: centos
@@ -318,6 +346,8 @@ build-os-centos8:
 build-os-centos8-sign:
   stage: "build OS"
   extends: .build-image-sign
+  needs: 
+    - "build-os-centos8"
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: centos
@@ -338,6 +368,8 @@ build-os-centos7:
 build-os-centos7-sign:
   stage: "build OS"
   extends: .build-image-sign
+  needs: 
+    - "build-os-centos7"
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: centos
