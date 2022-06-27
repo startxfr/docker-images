@@ -34,7 +34,6 @@ build-os-fc36:
     SXDI_QUAYNAME: fedora
     SXDI_ENGINE: docker
   only:
-    - master
     - fc36
 build-os-fc36-sign:
   stage: "build OS"
@@ -47,7 +46,6 @@ build-os-fc36-sign:
     SXDI_QUAYNAME: fedora
     SXDI_ENGINE: docker
   only:
-    - master
     - fc36
 build-os-fc35:
   stage: "build OS"
