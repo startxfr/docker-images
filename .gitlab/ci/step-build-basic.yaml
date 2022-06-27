@@ -13,6 +13,18 @@ build-apache-latest:
     SXDI_ENGINE: docker
   only:
     - master
+build-apache-latest-sign:
+  stage: "build basic"
+  extends: .build-image-sign-latest
+  needs: 
+    - "build-apache-latest"
+  variables:
+    SXDI_PATH: "Services/apache"
+    SXDI_DOCKERNAME: "sv-apache"
+    SXDI_QUAYNAME: "apache"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-apache:
   stage: "build basic"
   extends: .build-image
@@ -46,11 +58,46 @@ build-apache:
     - fc22
     - fc21
     - fc20
+build-apache-sign:
+  stage: "build basic"
+  extends: .build-image-sign
+  needs: 
+    - "build-apache"
+  variables:
+    SXDI_PATH: "Services/apache"
+    SXDI_DOCKERNAME: "sv-apache"
+    SXDI_QUAYNAME: "apache"
+    SXDI_ENGINE: docker
+  only:
+    - centos8
+    - centos7
+    - centos6
+    - alma
+    - rocky
+    - alpine
+    - ubi8
+    - fc36
+    - fc35
+    - fc34
+    - fc33
 
 # Build the nodejs image
 build-nodejs-latest:
   stage: "build basic"
   extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Services/nodejs"
+    SXDI_DOCKERNAME: "sv-nodejs"
+    SXDI_QUAYNAME: "nodejs"
+    SXDI_ENGINE: docker
+  only:
+    - master
+build-nodejs-latest-sign:
+  stage: "build basic"
+  extends: .build-image-sign-latest
+  needs: 
+    - "build-nodejs-latest"
   allow_failure: true
   variables:
     SXDI_PATH: "Services/nodejs"
@@ -93,11 +140,47 @@ build-nodejs:
     - fc22
     - fc21
     - fc20
+build-nodejs-sign:
+  stage: "build basic"
+  extends: .build-image-sign
+  needs: 
+    - "build-nodejs"
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Services/nodejs"
+    SXDI_DOCKERNAME: "sv-nodejs"
+    SXDI_QUAYNAME: "nodejs"
+    SXDI_ENGINE: docker
+  only:
+    - centos8
+    - centos7
+    - centos6
+    - alma
+    - rocky
+    - alpine
+    - ubi8
+    - fc36
+    - fc35
+    - fc34
+    - fc33
 
 # Build the bash gitlab-runner image
 build-runner-bash-latest:
   stage: "build basic"
   extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "GitlabRunner/bash"
+    SXDI_DOCKERNAME: "runner-bash"
+    SXDI_QUAYNAME: "runner-bash"
+    SXDI_ENGINE: docker
+  only:
+    - master
+build-runner-bash-latest-sign:
+  stage: "build basic"
+  extends: .build-image-sign-latest
+  needs: 
+    - "build-runner-bash-latest"
   allow_failure: true
   variables:
     SXDI_PATH: "GitlabRunner/bash"
@@ -133,3 +216,25 @@ build-runner-bash:
     - fc28
     - fc27
     - fc26
+build-runner-bash-sign:
+  stage: "build basic"
+  extends: .build-image-sign
+  needs: 
+    - "build-runner-bash"
+  allow_failure: true
+  variables:
+    SXDI_PATH: "GitlabRunner/bash"
+    SXDI_DOCKERNAME: "runner-bash"
+    SXDI_QUAYNAME: "runner-bash"
+    SXDI_ENGINE: docker
+  only:
+    - centos8
+    - centos7
+    - alma
+    - rocky
+    - alpine
+    - ubi8
+    - fc36
+    - fc35
+    - fc34
+    - fc33
