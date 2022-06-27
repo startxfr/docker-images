@@ -277,23 +277,17 @@ function DoImageSignImage {
     local image=${1:-"quay.io/startx/fedora:latest"}
     local keyfile=${SXDI_COSIGN_KEY_FILE:-"/tmp/cosign.key"}
     if [ "$SXDI_COSIGN_KEY_RAW64" != "" ]; then
-        if [ "$SX_DEBUG" != "false" ]; then
-            echo "DEBUG: Found SXDI_COSIGN_KEY_RAW64 environment, generating key file ${keyfile}"
-        fi
+        echo "DEBUG: Found SXDI_COSIGN_KEY_RAW64 environment, generating key file ${keyfile}"
         echo "${SXDI_COSIGN_KEY_RAW64}" | base64 -d > "${keyfile}"
         chmod u+rw "${keyfile}" &> /dev/null
         chmod go-rwx "${keyfile}" &> /dev/null
     fi
     if [ -f "$keyfile" ]; then
-        if [ "$SX_DEBUG" != "false" ]; then
-            echo "DEBUG: Found ${keyfile} cosign key"
-        fi
+        echo "DEBUG: Found ${keyfile} cosign key"
     fi
     if cosign version &> /dev/null
     then
-        if [ "$SX_DEBUG" != "false" ]; then
-            echo "DEBUG: Signing image is possible because cosign is found"
-        fi
+        echo "DEBUG: Signing image is possible because cosign is found"
         if [[ "$DOCKER_USER" != "" && "$DOCKER_PASS" != "" ]]; then
             echo "DEBUG: Cosign login to registry docker.io with user ${DOCKER_USER}"
             cosign login docker.io -u "$DOCKER_USER" -p "$DOCKER_PASS" 
@@ -309,9 +303,7 @@ function DoImageSignImage {
         echo "INFO: Signing image ${image}"
         cosign sign --key "${keyfile}" "${image}"
     else
-        if [ "$SX_DEBUG" != "false" ]; then
-            echo "DEBUG: Signing image is not possible because cosign is not found"
-        fi
+        echo "DEBUG: Signing image is not possible because cosign is not found"
     fi
 }
 
