@@ -42,6 +42,8 @@ image: "quay.io/startx/runner-bash:alpine3"
     SXDI_ENGINE: docker
   image: registry.gitlab.com/jitesoft/dockerfiles/cosign:latest
   stage: build
+  services:
+    - docker:dind
   before_script: 
     - "source .gitlab/ci/startx-library.sh && DoImageBuildPrepare"
   script:
@@ -82,6 +84,8 @@ image: "quay.io/startx/runner-bash:alpine3"
     SXDI_ENGINE: docker
   image: registry.gitlab.com/jitesoft/dockerfiles/cosign:latest
   stage: build
+  services:
+    - docker:dind
   before_script: 
     - "source .gitlab/ci/startx-library.sh && DoImageBuildPrepare"
   script:
