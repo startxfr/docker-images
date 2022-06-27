@@ -22,8 +22,9 @@ image: "quay.io/startx/runner-bash:alpine3"
   services:
     - docker:dind
   before_script: 
-    - "source .gitlab/ci/startx-library.sh && DoImageBuildPrepare && DoSetImagetagFromGitlab yes"
+    - "source .gitlab/ci/startx-library.sh && DoImageBuildPrepare"
   script:
+    - DoSetImagetagFromGitlab yes
     - DoImageBuildExecute ${SXDI_PATH} docker.io startx ${SXDI_DOCKERNAME} ${SXDI_TAG}
     - DoImageBuildExecute ${SXDI_PATH} quay.io startx ${SXDI_QUAYNAME} ${SXDI_TAG}
     - DoImageBuildExecute ${SXDI_PATH} $CI_REGISTRY startx1/containers ${SXDI_QUAYNAME} ${SXDI_TAG}
@@ -42,8 +43,9 @@ image: "quay.io/startx/runner-bash:alpine3"
   image: registry.gitlab.com/jitesoft/dockerfiles/cosign:latest
   stage: build
   before_script: 
-    - "source .gitlab/ci/startx-library.sh && DoImageBuildPrepare && DoSetImagetagFromGitlab yes"
+    - "source .gitlab/ci/startx-library.sh && DoImageBuildPrepare"
   script:
+    - DoSetImagetagFromGitlab yes
     - DoImageSignImage "docker.io/startx/${SXDI_DOCKERNAME}:${SXDI_TAG}"
     - DoImageSignImage "quay.io/startx/${SXDI_QUAYNAME}:${SXDI_TAG}" 
     - DoImageSignImage "${CI_REGISTRY}/startx1/containers/${SXDI_QUAYNAME}:${SXDI_TAG}"
@@ -60,8 +62,9 @@ image: "quay.io/startx/runner-bash:alpine3"
   services:
     - docker:dind
   before_script: 
-    - "source .gitlab/ci/startx-library.sh && DoImageBuildPrepare && DoSetImagetagFromGitlab"
+    - "source .gitlab/ci/startx-library.sh && DoImageBuildPrepare"
   script:
+    - DoSetImagetagFromGitlab
     - DoImageBuildExecute ${SXDI_PATH} docker.io startx ${SXDI_DOCKERNAME} ${SXDI_TAG}
     - DoImageBuildExecute ${SXDI_PATH} quay.io startx ${SXDI_QUAYNAME} ${SXDI_TAG}
     - DoImageBuildExecute ${SXDI_PATH} $CI_REGISTRY startx1/containers ${SXDI_QUAYNAME} ${SXDI_TAG}
@@ -80,8 +83,9 @@ image: "quay.io/startx/runner-bash:alpine3"
   image: registry.gitlab.com/jitesoft/dockerfiles/cosign:latest
   stage: build
   before_script: 
-    - "source .gitlab/ci/startx-library.sh && DoImageBuildPrepare && DoSetImagetagFromGitlab"
+    - "source .gitlab/ci/startx-library.sh && DoImageBuildPrepare"
   script:
+    - DoSetImagetagFromGitlab
     - DoImageSignImage "docker.io/startx/${SXDI_DOCKERNAME}:${SXDI_TAG}"
     - DoImageSignImage "quay.io/startx/${SXDI_QUAYNAME}:${SXDI_TAG}" 
     - DoImageSignImage "${CI_REGISTRY}/startx1/containers/${SXDI_QUAYNAME}:${SXDI_TAG}"
