@@ -17,7 +17,7 @@ build-os-fc-latest-sign:
   stage: "build OS"
   extends: .build-image-sign-latest
   needs: 
-    - "build-os-fc-lastest"
+    - "build-os-fc-latest"
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: fedora
