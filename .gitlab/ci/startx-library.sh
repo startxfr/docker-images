@@ -271,6 +271,38 @@ function DoImagePushImage {
     fi
 }
 
+# Execute a cosign on the image
+function DoImageSignImage {
+    echo "INFO: Signing image $1"
+    local image=${1:-"quay.io/startx/fedora:latest"}
+    local keyfile=${SXDI_COSIGN_KEY_FILE:-"/tmp/cosign.key"}
+    if [ "$SXDI_COSIGN_KEY_RAW64" != "" ]; then
+        if [ "$SX_DEBUG" != "false" ]; then
+            echo "DEBUG: Found SXDI_COSIGN_KEY_RAW64 environment, generating key file ${keyfile}"
+        fi
+        echo "${SXDI_COSIGN_KEY_RAW64}" | base64 -d > "${keyfile}"
+        chmod u+rw "${keyfile}" &> /dev/null
+        chmod go-rwx "${keyfile}" &> /dev/null
+    fi
+    if [ -f "$keyfile" ]; then
+        if [ "$SX_DEBUG" != "false" ]; then
+            echo "DEBUG: Found ${keyfile} cosign key"
+        fi
+    fi
+    if cosign version &> /dev/null
+    then
+        if [ "$SX_DEBUG" != "false" ]; then
+            echo "DEBUG: Signing image is possible because cosign is found"
+        fi
+        echo "INFO: Signing image ${image}"
+        cosign sign --key "${keyfile}" "${image}"
+    else
+        if [ "$SX_DEBUG" != "false" ]; then
+            echo "DEBUG: Signing image is not possible because cosign is not found"
+        fi
+    fi
+}
+
 # Set the tag according the the gitlab environment variables
 function DoSetImagetagFromGitlab {
     local isLatest="${1:-no}"

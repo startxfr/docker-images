@@ -22,9 +22,8 @@ image: "quay.io/startx/runner-bash:alpine3"
   services:
     - docker:dind
   before_script: 
-    - "source .gitlab/ci/startx-library.sh && DoImageBuildPrepare"
+    - "source .gitlab/ci/startx-library.sh && DoImageBuildPrepare && DoSetImagetagFromGitlab yes"
   script:
-    - DoSetImagetagFromGitlab yes
     - DoImageBuildExecute ${SXDI_PATH} docker.io startx ${SXDI_DOCKERNAME} ${SXDI_TAG}
     - DoImageBuildExecute ${SXDI_PATH} quay.io startx ${SXDI_QUAYNAME} ${SXDI_TAG}
     - DoImageBuildExecute ${SXDI_PATH} $CI_REGISTRY startx1/containers ${SXDI_QUAYNAME} ${SXDI_TAG}
@@ -32,6 +31,22 @@ image: "quay.io/startx/runner-bash:alpine3"
     - DoImageBuildPublish "docker.io/startx/${SXDI_DOCKERNAME}:${SXDI_TAG}" startx_"${SXDI_DOCKERNAME}"_"${SXDI_TAG}"
     - DoImageBuildPublish "quay.io/startx/${SXDI_QUAYNAME}:${SXDI_TAG}" startx_"${SXDI_DOCKERNAME}"_"${SXDI_TAG}"
     - DoImageBuildPublish "${CI_REGISTRY}/startx1/containers/${SXDI_QUAYNAME}:${SXDI_TAG}" startx_"${SXDI_DOCKERNAME}"_"${SXDI_TAG}"
+
+# Library used to sign images in remotes repo
+.build-image-sign-latest:
+  variables:
+    SXDI_PATH: 'OS' # default to OS image
+    SXDI_DOCKERNAME: 'fedora' # image name in docker.io registry
+    SXDI_QUAYNAME: 'fedora' # image name in quay.io registry
+    SXDI_ENGINE: docker
+  image: registry.gitlab.com/jitesoft/dockerfiles/cosign:latest
+  stage: build
+  before_script: 
+    - "source .gitlab/ci/startx-library.sh && DoImageBuildPrepare && DoSetImagetagFromGitlab yes"
+  script:
+    - DoImageSignImage "docker.io/startx/${SXDI_DOCKERNAME}:${SXDI_TAG}"
+    - DoImageSignImage "quay.io/startx/${SXDI_QUAYNAME}:${SXDI_TAG}" 
+    - DoImageSignImage "${CI_REGISTRY}/startx1/containers/${SXDI_QUAYNAME}:${SXDI_TAG}"
 
 .build-image:
   variables:
@@ -45,9 +60,8 @@ image: "quay.io/startx/runner-bash:alpine3"
   services:
     - docker:dind
   before_script: 
-    - "source .gitlab/ci/startx-library.sh && DoImageBuildPrepare"
+    - "source .gitlab/ci/startx-library.sh && DoImageBuildPrepare && DoSetImagetagFromGitlab"
   script:
-    - DoSetImagetagFromGitlab
     - DoImageBuildExecute ${SXDI_PATH} docker.io startx ${SXDI_DOCKERNAME} ${SXDI_TAG}
     - DoImageBuildExecute ${SXDI_PATH} quay.io startx ${SXDI_QUAYNAME} ${SXDI_TAG}
     - DoImageBuildExecute ${SXDI_PATH} $CI_REGISTRY startx1/containers ${SXDI_QUAYNAME} ${SXDI_TAG}
@@ -55,6 +69,22 @@ image: "quay.io/startx/runner-bash:alpine3"
     - DoImageBuildPublish "docker.io/startx/${SXDI_DOCKERNAME}:${SXDI_TAG}" startx_"${SXDI_DOCKERNAME}"_"${SXDI_TAG}"
     - DoImageBuildPublish "quay.io/startx/${SXDI_QUAYNAME}:${SXDI_TAG}" startx_"${SXDI_DOCKERNAME}"_"${SXDI_TAG}"
     - DoImageBuildPublish "${CI_REGISTRY}/startx1/containers/${SXDI_QUAYNAME}:${SXDI_TAG}" startx_"${SXDI_DOCKERNAME}"_"${SXDI_TAG}"
+
+.build-image-sign:
+  variables:
+    SXDI_PATH: 'OS' # default to OS image
+    SXDI_DOCKERNAME: 'fedora' # image name in docker.io registry
+    SXDI_QUAYNAME: 'fedora' # image name in quay.io registry
+    SXDI_TAG: ${CI_COMMIT_BRANCH:-latest} # image tag name
+    SXDI_ENGINE: docker
+  image: registry.gitlab.com/jitesoft/dockerfiles/cosign:latest
+  stage: build
+  before_script: 
+    - "source .gitlab/ci/startx-library.sh && DoImageBuildPrepare && DoSetImagetagFromGitlab"
+  script:
+    - DoImageSignImage "docker.io/startx/${SXDI_DOCKERNAME}:${SXDI_TAG}"
+    - DoImageSignImage "quay.io/startx/${SXDI_QUAYNAME}:${SXDI_TAG}" 
+    - DoImageSignImage "${CI_REGISTRY}/startx1/containers/${SXDI_QUAYNAME}:${SXDI_TAG}"
 
 # Library used to merge branch in a local repo
 .git-merge:
