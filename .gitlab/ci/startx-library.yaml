@@ -33,6 +33,23 @@ image: "quay.io/startx/runner-bash:alpine3"
     - DoImageBuildPublish "quay.io/startx/${SXDI_QUAYNAME}:${SXDI_TAG}" startx_"${SXDI_DOCKERNAME}"_"${SXDI_TAG}"
     - DoImageBuildPublish "${CI_REGISTRY}/startx1/containers/${SXDI_QUAYNAME}:${SXDI_TAG}" startx_"${SXDI_DOCKERNAME}"_"${SXDI_TAG}"
 
+# Library used to sign images in remotes repo
+.build-image-sign-latest:
+  variables:
+    SXDI_PATH: 'OS' # default to OS image
+    SXDI_DOCKERNAME: 'fedora' # image name in docker.io registry
+    SXDI_QUAYNAME: 'fedora' # image name in quay.io registry
+    SXDI_ENGINE: docker
+  image: registry.gitlab.com/jitesoft/dockerfiles/cosign:latest
+  stage: build
+  before_script: 
+    - "source .gitlab/ci/startx-library.sh"
+  script:
+    - DoSetImagetagFromGitlab yes
+    - DoImageSignImage "docker.io/startx/${SXDI_DOCKERNAME}:${SXDI_TAG}"
+    - DoImageSignImage "quay.io/startx/${SXDI_QUAYNAME}:${SXDI_TAG}" 
+    - DoImageSignImage "${CI_REGISTRY}/startx1/containers/${SXDI_QUAYNAME}:${SXDI_TAG}"
+
 .build-image:
   variables:
     SXDI_PATH: 'OS' # default to OS image
@@ -55,6 +72,23 @@ image: "quay.io/startx/runner-bash:alpine3"
     - DoImageBuildPublish "docker.io/startx/${SXDI_DOCKERNAME}:${SXDI_TAG}" startx_"${SXDI_DOCKERNAME}"_"${SXDI_TAG}"
     - DoImageBuildPublish "quay.io/startx/${SXDI_QUAYNAME}:${SXDI_TAG}" startx_"${SXDI_DOCKERNAME}"_"${SXDI_TAG}"
     - DoImageBuildPublish "${CI_REGISTRY}/startx1/containers/${SXDI_QUAYNAME}:${SXDI_TAG}" startx_"${SXDI_DOCKERNAME}"_"${SXDI_TAG}"
+
+.build-image-sign:
+  variables:
+    SXDI_PATH: 'OS' # default to OS image
+    SXDI_DOCKERNAME: 'fedora' # image name in docker.io registry
+    SXDI_QUAYNAME: 'fedora' # image name in quay.io registry
+    SXDI_TAG: ${CI_COMMIT_BRANCH:-latest} # image tag name
+    SXDI_ENGINE: docker
+  image: registry.gitlab.com/jitesoft/dockerfiles/cosign:latest
+  stage: build
+  before_script: 
+    - "source .gitlab/ci/startx-library.sh"
+  script:
+    - DoSetImagetagFromGitlab
+    - DoImageSignImage "docker.io/startx/${SXDI_DOCKERNAME}:${SXDI_TAG}"
+    - DoImageSignImage "quay.io/startx/${SXDI_QUAYNAME}:${SXDI_TAG}" 
+    - DoImageSignImage "${CI_REGISTRY}/startx1/containers/${SXDI_QUAYNAME}:${SXDI_TAG}"
 
 # Library used to merge branch in a local repo
 .git-merge:
