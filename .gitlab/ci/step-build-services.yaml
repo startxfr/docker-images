@@ -14,6 +14,19 @@ build-couchbase-latest:
     SXDI_ENGINE: docker
   only:
     - master
+build-couchbase-latest-sign:
+  stage: "build Services"
+  extends: .build-image-sign-latest
+  needs: 
+    - "build-couchbase-latest"
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Services/couchbase"
+    SXDI_DOCKERNAME: "sv-couchbase"
+    SXDI_QUAYNAME: "couchbase"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-couchbase:
   stage: "build Services"
   extends: .build-image
@@ -41,11 +54,46 @@ build-couchbase:
     - fc28
     - fc27
     - fc26
+build-couchbase-sign:
+  stage: "build Services"
+  extends: .build-image-sign
+  needs: 
+    - "build-couchbase"
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Services/couchbase"
+    SXDI_DOCKERNAME: "sv-couchbase"
+    SXDI_QUAYNAME: "couchbase"
+    SXDI_ENGINE: docker
+  only:
+    - centos8
+    - centos7
+    - centos6
+    - alma
+    - rocky
+    - ubi8
+    - fc36
+    - fc35
+    - fc34
+    - fc33
 
 # Build the mariadb image
 build-mariadb-latest:
   stage: "build Services"
   extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Services/mariadb"
+    SXDI_DOCKERNAME: "sv-mariadb"
+    SXDI_QUAYNAME: "mariadb"
+    SXDI_ENGINE: docker
+  only:
+    - master
+build-mariadb-latest-sign:
+  stage: "build Services"
+  extends: .build-image-sign-latest
+  needs: 
+    - "build-mariadb-latest"
   allow_failure: true
   variables:
     SXDI_PATH: "Services/mariadb"
@@ -86,11 +134,47 @@ build-mariadb:
     - fc24
     - fc23
     - fc22
+build-mariadb-sign:
+  stage: "build Services"
+  extends: .build-image-sign
+  needs: 
+    - "build-mariadb"
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Services/mariadb"
+    SXDI_DOCKERNAME: "sv-mariadb"
+    SXDI_QUAYNAME: "mariadb"
+    SXDI_ENGINE: docker
+  only:
+    - centos8
+    - centos7
+    - centos6
+    - alma
+    - rocky
+    - alpine
+    - ubi8
+    - fc36
+    - fc35
+    - fc34
+    - fc33
 
 # Build the memcache image
 build-memcache-latest:
   stage: "build Services"
   extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Services/memcache"
+    SXDI_DOCKERNAME: "sv-memcache"
+    SXDI_QUAYNAME: "memcache"
+    SXDI_ENGINE: docker
+  only:
+    - master
+build-memcache-latest-sign:
+  stage: "build Services"
+  extends: .build-image-sign-latest
+  needs: 
+    - "build-memcache-latest"
   allow_failure: true
   variables:
     SXDI_PATH: "Services/memcache"
@@ -133,11 +217,47 @@ build-memcache:
     - fc22
     - fc21
     - fc20
+build-memcache-sign:
+  stage: "build Services"
+  extends: .build-image-sign
+  needs: 
+    - "build-memcache"
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Services/memcache"
+    SXDI_DOCKERNAME: "sv-memcache"
+    SXDI_QUAYNAME: "memcache"
+    SXDI_ENGINE: docker
+  only:
+    - centos8
+    - centos7
+    - centos6
+    - alma
+    - rocky
+    - alpine
+    - ubi8
+    - fc36
+    - fc35
+    - fc34
+    - fc33
 
 # Build the mongo image
 build-mongo-latest:
   stage: "build Services"
   extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Services/mongo"
+    SXDI_DOCKERNAME: "sv-mongo"
+    SXDI_QUAYNAME: "mongo"
+    SXDI_ENGINE: docker
+  only:
+    - master
+build-mongo-latest-sign:
+  stage: "build Services"
+  extends: .build-image-sign-latest
+  needs: 
+    - "build-mongo-latest"
   allow_failure: true
   variables:
     SXDI_PATH: "Services/mongo"
@@ -180,11 +300,47 @@ build-mongo:
     - fc22
     - fc21
     - fc20
+build-mongo-sign:
+  stage: "build Services"
+  extends: .build-image-sign
+  needs: 
+    - "build-mongo"
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Services/mongo"
+    SXDI_DOCKERNAME: "sv-mongo"
+    SXDI_QUAYNAME: "mongo"
+    SXDI_ENGINE: docker
+  only:
+    - centos8
+    - centos7
+    - centos6
+    - alma
+    - rocky
+    - alpine
+    - ubi8
+    - fc36
+    - fc35
+    - fc34
+    - fc33
 
 # Build the ooconv image
 build-ooconv-latest:
   stage: "build Services"
   extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Services/ooconv"
+    SXDI_DOCKERNAME: "sv-ooconv"
+    SXDI_QUAYNAME: "ooconv"
+    SXDI_ENGINE: docker
+  only:
+    - master
+build-ooconv-latest-sign:
+  stage: "build Services"
+  extends: .build-image-sign-latest
+  needs: 
+    - "build-ooconv-latest"
   allow_failure: true
   variables:
     SXDI_PATH: "Services/ooconv"
@@ -223,11 +379,45 @@ build-ooconv:
     - fc24
     - fc23
     - fc22
+build-ooconv-sign:
+  stage: "build Services"
+  extends: .build-image-sign
+  needs: 
+    - "build-ooconv"
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Services/ooconv"
+    SXDI_DOCKERNAME: "sv-ooconv"
+    SXDI_QUAYNAME: "ooconv"
+    SXDI_ENGINE: docker
+  only:
+    - centos8
+    - centos7
+    - centos6
+    - alma
+    - rocky
+    - fc36
+    - fc35
+    - fc34
+    - fc33
 
 # Build the php image
 build-php-latest:
   stage: "build Services"
   extends: .build-image-latest
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Services/php"
+    SXDI_DOCKERNAME: "sv-php"
+    SXDI_QUAYNAME: "php"
+    SXDI_ENGINE: docker
+  only:
+    - master
+build-php-latest-sign:
+  stage: "build Services"
+  extends: .build-image-sign-latest
+  needs: 
+    - "build-php-latest"
   allow_failure: true
   variables:
     SXDI_PATH: "Services/php"
@@ -270,11 +460,46 @@ build-php:
     - fc22
     - fc21
     - fc20
+build-php-sign:
+  stage: "build Services"
+  extends: .build-image-sign
+  needs: 
+    - "build-php"
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Services/php"
+    SXDI_DOCKERNAME: "sv-php"
+    SXDI_QUAYNAME: "php"
+    SXDI_ENGINE: docker
+  only:
+    - centos8
+    - centos7
+    - centos6
+    - alma
+    - rocky
+    - alpine
+    - ubi8
+    - fc36
+    - fc35
+    - fc34
+    - fc33
 
 # Build the postgres image
 build-postgres-latest:
   stage: "build Services"
   extends: .build-image-latest
+  variables:
+    SXDI_PATH: "Services/postgres"
+    SXDI_DOCKERNAME: "sv-postgres"
+    SXDI_QUAYNAME: "postgres"
+    SXDI_ENGINE: docker
+  only:
+    - master
+build-postgres-latest-sign:
+  stage: "build Services"
+  extends: .build-image-sign-latest
+  needs: 
+    - "build-postgres-latest"
   variables:
     SXDI_PATH: "Services/postgres"
     SXDI_DOCKERNAME: "sv-postgres"
@@ -312,3 +537,25 @@ build-postgres:
     - fc25
     - fc24
     - fc23
+build-postgres-sign:
+  stage: "build Services"
+  extends: .build-image-sign
+  needs: 
+    - "build-postgres"
+  variables:
+    SXDI_PATH: "Services/postgres"
+    SXDI_DOCKERNAME: "sv-postgres"
+    SXDI_QUAYNAME: "postgres"
+    SXDI_ENGINE: docker
+  only:
+    - centos8
+    - centos7
+    - centos6
+    - alma
+    - rocky
+    - alpine
+    - ubi8
+    - fc36
+    - fc35
+    - fc34
+    - fc33
