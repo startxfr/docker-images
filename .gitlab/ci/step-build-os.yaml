@@ -13,6 +13,18 @@ build-os-fc-latest:
     SXDI_ENGINE: docker
   only:
     - master
+build-os-fc-latest-sign:
+  stage: "build OS"
+  extends: .build-image-sign-latest
+  needs: 
+    - "build-os-fc-latest"
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: fedora
+    SXDI_QUAYNAME: fedora
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-os-fc36:
   stage: "build OS"
   extends: .build-image
@@ -22,11 +34,34 @@ build-os-fc36:
     SXDI_QUAYNAME: fedora
     SXDI_ENGINE: docker
   only:
-    - master
+    - fc36
+build-os-fc36-sign:
+  stage: "build OS"
+  extends: .build-image-sign
+  needs: 
+    - "build-os-fc36"
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: fedora
+    SXDI_QUAYNAME: fedora
+    SXDI_ENGINE: docker
+  only:
     - fc36
 build-os-fc35:
   stage: "build OS"
   extends: .build-image
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: fedora
+    SXDI_QUAYNAME: fedora
+    SXDI_ENGINE: docker
+  only:
+    - fc35
+build-os-fc35-sign:
+  stage: "build OS"
+  extends: .build-image-sign
+  needs: 
+    - "build-os-fc35"
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: fedora
@@ -44,9 +79,33 @@ build-os-fc34:
     SXDI_ENGINE: docker
   only:
     - fc34
+build-os-fc34-sign:
+  stage: "build OS"
+  extends: .build-image-sign
+  needs: 
+    - "build-os-fc34"
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: fedora
+    SXDI_QUAYNAME: fedora
+    SXDI_ENGINE: docker
+  only:
+    - fc34
 build-os-fc33:
   stage: "build OS"
   extends: .build-image
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: fedora
+    SXDI_QUAYNAME: fedora
+    SXDI_ENGINE: docker
+  only:
+    - fc33
+build-os-fc33-sign:
+  stage: "build OS"
+  extends: .build-image-sign
+  needs: 
+    - "build-os-fc33"
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: fedora
@@ -76,9 +135,33 @@ build-os-ubi-latest:
     SXDI_ENGINE: docker
   only:
     - ubi8
+build-os-ubi-latest-sign:
+  stage: "build OS"
+  extends: .build-image-sign-latest
+  needs: 
+    - "build-os-ubi-latest"
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: ubi
+    SXDI_QUAYNAME: ubi
+    SXDI_ENGINE: docker
+  only:
+    - ubi8
 build-os-ubi8:
   stage: "build OS"
   extends: .build-image
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: ubi
+    SXDI_QUAYNAME: ubi
+    SXDI_ENGINE: docker
+  only:
+    - ubi8
+build-os-ubi8-sign:
+  stage: "build OS"
+  extends: .build-image-sign
+  needs: 
+    - "build-os-ubi8"
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: ubi
@@ -98,9 +181,33 @@ build-os-rocky-latest:
     SXDI_ENGINE: docker
   only:
     - rocky
+build-os-rocky-latest-sign:
+  stage: "build OS"
+  extends: .build-image-sign-latest
+  needs: 
+    - "build-os-rocky-latest"
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: rocky
+    SXDI_QUAYNAME: rocky
+    SXDI_ENGINE: docker
+  only:
+    - rocky
 build-os-rocky8:
   stage: "build OS"
   extends: .build-image
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: rocky
+    SXDI_QUAYNAME: rocky
+    SXDI_ENGINE: docker
+  only:
+    - rocky
+build-os-rocky8-sign:
+  stage: "build OS"
+  extends: .build-image-sign
+  needs: 
+    - "build-os-rocky8"
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: rocky
@@ -120,9 +227,33 @@ build-os-alma-latest:
     SXDI_ENGINE: docker
   only:
     - alma
+build-os-alma-latest-sign:
+  stage: "build OS"
+  extends: .build-image-sign-latest
+  needs: 
+    - "build-os-alma-latest"
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: alma
+    SXDI_QUAYNAME: alma
+    SXDI_ENGINE: docker
+  only:
+    - alma
 build-os-alma8:
   stage: "build OS"
   extends: .build-image
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: alma
+    SXDI_QUAYNAME: alma
+    SXDI_ENGINE: docker
+  only:
+    - alma
+build-os-alma8-sign:
+  stage: "build OS"
+  extends: .build-image-sign
+  needs: 
+    - "build-os-alma8"
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: alma
@@ -142,9 +273,33 @@ build-os-alpine-latest:
     SXDI_ENGINE: docker
   only:
     - alpine
+build-os-alpine-latest-sign:
+  stage: "build OS"
+  extends: .build-image-sign-latest
+  needs: 
+    - "build-os-alpine-latest"
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: alpine
+    SXDI_QUAYNAME: alpine
+    SXDI_ENGINE: docker
+  only:
+    - alpine
 build-os-alpine3:
   stage: "build OS"
   extends: .build-image
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: alpine
+    SXDI_QUAYNAME: alpine
+    SXDI_ENGINE: docker
+  only:
+    - alpine
+build-os-alpine3-sign:
+  stage: "build OS"
+  extends: .build-image-sign
+  needs: 
+    - "build-os-alpine3"
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: alpine
@@ -164,6 +319,18 @@ build-os-centos-latest:
     SXDI_ENGINE: docker
   only:
     - centos8
+build-os-centos-latest-sign:
+  stage: "build OS"
+  extends: .build-image-sign-latest
+  needs: 
+    - "build-os-centos-latest"
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: centos
+    SXDI_QUAYNAME: centos
+    SXDI_ENGINE: docker
+  only:
+    - centos8
 build-os-centos8:
   stage: "build OS"
   extends: .build-image
@@ -174,9 +341,33 @@ build-os-centos8:
     SXDI_ENGINE: docker
   only:
     - centos8
+build-os-centos8-sign:
+  stage: "build OS"
+  extends: .build-image-sign
+  needs: 
+    - "build-os-centos8"
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: centos
+    SXDI_QUAYNAME: centos
+    SXDI_ENGINE: docker
+  only:
+    - centos8
 build-os-centos7:
   stage: "build OS"
   extends: .build-image
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: centos
+    SXDI_QUAYNAME: centos
+    SXDI_ENGINE: docker
+  only:
+    - centos7
+build-os-centos7-sign:
+  stage: "build OS"
+  extends: .build-image-sign
+  needs: 
+    - "build-os-centos7"
   variables:
     SXDI_PATH: 'OS'
     SXDI_DOCKERNAME: centos

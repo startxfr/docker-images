@@ -271,6 +271,50 @@ function DoImagePushImage {
     fi
 }
 
+# Execute a cosign on the image
+function DoImageSignImage {
+    echo "INFO: Signing image $1"
+    local image=${1:-"quay.io/startx/fedora:latest"}
+    local keyfile=${SXDI_COSIGN_KEY_FILE:-"/tmp/cosign.key"}
+    if [ "$SXDI_COSIGN_KEY_RAW64" != "" ]; then
+        if [ "$SX_DEBUG" != "false" ]; then
+            echo "DEBUG: Found SXDI_COSIGN_KEY_RAW64 environment, generating key file ${keyfile}"
+        fi
+        echo "${SXDI_COSIGN_KEY_RAW64}" | base64 -d > "${keyfile}"
+        chmod u+rw "${keyfile}" &> /dev/null
+        chmod go-rwx "${keyfile}" &> /dev/null
+    fi
+    if [ -f "$keyfile" ]; then
+        if [ "$SX_DEBUG" != "false" ]; then
+            echo "DEBUG: Found ${keyfile} cosign key"
+        fi
+    fi
+    if cosign version &> /dev/null
+    then
+        if [ "$SX_DEBUG" != "false" ]; then
+            echo "DEBUG: Signing image is possible because cosign is found"
+        fi
+        if [[ "$DOCKER_USER" != "" && "$DOCKER_PASS" != "" ]]; then
+            echo "DEBUG: Cosign login to registry docker.io with user ${DOCKER_USER}"
+            cosign login docker.io -u "$DOCKER_USER" -p "$DOCKER_PASS" 
+        fi
+        if [[ "$QUAY_USER" != "" && "$QUAY_PASS" != "" ]]; then
+            echo "DEBUG: Cosign login to registry quay.io with user ${QUAY_USER}"
+            cosign login quay.io -u "$QUAY_USER" -p "$QUAY_PASS" 
+        fi
+        if [[ "$CI_REGISTRY" != "" && "$CI_REGISTRY_USER" != "" ]]; then
+            echo "DEBUG: Cosign login to registry ${CI_REGISTRY} with user ${CI_REGISTRY_USER}"
+            cosign login "$CI_REGISTRY" -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" 
+        fi
+        echo "INFO: Signing image ${image}"
+        cosign sign --key "${keyfile}" "${image}"
+    else
+        if [ "$SX_DEBUG" != "false" ]; then
+            echo "DEBUG: Signing image is not possible because cosign is not found"
+        fi
+    fi
+}
+
 # Set the tag according the the gitlab environment variables
 function DoSetImagetagFromGitlab {
     local isLatest="${1:-no}"
