@@ -40,12 +40,10 @@ image: "quay.io/startx/runner-bash:alpine3"
     SXDI_DOCKERNAME: 'fedora' # image name in docker.io registry
     SXDI_QUAYNAME: 'fedora' # image name in quay.io registry
     SXDI_ENGINE: docker
-  image: docker:latest
+  image: registry.gitlab.com/jitesoft/dockerfiles/cosign:latest
   stage: build
-  services:
-    - docker:dind
   before_script: 
-    - "source .gitlab/ci/startx-library.sh && DoImageBuildPrepare"
+    - "source .gitlab/ci/startx-library.sh"
   script:
     - DoSetImagetagFromGitlab yes
     - DoImageSignImage "docker.io/startx/${SXDI_DOCKERNAME}:${SXDI_TAG}"
@@ -82,12 +80,10 @@ image: "quay.io/startx/runner-bash:alpine3"
     SXDI_QUAYNAME: 'fedora' # image name in quay.io registry
     SXDI_TAG: ${CI_COMMIT_BRANCH:-latest} # image tag name
     SXDI_ENGINE: docker
-  image: docker:latest
+  image: registry.gitlab.com/jitesoft/dockerfiles/cosign:latest
   stage: build
-  services:
-    - docker:dind
   before_script: 
-    - "source .gitlab/ci/startx-library.sh && DoImageBuildPrepare"
+    - "source .gitlab/ci/startx-library.sh"
   script:
     - DoSetImagetagFromGitlab
     - DoImageSignImage "docker.io/startx/${SXDI_DOCKERNAME}:${SXDI_TAG}"

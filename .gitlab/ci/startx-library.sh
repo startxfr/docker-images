@@ -294,6 +294,18 @@ function DoImageSignImage {
         if [ "$SX_DEBUG" != "false" ]; then
             echo "DEBUG: Signing image is possible because cosign is found"
         fi
+        if [[ "$DOCKER_USER" != "" && "$DOCKER_PASS" != "" ]]; then
+            echo "DEBUG: Cosign login to registry docker.io with user ${DOCKER_USER}"
+            cosign login docker.io -u "$DOCKER_USER" -p "$DOCKER_PASS" 
+        fi
+        if [[ "$QUAY_USER" != "" && "$QUAY_PASS" != "" ]]; then
+            echo "DEBUG: Cosign login to registry quay.io with user ${QUAY_USER}"
+            cosign login quay.io -u "$QUAY_USER" -p "$QUAY_PASS" 
+        fi
+        if [[ "$CI_REGISTRY" != "" && "$CI_REGISTRY_USER" != "" ]]; then
+            echo "DEBUG: Cosign login to registry ${CI_REGISTRY} with user ${CI_REGISTRY_USER}"
+            cosign login "$CI_REGISTRY" -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" 
+        fi
         echo "INFO: Signing image ${image}"
         cosign sign --key "${keyfile}" "${image}"
     else
