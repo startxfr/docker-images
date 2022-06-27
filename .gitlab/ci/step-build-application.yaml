@@ -14,6 +14,19 @@ build-application-phpmyadmin-latest:
     SXDI_ENGINE: docker
   only:
     - master
+build-application-phpmyadmin-latest-sign:
+  stage: "build Application"
+  extends: .build-image-sign-latest
+  needs: 
+    - "build-application-phpmyadmin-latest"
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Applications/phpmyadmin"
+    SXDI_DOCKERNAME: "app-phpmyadmin"
+    SXDI_QUAYNAME: "phpmyadmin"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-application-phpmyadmin:
   stage: "build Application"
   extends: .build-image
@@ -35,17 +48,29 @@ build-application-phpmyadmin:
     - fc35
     - fc34
     - fc33
-    - fc32
-    - fc31
-    - fc30
-    - fc29
-    - fc28
-    - fc27
-    - fc26
-    - fc25
-    - fc24
-    - fc23
-    - fc22
+build-application-phpmyadmin-sign:
+  stage: "build Application"
+  extends: .build-image-sign
+  needs: 
+    - "build-application-phpmyadmin"
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Applications/phpmyadmin"
+    SXDI_DOCKERNAME: "app-phpmyadmin"
+    SXDI_QUAYNAME: "phpmyadmin"
+    SXDI_ENGINE: docker
+  only:
+    - alma
+    - rocky
+    - centos8
+    - centos7
+    - centos6
+    - alpine
+    - ubi8
+    - fc36
+    - fc35
+    - fc34
+    - fc33
 
 # Build the ocp-reliability application image
 build-application-ocp-reliability-latest:
@@ -59,9 +84,43 @@ build-application-ocp-reliability-latest:
     SXDI_ENGINE: docker
   only:
     - master
+build-application-ocp-reliability-latest-sign:
+  stage: "build Application"
+  extends: .build-image-sign-latest
+  needs: 
+    - "build-application-ocp-reliability-latest"
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Applications/ocp-reliability"
+    SXDI_DOCKERNAME: "app-ocp-reliability"
+    SXDI_QUAYNAME: "ocp-reliability"
+    SXDI_ENGINE: docker
+  only:
+    - master
 build-application-ocp-reliability:
   stage: "build Application"
   extends: .build-image
+  allow_failure: true
+  variables:
+    SXDI_PATH: "Applications/ocp-reliability"
+    SXDI_DOCKERNAME: "app-ocp-reliability"
+    SXDI_QUAYNAME: "ocp-reliability"
+    SXDI_ENGINE: docker
+  only:
+    - alma
+    - rocky
+    - centos8
+    - centos7
+    - centos6
+    - alpine
+    - ubi8
+    - fc36
+    - fc35
+build-application-ocp-reliability-sign:
+  stage: "build Application"
+  extends: .build-image-sign
+  needs: 
+    - "build-application-ocp-reliability"
   allow_failure: true
   variables:
     SXDI_PATH: "Applications/ocp-reliability"
