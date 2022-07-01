@@ -49,7 +49,7 @@ LABEL name="$SX_ID" \
 USER root
 COPY httpd.conf $HTTPDCONF
 COPY sx /tmp/sx
-RUN apk --no-cache add apache2 curl ca-certificates openssl tzdata openntpd && \
+RUN apk --no-cache add apache2 apache2-utils curl ca-certificates openssl tzdata openntpd && \
     mv /tmp/sx/s2i/bin/* /s2i/ && \
     mv /tmp/sx/sx/bin/* /bin/ && \
     mv /tmp/sx/sx/lib/* $SX_LIBDIR/ && \
