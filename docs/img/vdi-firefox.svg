@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    height="40"
-   viewBox="0 0 60 40"
-   width="60"
+   viewBox="0 0 40 40"
+   width="40"
    version="1.1"
    id="svg36"
    sodipodi:docname="vdi-firefox.svg"
-   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:dc="http://purl.org/dc/elements/1.1/">
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)">
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -24,19 +24,20 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="2048"
-     inkscape:window-height="1083"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
      id="namedview219"
      showgrid="false"
      inkscape:zoom="7.0180348"
      inkscape:cx="-7.6232167"
-     inkscape:cy="1.2824103"
+     inkscape:cy="12.681613"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="g1042"
      inkscape:pagecheckerboard="0"
-     showguides="false" />
+     showguides="false"
+     inkscape:document-rotation="0" />
   <metadata
      id="metadata42">
     <rdf:RDF>
@@ -45,6 +46,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -158,37 +160,57 @@
        id="C-8">
       <use
          xlink:href="#A"
-         id="use1967-6" />
+         id="use1967-6"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
     </clipPath>
     <clipPath
        id="clipPath5994">
       <use
          xlink:href="#A"
-         id="use5992" />
+         id="use5992"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
     </clipPath>
     <clipPath
        id="M">
       <use
          xlink:href="#L"
-         id="use2037" />
+         id="use2037"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
     </clipPath>
     <clipPath
        id="clipPath6000">
       <use
          xlink:href="#A"
-         id="use5998" />
+         id="use5998"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
     </clipPath>
     <clipPath
        id="G">
       <use
          xlink:href="#F"
-         id="use1995" />
+         id="use1995"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
     </clipPath>
     <linearGradient
        id="H-0"
        x1="121.9"
-       x2="136.6"
-       y1="49.8"
+       x2="136.60001"
+       y1="49.799999"
        y2="114.1"
        gradientUnits="userSpaceOnUse">
       <stop
@@ -206,14 +228,18 @@
        id="J">
       <use
          xlink:href="#I"
-         id="use2016" />
+         id="use2016"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
     </clipPath>
     <linearGradient
        id="D-8"
        x1="29.34"
-       x2="81.84"
-       y1="75.02"
-       y2="44.35"
+       x2="81.839996"
+       y1="75.019997"
+       y2="44.349998"
        gradientUnits="userSpaceOnUse">
       <stop
          stop-color="#a52714"
@@ -228,13 +254,13 @@
     </linearGradient>
     <path
        id="F"
-       d="M8 184h83.77l38.88-38.88V116h-69.3L8 24.48z" />
+       d="m 8,184 h 83.77 l 38.88,-38.88 V 116 H 61.35 L 8,24.48 Z" />
     <path
        id="I"
-       d="M96 56l34.65 60-38.88 68H184V56z" />
+       d="m 96,56 34.65,60 -38.88,68 H 184 V 56 Z" />
     <path
        id="L"
-       d="M21.97 8v40.34L61.36 116 96 56h88V8z" />
+       d="M 21.97,8 V 48.34 L 61.36,116 96,56 h 88 V 8 Z" />
     <clipPath
        id="C-4">
       <use
@@ -702,33 +728,14 @@
     <g
        id="g849"
        transform="matrix(0.49527213,0,0,0.49527213,5.0758302,3.2125951)"
-       style="display:inline">
-      <path
-         class="st0"
-         d="M 69.720444,49.412836 95.028792,63.980693 120.21336,49.412836 V 20.4009 L 95.028792,5.8330422 69.720444,20.4009 Z M 95.028792,67.314031 66.88115,51.141399 V 18.672911 L 94.905586,2.5002779 122.92998,18.672911 v 32.468488 z"
-         stroke-width="1.23452"
-         id="path20240"
-         style="fill:#72420b;fill-opacity:1" />
-      <path
-         class="st0"
-         d="m 100.58454,104.21403 25.30834,14.56786 25.18457,-14.56786 V 75.202146 L 125.89288,60.634288 100.58454,75.202146 Z M 125.89288,122.11522 97.745238,105.9426 V 73.474156 L 125.76967,57.301524 153.79406,73.474156 V 105.9426 Z"
-         stroke-width="1.23452"
-         id="path1333"
-         style="fill:#72420b;fill-opacity:1" />
-      <polygon
-         class="st0"
-         transform="matrix(1.2345258,0,0,1.2345258,26.140456,-17.498599)"
-         points="30.6,112.3 52.2,99.9 52.2,75 30.6,62.5 9,75 9,99.9 "
-         id="polygon1335"
-         style="fill:#72420b;fill-opacity:1" />
-    </g>
+       style="display:inline" />
     <g
        id="g8663"
-       transform="translate(40)">
+       transform="translate(42)">
       <polygon
          class="st0"
          transform="matrix(0.80207657,0,0,0.80207657,-47.209841,-50.010809)"
-         points="9,75 9,99.9 30.6,112.3 52.2,99.9 52.2,75 30.6,62.5 "
+         points="30.6,112.3 52.2,99.9 52.2,75 30.6,62.5 9,75 9,99.9 "
          id="polygon6997"
          style="display:inline;fill:#675916;fill-opacity:1" />
       <path
