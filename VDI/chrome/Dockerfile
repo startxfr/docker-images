@@ -1,11 +1,11 @@
-FROM quay.io/startx/fedora:36
+FROM quay.io/startx/fedora:37
 
-ENV SX_VERSION="fc36" \
+ENV SX_VERSION="fc37" \
     SX_TYPE="desktop" \
     SX_SERVICE="chrome" \
     SX_ID="startx/vdi-chrome" \
-    SX_NAME="Startx Chrome VDI image (fedora 36)" \
-    SX_SUMMARY="Startx chrome container-based desktop application based on fedora 36" \
+    SX_NAME="Startx Chrome VDI image (fedora 37)" \
+    SX_SUMMARY="Startx chrome container-based desktop application based on fedora 37" \
     SX_MAINTAINER_MAIL="dev@startx.fr" \
     SX_CHROME_SUPERVISOR_CONF=/etc/supervisor/conf.d/ \
     LOG_PATH=/var/log/chrome \
@@ -34,15 +34,15 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
     io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
     io.artifacthub.package.keywords='startx,os,fedora,chrome,vnc,X11' \
-    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/fc36/VDI/chrome/README.md" \
-    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/fc36/docs/img/vdi-chrome.svg' \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/fc37/VDI/chrome/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/fc37/docs/img/vdi-chrome.svg' \
     io.artifacthub.package.alternative-locations='quay.io/startx/chrome,docker.io/startx/vdi-chrome' \
     io.artifacthub.package.license='Apache-2.0' \
     org.opencontainers.image.created='2025-03-04T00:00:00Z' \
     org.opencontainers.image.version="$SX_VERSION" \
     org.opencontainers.image.description="$SX_SUMMARY. Use for executing chrome browser as container mainstream image with persistence capabilities" \
-    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/fc36/VDI/chrome/" \
-    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/fc36/VDI/chrome" \
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/fc37/VDI/chrome/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/fc37/VDI/chrome" \
     org.opencontainers.image.vendor="STARTX"
 
 USER root

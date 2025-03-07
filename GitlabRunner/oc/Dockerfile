@@ -1,11 +1,11 @@
-FROM quay.io/startx/runner-bash:fc36
+FROM quay.io/startx/runner-bash:fc37
 
-ENV SX_VERSION="fc36" \
+ENV SX_VERSION="fc37" \
     SX_TYPE="runner" \
     SX_SERVICE="oc" \
     SX_ID="startx/runner-oc" \
-    SX_NAME="Startx OCP/K8S client gitlab runner image (fedora 36)" \
-    SX_SUMMARY="Startx ocp/k8s gitlab runner based on fedora 36" \
+    SX_NAME="Startx OCP/K8S client gitlab runner image (fedora 37)" \
+    SX_SUMMARY="Startx ocp/k8s gitlab runner based on fedora 37" \
     SX_MAINTAINER_MAIL="dev@startx.fr" \
     SX_OC_VERSION="4.10.12" \
     SX_ISTIO_VERSION="1.14.1"  \
@@ -26,15 +26,15 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
     io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
     io.artifacthub.package.keywords='startx,os,runner,openshift,kubernetes' \
-    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/fc36/GitlabRunner/oc/README.md" \
-    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/fc36/docs/img/runner-oc.svg' \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/fc37/GitlabRunner/oc/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/fc37/docs/img/runner-oc.svg' \
     io.artifacthub.package.alternative-locations='quay.io/startx/runner-oc,docker.io/startx/runner-oc' \
     io.artifacthub.package.license='Apache-2.0' \
     org.opencontainers.image.created='2025-03-04T00:00:00Z' \
     org.opencontainers.image.version="$SX_VERSION" \
     org.opencontainers.image.description="$SX_SUMMARY. Use for building application based on oc or kubectl using gitlab CI runners." \
-    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/fc36/GitlabRunner/oc/" \
-    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/fc36/GitlabRunner/oc" \
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/fc37/GitlabRunner/oc/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/fc37/GitlabRunner/oc" \
     org.opencontainers.image.vendor="STARTX"
 
 USER root

@@ -6,7 +6,7 @@
 [![licence](https://img.shields.io/github/license/startxfr/docker-images.svg)](https://gitlab.com/startx1/containers)
 [![Sources](https://img.shields.io/badge/startxfr-docker--images-blue.svg)](https://gitlab.com/startx1/containers/tree/master/OS/)
 [![last commit](https://img.shields.io/github/last-commit/startxfr/docker-images.svg)](https://gitlab.com/startx1/containers)
-[![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc36)](https://travis-ci.org/startxfr/docker-images)
+[![Build Status](https://travis-ci.org/startxfr/docker-images.svg?branch=fc37)](https://travis-ci.org/startxfr/docker-images)
 [![Dockerhub Registry](https://img.shields.io/docker/build/startx/fedora.svg)](https://hub.docker.com/r/startx/fedora)
 [![Docker Fedora pulls](https://img.shields.io/docker/pulls/startx/fedora)](https://hub.docker.com/r/startx/fedora)
 [![Docker Repository on Quay](https://quay.io/repository/startx/fedora/status "Docker Repository on Quay")](https://quay.io/repository/startx/fedora)
@@ -15,4 +15,4 @@ This project is a collection of application or services containers ready to exec
 or used to embed your application as part of a building process.
 
 For more information on image list and how to use them, you should go to
-the [startx Fedora 36 containers documentation](https://docker-images.readthedocs.io/en/fc36).
+the [startx Fedora 37 containers documentation](https://docker-images.readthedocs.io/en/fc37).

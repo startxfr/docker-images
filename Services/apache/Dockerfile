@@ -1,11 +1,11 @@
-FROM quay.io/startx/fedora:36
+FROM quay.io/startx/fedora:37
 
-ENV SX_VERSION="fc36" \
+ENV SX_VERSION="fc37" \
     SX_TYPE="service" \
     SX_SERVICE="apache" \
     SX_ID="startx/sv-apache" \
-    SX_NAME="Startx Apache service image (fedora 36)" \
-    SX_SUMMARY="Startx apache service based on fedora 36" \
+    SX_NAME="Startx Apache service image (fedora 37)" \
+    SX_SUMMARY="Startx apache service based on fedora 37" \
     SX_MAINTAINER_MAIL="dev@startx.fr" \
     HTTPDCONF=/etc/httpd/conf.d/app.conf \
     LOG_PATH=/var/log/httpd \
@@ -35,15 +35,15 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
     io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
     io.artifacthub.package.keywords='startx,os,fedora,apache,httpd' \
-    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/fc36/Services/apache/README.md" \
-    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/fc36/docs/img/sv-apache.svg' \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/fc37/Services/apache/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/fc37/docs/img/sv-apache.svg' \
     io.artifacthub.package.alternative-locations='quay.io/startx/apache,docker.io/startx/sv-apache' \
     io.artifacthub.package.license='Apache-2.0' \
     org.opencontainers.image.created='2025-03-04T00:00:00Z' \
     org.opencontainers.image.version="$SX_VERSION" \
     org.opencontainers.image.description="$SX_SUMMARY. Use for executing application based on http or as container mainstream image for your web application containers." \
-    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/fc36/Services/apache/" \
-    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/fc36/Services/apache" \
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/fc37/Services/apache/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/fc37/Services/apache" \
     org.opencontainers.image.vendor="STARTX"
 
 USER root

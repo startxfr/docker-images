@@ -1,12 +1,12 @@
-FROM quay.io/startx/runner-bash:fc36
+FROM quay.io/startx/runner-bash:fc37
 
-ENV SX_VERSION="fc36" \
+ENV SX_VERSION="fc37" \
     SX_TYPE="runner" \
     SX_SERVICE="ansible" \
     SX_UNAME="ansible" \
     SX_ID="startx/runner-ansible" \
-    SX_NAME="Startx Ansible gitlab runner image (fedora 36)" \
-    SX_SUMMARY="Startx ansible gitlab runner based on fedora 36" \
+    SX_NAME="Startx Ansible gitlab runner image (fedora 37)" \
+    SX_SUMMARY="Startx ansible gitlab runner based on fedora 37" \
     SX_MAINTAINER_MAIL="dev@startx.fr" \
     SX_HUGO_RELEASE="0.83.1"
 
@@ -24,15 +24,15 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
     io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
     io.artifacthub.package.keywords='startx,os,runner,ansible,automation' \
-    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/fc36/GitlabRunner/ansible/README.md" \
-    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/fc36/docs/img/runner-ansible.svg' \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/fc37/GitlabRunner/ansible/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/fc37/docs/img/runner-ansible.svg' \
     io.artifacthub.package.alternative-locations='quay.io/startx/runner-ansible,docker.io/startx/runner-ansible' \
     io.artifacthub.package.license='Apache-2.0' \
     org.opencontainers.image.created='2025-03-04T00:00:00Z' \
     org.opencontainers.image.version="$SX_VERSION" \
     org.opencontainers.image.description="$SX_SUMMARY. Use for building ansible playbooks based on fedora and using gitlab CI runners." \
-    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/fc36/GitlabRunner/ansible/" \
-    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/fc36/GitlabRunner/ansible" \
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/fc37/GitlabRunner/ansible/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/fc37/GitlabRunner/ansible" \
     org.opencontainers.image.vendor="STARTX"
 
 USER root

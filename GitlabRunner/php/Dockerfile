@@ -1,13 +1,13 @@
-FROM quay.io/startx/php:fc36
+FROM quay.io/startx/php:fc37
 
-ENV SX_VERSION="fc36" \
+ENV SX_VERSION="fc37" \
     SX_TYPE="runner" \
     SX_SERVICE="php" \
     SX_UID=1001 \
     SX_UNAME="user" \
     SX_ID="startx/runner-php" \
-    SX_NAME="Startx Apache-PHP gitlab runner image (fedora 36)" \
-    SX_SUMMARY="Startx apache-php gitlab runner based on fedora 36" \
+    SX_NAME="Startx Apache-PHP gitlab runner image (fedora 37)" \
+    SX_SUMMARY="Startx apache-php gitlab runner based on fedora 37" \
     SX_MAINTAINER_MAIL="dev@startx.fr"
 
 LABEL name="$SX_ID" \
@@ -24,15 +24,15 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
     io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
     io.artifacthub.package.keywords='startx,os,runner,apache,php,httpd' \
-    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/fc36/GitlabRunner/php/README.md" \
-    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/fc36/docs/img/runner-php.svg' \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/fc37/GitlabRunner/php/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/fc37/docs/img/runner-php.svg' \
     io.artifacthub.package.alternative-locations='quay.io/startx/runner-php,docker.io/startx/runner-php' \
     io.artifacthub.package.license='Apache-2.0' \
     org.opencontainers.image.created='2025-03-04T00:00:00Z' \
     org.opencontainers.image.version="$SX_VERSION" \
     org.opencontainers.image.description="$SX_SUMMARY. Use for building application based on php using gitlab CI runners." \
-    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/fc36/GitlabRunner/php/" \
-    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/fc36/GitlabRunner/php" \
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/fc37/GitlabRunner/php/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/fc37/GitlabRunner/php" \
     org.opencontainers.image.vendor="STARTX"
 
 USER root

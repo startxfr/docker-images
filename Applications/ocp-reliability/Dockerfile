@@ -5,7 +5,7 @@ ENV SX_VERSION="latest" \
     SX_SERVICE="ocp-reliability" \
     SX_ID="startx/ocp-reliability" \
     SX_NAME="Startx OCP Reliability" \
-    SX_SUMMARY="Startx ocp-reliability based on fedora 36" \
+    SX_SUMMARY="Startx ocp-reliability based on fedora 37" \
     SX_MAINTAINER_MAIL="dev@startx.fr" \
     SX_OC_VERSION="4.10.12"
 
@@ -23,15 +23,15 @@ LABEL name="$SX_ID" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
     io.artifacthub.package.maintainers='[{"name":"STARTX","email":"$SX_MAINTAINER_MAIL"}]' \
     io.artifacthub.package.keywords='startx,os,openshift,kubernetes,reliability' \
-    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/fc36/Application/ocp-reliability/README.md" \
-    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/fc36/docs/img/app-ocp-reliability.svg' \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/fc37/Application/ocp-reliability/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/fc37/docs/img/app-ocp-reliability.svg' \
     io.artifacthub.package.alternative-locations='quay.io/startx/ocp-reliability,docker.io/startx/app-ocp-reliability' \
     io.artifacthub.package.license='Apache-2.0' \
     org.opencontainers.image.created='2025-03-04T00:00:00Z' \
     org.opencontainers.image.version="$SX_VERSION" \
     org.opencontainers.image.description="$SX_SUMMARY. Use for executing ocp-reliability test again't an openshift cluster." \
-    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/fc36/Application/ocp-reliability/" \
-    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/fc36/Application/ocp-reliability" \
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/fc37/Application/ocp-reliability/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/fc37/Application/ocp-reliability" \
     org.opencontainers.image.vendor="STARTX"
 
 USER root

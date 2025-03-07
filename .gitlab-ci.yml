@@ -12,7 +12,7 @@ variables:
   SX_DEBUG: "true"
   SXDI_OSTAG: "36"
   SXDI_OSNAME: fedora
-  SXDI_OTHERTAG: fc36
+  SXDI_OTHERTAG: fc37
 
 # Default container image
 image: "quay.io/startx/runner-bash:alpine3"
