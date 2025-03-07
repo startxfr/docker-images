@@ -330,6 +330,7 @@ function DoSetImagetagFromGitlab {
                 rocky)          export SXDI_TAG="8";;
                 alma)           export SXDI_TAG="8";;
                 alpine)         export SXDI_TAG="3";;
+                fc37)           export SXDI_TAG="37";;
                 fc36)           export SXDI_TAG="36";;
                 fc35)           export SXDI_TAG="35";;
                 fc34)           export SXDI_TAG="34";;
@@ -353,6 +354,7 @@ function DoSetImagetagFromGitlab {
                 rocky)          export SXDI_TAG="rocky8";;
                 alma)           export SXDI_TAG="alma8";;
                 alpine)         export SXDI_TAG="alpine3";;
+                fc37)           export SXDI_TAG="fc37";;
                 fc36)           export SXDI_TAG="fc36";;
                 fc35)           export SXDI_TAG="fc35";;
                 fc34)           export SXDI_TAG="fc34";;
