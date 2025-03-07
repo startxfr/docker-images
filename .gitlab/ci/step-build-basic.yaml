@@ -41,6 +41,7 @@ build-apache:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -76,6 +77,7 @@ build-apache-sign:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -123,6 +125,7 @@ build-nodejs:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -159,6 +162,7 @@ build-nodejs-sign:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -205,6 +209,7 @@ build-runner-bash:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -234,6 +239,7 @@ build-runner-bash-sign:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
