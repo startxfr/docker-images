@@ -90,6 +90,7 @@ your project and start using stable or experimental services in your application
 ## Images flavours
 
 - `latest` based on fedora rawhide [see detail](https://docker-images.readthedocs.io/en/latest)
+- `fc37` based on fedora core 37 [see detail](https://docker-images.readthedocs.io/en/fc37)
 - `fc36` based on fedora core 36 [see detail](https://docker-images.readthedocs.io/en/fc36)
 - `fc35` based on fedora core 35 [see detail](https://docker-images.readthedocs.io/en/fc35)
 - `fc34` based on fedora core 34 [see detail](https://docker-images.readthedocs.io/en/fc34)
