@@ -186,6 +186,9 @@ This script assume :
 # Start full test for centos 6 containers
 ./okd-helper.sh setup flavour centos6
 ./okd-helper.sh test
+# Start full test for fedora 37 containers
+./okd-helper.sh setup flavour fc37
+./okd-helper.sh test
 # Start full test for fedora 36 containers
 ./okd-helper.sh setup flavour fc36
 ./okd-helper.sh test
@@ -247,7 +250,7 @@ This script assume :
 ./okd-helper.sh setup project centos-6
 ./okd-helper.sh setup flavour centos6
 ./okd-helper.sh test
-# Start full test for fedora 36 containers (dedicated project)
+# Start full test for fedora 37 containers (dedicated project)
 ./okd-helper.sh setup project fedora-36
 ./okd-helper.sh setup flavour fc36
 ./okd-helper.sh test
@@ -369,7 +372,7 @@ This script assume :
 # Start full test for centos 6 containers
 ./podman-helper.sh setup flavour centos6
 ./podman-helper.sh buildrun
-# Start full test for fedora 36 containers
+# Start full test for fedora 37 containers
 ./podman-helper.sh setup flavour fc36
 ./podman-helper.sh buildrun
 # Start full test for fedora 35 containers
@@ -429,7 +432,7 @@ This script assume :
 ./podman-helper.sh setup project centos-6
 ./podman-helper.sh setup flavour centos6
 ./podman-helper.sh buildrun
-# Start full test for fedora 36 containers (dedicated project)
+# Start full test for fedora 37 containers (dedicated project)
 ./podman-helper.sh setup project fedora-36
 ./podman-helper.sh setup flavour fc36
 ./podman-helper.sh buildrun
