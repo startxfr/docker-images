@@ -187,6 +187,9 @@ This script assume :
 ./okd-helper.sh setup flavour centos6
 ./okd-helper.sh test
 # Start full test for fedora 37 containers
+./okd-helper.sh setup flavour fc37
+./okd-helper.sh test
+# Start full test for fedora 36 containers
 ./okd-helper.sh setup flavour fc36
 ./okd-helper.sh test
 # Start full test for fedora 35 containers
