@@ -25,6 +25,28 @@ build-os-fc-latest-sign:
     SXDI_ENGINE: docker
   only:
     - master
+build-os-fc37:
+  stage: "build OS"
+  extends: .build-image
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: fedora
+    SXDI_QUAYNAME: fedora
+    SXDI_ENGINE: docker
+  only:
+    - fc37
+build-os-fc37-sign:
+  stage: "build OS"
+  extends: .build-image-sign
+  needs: 
+    - "build-os-fc37"
+  variables:
+    SXDI_PATH: 'OS'
+    SXDI_DOCKERNAME: fedora
+    SXDI_QUAYNAME: fedora
+    SXDI_ENGINE: docker
+  only:
+    - fc37
 build-os-fc36:
   stage: "build OS"
   extends: .build-image
