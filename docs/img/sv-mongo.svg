@@ -1,99 +1,242 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="60" height="40" version="1.1" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
- <metadata>
-  <rdf:RDF>
-   <cc:Work rdf:about="">
-    <dc:format>image/svg+xml</dc:format>
-    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-   </cc:Work>
-  </rdf:RDF>
- </metadata>
- <defs>
-  <clipPath id="clip134">
-   <rect width="167" height="205"/>
-  </clipPath>
-  <clipPath id="clip135">
-   <path d="m0 204.8h166.4v-204.8h-166.4z"/>
-  </clipPath>
-  <clipPath id="clip136">
-   <path d="m0 204.8h166.4v-204.8h-166.4z"/>
-  </clipPath>
-  <clipPath id="clip137">
-   <path d="m0 204.8h167v-205h-167z"/>
-  </clipPath>
-  <clipPath id="clip138">
-   <rect width="167" height="205"/>
-  </clipPath>
-  <clipPath id="clip139">
-   <rect width="167" height="205"/>
-  </clipPath>
-  <clipPath id="clip140">
-   <path d="m0 204.8h166.4v-204.8h-166.4z"/>
-  </clipPath>
-  <clipPath id="clip141">
-   <path d="m0 204.8h166.4v-204.8h-166.4z"/>
-  </clipPath>
-  <clipPath id="clip142">
-   <path d="m0 204.8h167v-205h-167z"/>
-  </clipPath>
-  <clipPath id="clip143">
-   <path d="m0 204.8h167v-205h-167z"/>
-  </clipPath>
-  <clipPath id="clip144">
-   <path d="m0 204.8h167v-205h-167z"/>
-  </clipPath>
-  <clipPath>
-   <path d="m113.37 5.9062 47.73 47.73-0.56641 0.5625-47.73-47.727z"/>
-  </clipPath>
- </defs>
- <mask id="a" fill="#ffffff">
-  <path d="m0 0h313.3v159.86h-313.3z" fill="#fff" fill-rule="evenodd"/>
- </mask>
- <mask id="b" fill="#ffffff">
-  <path d="m0 0h313.3v159.86h-313.3z" fill="#fff" fill-rule="evenodd"/>
- </mask>
- <g>
-  <g transform="matrix(.49527 0 0 .49527 5.0758 3.2126)">
-   <g fill="#050544">
-    <polygon class="st0" transform="matrix(1.6152 0 0 1.6152 -24.584 -106.93)" points="9 99.9 30.6 112.3 52.2 99.9 52.2 75 30.6 62.5 9 75"/>
-    <path class="st0" d="m69.72 49.413 25.308 14.568 25.185-14.568v-29.012l-25.185-14.568-25.308 14.568zm25.308 17.901-28.148-16.173v-32.468l28.024-16.173 28.024 16.173v32.468z" stroke-width="1.2345"/>
-    <path class="st0" d="m100.58 104.21 25.308 14.568 25.185-14.568v-29.012l-25.185-14.568-25.308 14.568zm25.308 17.901-28.148-16.173v-32.468l28.024-16.173 28.024 16.173v32.468z" stroke-width="1.2345"/>
-    <polygon class="st0" transform="matrix(1.2345 0 0 1.2345 26.14 -17.499)" points="30.6 112.3 52.2 99.9 52.2 75 30.6 62.5 9 75 9 99.9"/>
-   </g>
-   <g transform="matrix(.66255 0 0 .66255 89.519 7.1168)">
-    <g transform="matrix(.24729 0 0 .24729 -288.01 14.96)">
-     <g transform="matrix(1.3001 0 0 1.3001 -148.19 18.617)">
-      <g transform="translate(623.37 -38.632)" clip-path="url(#clip134)">
-       <g clip-path="url(#clip135)">
-        <g clip-path="url(#clip136)">
-         <g clip-path="url(#clip137)">
-          <g clip-path="url(#clip138)">
-           <g clip-path="url(#clip139)">
-            <g clip-path="url(#clip140)">
-             <g clip-path="url(#clip141)">
-              <g clip-path="url(#clip142)">
-               <g clip-path="url(#clip143)">
-                <g clip-path="url(#clip144)"></g>
-               </g>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="40"
+   height="40"
+   version="1.1"
+   viewBox="0 0 40 40"
+   id="svg657"
+   sodipodi:docname="sv-mongo.svg"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     id="namedview659"
+     showgrid="false"
+     inkscape:zoom="3.4957592"
+     inkscape:cx="66.733497"
+     inkscape:cy="37.730318"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g613" />
+  <metadata
+     id="metadata558">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs597">
+    <clipPath
+       id="clip134">
+      <rect
+         width="167"
+         height="205"
+         id="rect560"
+         x="0"
+         y="0" />
+    </clipPath>
+    <clipPath
+       id="clip135">
+      <path
+         d="M 0,204.8 H 166.4 V 0 H 0 Z"
+         id="path563" />
+    </clipPath>
+    <clipPath
+       id="clip136">
+      <path
+         d="M 0,204.8 H 166.4 V 0 H 0 Z"
+         id="path566" />
+    </clipPath>
+    <clipPath
+       id="clip137">
+      <path
+         d="M 0,204.8 H 167 V -0.2 H 0 Z"
+         id="path569" />
+    </clipPath>
+    <clipPath
+       id="clip138">
+      <rect
+         width="167"
+         height="205"
+         id="rect572"
+         x="0"
+         y="0" />
+    </clipPath>
+    <clipPath
+       id="clip139">
+      <rect
+         width="167"
+         height="205"
+         id="rect575"
+         x="0"
+         y="0" />
+    </clipPath>
+    <clipPath
+       id="clip140">
+      <path
+         d="M 0,204.8 H 166.4 V 0 H 0 Z"
+         id="path578" />
+    </clipPath>
+    <clipPath
+       id="clip141">
+      <path
+         d="M 0,204.8 H 166.4 V 0 H 0 Z"
+         id="path581" />
+    </clipPath>
+    <clipPath
+       id="clip142">
+      <path
+         d="M 0,204.8 H 167 V -0.2 H 0 Z"
+         id="path584" />
+    </clipPath>
+    <clipPath
+       id="clip143">
+      <path
+         d="M 0,204.8 H 167 V -0.2 H 0 Z"
+         id="path587" />
+    </clipPath>
+    <clipPath
+       id="clip144">
+      <path
+         d="M 0,204.8 H 167 V -0.2 H 0 Z"
+         id="path590" />
+    </clipPath>
+    <clipPath
+       id="clipPath595">
+      <path
+         d="m 113.37,5.9062 47.73,47.73 -0.56641,0.5625 -47.73,-47.727 z"
+         id="path593" />
+    </clipPath>
+  </defs>
+  <mask
+     id="a"
+     fill="#ffffff">
+    <path
+       d="M 0,0 H 313.3 V 159.86 H 0 Z"
+       fill="#ffffff"
+       fill-rule="evenodd"
+       id="path599" />
+  </mask>
+  <mask
+     id="b"
+     fill="#ffffff">
+    <path
+       d="M 0,0 H 313.3 V 159.86 H 0 Z"
+       fill="#ffffff"
+       fill-rule="evenodd"
+       id="path602" />
+  </mask>
+  <g
+     id="g655">
+    <g
+       transform="matrix(0.49527,0,0,0.49527,5.0758,3.2126)"
+       id="g653">
+      <g
+         fill="#050544"
+         id="g613">
+        <polygon
+           class="st0"
+           transform="matrix(1.6152,0,0,1.6152,-20.545799,-106.93)"
+           points="52.2,99.9 52.2,75 30.6,62.5 9,75 9,99.9 30.6,112.3 "
+           id="polygon605" />
+      </g>
+      <g
+         transform="matrix(0.66255,0,0,0.66255,93.557201,7.1168)"
+         id="g651">
+        <g
+           transform="matrix(0.24729,0,0,0.24729,-288.01,14.96)"
+           id="g649">
+          <g
+             transform="matrix(1.3001,0,0,1.3001,-148.19,18.617)"
+             id="g647">
+            <g
+               transform="translate(623.37,-38.632)"
+               clip-path="url(#clip134)"
+               id="g635">
+              <g
+                 clip-path="url(#clip135)"
+                 id="g633">
+                <g
+                   clip-path="url(#clip136)"
+                   id="g631">
+                  <g
+                     clip-path="url(#clip137)"
+                     id="g629">
+                    <g
+                       clip-path="url(#clip138)"
+                       id="g627">
+                      <g
+                         clip-path="url(#clip139)"
+                         id="g625">
+                        <g
+                           clip-path="url(#clip140)"
+                           id="g623">
+                          <g
+                             clip-path="url(#clip141)"
+                             id="g621">
+                            <g
+                               clip-path="url(#clip142)"
+                               id="g619">
+                              <g
+                                 clip-path="url(#clip143)"
+                                 id="g617">
+                                <g
+                                   clip-path="url(#clip144)"
+                                   id="g615" />
+                              </g>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
               </g>
-             </g>
             </g>
-           </g>
+            <g
+               transform="matrix(5.1718,0,0,5.1718,253.17,-98.171)"
+               id="g645">
+              <g
+                 id="g643">
+                <path
+                   d="m 87.487,0.175 1.708,3.208 c 0.371,0.579 0.804,1.117 1.29,1.604 1.43,1.43 2.788,2.928 4.008,4.532 2.894,3.8 4.846,8 6.24,12.584 a 30.94,30.94 0 0 1 1.324,8.54 c 0.14,8.646 -2.824,16.07 -8.8,22.24 -0.972,0.978 -2.022,1.876 -3.14,2.684 -0.592,0 -0.872,-0.454 -1.116,-0.872 -0.454,-0.766 -0.732,-1.64 -0.872,-2.51 -0.21,-1.046 -0.348,-2.092 -0.28,-3.172 V 48.525 C 87.801,48.401 87.279,0.401 87.487,0.175 Z"
+                   fill="#c4c4ea"
+                   id="path637" />
+                <path
+                   d="m 87.487,0.069 c -0.07,-0.14 -0.14,-0.034 -0.21,0.034 0.034,0.7 -0.21,1.324 -0.592,1.92 -0.4,0.592 -0.976,1.046 -1.534,1.534 -3.1,2.684 -5.54,5.926 -7.494,9.552 -2.6,4.88 -3.94,10.11 -4.32,15.616 -0.174,1.986 0.628,8.994 1.254,11.016 1.708,5.368 4.776,9.866 8.75,13.77 a 35.08,35.08 0 0 0 3.1,2.65 c 0.314,0 0.348,-0.28 0.4,-0.488 a 9.57,9.57 0 0 0 0.314,-1.36 l 0.7,-5.228 z"
+                   fill="#ffffff"
+                   id="path639" />
+                <path
+                   d="m 89.195,57.691 c 0.07,-0.8 0.454,-1.464 0.872,-2.126 -0.4,-0.174 -0.732,-0.52 -0.976,-0.906 a 6.47,6.47 0 0 1 -0.52,-1.15 c -0.488,-1.464 -0.592,-3 -0.732,-4.496 v -0.906 c -0.174,0.14 -0.21,1.324 -0.21,1.5 -0.102,1.581 -0.312,3.154 -0.628,4.706 -0.104,0.628 -0.174,1.254 -0.56,1.812 0,0.07 0,0.14 0.034,0.244 0.628,1.848 0.8,3.73 0.906,5.648 v 0.7 c 0,0.836 -0.034,0.66 0.66,0.94 0.28,0.104 0.592,0.14 0.872,0.348 0.21,0 0.244,-0.174 0.244,-0.314 l -0.104,-1.15 v -3.208 c -0.034,-0.56 0.07,-1.116 0.14,-1.64 z"
+                   fill="#a09fba"
+                   id="path641" />
+              </g>
+            </g>
           </g>
-         </g>
         </g>
-       </g>
       </g>
-      <g transform="matrix(5.1718 0 0 5.1718 253.17 -98.171)">
-       <g>
-        <path d="m87.487 0.175 1.708 3.208c0.371 0.579 0.804 1.117 1.29 1.604 1.43 1.43 2.788 2.928 4.008 4.532 2.894 3.8 4.846 8 6.24 12.584a30.94 30.94 0 0 1 1.324 8.54c0.14 8.646-2.824 16.07-8.8 22.24-0.972 0.978-2.022 1.876-3.14 2.684-0.592 0-0.872-0.454-1.116-0.872-0.454-0.766-0.732-1.64-0.872-2.51-0.21-1.046-0.348-2.092-0.28-3.172v-0.488c-0.048-0.124-0.57-48.124-0.362-48.35z" fill="#c4c4ea"/>
-        <path d="m87.487 0.069c-0.07-0.14-0.14-0.034-0.21 0.034 0.034 0.7-0.21 1.324-0.592 1.92-0.4 0.592-0.976 1.046-1.534 1.534-3.1 2.684-5.54 5.926-7.494 9.552-2.6 4.88-3.94 10.11-4.32 15.616-0.174 1.986 0.628 8.994 1.254 11.016 1.708 5.368 4.776 9.866 8.75 13.77a35.08 35.08 0 0 0 3.1 2.65c0.314 0 0.348-0.28 0.4-0.488a9.57 9.57 0 0 0 0.314-1.36l0.7-5.228z" fill="#fff"/>
-        <path d="m89.195 57.691c0.07-0.8 0.454-1.464 0.872-2.126-0.4-0.174-0.732-0.52-0.976-0.906a6.47 6.47 0 0 1-0.52-1.15c-0.488-1.464-0.592-3-0.732-4.496v-0.906c-0.174 0.14-0.21 1.324-0.21 1.5-0.102 1.581-0.312 3.154-0.628 4.706-0.104 0.628-0.174 1.254-0.56 1.812 0 0.07 0 0.14 0.034 0.244 0.628 1.848 0.8 3.73 0.906 5.648v0.7c0 0.836-0.034 0.66 0.66 0.94 0.28 0.104 0.592 0.14 0.872 0.348 0.21 0 0.244-0.174 0.244-0.314l-0.104-1.15v-3.208c-0.034-0.56 0.07-1.116 0.14-1.64z" fill="#a09fba"/>
-       </g>
-      </g>
-     </g>
     </g>
-   </g>
   </g>
- </g>
 </svg>
