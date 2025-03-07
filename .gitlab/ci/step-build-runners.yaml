@@ -43,6 +43,7 @@ build-runner-ansible:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -72,6 +73,7 @@ build-runner-ansible-sign:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -118,6 +120,7 @@ build-runner-apache:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -147,6 +150,7 @@ build-runner-apache-sign:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -193,6 +197,7 @@ build-runner-nodejs:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -222,6 +227,7 @@ build-runner-nodejs-sign:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -268,6 +274,7 @@ build-runner-oc:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -296,6 +303,7 @@ build-runner-oc-sign:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -342,6 +350,7 @@ build-runner-php:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -370,6 +379,7 @@ build-runner-php-sign:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
