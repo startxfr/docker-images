@@ -33,11 +33,13 @@ function checkGitRepoIsOrigin {
 
 # check if git branch is master
 function checkGitBranchIsMaster {
+    # shellcheck disable=SC2063
     git branch | grep '* master' &> /tmp/aaa
     if [[ $(cat /tmp/aaa) != '* master' ]]; then
         echo "your are not in the master branch"
         echo "please run 'git checkout master' first"
         git checkout master
+        # shellcheck disable=SC2063
         git branch | grep '* master' &> /tmp/aaa
         if [[ $(cat /tmp/aaa) != '* master' ]]; then
             echo "your are not in the master branch"
@@ -122,6 +124,7 @@ EOF
 checkReadyForRun
 
 # Dispatch input arguments
+# shellcheck disable=SC2068
 case $1 in
     simulate)               simulateMerge $@ ;;
     run|exec|merge)         exectuteMerge $@ ;;
