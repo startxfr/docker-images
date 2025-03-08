@@ -1,3 +1,4 @@
+<img align="left" src="https://raw.githubusercontent.com/startxfr/docker-images/master/.gitlab/img/os-centos.svg?sanitize=true">
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/.gitlab/img/logo-small.svg?sanitize=true">
 
 # Image CENTOS
