@@ -43,6 +43,7 @@ build-couchbase:
     - alma
     - rocky
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -72,6 +73,7 @@ build-couchbase-sign:
     - alma
     - rocky
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -119,6 +121,7 @@ build-mariadb:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -153,6 +156,7 @@ build-mariadb-sign:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -200,6 +204,7 @@ build-memcache:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -236,6 +241,7 @@ build-memcache-sign:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -283,6 +289,7 @@ build-mongo:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -319,6 +326,7 @@ build-mongo-sign:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -364,6 +372,7 @@ build-ooconv:
     - centos6
     - alma
     - rocky
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -396,6 +405,7 @@ build-ooconv-sign:
     - centos6
     - alma
     - rocky
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -443,6 +453,7 @@ build-php:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -479,6 +490,7 @@ build-php-sign:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -523,6 +535,7 @@ build-postgres:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -555,6 +568,7 @@ build-postgres-sign:
     - rocky
     - alpine
     - ubi8
+    - fc37
     - fc36
     - fc35
     - fc34

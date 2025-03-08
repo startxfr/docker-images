@@ -42,6 +42,7 @@ build-vdi-chrome:
     - alma
     - rocky
     - alpine
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -68,6 +69,7 @@ build-vdi-chrome-sign:
     - alma
     - rocky
     - alpine
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -113,6 +115,7 @@ build-vdi-firefox:
     - alma
     - rocky
     - alpine
+    - fc37
     - fc36
     - fc35
     - fc34
@@ -139,6 +142,7 @@ build-vdi-firefox-sign:
     - alma
     - rocky
     - alpine
+    - fc37
     - fc36
     - fc35
     - fc34

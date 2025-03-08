@@ -1,3 +1,4 @@
+<img align="left" src="https://raw.githubusercontent.com/startxfr/docker-images/master/docs/img/sv-php.svg?sanitize=true">
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/.gitlab/img/logo-small.svg?sanitize=true">
 
 # Image APACHE + PHP

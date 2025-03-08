@@ -33,11 +33,13 @@ function checkGitRepoIsOrigin {
 
 # check if git branch is master
 function checkGitBranchIsMaster {
+    # shellcheck disable=SC2063
     git branch | grep '* master' &> /tmp/aaa
     if [[ $(cat /tmp/aaa) != '* master' ]]; then
         echo "your are not in the master branch"
         echo "please run 'git checkout master' first"
         git checkout master
+        # shellcheck disable=SC2063
         git branch | grep '* master' &> /tmp/aaa
         if [[ $(cat /tmp/aaa) != '* master' ]]; then
             echo "your are not in the master branch"
@@ -88,7 +90,7 @@ function exectutePush {
         type="all"
     fi
     if [ $type == "all" ]; then
-        git checkout master && git push origin master fc36 fc35 fc34 fc33 fc32 fc31 fc30 ubi8 alpine rocky8 alma8 centos8 centos7 centos6
+        git checkout master && git push origin master fc37 fc36 fc35 fc34 fc33 fc32 fc31 fc30 ubi8 alpine rocky8 alma8 centos8 centos7 centos6
     else
         git checkout master && git push origin $2
     fi
@@ -122,6 +124,7 @@ EOF
 checkReadyForRun
 
 # Dispatch input arguments
+# shellcheck disable=SC2068
 case $1 in
     simulate)               simulateMerge $@ ;;
     run|exec|merge)         exectuteMerge $@ ;;

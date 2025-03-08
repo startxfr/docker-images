@@ -1,9 +1,100 @@
 site_name: STARTX Docker images repository
+site_description: Collection of containers images based on various RHEL like OS flavours.
+site_author: STARTX
+use_directory_urls: true
+repo_url: https://github.com/startxfr/docker-images
+repo_name: startxfr/docker-images
+copyright: Copyright &copy; 2017 - 2025 Startx
 docs_dir: ./docs
+# plugins:
+#   - privacy
+#   - optimize
+markdown_extensions:
+- attr_list
+- md_in_html
+- smarty
+- admonition
+- pymdownx.details
+- pymdownx.superfences
+- pymdownx.tabbed:
+    alternate_style: true
+- pymdownx.emoji
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github 
+      link: https://github.com/startxfr/docker-images
+      name: Startx containers images on github
+    - icon: fontawesome/brands/gitlab 
+      link: https://gitlab.com/startx1/containers
+      name: Startx containers images on gitlab
+    - icon: simple/artifacthub
+      link: https://artifacthub.io/packages/search?user=startxfr&kind=12
+      name: Startx containers images on artifacthub
 theme:
-  name: readthedocs
+  palette:
+    primary: teal
+    accent: teal
+  name: material
   highlightjs: true
   hljs_languages:
-    - yaml
-    - bash
+  - yaml
+  - bash
   include_homepage_in_sidebar: false
+  logo: img/startx-docker.svg
+  favicon: img/favicon.ico
+  font:
+    text: Roboto
+    code: Roboto Mono
+  icon:
+    repo: fontawesome/brands/git-alt
+    previous: fontawesome/solid/angle-left
+    next: fontawesome/solid/angle-right
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.expand
+    - navigation.path
+    - toc.follow
+    - toc.integrate
+    # - header.autohide
+    - navigation.footer
+nav:
+  - Introduction: 'index.md'
+  - Develop: 'Develop.md'
+  - OS:
+    - 'alma': 'OS/alma.md'
+    - 'alpine': 'OS/alpine.md'
+    - 'centos': 'OS/centos.md'
+    - 'fedora': 'OS/fedora.md'
+    - 'rocky': 'OS/rocky.md'
+    - 'ubi': 'OS/ubi.md'
+  - Services:
+    - 'apache': 'Services/apache.md'
+    - 'couchbase': 'Services/couchbase.md'
+    - 'mariadb': 'Services/mariadb.md'
+    - 'memcache': 'Services/memcache.md'
+    - 'mongo': 'Services/mongo.md'
+    - 'nodejs': 'Services/nodejs.md'
+    - 'ooconv': 'Services/ooconv.md'
+    - 'php': 'Services/php.md'
+    - 'postgres': 'Services/postgres.md'
+  - Gitlab Runner:
+    - 'ansible': 'GitlabRunner/ansible.md'
+    - 'apache': 'GitlabRunner/apache.md'
+    - 'bash': 'GitlabRunner/bash.md'
+    - 'nodejs': 'GitlabRunner/nodejs.md'
+    - 'oc': 'GitlabRunner/oc.md'
+    - 'php': 'GitlabRunner/php.md'
+  - VDI:
+    - 'chrome': 'VDI/chrome.md'
+    - 'firefox': 'VDI/firefox.md'
+  - Applications:
+    - 'phpmyadmin': 'Applications/phpmyadmin.md'
+  # - Releases: 'history.md'
+  # - Contribute:
+  #   - 'Build env': 'contribute-build.md'
+  #   - 'Release Notes': 'contribute-releases.md'
+  #   - 'License': 'license.md'

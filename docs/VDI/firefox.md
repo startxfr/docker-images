@@ -1,4 +1,5 @@
-[![startxfr/docker-images](https://raw.githubusercontent.com/startxfr/docker-images/master/.gitlab/img/logo-small.svg?sanitize=true)](https://gitlab.com/startx1/containers)
+<img align="left" src="https://raw.githubusercontent.com/startxfr/docker-images/master/docs/img/vdi-firefox.svg?sanitize=true">
+<img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/.gitlab/img/logo-small.svg?sanitize=true">
 
 # Image Firefox
 
@@ -13,6 +14,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | Docker Hub repository                                                       | Content             | Firefox    |
 | --------------------------------------------------------------------------- | ------------------- | ---------- |
 | [`startx/vdi-firefox:latest`](https://hub.docker.com/r/startx/vdi-firefox)  | Fedora core rawhide | 88.0       |
+| [`startx/vdi-firefox:fc37`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 37      | 88.0       |
 | [`startx/vdi-firefox:fc36`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 36      | 88.0       |
 | [`startx/vdi-firefox:fc35`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 35      | 88.0       |
 | [`startx/vdi-firefox:fc34`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 34      | 88.0.1     |
