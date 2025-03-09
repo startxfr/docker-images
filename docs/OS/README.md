@@ -16,6 +16,10 @@ Various container images with OS and common tools. Used as a basic layer for ser
 ### Fedora
 
 - `latest` based on fedora rawhide [see detail](https://docker-images.readthedocs.io/en/latest)
+- `fc41` based on fedora core 41 [see detail](https://docker-images.readthedocs.io/en/fc41/OS/fedora)
+- `fc40` based on fedora core 40 [see detail](https://docker-images.readthedocs.io/en/fc40/OS/fedora)
+- `fc39` based on fedora core 39 [see detail](https://docker-images.readthedocs.io/en/fc39/OS/fedora)
+- `fc38` based on fedora core 38 [see detail](https://docker-images.readthedocs.io/en/fc38/OS/fedora)
 - `fc37` based on fedora core 37 [see detail](https://docker-images.readthedocs.io/en/fc37/OS/fedora)
 - `fc36` based on fedora core 36 [see detail](https://docker-images.readthedocs.io/en/fc36/OS/fedora)
 - `fc35` based on fedora core 35 [see detail](https://docker-images.readthedocs.io/en/fc35/OS/fedora)

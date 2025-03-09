@@ -14,6 +14,10 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | Docker Hub repository                                                     | Content             | Firefox       |
 | ------------------------------------------------------------------------- | ------------------- | ------------- |
 | [`startx/vdi-chrome:latest`](https://hub.docker.com/r/startx/vdi-chrome)  | Fedora core rawhide | 90.0.4430.212 |
+| [`startx/vdi-chrome:fc41`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 41      | 90.0.4430.212 |
+| [`startx/vdi-chrome:fc40`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 40      | 90.0.4430.212 |
+| [`startx/vdi-chrome:fc39`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 39      | 90.0.4430.212 |
+| [`startx/vdi-chrome:fc38`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 38      | 90.0.4430.212 |
 | [`startx/vdi-chrome:fc37`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 37      | 90.0.4430.212 |
 | [`startx/vdi-chrome:fc36`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 36      | 90.0.4430.212 |
 | [`startx/vdi-chrome:fc35`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 35      | 90.0.4430.212 |

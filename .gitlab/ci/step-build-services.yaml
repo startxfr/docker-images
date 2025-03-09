@@ -43,6 +43,10 @@ build-couchbase:
     - alma
     - rocky
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -73,6 +77,10 @@ build-couchbase-sign:
     - alma
     - rocky
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -121,6 +129,10 @@ build-mariadb:
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -156,6 +168,10 @@ build-mariadb-sign:
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -204,6 +220,10 @@ build-memcache:
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -241,6 +261,10 @@ build-memcache-sign:
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -289,6 +313,10 @@ build-mongo:
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -326,6 +354,10 @@ build-mongo-sign:
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -372,6 +404,10 @@ build-ooconv:
     - centos6
     - alma
     - rocky
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -405,6 +441,10 @@ build-ooconv-sign:
     - centos6
     - alma
     - rocky
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -453,6 +493,10 @@ build-php:
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -490,6 +534,10 @@ build-php-sign:
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -535,6 +583,10 @@ build-postgres:
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -568,6 +620,10 @@ build-postgres-sign:
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35

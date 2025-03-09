@@ -36,6 +36,10 @@ markdown:
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
