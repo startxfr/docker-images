@@ -36,7 +36,7 @@ LABEL name="$SX_ID" \
     org.opencontainers.image.vendor="STARTX"
 
 USER root
-COPY sx /tmp/
+COPY sx /tmp/ 
 RUN dnf upgrade -yq --refresh && \
     dnf install -y --nogpgcheck epel-release && \
     dnf install -y --nogpgcheck --enablerepo="epel" \
@@ -51,7 +51,7 @@ RUN dnf upgrade -yq --refresh && \
     bats \
     jq && \
     pip3 install -q yq && \
-    dnf remove -yq --skip-broken yum-utils && \
+    dnf remove -yq yum-utils && \
     dnf clean all --enablerepo=\* && \
     useradd -s /bin/bash -u ${SX_UID} -g 0 -m ${SX_UNAME} && \
     mv /tmp/bin/* /bin/ && \

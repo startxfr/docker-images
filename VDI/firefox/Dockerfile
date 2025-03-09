@@ -59,7 +59,7 @@ RUN dnf install -y yum-utils && \
     python3-setuptools && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
-    dnf remove -y --skip-broken yum-utils && \
+    dnf remove -y yum-utils && \
     dnf clean all --enablerepo=\* && \
     pip3 install --upgrade pip && \
     pip3 install --upgrade --force-reinstall setuptools pip && \

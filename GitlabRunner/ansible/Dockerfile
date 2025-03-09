@@ -55,11 +55,11 @@ RUN dnf upgrade -yq --refresh && \
     alternatives --set python /usr/bin/python3 && \
     echo "alias pip=pip3" >> /etc/bashrc && \
     pip3 install -q ansible-runner ansible-lint openshift yq && \
-    dnf remove -yq --skip-broken yum-utils gcc python3-devel epel-release && \
+    dnf remove -yq yum-utils gcc python3-devel epel-release && \
     dnf config-manager --enable --add-repo https://releases.ansible.com/ansible-runner/ansible-runner.el8.repo && \
     dnf install -yq --nogpgcheck ansible-runner && \
     npm install uuid && \
-    dnf remove -yq --skip-broken yum-utils && \
+    dnf remove -yq  yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/bin/* /bin/ && \
     mv /tmp/lib/* $SX_LIBDIR/ && \

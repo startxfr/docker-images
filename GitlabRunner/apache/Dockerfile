@@ -46,7 +46,7 @@ RUN dnf upgrade -yq --refresh && \
     openssh-clients \
     jq && \
     pip3 install -q yq && \
-    dnf remove -yq --skip-broken yum-utils && \
+    dnf remove -yq yum-utils && \
     dnf clean all --enablerepo=\* && \
     useradd -u ${SX_UID} -m ${SX_UNAME} && \
     mv /tmp/bin/* /bin/ && \
