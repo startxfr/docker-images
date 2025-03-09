@@ -48,8 +48,8 @@ RUN dnf upgrade -yq --refresh && \
     gcc \
     libevent \
     memcached && \
-    dnf install -yq --nogpgcheck --skip-broken http://mirror.centos.org/centos/8/AppStream/x86_64/os/Packages/telnet-0.17-73.el8.x86_64.rpm && \
-    dnf remove -y --skip-broken gcc && \
+    dnf install -yq --nogpgcheck http://mirror.centos.org/centos/8/AppStream/x86_64/os/Packages/telnet-0.17-73.el8.x86_64.rpm && \
+    dnf remove -y gcc && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/s2i/bin/* /s2i/ && \
     mv /tmp/sx/bin/* /bin/ && \

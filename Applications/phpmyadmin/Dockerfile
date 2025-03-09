@@ -43,7 +43,7 @@ COPY mariadb.repo centos.repo /etc/yum.repos.d/
 RUN rpm --import https://yum.mariadb.org/RPM-GPG-KEY-MariaDB && \
     dnf upgrade -yq --refresh --nobest && \
     dnf install -yq --nogpgcheck boost boost-devel \
-    dnf install -yq --nogpgcheck --skip-broken \
+    dnf install -yq --nogpgcheck \
         MariaDB-client \
         MariaDB-common && \
     dnf clean all --enablerepo=\* && \
