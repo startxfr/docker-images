@@ -64,6 +64,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/sv-couchbase:26`](https://hub.docker.com/r/startx/sv-couchbase)      | Fedora core 26      | 2.4.17     |
 | [`startx/sv-couchbase:alma8`](https://hub.docker.com/r/startx/sv-couchbase)   | Alma 8              | 6.5.1-6299 |
 | [`startx/sv-couchbase:rocky8`](https://hub.docker.com/r/startx/sv-couchbase)  | Rocky 8             | 6.5.1-6299 |
+| [`startx/sv-couchbase:centos9`](https://hub.docker.com/r/startx/sv-couchbase) | Centos 9           | 6.5.1-6299 |
 | [`startx/sv-couchbase:centos8`](https://hub.docker.com/r/startx/sv-couchbase) | Centos 8            | 6.5.1-6299 |
 | [`startx/sv-couchbase:centos7`](https://hub.docker.com/r/startx/sv-couchbase) | Centos 7            | 6.0.5-3340 |
 | [`startx/sv-couchbase:centos6`](https://hub.docker.com/r/startx/sv-couchbase) | Centos 6            | 5.5.0-2958 |

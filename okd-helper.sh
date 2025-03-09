@@ -192,6 +192,8 @@ function menuSetupFlavour {
         appendConf SXDC_OS_FLAVOUR 'rocky';;
         alma8)    appendConf SXDC_FLAVOUR alma8
         appendConf SXDC_OS_FLAVOUR 'alma';;
+        centos9)  appendConf SXDC_FLAVOUR centos9
+        appendConf SXDC_OS_FLAVOUR 'centos';;
         centos8)  appendConf SXDC_FLAVOUR centos8
         appendConf SXDC_OS_FLAVOUR 'centos';;
         centos7)  appendConf SXDC_FLAVOUR centos7

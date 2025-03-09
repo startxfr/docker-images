@@ -24,6 +24,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | [`startx/runner-ansible:27`](https://hub.docker.com/r/startx/runner-ansible)      | Fedora core 27      |         |        |       |
 | [`startx/runner-ansible:alma8`](https://hub.docker.com/r/startx/runner-ansible)   | Alma 8              | 2.9.21  | 3.6.8  | 4.2.1 |
 | [`startx/runner-ansible:rocky8`](https://hub.docker.com/r/startx/runner-ansible)  | Rocky 8             | 2.9.21  | 3.6.8  | 4.2.1 |
+| [`startx/runner-ansible:centos9`](https://hub.docker.com/r/startx/runner-ansible) | Centos 9            | 2.9.21  | 3.6.8  | 4.2.1 |
 | [`startx/runner-ansible:centos8`](https://hub.docker.com/r/startx/runner-ansible) | Centos 8            | 2.9.21  | 3.6.8  | 4.2.1 |
 | [`startx/runner-ansible:centos7`](https://hub.docker.com/r/startx/runner-ansible) | Centos 7            | 2.9.21  | 2.7.5  | 3.82  |
 | [`startx/runner-ansible:ubi8`](https://hub.docker.com/r/startx/runner-ansible)    | RedHat UBI 8        |         |        | 4.3   |

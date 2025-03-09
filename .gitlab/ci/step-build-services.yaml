@@ -37,12 +37,17 @@ build-couchbase:
     SXDI_QUAYNAME: "couchbase"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
     - alma
     - rocky
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -67,12 +72,17 @@ build-couchbase-sign:
     SXDI_QUAYNAME: "couchbase"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
     - alma
     - rocky
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -114,6 +124,7 @@ build-mariadb:
     SXDI_QUAYNAME: "mariadb"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -121,6 +132,10 @@ build-mariadb:
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -149,6 +164,7 @@ build-mariadb-sign:
     SXDI_QUAYNAME: "mariadb"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -156,6 +172,10 @@ build-mariadb-sign:
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -197,6 +217,7 @@ build-memcache:
     SXDI_QUAYNAME: "memcache"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -204,6 +225,10 @@ build-memcache:
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -234,6 +259,7 @@ build-memcache-sign:
     SXDI_QUAYNAME: "memcache"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -241,6 +267,10 @@ build-memcache-sign:
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -282,6 +312,7 @@ build-mongo:
     SXDI_QUAYNAME: "mongo"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -289,6 +320,10 @@ build-mongo:
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -319,6 +354,7 @@ build-mongo-sign:
     SXDI_QUAYNAME: "mongo"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -326,6 +362,10 @@ build-mongo-sign:
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -367,11 +407,16 @@ build-ooconv:
     SXDI_QUAYNAME: "ooconv"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
     - alma
     - rocky
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -400,11 +445,16 @@ build-ooconv-sign:
     SXDI_QUAYNAME: "ooconv"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
     - alma
     - rocky
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -446,6 +496,7 @@ build-php:
     SXDI_QUAYNAME: "php"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -453,6 +504,10 @@ build-php:
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -483,6 +538,7 @@ build-php-sign:
     SXDI_QUAYNAME: "php"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -490,6 +546,10 @@ build-php-sign:
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -528,6 +588,7 @@ build-postgres:
     SXDI_QUAYNAME: "postgres"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -535,6 +596,10 @@ build-postgres:
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -561,6 +626,7 @@ build-postgres-sign:
     SXDI_QUAYNAME: "postgres"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -568,6 +634,10 @@ build-postgres-sign:
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35

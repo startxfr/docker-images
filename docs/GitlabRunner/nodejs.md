@@ -49,6 +49,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/runner-nodejs:26`](https://hub.docker.com/r/startx/runner-nodejs)      | Fedora core 26      |         |         |       |
 | [`startx/runner-nodejs:alma8`](https://hub.docker.com/r/startx/runner-nodejs)   | Alma 8              | 10.24.0 | 6.14.11 | 4.2.1 |
 | [`startx/runner-nodejs:rocky8`](https://hub.docker.com/r/startx/runner-nodejs)  | Rocky 8             | 10.24.0 | 6.14.11 | 4.2.1 |
+| [`startx/runner-nodejs:centos9`](https://hub.docker.com/r/startx/runner-nodejs) | Centos 9           | 10.24.0 | 6.14.11 | 4.2.1 |
 | [`startx/runner-nodejs:centos8`](https://hub.docker.com/r/startx/runner-nodejs) | Centos 8            | 10.24.0 | 6.14.11 | 4.2.1 |
 | [`startx/runner-nodejs:centos7`](https://hub.docker.com/r/startx/runner-nodejs) | Centos 7            | 3.10.10 | 6.17.1  | 3.82  |
 | [`startx/runner-nodejs:ubi8`](https://hub.docker.com/r/startx/runner-nodejs)    | RedHat UBI 8        |         |         |       |

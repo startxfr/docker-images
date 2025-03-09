@@ -55,6 +55,7 @@ See more cache nodes builders and sample on [startx docker images repository](ht
 | [`startx/sv-memcache:20`](https://hub.docker.com/r/startx/sv-memcache)      | Fedora core 20      |          |
 | [`startx/sv-memcache:alma8`](https://hub.docker.com/r/startx/sv-memcache)   | Alma 8              | 1.5.22   |
 | [`startx/sv-memcache:rocky8`](https://hub.docker.com/r/startx/sv-memcache)  | Rocky 8             | 1.5.22   |
+| [`startx/sv-memcache:centos9`](https://hub.docker.com/r/startx/sv-memcache) | Centos 9            | 1.5.22   |
 | [`startx/sv-memcache:centos8`](https://hub.docker.com/r/startx/sv-memcache) | Centos 8            | 1.5.22   |
 | [`startx/sv-memcache:centos7`](https://hub.docker.com/r/startx/sv-memcache) | Centos 7            | 1.4.15   |
 | [`startx/sv-memcache:centos6`](https://hub.docker.com/r/startx/sv-memcache) | Centos 6            | 1.4.4    |

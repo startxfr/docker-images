@@ -37,12 +37,17 @@ build-runner-ansible:
     SXDI_QUAYNAME: "runner-ansible"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - alma
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -67,12 +72,17 @@ build-runner-ansible-sign:
     SXDI_QUAYNAME: "runner-ansible"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - alma
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -114,12 +124,17 @@ build-runner-apache:
     SXDI_QUAYNAME: "runner-apache"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - alma
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -144,12 +159,17 @@ build-runner-apache-sign:
     SXDI_QUAYNAME: "runner-apache"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - alma
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -191,12 +211,17 @@ build-runner-nodejs:
     SXDI_QUAYNAME: "runner-nodejs"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - alma
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -221,12 +246,17 @@ build-runner-nodejs-sign:
     SXDI_QUAYNAME: "runner-nodejs"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - alma
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -268,12 +298,17 @@ build-runner-oc:
     SXDI_QUAYNAME: "runner-oc"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - alma
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -297,12 +332,17 @@ build-runner-oc-sign:
     SXDI_QUAYNAME: "runner-oc"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - alma
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -344,12 +384,17 @@ build-runner-php:
     SXDI_QUAYNAME: "runner-php"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - alma
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -373,12 +418,17 @@ build-runner-php-sign:
     SXDI_QUAYNAME: "runner-php"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - alma
     - rocky
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35

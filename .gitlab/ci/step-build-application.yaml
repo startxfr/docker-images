@@ -39,11 +39,16 @@ build-application-phpmyadmin:
   only:
     - alma
     - rocky
+    - centos9
     - centos8
     - centos7
     - centos6
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -63,11 +68,16 @@ build-application-phpmyadmin-sign:
   only:
     - alma
     - rocky
+    - centos9
     - centos8
     - centos7
     - centos6
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -111,11 +121,16 @@ build-application-ocp-reliability:
   only:
     - alma
     - rocky
+    - centos9
     - centos8
     - centos7
     - centos6
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -133,11 +148,16 @@ build-application-ocp-reliability-sign:
   only:
     - alma
     - rocky
+    - centos9
     - centos8
     - centos7
     - centos6
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35

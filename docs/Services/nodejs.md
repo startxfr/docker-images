@@ -55,6 +55,7 @@ See more applications builders and sample on [startx docker images repository](h
 | [`startx/sv-nodejs:20`](https://hub.docker.com/r/startx/sv-nodejs)      | Fedora core 20      |         |         |
 | [`startx/sv-nodejs:alma8`](https://hub.docker.com/r/startx/sv-nodejs)   | Alma 8              | 10.24.0 | 6.14.11 |
 | [`startx/sv-nodejs:rocky8`](https://hub.docker.com/r/startx/sv-nodejs)  | Rocky 8             | 10.24.0 | 6.14.11 |
+| [`startx/sv-nodejs:centos9`](https://hub.docker.com/r/startx/sv-nodejs) | Centos 9            | 10.24.0 | 6.14.11 |
 | [`startx/sv-nodejs:centos8`](https://hub.docker.com/r/startx/sv-nodejs) | Centos 8            | 10.24.0 | 6.14.11 |
 | [`startx/sv-nodejs:centos7`](https://hub.docker.com/r/startx/sv-nodejs) | Centos 7            | 6.17.1  | 3.10.10 |
 | [`startx/sv-nodejs:centos6`](https://hub.docker.com/r/startx/sv-nodejs) | Centos 6            | 0.10.48 | 1.3.6   |
