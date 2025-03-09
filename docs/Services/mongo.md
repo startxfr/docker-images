@@ -30,6 +30,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | [`startx/sv-mongo:20`](https://hub.docker.com/r/startx/sv-mongo)      | Fedora core 20      |         |
 | [`startx/sv-mongo:alma8`](https://hub.docker.com/r/startx/sv-mongo)   | Alma 8              | 4.4.6   |
 | [`startx/sv-mongo:rocky8`](https://hub.docker.com/r/startx/sv-mongo)  | Rocky 8             | 4.4.6   |
+| [`startx/sv-mongo:centos9`](https://hub.docker.com/r/startx/sv-mongo) | Centos 9            | 4.4.6   |
 | [`startx/sv-mongo:centos8`](https://hub.docker.com/r/startx/sv-mongo) | Centos 8            | 4.4.6   |
 | [`startx/sv-mongo:centos7`](https://hub.docker.com/r/startx/sv-mongo) | Centos 7            | 4.4.6   |
 | [`startx/sv-mongo:centos6`](https://hub.docker.com/r/startx/sv-mongo) | Centos 6            | 2.4.14  |

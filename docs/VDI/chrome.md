@@ -30,6 +30,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | [`startx/vdi-chrome:fc28`](https://hub.docker.com/r/startx/vdi-chrome)    | Fedora core 28      | 50.0.2661.102 |
 | [`startx/vdi-chrome:alma8`](https://hub.docker.com/r/startx/vdi-chrome)   | Alma 8              | 90.0.4430.212 |
 | [`startx/vdi-chrome:rocky8`](https://hub.docker.com/r/startx/vdi-chrome)  | Rocky 8             | 90.0.4430.212 |
+| [`startx/vdi-chrome:centos9`](https://hub.docker.com/r/startx/vdi-chrome) | Centos 9            | 90.0.4430.212 |
 | [`startx/vdi-chrome:centos8`](https://hub.docker.com/r/startx/vdi-chrome) | Centos 8            | 90.0.4430.212 |
 | [`startx/vdi-chrome:centos7`](https://hub.docker.com/r/startx/vdi-chrome) | Centos 7            | 90.0.4430.212 |
 | [`startx/vdi-chrome:alpine3`](https://hub.docker.com/r/startx/vdi-chrome) | Alpine 3.12         |               |

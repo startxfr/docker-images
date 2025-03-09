@@ -28,10 +28,10 @@ your project and start using stable or experimental applications in your applica
 
 ## Available Flavours
 
-| Service        | Fedora flavours                                                                                            | CentOS flavours                                     | Alpine     | UBI     |
-| -------------- | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------- | ---------- | ------- |
-| **PhpMyAdmin** | `:latest` `:fc23` ` :fc24``:fc25 ` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32` `:fc33` `:fc34` | `:centos6` `:centos7` `:centos8` `:alma8` `:rocky8` | `:alpine3` | `:ubi8` |
-| **RockMongo**  | `:latest` `:fc23` ` :fc24``:fc25 ` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32` `:fc33` `:fc34` | `:centos6` `:centos7` `:centos8` `:alma8` `:rocky8` | `:alpine3` | `:ubi8` |
+| Service        | Fedora flavours                                                                                                                                                    | CentOS flavours                                                | Alpine     | UBI     |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------- | ---------- | ------- |
+| **PhpMyAdmin** | `:latest` `:fc23` ` :fc24``:fc25 ` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32` `:fc33` `:fc34` `:fc35` `:fc36` `:fc37` `:fc38` `:fc39` `:fc40` `:fc41` | `:centos6` `:centos7` `:centos8` `:centos9` `:alma8` `:rocky8` | `:alpine3` | `:ubi8` |
+| **RockMongo**  | `:latest` `:fc23` ` :fc24``:fc25 ` `:fc26` `:fc27` `:fc28` `:fc29` `:fc30` `:fc31` `:fc32` `:fc33` `:fc34` `:fc35` `:fc36` `:fc37` `:fc38` `:fc39` `:fc40` `:fc41` | `:centos6` `:centos7` `:centos8` `:centos9` `:alma8` `:rocky8` | `:alpine3` | `:ubi8` |
 
 ## Running from dockerhub registry
 

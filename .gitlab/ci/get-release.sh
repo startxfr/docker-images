@@ -1,5 +1,5 @@
 #!/bin/bash
-IMGLIST="latest fc41 fc40 fc39 fc38 fc37 fc36 fc35 fc34 fc33 fc32 fc31 fc30 fc29 fc28 fc27 fc26 fc23 fc22 alpine3 alma8 rocky8 centos8 centos7 centos6 ubi8"
+IMGLIST="latest fc41 fc40 fc39 fc38 fc37 fc36 fc35 fc34 fc33 fc32 fc31 fc30 fc29 fc28 fc27 fc26 fc23 fc22 alpine3 alma8 rocky8 centos9 centos8 centos7 centos6 ubi8"
 # shellcheck disable=SC2034
 IMGLISTFC="latest 41 40 39 38 37 36 35 34 33 32 31 30 29 28 27 26 23 22"
 # shellcheck disable=SC2034

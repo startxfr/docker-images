@@ -37,6 +37,7 @@ build-vdi-chrome:
     SXDI_QUAYNAME: "chrome"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - alma
@@ -68,6 +69,7 @@ build-vdi-chrome-sign:
     SXDI_QUAYNAME: "chrome"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - alma
@@ -118,6 +120,7 @@ build-vdi-firefox:
     SXDI_QUAYNAME: "firefox"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - alma
@@ -149,6 +152,7 @@ build-vdi-firefox-sign:
     SXDI_QUAYNAME: "firefox"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - alma

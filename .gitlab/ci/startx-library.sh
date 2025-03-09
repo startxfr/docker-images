@@ -323,6 +323,7 @@ function DoSetImagetagFromGitlab {
             echo "INFO: DoSetImagetagFromGitlab found is NOT latest image"
             case $CI_COMMIT_BRANCH in
                 master)         export SXDI_TAG="latest";;
+                centos9)        export SXDI_TAG="9";;
                 centos8)        export SXDI_TAG="8";;
                 centos7)        export SXDI_TAG="7";;
                 centos6)        export SXDI_TAG="6";;
@@ -351,6 +352,7 @@ function DoSetImagetagFromGitlab {
         else
             echo "INFO: DoSetImagetagFromGitlab found is NOT latest image"
             case $CI_COMMIT_BRANCH in
+                centos9)        export SXDI_TAG="centos9";;
                 centos8)        export SXDI_TAG="centos8";;
                 centos7)        export SXDI_TAG="centos7";;
                 centos6)        export SXDI_TAG="centos6";;

@@ -37,6 +37,7 @@ build-couchbase:
     SXDI_QUAYNAME: "couchbase"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -71,6 +72,7 @@ build-couchbase-sign:
     SXDI_QUAYNAME: "couchbase"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -122,6 +124,7 @@ build-mariadb:
     SXDI_QUAYNAME: "mariadb"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -161,6 +164,7 @@ build-mariadb-sign:
     SXDI_QUAYNAME: "mariadb"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -213,6 +217,7 @@ build-memcache:
     SXDI_QUAYNAME: "memcache"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -254,6 +259,7 @@ build-memcache-sign:
     SXDI_QUAYNAME: "memcache"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -306,6 +312,7 @@ build-mongo:
     SXDI_QUAYNAME: "mongo"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -347,6 +354,7 @@ build-mongo-sign:
     SXDI_QUAYNAME: "mongo"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -399,6 +407,7 @@ build-ooconv:
     SXDI_QUAYNAME: "ooconv"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -436,6 +445,7 @@ build-ooconv-sign:
     SXDI_QUAYNAME: "ooconv"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -486,6 +496,7 @@ build-php:
     SXDI_QUAYNAME: "php"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -527,6 +538,7 @@ build-php-sign:
     SXDI_QUAYNAME: "php"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -576,6 +588,7 @@ build-postgres:
     SXDI_QUAYNAME: "postgres"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -613,6 +626,7 @@ build-postgres-sign:
     SXDI_QUAYNAME: "postgres"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6

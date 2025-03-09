@@ -34,6 +34,7 @@ build-apache:
     SXDI_QUAYNAME: "apache"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -74,6 +75,7 @@ build-apache-sign:
     SXDI_QUAYNAME: "apache"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -126,6 +128,7 @@ build-nodejs:
     SXDI_QUAYNAME: "nodejs"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -167,6 +170,7 @@ build-nodejs-sign:
     SXDI_QUAYNAME: "nodejs"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -219,6 +223,7 @@ build-runner-bash:
     SXDI_QUAYNAME: "runner-bash"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - alma
@@ -253,6 +258,7 @@ build-runner-bash-sign:
     SXDI_QUAYNAME: "runner-bash"
     SXDI_ENGINE: docker
   only:
+    - centos9
     - centos8
     - centos7
     - alma

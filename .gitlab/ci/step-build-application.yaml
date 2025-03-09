@@ -39,6 +39,7 @@ build-application-phpmyadmin:
   only:
     - alma
     - rocky
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -67,6 +68,7 @@ build-application-phpmyadmin-sign:
   only:
     - alma
     - rocky
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -119,6 +121,7 @@ build-application-ocp-reliability:
   only:
     - alma
     - rocky
+    - centos9
     - centos8
     - centos7
     - centos6
@@ -145,6 +148,7 @@ build-application-ocp-reliability-sign:
   only:
     - alma
     - rocky
+    - centos9
     - centos8
     - centos7
     - centos6

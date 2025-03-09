@@ -29,6 +29,7 @@ markdown:
   script: "source .gitlab/ci/startx-library.sh && DisplayCheckMarkdown"
   only:
     - master
+    - centos9
     - centos8
     - centos7
     - centos6

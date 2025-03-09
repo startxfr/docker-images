@@ -25,6 +25,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | [`startx/runner-bash:26`](https://hub.docker.com/r/startx/runner-bash)      | Fedora core 26      |        |       |
 | [`startx/runner-bash:alma8`](https://hub.docker.com/r/startx/runner-bash)   | Alma 8              | 4.4.19 | 4.2.1 |
 | [`startx/runner-bash:rocky8`](https://hub.docker.com/r/startx/runner-bash)  | Rocky 8             | 4.4.19 | 4.2.1 |
+| [`startx/runner-bash:centos9`](https://hub.docker.com/r/startx/runner-bash) | Centos 9            | 4.4.19 | 4.2.1 |
 | [`startx/runner-bash:centos8`](https://hub.docker.com/r/startx/runner-bash) | Centos 8            | 4.4.19 | 4.2.1 |
 | [`startx/runner-bash:centos7`](https://hub.docker.com/r/startx/runner-bash) | Centos 7            | 4.2.46 | 3.82  |
 | [`startx/runner-bash:ubi8`](https://hub.docker.com/r/startx/runner-bash)    | RedHat UBI 8        | 4.4.20 | 4.3   |

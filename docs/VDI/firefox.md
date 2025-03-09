@@ -30,6 +30,7 @@ based on [startx/fedora container](https://hub.docker.com/r/startx/fedora)
 | [`startx/vdi-firefox:fc28`](https://hub.docker.com/r/startx/vdi-firefox)    | Fedora core 28      |            |
 | [`startx/vdi-firefox:alma8`](https://hub.docker.com/r/startx/vdi-firefox)   | Alma 8              | 78.10.0esr |
 | [`startx/vdi-firefox:rocky8`](https://hub.docker.com/r/startx/vdi-firefox)  | Rocky 8             | 78.10.0esr |
+| [`startx/vdi-firefox:centos9`](https://hub.docker.com/r/startx/vdi-firefox) | Centos 9            | 78.10.0esr |
 | [`startx/vdi-firefox:centos8`](https://hub.docker.com/r/startx/vdi-firefox) | Centos 8            | 78.10.0esr |
 | [`startx/vdi-firefox:centos7`](https://hub.docker.com/r/startx/vdi-firefox) | Centos 7            | 78.10.0esr |
 | [`startx/vdi-firefox:alpine3`](https://hub.docker.com/r/startx/vdi-firefox) | Alpine 3.12         | 88.0.1     |
