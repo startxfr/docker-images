@@ -1,11 +1,11 @@
-FROM fedora:41
+FROM fedora:37
 
 ENV SX_VERSION="latest" \ 
     SX_TYPE="OS" \
     SX_SERVICE="fedora" \
     SX_ID="startx/fedora" \
-    SX_NAME="Startx OS base image (fedora 41)" \
-    SX_SUMMARY="Startx OS base image based on fedora 41" \
+    SX_NAME="Startx OS base image (fedora 37)" \
+    SX_SUMMARY="Startx OS base image based on fedora 37" \
     SX_MAINTAINER_MAIL="dev@startx.fr" \
     SX_VERBOSE=true \
     SX_DEBUG=false \
@@ -39,11 +39,11 @@ LABEL name="$SX_ID" \
     io.openshift.s2i.scripts-url="image:///s2i" \
     io.s2i.scripts-url="image:///s2i" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
-    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/fc41/OS/fedora/" \
-    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/fc41/OS" \
-    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/fc41/OS/README.md" \
-    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/fc41/docs/img/os-fedora.svg' \
-    io.artifacthub.package.alternative-locations='quay.io/startx/fedora:41,docker.io/startx/fedora:41'
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/fc37/OS/fedora/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/fc37/OS" \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/fc37/OS/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/fc37/docs/img/os-fedora.svg' \
+    io.artifacthub.package.alternative-locations='quay.io/startx/fedora:37,docker.io/startx/fedora:37'
 
 USER root
 
