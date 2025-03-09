@@ -57,7 +57,7 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
         mongodb-org-tools && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
-    dnf remove -yq --skip-broken yum-utils yum && \
+    dnf remove -yq  yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     usermod -a -G 0 $MONGO_USER && \
     mkdir -p $DATA_PATH && \

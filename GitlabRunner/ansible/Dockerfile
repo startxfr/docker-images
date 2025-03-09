@@ -57,7 +57,7 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
     npm install uuid && \
-    dnf remove -yq --skip-broken yum-utils yum && \
+    dnf remove -yq  yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/bin/* /bin/ && \
     mv /tmp/lib/* $SX_LIBDIR/ && \

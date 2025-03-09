@@ -1,4 +1,4 @@
-<img align="left" src="https://raw.githubusercontent.com/startxfr/docker-images/master/docs/img/app-ocp-reliability.svg?sanitize=true">
+<img align="left" src="https://raw.githubusercontent.com/startxfr/docker-images/master/docs/img/app-oc-reliability.svg?sanitize=true">
 <img align="right" src="https://raw.githubusercontent.com/startxfr/docker-images/master/.gitlab/img/logo-small.svg?sanitize=true">
 
 # STARTX Application docker-images : OCP Reliability

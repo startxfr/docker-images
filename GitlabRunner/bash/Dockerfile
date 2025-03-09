@@ -56,7 +56,7 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
     gem install --silent mdl && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
-    dnf remove -yq --skip-broken yum-utils yum && \
+    dnf remove -yq  yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     useradd -s /bin/bash -u ${SX_UID} -g 0 -m ${SX_UNAME} && \
     mv /tmp/bin/* /bin/ && \
