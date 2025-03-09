@@ -1,11 +1,11 @@
-FROM centos:8
+FROM centos:9
 
-ENV SX_VERSION="centos8" \
+ENV SX_VERSION="centos9" \
     SX_TYPE="OS" \
     SX_SERVICE="centos" \
     SX_ID="startx/centos" \
-    SX_NAME="Startx OS base image (centos 8)" \
-    SX_SUMMARY="Startx OS base image based on centos 8" \
+    SX_NAME="Startx OS base image (centos 9)" \
+    SX_SUMMARY="Startx OS base image based on centos 9" \
     SX_MAINTAINER_MAIL="dev@startx.fr" \
     SX_VERBOSE=true \
     SX_DEBUG=false \
@@ -39,11 +39,11 @@ LABEL name="$SX_ID" \
     io.openshift.s2i.scripts-url="image:///s2i" \
     io.s2i.scripts-url="image:///s2i" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
-    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/centos8/OS/centos/" \
-    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/centos8/OS" \
-    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/centos8/OS/README.md" \
-    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/centos8/docs/img/os-centos.svg' \
-    io.artifacthub.package.alternative-locations='quay.io/startx/centos:8,docker.io/startx/centos:8'
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/centos9/OS/centos/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/centos9/OS" \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/centos9/OS/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/centos9/docs/img/os-centos.svg' \
+    io.artifacthub.package.alternative-locations='quay.io/startx/centos:9,docker.io/startx/centos:9'
 
 USER root
 
