@@ -301,7 +301,7 @@ function DoImageSignImage {
             cosign login "$CI_REGISTRY" -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" 
         fi
         echo "INFO: Signing image ${image}"
-        cosign sign -f -y --key "${keyfile}" "${image}"
+        cosign sign -y --key "${keyfile}" "${image}"
     else
         echo "DEBUG: Signing image is not possible because cosign is not found"
     fi
