@@ -65,7 +65,7 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
     dnf install -yq --nogpgcheck google-chrome-stable && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
-    dnf remove -yq --skip-broken yum-utils && \
+    dnf remove -yq yum-utils && \
     dnf clean all --enablerepo=\* && \
     pip3 install --upgrade pip && \
     # pip3 install --upgrade --force-reinstall setuptools pip && \

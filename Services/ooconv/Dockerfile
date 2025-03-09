@@ -55,7 +55,7 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
         ghostscript && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
-    dnf remove -yq --skip-broken yum-utils && \
+    dnf remove -yq yum-utils && \
     dnf clean all --enablerepo=\* && \
     useradd -s /bin/bash -m -g 0 -u 1001 ooconv && \
     mkdir -p $DATA_PATH /.cache && \

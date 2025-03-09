@@ -58,7 +58,7 @@ RUN dnf upgrade -yq --refresh && \
     ncurses \
     ncurses-* \
     python3 && \
-    dnf remove -yq --skip-broken yum-utils && \
+    dnf remove -yq yum-utils && \
     dnf remove -yq 'dnf-command(config-manager)' && \
     dnf clean all --enablerepo=\* && \
     #echo 0 > /proc/sys/vm/swappiness && \

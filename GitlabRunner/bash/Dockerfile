@@ -52,7 +52,7 @@ RUN dnf upgrade -yq --refresh && \
     python3-pip \
     jq && \
     pip3 install -q yq && \
-    dnf remove -yq --skip-broken yum-utils && \
+    dnf remove -yq yum-utils && \
     dnf clean all --enablerepo=\* && \
     useradd -s /bin/bash -u ${SX_UID} -g 0 -m ${SX_UNAME} && \
     mv /tmp/bin/* /bin/ && \
