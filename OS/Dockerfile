@@ -1,11 +1,11 @@
-FROM fedora:rawhide
+FROM fedora:37
 
-ENV SX_VERSION="latest" \
+ENV SX_VERSION="latest" \ 
     SX_TYPE="OS" \
     SX_SERVICE="fedora" \
     SX_ID="startx/fedora" \
-    SX_NAME="Startx OS base image (fedora rawhide)" \
-    SX_SUMMARY="Startx OS base image based on fedora rawhide" \
+    SX_NAME="Startx OS base image (fedora 37)" \
+    SX_SUMMARY="Startx OS base image based on fedora 37" \
     SX_MAINTAINER_MAIL="dev@startx.fr" \
     SX_VERBOSE=true \
     SX_DEBUG=false \
@@ -39,11 +39,11 @@ LABEL name="$SX_ID" \
     io.openshift.s2i.scripts-url="image:///s2i" \
     io.s2i.scripts-url="image:///s2i" \
     fr.startx.component="$SX_ID:$SX_VERSION" \
-    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/latest/OS/fedora/" \
-    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/master/OS" \
-    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/master/OS/README.md" \
-    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/master/docs/img/os-fedora.svg' \
-    io.artifacthub.package.alternative-locations='quay.io/startx/fedora:latest,docker.io/startx/fedora:latest'
+    org.opencontainers.image.documentation="https://docker-images.readthedocs.io/en/fc37/OS/fedora/" \
+    org.opencontainers.image.source="https://gitlab.com/startx1/containers/-/tree/fc37/OS" \
+    io.artifacthub.package.readme-url="https://gitlab.com/startx1/containers/-/raw/fc37/OS/README.md" \
+    io.artifacthub.package.logo-url='https://gitlab.com/startx1/containers/-/raw/fc37/docs/img/os-fedora.svg' \
+    io.artifacthub.package.alternative-locations='quay.io/startx/fedora:37,docker.io/startx/fedora:37'
 
 USER root
 
@@ -71,7 +71,7 @@ RUN echo "keepcache=0" >>/etc/dnf/dnf.conf && \
         vim && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
-    dnf remove -yq --skip-broken yum-utils yum && \
+    dnf remove -yq yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mkdir -p $SX_LIBDIR $APP_PATH $LOG_PATH && \
     chmod -R 775 /tmp/sx/bin /tmp/s2i/bin /tmp/sx/lib && \
