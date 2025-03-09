@@ -90,7 +90,7 @@ function exectutePush {
         type="all"
     fi
     if [ $type == "all" ]; then
-        git checkout master && git push origin master fc37 fc36 fc35 fc34 fc33 fc32 fc31 fc30 ubi8 alpine rocky8 alma8 centos8 centos7 centos6
+        git checkout master && git push origin master fc41 fc40 fc39 fc38 fc37 fc36 fc35 fc34 fc33 fc32 fc31 fc30 ubi8 alpine rocky8 alma8 centos8 centos7 centos6
     else
         git checkout master && git push origin $2
     fi

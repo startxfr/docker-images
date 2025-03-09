@@ -44,6 +44,10 @@ build-application-phpmyadmin:
     - centos6
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -68,6 +72,10 @@ build-application-phpmyadmin-sign:
     - centos6
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -116,6 +124,10 @@ build-application-ocp-reliability:
     - centos6
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
@@ -138,6 +150,10 @@ build-application-ocp-reliability-sign:
     - centos6
     - alpine
     - ubi8
+    - fc41
+    - fc40
+    - fc39
+    - fc38
     - fc37
     - fc36
     - fc35
