@@ -58,7 +58,7 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
         bzip2 && \
     package-cleanup --problems && \
     package-cleanup --orphans && \
-    dnf remove -yq --skip-broken yum-utils yum && \
+    dnf remove -yq  yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     #echo 0 > /proc/sys/vm/swappiness && \
     echo '' >>/etc/sysctl.conf && \
