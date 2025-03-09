@@ -65,7 +65,7 @@ nav:
   - Introduction: 'index.md'
   - Develop: 'Develop.md'
   - OS:
-    - 'OS/index.md'
+    - 'OS/README.md'
     - 'Alma': 'OS/alma.md'
     - 'Alpine': 'OS/alpine.md'
     - 'CentOS': 'OS/centos.md'
@@ -73,7 +73,7 @@ nav:
     - 'Rocky': 'OS/rocky.md'
     - 'UBI': 'OS/ubi.md'
   - Services:
-    - 'Services/index.md'
+    - 'Services/README.md'
     - 'Apache': 'Services/apache.md'
     - 'Couchbase': 'Services/couchbase.md'
     - 'MariaDB': 'Services/mariadb.md'
@@ -84,7 +84,7 @@ nav:
     - 'PHP': 'Services/php.md'
     - 'PostGreSQL': 'Services/postgres.md'
   - Gitlab Runner:
-    - 'GitlabRunner/index.md'
+    - 'GitlabRunner/README.md'
     - 'Ansible': 'GitlabRunner/ansible.md'
     - 'Apache': 'GitlabRunner/apache.md'
     - 'Bash': 'GitlabRunner/bash.md'
@@ -92,11 +92,11 @@ nav:
     - 'Openshift': 'GitlabRunner/oc.md'
     - 'PHP': 'GitlabRunner/php.md'
   - VDI:
-    - 'VDI/index.md'
+    - 'VDI/README.md'
     - 'Chrome': 'VDI/chrome.md'
     - 'Firefox': 'VDI/firefox.md'
   - Applications: 
-    - 'Applications/index.md'
+    - 'Applications/README.md'
     - 'PhpMyAdmin': 'Applications/phpmyadmin.md'
     - 'OCP Reliability': 'Applications/ocp-reliability.md'
   # - Releases: 'history.md'
