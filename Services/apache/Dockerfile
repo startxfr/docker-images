@@ -55,7 +55,7 @@ RUN dnf install -yq --nogpgcheck yum-utils && \
         httpd
 RUN package-cleanup --problems && \
     package-cleanup --orphans && \
-    dnf remove -yq --skip-broken yum-utils yum && \
+    dnf remove -yq  yum-utils yum && \
     dnf clean all --enablerepo=\* && \
     mv /tmp/sx/s2i/bin/* /s2i/ && \
     mv /tmp/sx/sx/bin/* /bin/ && \
